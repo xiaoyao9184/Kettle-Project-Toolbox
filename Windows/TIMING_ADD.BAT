@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.0
-::TIME 2015-04-07
+::CODER BY xiaoyao9184 1.1
+::TIME 2015-04-08
 ::FILE TIMING_ADD
 ::DESC add a kettle dispatch bat script into timing tasks
 
@@ -36,7 +36,7 @@ set t=%time:~0,5%
 if "%runTime%"=="" (
 	echo %echorunTime%%t%
 	set /p runTime=%esetrunTime%
-	if "%runTime%"=="" (
+	if "!runTime!"=="" (
 		set runTime=%t%
 	)
 )
