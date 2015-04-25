@@ -65,7 +65,7 @@ echo Kettle运行脚本名称：%scriptName%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行AT添加
-at %runTime% /every:m,t,w,th,f,s,su %~dp0%scriptName%
+at %runTime% /every:m,t,w,th,f,s,su "'%~dp0%scriptName%'"
 
 ::是否运行
 set /p runScript=是否现在就运行任务(Y/N)

@@ -74,7 +74,7 @@ echo Kettle运行脚本名称：%scriptName%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行schtasks
-schtasks /create /tn %taskName% /tr "%~dp0%scriptName%" /sc daily /st %runTime%
+schtasks /create /tn %taskName% /tr "'%~dp0%scriptName%'" /sc daily /st %runTime%
 
 ::是否运行
 set /p runScript=是否现在就运行任务(Y/N)
