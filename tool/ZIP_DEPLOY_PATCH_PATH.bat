@@ -52,7 +52,7 @@ echo Kettle将生成此文件夹的部署补丁：%srcPath%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Pan
-pan -file:%~dp0ZipDeployPatch4FSPath.ktr "-param:srcPath=%srcPath%" "-param:notRegex=.*\.kdb$|.*\.log$|.*data-integration.*"
+pan -file:%~dp0ZipDeployPatch4FSPath.ktr "-param:srcPath=%srcPath%" "-param:notRegex=.*\.kdb$|.*\.log$|.*\.git.*|.*data-integration$" "-param:regex=.*"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序
