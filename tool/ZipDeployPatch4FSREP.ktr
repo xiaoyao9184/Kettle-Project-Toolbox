@@ -24,6 +24,11 @@
             <default_value>.&#x2a;</default_value>
             <description>&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;</description>
         </parameter>
+        <parameter>
+            <name>srcREG</name>
+            <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;repositories.xml</default_value>
+            <description>&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x4f4d;&#x7f6e;</description>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -89,8 +94,6 @@
   <notepads>
   </notepads>
   <order>
-  <hop> <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</from><to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x540d;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x4e2d;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x5254;&#x9664;&#x65e0;&#x7528;&#x5b57;&#x6bb5;</to><enabled>Y</enabled> </hop>
@@ -100,6 +103,8 @@
   <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;Zip&#x6587;&#x4ef6;&#x8def;&#x5f84;</from><to>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x4e2d;</to><enabled>Y</enabled> </hop>
   <hop> <from>JavaScript&#x4ee3;&#x7801;&#xff1a;Zip&#x79fb;&#x9664;&#x8def;&#x5f84;</from><to>Zip &#x6587;&#x4ef6;&#xff1a;&#x76ee;&#x6807;Zip&#x6587;&#x4ef6;&#x751f;&#x6210;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;Zip&#x6587;&#x4ef6;&#x8def;&#x5f84;</from><to>&#x5199;&#x65e5;&#x5fd7;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</from><to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</to><enabled>Y</enabled> </hop>
+  <hop> <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>JavaScript&#x4ee3;&#x7801;&#xff1a;Zip&#x79fb;&#x9664;&#x8def;&#x5f84;</name>
@@ -127,151 +132,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>300</xloc>
       <yloc>840</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</name>
-    <type>getXMLData</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <namespaceaware>N</namespaceaware>
-    <ignorecomments>N</ignorecomments>
-    <readurl>N</readurl>
-    <validating>N</validating>
-    <usetoken>N</usetoken>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding>UTF-8</encoding>
-    <file>
-      <name>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;repositories.xml</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>id</name>
-        <xpath>id</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>name</name>
-        <xpath>name</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>description</name>
-        <xpath>description</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>base_directory</name>
-        <xpath>base_directory</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>read_only</name>
-        <xpath>read_only</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>hides_hidden_files</name>
-        <xpath>hides_hidden_files</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <loopxpath>&#x2f;repositories&#x2f;repository</loopxpath>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <XmlField/>
-    <prunePath/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>300</xloc>
-      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -481,51 +341,6 @@
     </step>
 
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>
-      <field>
-        <name>REGName</name>
-        <variable>&#x24;&#x7b;rName&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>NotRegex</name>
-        <variable>&#x24;&#x7b;notRegex&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>300</xloc>
-      <yloc>140</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x4e2d;</name>
     <type>GetFileNames</type>
     <description/>
@@ -622,6 +437,220 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>300</xloc>
       <yloc>240</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</name>
+    <type>getXMLData</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <namespaceaware>N</namespaceaware>
+    <ignorecomments>N</ignorecomments>
+    <readurl>N</readurl>
+    <validating>N</validating>
+    <usetoken>N</usetoken>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field/>
+    <encoding>UTF-8</encoding>
+    <file>
+      <name>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;repositories.xml</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>id</name>
+        <xpath>id</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>name</name>
+        <xpath>name</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>description</name>
+        <xpath>description</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>base_directory</name>
+        <xpath>base_directory</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>read_only</name>
+        <xpath>read_only</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+        <xpath>hides_hidden_files</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <loopxpath>&#x2f;repositories&#x2f;repository</loopxpath>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>Y</IsAFile>
+    <XmlField>SrcREG</XmlField>
+    <prunePath/>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>300</xloc>
+      <yloc>140</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>REGName</name>
+        <variable>&#x24;&#x7b;rName&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>SrcREG</name>
+        <variable>&#x24;&#x7b;srcREG&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>NotRegex</name>
+        <variable>&#x24;&#x7b;notRegex&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Regex</name>
+        <variable>&#x24;&#x7b;regex&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>300</xloc>
+      <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
