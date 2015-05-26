@@ -55,10 +55,12 @@ if "%pName%"=="" (
 )
 
 if "%~1"=="" (
-	echo %echopValue%
-	set /p pValue=%esetpValue%
+	if "%pValue%"=="" (
+		echo %echopValue%
+		set /p pValue=%esetpValue%
+	) 
 )else set pValue=%~1
-	
+
 
 :begin
 
