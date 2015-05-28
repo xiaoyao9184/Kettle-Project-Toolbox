@@ -15,12 +15,12 @@
             <description>&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x2f;&#x8fc7;&#x6ee4;&#x540d;&#x79f0;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;</description>
         </parameter>
         <parameter>
-            <name>srcREG</name>
+            <name>srcREP</name>
             <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;repositories.xml</default_value>
             <description>&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x4f4d;&#x7f6e;</description>
         </parameter>
         <parameter>
-            <name>tarREG</name>
+            <name>tarREP</name>
             <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;&#x5b;Copy&#x5d;repositories.xml</default_value>
             <description>&#x76ee;&#x6807;&#x8d44;&#x6e90;&#x5e93;&#x8f93;&#x51fa;&#x4f4d;&#x7f6e;</description>
         </parameter>
@@ -223,7 +223,7 @@
     <loopxpath>&#x2f;repositories&#x2f;repository</loopxpath>
     <IsInFields>Y</IsInFields>
     <IsAFile>Y</IsAFile>
-    <XmlField>SrcREG</XmlField>
+    <XmlField>SrcREP</XmlField>
     <prunePath/>
     <shortFileFieldName/>
     <pathFieldName/>
@@ -257,7 +257,7 @@
     <xml_main_element>repositories</xml_main_element>
     <xml_repeat_element>repository</xml_repeat_element>
     <file>
-      <name>&#x24;&#x7b;tarREG&#x7d;</name>
+      <name>&#x24;&#x7b;tarREP&#x7d;</name>
       <extention/>
       <servlet_output>N</servlet_output>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
@@ -522,7 +522,7 @@
            </partitioning>
     <fields>
       <field>
-        <name>REGNameRegex</name>
+        <name>REPNameRegex</name>
         <variable>&#x24;&#x7b;rNameRegex&#x7d;</variable>
         <type>String</type>
         <format/>
@@ -534,8 +534,8 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>SrcREG</name>
-        <variable>&#x24;&#x7b;srcREG&#x7d;</variable>
+        <name>SrcREP</name>
+        <variable>&#x24;&#x7b;srcREP&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -572,7 +572,7 @@
  <negated>N</negated>
  <leftvalue>name</leftvalue>
  <function>REGEXP</function>
- <rightvalue>REGNameRegex</rightvalue>
+ <rightvalue>REPNameRegex</rightvalue>
  </condition>
     </compare>
      <cluster_schema/>

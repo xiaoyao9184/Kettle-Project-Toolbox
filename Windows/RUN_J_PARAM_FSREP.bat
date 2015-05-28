@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.0
-::TIME 2015-04-08
+::CODER BY xiaoyao9184 1.1
+::TIME 2015-05-28
 ::FILE RUN_J_PARAM_FSREP
 ::DESC run a job with param no log in filesystem repositorie 
 
@@ -80,7 +80,7 @@ echo Kettle作业参数为：%pName%=%pValue%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-kitchen -rep:%rName% -user:admin -pass:admin -job:%jName% "-param:%pName%=%pValue%"
+call kitchen -rep:%rName% -user:admin -pass:admin -job:%jName% "-param:%pName%=%pValue%"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序

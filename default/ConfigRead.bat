@@ -80,7 +80,7 @@ echo Kettle作业参数为：%pName%=%pValue%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-kitchen -rep:%rName% -user:admin -pass:admin -job:%jName% "-param:%pName%=%pValue%" -level:Basic>>"%~dp0%jName%.log"
+call kitchen -rep:%rName% -user:admin -pass:admin -job:%jName% "-param:%pName%=%pValue%" -level:Basic>>"%~dp0%jName%.log"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序

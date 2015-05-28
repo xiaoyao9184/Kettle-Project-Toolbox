@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.0
-::TIME 2015-05-20
+::CODER BY xiaoyao9184 1.0 beta
+::TIME 2015-05-28
 ::FILE ZIP_DEPLOY_PATCH_FSREP
 ::DESC create a zip patch file for deploy in filesystem repositorie
 
@@ -49,10 +49,11 @@ cd data-integration
 echo Kettle引擎目录为：%cd%
 echo Kettle工作目录为：%~dp0
 echo Kettle将生成此资源库的部署补丁：%rName%
+echo Kettle将生成部署补丁到：（资源库同级目录）
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Pan
-pan -file:%~dp0ZipDeployPatch4FSREP.ktr "-param:rName=%rName%"
+call pan -file:%~dp0ZipDeployPatch4FSREP.ktr "-param:rName=%rName%"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序

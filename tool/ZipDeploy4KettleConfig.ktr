@@ -142,9 +142,9 @@
     <group_size>1</group_size>
     <group_field/>
     <group_time/>
-          <parameters>       <variablemapping><variable>rNameRegex</variable><field>REGNameRegex</field><input/></variablemapping>
-       <variablemapping><variable>srcREG</variable><field>filename</field><input/></variablemapping>
-       <variablemapping><variable>tarREG</variable><field/><input>&#x24;&#x7b;srcPath&#x7d;&#x5c;&#x5b;TEMP&#x5d;repositories.xml</input></variablemapping>
+          <parameters>       <variablemapping><variable>rNameRegex</variable><field>REPNameRegex</field><input/></variablemapping>
+       <variablemapping><variable>srcREP</variable><field>filename</field><input/></variablemapping>
+       <variablemapping><variable>tarREP</variable><field/><input>&#x24;&#x7b;srcPath&#x7d;&#x5c;&#x5b;TEMP&#x5d;repositories.xml</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     <execution_result_target_step/>
@@ -201,7 +201,7 @@
         <name>NotRegex</name>
         </field>
       <field>
-        <name>REGNameRegex</name>
+        <name>REPNameRegex</name>
         </field>
       <field>
         <name>ZipFile</name>
@@ -321,7 +321,7 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>REGNameRegex</name>
+      </field>      <field>        <name>REPNameRegex</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -369,7 +369,7 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>REGNameRegex</name>
+      </field>      <field>        <name>REPNameRegex</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -469,7 +469,7 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>REGNameRegex</name>
+      </field>      <field>        <name>REPNameRegex</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -760,7 +760,7 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>REGNameRegex</name>
+        <name>REPNameRegex</name>
         <variable>&#x24;&#x7b;rNameRegex&#x7d;</variable>
         <type>String</type>
         <format/>

@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.1
-::TIME 2015-04-08
+::CODER BY xiaoyao9184 1.2
+::TIME 2015-05-28
 ::FILE RUN_T_PARAM_NOLOG_SIMP
 ::DESC run a transformation with param no log no repositorie
 
@@ -72,7 +72,7 @@ echo Kettle转换参数为：%pName%=%pValue%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Pan
-Pan -file:%~dp0%tName%.ktr "-param:%pName%=%pValue%"
+call Pan -file:%~dp0%tName%.ktr "-param:%pName%=%pValue%"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序

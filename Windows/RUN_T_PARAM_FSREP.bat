@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.0
-::TIME 2015-04-08
+::CODER BY xiaoyao9184 1.1
+::TIME 2015-05-28
 ::FILE RUN_T_PARAM_NOLOG_FSREP
 ::DESC run a transformation with param no log in filesystem repositorie 
 
@@ -80,7 +80,7 @@ echo Kettle转换参数为：%pName%=%pValue%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Pan
-Pan -rep:%rName% -user:admin -pass:admin -job:%tName% "-param:%pName%=%pValue%"
+call Pan -rep:%rName% -user:admin -pass:admin -job:%tName% "-param:%pName%=%pValue%"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序

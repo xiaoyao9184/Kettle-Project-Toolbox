@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.0
-::TIME 2015-04-07
+::CODER BY xiaoyao9184 1.1
+::TIME 2015-05-28
 ::FILE RUN_J_BLOG_FSREP
 ::DESC run a job with base log in filesystem repositorie 
 
@@ -64,7 +64,7 @@ echo Kettle日志文件为："%~dp0log\%jName%%d:/=-%_%t::=-%.log"
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-kitchen -rep:%rName% -user:admin -pass:admin -job:%jName% -level:Basic>>"%~dp0log\%jName%%d:/=-%_%t::=-%.log"
+call kitchen -rep:%rName% -user:admin -pass:admin -job:%jName% -level:Basic>>"%~dp0log\%jName%%d:/=-%_%t::=-%.log"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序
