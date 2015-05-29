@@ -16,8 +16,8 @@ set tarREP=%2
 
 set echorNameRegex=需要输入Kettle文件资源库名称（或正则表达式）
 set esetrNameRegex=请输入Kettle文件资源库名称（或正则表达式），然后回车：
-set echotarREP=需要输入目标Kettle文件资源库路径（用于输出）
-set esettarREP=请输入目标Kettle文件资源库路径，然后回车：
+set echotarREP=需要输入Kettle文件资源库配置输出路径
+set esettarREP=请输入Kettle文件资源库配置输出路径，然后回车：
 
 :title
 
