@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
-::TIME 2015-05-29
+::TIME 2015-06-11
 ::FILE COPY_REP_PATH
 ::DESC copy one filesystem repository folder to new folder
 
@@ -9,7 +9,7 @@ Setlocal enabledelayedexpansion
 :v
 
 ::1变量赋值
-set tip=Kettle部署工具：提取部署配置
+set tip=Kettle复制工具：复制资源库
 set ver=1.0
 set rName=%1
 set tarPath=%2

@@ -1,15 +1,15 @@
 @echo off
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
-::TIME 2015-05-28
+::TIME 2015-06-11
 ::FILE COPY_REP_CFG
-::DESC copy one or more repository config xml node to new file(extraction deployment configuration)
+::DESC copy one or more repository config data(s) to new file(extraction deployment configuration)
 
 
 :v
 
 ::1变量赋值
-set tip=Kettle部署工具：提取部署配置
+set tip=Kettle复制工具：复制资源库
 set ver=1.0
 set rNameRegex=%1
 set tarREP=%2

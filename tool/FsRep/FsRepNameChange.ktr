@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>FsRepDataRead</name>
+    <name>FsRepNameChange</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -10,14 +10,19 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>rConfigPath</name>
-            <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;repositories.xml</default_value>
-            <description>&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6587;&#x4ef6;</description>
+            <name>rNameNew</name>
+            <default_value/>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;</description>
         </parameter>
         <parameter>
-            <name>rNameRegex</name>
+            <name>rNameRemove</name>
+            <default_value>dev</default_value>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x79fb;&#x9664;&#x90e8;&#x5206;</description>
+        </parameter>
+        <parameter>
+            <name>rNameReplace</name>
             <default_value/>
-            <description>&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x2f;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;</description>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x90e8;&#x5206;</description>
         </parameter>
     </parameters>
     <log>
@@ -77,13 +82,13 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;06&#x2f;10 13&#x3a;29&#x3a;22.294</created_date>
+  <created_date>2015&#x2f;06&#x2f;10 13&#x3a;38&#x3a;33.495</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;06&#x2f;10 13&#x3a;29&#x3a;22.294</modified_date>
+  <modified_date>2015&#x2f;06&#x2f;10 13&#x3a;38&#x3a;33.495</modified_date>
   </info>
   <notepads>
     <notepad>
-      <note>&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6570;&#x636e;&#x8bfb;&#x53d6;</note>
+      <note>&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x540d;&#x79f0;&#x4fee;&#x6539;</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
       <width>118</width>
@@ -104,11 +109,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;rConfigPath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameRegex      &#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x8f93;&#x51fa;&#x7ed3;&#x679c;&#x8bb0;&#x5f55;&#xd;&#xa;&#x2a;                  &#x6587;&#x4ef6;&#x8d44;&#x6e90;&#x5e93;&#x9ed8;&#x8ba4;6&#x4e2a;&#x5b57;&#x6bb5;</note>
-      <xloc>593</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;rNameNew         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameRemove    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameReplace    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x8f93;&#x51fa;&#x7ed3;&#x679c;&#x8bb0;&#x5f55;&#xd;&#xa;&#x2a;                  &#x6587;&#x4ef6;&#x8d44;&#x6e90;&#x5e93;&#x9ed8;&#x8ba4;6&#x4e2a;&#x5b57;&#x6bb5;</note>
+      <xloc>466</xloc>
       <yloc>0</yloc>
       <width>214</width>
-      <heigth>189</heigth>
+      <heigth>205</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -125,11 +130,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rConfigPath&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x8bfb;&#x53d6;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7528;&#x6237;.kettle&#x76ee;&#x5f55;&#x4e0b;&#x7684;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameRegex&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xff0c;&#x6216;&#x7528;&#x4e8e;&#x8fc7;&#x6ee4;&#x7684;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>594</xloc>
-      <yloc>209</yloc>
-      <width>249</width>
-      <heigth>171</heigth>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rNameNew&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x65b0;&#x540d;&#x79f0;&#xff0c;&#x5c06;&#x6b64;&#x540d;&#x79f0;&#x7528;&#x4e8e;&#x66ff;&#x6362;&#x65e7;&#x540d;&#x79f0;&#xd;&#xa;&#x4e0e;rNameRemove&#xff0c;rNameReplace&#x53c2;&#x6570;&#x4e92;&#x65a5;&#x4f7f;&#x7528;&#xff0c;&#x4e0d;&#x4e3a;&#x7a7a;&#x65f6;&#x4f18;&#x5148;&#x9009;&#x7528;&#x6b64;&#x53c2;&#x6570;&#xff0c;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7a7a;&#x3002;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameRemove&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x79fb;&#x9664;&#x5b57;&#x7b26;&#xff0c;&#x5c06;&#x5bf9;&#x65e7;&#x540d;&#x79f0;&#x505a;&#x79fb;&#x9664;&#x64cd;&#x4f5c;&#xff0c;&#x4e0e;rNameReplace&#x914d;&#x5408;&#x4f7f;&#x7528;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;dev&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameReplace&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x5b57;&#x7b26;&#xff0c;&#x5c06;&#x5bf9;&#x65e7;&#x540d;&#x79f0;&#x4e2d;&#x79fb;&#x9664;&#x64cd;&#x4f5c;&#x7684;&#x5b57;&#x7b26;&#x66ff;&#x6362;&#x4e3a;&#x6b64;&#x5b57;&#x7b26;&#xff0c;&#x4e0e;rNameRemove&#x914d;&#x5408;&#x4f7f;&#x7528;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>467</xloc>
+      <yloc>222</yloc>
+      <width>517</width>
+      <heigth>235</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -147,16 +152,19 @@
     </notepad>
   </notepads>
   <order>
-  <hop> <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x4fdd;&#x7559;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x540d;&#x79f0;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x4fdd;&#x7559;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x540d;&#x79f0;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x5ffd;&#x7565;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</from><to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</from><to>&#x590d;&#x5236;&#x8bb0;&#x5f55;&#x5230;&#x7ed3;&#x679c;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x65b0;&#x7eaa;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x66ff;&#x6362;&#x540d;&#x79f0;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x65b0;&#x7eaa;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;&#x2f;&#x66ff;&#x6362;&#x540d;&#x79f0;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;&#x2f;&#x66ff;&#x6362;&#x540d;&#x79f0;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x66ff;&#x6362;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x4ece;&#x7ed3;&#x679c;&#x83b7;&#x53d6;&#x8bb0;&#x5f55;</from><to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x53c2;&#x6570;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x53c2;&#x6570;</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;EMPTY</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;EMPTY</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;&#x2f;&#x66ff;&#x6362;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x65b0;&#x7eaa;&#x5f55;</from><to>&#x590d;&#x5236;&#x8bb0;&#x5f55;&#x5230;&#x7ed3;&#x679c;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x65b0;&#x7eaa;&#x5f55;</from><to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;&#x540d;&#x79f0;&#x4fee;&#x6539;-&#x8f93;&#x51fa;&#x53c2;&#x6570;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</name>
-    <type>getXMLData</type>
+    <name>&#x4ece;&#x7ed3;&#x679c;&#x83b7;&#x53d6;&#x8bb0;&#x5f55;</name>
+    <type>RowsFromResult</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -165,136 +173,67 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <namespaceaware>N</namespaceaware>
-    <ignorecomments>N</ignorecomments>
-    <readurl>N</readurl>
-    <validating>N</validating>
-    <usetoken>N</usetoken>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding>UTF-8</encoding>
-    <file>
-      <name>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;repositories.xml</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
+    <fields>      <field>        <name>id</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>description</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>base_directory</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>read_only</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>hides_hidden_files</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>280</xloc>
+      <yloc>40</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;EMPTY</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
     <fields>
       <field>
-        <name>id</name>
-        <xpath>id</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
+        <name>EMPTY</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
+        <nullif/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>name</name>
-        <xpath>name</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>description</name>
-        <xpath>description</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>base_directory</name>
-        <xpath>base_directory</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>read_only</name>
-        <xpath>read_only</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>hides_hidden_files</name>
-        <xpath>hides_hidden_files</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+        <set_empty_string>Y</set_empty_string>
       </field>
     </fields>
-    <limit>0</limit>
-    <loopxpath>&#x2f;repositories&#x2f;repository</loopxpath>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>Y</IsAFile>
-    <XmlField>REPConfigPath</XmlField>
-    <prunePath/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>280</xloc>
-      <yloc>220</yloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -313,13 +252,57 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>280</xloc>
-      <yloc>860</yloc>
+      <yloc>840</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x65b0;&#x7eaa;&#x5f55;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>newname</name>
+        <rename>name</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>description</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>base_directory</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>read_only</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>hides_hidden_files</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>280</xloc>
+      <yloc>700</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -353,18 +336,34 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>REPNameRemove</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPNameReplace</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPNameNew</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPNameNew</name>
+        <rename>newname</rename>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>700</yloc>
+      <xloc>160</xloc>
+      <yloc>580</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x4fdd;&#x7559;</name>
-    <type>Dummy</type>
+    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x66ff;&#x6362;&#x540d;&#x79f0;</name>
+    <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -373,35 +372,29 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>name</in_stream_name>
+        <out_stream_name>newname</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>&#x24;&#x7b;rNameRemove&#x7d;</replace_string>
+        <replace_by_string>&#x24;&#x7b;rNameReplace&#x7d;</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>540</yloc>
+      <xloc>400</xloc>
+      <yloc>580</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x5ffd;&#x7565;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
-      <yloc>380</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x53c2;&#x6570;</name>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x53c2;&#x6570;</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -413,8 +406,8 @@
            </partitioning>
     <fields>
       <field>
-        <name>REPNameRegex</name>
-        <variable>&#x24;&#x7b;rNameRegex&#x7d;</variable>
+        <name>REPNameRemove</name>
+        <variable>&#x24;&#x7b;rNameRemove&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -425,8 +418,20 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>REPConfigPath</name>
-        <variable>&#x24;&#x7b;rConfigPath&#x7d;</variable>
+        <name>REPNameReplace</name>
+        <variable>&#x24;&#x7b;rNameReplace&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>REPNameNew</name>
+        <variable>&#x24;&#x7b;rNameNew&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -440,13 +445,13 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>280</xloc>
-      <yloc>60</yloc>
+      <yloc>200</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x540d;&#x79f0;</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;&#x2f;&#x66ff;&#x6362;&#x540d;&#x79f0;</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -456,20 +461,76 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x4fdd;&#x7559;</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x5ffd;&#x7565;</send_false_to>
+<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x66ff;&#x6362;&#x540d;&#x79f0;</send_true_to>
+<send_false_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>name</leftvalue>
- <function>REGEXP</function>
- <rightvalue>REPNameRegex</rightvalue>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>REPNameNew</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>REPNameNew</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue>EMPTY</rightvalue>
+   </condition>
+  </conditions>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>280</xloc>
-      <yloc>380</yloc>
+      <yloc>460</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;&#x540d;&#x79f0;&#x4fee;&#x6539;-&#x8f93;&#x51fa;&#x53c2;&#x6570;</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_debug</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>&#x914d;&#x7f6e;&#x6570;&#x636e;&#xff1a;</logmessage>
+    <fields>
+      <field>
+        <name>id</name>
+        </field>
+      <field>
+        <name>name</name>
+        </field>
+      <field>
+        <name>description</name>
+        </field>
+      <field>
+        <name>base_directory</name>
+        </field>
+      <field>
+        <name>read_only</name>
+        </field>
+      <field>
+        <name>hides_hidden_files</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>460</xloc>
+      <yloc>700</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

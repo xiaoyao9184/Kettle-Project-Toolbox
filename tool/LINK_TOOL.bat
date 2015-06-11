@@ -77,7 +77,7 @@ echo Kettle将为此目录建立联接：%tarPath%；联接到：%srcPath%
 echo 运行中...      Ctrl+C结束程序
 
 ::执行MKLink
-mklink /j "%tarPath%" "%srcPath%" 
+mklink /j %tarPath% %srcPath% 
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序

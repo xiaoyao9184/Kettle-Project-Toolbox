@@ -2,8 +2,8 @@
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
 ::TIME 2015-06-11
-::FILE COPY_REP_CFGDATA
-::DESC copy one or more repository config data(s) to a new file or merger to a exist file
+::FILE COPY_REP
+::DESC copy one or more repository config data(s) and file(s)
 
 
 :v
@@ -19,17 +19,18 @@ set rDir=
 set rPath=
 set srcREP=
 set tarREP=
+set isCopyFile=
 
-set echorName=需要输入Kettle文件资源库名称（准确名称）
+set echorName=需要输入Kettle文件资源库名称（准确名称，默认：dev.*）
 set esetrName=请输入名称，然后回车：
 
-set echorNameRegex=需要输入Kettle文件资源库名称过滤正则表达式
+set echorNameRegex=需要输入Kettle文件资源库名称过滤正则表达式（默认：dev.*）
 set esetrNameRegex=请输入正则表达式，然后回车：
 
-set echorNameRemove=需要输入资源库名称搜索参数（用于查找字符）
+set echorNameRemove=需要输入资源库名称搜索参数（用于查找字符，默认：dev）
 set esetrNameRemove=请输入一个包含在名称中的字符串，然后回车：
 
-set echorNameReplace=需要输入资源库名称替换参数（用于将查找字符替换）
+set echorNameReplace=需要输入资源库名称替换参数（用于将查找字符替换，默认空）
 set esetrNameReplace=请输入一个用于替换的字符串，然后回车：
 
 set echorNameNew=需要输入自定义资源库名称（用于标识复制的新数据）
@@ -52,7 +53,7 @@ set esettarREP=请输入文件路径或拖动文件到此，然后回车：
 ::2提示文本
 title %tip% %ver%
 
-echo Kettle部署工具：复制文件资源库配置
+echo Kettle复制工具：复制文件资源库
 echo 运行结束后可以关闭
 echo ...
 
@@ -61,7 +62,7 @@ echo ...
 
 ::3变量检验 参数处理
 
-choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d y
+choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d n
 	if !errorlevel! equ 1 goto one
 	if !errorlevel! equ 2 goto more
 	
@@ -72,7 +73,7 @@ choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d y
 		set /p rNameRegex=%esetrName%
 	)
 
-	choice /c yn /m 对要复制的资源库配置，自定义一个新名称^(Y^)，还是对旧名称进行替换^(N^)？ /t 5 /d y
+	choice /c yn /m 对要复制的资源库配置，自定义一个新名称^(Y^)，还是对旧名称进行替换^(N^)？ /t 10 /d n
 		if !errorlevel! equ 1 goto namenew
 		if !errorlevel! equ 2 goto namereplace
 	
@@ -99,12 +100,17 @@ choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d y
 	
 	:nameend
 	
-	if "%rPath%"=="" (
-		echo %echorPath%
-		set /p rPath=%esetrPath%
-	)
+	choice /c yn /m 需要指定资源库路径吗？ /t 5 /d n
+		if !errorlevel! equ 1 goto path
+		if !errorlevel! equ 2 goto omend
+
+	:path
+		if "%rPath%"=="" (
+			echo %echorPath%
+			set /p rPath=%esetrPath%
+		)
 	
-	goto omend
+		goto omend
 
 :more
 	set tempOm=more
@@ -124,10 +130,15 @@ choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d y
 		set /p rNameReplace=%esetrNameReplace%
 	)
 	
-	if "%rDir%"=="" (
-		echo %echorDir%
-		set /p rDir=%esetrDir%
-	)
+	choice /c yn /m 需要指定资源库父级路径吗？ /t 5 /d n
+		if !errorlevel! equ 1 goto dir
+		if !errorlevel! equ 2 goto omend
+
+	:dir
+		if "%rDir%"=="" (
+			echo %echorDir%
+			set /p rDir=%esetrDir%
+		)
 
 :omend
 
@@ -153,6 +164,11 @@ choice /c yn /m 需要指定资源库配置文件输入、输出位置吗？ /t 5 /d n
 	set tempUser=default
 
 
+choice /c yn /m 需要指定复制资源库文件夹吗？ /t 5 /d n
+	if !errorlevel! equ 1 set isCopyFile=1
+	if !errorlevel! equ 2 set isCopyFile=0
+
+
 :begin
 
 ::4执行
@@ -167,7 +183,7 @@ cd data-integration
 echo Kettle引擎目录为：%cd%
 echo Kettle工作目录为：%~dp0
 
-set tempParam="-param:rNameRegex=%rNameRegex%"
+set tempParam="-param:rNameRegex=%rNameRegex%" "-param:isCopyFile=%isCopyFile%"
 
 if "%tempUser%"=="default" (
 	echo Kettle将使用用户.kettle目录中的资源库配置文件作为输入、输出位置
@@ -202,7 +218,7 @@ if "%tempOm%"=="one" (
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-call kitchen -file:%~dp0CopyRepositoryData.kjb %tempParam%
+call kitchen -file:%~dp0CopyRepository.kjb %tempParam%
 ::echo %tempParam%
 
 ::执行完毕
