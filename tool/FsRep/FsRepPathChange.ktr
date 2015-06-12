@@ -10,14 +10,14 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>rDir</name>
-            <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;Rep&#x5c;</default_value>
-            <description>&#x8d44;&#x6e90;&#x5e93;&#x7236;&#x7ea7;&#x4f4d;&#x7f6e;</description>
-        </parameter>
-        <parameter>
             <name>rPath</name>
             <default_value/>
-            <description>&#x8d44;&#x6e90;&#x5e93;&#x5177;&#x4f53;&#x4f4d;&#x7f6e;</description>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x5177;&#x4f53;&#x2f;&#x7236;&#x7ea7;&#x4f4d;&#x7f6e;</description>
+        </parameter>
+        <parameter>
+            <name>rPathNameType</name>
+            <default_value>1</default_value>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x79f0;&#x7c7b;&#x578b;</description>
         </parameter>
     </parameters>
     <log>
@@ -85,7 +85,7 @@
     <notepad>
       <note>&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x8def;&#x5f84;&#x4fee;&#x6539;</note>
       <xloc>0</xloc>
-      <yloc>1</yloc>
+      <yloc>0</yloc>
       <width>118</width>
       <heigth>26</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
@@ -104,8 +104,8 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;rPath                  &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rDir                    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x8f93;&#x51fa;&#x7ed3;&#x679c;&#x8bb0;&#x5f55;&#xd;&#xa;SrcPath         &#x6e90;&#x8def;&#x5f84;&#xd;&#xa;TarPath         &#x76ee;&#x6807;&#x8def;&#x5f84;&#xd;&#xa;REGEX          &#x901a;&#x914d;&#x7b26;&#xd;&#xa;&#x2a;                  &#x6587;&#x4ef6;&#x8d44;&#x6e90;&#x5e93;&#x9ed8;&#x8ba4;6&#x4e2a;&#x5b57;&#x6bb5;</note>
-      <xloc>848</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;rPath                    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rPathNameType    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x8f93;&#x51fa;&#x7ed3;&#x679c;&#x8bb0;&#x5f55;&#xd;&#xa;SrcPath         &#x6e90;&#x8def;&#x5f84;&#xd;&#xa;TarPath         &#x76ee;&#x6807;&#x8def;&#x5f84;&#xd;&#xa;REGEX          &#x901a;&#x914d;&#x7b26;&#xd;&#xa;&#x2a;                  &#x6587;&#x4ef6;&#x8d44;&#x6e90;&#x5e93;&#x9ed8;&#x8ba4;6&#x4e2a;&#x5b57;&#x6bb5;</note>
+      <xloc>616</xloc>
       <yloc>0</yloc>
       <width>214</width>
       <heigth>237</heigth>
@@ -125,11 +125,32 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rPath&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x51c6;&#x786e;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rDir&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x7236;&#x7ea7;&#xff08;&#x6a21;&#x7cca;&#xff09;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;Rep&#x5c;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>850</xloc>
-      <yloc>260</yloc>
-      <width>207</width>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rPath&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x5177;&#x4f53;&#x2f;&#x7236;&#x7ea7;&#x4f4d;&#x7f6e;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rPathNameType&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x79f0;&#x7c7b;&#x578b;&#xff0c;0&#x4f7f;&#x7528;&#x65e7;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x79f0;&#x547d;&#x540d;&#xff1b;1&#x4f7f;&#x7528;&#x81ea;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x547d;&#x540d;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;1&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>617</xloc>
+      <yloc>252</yloc>
+      <width>408</width>
       <heigth>171</heigth>
+      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>&#x540c;&#x8def;&#x5f84;&#x91cd;&#x590d;&#x5904;&#x7406;</note>
+      <xloc>518</xloc>
+      <yloc>3292</yloc>
+      <width>94</width>
+      <heigth>26</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -149,45 +170,57 @@
   <order>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x590d;&#x5236;&#x6587;&#x4ef6;3&#x53c2;&#x6570;&#x2b;&#x914d;&#x7f6e;&#x6570;&#x636e;</from><to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;&#x8def;&#x5f84;&#x4fee;&#x6539;-&#x8f93;&#x51fa;&#x53c2;&#x6570;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x590d;&#x5236;&#x6587;&#x4ef6;3&#x53c2;&#x6570;&#x2b;&#x914d;&#x7f6e;&#x6570;&#x636e;</from><to>&#x590d;&#x5236;&#x8bb0;&#x5f55;&#x5230;&#x7ed3;&#x679c;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x4e0e;&#x6e90;&#x7236;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x56de;&#x6eda;&#x5b57;&#x6bb5;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x8def;&#x5f84;&#x51b2;&#x7a81;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x975e;&#x6b63;&#x5e38;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x7c;&#x2f;&#x7ed3;&#x5c3e;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x51c6;&#x786e;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x5355;&#x2f;&#x591a;&#x6570;&#x636e;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x5355;&#x4e2a;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x5355;&#x2f;&#x591a;&#x6570;&#x636e;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x591a;&#x4e2a;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x2f;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x53bb;&#x9664;&#x591a;&#x4f59;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x53bb;&#x9664;&#x591a;&#x4f59;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x53bb;&#x9664;&#x591a;&#x4f59;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8f6c;&#x6362;&#x6b65;&#x9aa4;&#x4fe1;&#x606f;&#x7edf;&#x8ba1;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x4fdd;&#x7559;&#x6b65;&#x9aa4;&#x6570;&#x91cf;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</from><to>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x51c6;&#x786e;&#x8def;&#x5f84;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x4fdd;&#x7559;&#x6b65;&#x9aa4;&#x6570;&#x91cf;</from><to>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x4e0e;&#x6e90;&#x7236;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x591a;&#x4e2a;&#x6570;&#x636e;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x5355;&#x2f;&#x591a;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x975e;&#x6b63;&#x5e38;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x7c;&#x2f;&#x7ed3;&#x5c3e;&#x29;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#xff09;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#xff09;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x8def;&#x5f84;&#x51b2;&#x7a81;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x56de;&#x6eda;&#x5b57;&#x6bb5;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x91cd;&#x8ba1;&#x7b97;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x52a0;&#x524d;&#x7f00;&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;&#x66ff;&#x6362;&#x53c2;&#x6570;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x2f;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x5355;&#x4e2a;&#x6570;&#x636e;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x975e;&#x6b63;&#x5e38;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x7c;&#x2f;&#x7ed3;&#x5c3e;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x4ece;&#x7ed3;&#x679c;&#x83b7;&#x53d6;&#x8bb0;&#x5f55;</from><to>&#x963b;&#x585e;&#x6570;&#x636e;&#x76f4;&#x5230;&#x6b65;&#x9aa4;&#x90fd;&#x5b8c;&#x6210;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x963b;&#x585e;&#x6570;&#x636e;&#x76f4;&#x5230;&#x6b65;&#x9aa4;&#x90fd;&#x5b8c;&#x6210;</from><to>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x8bb0;&#x5f55;&#x5173;&#x8054; &#x28;&#x7b1b;&#x5361;&#x5c14;&#x8f93;&#x51fa;&#x29;</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x7a7a;&#x4e32;&#x26;&#x91cd;&#x540d;&#x524d;&#x7f00;&#x26;&#x5206;&#x9694;&#x7b26;&#x26;&#x901a;&#x914d;&#x7b26;</to><enabled>Y</enabled> </hop>
   <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x7a7a;&#x4e32;&#x26;&#x91cd;&#x540d;&#x524d;&#x7f00;&#x26;&#x5206;&#x9694;&#x7b26;&#x26;&#x901a;&#x914d;&#x7b26;</from><to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;&#x66ff;&#x6362;&#x53c2;&#x6570;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x8def;&#x5f84;&#x51b2;&#x7a81;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x4e0e;&#x6e90;&#x7236;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x7236;&#x7ea7;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x7236;&#x7ea7;&#x8def;&#x5f84;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x590d;&#x5236;&#x6587;&#x4ef6;3&#x53c2;&#x6570;&#x2b;&#x914d;&#x7f6e;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x590d;&#x5236;&#x6587;&#x4ef6;3&#x53c2;&#x6570;&#x2b;&#x914d;&#x7f6e;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x7c7b;&#x578b;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x7c7b;&#x578b;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x8bbe;&#x4e3a;&#x7236;&#x7ea7;&#x8def;&#x5f84;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x76ee;&#x6807;&#x8def;&#x5f84;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x29;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x8bbe;&#x4e3a;&#x7236;&#x7ea7;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x751f;&#x6210;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x7c7b;&#x578b;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x29;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x591a;&#x4e2a;&#x6570;&#x636e;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x751f;&#x6210;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x2f;&#x540e;&#x7f00;&#x29;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x751f;&#x6210;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x76ee;&#x6807;&#x8def;&#x5f84;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x2f;&#x540e;&#x7f00;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x2f;&#x540e;&#x7f00;&#x29;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x5355;&#x2f;&#x591a;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;</from><to>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x5355;&#x4e2a;&#x6570;&#x636e;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;</to><enabled>Y</enabled> </hop>
+  <hop> <from>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5177;&#x4f53;&#x8def;&#x5f84;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5177;&#x4f53;&#x8def;&#x5f84;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</from><to>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x91cd;&#x8ba1;&#x7b97;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x52a0;&#x524d;&#x7f00;&#x29;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x8def;&#x5f84;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</from><to>&#x6839;&#x636e;&#x5b57;&#x6bb5;&#x503c;&#x6765;&#x6539;&#x53d8;&#x5e8f;&#x5217;&#xff1a;&#x540c;&#x8def;&#x5f84;&#x5e8f;&#x53f7;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</from><to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x2b;&#x5e8f;&#x53f7;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x2b;&#x5e8f;&#x53f7;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5e8f;&#x53f7;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x6839;&#x636e;&#x5b57;&#x6bb5;&#x503c;&#x6765;&#x6539;&#x53d8;&#x5e8f;&#x5217;&#xff1a;&#x540c;&#x8def;&#x5f84;&#x5e8f;&#x53f7;</from><to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5e8f;&#x53f7;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#xff09;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;</from><to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#xff09;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#xff09;</from><to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x590d;&#x5236;&#x6587;&#x4ef6;3&#x53c2;&#x6570;&#x2b;&#x914d;&#x7f6e;&#x6570;&#x636e;</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</name>
@@ -213,8 +246,38 @@
         <replace>N</replace>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>1280</yloc>
+      <xloc>400</xloc>
+      <yloc>1120</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;&#xd;&#xa;var index &#x3d; indexOf&#x28;TarPath,TarPathName&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;Alert&#x28;&#x22;index &#x3d; &#x22; &#x2b; index&#x29;&#x3b;&#xd;&#xa;TarFatherPath &#x3d; substr&#x28;TarPath,0,index-1&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>TarFatherPath</name>
+        <rename>TarFatherPath</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>280</xloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -256,8 +319,8 @@
         <precision>-1</precision>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>40</yloc>
+      <xloc>280</xloc>
+      <yloc>20</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -273,7 +336,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <loglevel>log_level_debug</loglevel>
+      <loglevel>log_level_detailed</loglevel>
       <displayHeader>Y</displayHeader>
       <limitRows>N</limitRows>
       <limitRowsNumber>0</limitRowsNumber>
@@ -309,8 +372,8 @@
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>740</xloc>
-      <yloc>2880</yloc>
+      <xloc>680</xloc>
+      <yloc>4120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -378,8 +441,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>440</yloc>
+      <xloc>400</xloc>
+      <yloc>380</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -397,8 +460,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>3020</yloc>
+      <xloc>520</xloc>
+      <yloc>4260</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -421,34 +484,8 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>660</xloc>
-      <yloc>180</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x56de;&#x6eda;&#x5b57;&#x6bb5;</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>TarFatherPath</name>
-      </remove>      <remove>        <name>TarPathName</name>
-      </remove>      <remove>        <name>TarPath1</name>
-      </remove>      <remove>        <name>TarPath2</name>
-      </remove>      <remove>        <name>SrcFatherPathBig</name>
-      </remove>      <remove>        <name>TarFatherPathBig</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>740</xloc>
-      <yloc>2320</yloc>
+      <xloc>520</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -503,148 +540,14 @@
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>2880</yloc>
+      <xloc>520</xloc>
+      <yloc>4120</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>id</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>name</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>description</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>base_directory</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>read_only</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>hides_hidden_files</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>REGEX</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SrcPath</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TarPath</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>140</xloc>
-      <yloc>2720</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>id</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>name</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>description</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>base_directory</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>read_only</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>hides_hidden_files</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>REGEX</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>SrcPath</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>TarPath2</name>
-        <rename>TarPath</rename>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>2740</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x7236;&#x7ea7;&#x8def;&#x5f84;</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>SrcFatherPathBig</name>
-      </remove>      <remove>        <name>TarFatherPathBig</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>2600</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -698,11 +601,483 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>REPPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>      <field>        <name>REPPath</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>REPDir</name>
+      </field>      <field>        <name>SrcFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPath2</name>
+        <rename>TarPath</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPathName1</name>
+        <rename>TarPathName</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>640</xloc>
+      <yloc>3840</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5177;&#x4f53;&#x8def;&#x5f84;&#x29;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>description</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>base_directory</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>read_only</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>hides_hidden_files</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EMPTY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPEAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SEPARATOR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REGEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DataCount</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>280</xloc>
+      <yloc>2400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x5904;&#x7406;&#x8fc7;&#x29;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>description</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>base_directory</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>read_only</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>hides_hidden_files</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EMPTY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPEAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SEPARATOR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REGEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DataCount</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPath2</name>
+        <rename>TarPath</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPathName1</name>
+        <rename>TarPathName</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>640</xloc>
+      <yloc>3100</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x28;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x29;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>description</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>base_directory</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>read_only</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>hides_hidden_files</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EMPTY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPEAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SEPARATOR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REGEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DataCount</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPath2</name>
+        <rename>TarPath</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>760</xloc>
+      <yloc>2400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x76ee;&#x6807;&#x8def;&#x5f84;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>description</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>base_directory</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>read_only</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>hides_hidden_files</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EMPTY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPEAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SEPARATOR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REGEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DataCount</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>TarPath1</name>
+        <rename>TarPath</rename>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SrcFatherPath</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>1460</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>id</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>name</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>description</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>base_directory</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>read_only</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>hides_hidden_files</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>EMPTY</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPEAT</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>SEPARATOR</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REGEX</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>DataCount</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPathName</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
+      </field>      <field>        <name>REPPath</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -714,22 +1089,18 @@
         <rename>TarPath</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>TarDir2</name>
-        <rename>TarDir</rename>
-        <length>-2</length>
-        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>920</yloc>
+      <xloc>400</xloc>
+      <yloc>860</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x64cd;&#x4f5c;&#xff1a;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x8f6c;&#x5927;&#x5199;</name>
-    <type>StringOperations</type>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x8def;&#x5f84;</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -738,38 +1109,34 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>SrcFatherPath</in_stream_name>
-        <out_stream_name>SrcFatherPathBig</out_stream_name>
-        <trim_type>none</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-      <field>
-        <in_stream_name>TarFatherPath</in_stream_name>
-        <out_stream_name>TarFatherPathBig</out_stream_name>
-        <trim_type>none</trim_type>
-        <lower_upper>upper</lower_upper>
-        <padding_type>none</padding_type>
-        <pad_char/>
-        <pad_len/>
-        <init_cap>no</init_cap>
-        <mask_xml>none</mask_xml>
-        <digits>none</digits>
-        <remove_special_characters>none</remove_special_characters>
-      </field>
-    </fields>
-     <cluster_schema/>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>SrcPathBig</name>
+      </remove>      <remove>        <name>TarPathBig</name>
+      </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>2320</yloc>
+      <xloc>400</xloc>
+      <yloc>3100</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5e8f;&#x53f7;</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>Num</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>3840</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -815,8 +1182,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>1040</yloc>
+      <xloc>520</xloc>
+      <yloc>2660</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -847,14 +1214,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>1160</yloc>
+      <xloc>400</xloc>
+      <yloc>1000</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</name>
+    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x751f;&#x6210;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -879,14 +1246,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>400</xloc>
-      <yloc>2060</yloc>
+      <xloc>760</xloc>
+      <yloc>1920</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</name>
+    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -898,10 +1265,10 @@
            </partitioning>
     <fields>
       <field>
-        <in_stream_name>TarDir</in_stream_name>
-        <out_stream_name>TarFatherPath</out_stream_name>
+        <in_stream_name>TarPath</in_stream_name>
+        <out_stream_name>TarPathName</out_stream_name>
         <use_regex>yes</use_regex>
-        <replace_string>&#x2f;&#x24;</replace_string>
+        <replace_string>.&#x2a;&#x2f;</replace_string>
         <replace_by_string/>
         <set_empty_string>Y</set_empty_string>
         <replace_field_by_string/>
@@ -911,8 +1278,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>680</xloc>
-      <yloc>2060</yloc>
+      <xloc>280</xloc>
+      <yloc>2040</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -951,22 +1318,11 @@
         <whole_word>no</whole_word>
         <case_sensitive>yes</case_sensitive>
       </field>
-      <field>
-        <in_stream_name>REPDir</in_stream_name>
-        <out_stream_name>TarDir1</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>&#x5c;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>yes</case_sensitive>
-      </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>680</yloc>
+      <xloc>400</xloc>
+      <yloc>620</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1005,22 +1361,84 @@
         <whole_word>no</whole_word>
         <case_sensitive>yes</case_sensitive>
       </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>400</xloc>
+      <yloc>740</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
       <field>
-        <in_stream_name>TarDir1</in_stream_name>
-        <out_stream_name>TarDir2</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>&#x2f;&#x2f;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>yes</case_sensitive>
+        <name>TarPath</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>description</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <presorted>N</presorted>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>800</yloc>
+      <xloc>520</xloc>
+      <yloc>3360</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x6839;&#x636e;&#x5b57;&#x6bb5;&#x503c;&#x6765;&#x6539;&#x53d8;&#x5e8f;&#x5217;&#xff1a;&#x540c;&#x8def;&#x5f84;&#x5e8f;&#x53f7;</name>
+    <type>FieldsChangeSequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <start>0</start>
+      <increment>1</increment>
+      <resultfieldName>Num</resultfieldName>
+    <fields>
+      <field>
+        <name>TarPath</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>3480</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1038,8 +1456,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>400</xloc>
-      <yloc>1520</yloc>
+      <xloc>280</xloc>
+      <yloc>1920</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1057,14 +1475,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>680</xloc>
-      <yloc>1520</yloc>
+      <xloc>520</xloc>
+      <yloc>1920</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x51c6;&#x786e;&#x8def;&#x5f84;</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1076,14 +1494,52 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>140</xloc>
-      <yloc>1940</yloc>
+      <xloc>520</xloc>
+      <yloc>3220</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x6574;&#x7406;&#x6570;&#x636e;&#x2b;&#x8def;&#x5f84;&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>2540</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x28;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x29;</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>760</xloc>
+      <yloc>2280</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x76ee;&#x6807;&#x8def;&#x5f84;</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1096,13 +1552,13 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>400</xloc>
-      <yloc>1940</yloc>
+      <yloc>1560</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1114,14 +1570,14 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>680</xloc>
-      <yloc>1940</yloc>
+      <xloc>400</xloc>
+      <yloc>2880</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x8def;&#x5f84;&#x51b2;&#x7a81;</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1133,8 +1589,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>920</xloc>
-      <yloc>1940</yloc>
+      <xloc>640</xloc>
+      <yloc>2880</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1152,8 +1608,8 @@
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>920</xloc>
-      <yloc>2600</yloc>
+      <xloc>520</xloc>
+      <yloc>3980</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1171,10 +1627,10 @@
            </partitioning>
     <fields>
       <field>
-        <name>REPPath</name>
-        <variable>&#x24;&#x7b;rPath&#x7d;</variable>
-        <type>String</type>
-        <format/>
+        <name>REPPathName</name>
+        <variable>&#x24;&#x7b;rPathNameType&#x7d;</variable>
+        <type>Integer</type>
+        <format>0</format>
         <currency/>
         <decimal/>
         <group/>
@@ -1183,8 +1639,8 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>REPDir</name>
-        <variable>&#x24;&#x7b;rDir&#x7d;</variable>
+        <name>REPPath</name>
+        <variable>&#x24;&#x7b;rPath&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -1197,89 +1653,14 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>560</yloc>
+      <xloc>400</xloc>
+      <yloc>500</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>TarFatherPath</field_name>
-<calc_type>COPY_FIELD</calc_type>
-<field_a>SrcFatherPath</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>TarPathName</field_name>
-<calc_type>ADD</calc_type>
-<field_a>REPEAT</field_a>
-<field_b>SrcPathName</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>TarPath1</field_name>
-<calc_type>ADD</calc_type>
-<field_a>TarFatherPath</field_a>
-<field_b>SEPARATOR</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>TarPath2</field_name>
-<calc_type>ADD</calc_type>
-<field_a>TarPath1</field_a>
-<field_b>TarPathName</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>920</xloc>
-      <yloc>2180</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x26;&#x76ee;&#x6807;&#x8def;&#x5f84;</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x29;</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -1333,8 +1714,224 @@
 </calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>2180</yloc>
+      <xloc>880</xloc>
+      <yloc>2160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x29;</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>TarPathName</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>name</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>TarPath1</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarFatherPath</field_a>
+<field_b>SEPARATOR</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>TarPath2</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarPath1</field_a>
+<field_b>TarPathName</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>640</xloc>
+      <yloc>2160</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x2b;&#x5e8f;&#x53f7;</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>TarPathName1</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarPathName</field_a>
+<field_b>Num</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>TarPath1</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarFatherPath</field_a>
+<field_b>SEPARATOR</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>TarPath2</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarPath1</field_a>
+<field_b>TarPathName1</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>640</xloc>
+      <yloc>3720</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x8bbe;&#x4e3a;&#x7236;&#x7ea7;&#x8def;&#x5f84;</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>TarPath1</field_name>
+<calc_type>ADD</calc_type>
+<field_a>SrcFatherPath</field_a>
+<field_b>SEPARATOR</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>1340</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x91cd;&#x8ba1;&#x7b97;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x52a0;&#x524d;&#x7f00;&#x29;</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>TarPathName1</field_name>
+<calc_type>ADD</calc_type>
+<field_a>REPEAT</field_a>
+<field_b>TarPathName</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>TarPath1</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarFatherPath</field_a>
+<field_b>SEPARATOR</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>TarPath2</field_name>
+<calc_type>ADD</calc_type>
+<field_a>TarPath1</field_a>
+<field_b>TarPathName1</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>640</xloc>
+      <yloc>2980</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1364,8 +1961,8 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>320</yloc>
+      <xloc>400</xloc>
+      <yloc>260</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1404,8 +2001,37 @@
         <stepsecondsfield>&#x6301;&#x7eed;&#x65f6;&#x95f4;</stepsecondsfield>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>660</xloc>
-      <yloc>40</yloc>
+      <xloc>520</xloc>
+      <yloc>20</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5e8f;&#x53f7;</send_true_to>
+<send_false_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x2b;&#x5e8f;&#x53f7;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>Num</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>3620</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1439,149 +2065,14 @@
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>1400</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x7236;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x4e0e;&#x6e90;&#x7236;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x56de;&#x6eda;&#x5b57;&#x6bb5;</send_true_to>
-<send_false_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;&#x5927;&#x5199;&#x7236;&#x7ea7;&#x8def;&#x5f84;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>SrcFatherPathBig</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue>TarFatherPathBig</rightvalue>
-   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>2460</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x29;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x8def;&#x5f84;&#x51b2;&#x7a81;</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x591a;&#x29;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <conditions>
-    <condition>
-     <negated>N</negated>
-     <operator>AND</operator>
-     <leftvalue>TarDir</leftvalue>
-     <function>IS NULL</function>
-     <rightvalue/>
-     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>OR</operator>
-     <leftvalue>TarDir</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue>EMPTY</rightvalue>
-     </condition>
-    </conditions>
-   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>680</xloc>
-      <yloc>1780</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x8def;&#x5f84;&#x51b2;&#x7a81;</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x7236;&#x7ea7;&#x8def;&#x5f84;&#x28;&#x5355;&#x29;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <conditions>
-    <condition>
-     <negated>N</negated>
-     <operator>OR</operator>
-     <leftvalue>TarPath</leftvalue>
-     <function>IS NULL</function>
-     <rightvalue/>
-     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>OR</operator>
-     <leftvalue>TarPath</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue>EMPTY</rightvalue>
-     </condition>
-    </conditions>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>TarPathBig</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue>SrcPathBig</rightvalue>
-   </condition>
-  </conditions>
- </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>400</xloc>
-      <yloc>1780</yloc>
+      <yloc>1800</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x975e;&#x6b63;&#x5e38;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x7c;&#x2f;&#x7ed3;&#x5c3e;&#x29;</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x2f;&#x540e;&#x7f00;&#x29;</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1591,39 +2082,12 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;&#x28;&#x7a7a;&#x7c;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;&#x51c6;&#x786e;&#x8def;&#x5f84;</send_false_to>
+<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x751f;&#x6210;&#x76ee;&#x6807;&#x7236;&#x7ea7;&#x8def;&#x5f84;</send_true_to>
+<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x5355;&#x2f;&#x591a;&#x6570;&#x636e;</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <conditions>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <conditions>
-    <condition>
-     <negated>N</negated>
-     <operator>AND</operator>
-     <leftvalue>TarPath</leftvalue>
-     <function>IS NULL</function>
-     <rightvalue/>
-     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>OR</operator>
-     <leftvalue>TarPath</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue>EMPTY</rightvalue>
-     </condition>
-    </conditions>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>TarPathBig</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue>SrcPathBig</rightvalue>
-   </condition>
   <condition>
    <negated>N</negated>
    <operator>OR</operator>
@@ -1637,7 +2101,124 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>400</xloc>
-      <yloc>1640</yloc>
+      <yloc>1680</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x4e0e;&#x6e90;&#x8def;&#x5f84;&#x76f8;&#x540c;&#x29;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x51b2;&#x7a81;</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>TarPathBig</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue>SrcPathBig</rightvalue>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>520</xloc>
+      <yloc>2760</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x7a7a;&#x29;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x8bbe;&#x4e3a;&#x7236;&#x7ea7;&#x8def;&#x5f84;</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;&#x76ee;&#x6807;&#x8def;&#x5f84;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>TarPath</leftvalue>
+     <function>IS NULL</function>
+     <rightvalue/>
+     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>OR</operator>
+     <leftvalue>TarPath</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue>EMPTY</rightvalue>
+     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>400</xloc>
+      <yloc>1240</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x7c7b;&#x578b;</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x29;</send_true_to>
+<send_false_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x76ee;&#x6807;&#x8def;&#x5f84;&#x540d;&#x79f0;&#x28;&#x540c;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x29;</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>REPPathName</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>760</xloc>
+      <yloc>2040</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1661,8 +2242,8 @@
       </steps>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>420</xloc>
-      <yloc>180</yloc>
+      <xloc>280</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

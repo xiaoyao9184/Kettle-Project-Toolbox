@@ -1,7 +1,7 @@
 @echo off
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
-::TIME 2015-06-11
+::TIME 2015-06-12
 ::FILE COPY_REP
 ::DESC copy one or more repository config data(s) and file(s)
 
@@ -15,8 +15,8 @@ set rNameRegex=
 set rNameRemove=
 set rNameReplace=
 set rNameNew=
-set rDir=
 set rPath=
+set rPathType=
 set srcREP=
 set tarREP=
 set isCopyFile=
@@ -35,9 +35,6 @@ set esetrNameReplace=请输入一个用于替换的字符串，然后回车：
 
 set echorNameNew=需要输入自定义资源库名称（用于标识复制的新数据）
 set esetrNameNew=请输入字符串，然后回车：
-
-set echorDir=需要输入资源库文件夹父级路径（由于要复制多个配置，无法将多个配置指向一个具体的文件夹）
-set esetrDir=请输入文件夹路径或拖动文件夹到此，然后回车：
 
 set echorPath=需要输入目标资源库文件夹路径（新配置将指向此路径作为资源库的存储位置）
 set esetrPath=请输入文件夹路径或拖动文件夹到此，然后回车：
@@ -62,7 +59,7 @@ echo ...
 
 ::3变量检验 参数处理
 
-choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d n
+choice /c yn /m 复制一个配置^(Y^)，批量复制多个配置^(N，默认^)？ /t 5 /d n
 	if !errorlevel! equ 1 goto one
 	if !errorlevel! equ 2 goto more
 	
@@ -73,7 +70,7 @@ choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d n
 		set /p rNameRegex=%esetrName%
 	)
 
-	choice /c yn /m 对要复制的资源库配置，自定义一个新名称^(Y^)，还是对旧名称进行替换^(N^)？ /t 10 /d n
+	choice /c yn /m 对要复制的资源库配置，自定义一个新名称^(Y^)，还是对旧名称进行替换^(N，默认^)？ /t 10 /d n
 		if !errorlevel! equ 1 goto namenew
 		if !errorlevel! equ 2 goto namereplace
 	
@@ -99,17 +96,6 @@ choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d n
 		)
 	
 	:nameend
-	
-	choice /c yn /m 需要指定资源库路径吗？ /t 5 /d n
-		if !errorlevel! equ 1 goto path
-		if !errorlevel! equ 2 goto omend
-
-	:path
-		if "%rPath%"=="" (
-			echo %echorPath%
-			set /p rPath=%esetrPath%
-		)
-	
 		goto omend
 
 :more
@@ -129,20 +115,38 @@ choice /c yn /m 复制一个配置^(Y^)，多个配置^(N^)？ /t 5 /d n
 		echo %echorNameReplace%
 		set /p rNameReplace=%esetrNameReplace%
 	)
-	
-	choice /c yn /m 需要指定资源库父级路径吗？ /t 5 /d n
-		if !errorlevel! equ 1 goto dir
-		if !errorlevel! equ 2 goto omend
-
-	:dir
-		if "%rDir%"=="" (
-			echo %echorDir%
-			set /p rDir=%esetrDir%
-		)
 
 :omend
 
-choice /c yn /m 需要指定资源库配置文件输入、输出位置吗？ /t 5 /d n
+choice /c yn /m 需要指定新资源库文件夹路径吗？（默认与旧文件夹同级，与新资源库名称同名） /t 5 /d n
+	if !errorlevel! equ 1 goto path
+	if !errorlevel! equ 2 goto pathend
+
+:path
+	if "%rPath%"=="" (
+		echo %echorPath%
+		echo （当输入的路径以\结尾，将被判定为模糊路径，并作为新资源库文件夹的父级路径使用）
+		set /p rPath=%esetrPath%
+	)
+	
+	echo %rPath%end|findstr /o /r /c:\\end >cmd.tmp
+	for /f %%i in (cmd.tmp) do (
+		set isDir=%%i
+	)
+	del cmd.tmp
+
+	if not "%isDir%"=="" (
+		choice /c yn /m 复制的新资源库文件夹，沿用旧文件夹名称^(Y^)，与新资源库名称同名^(N，默认^)？ /t 5 /d n
+			if !errorlevel! equ 1 set rPathType=1
+			if !errorlevel! equ 2 set rPathType=0
+	)
+:pathend
+
+choice /c yn /m 需要复制资源库文件夹吗？（默认不复制） /t 5 /d n
+	if !errorlevel! equ 1 set isCopyFile=1
+	if !errorlevel! equ 2 set isCopyFile=0
+
+choice /c yn /m 需要指定资源库配置文件输入、输出位置吗（默认不指定）？ /t 5 /d n
 	if !errorlevel! equ 1 goto user
 	if !errorlevel! equ 2 goto default
 
@@ -158,16 +162,12 @@ choice /c yn /m 需要指定资源库配置文件输入、输出位置吗？ /t 5 /d n
 		set /p tarREP=%esettarREP%
 	)
 
-	goto begin
+	goto uesrend
 
 :default
 	set tempUser=default
 
-
-choice /c yn /m 需要指定复制资源库文件夹吗？ /t 5 /d n
-	if !errorlevel! equ 1 set isCopyFile=1
-	if !errorlevel! equ 2 set isCopyFile=0
-
+:uesrend
 
 :begin
 
@@ -183,7 +183,7 @@ cd data-integration
 echo Kettle引擎目录为：%cd%
 echo Kettle工作目录为：%~dp0
 
-set tempParam="-param:rNameRegex=%rNameRegex%" "-param:isCopyFile=%isCopyFile%"
+set tempParam="-param:isCopyFile=%isCopyFile%" "-param:rNameRegex=%rNameRegex%"
 
 if "%tempUser%"=="default" (
 	echo Kettle将使用用户.kettle目录中的资源库配置文件作为输入、输出位置
@@ -194,25 +194,36 @@ if "%tempUser%"=="default" (
 )
 
 if "%tempOm%"=="one" (
-	echo Kettle将复制此资源库的配置数据：%rNameRegex%
+	echo Kettle将复制此资源库的 配置数据：%rNameRegex%
 )else (
-	echo Kettle将复制匹配此正则表达式的资源库配置数据：%rNameRegex%
+	echo Kettle将复制匹配此正则表达式的资源库 配置数据：%rNameRegex%
+)
+if "%isCopyFile%"=="1" (
+	echo Kettle将会复制资源库的配置文件夹
+)else (
+	echo Kettle将不会复制 配置文件夹
 )
 
 if "%tempName%"=="new" (
-	echo Kettle将配置数据命名为：%rNameNew%
+	echo Kettle将命名 配置名称 为：%rNameNew%
 	set tempParam=%tempParam% "-param:rNameNew=%rNameNew%"
 )else (
-	echo Kettle将对配置数据旧名称进行替换：%rNameRemove% -^> %rNameReplace%
+	echo Kettle将替换 配置名称 为：%rNameRemove% -^> %rNameReplace%
 	set tempParam=%tempParam% "-param:rNameRemove=%rNameRemove%" "-param:rNameReplace=%rNameReplace%"
 )
 
-if "%tempOm%"=="one" (
-	echo Kettle将配置数据路径改为：%rPath%
-	set tempParam=%tempParam% "-param:rPath=%rPath% "
+if "%rPath%"=="" (
+	echo Kettle将修改 配置路径 ，与旧配置在同级目录，并已 配置名称 命名文件夹 
 )else (
-	echo Kettle将配置数据路径统一改为此目录下：%rDir%
-	set tempParam=%tempParam% "-param:rDir=%rDir% "
+	echo Kettle将修改 配置^(父级^)路径 为：%rPath%
+	if "%rPathType%"=="1" (
+		echo Kettle将沿用旧 配置文件夹 名称
+		set tempParam=!tempParam! "-param:rPathType=%rPathType%"
+	)else (
+		echo Kettle将修改 配置文件夹 名称与 配置名称 相同
+		set tempParam=!tempParam! "-param:rPathType=%rPathType%"
+	)
+	set tempParam=!tempParam! "-param:rPath=%rPath% "
 )
 
 echo 运行中...      Ctrl+C结束程序
