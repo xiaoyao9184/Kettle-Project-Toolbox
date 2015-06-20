@@ -1,9 +1,9 @@
 @echo off
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
-::TIME 2015-05-28
-::FILE ZIP_DEPLOY_PATCH_PATH
-::DESC create a zip patch file for deploy in filesystem path
+::TIME 2015-06-20
+::FILE ZIP_DEPLOY_PATH
+::DESC create a zip file for deploy in filesystem path
 
 
 :v
@@ -13,7 +13,7 @@ set tip=Kettle部署工具：生成部署补丁
 set ver=1.0
 set srcPath=%1
 
-set echosrcPath=需要输入文件夹路径
+set echosrcPath=需要输入文件夹路径（默认为E:/Kettle）
 set esetsrcPath=请输入文件夹路径，然后回车：
 
 :title
@@ -49,11 +49,11 @@ cd data-integration
 echo Kettle引擎目录为：%cd%
 echo Kettle工作目录为：%~dp0
 echo Kettle将生成此文件夹的部署补丁：%srcPath%
-echo Kettle将生成部署补丁到：%srcPath%[Patch].zip
+echo Kettle将生成部署文件到：（%srcPath%同级目录）
 echo 运行中...      Ctrl+C结束程序
 
-::执行Pan
-call pan -file:%~dp0ZipDeployPatch4FSPath.ktr "-param:srcPath=%srcPath%" "-param:notRegex=.*\.kdb$|.*\.log$|.*\.git.*|.*data-integration$" "-param:regex=.*"
+::执行Kitchen
+call kitchen -file:%~dp0ZipDeploy4Path.kjb "-param:srcPath=%srcPath%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git.*|.*db\.cache.*|.*data-integration.*" "-param:regex=.*"
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序
@@ -65,4 +65,4 @@ pause
 
 ::5退出
 
-exit
+exit \b

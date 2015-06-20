@@ -13,8 +13,8 @@ set tip=Kettle部署工具：生成部署文件
 set ver=1.0
 set rNameRegex=%1
 
-set echorNameRegex=需要输入Kettle文件资源库名称（或正则表达式）
-set esetrNameRegex=请输入Kettle文件资源库名称（或正则表达式），然后回车：
+set echorNameRegex=需要输入Kettle文件资源库名称（或正则表达式，默认：.*）
+set esetrNameRegex=请输入名称或正则表达式，然后回车：
 
 :title
 
@@ -65,4 +65,4 @@ pause
 
 ::5退出
 
-exit
+exit \b

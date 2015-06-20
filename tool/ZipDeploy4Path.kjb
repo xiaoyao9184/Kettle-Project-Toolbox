@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>ZipDeploy4KettleConfig</name>
+  <name>ZipDeploy4Path</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;05&#x2f;25 14&#x3a;57&#x3a;00.565</created_date>
+  <created_date>2015&#x2f;06&#x2f;20 14&#x3a;48&#x3a;56.308</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;25 14&#x3a;57&#x3a;00.565</modified_date>
+  <modified_date>2015&#x2f;06&#x2f;20 14&#x3a;48&#x3a;56.308</modified_date>
     <parameters>
         <parameter>
             <name>notRegex</name>
-            <default_value>.&#x2a;&#x5c;.backup&#x24;&#x7c;.&#x2a;&#x5c;.log&#x24;&#x7c;.&#x2a;&#x5c;.git.&#x2a;&#x7c;.&#x2a;db&#x5c;.cache.&#x2a;</default_value>
+            <default_value>.&#x2a;&#x5c;.backup&#x24;&#x7c;.&#x2a;&#x5c;.log&#x24;&#x7c;.&#x2a;&#x5c;.git.&#x2a;&#x7c;.&#x2a;db&#x5c;.cache.&#x2a;&#x7c;.&#x2a;data-integration.&#x2a;</default_value>
             <description>&#x53cd;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;</description>
         </parameter>
         <parameter>
-            <name>rNameRegex</name>
-            <default_value>.&#x2a;</default_value>
-            <description>&#x6e90;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x2f;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;</description>
-        </parameter>
-        <parameter>
             <name>regex</name>
-            <default_value>kettle.properties&#x7c;repositories.xml&#x7c;shared.xml</default_value>
+            <default_value>.&#x2a;</default_value>
             <description>&#x6b63;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;</description>
         </parameter>
         <parameter>
             <name>srcPath</name>
-            <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle</default_value>
-            <description>&#x6e90;Kettle&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
-        </parameter>
-        <parameter>
-            <name>tempPath</name>
-            <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;&#x5b;temp&#x5d;</default_value>
-            <description>&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</description>
+            <default_value>E&#x3a;&#x5c;Kettle</default_value>
+            <description>&#x8981;&#x63d0;&#x53d6;&#x7684;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
         </parameter>
     </parameters>
     <slaveservers>
@@ -76,16 +66,102 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
+      <xloc>300</xloc>
       <yloc>40</yloc>
       </entry>
     <entry>
-      <name>&#x8f6c;&#x6362;&#xff1a;KettleFileRead</name>
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
+      <type>CREATE_FOLDER</type>
+      <foldername>&#x24;&#x7b;tempPath&#x7d;</foldername>
+      <fail_of_folder_exists>Y</fail_of_folder_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>460</yloc>
+      </entry>
+    <entry>
+      <name>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
+      <type>DELETE_FOLDERS</type>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>2</limit_folders>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;tempPath&#x7d;</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>340</yloc>
+      </entry>
+    <entry>
+      <name>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</name>
+      <description/>
+      <type>ZIP_FILE</type>
+      <zipfilename>&#x24;&#x7b;zipPath&#x7d;</zipfilename>
+      <compressionrate>1</compressionrate>
+      <ifzipfileexists>0</ifzipfileexists>
+      <wildcard/>
+      <wildcardexclude/>
+      <sourcedirectory>&#x24;&#x7b;tempPath&#x7d;</sourcedirectory>
+      <movetodirectory>&#x24;&#x7b;tempPath&#x7d;&#x5c;..</movetodirectory>
+      <afterzip>0</afterzip>
+      <addfiletoresult>N</addfiletoresult>
+      <isfromprevious>N</isfromprevious>
+      <createparentfolder>N</createparentfolder>
+      <adddate>N</adddate>
+      <addtime>N</addtime>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <createMoveToDirectory>N</createMoveToDirectory>
+      <include_subfolders>Y</include_subfolders>
+      <stored_source_path_depth>1</stored_source_path_depth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>1500</yloc>
+      </entry>
+    <entry>
+      <name>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
+      <type>DELETE_FOLDERS</type>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>2</limit_folders>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;tempPath&#x7d;</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>1660</yloc>
+      </entry>
+    <entry>
+      <name>&#x6210;&#x529f;</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>1840</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;PathFileTemp</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Kettle&#x2f;KettleFileRead.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileTemp.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -106,15 +182,45 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>N</pass_all_parameters>
-            <parameter>            <name>includeREP</name>
+            <parameter>            <name>srcPath</name>
             <stream_name/>
-            <value>0</value>
-            </parameter>            <parameter>            <name>notRegex</name>
+            <value>&#x24;&#x7b;srcPath&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>180</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;PathFileRead</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileRead.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+            <parameter>            <name>notRegex</name>
             <stream_name/>
             <value>&#x24;&#x7b;notRegex&#x7d;</value>
-            </parameter>            <parameter>            <name>rNameRegex</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;rNameRegex&#x7d;</value>
             </parameter>            <parameter>            <name>regex</name>
             <stream_name/>
             <value>&#x24;&#x7b;regex&#x7d;</value>
@@ -124,200 +230,55 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>540</yloc>
+      <xloc>300</xloc>
+      <yloc>640</yloc>
       </entry>
     <entry>
-      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
+      <name>&#x8f6c;&#x6362;&#xff1a;PathFileResult</name>
       <description/>
-      <type>CREATE_FOLDER</type>
-      <foldername>&#x24;&#x7b;tempPath&#x7d;</foldername>
-      <fail_of_folder_exists>Y</fail_of_folder_exists>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>320</yloc>
-      </entry>
-    <entry>
-      <name>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</name>
-      <description/>
-      <type>ZIP_FILE</type>
-      <zipfilename>&#x24;&#x7b;srcPath&#x7d;&#x5c;&#x5b;Deploy&#x5d;.kettle.zip</zipfilename>
-      <compressionrate>1</compressionrate>
-      <ifzipfileexists>0</ifzipfileexists>
-      <wildcard/>
-      <wildcardexclude/>
-      <sourcedirectory>&#x24;&#x7b;tempPath&#x7d;</sourcedirectory>
-      <movetodirectory>&#x24;&#x7b;tempPath&#x7d;&#x5c;..</movetodirectory>
-      <afterzip>0</afterzip>
-      <addfiletoresult>N</addfiletoresult>
-      <isfromprevious>N</isfromprevious>
-      <createparentfolder>N</createparentfolder>
-      <adddate>N</adddate>
-      <addtime>N</addtime>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <createMoveToDirectory>N</createMoveToDirectory>
-      <include_subfolders>N</include_subfolders>
-      <stored_source_path_depth>1</stored_source_path_depth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>1140</yloc>
-      </entry>
-    <entry>
-      <name>&#x590d;&#x5236;&#x2f;&#x79fb;&#x52a8;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xff1a;&#x79fb;&#x52a8;&#x9700;&#x8981;&#x7684;&#x6587;&#x4ef6;</name>
-      <description/>
-      <type>COPY_MOVE_RESULT_FILENAMES</type>
-      <foldername/>
-      <specify_wildcard>N</specify_wildcard>
-      <wildcard/>
-      <wildcardexclude/>
-      <destination_folder>&#x24;&#x7b;tempPath&#x7d;</destination_folder>
-      <nr_errors_less_than>10</nr_errors_less_than>
-      <success_condition>success_if_no_errors</success_condition>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <action>copy</action>
-      <AddDateBeforeExtension>N</AddDateBeforeExtension>
-      <OverwriteFile>Y</OverwriteFile>
-      <CreateDestinationFolder>Y</CreateDestinationFolder>
-      <RemovedSourceFilename>N</RemovedSourceFilename>
-      <AddDestinationFilename>N</AddDestinationFilename>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>780</yloc>
-      </entry>
-    <entry>
-      <name>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
-      <description/>
-      <type>DELETE_FOLDERS</type>
-      <arg_from_previous>N</arg_from_previous>
-      <success_condition>success_if_no_errors</success_condition>
-      <limit_folders>2</limit_folders>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;tempPath&#x7d;</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>200</yloc>
-      </entry>
-    <entry>
-      <name>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
-      <description/>
-      <type>DELETE_FOLDERS</type>
-      <arg_from_previous>N</arg_from_previous>
-      <success_condition>success_if_no_errors</success_condition>
-      <limit_folders>2</limit_folders>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;tempPath&#x7d;</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>1320</yloc>
-      </entry>
-    <entry>
-      <name>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x6587;&#x4ef6;&#x5217;&#x8868;&#x751f;&#x6210;&#x5931;&#x8d25;</name>
-      <description/>
-      <type>MSGBOX_INFO</type>
-      <bodymessage>&#x6587;&#x4ef6;&#x5217;&#x8868;&#x751f;&#x6210;&#x5931;&#x8d25;&#xff0c;&#x672c;&#x4f5c;&#x4e1a;&#x4e0d;&#x9002;&#x7528;&#x60a8;&#x7684;.kettle&#x76ee;&#x5f55;&#x28;&#x24;&#x7b;srcPath&#x7d;&#x29;</bodymessage>
-      <titremessage>&#x751f;&#x6210;&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x5931;&#x8d25;</titremessage>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>540</yloc>
-      </entry>
-    <entry>
-      <name>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x9519;&#x8bef;</name>
-      <description/>
-      <type>MSGBOX_INFO</type>
-      <bodymessage>&#x6587;&#x4ef6;&#x79fb;&#x52a8;&#x9519;&#x8bef;&#xff0c;&#x65e0;&#x6cd5;&#x79fb;&#x52a8;&#x6240;&#x9700;&#x6587;&#x4ef6;&#x5230;&#x4e34;&#x65f6;&#x76ee;&#x5f55;&#x28;&#x24;&#x7b;tempPath&#x7d;&#x29;</bodymessage>
-      <titremessage>&#x751f;&#x6210;&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x5931;&#x8d25;</titremessage>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>780</yloc>
-      </entry>
-    <entry>
-      <name>&#x6210;&#x529f;</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>1460</yloc>
-      </entry>
-    <entry>
-      <name>&#x4f5c;&#x4e1a;&#xff1a;CopyRepositoryData</name>
-      <description/>
-      <type>JOB</type>
+      <type>TRANS</type>
       <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;CopyRepositoryData.kjb</filename>
-      <jobname/>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileResult.ktr</filename>
+      <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
       <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>N</pass_all_parameters>
-            <parameter>            <name>rNameRegex</name>
+            <parameter>            <name>srcPath</name>
             <stream_name/>
-            <value>&#x24;&#x7b;rNameRegex&#x7d;</value>
-            </parameter>            <parameter>            <name>rNameRemove</name>
+            <value>&#x24;&#x7b;srcPath&#x7d;</value>
+            </parameter>            <parameter>            <name>tarPath</name>
             <stream_name/>
-            <value>-</value>
-            </parameter>            <parameter>            <name>rNameReplace</name>
-            <stream_name/>
-            <value>-</value>
-            </parameter>            <parameter>            <name>srcREP</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;srcPath&#x7d;&#x5c;repositories.xml</value>
-            </parameter>            <parameter>            <name>tarREP</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;srcPath&#x7d;&#x5c;&#x5b;temp&#x5d;&#x5c;repositories.xml</value>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
+            <value>&#x24;&#x7b;tempPath&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>980</yloc>
+      <xloc>300</xloc>
+      <yloc>840</yloc>
       </entry>
     <entry>
-      <name>&#x8f6c;&#x6362;&#xff1a;KettleFilePrint</name>
+      <name>&#x8f6c;&#x6362;&#xff1a;PathFileReadPrint</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Kettle&#x2f;KettleFilePrint.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileReadPrint.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -341,54 +302,116 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>660</yloc>
+      <xloc>300</xloc>
+      <yloc>740</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;PathFileResultPrint</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileResultPrint.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>940</yloc>
+      </entry>
+    <entry>
+      <name>&#x590d;&#x5236;&#x6587;&#x4ef6;</name>
+      <description/>
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>Y</arg_from_previous>
+      <overwrite_files>N</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>Y</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>1140</yloc>
+      </entry>
+    <entry>
+      <name>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x9519;&#x8bef;</name>
+      <description/>
+      <type>MSGBOX_INFO</type>
+      <bodymessage>&#x6587;&#x4ef6;&#x590d;&#x5236;&#x9519;&#x8bef;&#xff0c;&#x65e0;&#x6cd5;&#x590d;&#x5236;&#x6587;&#x4ef6;&#x5230;&#x4e34;&#x65f6;&#x76ee;&#x5f55;&#x28;&#x24;&#x7b;tempPath&#x7d;&#x29;</bodymessage>
+      <titremessage>&#x590d;&#x5236;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x9519;&#x8bef;</titremessage>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>480</xloc>
+      <yloc>1140</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;PathFileChange</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileChange.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>1320</yloc>
       </entry>
   </entries>
   <hops>
-    <hop>
-      <from>START</from>
-      <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
     <hop>
       <from>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</from>
       <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</from>
-      <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;KettleFileRead</from>
-      <to>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x6587;&#x4ef6;&#x5217;&#x8868;&#x751f;&#x6210;&#x5931;&#x8d25;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x590d;&#x5236;&#x2f;&#x79fb;&#x52a8;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xff1a;&#x79fb;&#x52a8;&#x9700;&#x8981;&#x7684;&#x6587;&#x4ef6;</from>
-      <to>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x9519;&#x8bef;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -401,8 +424,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;KettleFileRead</from>
-      <to>&#x8f6c;&#x6362;&#xff1a;KettleFilePrint</to>
+      <from>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</from>
+      <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -410,8 +433,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x590d;&#x5236;&#x2f;&#x79fb;&#x52a8;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xff1a;&#x79fb;&#x52a8;&#x9700;&#x8981;&#x7684;&#x6587;&#x4ef6;</from>
-      <to>&#x4f5c;&#x4e1a;&#xff1a;CopyRepositoryData</to>
+      <from>START</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;PathFileTemp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;PathFileTemp</from>
+      <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -420,7 +452,7 @@
     </hop>
     <hop>
       <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</from>
-      <to>&#x8f6c;&#x6362;&#xff1a;KettleFileRead</to>
+      <to>&#x8f6c;&#x6362;&#xff1a;PathFileRead</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -428,17 +460,62 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x4f5c;&#x4e1a;&#xff1a;CopyRepositoryData</from>
+      <from>&#x8f6c;&#x6362;&#xff1a;PathFileRead</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;PathFileReadPrint</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;PathFileReadPrint</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;PathFileResult</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;PathFileResult</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;PathFileResultPrint</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;PathFileResultPrint</from>
+      <to>&#x590d;&#x5236;&#x6587;&#x4ef6;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x590d;&#x5236;&#x6587;&#x4ef6;</from>
+      <to>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x9519;&#x8bef;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x590d;&#x5236;&#x6587;&#x4ef6;</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;PathFileChange</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;PathFileChange</from>
       <to>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;KettleFilePrint</from>
-      <to>&#x590d;&#x5236;&#x2f;&#x79fb;&#x52a8;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xff1a;&#x79fb;&#x52a8;&#x9700;&#x8981;&#x7684;&#x6587;&#x4ef6;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -448,13 +525,13 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#x63d0;&#x53d6;Kettle&#x90e8;&#x7f72;&#x6587;&#x4ef6;</note>
+      <note>&#x63d0;&#x53d6;&#x6587;&#x4ef6;&#x5939;&#x90e8;&#x7f72;&#x6587;&#x4ef6;</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>115</width>
+      <width>118</width>
       <heigth>26</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
@@ -469,11 +546,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;srcPath            &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;regex              &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;notRegex         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;tempPath         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameRegex    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;</note>
-      <xloc>417</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath            &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;regex              &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;notRegex         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;</note>
+      <xloc>464</xloc>
       <yloc>0</yloc>
       <width>228</width>
-      <heigth>171</heigth>
+      <heigth>173</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -490,11 +567,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;.kettle&#x76ee;&#x5f55;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4f7f;&#x7528;&#x5f53;&#x524d;&#x7528;&#x6237;.kettle&#x76ee;&#x5f55;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;regex&#xd;&#xa;&#x7528;&#x4e8e;&#x6b63;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#x7684;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;notRegex&#xd;&#xa;&#x7528;&#x4e8e;&#x53cd;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#x7684;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;tempPath&#xd;&#xa;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;&#x7528;&#x4e8e;&#x5b58;&#x653e;&#x9700;&#x8981;&#x63d0;&#x53d6;&#x7684;&#x6587;&#x4ef6;&#xff0c;&#x7136;&#x540e;&#x5728;&#x538b;&#x7f29;&#x5b8c;&#x6bd5;&#x540e;&#x4f1a;&#x81ea;&#x52a8;&#x5220;&#x9664;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameRegex&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xff0c;&#x6216;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x8fc7;&#x6ee4;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;.&#x2a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>663</xloc>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x63d0;&#x53d6;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x5c;Kettle&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;regex&#xd;&#xa;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x6b63;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;notRegex&#xd;&#xa;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x53cd;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>712</xloc>
       <yloc>0</yloc>
-      <width>370</width>
-      <heigth>315</heigth>
+      <width>250</width>
+      <heigth>203</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -511,13 +588,13 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x590d;&#x5236;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</note>
-      <xloc>222</xloc>
-      <yloc>884</yloc>
-      <width>94</width>
+      <note>&#x590d;&#x5236;&#x6587;&#x4ef6;</note>
+      <xloc>330</xloc>
+      <yloc>1047</yloc>
+      <width>58</width>
       <heigth>26</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
@@ -532,10 +609,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x590d;&#x5236;&#x5176;&#x4ed6;kettle&#x914d;&#x7f6e;</note>
-      <xloc>223</xloc>
-      <yloc>446</yloc>
-      <width>114</width>
+      <note>&#x8bfb;&#x53d6;&#x6587;&#x4ef6;</note>
+      <xloc>328</xloc>
+      <yloc>564</yloc>
+      <width>58</width>
       <heigth>26</heigth>
       <fontname/>
       <fontsize>-1</fontsize>

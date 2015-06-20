@@ -12,11 +12,6 @@
   <modified_date>2015&#x2f;06&#x2f;10 13&#x3a;23&#x3a;46.057</modified_date>
     <parameters>
         <parameter>
-            <name>rDir</name>
-            <default_value>&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;Rep&#x5c;</default_value>
-            <description>&#x8d44;&#x6e90;&#x5e93;&#x7236;&#x7ea7;&#x4f4d;&#x7f6e;</description>
-        </parameter>
-        <parameter>
             <name>rNameNew</name>
             <default_value/>
             <description>&#x8d44;&#x6e90;&#x5e93;&#x81ea;&#x5b9a;&#x4e49;&#x540d;&#x79f0;</description>
@@ -39,7 +34,12 @@
         <parameter>
             <name>rPath</name>
             <default_value/>
-            <description>&#x8d44;&#x6e90;&#x5e93;&#x5177;&#x4f53;&#x4f4d;&#x7f6e;</description>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x5177;&#x4f53;&#x2f;&#x7236;&#x7ea7;&#x4f4d;&#x7f6e;</description>
+        </parameter>
+        <parameter>
+            <name>rPathType</name>
+            <default_value>1</default_value>
+            <description>&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x79f0;&#x7c7b;&#x578b;</description>
         </parameter>
         <parameter>
             <name>srcREP</name>
@@ -134,54 +134,6 @@
       <yloc>220</yloc>
       </entry>
     <entry>
-      <name>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x914d;&#x7f6e;&#x6570;&#x636e;</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;FsRep&#x2f;FsRepDataChange.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>N</pass_all_parameters>
-            <parameter>            <name>rDir</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;rDir&#x7d;</value>
-            </parameter>            <parameter>            <name>rNameNew</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;rNameNew&#x7d;</value>
-            </parameter>            <parameter>            <name>rNameRemove</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;rNameRemove&#x7d;</value>
-            </parameter>            <parameter>            <name>rNameReplace</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;rNameReplace&#x7d;</value>
-            </parameter>            <parameter>            <name>rPath</name>
-            <stream_name/>
-            <value>&#x24;&#x7b;rPath&#x7d;</value>
-            </parameter>      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>260</xloc>
-      <yloc>320</yloc>
-      </entry>
-    <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;&#x5408;&#x5e76;&#x76ee;&#x6807;&#x914d;&#x7f6e;&#x6570;&#x636e;</name>
       <description/>
       <type>TRANS</type>
@@ -215,7 +167,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>260</xloc>
-      <yloc>420</yloc>
+      <yloc>860</yloc>
       </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;&#x4fdd;&#x5b58;&#x914d;&#x7f6e;&#x6570;&#x636e;</name>
@@ -251,7 +203,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>260</xloc>
-      <yloc>820</yloc>
+      <yloc>1280</yloc>
       </entry>
     <entry>
       <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</name>
@@ -273,7 +225,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>260</xloc>
-      <yloc>720</yloc>
+      <yloc>1160</yloc>
       </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x91cd;&#x590d;&#x5904;&#x7406;</name>
@@ -306,27 +258,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>260</xloc>
-      <yloc>520</yloc>
-      </entry>
-    <entry>
-      <name>DUMMY</name>
-      <description/>
-      <type>SPECIAL</type>
-      <start>N</start>
-      <dummy>Y</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>380</xloc>
-      <yloc>620</yloc>
+      <yloc>960</yloc>
       </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x6570;&#x636e;&#x663e;&#x793a;</name>
@@ -359,7 +291,151 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>260</xloc>
-      <yloc>620</yloc>
+      <yloc>1060</yloc>
+      </entry>
+    <entry>
+      <name>&#x6210;&#x529f;</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>260</xloc>
+      <yloc>1400</yloc>
+      </entry>
+    <entry>
+      <name>DUMMY 3</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>420</xloc>
+      <yloc>1060</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x540d;&#x79f0;&#x6570;&#x636e;</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;FsRep&#x2f;FsRepNameChange.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+            <parameter>            <name>rNameNew</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rNameNew&#x7d;</value>
+            </parameter>            <parameter>            <name>rNameRemove</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rNameRemove&#x7d;</value>
+            </parameter>            <parameter>            <name>rNameReplace</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rNameReplace&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>260</xloc>
+      <yloc>400</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x8def;&#x5f84;&#x6570;&#x636e;</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;FsRep&#x2f;FsRepPathChange.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+            <parameter>            <name>rPath</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rPath&#x7d;</value>
+            </parameter>            <parameter>            <name>rPathNameType</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rPathType&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>260</xloc>
+      <yloc>500</yloc>
+      </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;&#x6e05;&#x9664;&#x8def;&#x5f84;&#x5904;&#x7406;&#x591a;&#x4f59;&#x7ed3;&#x679c;</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;FsRep&#x2f;FsRepPathClear.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>260</xloc>
+      <yloc>680</yloc>
       </entry>
   </entries>
   <hops>
@@ -373,53 +449,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;&#x8bfb;&#x53d6;&#x914d;&#x7f6e;&#x6570;&#x636e;</from>
-      <to>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x914d;&#x7f6e;&#x6570;&#x636e;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x914d;&#x7f6e;&#x6570;&#x636e;</from>
-      <to>&#x8f6c;&#x6362;&#xff1a;&#x5408;&#x5e76;&#x76ee;&#x6807;&#x914d;&#x7f6e;&#x6570;&#x636e;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>&#x8f6c;&#x6362;&#xff1a;&#x5408;&#x5e76;&#x76ee;&#x6807;&#x914d;&#x7f6e;&#x6570;&#x636e;</from>
       <to>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x91cd;&#x590d;&#x5904;&#x7406;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</from>
-      <to>DUMMY</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>DUMMY</from>
-      <to>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x91cd;&#x590d;&#x5904;&#x7406;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x6570;&#x636e;&#x663e;&#x793a;</from>
-      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -436,8 +467,80 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x6570;&#x636e;&#x663e;&#x793a;</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</from>
       <to>&#x8f6c;&#x6362;&#xff1a;&#x4fdd;&#x5b58;&#x914d;&#x7f6e;&#x6570;&#x636e;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;&#x4fdd;&#x5b58;&#x914d;&#x7f6e;&#x6570;&#x636e;</from>
+      <to>&#x6210;&#x529f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</from>
+      <to>DUMMY 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY 3</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;&#x540d;&#x79f0;&#x91cd;&#x590d;&#x5904;&#x7406;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;&#x8bfb;&#x53d6;&#x914d;&#x7f6e;&#x6570;&#x636e;</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x540d;&#x79f0;&#x6570;&#x636e;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x540d;&#x79f0;&#x6570;&#x636e;</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x8def;&#x5f84;&#x6570;&#x636e;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;&#x4fee;&#x6539;&#x8def;&#x5f84;&#x6570;&#x636e;</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;&#x6e05;&#x9664;&#x8def;&#x5f84;&#x5904;&#x7406;&#x591a;&#x4f59;&#x7ed3;&#x679c;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;&#x6e05;&#x9664;&#x8def;&#x5f84;&#x5904;&#x7406;&#x591a;&#x4f59;&#x7ed3;&#x679c;</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;&#x5408;&#x5e76;&#x76ee;&#x6807;&#x914d;&#x7f6e;&#x6570;&#x636e;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -468,11 +571,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;rNameRegex      &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameNew        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameRemove    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameReplace    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rPath                  &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rDir                   &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;srcREP                &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;tarREP                &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;rNameRegex      &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameNew        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameRemove    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rNameReplace    &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rPath                  &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;rPathType           &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;srcREP                &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;tarREP                &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;</note>
       <xloc>435</xloc>
       <yloc>0</yloc>
-      <width>149</width>
-      <heigth>237</heigth>
+      <width>228</width>
+      <heigth>253</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -489,10 +592,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rNameRegex&#xd;&#xa;&#x65e7;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xff0c;&#x6216;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x8fc7;&#x6ee4;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;dev.&#x2a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameNew&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameRemove&#xd;&#xa;&#x65e7;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x67e5;&#x627e;&#x79fb;&#x9664;&#x5b57;&#x7b26;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;dev&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameReplace&#xd;&#xa;&#x65e7;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x5b57;&#x7b26;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rPath&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x51c6;&#x786e;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rDir&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x7236;&#x7ea7;&#xff08;&#x6a21;&#x7cca;&#xff09;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;&#x24;&#x7b;user.home&#x7d;&#x5c;.kettle&#x5c;Rep&#x5c;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;srcREP&#xd;&#xa;&#x8f93;&#x5165;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7528;&#x6237;.kettle&#x76ee;&#x5f55;&#x4e0b;&#x7684;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;tarREP&#xd;&#xa;&#x8f93;&#x51fa;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7528;&#x6237;.kettle&#x76ee;&#x5f55;&#x4e0b;&#x7684;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>606</xloc>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rNameRegex&#xd;&#xa;&#x65e7;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xff0c;&#x6216;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x8fc7;&#x6ee4;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;dev.&#x2a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameNew&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameRemove&#xd;&#xa;&#x65e7;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x67e5;&#x627e;&#x79fb;&#x9664;&#x5b57;&#x7b26;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;dev&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rNameReplace&#xd;&#xa;&#x65e7;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x66ff;&#x6362;&#x5b57;&#x7b26;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rPath&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x51c6;&#x786e;&#x8def;&#x5f84;&#xff0c;&#x6216;&#x7236;&#x7ea7;&#xff08;&#x6a21;&#x7cca;&#xff09;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#x7a7a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;rPathType&#xd;&#xa;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x540d;&#x79f0;&#x7c7b;&#x578b;&#xff0c;0&#x4e0e;&#x65e7;&#x6587;&#x4ef6;&#x5939;&#x540c;&#x540d;&#xff1b;1&#x4e0e;&#x65b0;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x540c;&#x540d;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;1&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;srcREP&#xd;&#xa;&#x8f93;&#x5165;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7528;&#x6237;.kettle&#x76ee;&#x5f55;&#x4e0b;&#x7684;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;tarREP&#xd;&#xa;&#x8f93;&#x51fa;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#x7528;&#x6237;.kettle&#x76ee;&#x5f55;&#x4e0b;&#x7684;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>681</xloc>
       <yloc>0</yloc>
-      <width>249</width>
+      <width>372</width>
       <heigth>555</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>

@@ -90,4 +90,4 @@ pause
 
 ::5ÍË³ö
 
-exit
+exit \b

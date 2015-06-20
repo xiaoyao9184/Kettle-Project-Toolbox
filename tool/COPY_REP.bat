@@ -118,7 +118,7 @@ choice /c yn /m 复制一个配置^(Y^)，批量复制多个配置^(N，默认^)？ /t 5 /d n
 
 :omend
 
-choice /c yn /m 需要指定新资源库文件夹路径吗？（默认与旧文件夹同级，与新资源库名称同名） /t 5 /d n
+choice /c yn /m 需要指定新资源库文件夹路径吗？（默认与旧文件夹同级，与新资源库名称同名） /t 10 /d n
 	if !errorlevel! equ 1 goto path
 	if !errorlevel! equ 2 goto pathend
 
@@ -136,7 +136,7 @@ choice /c yn /m 需要指定新资源库文件夹路径吗？（默认与旧文件夹同级，与新资源库名
 	del cmd.tmp
 
 	if not "%isDir%"=="" (
-		choice /c yn /m 复制的新资源库文件夹，沿用旧文件夹名称^(Y^)，与新资源库名称同名^(N，默认^)？ /t 5 /d n
+		choice /c yn /m 复制的新资源库文件夹，沿用旧文件夹名称^(Y^)，与新资源库名称同名^(N，默认^)？ /t 15 /d n
 			if !errorlevel! equ 1 set rPathType=1
 			if !errorlevel! equ 2 set rPathType=0
 	)
