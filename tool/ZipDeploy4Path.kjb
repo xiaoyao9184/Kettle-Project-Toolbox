@@ -73,7 +73,7 @@
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
       <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>&#x24;&#x7b;tempPath&#x7d;</foldername>
+      <foldername>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</foldername>
       <fail_of_folder_exists>Y</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -90,7 +90,7 @@
       <limit_folders>2</limit_folders>
       <fields>
         <field>
-          <name>&#x24;&#x7b;tempPath&#x7d;</name>
+          <name>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -103,12 +103,12 @@
       <name>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</name>
       <description/>
       <type>ZIP_FILE</type>
-      <zipfilename>&#x24;&#x7b;zipPath&#x7d;</zipfilename>
+      <zipfilename>&#x24;&#x7b;tool.deploy.zipPath&#x7d;</zipfilename>
       <compressionrate>1</compressionrate>
       <ifzipfileexists>0</ifzipfileexists>
       <wildcard/>
       <wildcardexclude/>
-      <sourcedirectory>&#x24;&#x7b;tempPath&#x7d;</sourcedirectory>
+      <sourcedirectory>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</sourcedirectory>
       <movetodirectory>&#x24;&#x7b;tempPath&#x7d;&#x5c;..</movetodirectory>
       <afterzip>0</afterzip>
       <addfiletoresult>N</addfiletoresult>
@@ -136,7 +136,7 @@
       <limit_folders>2</limit_folders>
       <fields>
         <field>
-          <name>&#x24;&#x7b;tempPath&#x7d;</name>
+          <name>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -226,7 +226,7 @@
             <value>&#x24;&#x7b;regex&#x7d;</value>
             </parameter>            <parameter>            <name>srcPath</name>
             <stream_name/>
-            <value>&#x24;&#x7b;srcPath&#x7d;</value>
+            <value>&#x24;&#x7b;tool.deploy.srcDir&#x7d;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -260,12 +260,12 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>N</pass_all_parameters>
-            <parameter>            <name>srcPath</name>
+            <parameter>            <name>removePath</name>
             <stream_name/>
-            <value>&#x24;&#x7b;srcPath&#x7d;</value>
-            </parameter>            <parameter>            <name>tarPath</name>
+            <value>&#x24;&#x7b;tool.deploy.srcDir&#x7d;</value>
+            </parameter>            <parameter>            <name>replacePath</name>
             <stream_name/>
-            <value>&#x24;&#x7b;tempPath&#x7d;</value>
+            <value>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -403,6 +403,29 @@
       <xloc>300</xloc>
       <yloc>1320</yloc>
       </entry>
+    <entry>
+      <name>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</name>
+      <description/>
+      <type>SHELL</type>
+      <filename/>
+      <work_directory/>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>start &#x24;&#x7b;tool.deploy.zipDir&#x7d;</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>480</xloc>
+      <yloc>1500</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -522,6 +545,15 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</from>
+      <to>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
@@ -546,11 +578,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath            &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;regex              &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;notRegex         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath            &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;regex              &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;notRegex         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.tempPath      &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.srcPath         &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.zipPath         &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.zipDir           &#x5fc5;&#x987b;</note>
       <xloc>464</xloc>
       <yloc>0</yloc>
       <width>228</width>
-      <heigth>173</heigth>
+      <heigth>237</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>

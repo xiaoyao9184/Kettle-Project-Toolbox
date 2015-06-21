@@ -13,7 +13,7 @@ set tip=Kettle部署工具：生成部署文件
 set ver=1.0
 set rName=%1
 
-set echorName=需要输入Kettle文件资源库名称（默认为：.*，仅仅会筛选的一个）
+set echorName=需要输入Kettle文件资源库名称（默认为：.*，将第一个作为标准）
 set esetrName=请输入名称，然后回车：
 
 :title

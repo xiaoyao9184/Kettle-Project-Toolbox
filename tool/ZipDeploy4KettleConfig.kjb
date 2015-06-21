@@ -344,6 +344,29 @@
       <xloc>200</xloc>
       <yloc>660</yloc>
       </entry>
+    <entry>
+      <name>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</name>
+      <description/>
+      <type>SHELL</type>
+      <filename/>
+      <work_directory/>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <set_append_logfile>N</set_append_logfile>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>start &#x24;&#x7b;srcPath&#x7d;</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>400</xloc>
+      <yloc>1140</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -439,6 +462,15 @@
     <hop>
       <from>&#x8f6c;&#x6362;&#xff1a;KettleFilePrint</from>
       <to>&#x590d;&#x5236;&#x2f;&#x79fb;&#x52a8;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xff1a;&#x79fb;&#x52a8;&#x9700;&#x8981;&#x7684;&#x6587;&#x4ef6;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</from>
+      <to>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

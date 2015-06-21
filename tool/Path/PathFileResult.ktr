@@ -10,14 +10,14 @@
     <directory>&#x2f;</directory>
     <parameters>
         <parameter>
-            <name>srcPath</name>
+            <name>removePath</name>
             <default_value>E&#x3a;&#x2f;Kettle</default_value>
-            <description>&#x6e90;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
+            <description>&#x79fb;&#x9664;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
         </parameter>
         <parameter>
-            <name>tarPath</name>
+            <name>replacePath</name>
             <default_value>E&#x3a;&#x2f;&#x5b;temp&#x5d;</default_value>
-            <description>&#x76ee;&#x6807;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
+            <description>&#x66ff;&#x6362;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
         </parameter>
     </parameters>
     <log>
@@ -104,7 +104,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;tarPath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x8f93;&#x51fa;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xd;&#xa;.&#x5b;3&#x5d;              3&#x4e2a;&#x5b57;&#x6bb5;&#x7684;&#x6587;&#x4ef6;&#x590d;&#x5236;&#x53c2;&#x6570;&#xd;&#xa;.&#x5b;13&#x5d;            13&#x4e2a;&#x5b57;&#x6bb5;&#x7684;&#x6587;&#x4ef6;&#x4fe1;&#x606f;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;removePath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;replacePath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x8f93;&#x51fa;&#x7ed3;&#x679c;&#x6587;&#x4ef6;&#xd;&#xa;.&#x5b;3&#x5d;              3&#x4e2a;&#x5b57;&#x6bb5;&#x7684;&#x6587;&#x4ef6;&#x590d;&#x5236;&#x53c2;&#x6570;&#xd;&#xa;.&#x5b;13&#x5d;            13&#x4e2a;&#x5b57;&#x6bb5;&#x7684;&#x6587;&#x4ef6;&#x4fe1;&#x606f;</note>
       <xloc>471</xloc>
       <yloc>0</yloc>
       <width>211</width>
@@ -125,11 +125,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x8bfb;&#x53d6;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x5c;Kettle&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;tarPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x4f5c;&#x4e3a;&#x590d;&#x5236;&#x6587;&#x4ef6;&#x7684;&#x76ee;&#x6807;&#x53c2;&#x6570;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;removePath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x79fb;&#x9664;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x2f;Kettle&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;replacePath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x66ff;&#x6362;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x2f;&#x5b;temp&#x5d;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
       <xloc>699</xloc>
       <yloc>0</yloc>
-      <width>238</width>
-      <heigth>155</heigth>
+      <width>190</width>
+      <heigth>171</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -175,10 +175,7 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;&#xd;&#xa;TarPath &#x3d; replace&#x28;SrcPath,SrcRemovePath,TarReplacePath&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
-      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
-        <jsScript_name>replace_Sample</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f; Replaces Strings inside the given Variable.&#xa;&#x2f;&#x2f; It is possible to make more replacements inside&#xa;&#x2f;&#x2f; one call. The given variables must be an odd number&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; Usage&#x3a;&#xa;&#x2f;&#x2f; replace&#x28;var, var, var&#x29;&#x3b;&#xa;&#x2f;&#x2f; 1&#x3a; String - The Variable with the content to replace.&#xa;&#x2f;&#x2f; 2&#x3a; String - The Value to search for.&#xa;&#x2f;&#x2f; 3&#x3a; String - The Value to replace with.&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; replace&#x28;var, var, var, var,var,...&#x29;&#xa;&#x2f;&#x2f; 1&#x3a; String - The Variable with the content to replace.&#xa;&#x2f;&#x2f; 2&#x3a; String - The First Value to search for.&#xa;&#x2f;&#x2f; 3&#x3a; String - The First Value to replace with.&#xa;&#x2f;&#x2f; 4&#x3a; String - The Second Value to search for.&#xa;&#x2f;&#x2f; 5&#x3a; String - The Second Value to replace with.&#xa;&#x2f;&#x2f; ...&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; 2006-11-15&#xa;&#x2f;&#x2f;&#xa;var str1 &#x3d; &#x22;Hello World, this is a nice function&#x22;&#x3b;      &#xa;var str2 &#x3d; replace&#x28;str1,&#x22;World&#x22;, &#x22;Folk&#x22;&#x29;&#x3b;&#xa;Alert&#x28;str2&#x29;&#x3b;&#xa;var str2 &#x3d; replace&#x28;str1,&#x22;World&#x22;, &#x22;Folk&#x22;, &#x22;nice&#x22;,&#x22;beautifull&#x22;&#x29;&#x3b;&#xa;Alert&#x28;str2&#x29;&#x3b;</jsScript_script>
+        <jsScript_script>&#x2f;&#x2f;&#xd;&#xa;var TarPath1 &#x3d; replace&#x28;SrcPath,SrcRemovePath,TarReplacePath&#x29;&#x3b;&#xd;&#xa;var index &#x3d; indexOf&#x28;TarPath1,TarReplacePath&#x29;&#x3b;&#xd;&#xa;if&#x28;index &#x3d;&#x3d; 0&#x29;&#x7b;&#xd;&#xa;	TarPath &#x3d; TarPath1&#x3b;&#xd;&#xa;&#x7d;else&#xd;&#xa;&#x7b;&#xd;&#xa;	&#x2f;&#x2f;SrcPath cant find SrcRemovePath&#xd;&#xa;	TarPath &#x3d; TarReplacePath &#x2b; &#x22;&#x2f;&#x22; &#x2b; replace&#x28;TarPath1,&#x22;&#x3a;&#x22;,&#x22;&#x5b;Drive&#x5d;&#x22;&#x29;&#x3b;&#xd;&#xa;&#x7d;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>TarPath</name>
         <rename>TarPath</rename>
         <type>String</type>
@@ -892,12 +889,12 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>SrcRemovePath</name>
-        <rename/>
+    <fields>      <field>        <name>SrcPath2</name>
+        <rename>SrcPath</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>SrcPath2</name>
-        <rename>SrcPath</rename>
+      </field>      <field>        <name>SrcRemovePath</name>
+        <rename/>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>TarReplacePath</name>
@@ -992,12 +989,12 @@
         <rename>SrcPath</rename>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>SrcPath</name>
-        <rename>SrcRemovePath</rename>
+      </field>      <field>        <name>SrcRemovePath</name>
+        <rename/>
         <length>-2</length>
         <precision>-2</precision>
-      </field>      <field>        <name>TarPath</name>
-        <rename>TarReplacePath</rename>
+      </field>      <field>        <name>TarReplacePath</name>
+        <rename/>
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>REGEX_EMPTY</name>
@@ -1150,8 +1147,20 @@
            </partitioning>
     <fields>
       <field>
-        <name>TarPath</name>
-        <variable>&#x24;&#x7b;tarPath&#x7d;</variable>
+        <name>SrcRemovePath</name>
+        <variable>&#x24;&#x7b;removePath&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>TarReplacePath</name>
+        <variable>&#x24;&#x7b;replacePath&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>

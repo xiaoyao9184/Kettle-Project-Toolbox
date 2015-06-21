@@ -99,11 +99,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;srcPath       &#x6e90;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xd;&#xa;tempPath    &#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xd;&#xa;zipPath       zip&#x6587;&#x4ef6;&#x8def;&#x5f84;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;tool.deploy.srcDir       &#x6e90;&#x76ee;&#x5f55;&#xd;&#xa;tool.deploy.tempDir    &#x4e34;&#x65f6;&#x76ee;&#x5f55;&#xd;&#xa;tool.deploy.zipDir        zip&#x6587;&#x4ef6;&#x76ee;&#x5f55;&#xd;&#xa;tool.deploy.zipPath      zip&#x6587;&#x4ef6;&#x8def;&#x5f84;</note>
       <xloc>478</xloc>
       <yloc>0</yloc>
-      <width>165</width>
-      <heigth>157</heigth>
+      <width>210</width>
+      <heigth>173</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -121,7 +121,7 @@
     </notepad>
     <notepad>
       <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x751f;&#x6210;&#x5176;&#x4ed6;&#x53d8;&#x91cf;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x5c;Kettle&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>663</xloc>
+      <xloc>731</xloc>
       <yloc>0</yloc>
       <width>190</width>
       <heigth>107</heigth>
@@ -539,19 +539,25 @@
     <fields>
       <field>
         <field_name>SrcPath</field_name>
-        <variable_name>srcPath</variable_name>
+        <variable_name>tool.deploy.srcDir</variable_name>
         <variable_type>ROOT_JOB</variable_type>
         <default_value/>
         </field>
       <field>
         <field_name>TempPath2</field_name>
-        <variable_name>tempPath</variable_name>
+        <variable_name>tool.deploy.tempDir</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+        </field>
+      <field>
+        <field_name>TempPath1</field_name>
+        <variable_name>tool.deploy.zipDir</variable_name>
         <variable_type>ROOT_JOB</variable_type>
         <default_value/>
         </field>
       <field>
         <field_name>ZipPath3</field_name>
-        <variable_name>zipPath</variable_name>
+        <variable_name>tool.deploy.zipPath</variable_name>
         <variable_type>ROOT_JOB</variable_type>
         <default_value/>
         </field>
