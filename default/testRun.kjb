@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2015&#x2f;05&#x2f;28 12&#x3a;27&#x3a;12.154</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;28 13&#x3a;03&#x3a;59.625</modified_date>
+  <modified_date>2015&#x2f;06&#x2f;30 16&#x3a;58&#x3a;55.639</modified_date>
     <parameters>
         <parameter>
             <name>cFileType</name>
@@ -75,8 +75,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>60</yloc>
+      <xloc>500</xloc>
+      <yloc>100</yloc>
       </entry>
     <entry>
       <name>ConfigRead</name>
@@ -108,22 +108,22 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>180</yloc>
+      <xloc>500</xloc>
+      <yloc>200</yloc>
       </entry>
     <entry>
-      <name>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</name>
+      <name>ABORT&#x3a;Exit</name>
       <description/>
       <type>ABORT</type>
       <message/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>820</xloc>
-      <yloc>300</yloc>
+      <xloc>100</xloc>
+      <yloc>350</yloc>
       </entry>
     <entry>
-      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x9000;&#x51fa;&#x6807;&#x8bc6;</name>
+      <name>SIMPLE_EVAL&#x3a;ExitFlag</name>
       <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -141,34 +141,24 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>300</yloc>
+      <xloc>500</xloc>
+      <yloc>500</yloc>
       </entry>
     <entry>
-      <name>&#x6210;&#x529f;</name>
-      <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>460</xloc>
-      <yloc>300</yloc>
-      </entry>
-    <entry>
-      <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;&#x6b63;&#x5e38;&#x9000;&#x51fa;</name>
+      <name>WRITE_TO_LOG&#x3a;Exit</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage>&#x4eba;&#x4e3a;&#x9000;&#x51fa;</logmessage>
+      <logmessage>config flag change to exit</logmessage>
       <loglevel>Basic</loglevel>
-      <logsubject>&#x9000;&#x51fa;</logsubject>
+      <logsubject>Exit</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>580</xloc>
-      <yloc>300</yloc>
+      <xloc>300</xloc>
+      <yloc>500</yloc>
       </entry>
     <entry>
-      <name>&#x53d1;&#x9001;&#x90ae;&#x4ef6;&#xff1a;&#x9000;&#x51fa;</name>
+      <name>MAIL&#x3a;Send exit log</name>
       <description/>
       <type>MAIL</type>
       <server>smtp.sina.com</server>
@@ -178,11 +168,11 @@
       <destinationBCc/>
       <replyto>debugmail&#x40;sina.com</replyto>
       <replytoname/>
-      <subject>DEBUG&#xff1a;HBDECLARE-EXIT</subject>
+      <subject>ETL_EXIT&#x3a;&#x24;&#x7b;Config.Cfg.Name&#x7d;</subject>
       <include_date>Y</include_date>
-      <contact_person>lc</contact_person>
+      <contact_person/>
       <contact_phone/>
-      <comment>&#x6cb3;&#x5317;&#x6392;&#x6c61;&#x7533;&#x62a5;&#xd;&#xa;&#x7533;&#x62a5;&#x540c;&#x6b65;&#x6a21;&#x5757;&#xd;&#xa;&#x7248;&#x672c;&#xff1a;&#x24;&#x7b;VERSION&#x7d;&#xd;&#xa;&#x5730;&#x5740;&#xff1a;&#x24;&#x7b;URL&#x7d;&#xd;&#xa;&#x76ee;&#x5f55;&#xff1a;&#x24;&#x7b;user.dir&#x7d;</comment>
+      <comment>ETL Kettle Exit&#xd;&#xa;&#xd;&#xa;Some info&#xd;&#xa;Name&#x3a;&#x24;&#x7b;Config.Cfg.Name&#x7d;&#xd;&#xa;Repository&#x3a;&#x24;&#x7b;Config.Cfg.Repository&#x7d;&#xd;&#xa;Version&#x3a;&#x24;&#x7b;Config.Cfg.Version&#x7d;&#xd;&#xa;Url&#x3a;&#x24;&#x7b;Config.Cfg.Url&#x7d;&#xd;&#xa;ExitFlag&#x3a;&#x24;&#x7b;Config.Cfg.ExitFlag&#x7d;&#xd;&#xa;DebugMode&#x3a;&#x24;&#x7b;Config.Cfg.DebugMode&#x7d;&#xd;&#xa;WorkDirectory&#x3a;&#x24;&#x7b;user.dir&#x7d;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -204,11 +194,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>700</xloc>
-      <yloc>300</yloc>
+      <xloc>200</xloc>
+      <yloc>350</yloc>
       </entry>
     <entry>
-      <name>&#x7b49;&#x5f85;</name>
+      <name>DELAY&#x3a;30min NextLoop</name>
       <description/>
       <type>DELAY</type>
       <maximumTimeout>30</maximumTimeout>
@@ -216,8 +206,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>800</yloc>
+      <xloc>900</xloc>
+      <yloc>500</yloc>
       </entry>
     <entry>
       <name>TimeRead</name>
@@ -249,8 +239,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>420</yloc>
+      <xloc>500</xloc>
+      <yloc>600</yloc>
       </entry>
     <entry>
       <name>testDoSomething</name>
@@ -282,8 +272,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>540</yloc>
+      <xloc>500</xloc>
+      <yloc>700</yloc>
       </entry>
     <entry>
       <name>TimeSave</name>
@@ -315,8 +305,221 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>640</yloc>
+      <xloc>500</xloc>
+      <yloc>800</yloc>
+      </entry>
+    <entry>
+      <name>ConfigRead&#x3a;Reload</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>rep_name</specification_method>
+      <trans_object_id/>
+      <filename/>
+      <transname>ConfigRead</transname>
+      <directory>&#x2f;</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+            <parameter>            <name>Parameters.Cfg.Name</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cUserFile&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Path</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cUserPath&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Tag.Ini</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rName&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Tag.xml</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;rName&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Type.File</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cFileType&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Type.Location</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;cPathType&#x7d;</value>
+            </parameter>      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>500</xloc>
+      <yloc>400</yloc>
+      </entry>
+    <entry>
+      <name>MAIL&#x3a;Send start log</name>
+      <description/>
+      <type>MAIL</type>
+      <server>smtp.sina.com</server>
+      <port>25</port>
+      <destination>xiaoyao9184&#x40;sina.com</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>debugmail&#x40;sina.com</replyto>
+      <replytoname/>
+      <subject>ETL_RUN&#x3a;&#x24;&#x7b;Config.Cfg.Name&#x7d;</subject>
+      <include_date>Y</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment>ETL Kettle Run&#xd;&#xa;&#xd;&#xa;Some info&#xd;&#xa;Name&#x3a;&#x24;&#x7b;Config.Cfg.Name&#x7d;&#xd;&#xa;Repository&#x3a;&#x24;&#x7b;Config.Cfg.Repository&#x7d;&#xd;&#xa;Version&#x3a;&#x24;&#x7b;Config.Cfg.Version&#x7d;&#xd;&#xa;Url&#x3a;&#x24;&#x7b;Config.Cfg.Url&#x7d;&#xd;&#xa;ExitFlag&#x3a;&#x24;&#x7b;Config.Cfg.ExitFlag&#x7d;&#xd;&#xa;DebugMode&#x3a;&#x24;&#x7b;Config.Cfg.DebugMode&#x7d;&#xd;&#xa;WorkDirectory&#x3a;&#x24;&#x7b;user.dir&#x7d;</comment>
+      <include_files>N</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>Y</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user>debugmail</auth_user>
+      <auth_password>Encrypted 2be98afc86aa7f2e4a70fad78cb93a1dd</auth_password>
+      <only_comment>N</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>N</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>normal</priority>
+      <importance>normal</importance>
+      <sensitivity>normal</sensitivity>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>500</xloc>
+      <yloc>300</yloc>
+      </entry>
+    <entry>
+      <name>MAIL&#x3a;Send err log</name>
+      <description/>
+      <type>MAIL</type>
+      <server>smtp.sina.com</server>
+      <port>25</port>
+      <destination>xiaoyao9184&#x40;sina.com</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>debugmail&#x40;sina.com</replyto>
+      <replytoname/>
+      <subject>ETL_ERR&#x3a;&#x24;&#x7b;Config.Cfg.Name&#x7d;</subject>
+      <include_date>Y</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment>ETL Kettle Exit&#xd;&#xa;&#xd;&#xa;Some info&#xd;&#xa;Name&#x3a;&#x24;&#x7b;Config.Cfg.Name&#x7d;&#xd;&#xa;Repository&#x3a;&#x24;&#x7b;Config.Cfg.Repository&#x7d;&#xd;&#xa;Version&#x3a;&#x24;&#x7b;Config.Cfg.Version&#x7d;&#xd;&#xa;Url&#x3a;&#x24;&#x7b;Config.Cfg.Url&#x7d;&#xd;&#xa;ExitFlag&#x3a;&#x24;&#x7b;Config.Cfg.ExitFlag&#x7d;&#xd;&#xa;DebugMode&#x3a;&#x24;&#x7b;Config.Cfg.DebugMode&#x7d;&#xd;&#xa;WorkDirectory&#x3a;&#x24;&#x7b;user.dir&#x7d;</comment>
+      <include_files>N</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>Y</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user>debugmail</auth_user>
+      <auth_password>Encrypted 2be98afc86aa7f2e4a70fad78cb93a1dd</auth_password>
+      <only_comment>N</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>N</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>normal</priority>
+      <importance>normal</importance>
+      <sensitivity>normal</sensitivity>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>700</xloc>
+      <yloc>600</yloc>
+      </entry>
+    <entry>
+      <name>WRITE_TO_LOG&#x3a;Err</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>ETL has a err</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>Err</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>700</xloc>
+      <yloc>700</yloc>
+      </entry>
+    <entry>
+      <name>DELAY&#x3a;15min Retry</name>
+      <description/>
+      <type>DELAY</type>
+      <maximumTimeout>15</maximumTimeout>
+      <scaletime>1</scaletime>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>700</xloc>
+      <yloc>500</yloc>
+      </entry>
+    <entry>
+      <name>WRITE_TO_LOG&#x3a;CFGERR</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>error in ConfigRead</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>Config Err</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>300</xloc>
+      <yloc>200</yloc>
+      </entry>
+    <entry>
+      <name>&#x6210;&#x529f;</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>500</xloc>
+      <yloc>900</yloc>
+      </entry>
+    <entry>
+      <name>WRITE_TO_LOG&#x3a;NextLoop</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>run next loop</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject>Err</logsubject>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>800</xloc>
+      <yloc>400</yloc>
+      </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>900</xloc>
+      <yloc>900</yloc>
       </entry>
   </entries>
   <hops>
@@ -330,26 +533,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>ConfigRead</from>
-      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x9000;&#x51fa;&#x6807;&#x8bc6;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x9000;&#x51fa;&#x6807;&#x8bc6;</from>
-      <to>&#x6210;&#x529f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x6210;&#x529f;</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;&#x6b63;&#x5e38;&#x9000;&#x51fa;</to>
+      <from>WRITE_TO_LOG&#x3a;Exit</from>
+      <to>MAIL&#x3a;Send exit log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -357,8 +542,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>&#x5199;&#x65e5;&#x5fd7;&#xff1a;&#x6b63;&#x5e38;&#x9000;&#x51fa;</from>
-      <to>&#x53d1;&#x9001;&#x90ae;&#x4ef6;&#xff1a;&#x9000;&#x51fa;</to>
+      <from>MAIL&#x3a;Send exit log</from>
+      <to>ABORT&#x3a;Exit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -366,34 +551,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>&#x53d1;&#x9001;&#x90ae;&#x4ef6;&#xff1a;&#x9000;&#x51fa;</from>
-      <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>ConfigRead</from>
-      <to>&#x53d1;&#x9001;&#x90ae;&#x4ef6;&#xff1a;&#x9000;&#x51fa;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x7b49;&#x5f85;</from>
-      <to>ConfigRead</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x9000;&#x51fa;&#x6807;&#x8bc6;</from>
+      <from>SIMPLE_EVAL&#x3a;ExitFlag</from>
       <to>TimeRead</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -420,13 +578,157 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>TimeSave</from>
-      <to>&#x7b49;&#x5f85;</to>
+      <from>ConfigRead&#x3a;Reload</from>
+      <to>SIMPLE_EVAL&#x3a;ExitFlag</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SIMPLE_EVAL&#x3a;ExitFlag</from>
+      <to>WRITE_TO_LOG&#x3a;Exit</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>WRITE_TO_LOG&#x3a;Err</from>
+      <to>MAIL&#x3a;Send err log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>TimeRead</from>
+      <to>WRITE_TO_LOG&#x3a;Err</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>testDoSomething</from>
+      <to>WRITE_TO_LOG&#x3a;Err</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>TimeSave</from>
+      <to>WRITE_TO_LOG&#x3a;Err</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ConfigRead</from>
+      <to>MAIL&#x3a;Send start log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>MAIL&#x3a;Send start log</from>
+      <to>ConfigRead&#x3a;Reload</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>MAIL&#x3a;Send err log</from>
+      <to>DELAY&#x3a;15min Retry</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>ConfigRead</from>
+      <to>WRITE_TO_LOG&#x3a;CFGERR</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>WRITE_TO_LOG&#x3a;CFGERR</from>
+      <to>MAIL&#x3a;Send exit log</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>TimeSave</from>
+      <to>&#x6210;&#x529f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>WRITE_TO_LOG&#x3a;NextLoop</from>
+      <to>ConfigRead&#x3a;Reload</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DELAY&#x3a;15min Retry</from>
+      <to>WRITE_TO_LOG&#x3a;NextLoop</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DELAY&#x3a;30min NextLoop</from>
+      <to>WRITE_TO_LOG&#x3a;NextLoop</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x6210;&#x529f;</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY</from>
+      <to>DELAY&#x3a;30min NextLoop</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

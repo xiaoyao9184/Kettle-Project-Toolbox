@@ -73,7 +73,9 @@
   <created_user>-</created_user>
   <created_date>2015&#x2f;04&#x2f;10 17&#x3a;26&#x3a;35.623</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;05&#x2f;28 10&#x3a;21&#x3a;22.699</modified_date>
+  <modified_date>2015&#x2f;06&#x2f;30 12&#x3a;25&#x3a;31.886</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
@@ -98,11 +100,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;user.home&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#x53ef;&#x4ee5;&#x88ab;&#x540e;&#x7eed;&#x4f7f;&#x7528;&#xd;&#xa;Config.Cfg.Name             &#x9879;&#x76ee;&#x540d;&#x79f0;&#xd;&#xa;Config.Cfg.Version           &#x7248;&#x672c;&#xd;&#xa;Config.Cfg.Repository      &#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;Config.Cfg.Url                  &#x9879;&#x76ee;URL&#xd;&#xa;Config.Cfg.ExitFlag           &#x9000;&#x51fa;&#x6807;&#x8bc6;&#xd;&#xa;Config.Cfg.DebugMdoe    DEBUG&#x6a21;&#x5f0f;&#xd;&#xa;Config.Cfg.UseStatus        &#x28;&#x793a;&#x4f8b;&#x914d;&#x7f6e;&#x29;&#xd;&#xa;Config.Cfg.StartTime         &#x28;&#x793a;&#x4f8b;&#x914d;&#x7f6e;&#x29;&#xd;&#xa;Config.Cfg.EndTime          &#x28;&#x793a;&#x4f8b;&#x914d;&#x7f6e;&#x29;</note>
-      <xloc>435</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;user.home&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#x53ef;&#x4ee5;&#x88ab;&#x540e;&#x7eed;&#x4f7f;&#x7528;&#xd;&#xa;Config.Cfg.&#x2a;                    &#x7528;&#x6237;&#x5b9a;&#x4e49;&#x7684;&#x53d8;&#x91cf;</note>
+      <xloc>500</xloc>
       <yloc>0</yloc>
-      <width>230</width>
-      <heigth>267</heigth>
+      <width>243</width>
+      <heigth>139</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -121,11 +123,35 @@
   </notepads>
   <order>
   <hop> <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;</from><to>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;properties</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;properties</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x5217;&#x8f6c;&#x884c;&#x5206;&#x7ec4;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x5217;&#x8f6c;&#x884c;&#x5206;&#x7ec4;</from><to>&#x5217;&#x8f6c;&#x884c;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5217;&#x8f6c;&#x884c;</from><to>&#x8bbe;&#x7f6e;&#x914d;&#x7f6e;&#x53d8;&#x91cf;</to><enabled>Y</enabled> </hop>
-  <hop> <from>&#x5217;&#x8f6c;&#x884c;</from><to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;Config.properties</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x9ed8;&#x8ba4;&#x503c;</from><to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x53d8;&#x91cf;&#x547d;&#x540d;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x53d8;&#x91cf;&#x547d;&#x540d;</from><to>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x5faa;&#x73af;&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x53d8;&#x91cf;&#x547d;&#x540d;</from><to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;Config.properties</to><enabled>Y</enabled> </hop>
+  <hop> <from>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;properties</from><to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x9ed8;&#x8ba4;&#x503c;</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x5faa;&#x73af;&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#x2f;&#x2f;loop set variable&#xa;setVariable&#x28;key,value,&#x22;r&#x22;&#x29;&#x3b;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>300</xloc>
+      <yloc>850</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;Config.properties</name>
     <type>WriteToLog</type>
@@ -144,196 +170,22 @@
       <logmessage>Config&#x914d;&#x7f6e;</logmessage>
     <fields>
       <field>
-        <name>name</name>
+        <name>key</name>
         </field>
       <field>
-        <name>repository</name>
-        </field>
-      <field>
-        <name>version</name>
-        </field>
-      <field>
-        <name>url</name>
-        </field>
-      <field>
-        <name>exitflag</name>
-        </field>
-      <field>
-        <name>debugmode</name>
-        </field>
-      <field>
-        <name>usestatus</name>
-        </field>
-      <field>
-        <name>starttime</name>
-        </field>
-      <field>
-        <name>endtime</name>
+        <name>value</name>
         </field>
       </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>120</xloc>
-      <yloc>420</yloc>
+      <xloc>500</xloc>
+      <yloc>650</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x5217;&#x8f6c;&#x884c;</name>
-    <type>Denormaliser</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-      <key_field>key</key_field>
-      <group>
-        <field>
-          <name>group</name>
-          </field>
-        </group>
-      <fields>
-        <field>
-          <field_name>value</field_name>
-          <key_value>name</key_value>
-          <target_name>name</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>repository</key_value>
-          <target_name>repository</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>version</key_value>
-          <target_name>version</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>url</key_value>
-          <target_name>url</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>exitflag</key_value>
-          <target_name>exitflag</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>debugmode</key_value>
-          <target_name>debugmode</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>usestatus</key_value>
-          <target_name>usestatus</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>starttime</key_value>
-          <target_name>starttime</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        <field>
-          <field_name>value</field_name>
-          <key_value>endtime</key_value>
-          <target_name>endtime</target_name>
-          <target_type>String</target_type>
-          <target_format/>
-          <target_length>-1</target_length>
-          <target_precision>-1</target_precision>
-          <target_decimal_symbol/>
-          <target_grouping_symbol/>
-          <target_currency_symbol/>
-          <target_null_string/>
-          <target_aggregation_type>-</target_aggregation_type>
-          </field>
-        </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>420</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x5217;&#x8f6c;&#x884c;&#x5206;&#x7ec4;</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;&#x9ed8;&#x8ba4;&#x503c;</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -345,13 +197,25 @@
            </partitioning>
     <fields>
       <field>
-        <name>group</name>
-        <type>Integer</type>
+        <name>NAMESPACE_DEFAULT</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>1</nullif>
+        <nullif>Config.Cfg</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>NAMESPACE_POINT</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -359,8 +223,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>300</yloc>
+      <xloc>300</xloc>
+      <yloc>450</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -392,84 +256,41 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>40</yloc>
+      <xloc>300</xloc>
+      <yloc>50</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>&#x8bbe;&#x7f6e;&#x914d;&#x7f6e;&#x53d8;&#x91cf;</name>
-    <type>SetVariable</type>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x53d8;&#x91cf;&#x547d;&#x540d;</name>
+    <type>Calculator</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>
-      <field>
-        <field_name>name</field_name>
-        <variable_name>Config.Cfg.Name</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>repository</field_name>
-        <variable_name>Config.Cfg.Repository</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>version</field_name>
-        <variable_name>Config.Cfg.Version</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>url</field_name>
-        <variable_name>Config.Cfg.Url</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>exitflag</field_name>
-        <variable_name>Config.Cfg.ExitFlag</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>debugmode</field_name>
-        <variable_name>Config.Cfg.DebugMode</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>usestatus</field_name>
-        <variable_name>Config.Cfg.UseStatus</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>starttime</field_name>
-        <variable_name>Config.Cfg.StartTime</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      <field>
-        <field_name>endtime</field_name>
-        <variable_name>Config.Cfg.EndTime</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>unknow</default_value>
-        </field>
-      </fields>
-    <use_formatting>Y</use_formatting>
+       <calculation><field_name>key</field_name>
+<calc_type>ADD3</calc_type>
+<field_a>NAMESPACE_DEFAULT</field_a>
+<field_b>NAMESPACE_POINT</field_b>
+<field_c>keyname</field_c>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>540</yloc>
+      <xloc>300</xloc>
+      <yloc>650</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -508,7 +329,7 @@
     </file>
     <fields>
       <field>
-        <name>key</name>
+        <name>keyname</name>
         <column>key</column>
         <type>String</type>
         <format/>
@@ -545,8 +366,8 @@
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>180</yloc>
+      <xloc>300</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
