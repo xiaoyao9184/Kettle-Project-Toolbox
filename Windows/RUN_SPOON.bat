@@ -39,7 +39,7 @@ if exist .kettle (
     echo %echo_use_user_kettle_home%
 )
 
-set "_temp_file_repository="
+set "_temp_file_repository=0"
 
 if exist repository.log (
     set _temp_file_repository=1
