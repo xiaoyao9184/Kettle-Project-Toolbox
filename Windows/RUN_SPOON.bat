@@ -13,7 +13,12 @@ set tip=Kettle调度程序：运行Spoon
 set ver=1.0
 set KETTLE_HOME=
 set KETTLE_REPOSITORY=
+::current folder
 for %%a in (.) do set current_folder=%%~na
+::double-clicking is outer call and will set 0
+set interactive=1
+echo %cmdcmdline% | find /i "%~0" >nul
+if not errorlevel 1 set interactive=0
 
 set echo_use_project_kettle_home=使用项目KETTLE_HOME目录！
 set echo_use_user_kettle_home=使用用户KETTLE_HOME目录！
@@ -41,10 +46,13 @@ if exist .kettle (
 
 set "_temp_file_repository=0"
 
-if exist repository.log (
+if exist .kettle (
     set _temp_file_repository=1
 )
 if exist .meta (
+    set _temp_file_repository=1
+)
+if exist repository.log (
     set _temp_file_repository=1
 )
 if exist *.kdb (
@@ -80,15 +88,14 @@ echo 运行中...      Ctrl+C结束程序
 call Spoon.bat
 
 ::执行完毕
-if %ERRORLEVEL% equ 0 goto end
+if %ERRORLEVEL% equ 0 (
+    if _%interactive%_ equ _0_ exit 
+)
 
 echo 已经执行完毕，可以结束此程序
-
 pause
 
 
 :end
 
 ::5退出
-
-exit
