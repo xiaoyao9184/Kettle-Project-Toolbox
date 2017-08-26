@@ -1,21 +1,13 @@
 ﻿<config>
 	<project name="default">
-		<cfg namespace="Config.Cfg" key="Name">PDI project:default(use xml in rep dir)</cfg>
-		<cfg namespace="Config.Cfg" key="Repository">default</cfg>
-		<cfg namespace="Config.Cfg" key="Version">1.0test</cfg>
-		<cfg namespace="Config.Cfg" key="Url">default localhost</cfg>
-		<cfg namespace="Config.Cfg" key="ExitFlag">0</cfg>
-		<cfg namespace="Config.Cfg" key="DebugMode">0</cfg>
-		<cfg namespace="Config.Cfg" key="UseStatus">0</cfg>
-		<cfg namespace="Config.Cfg" key="StartTime">2000-01-01</cfg>
-		<cfg namespace="Config.Cfg" key="EndTime">3000-01-01</cfg>
-	</project>
-	<project name="test">
-		<cfg namespace="Config.Cfg" key="Name">PDI project:test(use xml in rep dir)</cfg>
-		<cfg namespace="Config.Cfg" key="Repository">test</cfg>
-		<cfg namespace="Config.Cfg" key="Version">1.0test</cfg>
-		<cfg namespace="Config.Cfg" key="Url">test localhost</cfg>
-		<cfg namespace="Config.Cfg" key="ExitFlag">0</cfg>
-		<cfg namespace="Config.Cfg" key="DebugMode">0</cfg>
+		<cfg key="Name">PDI project:default(use xml in rep dir)</cfg>
+		<cfg key="Repository">default</cfg>
+		<cfg key="Version">1.0test</cfg>
+		<cfg key="Url">unknown</cfg>
+		<cfg key="ExitFlag">false</cfg>
+		<cfg key="DebugMode">ture</cfg>
+		<cfg key="UseStatus">true</cfg>
+		<cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
+		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
 	</project>
 </config>
