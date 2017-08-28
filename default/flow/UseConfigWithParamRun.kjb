@@ -1,24 +1,54 @@
 <job>
-  <name>OnceTimeWait</name>
+  <name>UseConfigWithParamRun</name>
   <description/>
   <extended_description/>
   <job_version/>
   <job_status>0</job_status>
-  <directory>&#x2f;wait</directory>
+  <directory>&#x2f;flow</directory>
   <created_user>-</created_user>
-  <created_date>2017&#x2f;08&#x2f;26 21&#x3a;50&#x3a;03.246</created_date>
+  <created_date>2017&#x2f;08&#x2f;28 08&#x3a;58&#x3a;03.988</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;08&#x2f;28 09&#x3a;12&#x3a;08.650</modified_date>
+  <modified_date>2017&#x2f;08&#x2f;28 09&#x3a;37&#x3a;50.051</modified_date>
     <parameters>
       <parameter>
-        <name>TimeNumber</name>
+        <name>CfgName</name>
         <default_value/>
-        <description>&#x7b49;&#x5f85;&#x65f6;&#x95f4;&#x6570;</description>
+        <description/>
       </parameter>
       <parameter>
-        <name>TimeUnit</name>
+        <name>CfgPath</name>
         <default_value/>
-        <description>&#x7b49;&#x5f85;&#x65f6;&#x95f4;&#x5355;&#x4f4d;</description>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>CfgTag</name>
+        <default_value/>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>CfgType</name>
+        <default_value/>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>JobName</name>
+        <default_value>TestRun</default_value>
+        <description>&#x4f5c;&#x4e1a;&#x540d;&#x79f0;</description>
+      </parameter>
+      <parameter>
+        <name>JobPath</name>
+        <default_value>&#x2f;test</default_value>
+        <description>&#x4f5c;&#x4e1a;&#x8def;&#x5f84;</description>
+      </parameter>
+      <parameter>
+        <name>KettleHomePath</name>
+        <default_value/>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>RepName</name>
+        <default_value/>
+        <description/>
       </parameter>
     </parameters>
     <slaveservers>
@@ -317,14 +347,14 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>Wait_&#x3f;_&#x3f;</name>
+      <name>ReadConfig</name>
       <description/>
       <type>JOB</type>
       <specification_method>rep_name</specification_method>
       <job_object_id/>
       <filename/>
-      <jobname>Wait_&#x24;&#x7b;TimeUnit&#x7d;_&#x24;&#x7b;TimeNumber&#x7d;</jobname>
-      <directory>&#x2f;wait</directory>
+      <jobname>ReadConfig</jobname>
+      <directory>&#x2f;config</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -346,26 +376,55 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>272</yloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
-      <name>&#x5199;&#x65e5;&#x5fd7;</name>
+      <name>&#x6210;&#x529f;</name>
       <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage/>
-      <loglevel>Basic</loglevel>
-      <logsubject>Will execute Wait_&#x24;&#x7b;TimeUnit&#x7d;_&#x24;&#x7b;TimeNumber&#x7d;</logsubject>
+      <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>160</yloc>
+      <yloc>416</yloc>
+    </entry>
+    <entry>
+      <name>&#x3f;</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>rep_name</specification_method>
+      <job_object_id/>
+      <filename/>
+      <jobname>&#x24;&#x7b;JobName&#x7d;</jobname>
+      <directory>&#x24;&#x7b;JobPath&#x7d;</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>288</yloc>
     </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;</to>
+      <to>ReadConfig</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -373,8 +432,17 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>&#x5199;&#x65e5;&#x5fd7;</from>
-      <to>Wait_&#x3f;_&#x3f;</to>
+      <from>ReadConfig</from>
+      <to>&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x3f;</from>
+      <to>&#x6210;&#x529f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -384,13 +452,13 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;TimeNumber&#xd;&#xa;TimeUnit</note>
-      <xloc>272</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;CfgName&#xd;&#xa;CfgPath&#xd;&#xa;CfgTag&#xd;&#xa;CfgType&#xd;&#xa;KettleHomePath&#xd;&#xa;RepName&#xd;&#xa;JobName&#xd;&#xa;JobPath</note>
+      <xloc>304</xloc>
       <yloc>0</yloc>
-      <width>86</width>
-      <heigth>75</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <width>104</width>
+      <heigth>171</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
@@ -405,7 +473,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x52a8;&#x6001;&#x7b49;&#x5f85;</note>
+      <note>&#x7b80;&#x5355;&#x8fd0;&#x884c;</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
       <width>58</width>
@@ -426,11 +494,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>TimeNumber&#x9884;&#x5236;&#x652f;&#x6301;8&#x4e2d;&#x5143;&#x6570;&#x636e;&#xff0c;&#xd;&#xa;&#x53ef;&#x7ec4;&#x5408;&#x6210;&#x5341;&#x8fdb;&#x5236;&#x201c;256&#x201d;&#xff0c;&#x5373;&#x652f;&#x6301;256&#x4ee5;&#x5185;&#x7684;&#x6570;&#xd;&#xa;&#xd;&#xa;1.1&#xd;&#xa;2.2&#xd;&#xa;3.4&#xd;&#xa;4.8&#xd;&#xa;5.16&#xd;&#xa;6.32&#xd;&#xa;7.64&#xd;&#xa;8.128&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;TimeUnit&#x9884;&#x5236;&#x652f;&#x6301;2&#x79cd;&#x65f6;&#x95f4;&#x5355;&#x4f4d;&#xd;&#xa;&#xd;&#xa;1.Hour&#xd;&#xa;2.Minute&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x7531;&#x4e8e;&#x4f7f;&#x7528;&#x7684;&#x662f;&#x52a8;&#x6001;&#x8c03;&#x7528;&#x4f5c;&#x4e1a;&#xff0c;&#xd;&#xa;&#x652f;&#x6301;&#x4efb;&#x610f;&#x6269;&#x5c55;&#xff0c;&#x4f46;&#x88ab;&#x8c03;&#x7528;&#x7684;&#x4f5c;&#x4e1a;&#x9700;&#x6ee1;&#x8db3;&#x4ee5;&#x4e0b;&#x547d;&#x540d;&#x65b9;&#x5f0f;&#xd;&#xa;Wait_&#x24;&#x7b;TimeUnit&#x7d;_&#x24;&#x7b;TimeNumber&#x7d;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>384</xloc>
+      <note>JobPath&#x4e3a;&#x4f5c;&#x4e1a;&#x7684;&#x8def;&#x5f84;&#xd;&#xa;JobName&#x4e3a;&#x4f5c;&#x4e1a;&#x7684;&#x540d;&#x79f0;&#xd;&#xa;&#xd;&#xa;&#x8bfb;&#x53d6;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540e;&#x8fd0;&#x884c;&#x5236;&#x5b9a;&#x8f6c;&#x6362;</note>
+      <xloc>432</xloc>
       <yloc>0</yloc>
-      <width>286</width>
-      <heigth>382</heigth>
+      <width>166</width>
+      <heigth>75</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
