@@ -11,6 +11,9 @@
 set KETTLE_HOME=
 set KETTLE_REPOSITORY=
 for %%a in (.) do set current_folder=%%~na
+if exist SET_JAVA_ENVIRONMENT.bat (
+    call SET_JAVA_ENVIRONMENT.bat
+)
 
 set echo_use_project_kettle_home=使用项目KETTLE_HOME目录！
 set echo_use_user_kettle_home=使用用户KETTLE_HOME目录！
