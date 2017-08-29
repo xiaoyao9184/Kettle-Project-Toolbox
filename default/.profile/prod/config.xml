@@ -1,0 +1,15 @@
+﻿<config>
+	<project name="default">
+		<cfg key="Name">PDI project:default(use xml in rep dir)</cfg>
+		<cfg key="Repository">default</cfg>
+		<cfg key="Version">1.0test</cfg>
+		<cfg key="Url">unknown</cfg>
+		<cfg key="ExitFlag">false</cfg>
+		<cfg key="DebugMode">ture</cfg>
+		<cfg key="UseStatus">true</cfg>
+		<cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
+		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
+		<cfg namespace="Config.Main.Job" key="Path">/test</cfg>
+		<cfg namespace="Config.Main.Job" key="Name">TestRun</cfg>
+	</project>
+</config>
