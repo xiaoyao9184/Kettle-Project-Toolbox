@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2015&#x2f;03&#x2f;16 14&#x3a;47&#x3a;11.476</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;08&#x2f;26 15&#x3a;40&#x3a;17.867</modified_date>
+  <modified_date>2017&#x2f;08&#x2f;30 10&#x3a;13&#x3a;14.917</modified_date>
     <parameters>
       <parameter>
         <name>CfgName</name>
@@ -344,7 +344,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>704</yloc>
+      <yloc>480</yloc>
     </entry>
     <entry>
       <name>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</name>
@@ -354,136 +354,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>368</yloc>
-    </entry>
-    <entry>
-      <name>GetDefaultValue&#x3a; Internal.&#x2a;.Repository.Name</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>GetDefaultValue</transname>
-      <directory>&#x2f;variable</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>
-        <pass_all_parameters>N</pass_all_parameters>
-        <parameter>
-          <name>ParamVariableNameList</name>
-          <stream_name/>
-          <value>KETTLE_REPOSITORY&#x3b;RepName</value>
-        </parameter>
-        <parameter>
-          <name>ResultVariableNameList</name>
-          <stream_name/>
-          <value>Internal.Transformation.Repository.Name&#x3b;Internal.Job.Repository.Name</value>
-        </parameter>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>144</yloc>
-    </entry>
-    <entry>
-      <name>GetDefaultValue&#x3a; Kettle.Home.Directory</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>GetDefaultValue</transname>
-      <directory>&#x2f;variable</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>
-        <pass_all_parameters>N</pass_all_parameters>
-        <parameter>
-          <name>ParamVariableNameList</name>
-          <stream_name/>
-          <value>KETTLE_HOME&#x3b;KettleHomePath</value>
-        </parameter>
-        <parameter>
-          <name>ResultVariableNameList</name>
-          <stream_name/>
-          <value>Kettle.Home.Directory</value>
-        </parameter>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>256</yloc>
-    </entry>
-    <entry>
-      <name>FixRepositorieDirectory&#x3a; Internal.&#x2a;.Repository.Directory</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>rep_name</specification_method>
-      <trans_object_id/>
-      <filename/>
-      <transname>FixRepositorieDirectory</transname>
-      <directory>&#x2f;variable</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>
-        <pass_all_parameters>N</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>368</yloc>
+      <xloc>400</xloc>
+      <yloc>304</yloc>
     </entry>
     <entry>
       <name>GetConfigBase&#x3a; Config.Transformation</name>
@@ -539,7 +411,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>480</yloc>
+      <yloc>256</yloc>
     </entry>
     <entry>
       <name>ReadConfig&#x3a; Config.Transformation</name>
@@ -595,73 +467,42 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>592</yloc>
+      <yloc>368</yloc>
+    </entry>
+    <entry>
+      <name>InitVariable</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>rep_name</specification_method>
+      <job_object_id/>
+      <filename/>
+      <jobname>InitVariable</jobname>
+      <directory>&#x2f;variable</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>144</yloc>
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>GetDefaultValue&#x3a; Internal.&#x2a;.Repository.Name</from>
-      <to>GetDefaultValue&#x3a; Kettle.Home.Directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>GetDefaultValue&#x3a; Internal.&#x2a;.Repository.Name</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>GetDefaultValue&#x3a; Kettle.Home.Directory</from>
-      <to>FixRepositorieDirectory&#x3a; Internal.&#x2a;.Repository.Directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>FixRepositorieDirectory&#x3a; Internal.&#x2a;.Repository.Directory</from>
-      <to>GetConfigBase&#x3a; Config.Transformation</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>GetDefaultValue&#x3a; Internal.&#x2a;.Repository.Name</from>
-      <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>GetDefaultValue&#x3a; Kettle.Home.Directory</from>
-      <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>FixRepositorieDirectory&#x3a; Internal.&#x2a;.Repository.Directory</from>
-      <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>GetConfigBase&#x3a; Config.Transformation</from>
       <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
@@ -698,6 +539,24 @@
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>START</from>
+      <to>InitVariable</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>InitVariable</from>
+      <to>GetConfigBase&#x3a; Config.Transformation</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
@@ -722,11 +581,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;CfgName				&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;&#x79f0;&#xd;&#xa;CfgPath					&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;CfgTag					&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6807;&#x7b7e;&#xd;&#xa;CfgType				&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x683c;&#x5f0f;&#xd;&#xa;KettleHomePath				&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x76ee;&#x5f55;&#x28;&#x9ed8;&#x8ba4;&#x29;&#xd;&#xa;RepName				&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x28;&#x9ed8;&#x8ba4;&#x29;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x4f1a;&#x4fee;&#x590d;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Internal.Job.Filename.Directory                        &#x4f5c;&#x4e1a;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x5f53;&#x524d;&#x8def;&#x5f84;&#xd;&#xa;Internal.Transformation.Filename.Directory       &#x8f6c;&#x6362;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x5f53;&#x524d;&#x8def;&#x5f84;&#xd;&#xa;Internal.Job.Repository.Name                          &#x4f5c;&#x4e1a;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;Internal.Transformation.Repository.Name         &#x8f6c;&#x6362;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#xd;&#xa;&#x4f1a;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Kettle.Home.Directory&#xd;&#xa;Config.Path               &#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5168;&#x8def;&#x5f84;&#xd;&#xa;Config.Name             &#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5168;&#x540d;&#x79f0;&#xd;&#xa;Config.Tag                &#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5206;&#x7ec4;&#x6807;&#x7b7e;&#xff08;&#x4ec5;&#x5728;&#x4f7f;&#x7528;XML&#x6216;INI&#x65f6;&#x6709;&#x6548;&#xff09;&#xd;&#xa;Config.Type&#xd;&#xa;Config.Transformation&#xd;&#xa;Config.Cfg.&#x7b;&#x53d8;&#x91cf;&#x7d;        &#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5177;&#x4f53;&#x914d;&#x7f6e;&#xff08;&#x9ed8;&#x8ba4;&#x547d;&#x540d;&#x7a7a;&#x95f4;&#xff09;&#xd;&#xa;&#xd;&#xa;&#x5173;&#x4e8e;&#x589e;&#x52a0;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;&#x76f4;&#x63a5;&#x5728;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x4e2d;&#x589e;&#x52a0;&#x5373;&#x53ef;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;CfgName				&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;&#x79f0;&#xd;&#xa;CfgPath					&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;CfgTag					&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6807;&#x7b7e;&#xd;&#xa;CfgType				&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x683c;&#x5f0f;&#xd;&#xa;KettleHomePath				&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x76ee;&#x5f55;&#x28;&#x9ed8;&#x8ba4;&#x29;&#xd;&#xa;RepName				&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x28;&#x9ed8;&#x8ba4;&#x29;&#xd;&#xa;&#xd;&#xa;&#x4f1a;&#x4fee;&#x590d;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Internal.Job.Filename.Directory				&#x4f5c;&#x4e1a;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x5f53;&#x524d;&#x8def;&#x5f84;&#xd;&#xa;Internal.Transformation.Filename.Directory		&#x8f6c;&#x6362;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x5f53;&#x524d;&#x8def;&#x5f84;&#xd;&#xa;Internal.Job.Repository.Name				&#x4f5c;&#x4e1a;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;Internal.Transformation.Repository.Name		&#x8f6c;&#x6362;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;Kettle.Home.Directory					KETTLE_HOME&#xd;&#xa;&#xd;&#xa;&#x4f1a;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Config.Path		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5168;&#x8def;&#x5f84;&#xd;&#xa;Config.Name		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5168;&#x540d;&#x79f0;&#xd;&#xa;Config.Tag		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5206;&#x7ec4;&#x6807;&#x7b7e;&#xff08;&#x4ec5;&#x5728;&#x4f7f;&#x7528;XML&#x6216;INI&#x65f6;&#x6709;&#x6548;&#xff09;&#xd;&#xa;Config.Type		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x7c7b;&#x578b;&#xd;&#xa;Config.Transformation	&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8bfb;&#x53d6;&#x903b;&#x8f91;&#x8f6c;&#x6362;&#xd;&#xa;Config.Cfg.&#x7b;&#x53d8;&#x91cf;&#x7d;        	&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x5177;&#x4f53;&#x914d;&#x7f6e;&#xff08;&#x9ed8;&#x8ba4;&#x547d;&#x540d;&#x7a7a;&#x95f4;&#xff09;&#xd;&#xa;&#xd;&#xa;&#x5173;&#x4e8e;&#x589e;&#x52a0;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;&#x76f4;&#x63a5;&#x5728;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x4e2d;&#x589e;&#x52a0;&#x5373;&#x53ef;</note>
       <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>416</width>
-      <heigth>430</heigth>
+      <width>478</width>
+      <heigth>413</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>

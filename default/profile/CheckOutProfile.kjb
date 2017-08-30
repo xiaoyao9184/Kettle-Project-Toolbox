@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2017&#x2f;08&#x2f;29 09&#x3a;43&#x3a;14.775</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;08&#x2f;29 17&#x3a;21&#x3a;46.377</modified_date>
+  <modified_date>2017&#x2f;08&#x2f;30 10&#x3a;11&#x3a;55.197</modified_date>
     <parameters>
     </parameters>
     <slaveservers>
@@ -496,6 +496,17 @@
       <xloc>192</xloc>
       <yloc>672</yloc>
     </entry>
+    <entry>
+      <name>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</name>
+      <description/>
+      <type>ABORT</type>
+      <message/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>384</xloc>
+      <yloc>544</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -561,7 +572,58 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>ActiveProfile</from>
+      <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>&#x6fc0;&#x6d3b;Profile</note>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
+      <width>71</width>
+      <heigth>26</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>&#x4f1a;&#x4fee;&#x590d;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Internal.Job.Filename.Directory				&#x4f5c;&#x4e1a;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x5f53;&#x524d;&#x8def;&#x5f84;&#xd;&#xa;Internal.Transformation.Filename.Directory		&#x8f6c;&#x6362;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x5f53;&#x524d;&#x8def;&#x5f84;&#xd;&#xa;Internal.Job.Repository.Name				&#x4f5c;&#x4e1a;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;Internal.Transformation.Repository.Name		&#x8f6c;&#x6362;&#x6240;&#x5728;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;Kettle.Home.Directory					KETTLE_HOME&#xd;&#xa;&#xd;&#xa;&#x4f1a;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Profile.Use				profile&#x540d;&#x79f0;&#xd;&#xa;Profile.Path				profile&#x8def;&#x5f84;&#xd;&#xa;Profile.Meta.Location			profile&#x63cf;&#x8ff0;&#x6587;&#x4ef6;&#xd;&#xa;</note>
+      <xloc>416</xloc>
+      <yloc>0</yloc>
+      <width>478</width>
+      <heigth>204</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
 </job>
