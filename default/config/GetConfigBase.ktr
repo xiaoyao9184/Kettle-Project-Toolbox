@@ -15,8 +15,13 @@
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Path</name>
-        <default_value/>
+        <default_value>..&#x2f;default</default_value>
         <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Cfg.Profile</name>
+        <default_value/>
+        <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;profile</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Tag</name>
@@ -449,7 +454,7 @@
     <created_user>-</created_user>
     <created_date>2017&#x2f;08&#x2f;25 16&#x3a;10&#x3a;36.439</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;08&#x2f;26 20&#x3a;32&#x3a;16.273</modified_date>
+    <modified_date>2017&#x2f;08&#x2f;30 21&#x3a;16&#x3a;50.910</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -457,7 +462,7 @@
     <notepad>
       <note>cfg_name</note>
       <xloc>416</xloc>
-      <yloc>1344</yloc>
+      <yloc>1408</yloc>
       <width>65</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -478,7 +483,7 @@
     <notepad>
       <note>cfg_path</note>
       <xloc>416</xloc>
-      <yloc>816</yloc>
+      <yloc>896</yloc>
       <width>60</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -499,7 +504,7 @@
     <notepad>
       <note>cfg_type</note>
       <xloc>416</xloc>
-      <yloc>2400</yloc>
+      <yloc>2944</yloc>
       <width>58</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -518,11 +523,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>cfg_file&#xd;&#xa;cfg_location</note>
+      <note>cfg_location</note>
       <xloc>560</xloc>
-      <yloc>3840</yloc>
+      <yloc>4352</yloc>
       <width>80</width>
-      <heigth>42</heigth>
+      <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -541,7 +546,7 @@
     <notepad>
       <note>cfg_tag</note>
       <xloc>416</xloc>
-      <yloc>1872</yloc>
+      <yloc>2432</yloc>
       <width>52</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -560,10 +565,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>cfg_profile</note>
+      <note>cfg_circuit</note>
       <xloc>416</xloc>
-      <yloc>3056</yloc>
-      <width>71</width>
+      <yloc>3584</yloc>
+      <width>68</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -582,8 +587,8 @@
     </notepad>
     <notepad>
       <note>cfg_transformation</note>
-      <xloc>400</xloc>
-      <yloc>5136</yloc>
+      <xloc>416</xloc>
+      <yloc>5376</yloc>
       <width>120</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -602,10 +607,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>cfg_path exist</note>
+      <note>cfg_circuit Directory</note>
       <xloc>496</xloc>
-      <yloc>3200</yloc>
-      <width>90</width>
+      <yloc>3712</yloc>
+      <width>125</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -623,11 +628,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;Parameters.Cfg.Name		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;&#x79f0;&#xd;&#xa;Parameters.Cfg.Tag		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6807;&#x7b7e;&#xd;&#xa;Parameters.Cfg.Type		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x7c7b;&#x578b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Kettle.Home.Directory				&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Path&#x29;&#xd;&#xa;Internal.Transformation.Filename.Directory	&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Path&#x29;&#xd;&#xa;Internal.Transformation.Repository.Name	&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Tag&#x29;&#xd;&#xa;&#xd;&#xa;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Config.Transformation&#xd;&#xa;Config.Path&#xd;&#xa;Config.Name&#xd;&#xa;Config.Tag&#xd;&#xa;Config.Type</note>
-      <xloc>176</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;Parameters.Cfg.Name		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;&#x79f0;&#xd;&#xa;Parameters.Cfg.Profile		&#x914d;&#x7f6e;&#x6587;&#x4ef6;Profile&#xd;&#xa;Parameters.Cfg.Tag		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6807;&#x7b7e;&#xd;&#xa;Parameters.Cfg.Type		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x7c7b;&#x578b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Kettle.Home.Directory				&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Path&#x29;&#xd;&#xa;Internal.Transformation.Filename.Directory	&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Path&#x29;&#xd;&#xa;Profile.Use					&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Profile&#x29;&#xd;&#xa;Internal.Transformation.Repository.Name	&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Tag&#x29;&#xd;&#xa;&#xd;&#xa;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Config.Transformation&#xd;&#xa;Config.Path&#xd;&#xa;Config.Name&#xd;&#xa;Config.Profile&#xd;&#xa;Config.Tag&#xd;&#xa;Config.Type</note>
+      <xloc>160</xloc>
       <yloc>0</yloc>
-      <width>421</width>
-      <heigth>301</heigth>
+      <width>433</width>
+      <heigth>349</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -665,11 +670,53 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53ef;&#x8bfb;&#x53d6;2&#x79cd;profile&#x7684;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#xff1a;&#xd;&#xa;1. Customize	&#x81ea;&#x5b9a;&#x4e49;&#xd;&#xa;2. Directory	&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Path&#xff0c;&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9884;&#x5236;&#x7684;2&#x79cd;Directory&#x6309;&#x4f18;&#x5148;&#x7ea7;&#x751f;&#x6210;Config.Path&#xd;&#xa;1.RepositorieDirectory	&#x5f53;&#x524d;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;2.KettleHomeDirectory	KettleHome&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Name&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9ed8;&#x8ba4;&#xff1a;config&#x586b;&#x5145;Config.Name&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Tag&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x5f53;&#x524d;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x586b;&#x5145;Config.Name&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x652f;&#x6301;&#x8bfb;&#x53d6;&#x4efb;&#x610f;&#x6570;&#x636e;&#x6e90;&#xd;&#xa;&#x9884;&#x5236;&#x8bfb;&#x53d6;3&#x79cd;&#x6587;&#x4ef6;&#x7684;&#x8f6c;&#x6362;&#xd;&#xa;1.xml&#xd;&#xa;2.ini&#xd;&#xa;3.properties&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Type&#xd;&#xa;&#x6839;&#x636e;&#x9884;&#x5236;&#x4f18;&#x5148;&#x7ea7;&#x586b;&#x5145;Config.Type&#xd;&#xa;&#xd;&#xa;&#x6ce8;&#x610f;&#xff1a;&#xd;&#xa;&#x6839;&#x636e;Config.Type&#x786e;&#x5b9a;&#x8981;&#x52a8;&#x6001;&#x52a0;&#x8f7d;&#x7684;&#x8f6c;&#x6362;&#x540d;&#x79f0;&#xff0c;&#xd;&#xa;&#x901a;&#x5e38;&#x4e3a;ReadConfig_&#x2a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>656</xloc>
+      <note>&#x652f;&#x6301;2&#x79cd;&#x5904;&#x7406;&#x903b;&#x8f91;&#x6d41;&#x7a0b;&#x28;cfg_circuit&#x29;&#xff1a;&#xd;&#xa;1. Customize	&#x81ea;&#x5b9a;&#x4e49;&#xd;&#xa;2. Directory	&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Path&#xff0c;&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9884;&#x5236;&#x7684;2&#x79cd;cfg_circuit&#xff1a;Directory&#x6309;&#x4f18;&#x5148;&#x7ea7;&#x751f;&#x6210;Config.Path&#xd;&#xa;1.RepositorieDirectory	&#x5f53;&#x524d;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;2.KettleHomeDirectory	KettleHome&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Name&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9ed8;&#x8ba4;&#xff1a;&#x27;config&#x27;&#x586b;&#x5145;Config.Name&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Profile&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9ed8;&#x8ba4;&#xff1a;Profile.Use&#x586b;&#x5145;Config.Profile&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Tag&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x5f53;&#x524d;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x586b;&#x5145;Config.Name&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x652f;&#x6301;&#x8bfb;&#x53d6;&#x4efb;&#x610f;&#x6570;&#x636e;&#x6e90;&#xd;&#xa;&#x9884;&#x5236;&#x8bfb;&#x53d6;3&#x79cd;&#x6587;&#x4ef6;&#x7684;&#x8f6c;&#x6362;&#xd;&#xa;1.xml&#xd;&#xa;2.ini&#xd;&#xa;3.properties&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Type&#xd;&#xa;&#x6839;&#x636e;&#x9884;&#x5236;&#x4f18;&#x5148;&#x7ea7;&#x586b;&#x5145;Config.Type&#xd;&#xa;&#xd;&#xa;&#x6ce8;&#x610f;&#xff1a;&#xd;&#xa;&#x6839;&#x636e;Config.Type&#x786e;&#x5b9a;&#x8981;&#x52a8;&#x6001;&#x52a0;&#x8f7d;&#x7684;&#x8f6c;&#x6362;&#x540d;&#x79f0;&#xff0c;&#xd;&#xa;&#x901a;&#x5e38;&#x4e3a;ReadConfig_&#x2a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>608</xloc>
       <yloc>0</yloc>
-      <width>293</width>
-      <heigth>495</heigth>
+      <width>362</width>
+      <heigth>560</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>cfg_profile</note>
+      <xloc>416</xloc>
+      <yloc>1920</yloc>
+      <width>71</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>first</note>
+      <xloc>416</xloc>
+      <yloc>6144</yloc>
+      <width>33</width>
+      <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -704,17 +751,17 @@
     </hop>
     <hop>
       <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;ParameterPath&#x3a; cfg_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; profile</to>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;RepositorieDirectory&#x3a; cfg_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; profile</to>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;KettleHomeDirectory&#x3a; cfg_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; profile</to>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -773,16 +820,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_file</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</from>
       <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_path_exist</to>
       <enabled>Y</enabled>
@@ -793,12 +830,12 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; profile</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all profile</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; cfg_circuit</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all profile</from>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</from>
       <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_path_len</to>
       <enabled>Y</enabled>
     </hop>
@@ -825,11 +862,6 @@
     <hop>
       <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace type&#x26;order</from>
       <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type done</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_location&#x3a; extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -868,8 +900,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile is file</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; not file</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -884,7 +916,7 @@
     </hop>
     <hop>
       <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type done</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile is file</to>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -903,7 +935,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; not file</from>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</from>
       <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cant check exist</to>
       <enabled>Y</enabled>
     </hop>
@@ -920,11 +952,6 @@
     <hop>
       <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_file&#x26;cfg_location remove</from>
       <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation_name_prefix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -953,11 +980,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_name_len&#x3a; remove</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_tag_len</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_tag_len</from>
       <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_tag_len&#x3a; remove</to>
       <enabled>Y</enabled>
@@ -965,11 +987,6 @@
     <hop>
       <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_tag_len&#x3a; remove</from>
       <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; done</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_file</from>
-      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;transformation_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -988,63 +1005,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;transformation_exist</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation_ext</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;transformation_path</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation_name_prefix</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_name</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation_ext</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</from>
       <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;Config.&#x5b;Base&#x5d;</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; profile</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all profile</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; cfg_circuit</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; profile</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all profile</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; cfg_circuit</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile is file</from>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</from>
       <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_exist&#x3a; remove</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file_delimiter</to>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg&#x3a; delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file_delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#xff1a;first</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_transformation</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg&#x3a; delimiter</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1058,18 +1045,88 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_transformation</from>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</from>
+      <to>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; first not exist</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation&#x3a; delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation&#x3a; delimiter</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#xff1a;first</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</from>
       <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_transformation</from>
-      <to>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; is null</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</from>
+      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;transformation_exist</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_len</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_name_len&#x3a; remove</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</from>
+      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Profile.Use</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Profile.Use</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_tag_len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</from>
+      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_location&#x3a; extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; is null</name>
+    <name>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; first not exist</name>
     <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
@@ -1090,8 +1147,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>6880</yloc>
+      <xloc>624</xloc>
+      <yloc>6592</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1123,6 +1180,9 @@
         <name>cfg_name</name>
         </field>
       <field>
+        <name>cfg_profile</name>
+        </field>
+      <field>
         <name>cfg_tag</name>
         </field>
       <field>
@@ -1137,8 +1197,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>7040</yloc>
+      <xloc>624</xloc>
+      <yloc>6720</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1170,7 +1230,7 @@
     </remotesteps>
     <GUI>
       <xloc>784</xloc>
-      <yloc>2736</yloc>
+      <yloc>3264</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1206,6 +1266,12 @@
           <valuefield/>
         </field>
         <field>
+          <aggregate>cfg_profile</aggregate>
+          <subject>cfg_profile</subject>
+          <type>FIRST_INCL_NULL</type>
+          <valuefield/>
+        </field>
+        <field>
           <aggregate>cfg_type</aggregate>
           <subject>cfg_type</subject>
           <type>FIRST_INCL_NULL</type>
@@ -1232,14 +1298,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>6752</yloc>
+      <xloc>384</xloc>
+      <yloc>6464</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; profile</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; cfg_circuit</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1251,7 +1317,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>cfg_profile</name>
+        <name>cfg_circuit</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1263,7 +1329,7 @@
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>cfg_profile_order</name>
+        <name>cfg_circuit_order</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1284,13 +1350,13 @@
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>640</yloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; profile</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; cfg_circuit</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1302,7 +1368,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>cfg_profile</name>
+        <name>cfg_circuit</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1314,7 +1380,7 @@
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>cfg_profile_order</name>
+        <name>cfg_circuit_order</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1335,13 +1401,13 @@
     </remotesteps>
     <GUI>
       <xloc>672</xloc>
-      <yloc>640</yloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; profile</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; cfg_circuit</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1353,7 +1419,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>cfg_profile</name>
+        <name>cfg_circuit</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1365,7 +1431,7 @@
         <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>cfg_profile_order</name>
+        <name>cfg_circuit_order</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1386,7 +1452,58 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>640</yloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg&#x3a; delimiter</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>file_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>path_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x2f;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>4416</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1424,8 +1541,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>6624</yloc>
+      <xloc>384</xloc>
+      <yloc>6336</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1464,130 +1581,13 @@
     </remotesteps>
     <GUI>
       <xloc>784</xloc>
-      <yloc>2608</yloc>
+      <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file_delimiter</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>file_delimiter</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>3920</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>path_delimiter</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>4176</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation_ext</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>transformation_ext</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.ktr</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>5472</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation_name_prefix</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation&#x3a; delimiter</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1610,6 +1610,54 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>transformation_ext</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>ktr</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>transformation_path_default</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>config</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>file_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>path_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x2f;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -1619,8 +1667,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>5216</yloc>
+      <xloc>384</xloc>
+      <yloc>5440</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1651,7 +1699,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>4944</yloc>
+      <yloc>5184</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1678,7 +1726,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1808</yloc>
+      <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1705,7 +1753,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>3776</yloc>
+      <yloc>4288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1732,7 +1780,34 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1280</yloc>
+      <yloc>1344</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>cfg_profile_len</name>
+      </remove>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1759,7 +1834,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2208</yloc>
+      <yloc>2752</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1777,9 +1852,9 @@
     </partitioning>
     <fields>      <field>        <name>cfg_path</name>
       </field>      <field>        <name>cfg_name</name>
+      </field>      <field>        <name>cfg_profile</name>
       </field>      <field>        <name>cfg_tag</name>
       </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_profile</name>
       </field>      <field>        <name>cfg_order</name>
       </field>      <field>        <name>transformation_name</name>
         <rename>cfg_transformation</rename>
@@ -1792,8 +1867,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>6368</yloc>
+      <xloc>384</xloc>
+      <yloc>6080</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1811,10 +1886,11 @@
     </partitioning>
     <fields>      <field>        <name>cfg_path</name>
       </field>      <field>        <name>cfg_name</name>
+      </field>      <field>        <name>cfg_profile</name>
       </field>      <field>        <name>cfg_tag</name>
       </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_profile</name>
-      </field>      <field>        <name>cfg_profile_order</name>
+      </field>      <field>        <name>cfg_circuit</name>
+      </field>      <field>        <name>cfg_circuit_order</name>
         <rename>cfg_order</rename>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>    <cluster_schema/>
@@ -1826,7 +1902,42 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2864</yloc>
+      <yloc>3392</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>cfg_path</name>
+      </field>      <field>        <name>cfg_name</name>
+      </field>      <field>        <name>cfg_profile_default</name>
+        <rename>cfg_profile</rename>
+      </field>      <field>        <name>cfg_tag</name>
+      </field>      <field>        <name>cfg_type</name>
+      </field>      <field>        <name>cfg_circuit</name>
+      </field>      <field>        <name>cfg_circuit_order</name>
+      </field>      <field>        <name>cfg_profile_len</name>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1844,11 +1955,12 @@
     </partitioning>
     <fields>      <field>        <name>cfg_path</name>
       </field>      <field>        <name>cfg_name</name>
+      </field>      <field>        <name>cfg_profile</name>
       </field>      <field>        <name>cfg_tag_default</name>
         <rename>cfg_tag</rename>
       </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_profile</name>
-      </field>      <field>        <name>cfg_profile_order</name>
+      </field>      <field>        <name>cfg_circuit</name>
+      </field>      <field>        <name>cfg_circuit_order</name>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>    <cluster_schema/>
     <remotesteps>
@@ -1859,7 +1971,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2336</yloc>
+      <yloc>2880</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1877,10 +1989,11 @@
     </partitioning>
     <fields>      <field>        <name>cfg_path</name>
       </field>      <field>        <name>cfg_name</name>
+      </field>      <field>        <name>cfg_profile</name>
       </field>      <field>        <name>cfg_tag</name>
       </field>      <field>        <name>cfg_type_item</name>
         <rename>cfg_type</rename>
-      </field>      <field>        <name>cfg_profile</name>
+      </field>      <field>        <name>cfg_circuit</name>
       </field>      <field>        <name>cfg_order</name>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>    <cluster_schema/>
@@ -1892,7 +2005,7 @@
     </remotesteps>
     <GUI>
       <xloc>784</xloc>
-      <yloc>2992</yloc>
+      <yloc>3520</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1930,7 +2043,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>4432</yloc>
+      <yloc>4672</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1968,7 +2081,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>3264</yloc>
+      <yloc>3776</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2002,7 +2115,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>1808</yloc>
+      <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2043,8 +2156,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>6496</yloc>
+      <xloc>384</xloc>
+      <yloc>6208</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2074,7 +2187,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>4560</yloc>
+      <yloc>4800</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2104,7 +2217,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>3392</yloc>
+      <yloc>3904</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2133,14 +2246,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>5984</yloc>
+      <xloc>384</xloc>
+      <yloc>5696</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all profile</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -2159,7 +2272,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>752</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2183,8 +2296,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>4944</yloc>
+      <xloc>240</xloc>
+      <yloc>5184</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>240</xloc>
+      <yloc>3776</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2209,7 +2347,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>4816</yloc>
+      <yloc>5056</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2234,7 +2372,7 @@
     </remotesteps>
     <GUI>
       <xloc>752</xloc>
-      <yloc>4688</yloc>
+      <yloc>4928</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2259,7 +2397,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>1552</yloc>
+      <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2284,7 +2422,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1680</yloc>
+      <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2309,7 +2447,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>3648</yloc>
+      <yloc>4160</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2334,7 +2472,7 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>3520</yloc>
+      <yloc>4032</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2358,14 +2496,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>5072</yloc>
+      <xloc>384</xloc>
+      <yloc>5312</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; not file</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -2383,8 +2521,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>3264</yloc>
+      <xloc>592</xloc>
+      <yloc>2112</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2409,7 +2572,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2336</yloc>
+      <yloc>2880</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2434,7 +2597,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2080</yloc>
+      <yloc>2624</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2459,7 +2622,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2992</yloc>
+      <yloc>3520</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2484,7 +2647,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2608</yloc>
+      <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2509,7 +2672,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2736</yloc>
+      <yloc>3264</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2534,7 +2697,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>1024</yloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2559,7 +2722,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1152</yloc>
+      <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2583,8 +2746,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>6240</yloc>
+      <xloc>384</xloc>
+      <yloc>5952</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2608,8 +2771,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>6112</yloc>
+      <xloc>624</xloc>
+      <yloc>5824</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2628,7 +2791,7 @@
     <fields>
       <field>
         <name>cfg_path</name>
-        <variable>&#x24;&#x7b;Kettle.Home.Directory&#x7d;&#x2f;.kettle&#x2f;</variable>
+        <variable>&#x24;&#x7b;Kettle.Home.Directory&#x7d;&#x2f;.kettle</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -2641,6 +2804,18 @@
       <field>
         <name>cfg_name</name>
         <variable>&#x24;&#x7b;Parameters.Cfg.Name&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>cfg_profile</name>
+        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -2684,7 +2859,7 @@
     </remotesteps>
     <GUI>
       <xloc>672</xloc>
-      <yloc>528</yloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2726,6 +2901,18 @@
         <trim_type>none</trim_type>
       </field>
       <field>
+        <name>cfg_profile</name>
+        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
         <name>cfg_tag</name>
         <variable>&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;</variable>
         <type>String</type>
@@ -2759,7 +2946,46 @@
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>528</yloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Profile.Use</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>cfg_profile_default</name>
+        <variable>&#x24;&#x7b;Profile.Use&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2801,6 +3027,18 @@
         <trim_type>none</trim_type>
       </field>
       <field>
+        <name>cfg_profile</name>
+        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
         <name>cfg_tag</name>
         <variable>&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;</variable>
         <type>String</type>
@@ -2834,7 +3072,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>528</yloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2873,52 +3111,13 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2208</yloc>
+      <yloc>2752</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;transformation_path</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>transformation_path</name>
-        <variable>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;config&#x2f;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>5728</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_file</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -2943,31 +3142,6 @@
       <grouping_symbol/>
       <currency_symbol/>
     </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>4048</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
     <calculation>
       <field_name>cfg_location</field_name>
       <calc_type>ADD3</calc_type>
@@ -2992,7 +3166,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>4304</yloc>
+      <yloc>4544</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3032,7 +3206,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1424</yloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3051,7 +3225,7 @@
     <calculation>
       <field_name>cfg_order</field_name>
       <calc_type>ADD</calc_type>
-      <field_a>cfg_profile_order</field_a>
+      <field_a>cfg_circuit_order</field_a>
       <field_b>cfg_type_order</field_b>
       <field_c/>
       <value_type>Integer</value_type>
@@ -3072,7 +3246,7 @@
     </remotesteps>
     <GUI>
       <xloc>784</xloc>
-      <yloc>2864</yloc>
+      <yloc>3392</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3112,7 +3286,47 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>896</yloc>
+      <yloc>960</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_len</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>cfg_profile_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>cfg_profile</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1984</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3152,7 +3366,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1952</yloc>
+      <yloc>2496</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3192,93 +3406,13 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2480</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_file</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>transformation_file</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>transformation_name</field_a>
-      <field_b>transformation_ext</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>5600</yloc>
+      <yloc>3008</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
     <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>transformation_location</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>transformation_path</field_a>
-      <field_b>transformation_file</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>5856</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_name</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -3303,6 +3437,51 @@
       <grouping_symbol/>
       <currency_symbol/>
     </calculation>
+    <calculation>
+      <field_name>transformation_file</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>transformation_name</field_a>
+      <field_b>file_delimiter</field_b>
+      <field_c>transformation_ext</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>transformation_path</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>cfg_path</field_a>
+      <field_b>path_delimiter</field_b>
+      <field_c>transformation_path_default</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>transformation_location</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>transformation_path</field_a>
+      <field_b>path_delimiter</field_b>
+      <field_c>transformation_file</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -3311,8 +3490,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>5344</yloc>
+      <xloc>384</xloc>
+      <yloc>5568</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3348,6 +3527,12 @@
         <default_value/>
         </field>
       <field>
+        <field_name>cfg_profile</field_name>
+        <variable_name>Config.Profile</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value/>
+        </field>
+      <field>
         <field_name>cfg_tag</field_name>
         <variable_name>Config.Tag</variable_name>
         <variable_type>ROOT_JOB</variable_type>
@@ -3369,8 +3554,55 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>7040</yloc>
+      <xloc>384</xloc>
+      <yloc>6720</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>cfg_circuit</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>Directory</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <leftvalue>cfg_type</leftvalue>
+   <function>IN LIST</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>xml&#x3b;ini&#x3b;properties</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>3648</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3405,7 +3637,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>4688</yloc>
+      <yloc>4928</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3440,7 +3672,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1552</yloc>
+      <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3475,7 +3707,7 @@
     </remotesteps>
     <GUI>
       <xloc>528</xloc>
-      <yloc>3520</yloc>
+      <yloc>4032</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3496,7 +3728,7 @@
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>cfg_path_Len</leftvalue>
+ <leftvalue>cfg_path_len</leftvalue>
  <function>&#x3c;&#x3e;</function>
  <rightvalue/>
  <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
@@ -3510,13 +3742,13 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1024</yloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile is file</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -3526,27 +3758,15 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; not file</send_false_to>
+<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>cfg_profile</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>Directory</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>cfg_type</leftvalue>
-   <function>IN LIST</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>xml&#x3b;ini&#x3b;properties</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
+ <leftvalue>cfg_profile_len</leftvalue>
+ <function>&#x3c;&#x3e;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
     </compare>
     <cluster_schema/>
     <remotesteps>
@@ -3557,7 +3777,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>3136</yloc>
+      <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3592,47 +3812,7 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2080</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_transformation</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</send_true_to>
-<send_false_to>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; is null</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>cfg_transformation</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>Directory</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>6880</yloc>
+      <yloc>2624</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3667,7 +3847,47 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2608</yloc>
+      <yloc>3136</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</send_true_to>
+<send_false_to>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; first not exist</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>cfg_transformation</leftvalue>
+   <function>IS NOT NULL</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>Directory</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>6592</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -3701,8 +3921,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>6112</yloc>
+      <xloc>384</xloc>
+      <yloc>5824</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

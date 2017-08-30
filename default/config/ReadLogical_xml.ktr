@@ -10,17 +10,22 @@
     <parameters>
       <parameter>
         <name>Parameters.Cfg.Name</name>
-        <default_value/>
+        <default_value>config</default_value>
         <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Path</name>
-        <default_value/>
+        <default_value>..&#x2f;default</default_value>
         <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;</description>
       </parameter>
       <parameter>
-        <name>Parameters.Cfg.Tag</name>
+        <name>Parameters.Cfg.Profile</name>
         <default_value/>
+        <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;Profile</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Cfg.Tag</name>
+        <default_value>default</default_value>
         <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;project&#x5143;&#x7d20;name&#x5c5e;&#x6027;</description>
       </parameter>
       <parameter>
@@ -449,7 +454,7 @@
     <created_user>-</created_user>
     <created_date>2014&#x2f;09&#x2f;23 16&#x3a;14&#x3a;43.780</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;08&#x2f;30 11&#x3a;35&#x3a;26.034</modified_date>
+    <modified_date>2017&#x2f;08&#x2f;30 21&#x3a;08&#x3a;33.958</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -476,12 +481,117 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path&#xd;&#xa;Parameters.Cfg.Name&#xd;&#xa;Parameters.Cfg.Tag&#xd;&#xa;Parameters.Cfg.Type&#xd;&#xa;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#x53ef;&#x4ee5;&#x88ab;&#x540e;&#x7eed;&#x4f7f;&#x7528;&#xd;&#xa;Config.Cfg.&#x7b;key&#x7d;			&#x5b;&#x672a;&#x8bbe;&#x7f6e;namespace&#x5d;&#xd;&#xa;&#x7b;namespace&#x7d;.&#x7b;key&#x7d;		&#x5b;&#x8bbe;&#x7f6e;namespace&#x5d;&#xd;&#xa;&#xd;&#xa;1.namespace		XML&#x4e2d;cfg&#x5143;&#x7d20;&#x7684;&#x5c5e;&#x6027;&#xd;&#xa;2.key			XML&#x4e2d;cfg&#x5143;&#x7d20;&#x7684;&#x5c5e;&#x6027;</note>
-      <xloc>496</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path&#xd;&#xa;Parameters.Cfg.Name&#xd;&#xa;Parameters.Cfg.Profile&#xd;&#xa;Parameters.Cfg.Tag&#xd;&#xa;Parameters.Cfg.Type&#xd;&#xa;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#x53ef;&#x4ee5;&#x88ab;&#x540e;&#x7eed;&#x4f7f;&#x7528;&#xd;&#xa;Config.Cfg.&#x7b;key&#x7d;			&#x5b;&#x672a;&#x8bbe;&#x7f6e;namespace&#x5d;&#xd;&#xa;&#x7b;namespace&#x7d;.&#x7b;key&#x7d;		&#x5b;&#x8bbe;&#x7f6e;namespace&#x5d;&#xd;&#xa;&#xd;&#xa;1.namespace		XML&#x4e2d;cfg&#x5143;&#x7d20;&#x7684;&#x5c5e;&#x6027;&#xd;&#xa;2.key			XML&#x4e2d;cfg&#x5143;&#x7d20;&#x7684;&#x5c5e;&#x6027;</note>
+      <xloc>544</xloc>
       <yloc>0</yloc>
       <width>313</width>
-      <heigth>220</heigth>
+      <heigth>236</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>file_profile</note>
+      <xloc>368</xloc>
+      <yloc>480</yloc>
+      <width>70</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>file_namespace</note>
+      <xloc>368</xloc>
+      <yloc>96</yloc>
+      <width>98</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>file_location</note>
+      <xloc>368</xloc>
+      <yloc>1888</yloc>
+      <width>79</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>content_profile</note>
+      <xloc>368</xloc>
+      <yloc>2784</yloc>
+      <width>96</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>cfg</note>
+      <xloc>368</xloc>
+      <yloc>3920</yloc>
+      <width>28</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -544,83 +654,243 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_namespace_len</from>
       <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_namespace exits</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;file</from>
+      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;file_&#x2a;&#x3a; from param</from>
       <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_namespace_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_namespace exits</from>
-      <to>&#x4e2d;&#x6b62;</to>
+      <to>&#x4e2d;&#x6b62;&#xff1a;file_namespace&#x3a; not exits</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_namespace exits</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;select content</from>
-      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;noprofile&#x3a; select content</from>
+      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;content_profile&#x3a; replace value in same file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</from>
-      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</to>
+      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;content_profile&#x3a; replace value in same file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</from>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;content_profile_len</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;content_profile_len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;content_profile_len</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; not use</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;delimiter</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_profile_list</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_profile_list</from>
+      <to>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;file_profile_list</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;file_profile_list</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_name_profile_suffix</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_name_profile_suffix</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_name_profile_suffix</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;file_name_profile_suffix&#x3a; invalid</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_name_profile_suffix&#x3a; good</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_name_profile_suffix&#x3a; good</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_profile_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_profile_name</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_name&#x3a; replace</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</from>
+      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;file_location_exists</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;file_location_exists</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_location_exists</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_location_exists</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_location&#x3a;not exists</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; not use</from>
+      <to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;project.cfg</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;content_profile_len</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; use</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; use</from>
+      <to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;project.profile.cfg</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_name&#x3a; replace</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;project.profile.cfg</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name&#x3a; not this profile</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_namespace exits</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_namespace_len&#x3a; remove</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_location_exists</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file&#x26;path_delimiter&#x3a; remove</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_name_profile_suffix</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_name_profile_suffix&#x3a; good</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_name_profile_suffix</from>
+      <to>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;file_name_profile_suffix&#x3a; invalid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file&#x26;path_delimiter&#x3a; remove</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_&#x3a; sorting</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_&#x3a; sorting</from>
+      <to>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;content_profile</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;project.cfg</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;project_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;project_name</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;noprofile&#x3a; select content</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;project_name</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;project_name&#x3a; not this project</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;content_profile</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;content_profile_list&#x3a; remove</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;content_profile_list&#x3a; remove</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;content_profile_len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</from>
+      <to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;key&#x26;file&#x26;profile</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;content_profile&#x3a; replace value in same file</from>
       <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;namespace_default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name exits</to>
+      <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;key&#x26;file&#x26;profile</from>
+      <to>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</to>
+      <from>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last value</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name exits</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;no profile</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_list_len</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_list exits</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name exits</from>
-      <to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_namespace_len&#x3a; remove</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_list_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</from>
-      <to>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;profile_name</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_list exits</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_profile&#x3a; not use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;profile_name</from>
-      <to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;base</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_list exits</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;base</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;select content</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; remove</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_profile&#x3a; not use</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file_order_default</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file_order_default</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; replace</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; replace</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_order&#x3a; done</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_order&#x3a; done</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -654,14 +924,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>1952</yloc>
+      <xloc>336</xloc>
+      <yloc>4880</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;base</name>
+    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;project.cfg</name>
     <type>getXMLData</type>
     <description/>
     <distribute>Y</distribute>
@@ -754,7 +1024,7 @@
       </field>
     </fields>
     <limit>0</limit>
-    <loopxpath>&#x2f;config&#x2f;project&#x5b;&#x40;name&#x3d;&#x27;&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;&#x27;&#x5d;&#x2f;cfg</loopxpath>
+    <loopxpath>&#x2f;config&#x2f;project&#x2f;cfg</loopxpath>
     <IsInFields>Y</IsInFields>
     <IsAFile>Y</IsAFile>
     <XmlField>file_location</XmlField>
@@ -775,8 +1045,172 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>928</yloc>
+      <xloc>144</xloc>
+      <yloc>3472</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;project.profile.cfg</name>
+    <type>getXMLData</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <namespaceaware>N</namespaceaware>
+    <ignorecomments>N</ignorecomments>
+    <readurl>N</readurl>
+    <validating>N</validating>
+    <usetoken>N</usetoken>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field/>
+    <encoding>UTF-8</encoding>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>project_name</name>
+        <xpath>..&#x2f;..&#x2f;&#x40;name</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>profile_name</name>
+        <xpath>..&#x2f;&#x40;name</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>namespace</name>
+        <xpath>&#x40;namespace</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>key</name>
+        <xpath>&#x40;key</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>value</name>
+        <xpath>text&#x28;&#x29;</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <loopxpath>&#x2f;config&#x2f;project&#x2f;profile&#x2f;cfg</loopxpath>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>Y</IsAFile>
+    <XmlField>file_location</XmlField>
+    <prunePath/>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>3472</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x4e2d;&#x6b62;&#xff1a;file_namespace&#x3a; not exits</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <row_threshold>0</row_threshold>
+      <message>xml read logical must need Parameters.Cfg.Tag</message>
+      <always_log_rows>Y</always_log_rows>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -813,8 +1247,163 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>1952</yloc>
+      <xloc>512</xloc>
+      <yloc>4880</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;file_profile_list</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+   <splitfield>file_profile_list</splitfield>
+   <delimiter>,</delimiter>
+   <newfield>file_profile</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>file_profile_order</rownum_field>
+   <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;content_profile</name>
+    <type>SplitFieldToRows3</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+   <splitfield>content_profile_list</splitfield>
+   <delimiter>,</delimiter>
+   <newfield>content_profile</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>content_profile_order</rownum_field>
+   <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>2848</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;content_profile&#x3a; replace value in same file</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <keys>
+      <key>file_order</key>
+      <key>namespace</key>
+      <key>key</key>
+    </keys>
+    <values>
+      <value>file_order</value>
+      <value>namespace</value>
+      <value>key</value>
+    </values>
+<flag_field>status_flag</flag_field>
+<reference>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;noprofile&#x3a; select content</reference>
+<compare>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</compare>
+    <compare>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>3856</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;delimiter</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>,</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>file_name_profile_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>_</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -864,8 +1453,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>416</yloc>
+      <xloc>336</xloc>
+      <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -927,8 +1516,143 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>1312</yloc>
+      <xloc>336</xloc>
+      <yloc>3984</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file&#x26;path_delimiter&#x3a; remove</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>file_delimiter</name>
+      </remove>      <remove>        <name>path_delimiter</name>
+      </remove>      <remove>        <name>file_full_name</name>
+      </remove>      <remove>        <name>file_location_exists</name>
+      </remove>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>2592</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_name&#x3a; replace</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>file_path</name>
+        <rename/>
+      </field>      <field>        <name>file_profile_name</name>
+        <rename>file_name</rename>
+      </field>      <field>        <name>file_ext</name>
+        <rename/>
+      </field>      <field>        <name>file_namespace</name>
+        <rename/>
+      </field>      <field>        <name>file_profile_order</name>
+        <rename>file_order</rename>
+      </field>      <field>        <name>file_profile_list</name>
+        <rename>profile_list</rename>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1824</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_namespace_len&#x3a; remove</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>file_namespace_len</name>
+      </remove>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>file_order</name>
+        <rename/>
+      </field>      <field>        <name>file_location</name>
+        <rename/>
+      </field>      <field>        <name>content_profile_order</name>
+        <rename>profile_order</rename>
+      </field>      <field>        <name>profile_name</name>
+        <rename/>
+      </field>      <field>        <name>namespace</name>
+        <rename/>
+      </field>      <field>        <name>key</name>
+        <rename/>
+      </field>      <field>        <name>value</name>
+        <rename/>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>3728</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -944,7 +1668,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>      <field>        <name>project_name</name>
+    <fields>      <field>        <name>file_order</name>
+        <rename/>
+      </field>      <field>        <name>file_location</name>
+        <rename/>
+      </field>      <field>        <name>profile_order</name>
         <rename/>
       </field>      <field>        <name>profile_name</name>
         <rename/>
@@ -971,8 +1699,48 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>1504</yloc>
+      <xloc>512</xloc>
+      <yloc>4176</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;noprofile&#x3a; select content</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>file_order</name>
+        <rename/>
+      </field>      <field>        <name>file_location</name>
+        <rename/>
+      </field>      <field>        <name>content_profile_order</name>
+        <rename>profile_order</rename>
+      </field>      <field>        <name>content_profile</name>
+        <rename>profile_name</rename>
+      </field>      <field>        <name>namespace</name>
+        <rename/>
+      </field>      <field>        <name>key</name>
+        <rename/>
+      </field>      <field>        <name>value</name>
+        <rename/>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>3728</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1001,8 +1769,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>1824</yloc>
+      <xloc>336</xloc>
+      <yloc>4752</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1011,7 +1779,7 @@
     <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</name>
     <type>ReplaceString</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1039,8 +1807,205 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>672</yloc>
+      <xloc>336</xloc>
+      <yloc>2208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;file_name_profile_suffix&#x3a; invalid</name>
+    <type>SetValueConstant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+   <usevar>N</usevar>
+    <fields>
+      <field>
+        <name>file_name_profile_suffix</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+        </field>
+      </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>1504</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;key&#x26;file&#x26;profile</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>namespace_key</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>file_order</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>profile_order</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>4496</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;file_location_exists</name>
+    <type>FileExists</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filenamefield>file_location</filenamefield>
+    <resultfieldname>file_location_exists</resultfieldname>
+    <includefiletype>N</includefiletype>
+    <filetypefieldname/>
+    <addresultfilenames>N</addresultfilenames>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>2336</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_name_profile_suffix&#x3a; good</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1568</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name&#x3a; not this profile</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>3664</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_location&#x3a;not exists</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>576</xloc>
+      <yloc>2464</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1064,14 +2029,64 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>1568</yloc>
+      <xloc>336</xloc>
+      <yloc>4240</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;file</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; not use</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>3344</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; use</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>3344</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;file_&#x2a;&#x3a; from param</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -1131,8 +2146,8 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>profile_name</name>
-        <variable>&#x24;&#x7b;Profile.Use&#x7d;</variable>
+        <name>profile_list</name>
+        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -1151,8 +2166,48 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>336</xloc>
       <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;content_profile_len</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>content_profile_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>content_profile</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>3104</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1206,240 +2261,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>namespace_key</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>namespace</field_a>
-      <field_b>NAMESPACE_POINT</field_b>
-      <field_c>key</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>1696</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;namespace&#x3a; empty</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace namespace</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>namespace</leftvalue>
- <function>&#x3d;</function>
- <rightvalue>EMPTY</rightvalue>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>1440</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile</name>
-    <type>getXMLData</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <namespaceaware>N</namespaceaware>
-    <ignorecomments>N</ignorecomments>
-    <readurl>N</readurl>
-    <validating>N</validating>
-    <usetoken>N</usetoken>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding>UTF-8</encoding>
-    <file>
-      <name>..&#x5c;default&#x5c;config.xml</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>project_name</name>
-        <xpath>..&#x2f;..&#x2f;&#x40;name</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>namespace</name>
-        <xpath>&#x40;namespace</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>key</name>
-        <xpath>&#x40;key</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>value</name>
-        <xpath>text&#x28;&#x29;</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <loopxpath>&#x2f;config&#x2f;project&#x5b;&#x40;name&#x3d;&#x27;&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;&#x27;&#x5d;&#x2f;profile&#x5b;&#x40;name&#x3d;&#x27;&#x24;&#x7b;Profile.Use&#x7d;&#x27;&#x5d;&#x2f;cfg</loopxpath>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>Y</IsAFile>
-    <XmlField>file_location</XmlField>
-    <prunePath/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>928</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;select content</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>project_name</name>
-        <rename/>
-      </field>      <field>        <name>profile_name</name>
-        <rename/>
-      </field>      <field>        <name>namespace</name>
-        <rename/>
-      </field>      <field>        <name>key</name>
-        <rename/>
-      </field>      <field>        <name>value</name>
-        <rename/>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>1056</yloc>
+      <xloc>336</xloc>
+      <yloc>2080</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1478,8 +2301,285 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>336</xloc>
       <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_profile_list</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>file_profile_list</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>profile_delimiter</field_a>
+      <field_b>profile_list</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_profile_name</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>file_profile_name</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>file_name</field_a>
+      <field_b>file_name_profile_suffix</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1696</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_name_profile_suffix</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>file_name_profile_suffix</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>file_name_profile_delimiter</field_a>
+      <field_b>file_profile</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1312</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>namespace_key</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>namespace</field_a>
+      <field_b>NAMESPACE_POINT</field_b>
+      <field_c>key</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>4368</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name&#x3a; not this profile</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>project_name</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue>project_name</rightvalue>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>profile_name</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue>content_profile</rightvalue>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>3600</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;content_profile_len</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; use</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;content_profile&#x3a; not use</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>content_profile_len</leftvalue>
+ <function>&#x3c;&#x3e;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>3232</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_location_exists</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file&#x26;path_delimiter&#x3a; remove</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_location&#x3a;not exists</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>file_location_exists</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>2464</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1495,8 +2595,8 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-<send_true_to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</send_true_to>
-<send_false_to>&#x4e2d;&#x6b62;</send_false_to>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_namespace_len&#x3a; remove</send_true_to>
+<send_false_to>&#x4e2d;&#x6b62;&#xff1a;file_namespace&#x3a; not exits</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -1513,15 +2613,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>336</xloc>
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x4e2d;&#x6b62;</name>
-    <type>Abort</type>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;namespace&#x3a; empty</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1530,84 +2630,15 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-      <row_threshold>0</row_threshold>
-      <message/>
-      <always_log_rows>Y</always_log_rows>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>project_name</name>
-        <rename/>
-      </field>      <field>        <name>profile_name</name>
-        <rename/>
-      </field>      <field>        <name>namespace</name>
-        <rename/>
-      </field>      <field>        <name>key</name>
-        <rename/>
-      </field>      <field>        <name>value</name>
-        <rename/>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>1056</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5408;&#x5e76;&#x8bb0;&#x5f55;</name>
-    <type>MergeRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <keys>
-      <key>project_name</key>
-      <key>namespace</key>
-      <key>key</key>
-    </keys>
-    <values>
-      <value>project_name</value>
-      <value>namespace</value>
-      <value>key</value>
-    </values>
-<flag_field>status_flag</flag_field>
-<reference>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;select content</reference>
-<compare>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;porfile&#x3a; select content</compare>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace namespace</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</send_false_to>
     <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>namespace</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue>EMPTY</rightvalue>
+ </condition>
     </compare>
     <cluster_schema/>
     <remotesteps>
@@ -1617,14 +2648,201 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>1184</yloc>
+      <xloc>336</xloc>
+      <yloc>4112</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;file_name_profile_suffix</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_name_profile_suffix&#x3a; good</send_true_to>
+<send_false_to>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;file_name_profile_suffix&#x3a; invalid</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>file_name_profile_suffix</leftvalue>
+ <function>&#x3c;&#x3e;</function>
+ <rightvalue>file_name_profile_delimiter</rightvalue>
+ </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>1440</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;file_&#x3a; sorting</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>file_order</name>
+        <rename/>
+      </field>      <field>        <name>file_location</name>
+        <rename/>
+      </field>      <field>        <name>file_namespace</name>
+        <rename/>
+      </field>      <field>        <name>profile_list</name>
+        <rename>content_profile_list</rename>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>2720</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;project_name</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;noprofile&#x3a; select content</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;project_name&#x3a; not this project</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>project_name</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue>file_namespace</rightvalue>
+ </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>3600</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;project_name&#x3a; not this project</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>3536</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;content_profile_list&#x3a; remove</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>content_profile_list</name>
+      </remove>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>2976</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last value</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+      <count_rows>Y</count_rows>
+      <count_field>value_number</count_field>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description/>
+    <fields>      <field>        <name>namespace_key</name>
+        <case_insensitive>N</case_insensitive>
+        </field>      </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>4624</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_list_len</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -1635,9 +2853,9 @@
       <schema_name/>
     </partitioning>
     <calculation>
-      <field_name>profile_name_len</field_name>
+      <field_name>profile_list_len</field_name>
       <calc_type>STRING_LEN</calc_type>
-      <field_a>profile_name</field_a>
+      <field_a>profile_list</field_a>
       <field_b/>
       <field_c/>
       <value_type>Integer</value_type>
@@ -1657,14 +2875,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>672</yloc>
+      <xloc>336</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name exits</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_list exits</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1674,12 +2892,12 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-<send_true_to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;no profile</send_false_to>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; remove</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_profile&#x3a; not use</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
- <leftvalue>profile_name_len</leftvalue>
+ <leftvalue>profile_list_len</leftvalue>
  <function>&#x3c;&#x3e;</function>
  <rightvalue/>
  <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
@@ -1692,14 +2910,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>800</yloc>
+      <xloc>336</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;no profile</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_profile&#x3a; not use</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1717,15 +2935,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
+      <xloc>464</xloc>
       <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;profile_name</name>
-    <type>SetValueConstant</type>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; remove</name>
+    <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1734,15 +2952,47 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-   <usevar>N</usevar>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>profile_list_len</name>
+      </remove>    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file_order_default</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
     <fields>
       <field>
-        <name>profile_name</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-        </field>
-      </fields>
+        <name>file_order_default</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -1751,8 +3001,71 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>800</yloc>
+      <xloc>464</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_list_len&#x3a; replace</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>      <field>        <name>file_path</name>
+        <rename/>
+      </field>      <field>        <name>file_name</name>
+        <rename/>
+      </field>      <field>        <name>file_ext</name>
+        <rename/>
+      </field>      <field>        <name>file_namespace</name>
+        <rename/>
+      </field>      <field>        <name>file_order_default</name>
+        <rename>file_order</rename>
+      </field>      <field>        <name>profile_list</name>
+        <rename/>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;file_order&#x3a; done</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>1824</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
