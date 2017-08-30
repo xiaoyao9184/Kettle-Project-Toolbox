@@ -11,5 +11,16 @@
 		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
 		<cfg namespace="Config.Main.Job" key="Path">/test</cfg>
 		<cfg namespace="Config.Main.Job" key="Name">TestRun</cfg>
+
+		<profile name="dev">
+			<cfg namespace="Config.Time" key="StartTime">2017-01-01</cfg>
+			<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
+			<cfg namespace="Config.Wait" key="Time">00:01</cfg>
+		</profile>
+		<profile name="prod">
+			<cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
+			<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
+			<cfg namespace="Config.Wait" key="Time">01:00</cfg>
+		</profile>
 	</project>
 </config>
