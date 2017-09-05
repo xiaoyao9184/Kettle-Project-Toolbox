@@ -11,5 +11,10 @@
 		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
 		<cfg namespace="Config.Main.Job" key="Path">/test</cfg>
 		<cfg namespace="Config.Main.Job" key="Name">TestRun</cfg>
+
+		<profile name="beta">
+			<cfg key="Version">1.0.beta</cfg>
+			<cfg key="Description">from_xml_content</cfg>
+		</profile>
 	</project>
 </config>
