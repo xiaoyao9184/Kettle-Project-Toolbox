@@ -83,7 +83,12 @@ call LINK_FOLDER.bat "%linkWindowsPath%" "%kssPath%\Windows"
 
 echo ===========================================================
 echo 联接Kettle引擎目录（data-integration\）
-call LINK_FOLDER.bat "%linkPdiPath%" "%pdiPath%"
+if "%pdiPath%"=="" (
+	call LINK_FOLDER.bat "%linkPdiPath%"
+) else (
+	call LINK_FOLDER.bat "%linkPdiPath%" "%pdiPath%"
+)
+
 
 
 ::执行完毕
