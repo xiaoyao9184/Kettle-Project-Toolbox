@@ -12,9 +12,14 @@
   <modified_date>2015&#x2f;06&#x2f;11 09&#x3a;52&#x3a;23.081</modified_date>
     <parameters>
       <parameter>
-        <name>Temp.Path</name>
+        <name>ProjectName</name>
         <default_value>&#x3f;</default_value>
-        <description>&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;</description>
+        <description>&#x8d44;&#x6e90;&#x5e93;&#x9879;&#x76ee;&#x540d;&#x79f0;</description>
+      </parameter>
+      <parameter>
+        <name>ProjectPath</name>
+        <default_value>&#x3f;</default_value>
+        <description>&#x8d44;&#x6e90;&#x5e93;&#x9879;&#x76ee;&#x8def;&#x5f84;</description>
       </parameter>
       <parameter>
         <name>isUseKettleHome</name>
@@ -324,8 +329,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>96</yloc>
+      <xloc>336</xloc>
+      <yloc>16</yloc>
     </entry>
     <entry>
       <name>&#x6210;&#x529f;</name>
@@ -334,8 +339,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>1392</yloc>
+      <xloc>336</xloc>
+      <yloc>1696</yloc>
     </entry>
     <entry>
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</name>
@@ -346,8 +351,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>352</yloc>
+      <xloc>336</xloc>
+      <yloc>576</yloc>
     </entry>
     <entry>
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;KETTLE_HOME&#x76ee;&#x5f55;</name>
@@ -358,8 +363,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>656</yloc>
+      <xloc>576</xloc>
+      <yloc>864</yloc>
     </entry>
     <entry>
       <name>DUMMY&#x3a;Profile</name>
@@ -378,8 +383,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>1296</yloc>
+      <xloc>336</xloc>
+      <yloc>1536</yloc>
     </entry>
     <entry>
       <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;profile&#x6587;&#x4ef6;&#x5939;</name>
@@ -400,20 +405,20 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>1072</yloc>
+      <xloc>336</xloc>
+      <yloc>1312</yloc>
     </entry>
     <entry>
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x76ee;&#x5f55;</name>
       <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;profile</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>1184</yloc>
+      <xloc>768</xloc>
+      <yloc>1312</yloc>
     </entry>
     <entry>
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;log&#x76ee;&#x5f55;</name>
@@ -424,20 +429,20 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>928</yloc>
+      <xloc>576</xloc>
+      <yloc>1152</yloc>
     </entry>
     <entry>
-      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x2f;dev</name>
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;prod</name>
       <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;profile&#x2f;dev</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile&#x2f;prod</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>1296</yloc>
+      <xloc>768</xloc>
+      <yloc>1536</yloc>
     </entry>
     <entry>
       <name>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</name>
@@ -459,8 +464,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>512</xloc>
-      <yloc>1296</yloc>
+      <xloc>208</xloc>
+      <yloc>1536</yloc>
     </entry>
     <entry>
       <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Directory</name>
@@ -479,16 +484,16 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>352</yloc>
+      <xloc>576</xloc>
+      <yloc>576</yloc>
     </entry>
     <entry>
-      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x53c2;&#x6570;&#x68c0;&#x67e5;</name>
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</name>
       <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
       <fieldname/>
-      <variablename>&#x24;&#x7b;Temp.Path&#x7d;</variablename>
+      <variablename>&#x24;&#x7b;ProjectPath&#x7d;</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
       <comparevalue>-</comparevalue>
@@ -501,8 +506,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>208</yloc>
+      <xloc>336</xloc>
+      <yloc>432</yloc>
     </entry>
     <entry>
       <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</name>
@@ -523,8 +528,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>528</yloc>
+      <xloc>336</xloc>
+      <yloc>736</yloc>
     </entry>
     <entry>
       <name>DUMMY&#x3a;KETTLE_HOME</name>
@@ -543,8 +548,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>656</yloc>
+      <xloc>336</xloc>
+      <yloc>864</yloc>
     </entry>
     <entry>
       <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;log&#x6587;&#x4ef6;&#x5939;</name>
@@ -565,8 +570,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>800</yloc>
+      <xloc>336</xloc>
+      <yloc>1024</yloc>
     </entry>
     <entry>
       <name>DUMMY&#x3a;Log</name>
@@ -585,8 +590,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>928</yloc>
+      <xloc>336</xloc>
+      <yloc>1152</yloc>
     </entry>
     <entry>
       <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseKettleHome</name>
@@ -605,8 +610,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>528</yloc>
+      <xloc>576</xloc>
+      <yloc>736</yloc>
     </entry>
     <entry>
       <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseLog</name>
@@ -625,8 +630,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>800</yloc>
+      <xloc>576</xloc>
+      <yloc>1024</yloc>
     </entry>
     <entry>
       <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseProfile</name>
@@ -645,29 +650,98 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>1072</yloc>
+      <xloc>576</xloc>
+      <yloc>1312</yloc>
+    </entry>
+    <entry>
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</name>
+      <description/>
+      <type>CREATE_FOLDER</type>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile&#x2f;dev</foldername>
+      <fail_of_folder_exists>N</fail_of_folder_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>768</xloc>
+      <yloc>1424</yloc>
+    </entry>
+    <entry>
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Name</name>
+      <description/>
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>Internal.Project.Name</variable_name>
+          <variable_value>&#x24;&#x7b;ProjectName&#x7d;</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>576</xloc>
+      <yloc>288</yloc>
+    </entry>
+    <entry>
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;ProjectName&#x7d;</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>-</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>336</xloc>
+      <yloc>144</yloc>
+    </entry>
+    <entry>
+      <name>DUMMY&#x3a;Name</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>336</xloc>
+      <yloc>288</yloc>
+    </entry>
+    <entry>
+      <name>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</name>
+      <description/>
+      <type>CREATE_FILE</type>
+      <filename>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile&#x2f;.profile</filename>
+      <fail_if_file_exists>N</fail_if_file_exists>
+      <add_filename_result>N</add_filename_result>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>576</xloc>
+      <yloc>1536</yloc>
     </entry>
   </entries>
   <hops>
-    <hop>
-      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x76ee;&#x5f55;</from>
-      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x2f;dev</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x53c2;&#x6570;&#x68c0;&#x67e5;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
     <hop>
       <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Directory</from>
       <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</to>
@@ -678,7 +752,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x53c2;&#x6570;&#x68c0;&#x67e5;</from>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</from>
       <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -687,7 +761,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;&#x53c2;&#x6570;&#x68c0;&#x67e5;</from>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</from>
       <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Directory</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -701,8 +775,8 @@
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</from>
@@ -840,7 +914,79 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x2f;dev</from>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x76ee;&#x5f55;</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;prod</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</from>
+      <to>DUMMY&#x3a;Name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Name</from>
+      <to>DUMMY&#x3a;Name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY&#x3a;Name</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;prod</from>
+      <to>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</from>
       <to>DUMMY&#x3a;Profile</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -873,7 +1019,7 @@
     </notepad>
     <notepad>
       <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Temp.Path             &#x975e;&#x5fc5;&#x9700;&#xd;&#xa;isUseKettleHome    &#x975e;&#x5fc5;&#x9700;&#xd;&#xa;isUseLog                &#x975e;&#x5fc5;&#x9700;&#xd;&#xa;isUseProfile            &#x975e;&#x5fc5;&#x9700;&#xd;&#xa;&#xd;&#xa;&#x4ea7;&#x751f;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Internal.Project.Directory&#xd;&#xa;Internal.Project.UseKettleHome&#xd;&#xa;Internal.Project.UseLog&#xd;&#xa;Internal.Project.UseProfile</note>
-      <xloc>448</xloc>
+      <xloc>464</xloc>
       <yloc>0</yloc>
       <width>190</width>
       <heigth>187</heigth>

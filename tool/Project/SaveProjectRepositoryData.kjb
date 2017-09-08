@@ -16,6 +16,11 @@
         <default_value/>
         <description>&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;</description>
       </parameter>
+      <parameter>
+        <name>rPath</name>
+        <default_value/>
+        <description>&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;</description>
+      </parameter>
     </parameters>
     <slaveservers>
     </slaveservers>
@@ -339,11 +344,11 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
+        <pass_all_parameters>N</pass_all_parameters>
         <parameter>
           <name>rConfigPath</name>
           <stream_name/>
-          <value>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.kettle&#x2f;repositories.xml</value>
+          <value>&#x24;&#x7b;rPath&#x7d;&#x2f;.kettle&#x2f;repositories.xml</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
@@ -450,11 +455,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;rName                &#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Internal.Project.Directory                &#x5fc5;&#x586b;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;rName		&#x5fc5;&#x586b;&#xd;&#xa;rPath		&#x5fc5;&#x586b;</note>
       <xloc>448</xloc>
       <yloc>0</yloc>
-      <width>241</width>
-      <heigth>91</heigth>
+      <width>130</width>
+      <heigth>58</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -471,13 +476,13 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rName&#xd;&#xa;&#x9879;&#x76ee;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x4e3a;&#xff1a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>720</xloc>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;rName&#xd;&#xa;&#x9879;&#x76ee;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;rPath&#xd;&#xa;&#x9879;&#x76ee;&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>608</xloc>
       <yloc>0</yloc>
       <width>190</width>
-      <heigth>107</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <heigth>156</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
