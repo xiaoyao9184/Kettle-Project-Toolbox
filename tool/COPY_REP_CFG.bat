@@ -234,4 +234,4 @@ pause
 
 ::5ÍË³ö
 
-exit \b
+exit /b

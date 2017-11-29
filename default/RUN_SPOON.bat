@@ -53,7 +53,7 @@ call Spoon.bat
 
 ::执行完毕
 if %ERRORLEVEL% equ 0 (
-    if _%interactive%_ equ _0_ exit 
+    if _%interactive%_ equ _0_ exit /b 0
 )
 
 echo 已经执行完毕，可以结束此程序
