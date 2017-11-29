@@ -11,6 +11,11 @@ Setlocal enabledelayedexpansion
 ::1变量赋值
 set tip=Kettle部署工具：生成部署补丁
 set ver=1.0
+::double-clicking is outer call and will set 0
+set interactive=1
+echo %cmdcmdline% | find /i "%~0" >nul
+if not errorlevel 1 set interactive=0
+::set kettle environment
 set srcPath=%1
 
 set echosrcPath=需要输入文件夹路径（默认为E:/Kettle）
@@ -34,6 +39,10 @@ if "%srcPath%"=="" (
 	set /p srcPath=%esetsrcPath%
 )
 
+if _%interactive%_ equ _0_ (
+	set isOpenShell= "-param:isOpenShell=true"
+)
+
 
 :begin
 
@@ -53,11 +62,11 @@ echo Kettle将生成部署文件到：（%srcPath%同级目录）
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-call kitchen -file:%~dp0ZipDeploy4Path.kjb "-param:srcPath=%srcPath%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git.*|.*db\.cache.*|.*data-integration.*" "-param:regex=.*"
+call kitchen -file:%~dp0ZipDeploy4Path.kjb "-param:srcPath=%srcPath%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git.*|.*db\.cache.*|.*data-integration.*" "-param:regex=.*"%isOpenShell%
 
 ::执行完毕
+if _%interactive%_ equ _1_ exit /b 0
 echo 已经执行完毕，可以结束此程序
-
 pause
 
 
@@ -65,4 +74,4 @@ pause
 
 ::5退出
 
-exit \b
+exit /b 0
