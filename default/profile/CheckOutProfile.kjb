@@ -8,8 +8,18 @@
   <created_user>-</created_user>
   <created_date>2017&#x2f;08&#x2f;29 09&#x3a;43&#x3a;14.775</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;08&#x2f;30 10&#x3a;11&#x3a;55.197</modified_date>
+  <modified_date>2017&#x2f;12&#x2f;25 09&#x3a;26&#x3a;20.483</modified_date>
     <parameters>
+      <parameter>
+        <name>Name</name>
+        <default_value/>
+        <description>&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;</description>
+      </parameter>
+      <parameter>
+        <name>UseMix</name>
+        <default_value>true</default_value>
+        <description>&#x6df7;&#x5408;&#x6fc0;&#x6d3b;Profile</description>
+      </parameter>
     </parameters>
     <slaveservers>
     </slaveservers>
@@ -371,6 +381,16 @@
           <name>ProjectPath</name>
           <stream_name/>
           <value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>Name</name>
+          <stream_name/>
+          <value/>
+        </parameter>
+        <parameter>
+          <name>UseMix</name>
+          <stream_name/>
+          <value/>
         </parameter>
       </parameters>
       <parallel>N</parallel>

@@ -8,8 +8,13 @@
   <created_user>-</created_user>
   <created_date>2017&#x2f;08&#x2f;28 08&#x3a;58&#x3a;03.988</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;08&#x2f;30 11&#x3a;53&#x3a;51.986</modified_date>
+  <modified_date>2017&#x2f;12&#x2f;25 09&#x3a;29&#x3a;03.602</modified_date>
     <parameters>
+      <parameter>
+        <name>ProfileName</name>
+        <default_value/>
+        <description>&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;</description>
+      </parameter>
     </parameters>
     <slaveservers>
     </slaveservers>
@@ -405,7 +410,10 @@
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
+            <parameter>            <name>Name</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;ProfileName&#x7d;</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
