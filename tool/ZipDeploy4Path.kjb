@@ -28,8 +28,13 @@
       </parameter>
       <parameter>
         <name>srcPath</name>
-        <default_value>E&#x3a;&#x5c;Kettle</default_value>
+        <default_value/>
         <description>&#x8981;&#x63d0;&#x53d6;&#x7684;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
+      </parameter>
+      <parameter>
+        <name>tarPath</name>
+        <default_value/>
+        <description>&#x8981;&#x90e8;&#x7f72;&#x7684;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
       </parameter>
     </parameters>
     <slaveservers>
@@ -324,20 +329,20 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>40</yloc>
+      <xloc>240</xloc>
+      <yloc>16</yloc>
     </entry>
     <entry>
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
       <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</foldername>
+      <foldername>&#x24;&#x7b;Result.Deploy.Temp.Path&#x7d;</foldername>
       <fail_of_folder_exists>Y</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>460</yloc>
+      <xloc>240</xloc>
+      <yloc>560</yloc>
     </entry>
     <entry>
       <name>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
@@ -348,26 +353,26 @@
       <limit_folders>2</limit_folders>
       <fields>
         <field>
-          <name>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</name>
+          <name>&#x24;&#x7b;Result.Deploy.Temp.Path&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>340</yloc>
+      <xloc>240</xloc>
+      <yloc>432</yloc>
     </entry>
     <entry>
       <name>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</name>
       <description/>
       <type>ZIP_FILE</type>
-      <zipfilename>&#x24;&#x7b;tool.deploy.zipPath&#x7d;</zipfilename>
+      <zipfilename>&#x24;&#x7b;Result.Deploy.Target.File&#x7d;</zipfilename>
       <compressionrate>1</compressionrate>
       <ifzipfileexists>0</ifzipfileexists>
       <wildcard/>
       <wildcardexclude/>
-      <sourcedirectory>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</sourcedirectory>
-      <movetodirectory>&#x24;&#x7b;tempPath&#x7d;&#x5c;..</movetodirectory>
+      <sourcedirectory>&#x24;&#x7b;Result.Deploy.Temp.Path&#x7d;</sourcedirectory>
+      <movetodirectory/>
       <afterzip>0</afterzip>
       <addfiletoresult>N</addfiletoresult>
       <isfromprevious>N</isfromprevious>
@@ -382,8 +387,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>1500</yloc>
+      <xloc>240</xloc>
+      <yloc>1520</yloc>
     </entry>
     <entry>
       <name>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</name>
@@ -394,14 +399,14 @@
       <limit_folders>2</limit_folders>
       <fields>
         <field>
-          <name>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</name>
+          <name>&#x24;&#x7b;Result.Deploy.Temp.Path&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>1660</yloc>
+      <xloc>240</xloc>
+      <yloc>1648</yloc>
     </entry>
     <entry>
       <name>&#x6210;&#x529f;</name>
@@ -410,48 +415,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>1840</yloc>
-    </entry>
-    <entry>
-      <name>&#x8f6c;&#x6362;&#xff1a;PathFileTemp</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Path&#x2f;PathFileTemp.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>
-        <pass_all_parameters>N</pass_all_parameters>
-        <parameter>
-          <name>srcPath</name>
-          <stream_name/>
-          <value>&#x24;&#x7b;srcPath&#x7d;</value>
-        </parameter>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>180</yloc>
+      <xloc>240</xloc>
+      <yloc>1792</yloc>
     </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;PathFileRead</name>
@@ -494,14 +459,14 @@
         <parameter>
           <name>srcPath</name>
           <stream_name/>
-          <value>&#x24;&#x7b;tool.deploy.srcDir&#x7d;</value>
+          <value>&#x24;&#x7b;Result.Deploy.Source.Path&#x7d;</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>640</yloc>
+      <xloc>240</xloc>
+      <yloc>704</yloc>
     </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;PathFileResult</name>
@@ -534,19 +499,19 @@
         <parameter>
           <name>removePath</name>
           <stream_name/>
-          <value>&#x24;&#x7b;tool.deploy.srcDir&#x7d;</value>
+          <value>&#x24;&#x7b;Result.Deploy.Source.Path&#x7d;</value>
         </parameter>
         <parameter>
           <name>replacePath</name>
           <stream_name/>
-          <value>&#x24;&#x7b;tool.deploy.tempDir&#x7d;</value>
+          <value>&#x24;&#x7b;Result.Deploy.Temp.Path&#x7d;</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>840</yloc>
+      <xloc>240</xloc>
+      <yloc>960</yloc>
     </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;PathFileReadPrint</name>
@@ -580,8 +545,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>740</yloc>
+      <xloc>240</xloc>
+      <yloc>832</yloc>
     </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;PathFileResultPrint</name>
@@ -615,8 +580,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>940</yloc>
+      <xloc>240</xloc>
+      <yloc>1088</yloc>
     </entry>
     <entry>
       <name>&#x590d;&#x5236;&#x6587;&#x4ef6;</name>
@@ -635,20 +600,20 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>1140</yloc>
+      <xloc>240</xloc>
+      <yloc>1232</yloc>
     </entry>
     <entry>
       <name>&#x663e;&#x793a;&#x6d88;&#x606f;&#x5bf9;&#x8bdd;&#x6846;&#xff1a;&#x9519;&#x8bef;</name>
       <description/>
       <type>MSGBOX_INFO</type>
-      <bodymessage>&#x6587;&#x4ef6;&#x590d;&#x5236;&#x9519;&#x8bef;&#xff0c;&#x65e0;&#x6cd5;&#x590d;&#x5236;&#x6587;&#x4ef6;&#x5230;&#x4e34;&#x65f6;&#x76ee;&#x5f55;&#x28;&#x24;&#x7b;tempPath&#x7d;&#x29;</bodymessage>
+      <bodymessage>&#x6587;&#x4ef6;&#x590d;&#x5236;&#x9519;&#x8bef;&#xff0c;&#x65e0;&#x6cd5;&#x590d;&#x5236;&#x6587;&#x4ef6;&#x5230;&#x4e34;&#x65f6;&#x76ee;&#x5f55;&#x28;&#x24;&#x7b;Result.Deploy.Temp.Path&#x7d;&#x29;</bodymessage>
       <titremessage>&#x590d;&#x5236;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x9519;&#x8bef;</titremessage>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>480</xloc>
-      <yloc>1140</yloc>
+      <xloc>432</xloc>
+      <yloc>1232</yloc>
     </entry>
     <entry>
       <name>&#x8f6c;&#x6362;&#xff1a;PathFileChange</name>
@@ -682,8 +647,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>300</xloc>
-      <yloc>1320</yloc>
+      <xloc>240</xloc>
+      <yloc>1376</yloc>
     </entry>
     <entry>
       <name>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</name>
@@ -700,13 +665,13 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>start &#x24;&#x7b;tool.deploy.zipDir&#x7d;</script>
+      <script>start &#x24;&#x7b;Result.Deploy.Target.Path&#x7d;</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>480</xloc>
-      <yloc>1664</yloc>
+      <xloc>432</xloc>
+      <yloc>1648</yloc>
     </entry>
     <entry>
       <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;</name>
@@ -727,8 +692,92 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>480</xloc>
-      <yloc>1504</yloc>
+      <xloc>432</xloc>
+      <yloc>1520</yloc>
+    </entry>
+    <entry>
+      <name>&#x4f5c;&#x4e1a;&#xff1a;CreateGitAndTimeVersion</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Version&#x2f;CreateGitAndTimeVersion.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>        <pass_all_parameters>N</pass_all_parameters>
+            <parameter>            <name>Parameters.Git.Path</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;srcPath&#x7d;</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>240</xloc>
+      <yloc>160</yloc>
+    </entry>
+    <entry>
+      <name>&#x8f6c;&#x6362;&#xff1a;CreateDeployPath</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Deploy&#x2f;CreateDeployPath.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>Parameters.Deploy.Name.Template</name>
+          <stream_name/>
+          <value>&#x5b;Deploy&#x5d;&#x7b;Name&#x7d;_&#x24;&#x7b;Result.Version&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.Deploy.Source.Path</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;srcPath&#x7d;</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.Deploy.Target.Path</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;tarPath&#x7d;</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>240</xloc>
+      <yloc>288</yloc>
     </entry>
   </entries>
   <hops>
@@ -753,24 +802,6 @@
     <hop>
       <from>Zip &#x538b;&#x7f29;&#x6587;&#x4ef6;</from>
       <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>&#x8f6c;&#x6362;&#xff1a;PathFileTemp</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>&#x8f6c;&#x6362;&#xff1a;PathFileTemp</from>
-      <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -867,6 +898,33 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>START</from>
+      <to>&#x4f5c;&#x4e1a;&#xff1a;CreateGitAndTimeVersion</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>&#x4f5c;&#x4e1a;&#xff1a;CreateGitAndTimeVersion</from>
+      <to>&#x8f6c;&#x6362;&#xff1a;CreateDeployPath</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8f6c;&#x6362;&#xff1a;CreateDeployPath</from>
+      <to>&#x5220;&#x9664;&#x76ee;&#x5f55;&#xff1a;&#x6e05;&#x7a7a;&#x4e34;&#x65f6;&#x6587;&#x4ef6;&#x5939;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
@@ -891,11 +949,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath            &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;regex              &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;notRegex         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.tempPath      &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.srcPath         &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.zipPath         &#x5fc5;&#x987b;&#xd;&#xa;tool.deploy.zipDir           &#x5fc5;&#x987b;</note>
-      <xloc>464</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath            &#x5fc5;&#x586b;&#xd;&#xa;tarPath            &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;regex              &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;notRegex         &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;user.home    &#x53ef;&#x80fd;&#xd;&#xa;Internal.Job.Filename.Directory    &#x5fc5;&#x987b;&#xd;&#xa;Result.Deploy.Temp.Path      &#x5b50;&#x6b65;&#x9aa4;&#x4f9d;&#x8d56;&#xd;&#xa;Result.Deploy.Source.Path      &#x5b50;&#x6b65;&#x9aa4;&#x4f9d;&#x8d56;&#xd;&#xa;Result.Deploy.Target.File      &#x5b50;&#x6b65;&#x9aa4;&#x4f9d;&#x8d56;&#xd;&#xa;Result.Deploy.Target.Path      &#x5b50;&#x6b65;&#x9aa4;&#x4f9d;&#x8d56;</note>
+      <xloc>416</xloc>
       <yloc>0</yloc>
-      <width>228</width>
-      <heigth>237</heigth>
+      <width>244</width>
+      <heigth>253</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -912,11 +970,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x63d0;&#x53d6;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x5c;Kettle&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;regex&#xd;&#xa;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x6b63;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;notRegex&#xd;&#xa;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x53cd;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>712</xloc>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x63d0;&#x53d6;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;tarPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x90e8;&#x7f72;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;regex&#xd;&#xa;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x6b63;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;notRegex&#xd;&#xa;&#x6b63;&#x5219;&#x8868;&#x8fbe;&#x5f0f;&#xff0c;&#x7528;&#x4e8e;&#x53cd;&#x5411;&#x8fc7;&#x6ee4;&#x6587;&#x4ef6;&#x540d;&#x4e0e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>672</xloc>
       <yloc>0</yloc>
       <width>250</width>
-      <heigth>203</heigth>
+      <heigth>235</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -934,8 +992,8 @@
     </notepad>
     <notepad>
       <note>&#x590d;&#x5236;&#x6587;&#x4ef6;</note>
-      <xloc>330</xloc>
-      <yloc>1047</yloc>
+      <xloc>288</xloc>
+      <yloc>1200</yloc>
       <width>58</width>
       <heigth>26</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
@@ -955,9 +1013,51 @@
     </notepad>
     <notepad>
       <note>&#x8bfb;&#x53d6;&#x6587;&#x4ef6;</note>
-      <xloc>328</xloc>
-      <yloc>564</yloc>
+      <xloc>288</xloc>
+      <yloc>672</yloc>
       <width>58</width>
+      <heigth>26</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>&#x4e34;&#x65f6;&#x76ee;&#x5f55;</note>
+      <xloc>288</xloc>
+      <yloc>400</yloc>
+      <width>58</width>
+      <heigth>26</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>&#x751f;&#x6210;&#x90e8;&#x7f72;&#x4fe1;&#x606f;</note>
+      <xloc>288</xloc>
+      <yloc>128</yloc>
+      <width>82</width>
       <heigth>26</heigth>
       <fontname/>
       <fontsize>-1</fontsize>

@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>PathFileTemp</name>
+    <name>GetParentPath</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
-      <parameter>
-        <name>srcPath</name>
-        <default_value>E&#x3a;&#x5c;Kettle</default_value>
-        <description>&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -433,20 +427,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2015&#x2f;06&#x2f;20 16&#x3a;45&#x3a;35.034</created_date>
+    <created_date>2018&#x2f;09&#x2f;28 10&#x3a;03&#x3a;32.905</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2015&#x2f;06&#x2f;20 16&#x3a;45&#x3a;35.034</modified_date>
+    <modified_date>2018&#x2f;09&#x2f;28 10&#x3a;03&#x3a;32.905</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x6587;&#x4ef6;&#x5939;&#x53d8;&#x91cf;&#x521b;&#x5efa;</note>
+      <note>&#x83b7;&#x53d6;&#x7236;&#x7ea7;&#x8def;&#x5f84;</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>94</width>
+      <width>82</width>
       <heigth>26</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -462,33 +456,12 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;srcPath        &#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;tool.deploy.srcDir       &#x6e90;&#x76ee;&#x5f55;&#xd;&#xa;tool.deploy.tempDir    &#x4e34;&#x65f6;&#x76ee;&#x5f55;&#xd;&#xa;tool.deploy.zipDir        zip&#x6587;&#x4ef6;&#x76ee;&#x5f55;&#xd;&#xa;tool.deploy.zipPath      zip&#x6587;&#x4ef6;&#x8def;&#x5f84;</note>
-      <xloc>478</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x8f93;&#x5165;&#xd;&#xa;&#xd;&#xa;seed_path		&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x8f93;&#x51fa;&#xd;&#xa;&#xd;&#xa;parent_path      &#x7236;&#x7ea7;&#x8def;&#x5f84;</note>
+      <xloc>480</xloc>
       <yloc>0</yloc>
-      <width>210</width>
-      <heigth>173</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xd;&#xa;&#xd;&#xa;srcPath&#xd;&#xa;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xff0c;&#x7528;&#x4e8e;&#x751f;&#x6210;&#x5176;&#x4ed6;&#x53d8;&#x91cf;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;E&#x3a;&#x5c;Kettle&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
-      <xloc>731</xloc>
-      <yloc>0</yloc>
-      <width>190</width>
-      <heigth>107</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <width>178</width>
+      <heigth>142</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -506,46 +479,6 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x2f;</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x53bb;&#x9664;&#x591a;&#x4f59;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6587;&#x4ef6;&#x5939;&#x53c2;&#x6570;</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x2f;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;deploy&#x26;temp&#x26;zip&#x26;separator</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;deploy&#x26;temp&#x26;zip&#x26;separator</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x4e34;&#x65f6;&#x8def;&#x5f84;&#x26;Zip&#x8def;&#x5f84;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x4e34;&#x65f6;&#x8def;&#x5f84;&#x26;Zip&#x8def;&#x5f84;</from>
-      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x53bb;&#x9664;&#x591a;&#x4f59;</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x53bb;&#x9664;&#x2f;&#x540e;&#x7f00;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x53bb;&#x9664;&#x2f;&#x540e;&#x7f00;</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</from>
       <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x957f;&#x5ea6;</to>
       <enabled>Y</enabled>
@@ -553,6 +486,21 @@
     <hop>
       <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x957f;&#x5ea6;</from>
       <to>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;seed_path</from>
+      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</from>
+      <to>&#x6620;&#x5c04;&#x8f93;&#x51fa;&#x89c4;&#x8303;</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -571,9 +519,9 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>SrcFatherPath &#x3d; substr&#x28;SrcPath,0,SrcFatherPathLen-1&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;Alert&#x28;&#x22;SrcFatherPath &#x3d; &#x22; &#x2b; SrcFatherPath&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>SrcFatherPath</name>
-        <rename>SrcFatherPath</rename>
+        <jsScript_script>parent_path &#x3d; substr&#x28;seed_path,0,parent_path_len-1&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;Alert&#x28;&#x22;SrcFatherPath &#x3d; &#x22; &#x2b; SrcFatherPath&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>parent_path</name>
+        <rename>parent_path</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -586,89 +534,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>1072</yloc>
+      <xloc>336</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;deploy&#x26;temp&#x26;zip&#x26;separator</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>DEPLOY</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x5b;Deploy&#x5d;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>TEMP</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x5b;temp&#x5d;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>ZIP</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.zip</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>SEPARATOR</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>1180</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -678,10 +551,13 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>      <field>        <name>SrcPath3</name>
-        <rename>SrcPath</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>seed_path</name>
+      </remove>      <remove>        <name>path_name</name>
+      </remove>      <remove>        <name>seed_path_len</name>
+      </remove>      <remove>        <name>path_name_len</name>
+      </remove>      <remove>        <name>parent_path_len</name>
+      </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -689,46 +565,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x53bb;&#x9664;&#x2f;&#x540e;&#x7f00;</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>SrcPath2</in_stream_name>
-        <out_stream_name>SrcPath3</out_stream_name>
-        <use_regex>yes</use_regex>
-        <replace_string>&#x2f;&#x24;</replace_string>
-        <replace_by_string/>
-        <set_empty_string>Y</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>yes</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>500</yloc>
+      <xloc>336</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -746,8 +584,8 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>SrcPath</in_stream_name>
-        <out_stream_name>SrcPathName</out_stream_name>
+        <in_stream_name>seed_path</in_stream_name>
+        <out_stream_name>path_name</out_stream_name>
         <use_regex>yes</use_regex>
         <replace_string>.&#x2a;&#x2f;</replace_string>
         <replace_by_string/>
@@ -765,15 +603,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>840</yloc>
+      <xloc>336</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x2f;</name>
-    <type>ReplaceString</type>
+    <name>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;seed_path</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -784,93 +622,12 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>SrcPath</in_stream_name>
-        <out_stream_name>SrcPath1</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>&#x5c;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>yes</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>260</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x53bb;&#x9664;&#x591a;&#x4f59;</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>SrcPath1</in_stream_name>
-        <out_stream_name>SrcPath2</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>&#x2f;&#x2f;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>yes</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>380</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x6587;&#x4ef6;&#x5939;&#x53c2;&#x6570;</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>SrcPath</name>
-        <variable>&#x24;&#x7b;srcPath&#x7d;</variable>
+        <name>seed_path</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
       </field>
+        <select_unspecified>N</select_unspecified>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -880,15 +637,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>60</yloc>
+      <xloc>336</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x4e34;&#x65f6;&#x8def;&#x5f84;&#x26;Zip&#x8def;&#x5f84;</name>
-    <type>Calculator</type>
+    <name>&#x6620;&#x5c04;&#x8f93;&#x51fa;&#x89c4;&#x8303;</name>
+    <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -897,81 +654,6 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <calculation>
-      <field_name>TempPath1</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>SrcFatherPath</field_a>
-      <field_b>SEPARATOR</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>TempPath2</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>TempPath1</field_a>
-      <field_b>TEMP</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>ZipPath1</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>TempPath1</field_a>
-      <field_b>DEPLOY</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>ZipPath2</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>ZipPath1</field_a>
-      <field_b>SrcPathName</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>ZipPath3</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>ZipPath2</field_a>
-      <field_b>ZIP</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -980,60 +662,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>1300</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;</name>
-    <type>SetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <field_name>SrcPath</field_name>
-        <variable_name>tool.deploy.srcDir</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>TempPath2</field_name>
-        <variable_name>tool.deploy.tempDir</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>TempPath1</field_name>
-        <variable_name>tool.deploy.zipDir</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>ZipPath3</field_name>
-        <variable_name>tool.deploy.zipPath</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
-      </fields>
-    <use_formatting>Y</use_formatting>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>1540</yloc>
+      <xloc>336</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1050,9 +680,9 @@
       <schema_name/>
     </partitioning>
     <calculation>
-      <field_name>SrcPathLen</field_name>
+      <field_name>seed_path_len</field_name>
       <calc_type>STRING_LEN</calc_type>
-      <field_a>SrcPath</field_a>
+      <field_a>seed_path</field_a>
       <field_b/>
       <field_c/>
       <value_type>Integer</value_type>
@@ -1065,9 +695,9 @@
       <currency_symbol/>
     </calculation>
     <calculation>
-      <field_name>SrcPathNameLen</field_name>
+      <field_name>path_name_len</field_name>
       <calc_type>STRING_LEN</calc_type>
-      <field_a>SrcPathName</field_a>
+      <field_a>path_name</field_a>
       <field_b/>
       <field_c/>
       <value_type>Integer</value_type>
@@ -1080,10 +710,10 @@
       <currency_symbol/>
     </calculation>
     <calculation>
-      <field_name>SrcFatherPathLen</field_name>
+      <field_name>parent_path_len</field_name>
       <calc_type>SUBTRACT</calc_type>
-      <field_a>SrcPathLen</field_a>
-      <field_b>SrcPathNameLen</field_b>
+      <field_a>seed_path_len</field_a>
+      <field_b>path_name_len</field_b>
       <field_c/>
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
@@ -1102,8 +732,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>960</yloc>
+      <xloc>336</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
