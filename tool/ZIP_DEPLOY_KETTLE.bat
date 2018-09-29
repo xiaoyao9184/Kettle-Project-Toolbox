@@ -62,7 +62,7 @@ echo Kettle将生成部署文件到：%USERPROFILE%\.kettle\[Deploy].kettle.zip
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-call kitchen -file:%~dp0ZipDeploy4KettleConfig.kjb "-param:rNameRegex=%rNameRegex%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git.*|.*db\.cache.*" "-param:regex=kettle.properties|repositories.xml|shared.xml""%isOpenShell%
+call kitchen -file:%~dp0ZipDeploy4KettleConfig.kjb "-param:rNameRegex=%rNameRegex%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git\\.*|.*db\.cache.*" "-param:regex=kettle.properties|repositories.xml|shared.xml""%isOpenShell%
 
 ::执行完毕
 if _%interactive%_ equ _1_ exit /b 0

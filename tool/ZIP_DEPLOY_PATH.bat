@@ -62,7 +62,7 @@ echo Kettle将生成部署文件到：（%srcPath%同级目录）
 echo 运行中...      Ctrl+C结束程序
 
 ::执行Kitchen
-call kitchen -file:%~dp0ZipDeploy4Path.kjb "-param:srcPath=%srcPath%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git.*|.*db\.cache.*|.*data-integration.*" "-param:regex=.*"%isOpenShell%
+call kitchen -file:%~dp0ZipDeploy4Path.kjb "-param:srcPath=%srcPath%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git\\.*|.*db\.cache.*|.*data-integration.*" "-param:regex=.*"%isOpenShell%
 
 ::执行完毕
 if _%interactive%_ equ _1_ exit /b 0
