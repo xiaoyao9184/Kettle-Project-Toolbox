@@ -740,6 +740,19 @@
       <xloc>576</xloc>
       <yloc>1536</yloc>
     </entry>
+    <entry>
+      <name>&#x521b;&#x5efa;&#x6587;&#x4ef6;</name>
+      <description/>
+      <type>CREATE_FILE</type>
+      <filename>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;log&#x2f;.gitkeep</filename>
+      <fail_if_file_exists>N</fail_if_file_exists>
+      <add_filename_result>N</add_filename_result>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>464</xloc>
+      <yloc>1152</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -905,15 +918,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;log&#x76ee;&#x5f55;</from>
-      <to>DUMMY&#x3a;Log</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;profile&#x76ee;&#x5f55;</from>
       <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</to>
       <from_nr>0</from_nr>
@@ -988,6 +992,24 @@
     <hop>
       <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</from>
       <to>DUMMY&#x3a;Profile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;log&#x76ee;&#x5f55;</from>
+      <to>&#x521b;&#x5efa;&#x6587;&#x4ef6;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;</from>
+      <to>DUMMY&#x3a;Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
