@@ -138,7 +138,13 @@ echo 运行中...      Ctrl+C结束程序
 ::执行Pan
 set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -job:%jName%%pList%
 if _%interactive%_ neq _0_ echo %c%
-call %c%>>"%~dp0log\%~n0%d:/=-%_%t::=-%.log"
+
+if _%JENKINS_HOME%_ neq __ (
+    echo Used in Jenkins no log file!
+    call %c%
+) else (
+    call %c%>>"%~dp0log\%~n0%d:/=-%_%t::=-%.log"
+)
 
 ::执行完毕
 echo 已经执行完毕，可以结束此程序
