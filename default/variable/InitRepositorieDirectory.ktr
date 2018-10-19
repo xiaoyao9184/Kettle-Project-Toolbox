@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>FixRepositorieDirectory</name>
+    <name>InitRepositorieDirectory</name>
     <description />
     <extended_description />
     <trans_version />
@@ -429,16 +429,16 @@
     <created_user>-</created_user>
     <created_date>2015/01/07 16:17:40.301</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/19 13:39:42.417</modified_date>
+    <modified_date>2018/10/19 13:39:09.345</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>修复资源库不能使用作业/转换路径变量问题</note>
+      <note>生存资源库路径</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>243</width>
+      <width>94</width>
       <heigth>26</heigth>
       <fontname>微软雅黑</fontname>
       <fontsize>9</fontsize>
@@ -460,13 +460,12 @@
 Kettle.Home.Directory
 Internal.Repository.Name
 
-会修复以下变量
-Internal.Job.Filename.Directory                     作业文件当前目录
-Internal.Transformation.Filename.Directory    转换文件当前目录</note>
+会生成以下变量
+Internal.Repository.Directory    资源库目录</note>
       <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>368</width>
-      <heigth>123</heigth>
+      <width>252</width>
+      <heigth>107</heigth>
       <fontname>微软雅黑</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -500,11 +499,6 @@ Internal.Transformation.Filename.Directory    转换文件当前目录</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>克隆行：2</from>
-      <to>值映射：Internal.*.Filename.Directory</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>JavaScript代码：set_variable</from>
       <to>写日志：variable</to>
       <enabled>Y</enabled>
@@ -515,13 +509,13 @@ Internal.Transformation.Filename.Directory    转换文件当前目录</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>值映射：Internal.*.Filename.Directory</from>
-      <to>字段选择：variable_name_value</to>
+      <from>过滤记录：指定资源库</from>
+      <to>增加常量：Internal.Repository.Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：指定资源库</from>
-      <to>克隆行：2</to>
+      <from>增加常量：Internal.Repository.Directory</from>
+      <to>字段选择：variable_name_value</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -568,7 +562,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>800</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -723,74 +717,6 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>值映射：Internal.*.Filename.Directory</name>
-    <type>ValueMapper</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <field_to_use>row_number</field_to_use>
-    <target_field>result_name</target_field>
-    <non_match_default>Internal.Repositorie.Directory</non_match_default>
-    <fields>
-      <field>
-        <source_value>0</source_value>
-        <target_value>Internal.Job.Filename.Directory</target_value>
-      </field>
-      <field>
-        <source_value>1</source_value>
-        <target_value>Internal.Transformation.Filename.Directory</target_value>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>克隆行：2</name>
-    <type>CloneRow</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <nrclones>1</nrclones>
-    <addcloneflag>N</addcloneflag>
-    <cloneflagfield />
-    <nrcloneinfield>N</nrcloneinfield>
-    <nrclonefield />
-    <addclonenum>Y</addclonenum>
-    <clonenumfield>row_number</clonenumfield>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>写日志：variable</name>
     <type>WriteToLog</type>
     <description />
@@ -823,7 +749,45 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>464</xloc>
-      <yloc>800</yloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加常量：Internal.Repository.Directory</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>result_name</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>Internal.Repository.Directory</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -858,7 +822,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>672</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -947,7 +911,7 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>克隆行：2</send_true_to>
+    <send_true_to>增加常量：Internal.Repository.Directory</send_true_to>
     <send_false_to>空操作 (什么也不做)：not this</send_false_to>
     <compare>
       <condition>

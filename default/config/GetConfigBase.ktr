@@ -1,47 +1,47 @@
 <transformation>
   <info>
     <name>GetConfigBase</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;config</directory>
+    <directory>/config</directory>
     <parameters>
       <parameter>
         <name>Parameters.Cfg.Name</name>
-        <default_value/>
-        <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;&#x79f0;</description>
+        <default_value />
+        <description>配置文件名称</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Path</name>
-        <default_value/>
-        <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>配置文件路径</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Profile</name>
-        <default_value/>
-        <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;profile</description>
+        <default_value />
+        <description>配置文件profile</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Tag</name>
-        <default_value/>
-        <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6807;&#x7b7e;</description>
+        <default_value />
+        <description>配置文件标签</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Type</name>
-        <default_value/>
-        <description>&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x7c7b;&#x578b;</description>
+        <default_value />
+        <description>配置文件类型</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -66,37 +66,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -150,11 +150,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -232,10 +232,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -298,10 +298,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -374,10 +374,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -426,9 +426,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -439,7 +439,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -452,10 +452,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;08&#x2f;25 16&#x3a;10&#x3a;36.439</created_date>
+    <created_date>2017/08/25 16:10:36.439</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;08&#x2f;31 09&#x3a;27&#x3a;23.560</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2018/10/19 11:08:15.719</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -628,10 +628,30 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;Parameters.Cfg.Name		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;&#x79f0;&#xd;&#xa;Parameters.Cfg.Profile		&#x914d;&#x7f6e;&#x6587;&#x4ef6;Profile&#xd;&#xa;Parameters.Cfg.Tag		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6807;&#x7b7e;&#xd;&#xa;Parameters.Cfg.Type		&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x7c7b;&#x578b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Kettle.Home.Directory				&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Path&#x29;&#xd;&#xa;Internal.Transformation.Filename.Directory	&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Path&#x29;&#xd;&#xa;Profile.Use					&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Profile&#x29;&#xd;&#xa;Internal.Transformation.Repository.Name	&#x53ef;&#x9009;&#x28;&#x586b;&#x5145;Config.Tag&#x29;&#xd;&#xa;&#xd;&#xa;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Config.Transformation&#xd;&#xa;Config.Path&#xd;&#xa;Config.Name&#xd;&#xa;Config.Profile&#xd;&#xa;Config.Tag&#xd;&#xa;Config.Type</note>
+      <note>依赖以下参数
+Parameters.Cfg.Path		配置文件路径
+Parameters.Cfg.Name		配置文件名称
+Parameters.Cfg.Profile		配置文件Profile
+Parameters.Cfg.Tag		配置文件标签
+Parameters.Cfg.Type		配置文件类型
+
+
+依赖以下变量
+Kettle.Home.Directory		可选(填充Config.Path)
+Internal.Repository.Directory	可选(填充Config.Path)
+Profile.Use			可选(填充Config.Profile)
+Internal.Repository.Name	可选(填充Config.Tag)
+
+生成以下变量
+Config.Transformation
+Config.Path
+Config.Name
+Config.Profile
+Config.Tag
+Config.Type</note>
       <xloc>160</xloc>
       <yloc>0</yloc>
-      <width>433</width>
+      <width>337</width>
       <heigth>349</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -649,7 +669,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x751f;&#x6210;Config.&#x5b;Base&#x5d;&#x53d8;&#x91cf;</note>
+      <note>生成Config.[Base]变量</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
       <width>135</width>
@@ -670,7 +690,40 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x652f;&#x6301;2&#x79cd;&#x5904;&#x7406;&#x903b;&#x8f91;&#x6d41;&#x7a0b;&#x28;cfg_circuit&#x29;&#xff1a;&#xd;&#xa;1. Customize	&#x81ea;&#x5b9a;&#x4e49;&#xd;&#xa;2. Directory	&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Path&#xff0c;&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9884;&#x5236;&#x7684;2&#x79cd;cfg_circuit&#xff1a;Directory&#x6309;&#x4f18;&#x5148;&#x7ea7;&#x751f;&#x6210;Config.Path&#xd;&#xa;1.RepositorieDirectory	&#x5f53;&#x524d;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;2.KettleHomeDirectory	KettleHome&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Name&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9ed8;&#x8ba4;&#xff1a;&#x27;config&#x27;&#x586b;&#x5145;Config.Name&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Profile&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x9ed8;&#x8ba4;&#xff1a;Profile.Use&#x586b;&#x5145;Config.Profile&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Tag&#xd;&#xa;&#x5c06;&#x4f7f;&#x7528;&#x5f53;&#x524d;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x586b;&#x5145;Config.Name&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x652f;&#x6301;&#x8bfb;&#x53d6;&#x4efb;&#x610f;&#x6570;&#x636e;&#x6e90;&#xd;&#xa;&#x9884;&#x5236;&#x8bfb;&#x53d6;3&#x79cd;&#x6587;&#x4ef6;&#x7684;&#x8f6c;&#x6362;&#xd;&#xa;1.xml&#xd;&#xa;2.ini&#xd;&#xa;3.properties&#xd;&#xa;&#xd;&#xa;&#x672a;&#x6307;&#x5b9a;&#x53c2;&#x6570;Parameters.Cfg.Type&#xd;&#xa;&#x6839;&#x636e;&#x9884;&#x5236;&#x4f18;&#x5148;&#x7ea7;&#x586b;&#x5145;Config.Type&#xd;&#xa;&#xd;&#xa;&#x6ce8;&#x610f;&#xff1a;&#xd;&#xa;&#x6839;&#x636e;Config.Type&#x786e;&#x5b9a;&#x8981;&#x52a8;&#x6001;&#x52a0;&#x8f7d;&#x7684;&#x8f6c;&#x6362;&#x540d;&#x79f0;&#xff0c;&#xd;&#xa;&#x901a;&#x5e38;&#x4e3a;ReadConfig_&#x2a;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <note>支持2种处理逻辑流程(cfg_circuit)：
+1. Customize	自定义
+2. Directory	文件夹
+
+未指定参数Parameters.Cfg.Path，
+将使用预制的2种cfg_circuit：Directory按优先级生成Config.Path
+1.RepositorieDirectory	当前资源库文件夹
+2.KettleHomeDirectory	KettleHome文件夹
+==========
+
+未指定参数Parameters.Cfg.Name
+将使用默认：'config'填充Config.Name
+==========
+
+未指定参数Parameters.Cfg.Profile
+将使用默认：Profile.Use填充Config.Profile
+==========
+
+未指定参数Parameters.Cfg.Tag
+将使用当前资源库名填充Config.Name
+==========
+支持读取任意数据源
+预制读取3种文件的转换
+1.xml
+2.ini
+3.properties
+
+未指定参数Parameters.Cfg.Type
+根据预制优先级填充Config.Type
+
+注意：
+根据Config.Type确定要动态加载的转换名称，
+通常为ReadConfig_*
+==========</note>
       <xloc>608</xloc>
       <yloc>0</yloc>
       <width>362</width>
@@ -735,431 +788,437 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_path_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_len</to>
+      <from>计算器：cfg_path_len</from>
+      <to>过滤记录：cfg_path_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;ok_len</to>
+      <from>过滤记录：cfg_path_len</from>
+      <to>空操作 (什么也不做)：ok_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;no_len</to>
+      <from>过滤记录：cfg_path_len</from>
+      <to>空操作 (什么也不做)：no_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;ParameterPath&#x3a; cfg_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; cfg_circuit</to>
+      <from>获取变量：ParameterPath: cfg_path</from>
+      <to>增加常量：Customize: cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;RepositorieDirectory&#x3a; cfg_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; cfg_circuit</to>
+      <from>获取变量：RepositorieDirectory: cfg_path</from>
+      <to>增加常量：Repositorie: Directory: cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;KettleHomeDirectory&#x3a; cfg_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; cfg_circuit</to>
+      <from>获取变量：KettleHomeDirectory: cfg_path</from>
+      <to>增加常量：KettleHome: Directory: cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; exist</to>
+      <from>过滤记录：cfg_path_exist</from>
+      <to>空操作 (什么也不做)：cfg_path: exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_path_exist</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_exist</to>
+      <from>检查文件是否存在：cfg_path_exist</from>
+      <to>过滤记录：cfg_path_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; not_exist</to>
+      <from>过滤记录：cfg_path_exist</from>
+      <to>空操作 (什么也不做)：cfg_path: not_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_location&#x3a; extra delimiter</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_location_exist</to>
+      <from>字符串替换：cfg_location: extra delimiter</from>
+      <to>检查文件是否存在：cfg_location_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_location_exist</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_location_exist</to>
+      <from>检查文件是否存在：cfg_location_exist</from>
+      <to>过滤记录：cfg_location_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_location_exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; not_exist</to>
+      <from>过滤记录：cfg_location_exist</from>
+      <to>空操作 (什么也不做)：cfg_location: not_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_location_exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; exist</to>
+      <from>过滤记录：cfg_location_exist</from>
+      <to>空操作 (什么也不做)：cfg_location: exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_name_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_name_len</to>
+      <from>计算器：cfg_name_len</from>
+      <to>过滤记录：cfg_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; no len</from>
-      <to>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_name</to>
+      <from>空操作 (什么也不做)：cfg_name: no len</from>
+      <to>将字段值设置为常量：cfg_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_type_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_type_len</to>
+      <from>计算器：cfg_type_len</from>
+      <to>过滤记录：cfg_type_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg_type_list</from>
-      <to>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;cfg_type_list</to>
+      <from>增加常量：cfg_type_list</from>
+      <to>列拆分为多行：cfg_type_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_path_exist</to>
+      <from>字符串替换：cfg_path: extra delimiter</from>
+      <to>检查文件是否存在：cfg_path_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; exist</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_exist&#x3a; remove</to>
+      <from>空操作 (什么也不做)：cfg_path: exist</from>
+      <to>字段选择：cfg_path_exist: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; cfg_circuit</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</to>
+      <from>增加常量：Customize: cfg_circuit</from>
+      <to>空操作 (什么也不做)：all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_path_len</to>
+      <from>空操作 (什么也不做)：all cfg_circuit</from>
+      <to>计算器：cfg_path_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;cfg_type_list</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_order</to>
+      <from>列拆分为多行：cfg_type_list</from>
+      <to>计算器：cfg_order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_order</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace type&#x26;order</to>
+      <from>计算器：cfg_order</from>
+      <to>字段选择：replace type&amp;order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; ok_len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace order</to>
+      <from>空操作 (什么也不做)：cfg_type: ok_len</from>
+      <to>字段选择：replace order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace order</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type done</to>
+      <from>字段选择：replace order</from>
+      <to>空操作 (什么也不做)：cfg_type done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace type&#x26;order</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type done</to>
+      <from>字段选择：replace type&amp;order</from>
+      <to>空操作 (什么也不做)：cfg_type done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_type_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; no_len</to>
+      <from>过滤记录：cfg_type_len</from>
+      <to>空操作 (什么也不做)：cfg_type: no_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_type_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; ok_len</to>
+      <from>过滤记录：cfg_type_len</from>
+      <to>空操作 (什么也不做)：cfg_type: ok_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_tag_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_tag_len</to>
+      <from>计算器：cfg_tag_len</from>
+      <to>过滤记录：cfg_tag_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_tag_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; no_len</to>
+      <from>过滤记录：cfg_tag_len</from>
+      <to>空操作 (什么也不做)：cfg_tag: no_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; no_len</from>
-      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Repository.Name</to>
+      <from>空操作 (什么也不做)：cfg_tag: no_len</from>
+      <to>获取变量：Internal.Repository.Name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Repository.Name</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace tag</to>
+      <from>获取变量：Internal.Repository.Name</from>
+      <to>字段选择：replace tag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace tag</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; done</to>
+      <from>字段选择：replace tag</from>
+      <to>空操作 (什么也不做)：cfg_tag: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</to>
+      <from>过滤记录：cfg_circuit: Directory</from>
+      <to>空操作 (什么也不做)：cfg_circuit: not Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;cfg_order</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg_group</to>
+      <from>排序记录：cfg_order</from>
+      <to>增加常量：cfg_group</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg_group</from>
-      <to>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#xff1a;first</to>
+      <from>增加常量：cfg_group</from>
+      <to>在内存中分组：first</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type done</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</to>
+      <from>空操作 (什么也不做)：cfg_type done</from>
+      <to>过滤记录：cfg_circuit: Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_name_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; no len</to>
+      <from>过滤记录：cfg_name_len</from>
+      <to>空操作 (什么也不做)：cfg_name: no len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; done</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_type_len</to>
+      <from>空操作 (什么也不做)：cfg_tag: done</from>
+      <to>计算器：cfg_type_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; no_len</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg_type_list</to>
+      <from>空操作 (什么也不做)：cfg_type: no_len</from>
+      <to>增加常量：cfg_type_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cant check exist</to>
+      <from>空操作 (什么也不做)：cfg_circuit: not Directory</from>
+      <to>空操作 (什么也不做)：cant check exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; exist</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_file&#x26;cfg_location remove</to>
+      <from>空操作 (什么也不做)：cfg_location: exist</from>
+      <to>字段选择：cfg_file&amp;cfg_location remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cant check exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</to>
+      <from>空操作 (什么也不做)：cant check exist</from>
+      <to>空操作 (什么也不做)：cfg_profile: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_file&#x26;cfg_location remove</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</to>
+      <from>字段选择：cfg_file&amp;cfg_location remove</from>
+      <to>空操作 (什么也不做)：cfg_profile: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_name_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; ok len</to>
+      <from>过滤记录：cfg_name_len</from>
+      <to>空操作 (什么也不做)：cfg_name: ok len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; ok len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_name_len&#x3a; remove</to>
+      <from>空操作 (什么也不做)：cfg_name: ok len</from>
+      <to>字段选择：cfg_name_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_name</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_name_len&#x3a; remove</to>
+      <from>将字段值设置为常量：cfg_name</from>
+      <to>字段选择：cfg_name_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;ok_len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_len&#x3a; remove</to>
+      <from>空操作 (什么也不做)：ok_len</from>
+      <to>字段选择：cfg_path_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_len&#x3a; remove</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_name_len</to>
+      <from>字段选择：cfg_path_len: remove</from>
+      <to>计算器：cfg_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_tag_len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_tag_len&#x3a; remove</to>
+      <from>过滤记录：cfg_tag_len</from>
+      <to>字段选择：cfg_tag_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_tag_len&#x3a; remove</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; done</to>
+      <from>字段选择：cfg_tag_len: remove</from>
+      <to>空操作 (什么也不做)：cfg_tag: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;transformation_exist</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;transformation_exist</to>
+      <from>检查文件是否存在：transformation_exist</from>
+      <to>过滤记录：transformation_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;transformation_exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; not exist</to>
+      <from>过滤记录：transformation_exist</from>
+      <to>空操作 (什么也不做)：transformation: not exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;transformation_exist</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; exist</to>
+      <from>过滤记录：transformation_exist</from>
+      <to>空操作 (什么也不做)：transformation: exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;Config.&#x5b;Base&#x5d;</to>
+      <from>设置变量：Config.[Base]</from>
+      <to>写日志：Config.[Base]</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; cfg_circuit</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</to>
+      <from>增加常量：Repositorie: Directory: cfg_circuit</from>
+      <to>空操作 (什么也不做)：all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; cfg_circuit</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</to>
+      <from>增加常量：KettleHome: Directory: cfg_circuit</from>
+      <to>空操作 (什么也不做)：all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</to>
+      <from>过滤记录：cfg_circuit: Directory</from>
+      <to>字符串替换：cfg_path: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_exist&#x3a; remove</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg&#x3a; delimiter</to>
+      <from>字段选择：cfg_path_exist: remove</from>
+      <to>增加常量：cfg: delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg&#x3a; delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</to>
+      <from>增加常量：cfg: delimiter</from>
+      <to>计算器：cfg_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; exist</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace cfg_transformation</to>
+      <from>空操作 (什么也不做)：transformation: exist</from>
+      <to>字段选择：replace cfg_transformation</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace cfg_transformation</from>
-      <to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;cfg_order</to>
+      <from>字段选择：replace cfg_transformation</from>
+      <to>排序记录：cfg_order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</from>
-      <to>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; first not exist</to>
+      <from>过滤记录：first</from>
+      <to>中止：cfg_transformation: first not exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation&#x3a; delimiter</to>
+      <from>空操作 (什么也不做)：cfg_profile: done</from>
+      <to>增加常量：transformation: delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation&#x3a; delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</to>
+      <from>增加常量：transformation: delimiter</from>
+      <to>计算器：transformation_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#xff1a;first</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</to>
+      <from>在内存中分组：first</from>
+      <to>过滤记录：first</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</from>
-      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</to>
+      <from>过滤记录：first</from>
+      <to>设置变量：Config.[Base]</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;transformation_exist</to>
+      <from>计算器：transformation_location</from>
+      <to>检查文件是否存在：transformation_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</to>
+      <from>空操作 (什么也不做)：cfg_profile: ok len</from>
+      <to>字段选择：cfg_profile_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</to>
+      <from>计算器：cfg_profile_len</from>
+      <to>过滤记录：cfg_profile_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_name_len&#x3a; remove</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_len</to>
+      <from>字段选择：cfg_name_len: remove</from>
+      <to>计算器：cfg_profile_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</from>
-      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Profile.Use</to>
+      <from>空操作 (什么也不做)：cfg_profile: no len</from>
+      <to>获取变量：Profile.Use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</to>
+      <from>字段选择：replace profile</from>
+      <to>字段选择：cfg_profile_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_tag_len</to>
+      <from>字段选择：cfg_profile_len: remove</from>
+      <to>计算器：cfg_tag_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</to>
+      <from>过滤记录：cfg_profile_len</from>
+      <to>空操作 (什么也不做)：cfg_profile: ok len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</to>
+      <from>过滤记录：cfg_profile_len</from>
+      <to>空操作 (什么也不做)：cfg_profile: no len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_location&#x3a; extra delimiter</to>
+      <from>计算器：cfg_location</from>
+      <to>字符串替换：cfg_location: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_default_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_default_len</to>
+      <from>计算器：cfg_profile_default_len</from>
+      <to>过滤记录：cfg_profile_default_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_default_len</from>
-      <to>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_profile_default</to>
+      <from>过滤记录：cfg_profile_default_len</from>
+      <to>将字段值设置为常量：cfg_profile_default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Profile.Use</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_default_len</to>
+      <from>获取变量：Profile.Use</from>
+      <to>计算器：cfg_profile_default_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_profile_default</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</to>
+      <from>将字段值设置为常量：cfg_profile_default</from>
+      <to>字段选择：replace profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_default_len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</to>
+      <from>过滤记录：cfg_profile_default_len</from>
+      <to>字段选择：replace profile</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>空操作 (什么也不做)：all cfg_circuit</from>
+      <to>写日志：Cfg_Path</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; first not exist</name>
+    <name>中止：cfg_transformation: first not exist</name>
     <type>Abort</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>&#x672a;&#x53d6;&#x5f97;Config.&#x5b;Base&#x5d;</message>
-      <always_log_rows>Y</always_log_rows>
-    <cluster_schema/>
+    <row_threshold>0</row_threshold>
+    <message>未取得Config.[Base]</message>
+    <always_log_rows>Y</always_log_rows>
+    <abort_with_error>Y</abort_with_error>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1171,45 +1230,96 @@
       <yloc>6592</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;Config.&#x5b;Base&#x5d;</name>
+    <name>写日志：Cfg_Path</name>
     <type>WriteToLog</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>&#x786e;&#x5b9a;&#x52a8;&#x6001;&#x6267;&#x884c;&#x7684;&#x8f6c;&#x6362;</logmessage>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>获取配置文件路径</logmessage>
+    <fields>
+      <field>
+        <name>cfg_path</name>
+      </field>
+      <field>
+        <name>cfg_name</name>
+      </field>
+      <field>
+        <name>cfg_profile</name>
+      </field>
+      <field>
+        <name>cfg_tag</name>
+      </field>
+      <field>
+        <name>cfg_type</name>
+      </field>
+      <field>
+        <name>cfg_circuit</name>
+      </field>
+      <field>
+        <name>cfg_circuit_order</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>832</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>写日志：Config.[Base]</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>确定动态执行的转换</logmessage>
     <fields>
       <field>
         <name>cfg_transformation</name>
-        </field>
+      </field>
       <field>
         <name>cfg_path</name>
-        </field>
+      </field>
       <field>
         <name>cfg_name</name>
-        </field>
+      </field>
       <field>
         <name>cfg_profile</name>
-        </field>
+      </field>
       <field>
         <name>cfg_tag</name>
-        </field>
+      </field>
       <field>
         <name>cfg_type</name>
-        </field>
-      </fields>
-    <cluster_schema/>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1221,27 +1331,26 @@
       <yloc>6720</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;cfg_type_list</name>
+    <name>列拆分为多行：cfg_type_list</name>
     <type>SplitFieldToRows3</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-   <splitfield>cfg_type_list</splitfield>
-   <delimiter>&#x3b;</delimiter>
-   <newfield>cfg_type_item</newfield>
-   <rownum>Y</rownum>
-   <rownum_field>cfg_type_order</rownum_field>
-   <resetrownumber>N</resetrownumber>
-   <delimiter_is_regex>N</delimiter_is_regex>
-    <cluster_schema/>
+    <splitfield>cfg_type_list</splitfield>
+    <delimiter>;</delimiter>
+    <newfield>cfg_type_item</newfield>
+    <rownum>Y</rownum>
+    <rownum_field>cfg_type_order</rownum_field>
+    <resetrownumber>N</resetrownumber>
+    <delimiter_is_regex>N</delimiter_is_regex>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1253,64 +1362,63 @@
       <yloc>3264</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#xff1a;first</name>
+    <name>在内存中分组：first</name>
     <type>MemoryGroupBy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <give_back_row>Y</give_back_row>
-      <group>
-        <field>
-          <name>cfg_group</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>cfg_path</aggregate>
-          <subject>cfg_path</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>cfg_name</aggregate>
-          <subject>cfg_name</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>cfg_profile</aggregate>
-          <subject>cfg_profile</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>cfg_type</aggregate>
-          <subject>cfg_type</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>cfg_tag</aggregate>
-          <subject>cfg_tag</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>cfg_transformation</aggregate>
-          <subject>cfg_transformation</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-      </fields>
-    <cluster_schema/>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>cfg_group</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>cfg_path</aggregate>
+        <subject>cfg_path</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>cfg_name</aggregate>
+        <subject>cfg_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>cfg_profile</aggregate>
+        <subject>cfg_profile</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>cfg_type</aggregate>
+        <subject>cfg_type</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>cfg_tag</aggregate>
+        <subject>cfg_tag</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>cfg_transformation</aggregate>
+        <subject>cfg_transformation</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1322,27 +1430,26 @@
       <yloc>6464</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Customize&#x3a; cfg_circuit</name>
+    <name>增加常量：Customize: cfg_circuit</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_circuit</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>Customize</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1351,17 +1458,17 @@
       <field>
         <name>cfg_circuit_order</name>
         <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>0</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1373,27 +1480,26 @@
       <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;KettleHome&#x3a; Directory&#x3a; cfg_circuit</name>
+    <name>增加常量：KettleHome: Directory: cfg_circuit</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_circuit</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>Directory</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1402,17 +1508,17 @@
       <field>
         <name>cfg_circuit_order</name>
         <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>20</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1424,27 +1530,26 @@
       <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Repositorie&#x3a; Directory&#x3a; cfg_circuit</name>
+    <name>增加常量：Repositorie: Directory: cfg_circuit</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_circuit</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>Directory</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1453,17 +1558,17 @@
       <field>
         <name>cfg_circuit_order</name>
         <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>10</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1475,27 +1580,26 @@
       <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg&#x3a; delimiter</name>
+    <name>增加常量：cfg: delimiter</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>file_delimiter</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>.</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1504,17 +1608,17 @@
       <field>
         <name>path_delimiter</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1526,34 +1630,33 @@
       <yloc>4416</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg_group</name>
+    <name>增加常量：cfg_group</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_group</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>-</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1565,34 +1668,33 @@
       <yloc>6336</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;cfg_type_list</name>
+    <name>增加常量：cfg_type_list</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_type_list</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>xml&#x3b;ini&#x3b;properties</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>xml;ini;properties</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1604,27 +1706,26 @@
       <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;transformation&#x3a; delimiter</name>
+    <name>增加常量：transformation: delimiter</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>transformation_name_prefix</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>ReadLogical_</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1633,10 +1734,10 @@
       <field>
         <name>transformation_ext</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>ktr</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1645,10 +1746,10 @@
       <field>
         <name>transformation_path_default</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>config</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1657,10 +1758,10 @@
       <field>
         <name>file_delimiter</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>.</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -1669,17 +1770,17 @@
       <field>
         <name>path_delimiter</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1691,26 +1792,37 @@
       <yloc>5440</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_file&#x26;cfg_location remove</name>
+    <name>字段选择：cfg_file&amp;cfg_location remove</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>file_delimiter</name>
-      </remove>      <remove>        <name>cfg_file</name>
-      </remove>      <remove>        <name>path_delimiter</name>
-      </remove>      <remove>        <name>cfg_location</name>
-      </remove>      <remove>        <name>cfg_location_exist</name>
-      </remove>    </fields>    <cluster_schema/>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>file_delimiter</name>
+      </remove>
+      <remove>
+        <name>cfg_file</name>
+      </remove>
+      <remove>
+        <name>path_delimiter</name>
+      </remove>
+      <remove>
+        <name>cfg_location</name>
+      </remove>
+      <remove>
+        <name>cfg_location_exist</name>
+      </remove>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1722,22 +1834,25 @@
       <yloc>5184</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_name_len&#x3a; remove</name>
+    <name>字段选择：cfg_name_len: remove</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>cfg_name_len</name>
-      </remove>    </fields>    <cluster_schema/>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>cfg_name_len</name>
+      </remove>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1749,22 +1864,25 @@
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_exist&#x3a; remove</name>
+    <name>字段选择：cfg_path_exist: remove</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>cfg_path_exist</name>
-      </remove>    </fields>    <cluster_schema/>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>cfg_path_exist</name>
+      </remove>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1776,22 +1894,25 @@
       <yloc>4288</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_path_len&#x3a; remove</name>
+    <name>字段选择：cfg_path_len: remove</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>cfg_path_len</name>
-      </remove>    </fields>    <cluster_schema/>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>cfg_path_len</name>
+      </remove>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1803,22 +1924,25 @@
       <yloc>1344</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_profile_len&#x3a; remove</name>
+    <name>字段选择：cfg_profile_len: remove</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>cfg_profile_len</name>
-      </remove>    </fields>    <cluster_schema/>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>cfg_profile_len</name>
+      </remove>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1830,22 +1954,25 @@
       <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_tag_len&#x3a; remove</name>
+    <name>字段选择：cfg_tag_len: remove</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>cfg_tag_len</name>
-      </remove>    </fields>    <cluster_schema/>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>cfg_tag_len</name>
+      </remove>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1857,29 +1984,44 @@
       <yloc>2752</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace cfg_transformation</name>
+    <name>字段选择：replace cfg_transformation</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>      <field>        <name>cfg_path</name>
-      </field>      <field>        <name>cfg_name</name>
-      </field>      <field>        <name>cfg_profile</name>
-      </field>      <field>        <name>cfg_tag</name>
-      </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_order</name>
-      </field>      <field>        <name>transformation_name</name>
+    <fields>
+      <field>
+        <name>cfg_path</name>
+      </field>
+      <field>
+        <name>cfg_name</name>
+      </field>
+      <field>
+        <name>cfg_profile</name>
+      </field>
+      <field>
+        <name>cfg_tag</name>
+      </field>
+      <field>
+        <name>cfg_type</name>
+      </field>
+      <field>
+        <name>cfg_order</name>
+      </field>
+      <field>
+        <name>transformation_name</name>
         <rename>cfg_transformation</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1891,29 +2033,44 @@
       <yloc>6080</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace order</name>
+    <name>字段选择：replace order</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>      <field>        <name>cfg_path</name>
-      </field>      <field>        <name>cfg_name</name>
-      </field>      <field>        <name>cfg_profile</name>
-      </field>      <field>        <name>cfg_tag</name>
-      </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_circuit</name>
-      </field>      <field>        <name>cfg_circuit_order</name>
+    <fields>
+      <field>
+        <name>cfg_path</name>
+      </field>
+      <field>
+        <name>cfg_name</name>
+      </field>
+      <field>
+        <name>cfg_profile</name>
+      </field>
+      <field>
+        <name>cfg_tag</name>
+      </field>
+      <field>
+        <name>cfg_type</name>
+      </field>
+      <field>
+        <name>cfg_circuit</name>
+      </field>
+      <field>
+        <name>cfg_circuit_order</name>
         <rename>cfg_order</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1925,30 +2082,47 @@
       <yloc>3392</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</name>
+    <name>字段选择：replace profile</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>      <field>        <name>cfg_path</name>
-      </field>      <field>        <name>cfg_name</name>
-      </field>      <field>        <name>cfg_profile_default</name>
+    <fields>
+      <field>
+        <name>cfg_path</name>
+      </field>
+      <field>
+        <name>cfg_name</name>
+      </field>
+      <field>
+        <name>cfg_profile_default</name>
         <rename>cfg_profile</rename>
-      </field>      <field>        <name>cfg_tag</name>
-      </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_circuit</name>
-      </field>      <field>        <name>cfg_circuit_order</name>
-      </field>      <field>        <name>cfg_profile_len</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
+      </field>
+      <field>
+        <name>cfg_tag</name>
+      </field>
+      <field>
+        <name>cfg_type</name>
+      </field>
+      <field>
+        <name>cfg_circuit</name>
+      </field>
+      <field>
+        <name>cfg_circuit_order</name>
+      </field>
+      <field>
+        <name>cfg_profile_len</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1960,29 +2134,44 @@
       <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace tag</name>
+    <name>字段选择：replace tag</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>      <field>        <name>cfg_path</name>
-      </field>      <field>        <name>cfg_name</name>
-      </field>      <field>        <name>cfg_profile</name>
-      </field>      <field>        <name>cfg_tag_default</name>
+    <fields>
+      <field>
+        <name>cfg_path</name>
+      </field>
+      <field>
+        <name>cfg_name</name>
+      </field>
+      <field>
+        <name>cfg_profile</name>
+      </field>
+      <field>
+        <name>cfg_tag_default</name>
         <rename>cfg_tag</rename>
-      </field>      <field>        <name>cfg_type</name>
-      </field>      <field>        <name>cfg_circuit</name>
-      </field>      <field>        <name>cfg_circuit_order</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
+      </field>
+      <field>
+        <name>cfg_type</name>
+      </field>
+      <field>
+        <name>cfg_circuit</name>
+      </field>
+      <field>
+        <name>cfg_circuit_order</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1994,29 +2183,44 @@
       <yloc>2880</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace type&#x26;order</name>
+    <name>字段选择：replace type&amp;order</name>
     <type>SelectValues</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>      <field>        <name>cfg_path</name>
-      </field>      <field>        <name>cfg_name</name>
-      </field>      <field>        <name>cfg_profile</name>
-      </field>      <field>        <name>cfg_tag</name>
-      </field>      <field>        <name>cfg_type_item</name>
+    <fields>
+      <field>
+        <name>cfg_path</name>
+      </field>
+      <field>
+        <name>cfg_name</name>
+      </field>
+      <field>
+        <name>cfg_profile</name>
+      </field>
+      <field>
+        <name>cfg_tag</name>
+      </field>
+      <field>
+        <name>cfg_type_item</name>
         <rename>cfg_type</rename>
-      </field>      <field>        <name>cfg_circuit</name>
-      </field>      <field>        <name>cfg_order</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
+      </field>
+      <field>
+        <name>cfg_circuit</name>
+      </field>
+      <field>
+        <name>cfg_order</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2028,33 +2232,32 @@
       <yloc>3520</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_location&#x3a; extra delimiter</name>
+    <name>字符串替换：cfg_location: extra delimiter</name>
     <type>ReplaceString</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <in_stream_name>cfg_location</in_stream_name>
-        <out_stream_name/>
+        <out_stream_name />
         <use_regex>yes</use_regex>
-        <replace_string>&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;2,&#x7d;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
+        <replace_string>/{2,}|\\{2,}</replace_string>
+        <replace_by_string>/</replace_by_string>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
+        <replace_field_by_string />
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2066,33 +2269,32 @@
       <yloc>4672</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</name>
+    <name>字符串替换：cfg_path: extra delimiter</name>
     <type>ReplaceString</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <in_stream_name>cfg_path</in_stream_name>
-        <out_stream_name/>
+        <out_stream_name />
         <use_regex>yes</use_regex>
-        <replace_string>&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;2,&#x7d;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
+        <replace_string>/{2,}|\\{2,}</replace_string>
+        <replace_by_string>/</replace_by_string>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
+        <replace_field_by_string />
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2104,29 +2306,28 @@
       <yloc>3776</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_name</name>
+    <name>将字段值设置为常量：cfg_name</name>
     <type>SetValueConstant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-   <usevar>N</usevar>
+    <usevar>N</usevar>
     <fields>
       <field>
         <name>cfg_name</name>
         <value>config</value>
-        <mask/>
+        <mask />
         <set_empty_string>N</set_empty_string>
-        </field>
-      </fields>
-    <cluster_schema/>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2138,29 +2339,28 @@
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_profile_default</name>
+    <name>将字段值设置为常量：cfg_profile_default</name>
     <type>SetValueConstant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-   <usevar>N</usevar>
+    <usevar>N</usevar>
     <fields>
       <field>
         <name>cfg_profile_default</name>
-        <value/>
-        <mask/>
+        <value />
+        <mask />
         <set_empty_string>Y</set_empty_string>
-        </field>
-      </fields>
-    <cluster_schema/>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2172,26 +2372,25 @@
       <yloc>2496</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;cfg_order</name>
+    <name>排序记录：cfg_order</name>
     <type>SortRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
     <fields>
       <field>
         <name>cfg_order</name>
@@ -2202,7 +2401,7 @@
         <presorted>N</presorted>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2214,25 +2413,24 @@
       <yloc>6208</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_location_exist</name>
+    <name>检查文件是否存在：cfg_location_exist</name>
     <type>FileExists</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <filenamefield>cfg_location</filenamefield>
     <resultfieldname>cfg_location_exist</resultfieldname>
     <includefiletype>N</includefiletype>
     <filetypefieldname>cfg_type</filetypefieldname>
     <addresultfilenames>N</addresultfilenames>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2244,25 +2442,24 @@
       <yloc>4800</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;cfg_path_exist</name>
+    <name>检查文件是否存在：cfg_path_exist</name>
     <type>FileExists</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <filenamefield>cfg_path</filenamefield>
     <resultfieldname>cfg_path_exist</resultfieldname>
     <includefiletype>N</includefiletype>
-    <filetypefieldname/>
+    <filetypefieldname />
     <addresultfilenames>N</addresultfilenames>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2274,25 +2471,24 @@
       <yloc>3904</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;transformation_exist</name>
+    <name>检查文件是否存在：transformation_exist</name>
     <type>FileExists</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <filenamefield>transformation_location</filenamefield>
     <resultfieldname>transformation_location_exist</resultfieldname>
     <includefiletype>N</includefiletype>
     <filetypefieldname>cfg_type</filetypefieldname>
     <addresultfilenames>N</addresultfilenames>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2304,20 +2500,19 @@
       <yloc>5696</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;all cfg_circuit</name>
+    <name>空操作 (什么也不做)：all cfg_circuit</name>
     <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2329,20 +2524,19 @@
       <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cant check exist</name>
+    <name>空操作 (什么也不做)：cant check exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2354,20 +2548,19 @@
       <yloc>5184</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</name>
+    <name>空操作 (什么也不做)：cfg_circuit: not Directory</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2379,20 +2572,19 @@
       <yloc>3776</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; exist</name>
+    <name>空操作 (什么也不做)：cfg_location: exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2404,20 +2596,19 @@
       <yloc>5056</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; not_exist</name>
+    <name>空操作 (什么也不做)：cfg_location: not_exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2429,20 +2620,19 @@
       <yloc>4928</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; no len</name>
+    <name>空操作 (什么也不做)：cfg_name: no len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2454,20 +2644,19 @@
       <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; ok len</name>
+    <name>空操作 (什么也不做)：cfg_name: ok len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2479,20 +2668,19 @@
       <yloc>1728</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; exist</name>
+    <name>空操作 (什么也不做)：cfg_path: exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2504,20 +2692,19 @@
       <yloc>4160</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; not_exist</name>
+    <name>空操作 (什么也不做)：cfg_path: not_exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2529,20 +2716,19 @@
       <yloc>4032</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; done</name>
+    <name>空操作 (什么也不做)：cfg_profile: done</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2554,20 +2740,19 @@
       <yloc>5312</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</name>
+    <name>空操作 (什么也不做)：cfg_profile: no len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2579,20 +2764,19 @@
       <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</name>
+    <name>空操作 (什么也不做)：cfg_profile: ok len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2604,20 +2788,19 @@
       <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; done</name>
+    <name>空操作 (什么也不做)：cfg_tag: done</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2629,20 +2812,19 @@
       <yloc>2880</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; no_len</name>
+    <name>空操作 (什么也不做)：cfg_tag: no_len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2654,20 +2836,19 @@
       <yloc>2624</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type done</name>
+    <name>空操作 (什么也不做)：cfg_type done</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2679,20 +2860,19 @@
       <yloc>3520</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; no_len</name>
+    <name>空操作 (什么也不做)：cfg_type: no_len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2704,20 +2884,19 @@
       <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; ok_len</name>
+    <name>空操作 (什么也不做)：cfg_type: ok_len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2729,20 +2908,19 @@
       <yloc>3264</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;no_len</name>
+    <name>空操作 (什么也不做)：no_len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2754,20 +2932,19 @@
       <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;ok_len</name>
+    <name>空操作 (什么也不做)：ok_len</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2779,20 +2956,19 @@
       <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; exist</name>
+    <name>空操作 (什么也不做)：transformation: exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2804,20 +2980,19 @@
       <yloc>5952</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; not exist</name>
+    <name>空操作 (什么也不做)：transformation: not exist</name>
     <type>Dummy</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2829,82 +3004,81 @@
       <yloc>5824</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;KettleHomeDirectory&#x3a; cfg_path</name>
+    <name>获取变量：KettleHomeDirectory: cfg_path</name>
     <type>GetVariable</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_path</name>
-        <variable>&#x24;&#x7b;Kettle.Home.Directory&#x7d;&#x2f;.kettle</variable>
+        <variable>${Kettle.Home.Directory}/.kettle</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_name</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Name&#x7d;</variable>
+        <variable>${Parameters.Cfg.Name}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_profile</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
+        <variable>${Parameters.Cfg.Profile}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_tag</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;</variable>
+        <variable>${Parameters.Cfg.Tag}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_type</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Type&#x7d;</variable>
+        <variable>${Parameters.Cfg.Type}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2916,82 +3090,81 @@
       <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;ParameterPath&#x3a; cfg_path</name>
+    <name>获取变量：ParameterPath: cfg_path</name>
     <type>GetVariable</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_path</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Path&#x7d;</variable>
+        <variable>${Parameters.Cfg.Path}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_name</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Name&#x7d;</variable>
+        <variable>${Parameters.Cfg.Name}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_profile</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
+        <variable>${Parameters.Cfg.Profile}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_tag</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;</variable>
+        <variable>${Parameters.Cfg.Tag}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_type</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Type&#x7d;</variable>
+        <variable>${Parameters.Cfg.Type}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3003,34 +3176,33 @@
       <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Profile.Use</name>
+    <name>获取变量：Profile.Use</name>
     <type>GetVariable</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_profile_default</name>
-        <variable>&#x24;&#x7b;Profile.Use&#x7d;</variable>
+        <variable>${Profile.Use}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3042,82 +3214,81 @@
       <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;RepositorieDirectory&#x3a; cfg_path</name>
+    <name>获取变量：RepositorieDirectory: cfg_path</name>
     <type>GetVariable</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_path</name>
-        <variable>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;</variable>
+        <variable>${Internal.Repository.Directory}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_name</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Name&#x7d;</variable>
+        <variable>${Parameters.Cfg.Name}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_profile</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Profile&#x7d;</variable>
+        <variable>${Parameters.Cfg.Profile}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_tag</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;</variable>
+        <variable>${Parameters.Cfg.Tag}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>cfg_type</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Type&#x7d;</variable>
+        <variable>${Parameters.Cfg.Type}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3129,34 +3300,33 @@
       <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Repository.Name</name>
+    <name>获取变量：Internal.Repository.Name</name>
     <type>GetVariable</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>cfg_tag_default</name>
-        <variable>&#x24;&#x7b;Internal.Transformation.Repository.Name&#x7d;</variable>
+        <variable>${Internal.Repository.Name}</variable>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3168,18 +3338,17 @@
       <yloc>2752</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_location</name>
+    <name>计算器：cfg_location</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_file</field_name>
@@ -3191,10 +3360,10 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
     <calculation>
       <field_name>cfg_location</field_name>
@@ -3206,12 +3375,12 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3223,35 +3392,34 @@
       <yloc>4544</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_name_len</name>
+    <name>计算器：cfg_name_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_name_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>cfg_name</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3263,35 +3431,34 @@
       <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_order</name>
+    <name>计算器：cfg_order</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_order</field_name>
       <calc_type>ADD</calc_type>
       <field_a>cfg_circuit_order</field_a>
       <field_b>cfg_type_order</field_b>
-      <field_c/>
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3303,35 +3470,34 @@
       <yloc>3392</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_path_len</name>
+    <name>计算器：cfg_path_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_path_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>cfg_path</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3343,35 +3509,34 @@
       <yloc>960</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_default_len</name>
+    <name>计算器：cfg_profile_default_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_profile_default_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>cfg_profile_default</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3383,35 +3548,34 @@
       <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_profile_len</name>
+    <name>计算器：cfg_profile_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_profile_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>cfg_profile</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3423,35 +3587,34 @@
       <yloc>1984</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_tag_len</name>
+    <name>计算器：cfg_tag_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_tag_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>cfg_tag</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3463,35 +3626,34 @@
       <yloc>2496</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;cfg_type_len</name>
+    <name>计算器：cfg_type_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>cfg_type_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>cfg_type</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3503,33 +3665,32 @@
       <yloc>3008</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;transformation_location</name>
+    <name>计算器：transformation_location</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>transformation_name</field_name>
       <calc_type>ADD</calc_type>
       <field_a>transformation_name_prefix</field_a>
       <field_b>cfg_type</field_b>
-      <field_c/>
+      <field_c />
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
     <calculation>
       <field_name>transformation_file</field_name>
@@ -3541,10 +3702,10 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
     <calculation>
       <field_name>transformation_path</field_name>
@@ -3556,10 +3717,10 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
     <calculation>
       <field_name>transformation_location</field_name>
@@ -3571,12 +3732,12 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3588,59 +3749,58 @@
       <yloc>5568</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</name>
+    <name>设置变量：Config.[Base]</name>
     <type>SetVariable</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <field_name>cfg_transformation</field_name>
         <variable_name>Config.Transformation</variable_name>
         <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
+        <default_value />
+      </field>
       <field>
         <field_name>cfg_path</field_name>
         <variable_name>Config.Path</variable_name>
         <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
+        <default_value />
+      </field>
       <field>
         <field_name>cfg_name</field_name>
         <variable_name>Config.Name</variable_name>
         <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
+        <default_value />
+      </field>
       <field>
         <field_name>cfg_profile</field_name>
         <variable_name>Config.Profile</variable_name>
         <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
+        <default_value />
+      </field>
       <field>
         <field_name>cfg_tag</field_name>
         <variable_name>Config.Tag</variable_name>
         <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
+        <default_value />
+      </field>
       <field>
         <field_name>cfg_type</field_name>
         <variable_name>Config.Type</variable_name>
         <variable_type>ROOT_JOB</variable_type>
-        <default_value/>
-        </field>
-      </fields>
+        <default_value />
+      </field>
+    </fields>
     <use_formatting>N</use_formatting>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3652,42 +3812,59 @@
       <yloc>6720</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_circuit&#x3a; Directory</name>
+    <name>过滤记录：cfg_circuit: Directory</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;cfg_path&#x3a; extra delimiter</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_circuit&#x3a; not Directory</send_false_to>
+    <send_true_to>字符串替换：cfg_path: extra delimiter</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_circuit: not Directory</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>cfg_circuit</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>Directory</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <leftvalue>cfg_type</leftvalue>
-   <function>IN LIST</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>xml&#x3b;ini&#x3b;properties</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>cfg_circuit</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Directory</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>cfg_type</leftvalue>
+            <function>IN LIST</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>xml;ini;properties</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3699,30 +3876,38 @@
       <yloc>3648</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_location_exist</name>
+    <name>过滤记录：cfg_location_exist</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; exist</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_location&#x3a; not_exist</send_false_to>
+    <send_true_to>空操作 (什么也不做)：cfg_location: exist</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_location: not_exist</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_location_exist</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_location_exist</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3734,30 +3919,38 @@
       <yloc>4928</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_name_len</name>
+    <name>过滤记录：cfg_name_len</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; ok len</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_name&#x3a; no len</send_false_to>
+    <send_true_to>空操作 (什么也不做)：cfg_name: ok len</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_name: no len</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_name_len</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_name_len</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3769,30 +3962,38 @@
       <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_exist</name>
+    <name>过滤记录：cfg_path_exist</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; exist</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_path&#x3a; not_exist</send_false_to>
+    <send_true_to>空操作 (什么也不做)：cfg_path: exist</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_path: not_exist</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_path_exist</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_path_exist</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3804,30 +4005,38 @@
       <yloc>4032</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_path_len</name>
+    <name>过滤记录：cfg_path_len</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;ok_len</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;no_len</send_false_to>
+    <send_true_to>空操作 (什么也不做)：ok_len</send_true_to>
+    <send_false_to>空操作 (什么也不做)：no_len</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_path_len</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_path_len</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3839,42 +4048,59 @@
       <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_default_len</name>
+    <name>过滤记录：cfg_profile_default_len</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace profile</send_true_to>
-<send_false_to>&#x5c06;&#x5b57;&#x6bb5;&#x503c;&#x8bbe;&#x7f6e;&#x4e3a;&#x5e38;&#x91cf;&#xff1a;cfg_profile_default</send_false_to>
+    <send_true_to>字段选择：replace profile</send_true_to>
+    <send_false_to>将字段值设置为常量：cfg_profile_default</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>cfg_profile_default</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>cfg_profile_default</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>&#x24;&#x7b;Profile.Use&#x7d;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>cfg_profile_default</leftvalue>
+            <function>&lt;></function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>0</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>#;-#</mask>
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>cfg_profile_default</leftvalue>
+            <function>&lt;></function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>${Profile.Use}</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3886,30 +4112,38 @@
       <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_profile_len</name>
+    <name>过滤记录：cfg_profile_len</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; ok len</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_profile&#x3a; no len</send_false_to>
+    <send_true_to>空操作 (什么也不做)：cfg_profile: ok len</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_profile: no len</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_profile_len</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_profile_len</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3921,30 +4155,38 @@
       <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_tag_len</name>
+    <name>过滤记录：cfg_tag_len</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;cfg_tag_len&#x3a; remove</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_tag&#x3a; no_len</send_false_to>
+    <send_true_to>字段选择：cfg_tag_len: remove</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_tag: no_len</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_tag_len</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_tag_len</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3956,30 +4198,38 @@
       <yloc>2624</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;cfg_type_len</name>
+    <name>过滤记录：cfg_type_len</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; ok_len</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;cfg_type&#x3a; no_len</send_false_to>
+    <send_true_to>空操作 (什么也不做)：cfg_type: ok_len</send_true_to>
+    <send_false_to>空操作 (什么也不做)：cfg_type: no_len</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>cfg_type_len</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cfg_type_len</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3991,35 +4241,43 @@
       <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;first</name>
+    <name>过滤记录：first</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Config.&#x5b;Base&#x5d;</send_true_to>
-<send_false_to>&#x4e2d;&#x6b62;&#xff1a;cfg_transformation&#x3a; first not exist</send_false_to>
+    <send_true_to>设置变量：Config.[Base]</send_true_to>
+    <send_false_to>中止：cfg_transformation: first not exist</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>cfg_transformation</leftvalue>
-   <function>IS NOT NULL</function>
-   <rightvalue/>
-   <value><name>constant</name><type>String</type><text>Directory</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>cfg_transformation</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Directory</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -4031,30 +4289,38 @@
       <yloc>6592</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;transformation_exist</name>
+    <name>过滤记录：transformation_exist</name>
     <type>FilterRows</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; exist</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;transformation&#x3a; not exist</send_false_to>
+    <send_true_to>空操作 (什么也不做)：transformation: exist</send_true_to>
+    <send_false_to>空操作 (什么也不做)：transformation: not exist</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>transformation_location_exist</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>transformation_location_exist</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -4066,8 +4332,7 @@
       <yloc>5824</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

@@ -1,24 +1,34 @@
-# Kettle-Scheduling-Scripts
-Summarizes the common run through the script of Pan and Kitchen PDI script
+# Kettle-Project-Toolbox
+
+[Chinese](../README_ZH.md)
+
+The toolbox commonly used in the kettle project are gathered.
+This includes running scripts, deployment scripts, and repository templates.
 
 In general, we need to use in the background PDI, this time it will not run Spoon, but run Pan and Kitchen, and for complex ETL, a common set of scheduling script can simplify development.
 
-Here I offer a set of scheduling script has been used in the actual project.
+Here I offer a set of toolbox script has been used in the actual project.
 
 Of course, now only Batch script for Windows.
 
 
 
-
-if(you.language.indexOf("chinese"))
-    go 4Chinese
-else
-    exit
+# Compatibility
 
 
+| Version | Supported | Why |
+|:-----:|:-----:|:-----:|
+| pdi-ce-7.0.0.0-25 | Yes | Develop on this |
+| pdi-ce-7.1.0.0-12 | Yes | Test default flow directory |
+| pdi-ce-8.0.0.0-28 | Yes | Test default flow directory |
+| pdi-ce-8.1.0.0-365 | No | Some variables fail |
 
-:4Chinese
-这里是我写的一些Kettle教程，维护在Google Doc上，应对基本的低耦合项目还是没问题的。
+## compatibility test log
 
-https://drive.google.com/folderview?id=0B3tzMIqntqjFfnduVXB5TU9EbWFhejRLRnhkMkNwRVFWbXIwT3dtQWs0d2xWSnZtWkwzdkU&usp=sharing
+### pdi-ce-8.1.0.0-365
 
+Set variable with **valid in the root job** in steps `Set Variables` and `Modified Java Script Value` fail,
+cant read it form other transformation,
+i think variable must replace by parameter,
+and especially at `Transformation (job entry)`,
+it cant use static characters mixed with variables.

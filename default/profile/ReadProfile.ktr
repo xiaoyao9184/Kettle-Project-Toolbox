@@ -1,37 +1,37 @@
 <transformation>
   <info>
     <name>ReadProfile</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;profile</directory>
+    <directory>/profile</directory>
     <parameters>
       <parameter>
-        <name>Name</name>
-        <default_value/>
-        <description>Profile&#x540d;&#x79f0;</description>
+        <name>Parameters.Profile.Home.Path</name>
+        <default_value>../default</default_value>
+        <description>Profile目标路径</description>
       </parameter>
       <parameter>
-        <name>ProjectPath</name>
-        <default_value>..&#x2f;default</default_value>
-        <description>&#x9879;&#x76ee;&#x8def;&#x5f84;</description>
+        <name>Parameters.Profile.Name</name>
+        <default_value />
+        <description>激活的参数Profile名称</description>
       </parameter>
       <parameter>
-        <name>UseMix</name>
+        <name>Parameters.Profile.UseMix</name>
         <default_value>true</default_value>
-        <description>&#x6df7;&#x5408;</description>
+        <description>混合激活Profile</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -56,37 +56,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -140,11 +140,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -222,10 +222,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -288,10 +288,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -364,10 +364,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -416,9 +416,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -429,7 +429,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -442,19 +442,34 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;08&#x2f;29 09&#x3a;35&#x3a;05.729</created_date>
+    <created_date>2017/08/29 09:35:05.729</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;12&#x2f;25 09&#x3a;30&#x3a;56.642</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2018/10/19 14:48:34.358</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;ProjectPath		&#x9879;&#x76ee;&#x8def;&#x5f84;&#xd;&#xa;UseMix			&#x6df7;&#x5408;&#x6fc0;&#x6d3b;Profile&#x28;&#x901a;&#x8fc7;&#x53c2;&#x6570;&#x2b;&#x6587;&#x4ef6;&#x540d;&#x6fc0;&#x6d3b;&#x29;&#xd;&#xa;Name			&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;&#x28;&#x53c2;&#x6570;&#x29;&#xd;&#xa;&#xd;&#xa;&#x4f1a;&#x751f;&#x6210;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xff1a;&#xd;&#xa;Profile.Use		Profile&#x540d;&#x79f0;&#x5217;&#x8868;&#xd;&#xa;Profile.Path		Profile&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xd;&#xa;Profile.Meta.Location		Profile&#x5143;&#x6570;&#x636e;&#x6587;&#x4ef6;&#x4f4d;&#x7f6e;&#xd;&#xa;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x6839;&#x636e;&#x9879;&#x76ee;&#x8def;&#x5f84;&#x63d0;&#x53d6;Profile&#x6fc0;&#x6d3b;&#x4fe1;&#x606f;&#xd;&#xa;&#x2018;.profile&#x2f;&#x2019;&#x76ee;&#x5f55;&#x4f5c;&#x4e3a;Profile.Path&#xff0c;&#xd;&#xa;&#x2018;.profile&#x2f;&#x2a;.profile&#x2019;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#x4f5c;&#x4e3a;Profile.Meta.Location&#xff0c;&#xd;&#xa;&#x6587;&#x4ef6;&#x540d;&#x4f5c;&#x4e3a;Profile.Use</note>
+      <note>依赖以下参数	
+Parameters.Profile.Home.Path	Profile目标路径(包含.profile目录)
+Parameters.Profile.Name	激活的参数Profile名称(多个,号分割)
+Parameters.Profile.UseMix	混合激活Profile(通过参数+文件名激活)
+
+
+会生成以下变量
+Profile.Use		Profile名称列表
+Profile.Meta.Path	Profile文件夹路径
+Profile.Meta.Location	Profile元数据文件位置
+
+====================
+根据项目路径提取Profile激活信息
+‘.profile/’目录作为Profile.Path，
+‘.profile/*.profile’文件路径作为Profile.Meta.Location，
+文件名作为Profile.Use</note>
       <xloc>400</xloc>
       <yloc>0</yloc>
-      <width>365</width>
-      <heigth>252</heigth>
+      <width>413</width>
+      <heigth>270</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -471,7 +486,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x8bfb;&#x53d6;Profile</note>
+      <note>读取Profile</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
       <width>71</width>
@@ -494,1298 +509,185 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;</from>
-      <to>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;</to>
+      <from>获取文件名</from>
+      <to>在内存中分组</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_file_location</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to>
+      <from>过滤记录:profile_file_location</from>
+      <to>空操作 (什么也不做)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_file_location</to>
+      <from>在内存中分组</from>
+      <to>过滤记录:profile_file_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_name_regex</to>
+      <from>获取变量：profile_meta_path</from>
+      <to>增加常量：profile_name_regex</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_name_regex</from>
-      <to>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;</to>
+      <from>增加常量：profile_name_regex</from>
+      <to>获取文件名</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_file_location</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_name</to>
+      <from>过滤记录:profile_file_location</from>
+      <to>字符串替换：profile_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_name</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_variable</to>
+      <from>字符串替换：profile_name</from>
+      <to>空操作 (什么也不做)：profile_variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_name_len</to>
+      <from>计算器：profile_name_len</from>
+      <to>过滤记录:profile_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_name_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x65e0;&#x540d;&#x79f0;</to>
+      <from>过滤记录:profile_name_len</from>
+      <to>空操作 (什么也不做):无名称</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_variable</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file scheme profile</to>
+      <from>空操作 (什么也不做)：profile_variable</from>
+      <to>增加常量：file scheme profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_name</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;param scheme profile</to>
+      <from>获取变量：profile_name</from>
+      <to>增加常量：param scheme profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file scheme profile</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x805a;&#x5408;scheme</to>
+      <from>增加常量：file scheme profile</from>
+      <to>空操作 (什么也不做):聚合scheme</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;param scheme profile</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x805a;&#x5408;scheme</to>
+      <from>增加常量：param scheme profile</from>
+      <to>空操作 (什么也不做):聚合scheme</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_mix</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_mix</to>
+      <from>获取变量：profile_mix</from>
+      <to>过滤记录:profile_mix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x805a;&#x5408;scheme</from>
-      <to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;profile_scheme_order</to>
+      <from>空操作 (什么也不做):聚合scheme</from>
+      <to>排序记录:profile_scheme_order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;profile_scheme_order</from>
-      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_mix</to>
+      <from>排序记录:profile_scheme_order</from>
+      <to>获取变量：profile_mix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#x3a;&#x805a;&#x5408;&#x3a;profile</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x4f7f;&#x7528;mix</to>
+      <from>在内存中分组:聚合:profile</from>
+      <to>字段选择:使用mix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x4f7f;&#x7528;mix</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x6c47;&#x805a;</to>
+      <from>字段选择:使用mix</from>
+      <to>空操作 (什么也不做):汇聚</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_mix</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</to>
+      <from>过滤记录:profile_mix</from>
+      <to>计算器：profile_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_name_len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x79fb;&#x9664;&#x3a;profile_name_len</to>
+      <from>过滤记录:profile_name_len</from>
+      <to>字段选择:移除:profile_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x79fb;&#x9664;&#x3a;profile_name_len</from>
-      <to>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#x3a;&#x805a;&#x5408;&#x3a;profile</to>
+      <from>字段选择:移除:profile_name_len</from>
+      <to>在内存中分组:聚合:profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x4e0d;&#x4f7f;&#x7528;mix</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x6c47;&#x805a;</to>
+      <from>字段选择:不使用mix</from>
+      <to>空操作 (什么也不做):汇聚</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_mix</from>
-      <to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;&#x5012;&#x5e8f;&#x3a;profile_scheme_order</to>
+      <from>过滤记录:profile_mix</from>
+      <to>排序记录:倒序:profile_scheme_order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;&#x5012;&#x5e8f;&#x3a;profile_scheme_order</from>
-      <to>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#x3a;&#x7b2c;&#x4e00;&#x4e2a;&#x3a;profile</to>
+      <from>排序记录:倒序:profile_scheme_order</from>
+      <to>在内存中分组:第一个:profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#x3a;&#x7b2c;&#x4e00;&#x4e2a;&#x3a;profile</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x4e0d;&#x4f7f;&#x7528;mix</to>
+      <from>在内存中分组:第一个:profile</from>
+      <to>字段选择:不使用mix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x81ea;&#x5b9a;&#x4e49;&#x5e38;&#x91cf;&#x6570;&#x636e;&#x3a;file</from>
-      <to>&#x8bbe;&#x7f6e;&#x503c;&#x4e3a;NULL&#x3a;all</to>
+      <from>自定义常量数据:file</from>
+      <to>设置值为NULL:all</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8bbe;&#x7f6e;&#x503c;&#x4e3a;NULL&#x3a;all</from>
-      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_name</to>
+      <from>设置值为NULL:all</from>
+      <to>获取变量：profile_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x6c47;&#x805a;</from>
-      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Profile.Use</to>
+      <from>空操作 (什么也不做):汇聚</from>
+      <to>设置变量：Profile.Use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Profile.Use</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;profile</to>
+      <from>设置变量：Profile.Use</from>
+      <to>写日志：profile</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <give_back_row>Y</give_back_row>
-      <group>
-        <field>
-          <name>profile_path</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>profile_meta_location</aggregate>
-          <subject>filename</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_meta_name</aggregate>
-          <subject>short_filename</subject>
-          <type>FIRST_INCL_NULL</type>
-          <valuefield/>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#x3a;&#x805a;&#x5408;&#x3a;profile</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>profile_mix</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>profile_path</aggregate>
-          <subject>profile_path</subject>
-          <type>FIRST</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_meta_location</aggregate>
-          <subject>profile_meta_location</subject>
-          <type>FIRST</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_meta_name</aggregate>
-          <subject>profile_meta_name</subject>
-          <type>FIRST</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_name</aggregate>
-          <subject>profile_name</subject>
-          <type>CONCAT_STRING</type>
-          <valuefield>,</valuefield>
-        </field>
-        <field>
-          <aggregate>profile_scheme</aggregate>
-          <subject>profile_scheme</subject>
-          <type>CONCAT_STRING</type>
-          <valuefield>,</valuefield>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1856</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file scheme profile</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_scheme</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>file</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>profile_scheme_order</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>1</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>928</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;param scheme profile</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_scheme</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>param</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>profile_scheme_order</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>928</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_name_regex</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_name_regex</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.&#x2a;profile</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x4f7f;&#x7528;mix</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>profile_path</name>
-        <rename/>
-      </field>      <field>        <name>profile_meta_location</name>
-        <rename/>
-      </field>      <field>        <name>profile_meta_name</name>
-        <rename/>
-      </field>      <field>        <name>profile_name</name>
-        <rename/>
-      </field>      <field>        <name>profile_scheme</name>
-        <rename/>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1984</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_name</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>profile_meta_name</in_stream_name>
-        <out_stream_name>profile_name</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>.profile</replace_string>
-        <replace_by_string/>
-        <set_empty_string>Y</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;profile_scheme_order</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>profile_scheme_order</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1152</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x65e0;&#x540d;&#x79f0;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>1632</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x805a;&#x5408;scheme</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1040</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x6c47;&#x805a;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2112</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_variable</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>800</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x81ea;&#x5b9a;&#x4e49;&#x5e38;&#x91cf;&#x6570;&#x636e;&#x3a;file</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_path</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>profile_meta_location</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>profile_meta_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <data>
-      <line> <item>-</item><item>-</item><item>-</item> </line>
-    </data>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_mix</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_mix</name>
-        <variable>&#x24;&#x7b;UseMix&#x7d;</variable>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1264</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_name</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_name</name>
-        <variable>&#x24;&#x7b;Name&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>816</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_path</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_path</name>
-        <variable>&#x24;&#x7b;ProjectPath&#x7d;&#x2f;.profile</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filter>
-      <filterfiletype>only_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>Y</filefield>
-    <rownum_field/>
-    <filename_Field>profile_path</filename_Field>
-    <wildcard_Field>profile_name_regex</wildcard_Field>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>profile_name_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>profile_name</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1504</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Profile.Use</name>
-    <type>SetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <field_name>profile_name</field_name>
-        <variable_name>Profile.Use</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>NONE</default_value>
-        </field>
-      <field>
-        <field_name>profile_path</field_name>
-        <variable_name>Profile.Path</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>-</default_value>
-        </field>
-      <field>
-        <field_name>profile_meta_location</field_name>
-        <variable_name>Profile.Meta.Location</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>-</default_value>
-        </field>
-      </fields>
-    <use_formatting>Y</use_formatting>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2240</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_file_location</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_name</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>profile_meta_location</leftvalue>
- <function>IS NOT NULL</function>
- <rightvalue/>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_mix</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_len</send_true_to>
-<send_false_to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;&#x5012;&#x5e8f;&#x3a;profile_scheme_order</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>profile_mix</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1360</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#x3a;profile_name_len</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x79fb;&#x9664;&#x3a;profile_name_len</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#x3a;&#x65e0;&#x540d;&#x79f0;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>profile_name_len</leftvalue>
- <function>&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1632</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x79fb;&#x9664;&#x3a;profile_name_len</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>profile_name_len</name>
-      </remove>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>1744</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x3a;&#x4e0d;&#x4f7f;&#x7528;mix</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>profile_path</name>
-        <rename/>
-      </field>      <field>        <name>profile_meta_location</name>
-        <rename/>
-      </field>      <field>        <name>profile_meta_name</name>
-        <rename/>
-      </field>      <field>        <name>profile_name</name>
-        <rename/>
-      </field>      <field>        <name>profile_scheme</name>
-        <rename/>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>1984</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#x3a;&#x5012;&#x5e8f;&#x3a;profile_scheme_order</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>profile_scheme_order</name>
-        <ascending>N</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>1504</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5728;&#x5185;&#x5b58;&#x4e2d;&#x5206;&#x7ec4;&#x3a;&#x7b2c;&#x4e00;&#x4e2a;&#x3a;profile</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <give_back_row>N</give_back_row>
-      <group>
-        <field>
-          <name>profile_mix</name>
-        </field>
-      </group>
-      <fields>
-        <field>
-          <aggregate>profile_path</aggregate>
-          <subject>profile_path</subject>
-          <type>FIRST</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_meta_location</aggregate>
-          <subject>profile_meta_location</subject>
-          <type>FIRST</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_meta_name</aggregate>
-          <subject>profile_meta_name</subject>
-          <type>FIRST</type>
-          <valuefield/>
-        </field>
-        <field>
-          <aggregate>profile_name</aggregate>
-          <subject>profile_name</subject>
-          <type>FIRST</type>
-          <valuefield>,</valuefield>
-        </field>
-        <field>
-          <aggregate>profile_scheme</aggregate>
-          <subject>profile_scheme</subject>
-          <type>FIRST</type>
-          <valuefield>,</valuefield>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>1856</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8bbe;&#x7f6e;&#x503c;&#x4e3a;NULL&#x3a;all</name>
-    <type>NullIf</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_path</name>
-        <value>-</value>
-        </field>
-      <field>
-        <name>profile_meta_location</name>
-        <value>-</value>
-        </field>
-      <field>
-        <name>profile_meta_name</name>
-        <value>-</value>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;profile</name>
+    <name>写日志：profile</name>
     <type>WriteToLog</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>Profile</logmessage>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>Profile</logmessage>
     <fields>
       <field>
-        <name>profile_path</name>
-        </field>
+        <name>profile_meta_path</name>
+      </field>
       <field>
         <name>profile_meta_location</name>
-        </field>
+      </field>
       <field>
         <name>profile_meta_name</name>
-        </field>
+      </field>
       <field>
         <name>profile_name</name>
-        </field>
+      </field>
       <field>
         <name>profile_scheme</name>
-        </field>
-      </fields>
-    <cluster_schema/>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1797,8 +699,1142 @@
       <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
+  <step>
+    <name>在内存中分组</name>
+    <type>MemoryGroupBy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>profile_meta_path</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>profile_meta_location</aggregate>
+        <subject>filename</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_meta_name</aggregate>
+        <subject>short_filename</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield />
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>在内存中分组:第一个:profile</name>
+    <type>MemoryGroupBy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>profile_mix</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>profile_meta_path</aggregate>
+        <subject>profile_meta_path</subject>
+        <type>FIRST</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_meta_location</aggregate>
+        <subject>profile_meta_location</subject>
+        <type>FIRST</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_meta_name</aggregate>
+        <subject>profile_meta_name</subject>
+        <type>FIRST</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_name</aggregate>
+        <subject>profile_name</subject>
+        <type>FIRST</type>
+        <valuefield>,</valuefield>
+      </field>
+      <field>
+        <aggregate>profile_scheme</aggregate>
+        <subject>profile_scheme</subject>
+        <type>FIRST</type>
+        <valuefield>,</valuefield>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>在内存中分组:聚合:profile</name>
+    <type>MemoryGroupBy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>profile_mix</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>profile_meta_path</aggregate>
+        <subject>profile_meta_path</subject>
+        <type>FIRST</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_meta_location</aggregate>
+        <subject>profile_meta_location</subject>
+        <type>FIRST</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_meta_name</aggregate>
+        <subject>profile_meta_name</subject>
+        <type>FIRST</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>profile_name</aggregate>
+        <subject>profile_name</subject>
+        <type>CONCAT_STRING</type>
+        <valuefield>,</valuefield>
+      </field>
+      <field>
+        <aggregate>profile_scheme</aggregate>
+        <subject>profile_scheme</subject>
+        <type>CONCAT_STRING</type>
+        <valuefield>,</valuefield>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加常量：file scheme profile</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_scheme</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>file</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>profile_scheme_order</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>1</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加常量：param scheme profile</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_scheme</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>param</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>profile_scheme_order</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加常量：profile_name_regex</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_name_regex</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>.*profile</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>字段选择:不使用mix</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_path</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_meta_location</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_meta_name</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_name</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_scheme</name>
+        <rename />
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>1984</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>字段选择:使用mix</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_path</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_meta_location</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_meta_name</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_name</name>
+        <rename />
+      </field>
+      <field>
+        <name>profile_scheme</name>
+        <rename />
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1984</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>字段选择:移除:profile_name_len</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>profile_name_len</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1744</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>字符串替换：profile_name</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>profile_meta_name</in_stream_name>
+        <out_stream_name>profile_name</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>.profile</replace_string>
+        <replace_by_string />
+        <set_empty_string>Y</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>排序记录:profile_scheme_order</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>profile_scheme_order</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1152</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>排序记录:倒序:profile_scheme_order</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>profile_scheme_order</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>1504</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>空操作 (什么也不做)</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>空操作 (什么也不做):无名称</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>1632</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>空操作 (什么也不做):汇聚</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>空操作 (什么也不做):聚合scheme</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>空操作 (什么也不做)：profile_variable</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>自定义常量数据:file</name>
+    <type>DataGrid</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_path</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>profile_meta_location</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>profile_meta_name</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>-</item>
+        <item>-</item>
+        <item>-</item>
+      </line>
+    </data>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>获取变量：profile_meta_path</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_path</name>
+        <variable>${Parameters.Profile.Home.Path}/.profile</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>获取变量：profile_mix</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_mix</name>
+        <variable>${Parameters.Profile.UseMix}</variable>
+        <type>Boolean</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1264</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>获取变量：profile_name</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_name</name>
+        <variable>${Parameters.Profile.Name}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>获取文件名</name>
+    <type>GetFileNames</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filter>
+      <filterfiletype>only_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>Y</filefield>
+    <rownum_field />
+    <filename_Field>profile_meta_path</filename_Field>
+    <wildcard_Field>profile_name_regex</wildcard_Field>
+    <exclude_wildcard_Field />
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>计算器：profile_name_len</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>profile_name_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>profile_name</field_a>
+      <field_b />
+      <field_c />
+      <value_type>None</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1504</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>设置值为NULL:all</name>
+    <type>NullIf</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_path</name>
+        <value>-</value>
+      </field>
+      <field>
+        <name>profile_meta_location</name>
+        <value>-</value>
+      </field>
+      <field>
+        <name>profile_meta_name</name>
+        <value>-</value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>设置变量：Profile.Use</name>
+    <type>SetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <field_name>profile_name</field_name>
+        <variable_name>Profile.Use</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value>NONE</default_value>
+      </field>
+      <field>
+        <field_name>profile_meta_path</field_name>
+        <variable_name>Profile.Meta.Path</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value>-</default_value>
+      </field>
+      <field>
+        <field_name>profile_meta_location</field_name>
+        <variable_name>Profile.Meta.Location</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value>-</default_value>
+      </field>
+    </fields>
+    <use_formatting>Y</use_formatting>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>过滤记录:profile_file_location</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>字符串替换：profile_name</send_true_to>
+    <send_false_to>空操作 (什么也不做)</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>profile_meta_location</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue />
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>过滤记录:profile_mix</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>计算器：profile_name_len</send_true_to>
+    <send_false_to>排序记录:倒序:profile_scheme_order</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>profile_mix</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1360</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>过滤记录:profile_name_len</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>字段选择:移除:profile_name_len</send_true_to>
+    <send_false_to>空操作 (什么也不做):无名称</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>profile_name_len</leftvalue>
+        <function>&gt;</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>1632</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

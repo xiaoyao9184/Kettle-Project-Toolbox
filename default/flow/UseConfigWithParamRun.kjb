@@ -8,7 +8,7 @@
   <created_user>-</created_user>
   <created_date>2017&#x2f;08&#x2f;28 08&#x3a;58&#x3a;03.988</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2017&#x2f;08&#x2f;28 09&#x3a;37&#x3a;50.051</modified_date>
+  <modified_date>2018&#x2f;10&#x2f;19 15&#x3a;12&#x3a;35.758</modified_date>
     <parameters>
       <parameter>
         <name>CfgName</name>
@@ -17,6 +17,11 @@
       </parameter>
       <parameter>
         <name>CfgPath</name>
+        <default_value/>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>CfgProfile</name>
         <default_value/>
         <description/>
       </parameter>
@@ -371,7 +376,28 @@
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
+            <parameter>            <name>Parameters.Cfg.Name</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;CfgName&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Path</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;CfgPath&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Profile</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;CfgProfile&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Tag</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;CfgTag&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Cfg.Type</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;CfgType&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Kettle.Home.Path</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;KettleHomePath&#x7d;</value>
+            </parameter>            <parameter>            <name>Parameters.Repository.Name</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;RepName&#x7d;</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -452,11 +478,11 @@
   </hops>
   <notepads>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;CfgName&#xd;&#xa;CfgPath&#xd;&#xa;CfgTag&#xd;&#xa;CfgType&#xd;&#xa;KettleHomePath&#xd;&#xa;RepName&#xd;&#xa;JobName&#xd;&#xa;JobPath</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;CfgName&#xd;&#xa;CfgPath&#xd;&#xa;CfgProfile&#xd;&#xa;CfgTag&#xd;&#xa;CfgType&#xd;&#xa;KettleHomePath&#xd;&#xa;RepName&#xd;&#xa;JobName&#xd;&#xa;JobPath</note>
       <xloc>304</xloc>
       <yloc>0</yloc>
       <width>104</width>
-      <heigth>171</heigth>
+      <heigth>187</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
