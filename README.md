@@ -1,6 +1,6 @@
 # Kettle-Project-Toolbox
 
-[Chinese](../README_ZH.md)
+[Chinese](README_ZH.md)
 
 The toolbox commonly used in the kettle project are gathered.
 This includes running scripts, deployment scripts, and repository templates.

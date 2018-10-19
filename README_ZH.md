@@ -1,6 +1,6 @@
 # Kettle项目工具箱
 
-[English](../README.md)
+[English](README.md)
 
 汇聚了Kettle项目常用的工具。
 包括运行脚本，部署脚本，资源库模板。
