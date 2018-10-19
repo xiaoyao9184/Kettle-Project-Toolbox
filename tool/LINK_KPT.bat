@@ -17,7 +17,7 @@ set pdiPath=%2
 set interactive=1
 if "%1" equ "" set interactive=0
 
-set echo_linkPath=需要输入KSS链接目录路径
+set echo_linkPath=需要输入KTP链接目录路径
 set eset_linkPath=请输入路径或拖动目录到此，然后回车：
 
 :title
