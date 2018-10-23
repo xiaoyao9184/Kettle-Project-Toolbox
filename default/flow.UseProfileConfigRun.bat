@@ -147,13 +147,17 @@ if _%JENKINS_HOME%_ neq __ (
 )
 
 ::执行完毕
-echo 已经执行完毕，可以结束此程序
+if %errorlevel% equ 0 (
+    echo 已经执行完毕，可以结束此程序
+) else (
+    echo 执行脚本，发现错误！
+)
 
-pause
+if _%interactive%_ equ _0_ pause
 
 
 :end
 
 ::5退出
 
-exit /b 0
+exit /b %errorlevel%
