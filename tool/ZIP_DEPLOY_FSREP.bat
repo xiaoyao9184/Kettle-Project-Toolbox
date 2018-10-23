@@ -65,13 +65,17 @@ echo 运行中...      Ctrl+C结束程序
 call kitchen -file:%~dp0ZipDeploy4RepositoryFile.kjb "-param:rNameRegex=%rName%" "-param:notRegex=.*\.backup$|.*\.log$|.*\.git\\.*|.*db\.cache.*" "-param:regex=.*""%isOpenShell%
 
 ::执行完毕
-if _%interactive%_ equ _1_ exit /b 0
-echo 已经执行完毕，可以结束此程序
-pause
+if %errorlevel% equ 0 (
+    echo 已经执行完毕，可以结束此程序
+) else (
+    echo 执行脚本，发现错误！
+)
+
+if _%interactive%_ equ _0_ pause
 
 
 :end
 
 ::5退出
 
-exit /b 0
+exit /b %errorlevel%
