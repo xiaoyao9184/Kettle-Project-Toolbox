@@ -9,10 +9,12 @@ Setlocal enabledelayedexpansion
 :v
 
 ::1变量赋值
-set tip=Kettle基本工具：生成目录联接
+set tip=Kettle基本工具：生成目录链接
 set ver=1.0
 set linkPath=%1
 set targetPath=%2
+set skipConflictCheck=%3
+set forceConflictReplace=%4
 ::not set param set 0
 set interactive=1
 if "%1" equ "" set interactive=0
@@ -30,7 +32,7 @@ if _%interactive%_ neq _0_ goto check
 
 title %tip% %ver%
 
-echo Kettle基本工具：生成目录联接
+echo Kettle基本工具：生成目录链接
 echo 运行结束后可以关闭
 echo ...
 
@@ -46,17 +48,27 @@ if "%targetPath%"=="" (
 	set /p targetPath=%eset_targetPath%
 )
 
+if "%skipConflictCheck%"=="skip" (
+	goto begin
+)
+
+:check_conflict
+
 if exist %linkPath% (
 	for %%i in (%linkPath%) do (
-		for /f %%j in ('echo %%~ai^|find /i "-l"') do ( 
-			choice /c dre /m 联接目录已经是符号联接，删除联接^(D^)；替换联接^(R^)；保持不变^(默认E^)？ /t 10  /d e
+		for /f %%j in ('echo %%~ai^|find /i "-l"') do (
+			echo 检测到冲突，链接目录已经是符号链接！
+			if "!forceConflictReplace!" equ "force" goto replace
+			choice /c dre /m 链接目录已经是符号链接，删除链接^(D^)；替换链接^(R^)；保持不变^(默认E^)？ /t 10  /d e
 			if !errorlevel! equ 1 goto dele
 			if !errorlevel! equ 2 goto replace
 			if !errorlevel! equ 3 goto quit
 		)
 	)
 	
-	choice /c yn /m 联接目录文件夹已经存在，删除文件夹后建立联接^(Y^)；取消^(N^)？ /t 10  /d n
+	echo 检测到冲突，链接目录文件夹已经存在！
+	if "!forceConflictReplace!" equ "force" goto replace
+	choice /c yn /m 链接目录文件夹已经存在，删除文件夹后建立链接^(Y^)；取消^(N^)？ /t 10  /d n
 	if !errorlevel! equ 1 goto replace
 	if !errorlevel! equ 2 goto quit
 	
@@ -66,12 +78,12 @@ if exist %linkPath% (
 	goto end
 :dele
 	rd /s /q %linkPath%
-	echo 删除联接目录，退出...
+	echo 删除链接目录，退出...
         pause
 	goto end
 :replace
 	rd /s /q %linkPath%
-	echo 删除联接目录完毕
+	echo 删除链接目录完毕
 )
 
 :begin
@@ -94,10 +106,12 @@ if _%interactive%_ equ _0_ echo %c%
 call %c%
 
 ::执行完毕
-if _%interactive%_ equ _0_ echo 已经执行完毕，可以结束此程序
+if %errorlevel% equ 0 (
+    echo 已经执行完毕，可以结束此程序
+) else (
+    echo 执行脚本，发现错误！
+)
 
-
-:endwait
 if _%interactive%_ equ _0_ pause
 
 
@@ -105,4 +119,4 @@ if _%interactive%_ equ _0_ pause
 
 ::5退出
 
-exit /b 0
+exit /b %errorlevel%
