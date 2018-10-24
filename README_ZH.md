@@ -28,12 +28,20 @@
 
 ### pdi-ce-8.1.0.0-365
 
-
 使用步骤 `Set Variables` 或  `Modified Java Script Value` 设置变量为 **valid in the root job** 失败，
 从其他的转换中无法读取变量,
 我猜测变量不能像以前一样不声明就可使用，可能需要声明称参数，
 尤其是在 `Transformation (job entry)` 作业项中，
 无法使用混合变量与字符串常量一起使用。
+
+
+
+# 与 Jenkins 配合运行
+
+所有脚本都可运行在Jenkins中。
+必须设置 JAVA_HOME 环境变量，
+否则 kitchen 和 pan 将返回错误的退出代码，造成jenkins错误。
+
 
 
 # 教程

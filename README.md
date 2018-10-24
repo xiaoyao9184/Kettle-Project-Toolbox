@@ -32,3 +32,11 @@ cant read it form other transformation,
 i think variable must replace by parameter,
 and especially at `Transformation (job entry)`,
 it cant use static characters mixed with variables.
+
+
+
+# Use with jenkins
+
+All scripts can run on jenkins
+The JAVA_HOME environment variable must be set.
+Otherwise kitchen and pan will return the error exit code, and jenkins will error.
