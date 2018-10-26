@@ -444,7 +444,7 @@
     <created_user>-</created_user>
     <created_date>2017/08/29 09:35:05.729</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/19 14:48:34.358</modified_date>
+    <modified_date>2018/10/26 09:23:30.645</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -509,17 +509,12 @@ Profile.Meta.Location	Profile元数据文件位置
   </notepads>
   <order>
     <hop>
-      <from>获取文件名</from>
-      <to>在内存中分组</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>过滤记录:profile_file_location</from>
       <to>空操作 (什么也不做)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>在内存中分组</from>
+      <from>在内存中分组：至取第一个profile</from>
       <to>过滤记录:profile_file_location</to>
       <enabled>Y</enabled>
     </hop>
@@ -653,6 +648,21 @@ Profile.Meta.Location	Profile元数据文件位置
       <to>写日志：profile</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>获取文件名</from>
+      <to>过滤记录:empty file name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>过滤记录:empty file name</from>
+      <to>空操作 (什么也不做)：无效profile名称</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>过滤记录:empty file name</from>
+      <to>在内存中分组：至取第一个profile</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>写日志：profile</name>
@@ -696,12 +706,12 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>2240</yloc>
+      <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>在内存中分组</name>
+    <name>在内存中分组：至取第一个profile</name>
     <type>MemoryGroupBy</type>
     <description />
     <distribute>Y</distribute>
@@ -740,7 +750,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>416</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -802,7 +812,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>512</xloc>
-      <yloc>1856</yloc>
+      <yloc>1984</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -864,7 +874,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>1856</yloc>
+      <yloc>1984</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -914,7 +924,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>928</yloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -964,7 +974,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>496</xloc>
-      <yloc>928</yloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1020,23 +1030,18 @@ Profile.Meta.Location	Profile元数据文件位置
     <fields>
       <field>
         <name>profile_meta_path</name>
-        <rename />
       </field>
       <field>
         <name>profile_meta_location</name>
-        <rename />
       </field>
       <field>
         <name>profile_meta_name</name>
-        <rename />
       </field>
       <field>
         <name>profile_name</name>
-        <rename />
       </field>
       <field>
         <name>profile_scheme</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1049,7 +1054,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>512</xloc>
-      <yloc>1984</yloc>
+      <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1067,23 +1072,18 @@ Profile.Meta.Location	Profile元数据文件位置
     <fields>
       <field>
         <name>profile_meta_path</name>
-        <rename />
       </field>
       <field>
         <name>profile_meta_location</name>
-        <rename />
       </field>
       <field>
         <name>profile_meta_name</name>
-        <rename />
       </field>
       <field>
         <name>profile_name</name>
-        <rename />
       </field>
       <field>
         <name>profile_scheme</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1096,7 +1096,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>1984</yloc>
+      <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1126,7 +1126,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>1744</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1163,7 +1163,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>672</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1204,7 +1204,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1152</yloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1245,7 +1245,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>512</xloc>
-      <yloc>1504</yloc>
+      <yloc>1632</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1269,7 +1269,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>544</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1293,7 +1293,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1632</yloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1317,7 +1317,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2112</yloc>
+      <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1341,7 +1341,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1040</yloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1365,7 +1365,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>800</yloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1431,7 +1431,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>496</xloc>
-      <yloc>544</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1507,7 +1507,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1264</yloc>
+      <yloc>1392</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1545,7 +1545,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>496</xloc>
-      <yloc>800</yloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1628,7 +1628,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>1504</yloc>
+      <yloc>1632</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1666,7 +1666,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>496</xloc>
-      <yloc>672</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1711,7 +1711,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2240</yloc>
+      <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1745,7 +1745,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>544</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1788,7 +1788,7 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1360</yloc>
+      <yloc>1488</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1831,7 +1831,74 @@ Profile.Meta.Location	Profile元数据文件位置
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>1632</yloc>
+      <yloc>1760</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>过滤记录:empty file name</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>在内存中分组：至取第一个profile</send_true_to>
+    <send_false_to>空操作 (什么也不做)：无效profile名称</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>short_filename</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>.profile</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>空操作 (什么也不做)：无效profile名称</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
