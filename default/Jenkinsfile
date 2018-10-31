@@ -1,0 +1,103 @@
+﻿pipeline {
+    agent any
+    parameters {
+        string(name: 'ProjectName', defaultValue: 'default', description: 'project name!')
+        string(name: 'PDIPath', defaultValue: 'D:\\Program\\Kettle\\data-integration', description: 'data-integration directory')
+        string(name: 'KPTPath', defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', description: 'Kettle-Project-Toolbox directory')
+        string(name: 'DeployPath', defaultValue: 'D:\\Program\\ETL', description: 'project directory!')
+        string(name: 'ArchivePath', defaultValue: 'D:\\Archive\\DataCenter', description: 'archive directory!')
+        string(name: 'Profile', defaultValue: 'dev', description: 'active profile!')
+    }
+    options {
+        skipDefaultCheckout()
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                dir("${params.ProjectName}") {
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Link') {
+            steps {
+                bat """
+                call "${params.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${params.PDIPath}"
+                """
+            }
+        }
+
+        stage('Package') {
+            steps {
+                bat """
+                call %cd%\\tool\\ZIP_DEPLOY_PATH.bat %cd%\\${params.ProjectName}
+                """
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                script {
+                    env.ArchiveFile = bat(
+                        script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nxF", 
+                        // script: "@echo off & FOR %%F IN ("[Deploy]DataCenter*.zip") DO echo %%~nxF", 
+                        returnStdout: true).trim()
+                    env.ArchiveName = bat(
+                        script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nF", 
+                        // script: "@echo off & FOR %%F IN ("[Deploy]DataCenter*.zip") DO echo %%~nxF", 
+                        returnStdout: true).trim()
+                }
+                echo "ArchiveFile is: ${env.ArchiveFile}"
+                echo "ArchiveName is: ${env.ArchiveName}"
+                bat """
+                IF NOT EXIST "${params.ArchivePath}" MKDIR "${params.ArchivePath}"
+                MOVE /y "[Deploy]${params.ProjectName}*.zip" "${params.ArchivePath}"
+                """
+            }
+        }
+
+
+        stage('Deploy') {
+            steps {
+                //jobDsl cant use mixed separator
+                //use windows path separator for it
+                dir("${params.DeployPath}\\${env.ArchiveName}\\${params.ProjectName}") {
+                    echo 'Checkout project...'
+                    checkout scm
+                }
+                dir("${params.DeployPath}\\${env.ArchiveName}") {
+                    // echo 'Checkout project...'
+                    // checkout scm
+                    // fileOperations([
+                    //     fileCopyOperation(
+                    //         excludes: '', 
+                    //         flattenFiles: true, 
+                    //         includes: '*.MTS', 
+                    //         targetLocation: "${WORKSPACE}")])
+
+                    echo 'Link Install PDI and KPT...'
+                    bat """
+                    call "${params.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${params.PDIPath}"
+                    """
+
+                    echo 'Active profile...'
+                    bat """
+                    CD /d ${params.ProjectName}\\.profile
+                    REN ".profile" "${params.Profile}.profile"
+                    """
+
+                    echo 'Add deploy scheduling job...'
+                    jobDsl(
+                        targets: "${params.ProjectName}\\jenkins\\job_dsl.groovy", 
+                        removedJobAction: 'DELETE', 
+                        removedViewAction: 'DELETE',
+                        additionalParameters: [
+                            ProjectPath: "${params.DeployPath}\\${env.ArchiveName}\\${params.ProjectName}"
+                        ]
+                    )
+                }
+            }
+        }
+    }
+}
