@@ -4,9 +4,9 @@
         string(name: 'ProjectName', defaultValue: 'default', description: 'project name!')
         string(name: 'PDIPath', defaultValue: 'D:\\Program\\Kettle\\data-integration', description: 'data-integration directory')
         string(name: 'KPTPath', defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', description: 'Kettle-Project-Toolbox directory')
-        string(name: 'DeployPath', defaultValue: 'D:\\Program\\ETL', description: 'project directory!')
         string(name: 'ArchivePath', defaultValue: 'D:\\Archive\\DataCenter', description: 'archive directory!')
-        string(name: 'Profile', defaultValue: 'dev', description: 'active profile!')
+        string(name: 'DeployPath', defaultValue: 'D:\\Program\\ETL', description: 'project directory!')
+        string(name: 'DeployProfile', defaultValue: 'dev', description: 'active profile!')
     }
     options {
         skipDefaultCheckout()
@@ -84,7 +84,7 @@
                     echo 'Active profile...'
                     bat """
                     CD /d ${params.ProjectName}\\.profile
-                    REN ".profile" "${params.Profile}.profile"
+                    REN ".profile" "${params.DeployProfile}.profile"
                     """
 
                     echo 'Add deploy scheduling job...'
