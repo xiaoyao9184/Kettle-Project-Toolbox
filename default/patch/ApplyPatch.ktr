@@ -1,32 +1,22 @@
 <transformation>
   <info>
-    <name>ActiveProfile</name>
+    <name>ApplyPatch</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/profile</directory>
+    <directory>/patch</directory>
     <parameters>
       <parameter>
-        <name>Parameters.Profile.Home.Path</name>
+        <name>Parameters.Kettle.Dir</name>
         <default_value />
-        <description>Profile目标路径</description>
+        <description>PDI路径</description>
       </parameter>
       <parameter>
-        <name>Parameters.Profile.Meta.Location</name>
+        <name>Parameters.Patch.Path</name>
         <default_value />
-        <description>ProfileMeta文件位置</description>
-      </parameter>
-      <parameter>
-        <name>Parameters.Profile.Meta.Path</name>
-        <default_value />
-        <description>Profile目标路径</description>
-      </parameter>
-      <parameter>
-        <name>Parameters.Profile.Name</name>
-        <default_value>dev</default_value>
-        <description>激活的Profile名称</description>
+        <description>Patch路径</description>
       </parameter>
     </parameters>
     <log>
@@ -449,99 +439,15 @@
     <created_user>-</created_user>
     <created_date>2017/08/29 15:35:13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/11/01 15:39:23.509</modified_date>
+    <modified_date>2018/11/01 17:02:10.478</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>profile_file_location</note>
-      <xloc>416</xloc>
-      <yloc>1808</yloc>
-      <width>122</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>profile_path</note>
-      <xloc>416</xloc>
-      <yloc>1040</yloc>
-      <width>80</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>last profile_file</note>
-      <xloc>416</xloc>
-      <yloc>2448</yloc>
-      <width>94</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>home_path</note>
-      <xloc>288</xloc>
-      <yloc>2832</yloc>
-      <width>75</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
       <note>exist hash</note>
-      <xloc>288</xloc>
-      <yloc>3344</yloc>
+      <xloc>320</xloc>
+      <yloc>1680</yloc>
       <width>68</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -561,8 +467,8 @@
     </notepad>
     <notepad>
       <note>handle</note>
-      <xloc>288</xloc>
-      <yloc>4112</yloc>
+      <xloc>320</xloc>
+      <yloc>2448</yloc>
       <width>49</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -581,10 +487,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>default profile_file</note>
-      <xloc>160</xloc>
-      <yloc>272</yloc>
-      <width>114</width>
+      <note>patch_file</note>
+      <xloc>320</xloc>
+      <yloc>736</yloc>
+      <width>64</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -602,10 +508,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>customize profile_file</note>
-      <xloc>416</xloc>
-      <yloc>272</yloc>
-      <width>132</width>
+      <note>patch_file_location</note>
+      <xloc>320</xloc>
+      <yloc>336</yloc>
+      <width>116</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -623,10 +529,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>profile_name</note>
-      <xloc>416</xloc>
-      <yloc>400</yloc>
-      <width>85</width>
+      <note>kettle_dir</note>
+      <xloc>320</xloc>
+      <yloc>1152</yloc>
+      <width>63</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -644,61 +550,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>激活Profile</note>
+      <note>应用补丁</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>71</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>依赖以下参数
-Parameters.Profile.Meta.Location	ProfileMeta文件位置
-Parameters.Profile.Meta.Path		ProfileMeta文件路径
-Parameters.Profile.Name		激活的Profile名称(参数)
-Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
-
-====================
-将根据ProfileName从Profile文件夹中提取Profile文件，
-结合ProfileMeta中的Profile文件列表，针对项目文件夹，
-做创建、替换、删除操作</note>
-      <xloc>384</xloc>
-      <yloc>0</yloc>
-      <width>433</width>
-      <heigth>171</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>profile_file</note>
-      <xloc>416</xloc>
-      <yloc>2192</yloc>
-      <width>70</width>
+      <width>58</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -719,17 +574,12 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
   <order>
     <hop>
       <from>增加常量：path_delimiter</from>
-      <to>获取变量；home_path</to>
+      <to>获取变量；kettle_dir</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>计算器：source_location&amp;target_location</from>
       <to>检查文件是否存在：source_exist</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>获取变量；home_path</from>
-      <to>计算器：source_location&amp;target_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -838,138 +688,18 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：profile_meta_path</from>
-      <to>计算器：profile_name_list_len</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>计算器：profile_name_list_len</from>
-      <to>过滤记录：profile_name_list_len</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>过滤记录：profile_name_list_len</from>
-      <to>空操作 (什么也不做)：profile_name_list: not set</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>过滤记录：profile_name_list_len</from>
-      <to>字段选择：profile_name_list_len: remove</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>排序记录：file&amp;order</from>
-      <to>去除重复记录：last profile file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>获取变量：profile_meta_location</from>
-      <to>文本文件输入：profile_file: default</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>文本文件输入：profile_file: default</from>
-      <to>字段选择：profile_meta_location: remove</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择：profile_name_list_len: remove</from>
-      <to>列拆分为多行：profile_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>增加常量：profile_path_delimiter</from>
-      <to>计算器：profile_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JavaScript代码：profile_file</from>
+      <from>JavaScript代码：patch_file</from>
       <to>字段选择：profile_file_location: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_meta_location: remove</from>
-      <to>增加常量：profile_path</to>
+      <from>字符串替换：patch_file_location: extra delimiter</from>
+      <to>JavaScript代码：patch_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_file_location: remove</from>
-      <to>排序记录：file&amp;order</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>去除重复记录：last profile file</from>
-      <to>字段选择：profile_file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>列拆分为多行：profile_name</from>
-      <to>字段选择：profile_name_list: remove</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择：profile_name_list: remove</from>
-      <to>增加常量：profile_path_delimiter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>计算器：profile_path</from>
-      <to>字段选择：profile_path_delimiter: remove</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择：profile_file</from>
-      <to>合并记录：profile_file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>合并记录：profile_file</from>
-      <to>增加常量：path_delimiter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>空操作 (什么也不做)：profile_file: default</from>
-      <to>合并记录：profile_file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>增加常量：profile_path</from>
-      <to>空操作 (什么也不做)：profile_file: default</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>获取文件名：profile_path</from>
-      <to>字段选择：profile_path: replace</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择：profile_path: replace</from>
-      <to>获取文件名：profile_file_location</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择：profile_path_delimiter: remove</from>
-      <to>字符串替换：profile_path: extra delimiter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字符串替换：profile_path: extra delimiter</from>
-      <to>获取文件名：profile_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字符串替换：profile_file_location: extra delimiter</from>
-      <to>JavaScript代码：profile_file</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>获取文件名：profile_file_location</from>
-      <to>字段选择：profile_file_location: replace</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择：profile_file_location: replace</from>
-      <to>字符串替换：profile_file_location: extra delimiter</to>
+      <from>字段选择：patch_file_location</from>
+      <to>字符串替换：patch_file_location: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -987,9 +717,49 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       <to>过滤记录：source target exist</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>获取文件名：patch_file_location</from>
+      <to>字段选择：patch_file_location</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>字段选择：profile_file_location: remove</from>
+      <to>增加常量：path_delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>增加常量：patch_file_regex</from>
+      <to>获取文件名：patch_file_location</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>获取变量：patch_path</from>
+      <to>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:patch_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:patch_path</from>
+      <to>增加常量：patch_file_regex</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>获取变量；kettle_dir</from>
+      <to>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:kettle_dir</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:kettle_dir</from>
+      <to>字符串替换：kettle_dir: extra delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>字符串替换：kettle_dir: extra delimiter</from>
+      <to>计算器：source_location&amp;target_location</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
-    <name>JavaScript代码：profile_file</name>
+    <name>JavaScript代码：patch_file</name>
     <type>ScriptValueMod</type>
     <description />
     <distribute>Y</distribute>
@@ -1005,14 +775,14 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>profile_file = replace(profile_file_location,profile_path + "/","")
+        <jsScript_script>patch_file = replace(patch_file_location,patch_path + "/","")
 </jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>profile_file</name>
-        <rename>profile_file</rename>
+        <name>patch_file</name>
+        <rename>patch_file</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1027,8 +797,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2256</yloc>
+      <xloc>288</xloc>
+      <yloc>816</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1055,8 +825,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4688</yloc>
+      <xloc>288</xloc>
+      <yloc>3024</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1078,7 +848,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <logmessage>created</logmessage>
     <fields>
       <field>
-        <name>profile_file</name>
+        <name>patch_file</name>
       </field>
     </fields>
     <cluster_schema />
@@ -1089,8 +859,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>4432</yloc>
+      <xloc>608</xloc>
+      <yloc>2768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1112,7 +882,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <logmessage>deleted</logmessage>
     <fields>
       <field>
-        <name>profile_file</name>
+        <name>patch_file</name>
       </field>
     </fields>
     <cluster_schema />
@@ -1123,8 +893,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>4560</yloc>
+      <xloc>608</xloc>
+      <yloc>2896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1146,7 +916,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <logmessage>nothing</logmessage>
     <fields>
       <field>
-        <name>profile_file</name>
+        <name>patch_file</name>
       </field>
     </fields>
     <cluster_schema />
@@ -1157,8 +927,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>4176</yloc>
+      <xloc>608</xloc>
+      <yloc>2512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1180,7 +950,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <logmessage>replaced</logmessage>
     <fields>
       <field>
-        <name>profile_file</name>
+        <name>patch_file</name>
       </field>
     </fields>
     <cluster_schema />
@@ -1191,108 +961,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>4304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>列拆分为多行：profile_name</name>
-    <type>SplitFieldToRows3</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <splitfield>profile_name_list</splitfield>
-    <delimiter>,</delimiter>
-    <newfield>profile_name</newfield>
-    <rownum>Y</rownum>
-    <rownum_field>profile_order</rownum_field>
-    <resetrownumber>Y</resetrownumber>
-    <delimiter_is_regex>N</delimiter_is_regex>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>848</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>去除重复记录：last profile file</name>
-    <type>Unique</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <count_rows>Y</count_rows>
-    <count_field>file_number</count_field>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description />
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
+      <xloc>608</xloc>
       <yloc>2640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>合并记录：profile_file</name>
-    <type>MergeRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <keys>
-      <key>profile_file</key>
-    </keys>
-    <values>
-      <value>profile_file</value>
-    </values>
-    <flag_field>profile_file_flag</flag_field>
-    <reference>空操作 (什么也不做)：profile_file: default</reference>
-    <compare>字段选择：profile_file</compare>
-    <compare>
-    </compare>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>2896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1329,96 +999,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3024</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>增加常量：profile_path</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_path</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif />
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>720</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>增加常量：profile_path_delimiter</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_path_delimiter</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>/</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>profile_file_regex</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>.*</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1104</yloc>
+      <xloc>288</xloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1455,8 +1037,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>3920</yloc>
+      <xloc>128</xloc>
+      <yloc>2256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1493,8 +1075,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>3664</yloc>
+      <xloc>128</xloc>
+      <yloc>2000</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1524,8 +1106,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4432</yloc>
+      <xloc>448</xloc>
+      <yloc>2768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1555,8 +1137,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4560</yloc>
+      <xloc>448</xloc>
+      <yloc>2896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1586,41 +1168,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字段选择：profile_file</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_file</name>
-      </field>
-      <field>
-        <name>profile_path</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2768</yloc>
+      <xloc>448</xloc>
+      <yloc>2640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1638,7 +1187,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>profile_file_location</name>
+        <name>patch_file_location</name>
       </remove>
     </fields>
     <cluster_schema />
@@ -1649,13 +1198,13 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2384</yloc>
+      <xloc>288</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>字段选择：profile_file_location: replace</name>
+    <name>字段选择：patch_file_location</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1667,17 +1216,12 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     </partitioning>
     <fields>
       <field>
-        <name>profile_name</name>
-      </field>
-      <field>
-        <name>profile_order</name>
-      </field>
-      <field>
-        <name>profile_path</name>
+        <name>patch_path</name>
+        <rename />
       </field>
       <field>
         <name>filename</name>
-        <rename>profile_file_location</rename>
+        <rename>patch_file_location</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -1689,176 +1233,13 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2000</yloc>
+      <xloc>288</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>字段选择：profile_meta_location: remove</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_meta_location</name>
-      </remove>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字段选择：profile_name_list: remove</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_name_list</name>
-      </remove>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>976</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字段选择：profile_name_list_len: remove</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_name_list_len</name>
-      </remove>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>720</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字段选择：profile_path: replace</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_name</name>
-      </field>
-      <field>
-        <name>profile_order</name>
-      </field>
-      <field>
-        <name>filename</name>
-        <rename>profile_path</rename>
-      </field>
-      <field>
-        <name>profile_file_regex</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1744</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字段选择：profile_path_delimiter: remove</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_meta_path</name>
-      </remove>
-      <remove>
-        <name>profile_path_delimiter</name>
-      </remove>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1360</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字符串替换：profile_file_location: extra delimiter</name>
+    <name>字符串替换：patch_file_location: extra delimiter</name>
     <type>ReplaceString</type>
     <description />
     <distribute>Y</distribute>
@@ -1870,7 +1251,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>profile_path</in_stream_name>
+        <in_stream_name>patch_path</in_stream_name>
         <out_stream_name />
         <use_regex>yes</use_regex>
         <replace_string>//{2,}|\\{1,}</replace_string>
@@ -1881,44 +1262,7 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
         <case_sensitive>no</case_sensitive>
       </field>
       <field>
-        <in_stream_name>profile_file_location</in_stream_name>
-        <out_stream_name />
-        <use_regex>yes</use_regex>
-        <replace_string>//{2,}|\\{1,}</replace_string>
-        <replace_by_string>/</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string />
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字符串替换：profile_path: extra delimiter</name>
-    <type>ReplaceString</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>profile_path</in_stream_name>
+        <in_stream_name>patch_file_location</in_stream_name>
         <out_stream_name />
         <use_regex>yes</use_regex>
         <replace_string>//{2,}|\\{1,}</replace_string>
@@ -1937,161 +1281,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1488</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>排序记录：file&amp;order</name>
-    <type>SortRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>profile_order</name>
-        <ascending>N</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2512</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>文本文件输入：profile_file: default</name>
-    <type>TextFileInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <accept_filenames>Y</accept_filenames>
-    <passing_through_fields>Y</passing_through_fields>
-    <accept_field>profile_meta_location</accept_field>
-    <accept_stepname>获取变量：profile_meta_location</accept_stepname>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar />
-    <header>N</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field />
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field />
-    <format>DOS</format>
-    <encoding />
-    <length />
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>Fixed</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif />
-        <ifnull />
-        <position>0</position>
-        <length>200</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field />
-    <file_error_message_field />
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field />
-    <error_fields_field />
-    <error_text_field />
-    <bad_line_files_destination_directory />
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory />
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory />
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>zh_CN</date_format_locale>
-    <shortFileFieldName />
-    <pathFieldName />
-    <hiddenFieldName />
-    <lastModificationTimeFieldName />
-    <uriNameFieldName />
-    <rootUriNameFieldName />
-    <extensionFieldName />
-    <sizeFieldName />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>464</yloc>
+      <xloc>288</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2119,8 +1310,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3408</yloc>
+      <xloc>288</xloc>
+      <yloc>1744</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2148,8 +1339,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3536</yloc>
+      <xloc>288</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2172,56 +1363,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4176</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>空操作 (什么也不做)：profile_file: default</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>2768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>空操作 (什么也不做)：profile_name_list: not set</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>592</yloc>
+      <xloc>448</xloc>
+      <yloc>2512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2244,8 +1387,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4048</yloc>
+      <xloc>288</xloc>
+      <yloc>2384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2268,13 +1411,13 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3792</yloc>
+      <xloc>288</xloc>
+      <yloc>2128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>获取变量：profile_meta_location</name>
+    <name>获取变量；kettle_dir</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -2286,8 +1429,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     </partitioning>
     <fields>
       <field>
-        <name>profile_meta_location</name>
-        <variable>${Parameters.Profile.Meta.Location}</variable>
+        <name>kettle_dir</name>
+        <variable>${Parameters.Kettle.Dir}</variable>
         <type>String</type>
         <format />
         <currency />
@@ -2306,101 +1449,13 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>336</yloc>
+      <xloc>288</xloc>
+      <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>获取变量：profile_meta_path</name>
-    <type>GetVariable</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_meta_path</name>
-        <variable>${Parameters.Profile.Meta.Path}</variable>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>profile_name_list</name>
-        <variable>${Parameters.Profile.Name}</variable>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>获取变量；home_path</name>
-    <type>GetVariable</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>home_path</name>
-        <variable>${Parameters.Profile.Home.Path}</variable>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3152</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>获取文件名：profile_file_location</name>
+    <name>获取文件名：patch_file_location</name>
     <type>GetFileNames</type>
     <description />
     <distribute>Y</distribute>
@@ -2418,8 +1473,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <isaddresult>Y</isaddresult>
     <filefield>Y</filefield>
     <rownum_field />
-    <filename_Field>profile_path</filename_Field>
-    <wildcard_Field>profile_file_regex</wildcard_Field>
+    <filename_Field>patch_path</filename_Field>
+    <wildcard_Field>patch_file_regex</wildcard_Field>
     <exclude_wildcard_Field />
     <dynamic_include_subfolders>Y</dynamic_include_subfolders>
     <limit>0</limit>
@@ -2438,130 +1493,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1872</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>获取文件名：profile_path</name>
-    <type>GetFileNames</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <filter>
-      <filterfiletype>only_folders</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>Y</filefield>
-    <rownum_field />
-    <filename_Field>profile_path</filename_Field>
-    <wildcard_Field />
-    <exclude_wildcard_Field />
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1616</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>计算器：profile_name_list_len</name>
-    <type>Calculator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <calculation>
-      <field_name>profile_name_list_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>profile_name_list</field_a>
-      <field_b />
-      <field_c />
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>计算器：profile_path</name>
-    <type>Calculator</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <calculation>
-      <field_name>profile_path</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>profile_meta_path</field_a>
-      <field_b>profile_path_delimiter</field_b>
-      <field_c>profile_name</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1232</yloc>
+      <xloc>288</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2599,8 +1532,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>3920</yloc>
+      <xloc>448</xloc>
+      <yloc>2256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2618,9 +1551,9 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <calculation>
       <field_name>source_location</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>profile_path</field_a>
+      <field_a>patch_path</field_a>
       <field_b>path_delimiter</field_b>
-      <field_c>profile_file</field_c>
+      <field_c>patch_file</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -2633,9 +1566,9 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <calculation>
       <field_name>target_location</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>home_path</field_a>
+      <field_a>kettle_dir</field_a>
       <field_b>path_delimiter</field_b>
-      <field_c>profile_file</field_c>
+      <field_c>patch_file</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -2653,8 +1586,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3280</yloc>
+      <xloc>288</xloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2692,8 +1625,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>3664</yloc>
+      <xloc>448</xloc>
+      <yloc>2000</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2756,8 +1689,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4432</yloc>
+      <xloc>288</xloc>
+      <yloc>2768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2820,51 +1753,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>过滤记录：profile_name_list_len</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>字段选择：profile_name_list_len: remove</send_true_to>
-    <send_false_to>空操作 (什么也不做)：profile_name_list: not set</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>profile_name_list_len</leftvalue>
-        <function>&lt;></function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>#;-#</mask>
-        </value>
-      </condition>
-    </compare>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>592</yloc>
+      <xloc>288</xloc>
+      <yloc>2896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2927,8 +1817,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4304</yloc>
+      <xloc>288</xloc>
+      <yloc>2640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3042,8 +1932,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4176</yloc>
+      <xloc>288</xloc>
+      <yloc>2512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3085,8 +1975,8 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3920</yloc>
+      <xloc>288</xloc>
+      <yloc>2256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3128,8 +2018,241 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3664</yloc>
+      <xloc>288</xloc>
+      <yloc>2000</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>获取变量：patch_path</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>patch_path</name>
+        <variable>${Parameters.Patch.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>48</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加常量：patch_file_regex</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>patch_file_regex</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>.*</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:patch_path</name>
+    <type>SimpleMapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id />
+    <trans_name>MappingRelativePath2AbsolutePath</trans_name>
+    <filename />
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+          <connector>
+            <parent>patch_path</parent>
+            <child>path_relative</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+          <connector>
+            <parent>path_absolute</parent>
+            <child>patch_path</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:kettle_dir</name>
+    <type>SimpleMapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id />
+    <trans_name>MappingRelativePath2AbsolutePath</trans_name>
+    <filename />
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+          <connector>
+            <parent>kettle_dir</parent>
+            <child>path_relative</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+          <connector>
+            <parent>path_absolute</parent>
+            <child>kettle_dir</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1360</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>字符串替换：kettle_dir: extra delimiter</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>kettle_dir</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>//{2,}|\\{1,}</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1488</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

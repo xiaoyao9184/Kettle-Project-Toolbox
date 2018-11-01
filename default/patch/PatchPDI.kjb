@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>CreateProjectRepository</name>
+  <name>PatchPDI</name>
   <description />
   <extended_description />
   <job_version />
   <job_status>0</job_status>
-  <directory>/</directory>
+  <directory>/patch</directory>
   <created_user>-</created_user>
-  <created_date>2015/06/11 09:52:23.081</created_date>
+  <created_date>2018/11/01 15:29:25.472</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015/06/11 09:52:23.081</modified_date>
+  <modified_date>2018/11/01 17:02:45.894</modified_date>
   <parameters>
     <parameter>
-      <name>rName</name>
-      <default_value>?</default_value>
-      <description>项目资源库名称</description>
+      <name>Parameters.Kettle.Dir</name>
+      <default_value>.</default_value>
+      <description>PDI路径</description>
     </parameter>
   </parameters>
   <slaveservers>
@@ -309,8 +308,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>60</yloc>
+      <xloc>192</xloc>
+      <yloc>32</yloc>
     </entry>
     <entry>
       <name>成功</name>
@@ -319,50 +318,63 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>816</yloc>
+      <xloc>192</xloc>
+      <yloc>544</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：rName参数正常</name>
+      <name>检查一个文件是否存在：.pid/</name>
       <description />
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${rName}</variablename>
-      <fieldtype>string</fieldtype>
-      <mask />
-      <comparevalue>?</comparevalue>
-      <minvalue />
-      <maxvalue />
-      <successcondition>notstatwith</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>N</successwhenvarset>
+      <type>FILE_EXISTS</type>
+      <filename>${Internal.Repository.Directory}/.pdi</filename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>176</yloc>
+      <xloc>192</xloc>
+      <yloc>288</yloc>
     </entry>
     <entry>
-      <name>中止作业</name>
+      <name>InitVariable</name>
       <description />
-      <type>ABORT</type>
-      <message />
+      <type>JOB</type>
+      <specification_method>rep_name</specification_method>
+      <job_object_id />
+      <filename />
+      <jobname>InitVariable</jobname>
+      <directory>/variable</directory>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name />
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>144</xloc>
-      <yloc>176</yloc>
+      <xloc>192</xloc>
+      <yloc>160</yloc>
     </entry>
     <entry>
-      <name>转换：相对转绝对</name>
+      <name>ApplyPatch</name>
       <description />
       <type>TRANS</type>
-      <specification_method>filename</specification_method>
+      <specification_method>rep_name</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/Path/JavaPathToPath.ktr</filename>
-      <transname />
+      <filename />
+      <transname>ApplyPatch</transname>
+      <directory>${Internal.Entry.Current.Directory}</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
@@ -381,185 +393,41 @@
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
-      <run_configuration />
+      <run_configuration>Pentaho local</run_configuration>
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
-          <name>JavaPath</name>
+          <name>Parameters.Kettle.Dir</name>
           <stream_name />
-          <value>${Internal.Job.Filename.Directory}/../${rName}</value>
+          <value>${Parameters.Kettle.Dir}</value>
         </parameter>
         <parameter>
-          <name>ResultVariableName</name>
+          <name>Parameters.Patch.Path</name>
           <stream_name />
-          <value>Temp.Path</value>
+          <value>${Internal.Repository.Directory}/.pdi</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>304</yloc>
+      <xloc>192</xloc>
+      <yloc>416</yloc>
     </entry>
     <entry>
-      <name>作业：创建项目目录</name>
+      <name>成功：无需</name>
       <description />
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id />
-      <filename>${Internal.Job.Filename.Directory}/Project/CreateRepositoryProjectPath.kjb</filename>
-      <jobname />
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name />
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>
-        <pass_all_parameters>N</pass_all_parameters>
-        <parameter>
-          <name>ProjectPath</name>
-          <stream_name />
-          <value>${Temp.Path}</value>
-        </parameter>
-        <parameter>
-          <name>ProjectName</name>
-          <stream_name />
-          <value>${rName}</value>
-        </parameter>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
+      <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>432</yloc>
-    </entry>
-    <entry>
-      <name>作业：创建资源库配置</name>
-      <description />
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id />
-      <filename>${Internal.Job.Filename.Directory}/Project/SaveProjectRepositoryData.kjb</filename>
-      <jobname />
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name />
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-        <parameter>
-          <name>rName</name>
-          <stream_name />
-          <value>${Internal.Project.Name}</value>
-        </parameter>
-        <parameter>
-          <name>rPath</name>
-          <stream_name />
-          <value>${Internal.Project.Directory}</value>
-        </parameter>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>560</yloc>
-    </entry>
-    <entry>
-      <name>作业：复制默认资源库文件</name>
-      <description />
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id />
-      <filename>${Internal.Job.Filename.Directory}/Project/CopyDefaultRepositoryFile.kjb</filename>
-      <jobname />
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name />
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-        <parameter>
-          <name>Parameters.Copy.Project.Name</name>
-          <stream_name />
-          <value>${rName}</value>
-        </parameter>
-        <parameter>
-          <name>Parameters.Copy.Project.Path</name>
-          <stream_name />
-          <value>${Internal.Project.Directory}</value>
-        </parameter>
-        <parameter>
-          <name>Parameters.Copy.Use.Config</name>
-          <stream_name />
-          <value>true</value>
-        </parameter>
-        <parameter>
-          <name>Parameters.Copy.Use.Jenkins</name>
-          <stream_name />
-          <value>true</value>
-        </parameter>
-        <parameter>
-          <name>Parameters.Copy.Use.Patch</name>
-          <stream_name />
-          <value>${Internal.Project.UsePatch}</value>
-        </parameter>
-        <parameter>
-          <name>Parameters.Copy.Use.Profile</name>
-          <stream_name />
-          <value>${Internal.Project.UseProfile}</value>
-        </parameter>
-        <parameter>
-          <name>Parameters.Copy.Use.Wait</name>
-          <stream_name />
-          <value>true</value>
-        </parameter>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>320</xloc>
-      <yloc>688</yloc>
+      <xloc>352</xloc>
+      <yloc>288</yloc>
     </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>检验字段的值：rName参数正常</to>
+      <to>InitVariable</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -567,8 +435,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>转换：相对转绝对</from>
-      <to>作业：创建项目目录</to>
+      <from>InitVariable</from>
+      <to>检查一个文件是否存在：.pid/</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -576,8 +444,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>作业：创建项目目录</from>
-      <to>作业：创建资源库配置</to>
+      <from>检查一个文件是否存在：.pid/</from>
+      <to>ApplyPatch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -585,17 +453,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：rName参数正常</from>
-      <to>转换：相对转绝对</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>检验字段的值：rName参数正常</from>
-      <to>中止作业</to>
+      <from>检查一个文件是否存在：.pid/</from>
+      <to>成功：无需</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -603,16 +462,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>作业：创建资源库配置</from>
-      <to>作业：复制默认资源库文件</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>作业：复制默认资源库文件</from>
+      <from>ApplyPatch</from>
       <to>成功</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -622,77 +472,21 @@
     </hop>
   </hops>
   <notepads>
-    <notepad>
-      <note>创建独立的文件资源库</note>
-      <xloc>0</xloc>
-      <yloc>0</yloc>
-      <width>130</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>依赖以下参数
-rName                必填
-
-依赖以下变量
-Internal.Job.Filename.Directory    必须</note>
-      <xloc>441</xloc>
-      <yloc>0</yloc>
-      <width>228</width>
-      <heigth>91</heigth>
-      <fontname>微软雅黑</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>参数介绍：
-
-rName
-资源库名称，用户生成
-默认为：?
-====================</note>
-      <xloc>690</xloc>
-      <yloc>0</yloc>
-      <width>190</width>
-      <heigth>107</heigth>
-      <fontname>微软雅黑</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
+  <attributes>
+    <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Default Run Configuration</key>
+        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <attribute>
+        <key>Pentaho local</key>
+        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+    </group>
+  </attributes>
 </job>

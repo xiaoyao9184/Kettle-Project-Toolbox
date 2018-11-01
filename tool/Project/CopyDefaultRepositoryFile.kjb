@@ -32,6 +32,11 @@
       <description>是否支持Jenkins</description>
     </parameter>
     <parameter>
+      <name>Parameters.Copy.Use.Patch</name>
+      <default_value>true</default_value>
+      <description>是否支持Patch</description>
+    </parameter>
+    <parameter>
       <name>Parameters.Copy.Use.Profile</name>
       <default_value>true</default_value>
       <description>是否支持Profile</description>
@@ -886,6 +891,62 @@
       <xloc>448</xloc>
       <yloc>592</yloc>
     </entry>
+    <entry>
+      <name>检验字段的值：UsePatch</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Patch}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>复制文件：patch</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/patch</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/patch</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/patch.PatchPDI.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-1</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>464</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -1026,6 +1087,24 @@
     <hop>
       <from>ContentReplace:config</from>
       <to>复制文件：UseConfigRun&amp;UseConfigWithParamRun</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>设置变量：Internal.Project.Default.Directory</from>
+      <to>检验字段的值：UsePatch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>检验字段的值：UsePatch</from>
+      <to>复制文件：patch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
