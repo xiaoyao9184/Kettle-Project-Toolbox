@@ -1,3 +1,6 @@
+/**
+ * Created by xiaoyao9184 on 2018/11/2.
+ */
 import hudson.model.*
 
 def executor = Executor.currentExecutor()
@@ -121,7 +124,7 @@ if(customizeArchivePath?.trim()){
 /**
  * Get last archive file
  */
-def archiveRegex = '\\[Deploy\\]' + projectName + '.*.zip'
+def archiveRegex = '^\\[Deploy\\]' + projectName + '.*\\.zip$'
 def archiveFile = archivePath.listFiles({d, f -> f ==~ archiveRegex } as FilenameFilter).sort{ it.name }.reverse().first()
 println 'Last archive is: ' + archiveFile.absolutePath
 
