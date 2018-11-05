@@ -76,18 +76,18 @@
                     //         includes: '*.MTS', 
                     //         targetLocation: "${WORKSPACE}")])
 
-                    echo 'Link Install PDI and KPT...'
-                    bat """
-                    call "${params.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${params.PDIPath}"
-                    """
-
                     echo 'Active profile...'
                     bat """
                     CD /d ${params.ProjectName}\\.profile
                     REN ".profile" "${params.DeployProfile}.profile"
                     """
 
-                    echo 'Add deploy scheduling job...'
+                    echo 'Link PDI and KPT...'
+                    bat """
+                    call "${params.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${params.PDIPath}"
+                    """
+
+                    echo 'Add Jenkins scheduling job...'
                     jobDsl(
                         targets: "${params.ProjectName}\\jenkins\\job_dsl.groovy", 
                         removedJobAction: 'DELETE', 
