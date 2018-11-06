@@ -1,5 +1,6 @@
 /**
  * Created by xiaoyao9184 on 2018/11/2.
+ * Last change by xiaoyao9184 on 2018/11/6.
  */
 import hudson.model.*
 
@@ -126,15 +127,24 @@ if(customizeArchivePath?.trim()){
  */
 def archiveRegex = '^\\[Deploy\\]' + projectName + '.*\\.zip$'
 def archiveFile = archivePath.listFiles({d, f -> f ==~ archiveRegex } as FilenameFilter).sort{ it.name }.reverse().first()
-println 'Last archive is: ' + archiveFile.absolutePath
+println "Last archive is: ${archiveFile.absolutePath}"
 
 /**
  * Create workspace
  */
 def workPath = deployPath.absolutePath + '\\' + archiveFile.name.take(archiveFile.name.lastIndexOf('.'))
 def projectPath = workPath + '\\' + projectName
-println 'Deploy project path is: ' + projectPath
+println "Deploy project path is: ${projectPath}"
 
+
+/**
+ * Check exist
+ */
+def projectPathFile = new File("${projectPath}")
+if(projectPathFile.exists()){
+    println "Deploy target path already exists ${projectPath} !"
+    return
+}
 
 /**
  * Unzip last archive file
@@ -215,4 +225,4 @@ if(jenkinsPath.exists()) {
     }
 }
 
-println 'Deploy archive done in: ' + projectPath
+println "Deploy archive done in: ${projectPath}"
