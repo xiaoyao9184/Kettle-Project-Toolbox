@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2015/01/07 16:17:40.301</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/19 13:39:09.345</modified_date>
+    <modified_date>2018/11/06 10:47:26.597</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -484,11 +484,6 @@ Internal.Repository.Directory    资源库目录</note>
   </notepads>
   <order>
     <hop>
-      <from>XML 文件输入：资源库文件</from>
-      <to>过滤记录：指定资源库</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>过滤记录：指定资源库</from>
       <to>空操作 (什么也不做)：not this</to>
       <enabled>Y</enabled>
@@ -504,11 +499,6 @@ Internal.Repository.Directory    资源库目录</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：variable_name_value</from>
-      <to>JavaScript代码：set_variable</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>过滤记录：指定资源库</from>
       <to>增加常量：Internal.Repository.Directory</to>
       <enabled>Y</enabled>
@@ -516,6 +506,21 @@ Internal.Repository.Directory    资源库目录</note>
     <hop>
       <from>增加常量：Internal.Repository.Directory</from>
       <to>字段选择：variable_name_value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>字段选择：variable_name_value</from>
+      <to>JavaScript代码：set_variable</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>XML 文件输入：资源库文件</from>
+      <to>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:repositorie_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:repositorie_path</from>
+      <to>过滤记录：指定资源库</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -562,7 +567,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>672</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -749,7 +754,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>464</xloc>
-      <yloc>672</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -787,7 +792,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>416</yloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -822,7 +827,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>544</yloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -846,7 +851,7 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>464</xloc>
-      <yloc>288</yloc>
+      <yloc>432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -930,7 +935,67 @@ writeToLog("d",log);</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>288</yloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:repositorie_path</name>
+    <type>SimpleMapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id />
+    <trans_name>MappingRelativePath2AbsolutePath</trans_name>
+    <filename />
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+          <connector>
+            <parent>base_directory</parent>
+            <child>path_relative</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+          <connector>
+            <parent>path_absolute</parent>
+            <child>base_directory</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
