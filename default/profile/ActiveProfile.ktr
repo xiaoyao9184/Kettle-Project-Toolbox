@@ -30,7 +30,12 @@
       </parameter>
       <parameter>
         <name>Position.Ktr.MappingPathRemove</name>
-        <default_value>&#x2f;variable&#x2f;MappingPathRemove</default_value>
+        <default_value>MappingPathRemove</default_value>
+        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+      </parameter>
+      <parameter>
+        <name>Position.Path.Variable</name>
+        <default_value>&#x2f;variable</default_value>
         <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
       </parameter>
     </parameters>
@@ -454,7 +459,7 @@
     <created_user>-</created_user>
     <created_date>2017&#x2f;08&#x2f;29 15&#x3a;35&#x3a;13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;11&#x2f;06 15&#x3a;38&#x3a;44.526</modified_date>
+    <modified_date>2018&#x2f;11&#x2f;06 16&#x3a;37&#x3a;08.631</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -754,7 +759,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>PathUniformSeparator&#xd;&#xa;Maybe use Mapping</note>
+      <note>PathUniformSeparator&#xa;Maybe use Mapping</note>
       <xloc>416</xloc>
       <yloc>1392</yloc>
       <width>140</width>
@@ -1047,6 +1052,57 @@
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>&#x24;&#x7b;Position.Ktr.MappingPathRemove&#x7d;</trans_name>
+    <filename/>
+    <directory_path>&#x24;&#x7b;Position.Path.Variable&#x7d;</directory_path>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>profile_file_location</parent><child>path</child></connector>
+       <connector><parent>profile_path</parent><child>remove</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>path_removed</parent><child>profile_file</child></connector>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step>
     <name>&#x4e2d;&#x6b62;&#xff1a;never</name>
     <type>Abort</type>
@@ -1349,6 +1405,45 @@
     <GUI>
       <xloc>256</xloc>
       <yloc>3104</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_file_regex</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.&#x2a;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1784,9 +1879,7 @@
       <schema_name/>
     </partitioning>
     <fields>      <field>        <name>profile_name</name>
-        <rename/>
       </field>      <field>        <name>profile_order</name>
-        <rename/>
       </field>      <field>        <name>filename</name>
         <rename>profile_path</rename>
       </field>        <select_unspecified>N</select_unspecified>
@@ -2965,96 +3058,6 @@
     <GUI>
       <xloc>256</xloc>
       <yloc>3584</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>&#x24;&#x7b;Position.Ktr.MappingPathRemove&#x7d;</trans_name>
-    <filename/>
-    <directory_path>&#x2f;</directory_path>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-       <connector><parent>profile_file_location</parent><child>path</child></connector>
-       <connector><parent>profile_path</parent><child>remove</child></connector>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-       <connector><parent>path_removed</parent><child>profile_file</child></connector>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2208</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_file_regex</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.&#x2a;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

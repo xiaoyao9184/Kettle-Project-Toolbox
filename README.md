@@ -31,8 +31,19 @@ Set variable with **valid in the root job** in steps `Set Variables` and `Modifi
 cant read it form other transformation,
 i think variable must replace by parameter,
 and especially at `Transformation (job entry)`,
-it cant use static characters mixed with variables.
+maybe it cant use static characters mixed with variables, or for the following reasons.
 
+
+### pdi-ce-7.1.0.0-12
+
+Since 7.1 changed the relative repository selection window, 
+such as job items: Job (Job Entry), Transformation (Job Entry),
+transformation steps: Simple Mapping, Mapping, etc. 
+all omit the original path filling box, merged into one text box to fill in the path + name,
+However, this text box is still two attributes and will be split into path + name according to the last ‘/’. 
+Unlike 7.0, the name attribute does not support include path symbol!
+
+But, now it will support it!
 
 
 # Use with jenkins

@@ -20,12 +20,17 @@
       </parameter>
       <parameter>
         <name>Position.Ktr.MappingPathRemove</name>
-        <default_value>&#x2f;variable&#x2f;MappingPathRemove</default_value>
+        <default_value>MappingPathRemove</default_value>
         <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
       </parameter>
       <parameter>
         <name>Position.Ktr.MappingRelativePath2AbsolutePath</name>
-        <default_value>&#x2f;variable&#x2f;MappingRelativePath2AbsolutePath</default_value>
+        <default_value>MappingRelativePath2AbsolutePath</default_value>
+        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+      </parameter>
+      <parameter>
+        <name>Position.Path.Variable</name>
+        <default_value>&#x2f;variable</default_value>
         <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
       </parameter>
     </parameters>
@@ -449,7 +454,7 @@
     <created_user>-</created_user>
     <created_date>2017&#x2f;08&#x2f;29 15&#x3a;35&#x3a;13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;11&#x2f;06 15&#x3a;17&#x3a;57.327</modified_date>
+    <modified_date>2018&#x2f;11&#x2f;06 16&#x3a;36&#x3a;12.776</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -785,7 +790,7 @@
     </hop>
   </order>
   <step>
-    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a;MappingRelativePath2AbsolutePath&#x3a;kettle_dir</name>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -797,9 +802,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>&#x24;&#x7b;Position.Ktr.MappingRelativePath2AbsolutePath&#x7d;</trans_name>
+    <trans_name>&#x24;&#x7b;Position.Ktr.MappingPathRemove&#x7d;</trans_name>
     <filename/>
-    <directory_path>&#x2f;</directory_path>
+    <directory_path>&#x24;&#x7b;Position.Path.Variable&#x7d;</directory_path>
     <mappings>
       <input>
     <mapping>    <input_step/>
@@ -807,7 +812,8 @@
     <main_path>Y</main_path>
     <rename_on_output>Y</rename_on_output>
     <description/>
-       <connector><parent>kettle_dir</parent><child>path</child></connector>
+       <connector><parent>patch_file_location</parent><child>path</child></connector>
+       <connector><parent>patch_path</parent><child>remove</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step/>
@@ -815,6 +821,7 @@
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>path_removed</parent><child>patch_file</child></connector>
     </mapping>      </output>
           <parameters>    <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
@@ -828,7 +835,7 @@
     </remotesteps>
     <GUI>
       <xloc>288</xloc>
-      <yloc>1040</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -848,7 +855,7 @@
     <trans_object_id/>
     <trans_name>&#x24;&#x7b;Position.Ktr.MappingRelativePath2AbsolutePath&#x7d;</trans_name>
     <filename/>
-    <directory_path>&#x2f;</directory_path>
+    <directory_path>&#x24;&#x7b;Position.Path.Variable&#x7d;</directory_path>
     <mappings>
       <input>
     <mapping>    <input_step/>
@@ -878,6 +885,55 @@
     <GUI>
       <xloc>288</xloc>
       <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a;MappingRelativePath2AbsolutePath&#x3a;kettle_dir</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>&#x24;&#x7b;Position.Ktr.MappingRelativePath2AbsolutePath&#x7d;</trans_name>
+    <filename/>
+    <directory_path>&#x24;&#x7b;Position.Path.Variable&#x7d;</directory_path>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>kettle_dir</parent><child>path</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -2087,57 +2143,6 @@
     <GUI>
       <xloc>288</xloc>
       <yloc>1776</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>&#x24;&#x7b;Position.Ktr.MappingPathRemove&#x7d;</trans_name>
-    <filename/>
-    <directory_path>&#x2f;</directory_path>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-       <connector><parent>patch_file_location</parent><child>path</child></connector>
-       <connector><parent>patch_path</parent><child>remove</child></connector>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-       <connector><parent>path_removed</parent><child>patch_file</child></connector>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
