@@ -1,42 +1,47 @@
 <transformation>
   <info>
     <name>ActiveProfile</name>
-    <description />
-    <extended_description />
-    <trans_version />
+    <description/>
+    <extended_description/>
+    <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/profile</directory>
+    <directory>&#x2f;profile</directory>
     <parameters>
       <parameter>
         <name>Parameters.Profile.Home.Path</name>
-        <default_value />
-        <description>Profile目标路径</description>
+        <default_value/>
+        <description>Profile&#x76ee;&#x6807;&#x8def;&#x5f84;</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Meta.Location</name>
-        <default_value />
-        <description>ProfileMeta文件位置</description>
+        <default_value/>
+        <description>ProfileMeta&#x6587;&#x4ef6;&#x4f4d;&#x7f6e;</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Meta.Path</name>
-        <default_value />
-        <description>Profile目标路径</description>
+        <default_value/>
+        <description>ProfileMeta&#x8def;&#x5f84;</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Name</name>
         <default_value>dev</default_value>
-        <description>激活的Profile名称</description>
+        <description>&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;</description>
+      </parameter>
+      <parameter>
+        <name>Position.Ktr.MappingPathRemove</name>
+        <default_value>&#x2f;variable&#x2f;MappingPathRemove</default_value>
+        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection />
-        <schema />
-        <table />
-        <size_limit_lines />
-        <interval />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -61,37 +66,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject />
+          <subject/>
         </field>
         <field>
           <id>ERRORS</id>
@@ -145,11 +150,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection />
-        <schema />
-        <table />
-        <interval />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -227,10 +232,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection />
-        <schema />
-        <table />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -293,10 +298,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection />
-        <schema />
-        <table />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -369,10 +374,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection />
-        <schema />
-        <table />
-        <timeout_days />
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -421,9 +426,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection />
-      <table />
-      <field />
+      <connection/>
+      <table/>
+      <field/>
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -434,7 +439,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file />
+    <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -447,17 +452,17 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017/08/29 15:35:13.640</created_date>
+    <created_date>2017&#x2f;08&#x2f;29 15&#x3a;35&#x3a;13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/11/06 12:44:44.286</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2018&#x2f;11&#x2f;06 15&#x3a;38&#x3a;44.526</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
       <note>profile_file_location</note>
       <xloc>416</xloc>
-      <yloc>1808</yloc>
+      <yloc>1760</yloc>
       <width>122</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -478,7 +483,7 @@
     <notepad>
       <note>profile_path</note>
       <xloc>416</xloc>
-      <yloc>1040</yloc>
+      <yloc>1024</yloc>
       <width>80</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -499,7 +504,7 @@
     <notepad>
       <note>last profile_file</note>
       <xloc>416</xloc>
-      <yloc>2448</yloc>
+      <yloc>2384</yloc>
       <width>94</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -520,7 +525,7 @@
     <notepad>
       <note>home_path</note>
       <xloc>288</xloc>
-      <yloc>2832</yloc>
+      <yloc>2880</yloc>
       <width>75</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -541,7 +546,7 @@
     <notepad>
       <note>exist hash</note>
       <xloc>288</xloc>
-      <yloc>3344</yloc>
+      <yloc>3280</yloc>
       <width>68</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -562,7 +567,7 @@
     <notepad>
       <note>handle</note>
       <xloc>288</xloc>
-      <yloc>4112</yloc>
+      <yloc>4016</yloc>
       <width>49</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -644,7 +649,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>激活Profile</note>
+      <note>&#x6fc0;&#x6d3b;Profile</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
       <width>71</width>
@@ -665,16 +670,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Parameters.Profile.Meta.Location	ProfileMeta文件位置
-Parameters.Profile.Meta.Path		ProfileMeta文件路径
-Parameters.Profile.Name		激活的Profile名称(参数)
-Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
-
-====================
-将根据ProfileName从Profile文件夹中提取Profile文件，
-结合ProfileMeta中的Profile文件列表，针对项目文件夹，
-做创建、替换、删除操作</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xa;Parameters.Profile.Meta.Location	ProfileMeta&#x6587;&#x4ef6;&#x4f4d;&#x7f6e;&#xa;Parameters.Profile.Meta.Path		ProfileMeta&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xa;Parameters.Profile.Name		&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;&#x28;&#x53c2;&#x6570;&#x29;&#xa;Parameters.Profile.Home.Path		Profile&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x5305;&#x542b;.profile&#x76ee;&#x5f55;&#x29;&#xa;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;&#x5c06;&#x6839;&#x636e;ProfileName&#x4ece;Profile&#x6587;&#x4ef6;&#x5939;&#x4e2d;&#x63d0;&#x53d6;Profile&#x6587;&#x4ef6;&#xff0c;&#xa;&#x7ed3;&#x5408;ProfileMeta&#x4e2d;&#x7684;Profile&#x6587;&#x4ef6;&#x5217;&#x8868;&#xff0c;&#x9488;&#x5bf9;&#x9879;&#x76ee;&#x6587;&#x4ef6;&#x5939;&#xff0c;&#xa;&#x505a;&#x521b;&#x5efa;&#x3001;&#x66ff;&#x6362;&#x3001;&#x5220;&#x9664;&#x64cd;&#x4f5c;</note>
       <xloc>384</xloc>
       <yloc>0</yloc>
       <width>433</width>
@@ -697,9 +693,72 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
     <notepad>
       <note>profile_file</note>
       <xloc>416</xloc>
-      <yloc>2192</yloc>
+      <yloc>2128</yloc>
       <width>70</width>
       <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>source&#x26;target</note>
+      <xloc>288</xloc>
+      <yloc>3024</yloc>
+      <width>95</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>name</note>
+      <xloc>416</xloc>
+      <yloc>768</yloc>
+      <width>42</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>PathUniformSeparator&#xd;&#xa;Maybe use Mapping</note>
+      <xloc>416</xloc>
+      <yloc>1392</yloc>
+      <width>140</width>
+      <heigth>42</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -718,350 +777,291 @@ Parameters.Profile.Home.Path		Profile目标路径(包含.profile目录)
   </notepads>
   <order>
     <hop>
-      <from>增加常量：path_delimiter</from>
-      <to>获取变量；home_path</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_location&#x26;target_location</from>
+      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;source_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：source_location&amp;target_location</from>
-      <to>检查文件是否存在：source_exist</to>
+      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;source_exist</from>
+      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;target_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量；home_path</from>
-      <to>计算器：source_location&amp;target_location</to>
+      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;target_exist</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>检查文件是否存在：source_exist</from>
-      <to>检查文件是否存在：target_exist</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>检查文件是否存在：target_exist</from>
-      <to>过滤记录：target_exist</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：target_exist</from>
-      <to>计算器：target_hash</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：target_exist</from>
-      <to>增加常量：target_hash</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：source_exist</from>
-      <to>计算器：source_hash</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：source_exist</from>
-      <to>增加常量：source_hash</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</from>
+      <to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：only source exist</from>
-      <to>过滤记录：only target exist</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</from>
+      <to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：only source exist</from>
-      <to>处理文件：create</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：only target exist</from>
-      <to>处理文件：delete</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：target_hash</from>
-      <to>空操作 (什么也不做)：target: hash done</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：source_hash</from>
-      <to>空操作 (什么也不做)：source: hash done</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：source_hash</from>
-      <to>空操作 (什么也不做)：source: hash done</to>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：target_hash</from>
-      <to>空操作 (什么也不做)：target: hash done</to>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：target: hash done</from>
-      <to>过滤记录：source_exist</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：source: hash done</from>
-      <to>过滤记录：source target same</to>
+      <from>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</from>
+      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; delete </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：source target same</from>
-      <to>空操作 (什么也不做)：nothing</to>
+      <from>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</from>
+      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; create</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>处理文件：delete</from>
-      <to>写日志：target: delete </to>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</from>
+      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; nothing</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>处理文件：create</from>
-      <to>写日志：target: create</to>
+      <from>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</from>
+      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：nothing</from>
-      <to>写日志：target: nothing</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</from>
+      <to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>处理文件：replace</from>
-      <to>写日志：target: replace</to>
+      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_path</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_list_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：source target exist</from>
-      <to>处理文件：replace</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_list_len</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：profile_meta_path</from>
-      <to>计算器：profile_name_list_len</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name_list&#x3a; not set</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：profile_name_list_len</from>
-      <to>过滤记录：profile_name_list_len</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：profile_name_list_len</from>
-      <to>空操作 (什么也不做)：profile_name_list: not set</to>
+      <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;file&#x26;order</from>
+      <to>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last profile file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：profile_name_list_len</from>
-      <to>字段选择：profile_name_list_len: remove</to>
+      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_location</from>
+      <to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile_file&#x3a; default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>排序记录：file&amp;order</from>
-      <to>去除重复记录：last profile file</to>
+      <from>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile_file&#x3a; default</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_meta_location&#x3a; remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：profile_meta_location</from>
-      <to>文本文件输入：profile_file: default</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</from>
+      <to>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;profile_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>文本文件输入：profile_file: default</from>
-      <to>字段选择：profile_meta_location: remove</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path_delimiter</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_name_list_len: remove</from>
-      <to>列拆分为多行：profile_name</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_meta_location&#x3a; remove</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：profile_path_delimiter</from>
-      <to>计算器：profile_path</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; remove</from>
+      <to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;file&#x26;order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript代码：profile_file</from>
-      <to>字段选择：profile_file_location: remove</to>
+      <from>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last profile file</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_meta_location: remove</from>
-      <to>增加常量：profile_path</to>
+      <from>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;profile_name</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list&#x3a; remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_file_location: remove</from>
-      <to>排序记录：file&amp;order</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list&#x3a; remove</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>去除重复记录：last profile file</from>
-      <to>字段选择：profile_file</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_path</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path_delimiter&#x3a; remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>列拆分为多行：profile_name</from>
-      <to>字段选择：profile_name_list: remove</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</from>
+      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_name_list: remove</from>
-      <to>增加常量：profile_path_delimiter</to>
+      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</from>
+      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：profile_path</from>
-      <to>字段选择：profile_path_delimiter: remove</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path</from>
+      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_file</from>
-      <to>合并记录：profile_file</to>
+      <from>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_file_location</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>合并记录：profile_file</from>
-      <to>增加常量：path_delimiter</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</from>
+      <to>&#x4e2d;&#x6b62;&#xff1a;never</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：profile_file: default</from>
-      <to>合并记录：profile_file</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：profile_path</from>
-      <to>空操作 (什么也不做)：profile_file: default</to>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</from>
+      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取文件名：profile_path</from>
-      <to>字段选择：profile_path: replace</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_location&#x26;target_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_path: replace</from>
-      <to>获取文件名：profile_file_location</to>
+      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1b;home_path</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_path_delimiter: remove</from>
-      <to>字符串替换：profile_path: extra delimiter</to>
+      <from>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</from>
+      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1b;home_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字符串替换：profile_path: extra delimiter</from>
-      <to>获取文件名：profile_path</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; replace</from>
+      <to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字符串替换：profile_file_location: extra delimiter</from>
-      <to>JavaScript代码：profile_file</to>
+      <from>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取文件名：profile_file_location</from>
-      <to>字段选择：profile_file_location: replace</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</from>
+      <to>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_file_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_file_location: replace</from>
-      <to>字符串替换：profile_file_location: extra delimiter</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path_delimiter&#x3a; remove</from>
+      <to>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：only target exist</from>
-      <to>中止：never</to>
+      <from>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_path</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path&#x3a; replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：source target exist</from>
-      <to>过滤记录：only source exist</to>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path&#x3a; replace</from>
+      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_path&#x3a; extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：source target same</from>
-      <to>过滤记录：source target exist</to>
+      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_path&#x3a; extra delimiter</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>JavaScript代码：profile_file</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//
-// Cant use this because cant replace '[' and ']' inside
-//
-// profile_file = replace(profile_file_location,profile_path + "/","")
-//
-// Sample:
-// profile_file_location
-//     D:/Program/ETL/[Deploy]default_1.0/default/.profile/prod/config.ini
-// profile_path + "/"
-//     D:/Program/ETL/[Deploy]default_1.0/default/.profile/prod
-//
-// result same as profile_file_location
-// 
-
-profile_file = profile_file_location.replace(profile_path + "/","")
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <rename>profile_file</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>中止：never</name>
+    <name>&#x4e2d;&#x6b62;&#xff1a;never</name>
     <type>Abort</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <row_threshold>0</row_threshold>
-    <message>never</message>
-    <always_log_rows>Y</always_log_rows>
-    <abort_with_error>Y</abort_with_error>
-    <cluster_schema />
+      <row_threshold>0</row_threshold>
+      <message>never</message>
+      <always_log_rows>Y</always_log_rows>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1070,32 +1070,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>4688</yloc>
+      <yloc>4608</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>写日志：target: create</name>
+    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; create</name>
     <type>WriteToLog</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>created</logmessage>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>created</logmessage>
     <fields>
       <field>
         <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
+        </field>
+      </fields>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1104,32 +1105,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>4432</yloc>
+      <yloc>4352</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>写日志：target: delete </name>
+    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; delete </name>
     <type>WriteToLog</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>deleted</logmessage>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>deleted</logmessage>
     <fields>
       <field>
         <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
+        </field>
+      </fields>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1138,32 +1140,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>4560</yloc>
+      <yloc>4480</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>写日志：target: nothing</name>
+    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; nothing</name>
     <type>WriteToLog</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>nothing</logmessage>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>nothing</logmessage>
     <fields>
       <field>
         <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
+        </field>
+      </fields>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1172,32 +1175,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>4176</yloc>
+      <yloc>4096</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>写日志：target: replace</name>
+    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; replace</name>
     <type>WriteToLog</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>replaced</logmessage>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+      <limitRows>N</limitRows>
+      <limitRowsNumber>0</limitRowsNumber>
+      <logmessage>replaced</logmessage>
     <fields>
       <field>
         <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
+        </field>
+      </fields>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1206,29 +1210,30 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>576</xloc>
-      <yloc>4304</yloc>
+      <yloc>4224</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>列拆分为多行：profile_name</name>
+    <name>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;profile_name</name>
     <type>SplitFieldToRows3</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <splitfield>profile_name_list</splitfield>
-    <delimiter>,</delimiter>
-    <newfield>profile_name</newfield>
-    <rownum>Y</rownum>
-    <rownum_field>profile_order</rownum_field>
-    <resetrownumber>Y</resetrownumber>
-    <delimiter_is_regex>N</delimiter_is_regex>
-    <cluster_schema />
+   <splitfield>profile_name_list</splitfield>
+   <delimiter>,</delimiter>
+   <newfield>profile_name</newfield>
+   <rownum>Y</rownum>
+   <rownum_field>profile_order</rownum_field>
+   <resetrownumber>Y</resetrownumber>
+   <delimiter_is_regex>N</delimiter_is_regex>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1240,29 +1245,26 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>去除重复记录：last profile file</name>
+    <name>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last profile file</name>
     <type>Unique</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <count_rows>Y</count_rows>
-    <count_field>file_number</count_field>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description />
-    <fields>
-      <field>
-        <name>profile_file</name>
+      <count_rows>Y</count_rows>
+      <count_field>file_number</count_field>
+      <reject_duplicate_row>N</reject_duplicate_row>
+      <error_description/>
+    <fields>      <field>        <name>profile_file</name>
         <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <cluster_schema />
+        </field>      </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1271,20 +1273,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2640</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>合并记录：profile_file</name>
+    <name>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</name>
     <type>MergeRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <keys>
       <key>profile_file</key>
@@ -1292,12 +1295,12 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <values>
       <value>profile_file</value>
     </values>
-    <flag_field>profile_file_flag</flag_field>
-    <reference>空操作 (什么也不做)：profile_file: default</reference>
-    <compare>字段选择：profile_file</compare>
+<flag_field>profile_file_flag</flag_field>
+<reference>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</reference>
+<compare>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</compare>
     <compare>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1306,36 +1309,37 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>2896</yloc>
+      <yloc>2816</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>增加常量：path_delimiter</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</name>
     <type>Constant</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>path_delimiter</name>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>/</nullif>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x2f;</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1344,36 +1348,37 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3024</yloc>
+      <yloc>3104</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>增加常量：profile_path</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path</name>
     <type>Constant</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>profile_path</name>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>Y</set_empty_string>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1382,48 +1387,37 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>128</xloc>
-      <yloc>720</yloc>
+      <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>增加常量：profile_path_delimiter</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path_delimiter</name>
     <type>Constant</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>profile_path_delimiter</name>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>/</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>profile_file_regex</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>.*</nullif>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x2f;</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1435,33 +1429,34 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>增加常量：source_hash</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</name>
     <type>Constant</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>source_hash</name>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <nullif>-</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1470,36 +1465,37 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>3920</yloc>
+      <yloc>3824</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>增加常量：target_hash</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</name>
     <type>Constant</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>target_hash</name>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <nullif>-</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1508,20 +1504,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>3664</yloc>
+      <yloc>3584</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>处理文件：create</name>
+    <name>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</name>
     <type>ProcessFiles</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <sourcefilenamefield>source_location</sourcefilenamefield>
     <targetfilenamefield>target_location</targetfilenamefield>
@@ -1530,7 +1527,7 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <overwritetargetfile>N</overwritetargetfile>
     <createparentfolder>Y</createparentfolder>
     <simulate>N</simulate>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1539,29 +1536,30 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>4432</yloc>
+      <yloc>4352</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>处理文件：delete</name>
+    <name>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</name>
     <type>ProcessFiles</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <sourcefilenamefield>target_location</sourcefilenamefield>
-    <targetfilenamefield />
+    <targetfilenamefield/>
     <operation_type>delete</operation_type>
     <addresultfilenames>N</addresultfilenames>
     <overwritetargetfile>N</overwritetargetfile>
     <createparentfolder>N</createparentfolder>
     <simulate>N</simulate>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1570,20 +1568,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>4560</yloc>
+      <yloc>4480</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>处理文件：replace</name>
+    <name>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</name>
     <type>ProcessFiles</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <sourcefilenamefield>source_location</sourcefilenamefield>
     <targetfilenamefield>target_location</targetfilenamefield>
@@ -1592,7 +1591,7 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <overwritetargetfile>Y</overwritetargetfile>
     <createparentfolder>Y</createparentfolder>
     <simulate>N</simulate>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1601,31 +1600,26 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>4304</yloc>
+      <yloc>4224</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_file</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>profile_file</name>
-      </field>
-      <field>
-        <name>profile_path</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
+    <fields>      <field>        <name>profile_file</name>
+      </field>      <field>        <name>profile_path</name>
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1634,28 +1628,25 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2768</yloc>
+      <yloc>2688</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_file_location: remove</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; remove</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_file_location</name>
-      </remove>
-    </fields>
-    <cluster_schema />
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>profile_file_location</name>
+      </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1664,38 +1655,29 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2384</yloc>
+      <yloc>2320</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_file_location: replace</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; replace</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>profile_name</name>
-      </field>
-      <field>
-        <name>profile_order</name>
-      </field>
-      <field>
-        <name>profile_path</name>
-      </field>
-      <field>
-        <name>filename</name>
+    <fields>      <field>        <name>profile_name</name>
+      </field>      <field>        <name>profile_order</name>
+      </field>      <field>        <name>profile_path</name>
+      </field>      <field>        <name>filename</name>
         <rename>profile_file_location</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1704,28 +1686,25 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2000</yloc>
+      <yloc>2064</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_meta_location: remove</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_meta_location&#x3a; remove</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_meta_location</name>
-      </remove>
-    </fields>
-    <cluster_schema />
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>profile_meta_location</name>
+      </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1737,25 +1716,22 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_name_list: remove</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list&#x3a; remove</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_name_list</name>
-      </remove>
-    </fields>
-    <cluster_schema />
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>profile_name_list</name>
+      </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1764,28 +1740,25 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>976</yloc>
+      <yloc>960</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_name_list_len: remove</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_name_list_len</name>
-      </remove>
-    </fields>
-    <cluster_schema />
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>profile_name_list_len</name>
+      </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1794,38 +1767,30 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>720</yloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_path: replace</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path&#x3a; replace</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>profile_name</name>
-      </field>
-      <field>
-        <name>profile_order</name>
-      </field>
-      <field>
-        <name>filename</name>
+    <fields>      <field>        <name>profile_name</name>
+        <rename/>
+      </field>      <field>        <name>profile_order</name>
+        <rename/>
+      </field>      <field>        <name>filename</name>
         <rename>profile_path</rename>
-      </field>
-      <field>
-        <name>profile_file_regex</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
+      </field>        <select_unspecified>N</select_unspecified>
+    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1834,31 +1799,26 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1744</yloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字段选择：profile_path_delimiter: remove</name>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path_delimiter&#x3a; remove</name>
     <type>SelectValues</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>profile_meta_path</name>
-      </remove>
-      <remove>
-        <name>profile_path_delimiter</name>
-      </remove>
-    </fields>
-    <cluster_schema />
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>profile_meta_path</name>
+      </remove>      <remove>        <name>profile_path_delimiter</name>
+      </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1867,46 +1827,36 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1360</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字符串替换：profile_file_location: extra delimiter</name>
+    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_path&#x3a; extra delimiter</name>
     <type>ReplaceString</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <in_stream_name>profile_path</in_stream_name>
-        <out_stream_name />
+        <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>//{2,}|\\{1,}</replace_string>
-        <replace_by_string>/</replace_by_string>
+        <replace_string>&#x2f;&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;1,&#x7d;</replace_string>
+        <replace_by_string>&#x2f;</replace_by_string>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string />
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>profile_file_location</in_stream_name>
-        <out_stream_name />
-        <use_regex>yes</use_regex>
-        <replace_string>//{2,}|\\{1,}</replace_string>
-        <replace_by_string>/</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string />
+        <replace_field_by_string/>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -1915,65 +1865,29 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2128</yloc>
+      <yloc>1696</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>字符串替换：profile_path: extra delimiter</name>
-    <type>ReplaceString</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>profile_path</in_stream_name>
-        <out_stream_name />
-        <use_regex>yes</use_regex>
-        <replace_string>//{2,}|\\{1,}</replace_string>
-        <replace_by_string>/</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string />
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1488</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>排序记录：file&amp;order</name>
+    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;file&#x26;order</name>
     <type>SortRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
+      <prefix>out</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
     <fields>
       <field>
         <name>profile_file</name>
@@ -1992,7 +1906,7 @@ profile_file = profile_file_location.replace(profile_path + "/","")
         <presorted>N</presorted>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2001,29 +1915,30 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2512</yloc>
+      <yloc>2464</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>文本文件输入：profile_file: default</name>
+    <name>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile_file&#x3a; default</name>
     <type>TextFileInput</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <accept_filenames>Y</accept_filenames>
     <passing_through_fields>Y</passing_through_fields>
     <accept_field>profile_meta_location</accept_field>
-    <accept_stepname>获取变量：profile_meta_location</accept_stepname>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
+    <accept_stepname>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_location</accept_stepname>
+    <separator>&#x3b;</separator>
+    <enclosure>&#x22;</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
-    <escapechar />
+    <escapechar/>
     <header>N</header>
     <nr_headerlines>1</nr_headerlines>
     <footer>N</footer>
@@ -2035,18 +1950,17 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <nr_lines_doc_header>0</nr_lines_doc_header>
     <noempty>Y</noempty>
     <include>N</include>
-    <include_field />
+    <include_field/>
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
-    <rownum_field />
+    <rownum_field/>
     <format>DOS</format>
-    <encoding />
-    <length />
+    <encoding/>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
       <type>Fixed</type>
@@ -2058,12 +1972,12 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <field>
         <name>profile_file</name>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif />
-        <ifnull />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
         <position>0</position>
         <length>200</length>
         <precision>-1</precision>
@@ -2074,29 +1988,29 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <limit>0</limit>
     <error_ignored>N</error_ignored>
     <skip_bad_files>N</skip_bad_files>
-    <file_error_field />
-    <file_error_message_field />
+    <file_error_field/>
+    <file_error_message_field/>
     <error_line_skipped>N</error_line_skipped>
-    <error_count_field />
-    <error_fields_field />
-    <error_text_field />
-    <bad_line_files_destination_directory />
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
     <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory />
+    <error_line_files_destination_directory/>
     <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory />
+    <line_number_files_destination_directory/>
     <line_number_files_extension>line</line_number_files_extension>
     <date_format_lenient>Y</date_format_lenient>
     <date_format_locale>zh_CN</date_format_locale>
-    <shortFileFieldName />
-    <pathFieldName />
-    <hiddenFieldName />
-    <lastModificationTimeFieldName />
-    <uriNameFieldName />
-    <rootUriNameFieldName />
-    <extensionFieldName />
-    <sizeFieldName />
-    <cluster_schema />
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2105,27 +2019,28 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>128</xloc>
-      <yloc>464</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>检查文件是否存在：source_exist</name>
+    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;source_exist</name>
     <type>FileExists</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <filenamefield>source_location</filenamefield>
     <resultfieldname>source_exist</resultfieldname>
     <includefiletype>N</includefiletype>
-    <filetypefieldname />
+    <filetypefieldname/>
     <addresultfilenames>N</addresultfilenames>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2134,27 +2049,28 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3408</yloc>
+      <yloc>3360</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>检查文件是否存在：target_exist</name>
+    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;target_exist</name>
     <type>FileExists</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <filenamefield>target_location</filenamefield>
     <resultfieldname>target_exist</resultfieldname>
     <includefiletype>N</includefiletype>
-    <filetypefieldname />
+    <filetypefieldname/>
     <addresultfilenames>N</addresultfilenames>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2163,22 +2079,23 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3536</yloc>
+      <yloc>3472</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>空操作 (什么也不做)：nothing</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</name>
     <type>Dummy</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2187,22 +2104,23 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>4176</yloc>
+      <yloc>4096</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>空操作 (什么也不做)：profile_file: default</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</name>
     <type>Dummy</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2211,22 +2129,23 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>128</xloc>
-      <yloc>2768</yloc>
+      <yloc>2688</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>空操作 (什么也不做)：profile_name_list: not set</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name_list&#x3a; not set</name>
     <type>Dummy</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2238,19 +2157,20 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>空操作 (什么也不做)：source: hash done</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</name>
     <type>Dummy</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2259,22 +2179,23 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>4048</yloc>
+      <yloc>3952</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>空操作 (什么也不做)：target: hash done</name>
+    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</name>
     <type>Dummy</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2283,36 +2204,37 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3792</yloc>
+      <yloc>3712</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>获取变量：profile_meta_location</name>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_location</name>
     <type>GetVariable</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>profile_meta_location</name>
-        <variable>${Parameters.Profile.Meta.Location}</variable>
+        <variable>&#x24;&#x7b;Parameters.Profile.Meta.Location&#x7d;</variable>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2324,45 +2246,46 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>获取变量：profile_meta_path</name>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_path</name>
     <type>GetVariable</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>profile_meta_path</name>
-        <variable>${Parameters.Profile.Meta.Path}</variable>
+        <variable>&#x24;&#x7b;Parameters.Profile.Meta.Path&#x7d;</variable>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
       <field>
         <name>profile_name_list</name>
-        <variable>${Parameters.Profile.Name}</variable>
+        <variable>&#x24;&#x7b;Parameters.Profile.Name&#x7d;</variable>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2374,33 +2297,34 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>获取变量；home_path</name>
+    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1b;home_path</name>
     <type>GetVariable</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <fields>
       <field>
         <name>home_path</name>
-        <variable>${Parameters.Profile.Home.Path}</variable>
+        <variable>&#x24;&#x7b;Parameters.Profile.Home.Path&#x7d;</variable>
         <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
       </field>
     </fields>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2409,20 +2333,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3152</yloc>
+      <yloc>2960</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>获取文件名：profile_file_location</name>
+    <name>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_file_location</name>
     <type>GetFileNames</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <filter>
       <filterfiletype>only_files</filterfiletype>
@@ -2431,20 +2356,20 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <rownum>N</rownum>
     <isaddresult>Y</isaddresult>
     <filefield>Y</filefield>
-    <rownum_field />
+    <rownum_field/>
     <filename_Field>profile_path</filename_Field>
     <wildcard_Field>profile_file_regex</wildcard_Field>
-    <exclude_wildcard_Field />
+    <exclude_wildcard_Field/>
     <dynamic_include_subfolders>Y</dynamic_include_subfolders>
     <limit>0</limit>
     <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2453,20 +2378,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1872</yloc>
+      <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>获取文件名：profile_path</name>
+    <name>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_path</name>
     <type>GetFileNames</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <filter>
       <filterfiletype>only_folders</filterfiletype>
@@ -2475,20 +2401,20 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     <rownum>N</rownum>
     <isaddresult>Y</isaddresult>
     <filefield>Y</filefield>
-    <rownum_field />
+    <rownum_field/>
     <filename_Field>profile_path</filename_Field>
-    <wildcard_Field />
-    <exclude_wildcard_Field />
+    <wildcard_Field/>
+    <exclude_wildcard_Field/>
     <dynamic_include_subfolders>N</dynamic_include_subfolders>
     <limit>0</limit>
     <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2497,37 +2423,38 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1616</yloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>计算器：profile_name_list_len</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_list_len</name>
     <type>Calculator</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <calculation>
       <field_name>profile_name_list_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>profile_name_list</field_a>
-      <field_b />
-      <field_c />
+      <field_b/>
+      <field_c/>
       <value_type>None</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
     </calculation>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2536,20 +2463,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>464</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>计算器：profile_path</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_path</name>
     <type>Calculator</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <calculation>
       <field_name>profile_path</field_name>
@@ -2561,12 +2489,12 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
     </calculation>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2575,37 +2503,38 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>1232</yloc>
+      <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>计算器：source_hash</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</name>
     <type>Calculator</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <calculation>
       <field_name>source_hash</field_name>
       <calc_type>SHA1</calc_type>
       <field_a>source_location</field_a>
-      <field_b />
-      <field_c />
+      <field_b/>
+      <field_c/>
       <value_type>None</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
     </calculation>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2614,20 +2543,21 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>3920</yloc>
+      <yloc>3824</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>计算器：source_location&amp;target_location</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_location&#x26;target_location</name>
     <type>Calculator</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <calculation>
       <field_name>source_location</field_name>
@@ -2639,10 +2569,10 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
     </calculation>
     <calculation>
       <field_name>target_location</field_name>
@@ -2654,12 +2584,12 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
     </calculation>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2668,37 +2598,38 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3280</yloc>
+      <yloc>3216</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>计算器：target_hash</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</name>
     <type>Calculator</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
     <calculation>
       <field_name>target_hash</field_name>
       <calc_type>SHA1</calc_type>
       <field_a>target_location</field_a>
-      <field_b />
-      <field_c />
+      <field_b/>
+      <field_c/>
       <value_type>None</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
     </calculation>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2707,62 +2638,45 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>416</xloc>
-      <yloc>3664</yloc>
+      <yloc>3584</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：only source exist</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>处理文件：create</send_true_to>
-    <send_false_to>过滤记录：only target exist</send_false_to>
+<send_true_to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</send_true_to>
+<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>source_exist</leftvalue>
-            <function>=</function>
-            <rightvalue />
-            <value>
-              <name>constant</name>
-              <type>Boolean</type>
-              <text>Y</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask />
-            </value>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>target_exist</leftvalue>
-            <function>&lt;></function>
-            <rightvalue />
-            <value>
-              <name>constant</name>
-              <type>Boolean</type>
-              <text>Y</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask />
-            </value>
-          </condition>
-        </conditions>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>source_exist</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>target_exist</leftvalue>
+   <function>&#x3c;&#x3e;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2771,62 +2685,45 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>4432</yloc>
+      <yloc>4352</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：only target exist</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>处理文件：delete</send_true_to>
-    <send_false_to>中止：never</send_false_to>
+<send_true_to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</send_true_to>
+<send_false_to>&#x4e2d;&#x6b62;&#xff1a;never</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>source_exist</leftvalue>
-            <function>&lt;></function>
-            <rightvalue />
-            <value>
-              <name>constant</name>
-              <type>Boolean</type>
-              <text>Y</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask />
-            </value>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>target_exist</leftvalue>
-            <function>=</function>
-            <rightvalue />
-            <value>
-              <name>constant</name>
-              <type>Boolean</type>
-              <text>Y</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask />
-            </value>
-          </condition>
-        </conditions>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>source_exist</leftvalue>
+   <function>&#x3c;&#x3e;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>target_exist</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2835,41 +2732,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>4560</yloc>
+      <yloc>4480</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：profile_name_list_len</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>字段选择：profile_name_list_len: remove</send_true_to>
-    <send_false_to>空操作 (什么也不做)：profile_name_list: not set</send_false_to>
+<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</send_true_to>
+<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name_list&#x3a; not set</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>profile_name_list_len</leftvalue>
-        <function>&lt;></function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>0</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>#;-#</mask>
-        </value>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <leftvalue>profile_name_list_len</leftvalue>
+ <function>&#x3c;&#x3e;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2881,59 +2770,42 @@ profile_file = profile_file_location.replace(profile_path + "/","")
       <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：source target exist</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>处理文件：replace</send_true_to>
-    <send_false_to>过滤记录：only source exist</send_false_to>
+<send_true_to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</send_true_to>
+<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>source_exist</leftvalue>
-            <function>=</function>
-            <rightvalue />
-            <value>
-              <name>constant</name>
-              <type>Boolean</type>
-              <text>Y</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask />
-            </value>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue>target_exist</leftvalue>
-            <function>=</function>
-            <rightvalue />
-            <value>
-              <name>constant</name>
-              <type>Boolean</type>
-              <text>Y</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask />
-            </value>
-          </condition>
-        </conditions>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>source_exist</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>target_exist</leftvalue>
+   <function>&#x3d;</function>
+   <rightvalue/>
+   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -2942,113 +2814,78 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>4304</yloc>
+      <yloc>4224</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：source target same</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：nothing</send_true_to>
-    <send_false_to>过滤记录：source target exist</send_false_to>
+<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</send_true_to>
+<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <conditions>
-              <condition>
-                <negated>N</negated>
-                <leftvalue>source_exist</leftvalue>
-                <function>=</function>
-                <rightvalue />
-                <value>
-                  <name>constant</name>
-                  <type>Boolean</type>
-                  <text>Y</text>
-                  <length>-1</length>
-                  <precision>-1</precision>
-                  <isnull>N</isnull>
-                  <mask />
-                </value>
-              </condition>
-              <condition>
-                <negated>N</negated>
-                <operator>AND</operator>
-                <leftvalue>target_exist</leftvalue>
-                <function>=</function>
-                <rightvalue />
-                <value>
-                  <name>constant</name>
-                  <type>Boolean</type>
-                  <text>Y</text>
-                  <length>-1</length>
-                  <precision>-1</precision>
-                  <isnull>N</isnull>
-                  <mask />
-                </value>
-              </condition>
-              <condition>
-                <negated>N</negated>
-                <operator>AND</operator>
-                <leftvalue>source_hash</leftvalue>
-                <function>=</function>
-                <rightvalue>target_hash</rightvalue>
-              </condition>
-            </conditions>
-          </condition>
-          <condition>
-            <negated>N</negated>
-            <operator>OR</operator>
-            <conditions>
-              <condition>
-                <negated>N</negated>
-                <operator>AND</operator>
-                <leftvalue>source_exist</leftvalue>
-                <function>=</function>
-                <rightvalue />
-                <value>
-                  <name>constant</name>
-                  <type>Boolean</type>
-                  <text>N</text>
-                  <length>-1</length>
-                  <precision>-1</precision>
-                  <isnull>N</isnull>
-                  <mask />
-                </value>
-              </condition>
-              <condition>
-                <negated>N</negated>
-                <operator>AND</operator>
-                <leftvalue>target_exist</leftvalue>
-                <function>=</function>
-                <rightvalue />
-                <value>
-                  <name>constant</name>
-                  <type>Boolean</type>
-                  <text>N</text>
-                  <length>-1</length>
-                  <precision>-1</precision>
-                  <isnull>N</isnull>
-                  <mask />
-                </value>
-              </condition>
-            </conditions>
-          </condition>
-        </conditions>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>source_exist</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>target_exist</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>source_hash</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue>target_hash</rightvalue>
+     </condition>
+    </conditions>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>source_exist</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>target_exist</leftvalue>
+     <function>&#x3d;</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -3057,41 +2894,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>4176</yloc>
+      <yloc>4096</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：source_exist</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>计算器：source_hash</send_true_to>
-    <send_false_to>增加常量：source_hash</send_false_to>
+<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</send_true_to>
+<send_false_to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>source_exist</leftvalue>
-        <function>=</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask />
-        </value>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <leftvalue>source_exist</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -3100,41 +2929,33 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3920</yloc>
+      <yloc>3824</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
   <step>
-    <name>过滤记录：target_exist</name>
+    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</name>
     <type>FilterRows</type>
-    <description />
+    <description/>
     <distribute>Y</distribute>
-    <custom_distribution />
+    <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name />
+      <schema_name/>
     </partitioning>
-    <send_true_to>计算器：target_hash</send_true_to>
-    <send_false_to>增加常量：target_hash</send_false_to>
+<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</send_true_to>
+<send_false_to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</send_false_to>
     <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>target_exist</leftvalue>
-        <function>=</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask />
-        </value>
-      </condition>
+<condition>
+ <negated>N</negated>
+ <leftvalue>target_exist</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
-    <cluster_schema />
+    <cluster_schema/>
     <remotesteps>
       <input>
       </input>
@@ -3143,10 +2964,101 @@ profile_file = profile_file_location.replace(profile_path + "/","")
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>3664</yloc>
+      <yloc>3584</yloc>
       <draw>Y</draw>
     </GUI>
-  </step>
+    </step>
+
+  <step>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>&#x24;&#x7b;Position.Ktr.MappingPathRemove&#x7d;</trans_name>
+    <filename/>
+    <directory_path>&#x2f;</directory_path>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>profile_file_location</parent><child>path</child></connector>
+       <connector><parent>profile_path</parent><child>remove</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>path_removed</parent><child>profile_file</child></connector>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2208</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_file_regex</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.&#x2a;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1840</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

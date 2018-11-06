@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>GetParentPath</name>
+    <name>MappingPathRemove</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>&#x2f;</directory>
+    <trans_status>0</trans_status>
+    <directory>&#x2f;variable</directory>
     <parameters>
     </parameters>
     <log>
@@ -427,19 +427,19 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018&#x2f;09&#x2f;28 10&#x3a;03&#x3a;32.905</created_date>
+    <created_date>2018&#x2f;11&#x2f;01 16&#x3a;17&#x3a;55.582</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;09&#x2f;28 10&#x3a;03&#x3a;32.905</modified_date>
+    <modified_date>2018&#x2f;11&#x2f;06 15&#x3a;21&#x3a;35.254</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x83b7;&#x53d6;&#x7236;&#x7ea7;&#x8def;&#x5f84;</note>
-      <xloc>0</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x8f93;&#x5165;&#xa;path		&#x5fc5;&#x586b;&#xa;remove		&#x5fc5;&#x586b;&#xa;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x8f93;&#x51fa;&#xa;path_removed	&#x79fb;&#x9664;&#x540e;&#x8def;&#x5f84;</note>
+      <xloc>464</xloc>
       <yloc>0</yloc>
-      <width>82</width>
-      <heigth>26</heigth>
+      <width>166</width>
+      <heigth>107</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -456,11 +456,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x8f93;&#x5165;&#xd;&#xa;&#xd;&#xa;seed_path		&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x8f93;&#x51fa;&#xd;&#xa;&#xd;&#xa;parent_path      &#x7236;&#x7ea7;&#x8def;&#x5f84;</note>
-      <xloc>480</xloc>
+      <note>&#x8def;&#x5f84;&#x79fb;&#x9664;</note>
+      <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>178</width>
-      <heigth>142</heigth>
+      <width>58</width>
+      <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -479,33 +479,38 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x957f;&#x5ea6;</to>
+      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;remove_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x957f;&#x5ea6;</from>
-      <to>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</to>
+      <from>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path&#x26;remove</from>
+      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;seed_path</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</to>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;remove_path</from>
+      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;extra delimiter&#x3a; path&#x26;remove_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</to>
+      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;extra delimiter&#x3a; path&#x26;remove_path</from>
+      <to>JavaScript&#x4ee3;&#x7801;&#xff1a;path_removed</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</from>
+      <from>JavaScript&#x4ee3;&#x7801;&#xff1a;path_removed</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x5b57;&#x6bb5;</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x5b57;&#x6bb5;</from>
       <to>&#x6620;&#x5c04;&#x8f93;&#x51fa;&#x89c4;&#x8303;</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>JavaScript&#x4ee3;&#x7801;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x7684;&#x7236;&#x8def;&#x5f84;</name>
+    <name>JavaScript&#x4ee3;&#x7801;&#xff1a;path_removed</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -519,9 +524,9 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>parent_path &#x3d; substr&#x28;seed_path,0,parent_path_len-1&#x29;&#x3b;&#xd;&#xa;&#x2f;&#x2f;Alert&#x28;&#x22;SrcFatherPath &#x3d; &#x22; &#x2b; SrcFatherPath&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>parent_path</name>
-        <rename>parent_path</rename>
+        <jsScript_script>&#x2f;&#x2f;&#xa;&#x2f;&#x2f; Cant use this because cant replace &#x27;&#x5b;&#x27; and &#x27;&#x5d;&#x27; inside&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; path_removed &#x3d; replace&#x28;path,remove_path,&#x22;&#x22;&#x29;&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; Sample&#x3a;&#xa;&#x2f;&#x2f; path&#xa;&#x2f;&#x2f;     D&#x3a;&#x2f;Program&#x2f;ETL&#x2f;&#x5b;Deploy&#x5d;default_1.0&#x2f;default&#x2f;.profile&#x2f;prod&#x2f;config.ini&#xa;&#x2f;&#x2f; remove_path&#xa;&#x2f;&#x2f;     D&#x3a;&#x2f;Program&#x2f;ETL&#x2f;&#x5b;Deploy&#x5d;default_1.0&#x2f;default&#x2f;.profile&#x2f;prod&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; result same as path&#xa;&#x2f;&#x2f; &#xa;&#xa;path_removed &#x3d; path.replace&#x28;remove_path,&#x22;&#x22;&#x29;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>path_removed</name>
+        <rename>path_removed</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -534,14 +539,53 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>416</yloc>
+      <xloc>288</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</name>
+    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>path_delimiter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>&#x2f;</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x5b57;&#x6bb5;</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -552,11 +596,8 @@
       <schema_name/>
     </partitioning>
     <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>seed_path</name>
-      </remove>      <remove>        <name>path_name</name>
-      </remove>      <remove>        <name>seed_path_len</name>
-      </remove>      <remove>        <name>path_name_len</name>
-      </remove>      <remove>        <name>parent_path_len</name>
+      <remove>        <name>path_delimiter</name>
+      </remove>      <remove>        <name>remove_path</name>
       </remove>    </fields>    <cluster_schema/>
     <remotesteps>
       <input>
@@ -565,14 +606,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>544</yloc>
+      <xloc>288</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x6e90;&#x8def;&#x5f84;&#x540d;&#x79f0;</name>
+    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;extra delimiter&#x3a; path&#x26;remove_path</name>
     <type>ReplaceString</type>
     <description/>
     <distribute>Y</distribute>
@@ -584,12 +625,23 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>seed_path</in_stream_name>
-        <out_stream_name>path_name</out_stream_name>
+        <in_stream_name>path</in_stream_name>
+        <out_stream_name/>
         <use_regex>yes</use_regex>
-        <replace_string>.&#x2a;&#x2f;</replace_string>
-        <replace_by_string/>
-        <set_empty_string>Y</set_empty_string>
+        <replace_string>&#x2f;&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;1,&#x7d;</replace_string>
+        <replace_by_string>&#x2f;</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>remove_path</in_stream_name>
+        <out_stream_name/>
+        <use_regex>yes</use_regex>
+        <replace_string>&#x2f;&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;1,&#x7d;</replace_string>
+        <replace_by_string>&#x2f;</replace_by_string>
+        <set_empty_string>N</set_empty_string>
         <replace_field_by_string/>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
@@ -603,14 +655,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>160</yloc>
+      <xloc>288</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;seed_path</name>
+    <name>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path&#x26;remove</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -622,7 +674,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>seed_path</name>
+        <name>path</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>remove</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -637,8 +695,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>32</yloc>
+      <xloc>288</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -662,14 +720,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>672</yloc>
+      <xloc>288</xloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x957f;&#x5ea6;</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;remove_path</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -680,42 +738,12 @@
       <schema_name/>
     </partitioning>
     <calculation>
-      <field_name>seed_path_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>seed_path</field_a>
-      <field_b/>
+      <field_name>remove_path</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>remove</field_a>
+      <field_b>path_delimiter</field_b>
       <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>path_name_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>path_name</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>parent_path_len</field_name>
-      <calc_type>SUBTRACT</calc_type>
-      <field_a>seed_path_len</field_a>
-      <field_b>path_name_len</field_b>
-      <field_c/>
-      <value_type>Integer</value_type>
+      <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
@@ -732,8 +760,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>288</yloc>
+      <xloc>288</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

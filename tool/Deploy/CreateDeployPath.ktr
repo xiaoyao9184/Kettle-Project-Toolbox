@@ -17,7 +17,7 @@
       <parameter>
         <name>Parameters.Deploy.Name</name>
         <default_value/>
-        <description/>
+        <description>&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x540d;</description>
       </parameter>
       <parameter>
         <name>Parameters.Deploy.Name.Template</name>
@@ -26,7 +26,7 @@
       </parameter>
       <parameter>
         <name>Parameters.Deploy.Source.Path</name>
-        <default_value>E&#x3a;&#x5c;Work&#x5c;Kettle&#x5c;DataCenter</default_value>
+        <default_value>..&#x2f;default</default_value>
         <description>&#x90e8;&#x7f72;&#x6765;&#x6e90;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
       </parameter>
       <parameter>
@@ -35,13 +35,13 @@
         <description>&#x90e8;&#x7f72;&#x76ee;&#x6807;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;</description>
       </parameter>
       <parameter>
-        <name>Position.Ktr.GetParentPath</name>
-        <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;Path&#x2f;GetParentPath.ktr</default_value>
+        <name>Position.Ktr.MappingPathParent</name>
+        <default_value>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;..&#x2f;Path&#x2f;MappingPathParent</default_value>
         <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
       </parameter>
       <parameter>
-        <name>Position.Ktr.UniformSeparator</name>
-        <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;Path&#x2f;UniformSeparator.ktr</default_value>
+        <name>Position.Ktr.MappingPathUniformSeparator</name>
+        <default_value>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;..&#x2f;Path&#x2f;MappingPathUniformSeparator</default_value>
         <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
       </parameter>
     </parameters>
@@ -492,7 +492,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;Parameters.Deploy.Source.Path			&#x5fc5;&#x586b;&#xd;&#xa;Parameters.Deploy.Target.Path			&#x975e;&#x5fc5;&#x586b;&#xd;&#xa;Parameters.Deploy.Name			&#x975e;&#x5fc5;&#x586b;&#xd;&#xa;Parameters.Deploy.Name.Template		&#x975e;&#x5fc5;&#x586b;&#xd;&#xa;Parameters.Deploy.Extension			&#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;Result.Deploy.Source.Path			&#x90e8;&#x7f72;&#x6765;&#x6e90;&#x76ee;&#x5f55;&#xd;&#xa;Result.Deploy.Temp.Path			&#x90e8;&#x7f72;&#x4e34;&#x65f6;&#x76ee;&#x5f55;&#xd;&#xa;Result.Deploy.Target.File				&#x90e8;&#x7f72;&#x76ee;&#x6807;&#x6587;&#x4ef6;&#xd;&#xa;Result.Deploy.Target.Path			&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xd;&#xa;Result.Deploy.Target.Name			&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x540d;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xa;&#xa;Parameters.Deploy.Source.Path			&#x5fc5;&#x586b;&#xa;Parameters.Deploy.Target.Path			&#x975e;&#x5fc5;&#x586b;&#xa;Parameters.Deploy.Name			&#x975e;&#x5fc5;&#x586b;&#xa;Parameters.Deploy.Name.Template		&#x975e;&#x5fc5;&#x586b;&#xa;Parameters.Deploy.Extension			&#x975e;&#x5fc5;&#x586b;&#xa;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xa;&#xa;Result.Deploy.Source.Path			&#x90e8;&#x7f72;&#x6765;&#x6e90;&#x76ee;&#x5f55;&#xa;Result.Deploy.Temp.Path			&#x90e8;&#x7f72;&#x4e34;&#x65f6;&#x76ee;&#x5f55;&#xa;Result.Deploy.Target.File				&#x90e8;&#x7f72;&#x76ee;&#x6807;&#x6587;&#x4ef6;&#xa;Result.Deploy.Target.Path			&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xa;Result.Deploy.Target.Name			&#x90e8;&#x7f72;&#x6587;&#x4ef6;&#x540d;</note>
       <xloc>480</xloc>
       <yloc>0</yloc>
       <width>370</width>
@@ -515,27 +515,7 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;source_path&#x4e3a;path_ununified</from>
-      <to>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x7edf;&#x4e00;source_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x7edf;&#x4e00;source_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;source_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x7edf;&#x4e00;target_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;target_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;target_path&#x4e3a;path_ununified</from>
-      <to>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x7edf;&#x4e00;target_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;name_len</from>
+      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_path_len&#x26;name_len</from>
       <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_path_len&#x5927;&#x4e8e;0</to>
       <enabled>Y</enabled>
     </hop>
@@ -585,21 +565,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x590d;&#x5236;&#x5b57;&#x6bb5;source_path</from>
-      <to>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x83b7;&#x53d6;&#x7236;&#x7ea7;&#x8def;&#x5f84;source_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x83b7;&#x53d6;&#x7236;&#x7ea7;&#x8def;&#x5f84;source_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;parent_path&#x4e3a;source_parent_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;parent_path&#x4e3a;source_parent_path</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;name_len</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_path_len&#x5927;&#x4e8e;0</from>
       <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x590d;&#x5236;&#x5b57;&#x6bb5;source_parent_path</to>
       <enabled>Y</enabled>
@@ -620,16 +585,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;source_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;target_path&#x4e3a;path_ununified</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;target_path</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x590d;&#x5236;&#x5b57;&#x6bb5;source_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;name</from>
       <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;source_path_name</to>
       <enabled>Y</enabled>
@@ -645,11 +600,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_path_len&#x5927;&#x4e8e;0</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;source_path&#x4e3a;path_ununified</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29; 2</from>
       <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;full_name</to>
       <enabled>Y</enabled>
@@ -659,7 +609,175 @@
       <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Result.Deploy</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathParent&#x3a; source_path</from>
+      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_path_len&#x26;name_len</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_path_len&#x5927;&#x4e8e;0</from>
+      <to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; source_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; target_path</from>
+      <to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathParent&#x3a; source_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; source_path</from>
+      <to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; target_path</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathParent&#x3a; source_path</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;Position.Ktr.MappingPathParent&#x7d;.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>source_path</parent><child>path</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>path_parent</parent><child>source_parent_path</child></connector>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; source_path</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;Position.Ktr.MappingPathUniformSeparator&#x7d;.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>source_path</parent><child>path</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>432</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; target_path</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>&#x24;&#x7b;Position.Ktr.MappingPathUniformSeparator&#x7d;.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+       <connector><parent>target_path</parent><child>path</child></connector>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
   <step>
     <name>&#x4e2d;&#x6b62;</name>
     <type>Abort</type>
@@ -682,8 +800,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>256</yloc>
+      <xloc>544</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -722,130 +840,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>2304</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;parent_path&#x4e3a;source_parent_path</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>parent_path</name>
-        <rename>source_parent_path</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>1280</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;source_path</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>path_unified</name>
-        <rename>source_path</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x66ff;&#x6362;target_path</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>path_unified</name>
-        <rename>target_path</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>944</yloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -872,7 +867,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1712</yloc>
+      <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -899,89 +894,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>2048</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;source_path&#x4e3a;path_ununified</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>source_path</name>
-        <rename>path_ununified</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;target_path&#x4e3a;path_ununified</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <meta>        <name>target_path</name>
-        <rename>path_ununified</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>752</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1019,7 +932,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>2192</yloc>
+      <yloc>1552</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1057,157 +970,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1856</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x7edf;&#x4e00;source_path</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Position.Ktr.UniformSeparator&#x7d;</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x7edf;&#x4e00;target_path</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Position.Ktr.UniformSeparator&#x7d;</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>848</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;&#x83b7;&#x53d6;&#x7236;&#x7ea7;&#x8def;&#x5f84;source_path</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Position.Ktr.GetParentPath&#x7d;</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>1184</yloc>
+      <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1232,7 +995,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>1712</yloc>
+      <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1257,7 +1020,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>2048</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1414,13 +1177,53 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>2416</yloc>
+      <yloc>1776</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;name_len</name>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_path_len</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <calculation>
+      <field_name>source_path_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>source_path</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+    </step>
+
+  <step>
+    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_path_len&#x26;name_len</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -1469,47 +1272,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>1376</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_path_len</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>source_path_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>source_path</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>144</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1549,47 +1312,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1520</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;&#x590d;&#x5236;&#x5b57;&#x6bb5;source_path</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>seed_path</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>source_path</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>1088</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1647,7 +1370,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>2544</yloc>
+      <yloc>1920</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1678,7 +1401,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1952</yloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1709,7 +1432,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1616</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1744,7 +1467,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>1856</yloc>
+      <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1760,7 +1483,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x91cd;&#x547d;&#x540d;source_path&#x4e3a;path_ununified</send_true_to>
+<send_true_to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathUniformSeparator&#x3a; source_path</send_true_to>
 <send_false_to>&#x4e2d;&#x6b62;</send_false_to>
     <compare>
 <condition>
@@ -1779,7 +1502,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>256</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -1814,7 +1537,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>1520</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
     </step>

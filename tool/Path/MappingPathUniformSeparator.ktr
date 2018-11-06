@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>UniformSeparator</name>
+    <name>MappingPathUniformSeparator</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -42,7 +42,7 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path_ununified</subject>
+          <subject>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path</subject>
         </field>
         <field>
           <id>LINES_WRITTEN</id>
@@ -457,11 +457,11 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x8f93;&#x5165;&#xd;&#xa;&#xd;&#xa;path_ununified		&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x8f93;&#x51fa;&#xd;&#xa;&#xd;&#xa;path_unified      &#x6574;&#x7406;&#x540e;&#x7684;&#x8def;&#x5f84;</note>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x8f93;&#x5165;&#xa;path		&#x5fc5;&#x586b;&#xa;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x8f93;&#x51fa;&#xa;path      	&#x6574;&#x7406;&#x540e;&#x7684;&#x8def;&#x5f84;&#xff08;&#x53d8;&#x4e3a;unix&#x8def;&#x5f84;&#x5206;&#x9694;&#x7b26;&#xff09;</note>
       <xloc>480</xloc>
       <yloc>0</yloc>
-      <width>178</width>
-      <heigth>142</heigth>
+      <width>309</width>
+      <heigth>91</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -490,7 +490,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path_ununified</from>
+      <from>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path</from>
       <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x7edf;&#x4e00;&#x5206;&#x5272;&#x7b26;&#x2f;</to>
       <enabled>Y</enabled>
     </hop>
@@ -500,64 +500,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x53bb;&#x9664;&#x2f;&#x540e;&#x7f00;</from>
-      <to>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;path_ununified</to>
+      <to>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;path_ununified</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</to>
+      <from>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;path</from>
+      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
     <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;&#x7f13;&#x5b58;&#x5b57;&#x6bb5;</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>Y</select_unspecified>
-      <meta>        <name>path_ununified</name>
-        <rename>path_unified</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x79fb;&#x9664;</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -580,7 +534,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>640</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -618,7 +572,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>384</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -636,7 +590,7 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>path_ununified</in_stream_name>
+        <in_stream_name>path</in_stream_name>
         <out_stream_name>path_unix</out_stream_name>
         <use_regex>no</use_regex>
         <replace_string>&#x5c;</replace_string>
@@ -656,7 +610,7 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>160</yloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
@@ -694,13 +648,13 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>272</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path_ununified</name>
+    <name>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;&#xff1a;path</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -712,7 +666,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>path_ununified</name>
+        <name>path</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -753,13 +707,13 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>896</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
     </step>
 
   <step>
-    <name>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;path_ununified</name>
+    <name>&#x8bbe;&#x7f6e;&#x5b57;&#x6bb5;&#x503c;&#xff1a;&#x8bbe;&#x7f6e;path</name>
     <type>SetValueField</type>
     <description/>
     <distribute>Y</distribute>
@@ -771,7 +725,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>path_ununified</name>
+        <name>path</name>
         <replaceby>path_unix_no_repeat_suffix</replaceby>
         </field>
       </fields>
