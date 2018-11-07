@@ -126,7 +126,12 @@ if(customizeArchivePath?.trim()){
  * Get last archive file
  */
 def archiveRegex = '^\\[Deploy\\]' + projectName + '.*\\.zip$'
-def archiveFile = archivePath.listFiles({d, f -> f ==~ archiveRegex } as FilenameFilter).sort{ it.name }.reverse().first()
+def archiveFiles = archivePath.listFiles({d, f -> f ==~ archiveRegex } as FilenameFilter).sort{ it.name }.reverse()
+if(!archiveFiles){
+    println "Empty archive path: ${archivePath.absolutePath}"
+    return
+}
+def archiveFile = archiveFiles.first()
 println "Last archive is: ${archiveFile.absolutePath}"
 
 /**
@@ -142,30 +147,41 @@ println "Deploy project path is: ${projectPath}"
  */
 def projectPathFile = new File("${projectPath}")
 if(projectPathFile.exists()){
-    println "Deploy target path already exists ${projectPath} !"
+    println "Deploy target path already exists ${projectPath}, skip it!"
     return
+}else{
+    /**
+    * Unzip last archive file
+    */
+    def ant = new AntBuilder()
+    ant.unzip(src:archiveFile.absolutePath,
+                dest:projectPath,
+                overwrite:"true")
 }
 
-/**
- * Unzip last archive file
- */
-def ant = new AntBuilder()
-ant.unzip(src:archiveFile.absolutePath,
-            dest:projectPath,
-            overwrite:"true")
 
 /**
  * Active profile
  */
 println 'Active profile...'
 def profileFile = new File("${projectPath}/.profile/.profile")
-profileFile.renameTo "${projectPath}/.profile/${deployProfile}.profile"
+if(profileFile.exists()){
+    profileFile.renameTo "${projectPath}/.profile/${deployProfile}.profile"
+}else{
+    println 'already active profile, skip it!'
+}
 
 /**
  * Link PDI and KPT
  */
 println 'Link PDI and KPT...'
-println "cmd /c call ${kptPath}\\tool\\LINK_KPT.bat ${workPath} ${pdiPath}".execute().text
+def pdiFile = new File("${workPath}/data-integration")
+def kptFile = new File("${workPath}/tool")
+if(pdiFile.exists() && kptFile.exists()){
+    println 'already link PDI and KPT, skip it!'
+}else{
+    println "cmd /c call ${kptPath}\\tool\\LINK_KPT.bat ${workPath} ${pdiPath}".execute().text
+}
 
 /**
  * Deploy Jenkins jobs 
