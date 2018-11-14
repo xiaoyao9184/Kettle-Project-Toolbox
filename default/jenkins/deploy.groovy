@@ -1,6 +1,6 @@
 /**
  * Created by xiaoyao9184 on 2018/11/2.
- * Last change by xiaoyao9184 on 2018/11/6.
+ * Last change by xiaoyao9184 on 2018/11/14.
  */
 import hudson.model.*
 
@@ -184,9 +184,17 @@ if(pdiFile.exists() && kptFile.exists()){
 }
 
 /**
+ * Patch PDI
+ */
+println 'Patch PDI'
+def patchFile = new File("${projectPath}/patch.PatchPDI.bat")
+if(patchFile.exists()){
+    println "cmd /c call ${projectPath}/patch.PatchPDI.bat".execute().text
+}
+
+/**
  * Deploy Jenkins jobs 
  */
-
 def ppf = new File(projectPath)
 def jenkinsPath = new File(ppf, 'jenkins')
 def jenkinsRegex = /.*\.jenkinsfile/
