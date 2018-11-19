@@ -1,6 +1,6 @@
 /**
  * Created by xiaoyao9184 on 2018/11/2.
- * Last change by xiaoyao9184 on 2018/11/14.
+ * Last change by xiaoyao9184 on 2018/11/19.
  */
 import hudson.model.*
 
@@ -189,7 +189,7 @@ if(pdiFile.exists() && kptFile.exists()){
 println 'Patch PDI'
 def patchFile = new File("${projectPath}/patch.PatchPDI.bat")
 if(patchFile.exists()){
-    println "cmd /c call ${projectPath}/patch.PatchPDI.bat".execute().text
+    println "cmd /c call ${projectPath}\\patch.PatchPDI.bat".execute().text
 }
 
 /**
