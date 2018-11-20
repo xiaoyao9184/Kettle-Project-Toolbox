@@ -205,10 +205,10 @@ pipeline {
             steps {
                 //job-dsl cant use mixed separator
                 //use windows path separator for it
-                dir("${info.projectPath}".replace("/", "\\")) {
+                dir("${params.KPTPath}".replace("/", "\\")) {
                     echo 'Add Jenkins scheduling job...'
                     jobDsl(
-                        targets: "${params.KPTPath}\\jenkins\\deploy_project_jenkinsfile.groovy", 
+                        targets: "jenkins\\deploy_project_jenkinsfile.groovy", 
                         removedJobAction: 'DELETE', 
                         removedViewAction: 'DELETE',
                         additionalParameters: [
