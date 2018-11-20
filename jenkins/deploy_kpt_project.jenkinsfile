@@ -1,0 +1,221 @@
+/**
+ * Created by xiaoyao9184 on 2018/11/20.
+ * Last change by xiaoyao9184 on 2018/11/20.
+ */
+pipeline {
+    agent any
+    parameters {
+        string(name: 'ProjectName', description: 'Archive project name!')
+        string(name: 'ArchivePath', defaultValue: 'D:/Archive', description: 'Archive directory for find the last archive, format is {ArchivePath}/{ProjectName}/{ArchiveFile}')
+        string(name: 'ArchiveRegex', defaultValue: '^.*', description: 'Archive file name filter')
+
+        string(name: 'DeployProfile', defaultValue: 'prod', description: 'The profile for deploy!')
+        string(name: 'DeployPath', defaultValue: 'D:/Program/ETL', description: 'Deploy directory for project')
+        string(name: 'PDIPath', defaultValue: 'D:/Program/Kettle/data-integration', description: 'The PDI directory!')
+        string(name: 'KPTPath', defaultValue: 'D:/Program/Kettle/Kettle-Project-Toolbox', description: 'The KPT directory!')
+        string(name: 'PDIURL', defaultValue: 'https://jaist.dl.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip', description: 'The PDI URL!')
+    }
+    options {
+        disableConcurrentBuilds()
+    }
+    stages {
+        stage('Create info') {
+            steps {
+                script {
+                    archive = null
+                    info = [
+                        workPath: null,
+                        projectPath: null
+                    ]
+                    kettle = [
+                        updateKPT: false,
+                        downloadPDI: false
+                    ]
+                }
+            }
+        }
+        stage('Check kettle tool') {
+            steps {
+                script {
+                    println 'Check kettle tool...'
+                    def updateKPT = false
+                    //update KPT when not exist or KPT path is manage by git
+                    def kptFile = new File("${params.KPTPath}")
+                    if (kptFile.exists()) {
+                        def kptGitFile = new File("${params.KPTPath}/.git")
+                        if (kptGitFile.exists()) {
+                            updateKPT = true
+                        }
+                    } else {
+                        updateKPT = true
+                    }
+
+                    //download PDI with not exist
+                    def pdiFile = new File("${params.PDIPath}")
+
+                    kettle."updateKPT" = updateKPT
+                    kettle."downloadPDI" = !pdiFile.exists()
+                }
+            }
+        }
+        stage('Update KPT') {
+            when { 
+                expression { kettle.updateKPT }
+            }
+            steps {
+                dir("${params.KPTPath}") {
+                    echo 'Update KPT...'
+                    git branch: 'master',
+                        url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git'
+                }
+            }
+        }
+        stage('Download PDI') {
+            when { 
+                expression { kettle.downloadPDI }
+            }
+            steps {
+                echo 'Download PDI...'
+                fileOperations([
+                    fileDownloadOperation(
+                            url: "${params.PDIURL}",
+                            targetFileName: 'pdi-ce.zip',
+                            targetLocation: "${WORKSPACE}",
+                            userName: '',
+                            password: ''),
+                    fileUnZipOperation(
+                            filePath: 'pdi-ce.zip',
+                            targetLocation: "."),
+                    folderCopyOperation(
+                            destinationFolderPath: "${params.PDIPath}",
+                            sourceFolderPath: './data-integration'),
+                    folderDeleteOperation(
+                            './data-integration'
+                    )
+                ])
+            }
+        }   
+        stage('Get archive info') {
+            when { 
+                expression { return params.ProjectName } 
+            }
+            steps {
+                script {
+                    println 'Get archive info...'
+                    def archivePathList = new File("${params.ArchivePath}/${params.ProjectName}")
+                        .listFiles()
+                        .findAll { it.isFile() && !it.isHidden() }
+                        .findAll { it.name.endsWith('.zip') }
+                        .findAll { !it.name.contains('syncthing') }
+                        .findAll { it.name ==~ "${params.ArchiveRegex}" }
+                    if (!archivePathList) {
+                        println "No any archive file!"
+                        return
+                    }
+
+                    def archiveLastFile = archivePathList
+                        // https://issues.jenkins-ci.org/browse/JENKINS-44924
+                        // .sort{ it.name }
+                        .reverse()
+                        .first()
+
+                    println "Last archive is: ${archiveLastFile.absolutePath}"
+                    archive = [
+                        projectName: "${params.ProjectName}", 
+                        file: archiveLastFile.absolutePath,
+                        version: archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
+                    ]
+                }
+            }
+        }
+        stage('Create workspace info') {
+            when { 
+                expression { return archive } 
+            }
+            steps {
+                script {
+                    println 'Create workspace info...'
+                    info."workPath" = "${params.DeployPath}/${archive.version}"
+                    info."projectPath" = "${info.workPath}/${archive.projectName}"
+                    info."profile" = "${params.DeployProfile}"
+                    println "Deploy project path is: ${info.projectPath}"
+
+                    def projectPathFile = new File("${info.projectPath}")
+                    if (projectPathFile.exists()) {
+                        println "Deploy target path already exists ${info.projectPath}, skip it!"
+                        archive = null
+                    }
+                }
+            }
+        }
+        stage('Copy archive to local') {
+            when { 
+                expression { return archive } 
+            }
+            steps {
+                echo 'Copy archive to local...'
+                fileOperations([
+                    fileUnZipOperation(
+                            filePath: "${archive.file}",
+                            targetLocation: "${info.projectPath}")
+                ])
+            }
+        }
+        stage('Active profile') {
+            when { 
+                expression { return archive && info.profile } 
+            }
+            steps {
+                script {
+                    println 'Active profile...'
+                    def profileFile = new File("${info.projectPath}/.profile/.profile")
+                    if (profileFile.exists()) {
+                        profileFile.renameTo "${info.projectPath}/.profile/${info.profile}.profile"
+                    } else {
+                        println 'Profile already active, skip it!'
+                    }
+                }
+            }
+        }
+        stage('Link PDI and KPT') {
+            when { 
+                expression { return archive } 
+            }
+            steps {
+                echo 'Link PDI and KPT...'
+                bat 'call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${params.PDIPath}'.replace("/", "\\")
+            }
+        }
+        stage('Patch PDI') {
+            when { 
+                expression { return archive } 
+            }
+            steps {
+                dir("${info.projectPath}") {
+                    echo 'Patch PDI...'
+                    bat 'call patch.PatchPDI.bat'
+                }
+            }
+        }       
+        stage('Add Jenkins scheduling job') {
+            when { 
+                expression { return archive } 
+            }
+            steps {
+                //job-dsl cant use mixed separator
+                //use windows path separator for it
+                dir("${info.projectPath}".replace("/", "\\")) {
+                    echo 'Add Jenkins scheduling job...'
+                    jobDsl(
+                        targets: "${params.KPTPath}\\jenkins\\deploy_project_jenkinsfile.groovy", 
+                        removedJobAction: 'DELETE', 
+                        removedViewAction: 'DELETE',
+                        additionalParameters: [
+                            ProjectPath: "${info.projectPath}".replace("/", "\\")
+                        ]
+                    )
+                }
+            }
+        }
+    }
+}

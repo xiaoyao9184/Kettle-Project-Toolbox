@@ -1,3 +1,7 @@
+/**
+ * Created by xiaoyao9184 on 2018/11/20.
+ * Last change by xiaoyao9184 on 2018/11/20.
+ */
 import hudson.model.*
 import hudson.FilePath
 
@@ -94,37 +98,3 @@ files.each { file ->
         }
     }
 }
-
-
-// pipelineJob('DataCenter_ETL_Run-Topic') {
-//     definition {
-//         cps {
-//             script('''
-//             	pipeline {
-//                   agent any
-//                   // agent {
-//                   //     label 'windows'
-//                   // }
-//                   parameters {
-//                       string(name: 'ProjectPath', defaultValue: 'D:\\Test\\etl\\DataCenter', description: 'The ETL work dir!')
-//                       string(name: 'Profile', description: 'Who should I call for run?')
-//                   }
-//                   // triggers {
-//                   //     upstream(upstreamProjects: 'job1,job2', threshold: hudson.model.Result.SUCCESS) 
-//                   // }
-//                   stages {
-//                       stage('Build') {
-//                           steps {
-//                               bat """
-//                               cd /d ${params.ProjectPath}
-//                               call Topic.bat ${params.Profile}
-//                               """
-//                           }
-//                       }
-//                   }
-//               }
-//             '''.stripIndent())
-//             sandbox()
-//         }
-//     }
-// }
