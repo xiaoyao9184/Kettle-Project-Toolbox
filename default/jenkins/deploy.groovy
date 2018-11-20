@@ -184,13 +184,19 @@ if(pdiFile.exists() && kptFile.exists()){
 }
 
 /**
+ * ********************
+ * Cant be implemented
+ * Kettle stuck in RepositoriesMeta - Reading repositories XML file
+ * Script runs alone without problems
+ * unknow why!!!
+ * ********************
  * Patch PDI
  */
-println 'Patch PDI'
-def patchFile = new File("${projectPath}/patch.PatchPDI.bat")
-if(patchFile.exists()){
-    println "cmd /c call ${projectPath}\\patch.PatchPDI.bat".execute().text
-}
+// println 'Patch PDI'
+// def patchFile = new File("${projectPath}/patch.PatchPDI.bat")
+// if(patchFile.exists()){
+//     println "cmd /c \"cd /d ${projectPath} && call patch.PatchPDI.bat\"".execute().text
+// }
 
 /**
  * Deploy Jenkins jobs 
