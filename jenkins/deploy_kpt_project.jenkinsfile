@@ -184,7 +184,7 @@ pipeline {
             }
             steps {
                 echo 'Link PDI and KPT...'
-                bat 'call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${params.PDIPath}'.replace("/", "\\")
+                bat "call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${params.PDIPath}".replace("/", "\\")
             }
         }
         stage('Patch PDI') {
