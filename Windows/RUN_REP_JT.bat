@@ -2,18 +2,25 @@
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0
 ::TIME 2017-08-26
-::FILE RUN_REP_J
-::DESC run a job in filesystem repositorie 
-
+::FILE RUN_REP_JT
+::DESC run a job or transformation in filesystem repositorie 
+::PARAM params for the job or transformation 
+::  1: ProfileName
+::--------------------
+::CHANGE 2018-11-20
+::use more special character judgment inter active
+::--------------------
 
 :v
 
 ::1变量赋值
 set tip=Kettle调度程序：运行资源库转换
 set ver=1.0
-::double-clicking is outer call and will set 0
 set interactive=1
-echo %cmdcmdline% | find /i "%~0" >nul
+::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
+::check cmdcmdline include ""{scriptfile}" "
+echo %cmdcmdline% | find /i """""%~0"" """ >nul
+::if found set 0, it is called outer active
 if not errorlevel 1 set interactive=0
 ::set kettle environment
 call SET_ENVIRONMENT.bat
@@ -102,6 +109,10 @@ if "%kCommand%"=="" (
     if !errorlevel! equ 2 set kCommand=pan
 )
 
+if _%1_ neq __ (
+    set pList= "-param:ProfileName=%1"
+)
+
 if exist "%~n0.SET_PARAM.bat" (
     echo %echo_pList% %~n0.SET_PARAM.bat
     call %~n0.SET_PARAM.bat
@@ -138,16 +149,26 @@ echo 运行中...      Ctrl+C结束程序
 ::执行Pan
 set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -job:%jName%%pList%
 if _%interactive%_ neq _0_ echo %c%
-call %c%>>"%~dp0log\%~n0%d:/=-%_%t::=-%.log"
+
+if _%JENKINS_HOME%_ neq __ (
+    echo Used in Jenkins no log file!
+    call %c%
+) else (
+    call %c%>>"%~dp0log\%~n0%d:/=-%_%t::=-%.log"
+)
 
 ::执行完毕
-echo 已经执行完毕，可以结束此程序
+if %errorlevel% equ 0 (
+    echo 已经执行完毕，可以结束此程序
+) else (
+    echo 执行脚本，发现错误！
+)
 
-pause
+if _%interactive%_ equ _0_ pause
 
 
 :end
 
 ::5退出
 
-exit /b 0
+exit /b %errorlevel%

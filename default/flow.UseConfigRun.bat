@@ -2,18 +2,25 @@
 Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0
 ::TIME 2017-08-26
-::FILE RUN_REP_J
-::DESC run a job in filesystem repositorie 
-
+::FILE RUN_REP_JT
+::DESC run a job or transformation in filesystem repositorie 
+::PARAM params for the job or transformation 
+::  1: ProfileName
+::--------------------
+::CHANGE 2018-11-20
+::use more special character judgment inter active
+::--------------------
 
 :v
 
 ::1变量赋值
 set tip=Kettle调度程序：运行资源库转换
 set ver=1.0
-::double-clicking is outer call and will set 0
 set interactive=1
-echo %cmdcmdline% | find /i "%~0" >nul
+::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
+::check cmdcmdline include ""{scriptfile}" "
+echo %cmdcmdline% | find /i """""%~0"" """ >nul
+::if found set 0, it is called outer active
 if not errorlevel 1 set interactive=0
 ::set kettle environment
 call SET_ENVIRONMENT.bat
@@ -100,6 +107,10 @@ if "%kCommand%"=="" (
     choice /c JT /m !echo_kCommand!
     if !errorlevel! equ 1 set kCommand=kitchen
     if !errorlevel! equ 2 set kCommand=pan
+)
+
+if _%1_ neq __ (
+    set pList= "-param:ProfileName=%1"
 )
 
 if exist "%~n0.SET_PARAM.bat" (
