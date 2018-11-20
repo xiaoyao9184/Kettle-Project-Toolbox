@@ -17,6 +17,7 @@ pipeline {
     }
     options {
         disableConcurrentBuilds()
+        skipDefaultCheckout()
     }
     stages {
         stage('Create info') {
