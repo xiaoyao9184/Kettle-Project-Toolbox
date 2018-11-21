@@ -94,7 +94,9 @@
                         removedViewAction: 'DELETE',
                         additionalParameters: [
                             ProjectPath: "${params.DeployPath}\\${env.ArchiveName}\\${params.ProjectName}"
-                        ]
+                        ],
+                        lookupStrategy: 'SEED_JOB',
+                        sandbox: false
                     )
                 }
             }
