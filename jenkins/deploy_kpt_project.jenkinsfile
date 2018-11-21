@@ -1,7 +1,63 @@
 /**
- * Created by xiaoyao9184 on 2018/11/20.
- * Last change by xiaoyao9184 on 2018/11/20.
+ * Kettle-Project-Toolbox project pipeline deploy script
+ * The Shared Libraries version in 
+ * @see https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries
+ * Created by xiaoyao9184 on 2018/11/21.
  */
+
+//1. Copy deploy.groovy
+//2. Comment Library and library
+//3. Global variable 'deploy' check 
+//4. Replace checkout scm
+
+
+//1
+/**
+* Global variable 'deploy'
+* Created by xiaoyao9184 on 2018/11/21.
+*/
+//check file exist
+def check_file_exists(path) {
+    def file = new File(path)
+    return file.exists()
+}
+
+//check path not exist or path is manage by git
+def check_path_not_exists_or_manage_by_git(path) {
+    def pathFile = new File(path)
+    if (pathFile.exists()) {
+        def gitFile = new File("${path}/.git")
+        if (gitFile.exists()) {
+            return true
+        }
+    } else {
+        return true
+    }
+    return false
+}
+
+//get path sub files list 
+def get_path_list_file_info(path) {
+    def fileList = new File(path)
+        .listFiles()
+        .collect {
+            [
+                'name': it.getName(), 
+                'absolutePath': it.getAbsolutePath(),
+                'lastModified': it.lastModified(),
+                'length': it.length(),
+                'isFile': it.isFile(),
+                'isDirectory': it.isDirectory(),
+                'isHidden': it.isHidden()
+            ]
+        }
+    return fileList
+}
+
+
+//2
+// @Library('KPT_Shared_Libraries@master') _
+
 pipeline {
     agent any
     parameters {
@@ -28,40 +84,38 @@ pipeline {
                         workPath: null,
                         projectPath: null
                     ]
-                    kettle = [
+                    flow = [
                         updateKPT: false,
-                        downloadPDI: false
+                        downloadPDI: false,
+                        applyPatch: false,
+                        activeProfile: false,
+                        addJenkinsJob: false
                     ]
+                    //3
+                    if(deploy){
+                        println "Global variable 'deploy' not exists use this for variable!"
+                        deploy = this
+                    }
                 }
             }
         }
-        stage('Check kettle tool') {
+        stage('Check PDI and KPT') {
             steps {
+                //2
+                // library 'KPT_Shared_Libraries@master'
                 script {
                     println 'Check kettle tool...'
-                    def updateKPT = false
                     //update KPT when not exist or KPT path is manage by git
-                    def kptFile = new File("${params.KPTPath}")
-                    if (kptFile.exists()) {
-                        def kptGitFile = new File("${params.KPTPath}/.git")
-                        if (kptGitFile.exists()) {
-                            updateKPT = true
-                        }
-                    } else {
-                        updateKPT = true
-                    }
+                    flow."updateKPT" = deploy.check_path_not_exists_or_manage_by_git("${params.KPTPath}")
 
                     //download PDI with not exist
-                    def pdiFile = new File("${params.PDIPath}")
-
-                    kettle."updateKPT" = updateKPT
-                    kettle."downloadPDI" = !pdiFile.exists()
+                    flow."downloadPDI" = !deploy.check_file_exists("${params.PDIPath}")
                 }
             }
         }
         stage('Update KPT') {
             when { 
-                expression { kettle.updateKPT }
+                expression { flow.updateKPT }
             }
             steps {
                 dir("${params.KPTPath}") {
@@ -73,39 +127,39 @@ pipeline {
         }
         stage('Download PDI') {
             when { 
-                expression { kettle.downloadPDI }
+                expression { flow.downloadPDI }
             }
             steps {
                 echo 'Download PDI...'
                 fileOperations([
                     fileDownloadOperation(
-                            url: "${params.PDIURL}",
-                            targetFileName: 'pdi-ce.zip',
-                            targetLocation: "${WORKSPACE}",
-                            userName: '',
-                            password: ''),
+                        url: "${params.PDIURL}",
+                        targetFileName: 'pdi-ce.zip',
+                        targetLocation: "${WORKSPACE}",
+                        userName: '',
+                        password: ''),
                     fileUnZipOperation(
-                            filePath: 'pdi-ce.zip',
-                            targetLocation: "."),
+                        filePath: 'pdi-ce.zip',
+                        targetLocation: "."),
                     folderCopyOperation(
-                            destinationFolderPath: "${params.PDIPath}",
-                            sourceFolderPath: './data-integration'),
+                        destinationFolderPath: "${params.PDIPath}",
+                        sourceFolderPath: './data-integration'),
                     folderDeleteOperation(
-                            './data-integration'
-                    )
+                        './data-integration')
                 ])
             }
-        }   
+        }
         stage('Get archive info') {
             when { 
                 expression { return params.ProjectName } 
             }
             steps {
+                //2
+                // library 'KPT_Shared_Libraries@master'
                 script {
                     println 'Get archive info...'
-                    def archivePathList = new File("${params.ArchivePath}/${params.ProjectName}")
-                        .listFiles()
-                        .findAll { it.isFile() && !it.isHidden() }
+                    def archivePathList = deploy.get_path_list_file_info("${params.ArchivePath}/${params.ProjectName}")
+                        .findAll { it.isFile && !it.isHidden }
                         .findAll { it.name.endsWith('.zip') }
                         .findAll { !it.name.contains('syncthing') }
                         .findAll { it.name ==~ "${params.ArchiveRegex}" }
@@ -117,8 +171,7 @@ pipeline {
                     def archiveLastFile = archivePathList
                         // https://issues.jenkins-ci.org/browse/JENKINS-44924
                         // .sort{ it.name }
-                        .reverse()
-                        .first()
+                        .last()
 
                     println "Last archive is: ${archiveLastFile.absolutePath}"
                     archive = [
@@ -129,51 +182,79 @@ pipeline {
                 }
             }
         }
+        stage('Check archive info') {
+            steps {
+                script {
+                    if (!params.ProjectName) {
+                        echo "No 'ProjectName' param!"
+                        currentBuild.result = 'UNSTABLE'
+                    } else if (!archive) {
+                        echo "No archive info!"
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
         stage('Create workspace info') {
             when { 
                 expression { return archive } 
             }
             steps {
+                //2
+                // library 'KPT_Shared_Libraries@master'
                 script {
                     println 'Create workspace info...'
                     info."workPath" = "${params.DeployPath}/${archive.version}"
                     info."projectPath" = "${info.workPath}/${archive.projectName}"
-                    info."profile" = "${params.DeployProfile}"
-                    println "Deploy project path is: ${info.projectPath}"
-
-                    def projectPathFile = new File("${info.projectPath}")
-                    if (projectPathFile.exists()) {
+                    
+                    def projectPathExists = deploy.check_file_exists("${info.projectPath}")
+                    if (projectPathExists) {
                         println "Deploy target path already exists ${info.projectPath}, skip it!"
                         archive = null
+                    } else {
+                        println "Deploy project path is: ${info.projectPath}"
                     }
                 }
             }
         }
-        stage('Copy archive to local') {
+        stage('Unzip archive to project path') {
             when { 
                 expression { return archive } 
             }
             steps {
-                echo 'Copy archive to local...'
+                echo 'Unzip archive to project path...'
                 fileOperations([
                     fileUnZipOperation(
-                            filePath: "${archive.file}",
-                            targetLocation: "${info.projectPath}")
+                        filePath: "${archive.file}",
+                        targetLocation: "${info.projectPath}")
                 ])
             }
         }
-        stage('Active profile') {
+        stage('Check project') {
             when { 
-                expression { return archive && info.profile } 
+                expression { return archive } 
             }
             steps {
+                echo 'Check project path...'
+                //2
+                // library 'KPT_Shared_Libraries@master'
                 script {
-                    println 'Active profile...'
-                    def profileFile = new File("${info.projectPath}/.profile/.profile")
-                    if (profileFile.exists()) {
-                        profileFile.renameTo "${info.projectPath}/.profile/${info.profile}.profile"
-                    } else {
-                        println 'Profile already active, skip it!'
+                    def profileFileExists = deploy.check_file_exists("${info.projectPath}/.profile/.profile")
+                    if (profileFileExists && params.DeployProfile) {
+                        flow."activeProfile" = true
+                        println 'Profile needs to be activated!'
+                    }
+
+                    def patchFileExists = deploy.check_file_exists("${info.projectPath}/patch.PatchPDI.bat")
+                    if (patchFileExists) {
+                        flow."applyPatch" = true
+                        println 'Patch needs to be applied!'
+                    }
+
+                    def jenkinsPathExists = deploy.check_file_exists("${info.projectPath}/jenkins")
+                    if (jenkinsPathExists) {
+                        flow."addJenkinsJob" = true
+                        println 'JenkinsJob needs to be added!'
                     }
                 }
             }
@@ -187,36 +268,66 @@ pipeline {
                 bat "call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${params.PDIPath}".replace("/", "\\")
             }
         }
-        stage('Patch PDI') {
+        stage('Apply PDI patch') {
             when { 
-                expression { return archive } 
+                expression { return archive && flow.applyPatch } 
             }
             steps {
                 dir("${info.projectPath}") {
-                    echo 'Patch PDI...'
+                    echo 'Apply PDI patch...'
                     bat 'call patch.PatchPDI.bat'
                 }
             }
-        }       
-        stage('Add Jenkins scheduling job') {
+        }
+        stage('Active project profile') {
             when { 
-                expression { return archive } 
+                expression { return archive && flow.activeProfile } 
             }
             steps {
-                //job-dsl cant use mixed separator
-                //use windows path separator for it
-                dir("${params.KPTPath}".replace("/", "\\")) {
+                echo 'Active project profile...'
+                //2
+                // library 'KPT_Shared_Libraries@master'
+                script {
+                    deploy.rename_file(
+                        "${info.projectPath}/.profile/.profile",
+                        "${info.projectPath}/.profile/${params.DeployProfile}.profile")
+                }
+                // cant rename anything
+                // fileOperations([
+                //     fileRenameOperation(
+                //         filePath: "${info.projectPath}/.profile/.profile",
+                //         targetLocation: "${info.projectPath}/.profile/${params.DeployProfile}.profile")
+                // ])
+            }
+        }
+        stage('Add Jenkins scheduling job') {
+            when { 
+                expression { return archive && flow.addJenkinsJob } 
+            }
+            steps {
+                dir("KPTJSL") {
                     echo 'Add Jenkins scheduling job...'
+                    //4
+                    // checkout scm
+                    git branch: 'master',
+                        url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries.git'
+
                     jobDsl(
-                        targets: "jenkins\\deploy_project_jenkinsfile.groovy", 
+                        targets: "jenkinsfile/deploy_kpt_project_jenkinsfile.groovy", 
                         removedJobAction: 'DELETE', 
                         removedViewAction: 'DELETE',
                         additionalParameters: [
-                            ProjectPath: "${info.projectPath}".replace("/", "\\")
-                        ]
+                            ProjectPath: "${info.projectPath}"
+                        ],
+                        sandbox: false
                     )
                 }
             }
+        }
+    }
+    post {
+        cleanup {
+            deleteDir()
         }
     }
 }

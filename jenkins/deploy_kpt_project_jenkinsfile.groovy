@@ -1,6 +1,5 @@
 /**
- * Created by xiaoyao9184 on 2018/11/20.
- * Last change by xiaoyao9184 on 2018/11/20.
+ * Created by xiaoyao9184 on 2018/11/21.
  */
 import hudson.model.*
 import hudson.FilePath
