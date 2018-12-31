@@ -1,325 +1,330 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
   <name>CreateRepositoryProjectPath</name>
-  <description />
-  <extended_description />
-  <job_version />
+  <description/>
+  <extended_description/>
+  <job_version/>
   <job_status>0</job_status>
-  <directory>/</directory>
+  <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015/06/11 09:52:23.081</created_date>
+  <created_date>2015&#x2f;06&#x2f;11 09&#x3a;52&#x3a;23.081</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015/06/11 09:52:23.081</modified_date>
-  <parameters>
-    <parameter>
-      <name>Parameters.Create.Project.Name</name>
-      <default_value>?</default_value>
-      <description>资源库项目名称</description>
-    </parameter>
-    <parameter>
-      <name>Parameters.Create.Project.Path</name>
-      <default_value>?</default_value>
-      <description>资源库项目路径</description>
-    </parameter>
-    <parameter>
-      <name>Parameters.Create.Use.KettleHome</name>
-      <default_value>true</default_value>
-      <description>是否创建KETTLE_HOME文件夹</description>
-    </parameter>
-    <parameter>
-      <name>Parameters.Create.Use.Log</name>
-      <default_value>true</default_value>
-      <description>是否创建Log文件夹</description>
-    </parameter>
-    <parameter>
-      <name>Parameters.Create.Use.Patch</name>
-      <default_value>true</default_value>
-      <description>是否创建Patch文件夹</description>
-    </parameter>
-    <parameter>
-      <name>Parameters.Create.Use.Profile</name>
-      <default_value>true</default_value>
-      <description>是否创建Profile文件夹</description>
-    </parameter>
-  </parameters>
-  <slaveservers>
+  <modified_date>2015&#x2f;06&#x2f;11 09&#x3a;52&#x3a;23.081</modified_date>
+    <parameters>
+      <parameter>
+        <name>Parameters.Create.Open.Path</name>
+        <default_value>false</default_value>
+        <description>&#x662f;&#x5426;&#x6253;&#x5f00;&#x9879;&#x76ee;&#x8def;&#x5f84;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Create.Project.Name</name>
+        <default_value>&#x3f;</default_value>
+        <description>&#x8d44;&#x6e90;&#x5e93;&#x9879;&#x76ee;&#x540d;&#x79f0;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Create.Project.Path</name>
+        <default_value>&#x3f;</default_value>
+        <description>&#x8d44;&#x6e90;&#x5e93;&#x9879;&#x76ee;&#x8def;&#x5f84;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Create.Use.KettleHome</name>
+        <default_value>true</default_value>
+        <description>&#x662f;&#x5426;&#x521b;&#x5efa;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Create.Use.Log</name>
+        <default_value>true</default_value>
+        <description>&#x662f;&#x5426;&#x521b;&#x5efa;Log&#x6587;&#x4ef6;&#x5939;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Create.Use.Patch</name>
+        <default_value>true</default_value>
+        <description>&#x662f;&#x5426;&#x521b;&#x5efa;Patch&#x6587;&#x4ef6;&#x5939;</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Create.Use.Profile</name>
+        <default_value>true</default_value>
+        <description>&#x662f;&#x5426;&#x521b;&#x5efa;Profile&#x6587;&#x4ef6;&#x5939;</description>
+      </parameter>
+    </parameters>
+    <slaveservers>
     </slaveservers>
-  <job-log-table>
-    <connection />
-    <schema />
-    <table />
-    <size_limit_lines />
-    <interval />
-    <timeout_days />
-    <field>
-      <id>ID_JOB</id>
-      <enabled>Y</enabled>
-      <name>ID_JOB</name>
-    </field>
-    <field>
-      <id>CHANNEL_ID</id>
-      <enabled>Y</enabled>
-      <name>CHANNEL_ID</name>
-    </field>
-    <field>
-      <id>JOBNAME</id>
-      <enabled>Y</enabled>
-      <name>JOBNAME</name>
-    </field>
-    <field>
-      <id>STATUS</id>
-      <enabled>Y</enabled>
-      <name>STATUS</name>
-    </field>
-    <field>
-      <id>LINES_READ</id>
-      <enabled>Y</enabled>
-      <name>LINES_READ</name>
-    </field>
-    <field>
-      <id>LINES_WRITTEN</id>
-      <enabled>Y</enabled>
-      <name>LINES_WRITTEN</name>
-    </field>
-    <field>
-      <id>LINES_UPDATED</id>
-      <enabled>Y</enabled>
-      <name>LINES_UPDATED</name>
-    </field>
-    <field>
-      <id>LINES_INPUT</id>
-      <enabled>Y</enabled>
-      <name>LINES_INPUT</name>
-    </field>
-    <field>
-      <id>LINES_OUTPUT</id>
-      <enabled>Y</enabled>
-      <name>LINES_OUTPUT</name>
-    </field>
-    <field>
-      <id>LINES_REJECTED</id>
-      <enabled>Y</enabled>
-      <name>LINES_REJECTED</name>
-    </field>
-    <field>
-      <id>ERRORS</id>
-      <enabled>Y</enabled>
-      <name>ERRORS</name>
-    </field>
-    <field>
-      <id>STARTDATE</id>
-      <enabled>Y</enabled>
-      <name>STARTDATE</name>
-    </field>
-    <field>
-      <id>ENDDATE</id>
-      <enabled>Y</enabled>
-      <name>ENDDATE</name>
-    </field>
-    <field>
-      <id>LOGDATE</id>
-      <enabled>Y</enabled>
-      <name>LOGDATE</name>
-    </field>
-    <field>
-      <id>DEPDATE</id>
-      <enabled>Y</enabled>
-      <name>DEPDATE</name>
-    </field>
-    <field>
-      <id>REPLAYDATE</id>
-      <enabled>Y</enabled>
-      <name>REPLAYDATE</name>
-    </field>
-    <field>
-      <id>LOG_FIELD</id>
-      <enabled>Y</enabled>
-      <name>LOG_FIELD</name>
-    </field>
-    <field>
-      <id>EXECUTING_SERVER</id>
-      <enabled>N</enabled>
-      <name>EXECUTING_SERVER</name>
-    </field>
-    <field>
-      <id>EXECUTING_USER</id>
-      <enabled>N</enabled>
-      <name>EXECUTING_USER</name>
-    </field>
-    <field>
-      <id>START_JOB_ENTRY</id>
-      <enabled>N</enabled>
-      <name>START_JOB_ENTRY</name>
-    </field>
-    <field>
-      <id>CLIENT</id>
-      <enabled>N</enabled>
-      <name>CLIENT</name>
-    </field>
-  </job-log-table>
-  <jobentry-log-table>
-    <connection />
-    <schema />
-    <table />
-    <timeout_days />
-    <field>
-      <id>ID_BATCH</id>
-      <enabled>Y</enabled>
-      <name>ID_BATCH</name>
-    </field>
-    <field>
-      <id>CHANNEL_ID</id>
-      <enabled>Y</enabled>
-      <name>CHANNEL_ID</name>
-    </field>
-    <field>
-      <id>LOG_DATE</id>
-      <enabled>Y</enabled>
-      <name>LOG_DATE</name>
-    </field>
-    <field>
-      <id>JOBNAME</id>
-      <enabled>Y</enabled>
-      <name>TRANSNAME</name>
-    </field>
-    <field>
-      <id>JOBENTRYNAME</id>
-      <enabled>Y</enabled>
-      <name>STEPNAME</name>
-    </field>
-    <field>
-      <id>LINES_READ</id>
-      <enabled>Y</enabled>
-      <name>LINES_READ</name>
-    </field>
-    <field>
-      <id>LINES_WRITTEN</id>
-      <enabled>Y</enabled>
-      <name>LINES_WRITTEN</name>
-    </field>
-    <field>
-      <id>LINES_UPDATED</id>
-      <enabled>Y</enabled>
-      <name>LINES_UPDATED</name>
-    </field>
-    <field>
-      <id>LINES_INPUT</id>
-      <enabled>Y</enabled>
-      <name>LINES_INPUT</name>
-    </field>
-    <field>
-      <id>LINES_OUTPUT</id>
-      <enabled>Y</enabled>
-      <name>LINES_OUTPUT</name>
-    </field>
-    <field>
-      <id>LINES_REJECTED</id>
-      <enabled>Y</enabled>
-      <name>LINES_REJECTED</name>
-    </field>
-    <field>
-      <id>ERRORS</id>
-      <enabled>Y</enabled>
-      <name>ERRORS</name>
-    </field>
-    <field>
-      <id>RESULT</id>
-      <enabled>Y</enabled>
-      <name>RESULT</name>
-    </field>
-    <field>
-      <id>NR_RESULT_ROWS</id>
-      <enabled>Y</enabled>
-      <name>NR_RESULT_ROWS</name>
-    </field>
-    <field>
-      <id>NR_RESULT_FILES</id>
-      <enabled>Y</enabled>
-      <name>NR_RESULT_FILES</name>
-    </field>
-    <field>
-      <id>LOG_FIELD</id>
-      <enabled>N</enabled>
-      <name>LOG_FIELD</name>
-    </field>
-    <field>
-      <id>COPY_NR</id>
-      <enabled>N</enabled>
-      <name>COPY_NR</name>
-    </field>
-  </jobentry-log-table>
-  <channel-log-table>
-    <connection />
-    <schema />
-    <table />
-    <timeout_days />
-    <field>
-      <id>ID_BATCH</id>
-      <enabled>Y</enabled>
-      <name>ID_BATCH</name>
-    </field>
-    <field>
-      <id>CHANNEL_ID</id>
-      <enabled>Y</enabled>
-      <name>CHANNEL_ID</name>
-    </field>
-    <field>
-      <id>LOG_DATE</id>
-      <enabled>Y</enabled>
-      <name>LOG_DATE</name>
-    </field>
-    <field>
-      <id>LOGGING_OBJECT_TYPE</id>
-      <enabled>Y</enabled>
-      <name>LOGGING_OBJECT_TYPE</name>
-    </field>
-    <field>
-      <id>OBJECT_NAME</id>
-      <enabled>Y</enabled>
-      <name>OBJECT_NAME</name>
-    </field>
-    <field>
-      <id>OBJECT_COPY</id>
-      <enabled>Y</enabled>
-      <name>OBJECT_COPY</name>
-    </field>
-    <field>
-      <id>REPOSITORY_DIRECTORY</id>
-      <enabled>Y</enabled>
-      <name>REPOSITORY_DIRECTORY</name>
-    </field>
-    <field>
-      <id>FILENAME</id>
-      <enabled>Y</enabled>
-      <name>FILENAME</name>
-    </field>
-    <field>
-      <id>OBJECT_ID</id>
-      <enabled>Y</enabled>
-      <name>OBJECT_ID</name>
-    </field>
-    <field>
-      <id>OBJECT_REVISION</id>
-      <enabled>Y</enabled>
-      <name>OBJECT_REVISION</name>
-    </field>
-    <field>
-      <id>PARENT_CHANNEL_ID</id>
-      <enabled>Y</enabled>
-      <name>PARENT_CHANNEL_ID</name>
-    </field>
-    <field>
-      <id>ROOT_CHANNEL_ID</id>
-      <enabled>Y</enabled>
-      <name>ROOT_CHANNEL_ID</name>
-    </field>
-  </channel-log-table>
-  <pass_batchid>N</pass_batchid>
-  <shared_objects_file />
+      <job-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+        <field>
+          <id>ID_JOB</id>
+          <enabled>Y</enabled>
+          <name>ID_JOB</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>JOBNAME</id>
+          <enabled>Y</enabled>
+          <name>JOBNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>START_JOB_ENTRY</id>
+          <enabled>N</enabled>
+          <name>START_JOB_ENTRY</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </job-log-table>
+      <jobentry-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>JOBNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>JOBENTRYNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>RESULT</id>
+          <enabled>Y</enabled>
+          <name>RESULT</name>
+        </field>
+        <field>
+          <id>NR_RESULT_ROWS</id>
+          <enabled>Y</enabled>
+          <name>NR_RESULT_ROWS</name>
+        </field>
+        <field>
+          <id>NR_RESULT_FILES</id>
+          <enabled>Y</enabled>
+          <name>NR_RESULT_FILES</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>COPY_NR</id>
+          <enabled>N</enabled>
+          <name>COPY_NR</name>
+        </field>
+      </jobentry-log-table>
+      <channel-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+   <pass_batchid>N</pass_batchid>
+   <shared_objects_file/>
   <entries>
     <entry>
       <name>START</name>
-      <description />
+      <description/>
       <type>SPECIAL</type>
       <start>Y</start>
       <dummy>N</dummy>
@@ -338,8 +343,8 @@
       <yloc>16</yloc>
     </entry>
     <entry>
-      <name>成功</name>
-      <description />
+      <name>&#x6210;&#x529f;</name>
+      <description/>
       <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -348,10 +353,10 @@
       <yloc>2240</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：项目目录</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;</foldername>
       <fail_of_folder_exists>Y</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -360,10 +365,10 @@
       <yloc>576</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：KETTLE_HOME目录</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;KETTLE_HOME&#x76ee;&#x5f55;</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}/.kettle</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.kettle</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -372,8 +377,8 @@
       <yloc>864</yloc>
     </entry>
     <entry>
-      <name>DUMMY:Profile</name>
-      <description />
+      <name>DUMMY&#x3a;Profile</name>
+      <description/>
       <type>SPECIAL</type>
       <start>N</start>
       <dummy>Y</dummy>
@@ -392,17 +397,17 @@
       <yloc>1664</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：.profile文件夹</name>
-      <description />
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;.profile&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${Parameters.Create.Use.Profile}</variablename>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Use.Profile&#x7d;</variablename>
       <fieldtype>boolean</fieldtype>
-      <mask />
+      <mask/>
       <comparevalue>1</comparevalue>
-      <minvalue />
-      <maxvalue />
+      <minvalue/>
+      <maxvalue/>
       <successcondition>equal</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
@@ -414,10 +419,10 @@
       <yloc>1440</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：.profile/</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}/.profile</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -426,10 +431,10 @@
       <yloc>1440</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：log目录</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;log&#x76ee;&#x5f55;</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}/log</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;log</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -438,10 +443,10 @@
       <yloc>1152</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：.profile/prod</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;prod</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}/.profile/prod</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile&#x2f;prod</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -450,39 +455,39 @@
       <yloc>1664</yloc>
     </entry>
     <entry>
-      <name>Shell：打开目录</name>
-      <description />
+      <name>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</name>
+      <description/>
       <type>SHELL</type>
-      <filename />
-      <work_directory />
+      <filename/>
+      <work_directory/>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
-      <logfile />
+      <logfile/>
       <set_append_logfile>N</set_append_logfile>
-      <logext />
+      <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>start ${Internal.Project.Directory}</script>
+      <script>start &#x24;&#x7b;Internal.Project.Directory&#x7d;</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>208</xloc>
-      <yloc>2080</yloc>
+      <yloc>2240</yloc>
     </entry>
     <entry>
-      <name>设置变量：Internal.Project.Directory</name>
-      <description />
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Directory</name>
+      <description/>
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
-      <filename />
+      <filename/>
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
           <variable_name>Internal.Project.Directory</variable_name>
-          <variable_value>${Temp.Path}</variable_value>
+          <variable_value>&#x24;&#x7b;Parameters.Create.Project.Path&#x7d;</variable_value>
           <variable_type>ROOT_JOB</variable_type>
         </field>
       </fields>
@@ -493,17 +498,17 @@
       <yloc>576</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：ProjectPath</name>
-      <description />
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</name>
+      <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${Parameters.Create.Project.Path}</variablename>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Project.Path&#x7d;</variablename>
       <fieldtype>string</fieldtype>
-      <mask />
+      <mask/>
       <comparevalue>-</comparevalue>
-      <minvalue />
-      <maxvalue />
+      <minvalue/>
+      <maxvalue/>
       <successcondition>equal</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>false</successbooleancondition>
@@ -515,17 +520,17 @@
       <yloc>432</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：KETTLE_HOME文件夹</name>
-      <description />
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${Parameters.Create.Use.KettleHome}</variablename>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Use.KettleHome&#x7d;</variablename>
       <fieldtype>boolean</fieldtype>
-      <mask />
+      <mask/>
       <comparevalue>1</comparevalue>
-      <minvalue />
-      <maxvalue />
+      <minvalue/>
+      <maxvalue/>
       <successcondition>equal</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
@@ -537,8 +542,8 @@
       <yloc>736</yloc>
     </entry>
     <entry>
-      <name>DUMMY:KETTLE_HOME</name>
-      <description />
+      <name>DUMMY&#x3a;KETTLE_HOME</name>
+      <description/>
       <type>SPECIAL</type>
       <start>N</start>
       <dummy>Y</dummy>
@@ -557,17 +562,17 @@
       <yloc>864</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：log文件夹</name>
-      <description />
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;log&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${Parameters.Create.Use.Log}</variablename>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Use.Log&#x7d;</variablename>
       <fieldtype>boolean</fieldtype>
-      <mask />
+      <mask/>
       <comparevalue>1</comparevalue>
-      <minvalue />
-      <maxvalue />
+      <minvalue/>
+      <maxvalue/>
       <successcondition>equal</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
@@ -579,8 +584,8 @@
       <yloc>1024</yloc>
     </entry>
     <entry>
-      <name>DUMMY:Log</name>
-      <description />
+      <name>DUMMY&#x3a;Log</name>
+      <description/>
       <type>SPECIAL</type>
       <start>N</start>
       <dummy>Y</dummy>
@@ -599,11 +604,11 @@
       <yloc>1280</yloc>
     </entry>
     <entry>
-      <name>设置变量：Internal.Project.UseKettleHome</name>
-      <description />
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseKettleHome</name>
+      <description/>
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
-      <filename />
+      <filename/>
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
@@ -619,11 +624,11 @@
       <yloc>736</yloc>
     </entry>
     <entry>
-      <name>设置变量：Internal.Project.UseLog</name>
-      <description />
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseLog</name>
+      <description/>
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
-      <filename />
+      <filename/>
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
@@ -639,11 +644,11 @@
       <yloc>1024</yloc>
     </entry>
     <entry>
-      <name>设置变量：Internal.Project.UseProfile</name>
-      <description />
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseProfile</name>
+      <description/>
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
-      <filename />
+      <filename/>
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
@@ -659,10 +664,10 @@
       <yloc>1440</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：.profile/dev</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}/.profile/dev</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile&#x2f;dev</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -671,16 +676,16 @@
       <yloc>1552</yloc>
     </entry>
     <entry>
-      <name>设置变量：Internal.Project.Name</name>
-      <description />
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Name</name>
+      <description/>
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
-      <filename />
+      <filename/>
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
           <variable_name>Internal.Project.Name</variable_name>
-          <variable_value>${ProjectName}</variable_value>
+          <variable_value>&#x24;&#x7b;Parameters.Create.Project.Name&#x7d;</variable_value>
           <variable_type>ROOT_JOB</variable_type>
         </field>
       </fields>
@@ -691,17 +696,17 @@
       <yloc>288</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：ProjectName</name>
-      <description />
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</name>
+      <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${Parameters.Create.Project.Name}</variablename>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Project.Name&#x7d;</variablename>
       <fieldtype>string</fieldtype>
-      <mask />
+      <mask/>
       <comparevalue>-</comparevalue>
-      <minvalue />
-      <maxvalue />
+      <minvalue/>
+      <maxvalue/>
       <successcondition>equal</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>false</successbooleancondition>
@@ -713,8 +718,8 @@
       <yloc>144</yloc>
     </entry>
     <entry>
-      <name>DUMMY:Name</name>
-      <description />
+      <name>DUMMY&#x3a;Name</name>
+      <description/>
       <type>SPECIAL</type>
       <start>N</start>
       <dummy>Y</dummy>
@@ -733,10 +738,10 @@
       <yloc>288</yloc>
     </entry>
     <entry>
-      <name>创建文件：.profile/.profile</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</name>
+      <description/>
       <type>CREATE_FILE</type>
-      <filename>${Internal.Project.Directory}/.profile/.profile</filename>
+      <filename>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.profile&#x2f;.profile</filename>
       <fail_if_file_exists>N</fail_if_file_exists>
       <add_filename_result>N</add_filename_result>
       <parallel>N</parallel>
@@ -746,10 +751,10 @@
       <yloc>1664</yloc>
     </entry>
     <entry>
-      <name>创建文件：log/.gitkeep</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;log&#x2f;.gitkeep</name>
+      <description/>
       <type>CREATE_FILE</type>
-      <filename>${Internal.Project.Directory}/log/.gitkeep</filename>
+      <filename>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;log&#x2f;.gitkeep</filename>
       <fail_if_file_exists>N</fail_if_file_exists>
       <add_filename_result>N</add_filename_result>
       <parallel>N</parallel>
@@ -759,10 +764,10 @@
       <yloc>1280</yloc>
     </entry>
     <entry>
-      <name>创建一个目录：.pdi/</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.pdi&#x2f;</name>
+      <description/>
       <type>CREATE_FOLDER</type>
-      <foldername>${Internal.Project.Directory}/.pdi</foldername>
+      <foldername>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.pdi</foldername>
       <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -771,17 +776,17 @@
       <yloc>1952</yloc>
     </entry>
     <entry>
-      <name>检验字段的值：patch文件夹</name>
-      <description />
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;patch&#x6587;&#x4ef6;&#x5939;</name>
+      <description/>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
-      <fieldname />
-      <variablename>${Parameters.Create.Use.Patch}</variablename>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Use.Patch&#x7d;</variablename>
       <fieldtype>boolean</fieldtype>
-      <mask />
+      <mask/>
       <comparevalue>1</comparevalue>
-      <minvalue />
-      <maxvalue />
+      <minvalue/>
+      <maxvalue/>
       <successcondition>equal</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
@@ -793,8 +798,8 @@
       <yloc>1824</yloc>
     </entry>
     <entry>
-      <name>DUMMY:Log 2</name>
-      <description />
+      <name>DUMMY&#x3a;Log 2</name>
+      <description/>
       <type>SPECIAL</type>
       <start>N</start>
       <dummy>Y</dummy>
@@ -813,11 +818,11 @@
       <yloc>2080</yloc>
     </entry>
     <entry>
-      <name>设置变量：Internal.Project.UsePatch</name>
-      <description />
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UsePatch</name>
+      <description/>
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
-      <filename />
+      <filename/>
       <file_variable_type>JVM</file_variable_type>
       <fields>
         <field>
@@ -833,10 +838,10 @@
       <yloc>1824</yloc>
     </entry>
     <entry>
-      <name>创建文件：.pdi/.gitkeep</name>
-      <description />
+      <name>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.pdi&#x2f;.gitkeep</name>
+      <description/>
       <type>CREATE_FILE</type>
-      <filename>${Internal.Project.Directory}/.pdi/.gitkeep</filename>
+      <filename>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.pdi&#x2f;.gitkeep</filename>
       <fail_if_file_exists>N</fail_if_file_exists>
       <add_filename_result>N</add_filename_result>
       <parallel>N</parallel>
@@ -845,11 +850,33 @@
       <xloc>576</xloc>
       <yloc>2080</yloc>
     </entry>
+    <entry>
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;Open.Path</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;Parameters.Create.Open.Path&#x7d;</variablename>
+      <fieldtype>boolean</fieldtype>
+      <mask/>
+      <comparevalue>-</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>true</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>208</xloc>
+      <yloc>2080</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
-      <from>设置变量：Internal.Project.Directory</from>
-      <to>创建一个目录：项目目录</to>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Directory</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -857,8 +884,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：ProjectPath</from>
-      <to>创建一个目录：项目目录</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -866,17 +893,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：ProjectPath</from>
-      <to>设置变量：Internal.Project.Directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>创建一个目录：项目目录</from>
-      <to>检验字段的值：KETTLE_HOME文件夹</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -884,62 +902,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：KETTLE_HOME文件夹</from>
-      <to>设置变量：Internal.Project.UseKettleHome</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>设置变量：Internal.Project.UseKettleHome</from>
-      <to>创建一个目录：KETTLE_HOME目录</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>检验字段的值：log文件夹</from>
-      <to>设置变量：Internal.Project.UseLog</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>设置变量：Internal.Project.UseLog</from>
-      <to>创建一个目录：log目录</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>检验字段的值：.profile文件夹</from>
-      <to>设置变量：Internal.Project.UseProfile</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>设置变量：Internal.Project.UseProfile</from>
-      <to>创建一个目录：.profile/</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>检验字段的值：KETTLE_HOME文件夹</from>
-      <to>DUMMY:KETTLE_HOME</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Directory</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -947,8 +911,71 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:KETTLE_HOME</from>
-      <to>检验字段的值：log文件夹</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseKettleHome</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseKettleHome</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;KETTLE_HOME&#x76ee;&#x5f55;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;log&#x6587;&#x4ef6;&#x5939;</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseLog</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseLog</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;log&#x76ee;&#x5f55;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;.profile&#x6587;&#x4ef6;&#x5939;</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseProfile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UseProfile</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;</from>
+      <to>DUMMY&#x3a;KETTLE_HOME</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY&#x3a;KETTLE_HOME</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;log&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -956,8 +983,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：log文件夹</from>
-      <to>DUMMY:Log</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;log&#x6587;&#x4ef6;&#x5939;</from>
+      <to>DUMMY&#x3a;Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -965,8 +992,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Log</from>
-      <to>检验字段的值：.profile文件夹</to>
+      <from>DUMMY&#x3a;Log</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;.profile&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -974,8 +1001,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：.profile文件夹</from>
-      <to>DUMMY:Profile</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;.profile&#x6587;&#x4ef6;&#x5939;</from>
+      <to>DUMMY&#x3a;Profile</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -983,8 +1010,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建一个目录：KETTLE_HOME目录</from>
-      <to>DUMMY:KETTLE_HOME</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;KETTLE_HOME&#x76ee;&#x5f55;</from>
+      <to>DUMMY&#x3a;KETTLE_HOME</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -992,8 +1019,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建一个目录：.profile/</from>
-      <to>创建一个目录：.profile/dev</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1001,8 +1028,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建一个目录：.profile/dev</from>
-      <to>创建一个目录：.profile/prod</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;dev</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;prod</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1010,8 +1037,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：ProjectName</from>
-      <to>设置变量：Internal.Project.Name</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1020,7 +1047,7 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>检验字段的值：ProjectName</to>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1028,8 +1055,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：ProjectName</from>
-      <to>DUMMY:Name</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectName</from>
+      <to>DUMMY&#x3a;Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1037,8 +1064,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>设置变量：Internal.Project.Name</from>
-      <to>DUMMY:Name</to>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Name</from>
+      <to>DUMMY&#x3a;Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1046,8 +1073,26 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Name</from>
-      <to>检验字段的值：ProjectPath</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.profile&#x2f;prod</from>
+      <to>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.profile&#x2f;.profile</from>
+      <to>DUMMY&#x3a;Profile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY&#x3a;Name</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;ProjectPath</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1055,8 +1100,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>创建一个目录：.profile/prod</from>
-      <to>创建文件：.profile/.profile</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;log&#x76ee;&#x5f55;</from>
+      <to>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;log&#x2f;.gitkeep</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1064,8 +1109,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建文件：.profile/.profile</from>
-      <to>DUMMY:Profile</to>
+      <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;log&#x2f;.gitkeep</from>
+      <to>DUMMY&#x3a;Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1073,26 +1118,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建一个目录：log目录</from>
-      <to>创建文件：log/.gitkeep</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>创建文件：log/.gitkeep</from>
-      <to>DUMMY:Log</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>DUMMY:Profile</from>
-      <to>检验字段的值：patch文件夹</to>
+      <from>DUMMY&#x3a;Profile</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;patch&#x6587;&#x4ef6;&#x5939;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1100,8 +1127,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：patch文件夹</from>
-      <to>设置变量：Internal.Project.UsePatch</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;patch&#x6587;&#x4ef6;&#x5939;</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UsePatch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1109,8 +1136,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>设置变量：Internal.Project.UsePatch</from>
-      <to>创建一个目录：.pdi/</to>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.UsePatch</from>
+      <to>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.pdi&#x2f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1118,8 +1145,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建一个目录：.pdi/</from>
-      <to>创建文件：.pdi/.gitkeep</to>
+      <from>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;.pdi&#x2f;</from>
+      <to>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.pdi&#x2f;.gitkeep</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1127,8 +1154,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>创建文件：.pdi/.gitkeep</from>
-      <to>DUMMY:Log 2</to>
+      <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.pdi&#x2f;.gitkeep</from>
+      <to>DUMMY&#x3a;Log 2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1136,8 +1163,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值：patch文件夹</from>
-      <to>DUMMY:Log 2</to>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;patch&#x6587;&#x4ef6;&#x5939;</from>
+      <to>DUMMY&#x3a;Log 2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1145,8 +1172,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Log 2</from>
-      <to>Shell：打开目录</to>
+      <from>DUMMY&#x3a;Log 2</from>
+      <to>&#x6210;&#x529f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1154,18 +1181,27 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Log 2</from>
-      <to>成功</to>
+      <from>DUMMY&#x3a;Log 2</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;Open.Path</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;Open.Path</from>
+      <to>Shell&#xff1a;&#x6253;&#x5f00;&#x76ee;&#x5f55;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>创建文件资源库目录</note>
+      <note>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#x8d44;&#x6e90;&#x5e93;&#x76ee;&#x5f55;</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
       <width>118</width>
@@ -1186,22 +1222,12 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Temp.Path             非必需
-isUseKettleHome    非必需
-isUseLog                非必需
-isUseProfile            非必需
-
-产生以下变量
-Internal.Project.Directory
-Internal.Project.UseKettleHome
-Internal.Project.UseLog
-Internal.Project.UseProfile</note>
-      <xloc>464</xloc>
+      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Create.Open.Path		&#x975e;&#x5fc5;&#x9700;&#xd;&#xa;Parameters.Create.Project.Name		&#x5fc5;&#x9700;&#xd;&#xa;Parameters.Create.Project.Path		&#x5fc5;&#x9700;&#xd;&#xa;Parameters.Create.Use.KettleHome	&#x975e;&#x5fc5;&#x9700;&#xd;&#xa;Parameters.Create.Use.Log		&#x975e;&#x5fc5;&#x9700;&#xd;&#xa;Parameters.Create.Use.Patch		&#x975e;&#x5fc5;&#x9700;&#xd;&#xa;Parameters.Create.Use.Profile		&#x975e;&#x5fc5;&#x9700;&#xa;&#xa;&#x4ea7;&#x751f;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;Internal.Project.Name&#xa;Internal.Project.Directory&#xa;Internal.Project.UseKettleHome&#xa;Internal.Project.UseLog&#xa;Internal.Project.UseProfile&#xd;&#xa;Internal.Project.UseParch</note>
+      <xloc>576</xloc>
       <yloc>0</yloc>
-      <width>190</width>
-      <heigth>187</heigth>
-      <fontname>微软雅黑</fontname>
+      <width>286</width>
+      <heigth>266</heigth>
+      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -1217,29 +1243,12 @@ Internal.Project.UseProfile</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>参数介绍：
-
-Temp.Path
-资源库文件夹路径
-默认为：?
-====================
-isUseKettleHome
-是否创建KETTLE_HOME文件夹
-默认值为：true(创建)
-====================
-isUseLog 
-是否创建Log文件夹
-默认值为：true(创建)
-====================
-isUseProfile
-是否创建Profile文件夹
-默认值为：true(创建)
-====================</note>
-      <xloc>672</xloc>
+      <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xa;&#xa;Parameters.Create.Open.Path&#xd;&#xa;&#x662f;&#x5426;&#x6253;&#x5f00;&#x9879;&#x76ee;&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;false&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;Parameters.Create.Project.Name&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;&#x3f;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;Parameters.Create.Project.Path&#xa;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;&#x3f;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;Parameters.Create.Use.KettleHome&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;Parameters.Create.Use.Log	&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;Log&#x6587;&#x4ef6;&#x5939;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;Parameters.Create.Use.Patch&#xd;&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;Patch&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;Parameters.Create.Use.Profile&#xd;&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;Profile&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
+      <xloc>880</xloc>
       <yloc>0</yloc>
-      <width>190</width>
-      <heigth>299</heigth>
-      <fontname>微软雅黑</fontname>
+      <width>211</width>
+      <heigth>489</heigth>
+      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
