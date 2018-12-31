@@ -4,41 +4,53 @@ Setlocal enabledelayedexpansion
 ::TIME 2017-09-05
 ::FILE LINK_FOLDER
 ::DESC create a symbolic link for directory
-
+::PARAM params for the link path and target path
+::  1: linkPath 
+::  2: targetPath
+::  3: skipConflictCheck
+::  4: forceConflictReplace
+::--------------------
+::CHANGE 2018-12-31
+::english
+::--------------------
 
 :v
 
-::1变量赋值
-set tip=Kettle基本工具：生成目录链接
+set tip=Kettle-Project-Toolbox: Link directory
 set ver=1.0
+::interactive
+set interactive=1
+::default is inter call
+::no parameters will set 0
+if "%1" equ "" set interactive=0
+::current info
+set current_path=%~dp0
+%~d0
+cd %~dp0
+cd..
+set parent_path=%cd%
+::tip info
+set echo_linkPath=Need input link path
+set eset_linkPath=Please input path or drag path in:
+set echo_targetPath=Need input target path
+set eset_targetPath=Please input path or drag path in:
+::defult param
 set linkPath=%1
 set targetPath=%2
 set skipConflictCheck=%3
 set forceConflictReplace=%4
-::not set param set 0
-set interactive=1
-if "%1" equ "" set interactive=0
 
-set echo_linkPath=需要输入链接（虚拟）目录路径
-set eset_linkPath=请输入路径或拖动目录到此，然后回车：
-
-set echo_targetPath=需要输入被链接（目标）目录路径
-set eset_targetPath=请输入路径或拖动目录到此，然后回车：
 
 :title
 
-::2提示文本
-if _%interactive%_ neq _0_ goto check
-
 title %tip% %ver%
-
-echo Kettle基本工具：生成目录链接
-echo 运行结束后可以关闭
+echo %tip%
+echo Can be closed after the run ends
 echo ...
+
 
 :check
 
-::3变量检验 参数处理
 if "%linkPath%"=="" (
 	echo %echo_linkPath%
 	set /p linkPath=%eset_linkPath%
@@ -47,76 +59,69 @@ if "%targetPath%"=="" (
 	echo %echo_targetPath%
 	set /p targetPath=%eset_targetPath%
 )
-
 if "%skipConflictCheck%"=="skip" (
 	goto begin
 )
 
-:check_conflict
-
+::check conflict
 if exist %linkPath% (
 	for %%i in (%linkPath%) do (
 		for /f %%j in ('echo %%~ai^|find /i "-l"') do (
-			echo 检测到冲突，链接目录已经是符号链接！
+			echo Is already symbolic link!
 			if "!forceConflictReplace!" equ "force" goto replace
-			choice /c dre /m 链接目录已经是符号链接，删除链接^(D^)；替换链接^(R^)；保持不变^(默认E^)？ /t 10  /d e
+			choice /c dre /m "Dele^(D^), Replace^(R^), None^(E^)?" /t 10  /d e
 			if !errorlevel! equ 1 goto dele
 			if !errorlevel! equ 2 goto replace
 			if !errorlevel! equ 3 goto quit
 		)
 	)
 	
-	echo 检测到冲突，链接目录文件夹已经存在！
+	echo The folder already exists!
 	if "!forceConflictReplace!" equ "force" goto replace
-	choice /c yn /m 链接目录文件夹已经存在，删除文件夹后建立链接^(Y^)；取消^(N^)？ /t 10  /d n
+	choice /c yn /m "Dele folder and link^(Y^), cancel^(N^)?" /t 10  /d n
 	if !errorlevel! equ 1 goto replace
 	if !errorlevel! equ 2 goto quit
 	
 :quit
-	echo 未执行任何操作，退出...
-	if _%interactive%_ equ _0_ pause
+	echo user select stop option!
 	goto end
 :dele
 	rd /s /q %linkPath%
-	echo 删除链接目录，退出...
-        pause
-	goto end
+	goto quit
 :replace
 	rd /s /q %linkPath%
-	echo 删除链接目录完毕
 )
+
 
 :begin
 
-::4执行
-%~d0
+::goto work path
+cd %current_path%
 
-cd %~dp0
+::print info
+echo ===========================================================
+echo Work path is: %current_path%
+echo Kettle link path is: %linkPath%
+echo Kettle target path is: %targetPath%
+echo ===========================================================
+echo Running...      Ctrl+C for exit
 
-if _%interactive%_ neq _0_ goto call
-
-echo Kettle虚拟目标为：%linkPath%
-echo Kettle实际目录为：%targetPath%
-echo 运行中...      Ctrl+C结束程序
-
-::执行MKLink
-:call
+::create command run
 set c=mklink /j %linkPath% %targetPath% 
-if _%interactive%_ equ _0_ echo %c%
+if _%interactive%_ neq _0_ echo %c%
 call %c%
 
-::执行完毕
-if %errorlevel% equ 0 (
-    echo 已经执行完毕，可以结束此程序
-) else (
-    echo 执行脚本，发现错误！
-)
 
-if _%interactive%_ equ _0_ pause
+:done
+
+if %errorlevel% equ 0 (
+    echo Ok, run done!
+) else (
+    echo Sorry, some error make failure!
+)
 
 
 :end
 
-::5退出
-
+if _%interactive%_ equ _0_ pause
 exit /b %errorlevel%

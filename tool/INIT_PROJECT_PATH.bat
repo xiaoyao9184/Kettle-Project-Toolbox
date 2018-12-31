@@ -4,64 +4,90 @@ Setlocal enabledelayedexpansion
 ::TIME 2017-08-22
 ::FILE INIT_PROJECT_PATH
 ::DESC init file repository as project directory
+::PARAM none
+::--------------------
+::CHANGE 2018-12-31
+::english
+::--------------------
 
 
 :v
 
-::1变量赋值
-set tip=Kettle项目工具：初始化项目资源库
+set tip=Kettle-Project-Toolbox: Init project
 set ver=1.0
+::interactive
+set interactive=1
+::default is inter call
+::check double-clicking(outer call) and set 0
+::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
+::check cmdcmdline include ""{scriptfile}" "
+echo %cmdcmdline% | find /i "%~0" >nul
+if not errorlevel 1 set interactive=0
+::current info
+set current_path=%~dp0
+%~d0
+cd %~dp0
+cd..
+set parent_path=%cd%
+::tip info
+set echo_rName=Need input KPT project name
+set eset_rName=Please input KPT project name:
+::defult param
 set rName=
+set pdi_path=%parent_path%\data-integration
 
-set echorName=需要输入项目资源库名称名称
-set esetrName=请输入名称，然后回车：
 
 :title
 
-::2提示文本
 title %tip% %ver%
-
-echo Kettle项目工具：初始化项目资源库
-echo 运行结束后可以关闭
+echo %tip%
+echo Can be closed after the run ends
 echo ...
 
 
 :check
 
-::3变量检验 参数处理
 if "%rName%"=="" (
-	echo %echorName%
-	set /p rName=%esetrName%
+	echo %echo_rName%
+	set /p rName=%eset_rName%
 )
+if _%interactive%_ equ _0_ (
+	set isOpenShell="true"
+) else (
+    set isOpenShell="false"
+)
+
 
 :begin
 
-::4执行
-%~d0
+::goto work path
+cd %current_path%
 
-cd %~dp0
+::print info
+if _%interactive%_ equ _0_ cls
+echo ===========================================================
+echo Kettle work path is: %current_path%
+echo Kettle engine path is: %pdi_path%
+echo Kettle init project: %rName%
+echo Kettle project will init at: %parent_path%
+echo ===========================================================
+echo Running...      Ctrl+C for exit
 
-cd..
+::create command run
+set c=%pdi_path%\kitchen -file:%current_path%CreateProjectRepository.kjb "-param:rName=%rName%" "-param:isOpenShell=%isOpenShell%"
+if _%interactive%_ neq _0_ echo %c%
+call %c%
 
-cd data-integration
+:done
 
-echo Kettle引擎目录为：%cd%
-echo Kettle工作目录为：%~dp0
-echo Kettle将生成此资源库的项目目录：%rName%
-echo Kettle将生成项目目录到：（引擎同级目录）
-echo 运行中...      Ctrl+C结束程序
-
-::执行Kitchen
-call kitchen -file:%~dp0CreateProjectRepository.kjb "-param:rName=%rName%"
-
-::执行完毕
-echo 已经执行完毕，可以结束此程序
-
-pause
+if %errorlevel% equ 0 (
+    echo Ok, run done!
+) else (
+    echo Sorry, some error make failure!
+)
 
 
 :end
 
-::5退出
-
-exit /b
+if _%interactive%_ equ _0_ pause
+exit /b %errorlevel%

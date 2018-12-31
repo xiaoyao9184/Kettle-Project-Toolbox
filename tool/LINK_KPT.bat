@@ -3,112 +3,112 @@ Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
 ::TIME 2015-06-10
 ::FILE LINK_KPT
-::DESC create a symbolic link for Kettle-Scheduling-Scripts(this directory)
+::DESC create a symbolic link for Kettle-Project-Toolbox(this directory)
+::PARAM params for the workspace path and PDI path
+::  1: workspacePath 
+::  2: pdiPath
+::--------------------
+::CHANGE 2018-12-31
+::english
+::--------------------
 
 
 :v
 
-::1变量赋值
-set tip=Kettle基本工具：生成目录链接
+set tip=Kettle-Project-Toolbox: link KPT
 set ver=1.0
-set linkPath=%1
-set pdiPath=%2
-::not set param set 0
+::interactive
 set interactive=1
+::default is inter call
+::no parameters will set 0
 if "%1" equ "" set interactive=0
+::current info
+set current_path=%~dp0
+%~d0
+cd %~dp0
+cd..
+set parent_path=%cd%
+::tip info
+set echo_workspacePath=Need input workspace path for link KPT's paths(tool,default,Windows)
+set eset_workspacePath=Please input path or drag path in:
+::defult param
+set workspacePath=%1
+set pdiPath=%2
+set kptPath=%parent_path%
 
-set echo_linkPath=需要输入KPT链接目录路径
-set eset_linkPath=请输入路径或拖动目录到此，然后回车：
 
 :title
 
-::2提示文本
 title %tip% %ver%
-
-echo Kettle基本工具：链接KPT目录
-echo 运行结束后可以关闭
+echo %tip%
+echo Can be closed after the run ends
 echo ...
 
 
 :check
 
-::3变量检验 参数处理
-if "%linkPath%"=="" (
-	echo %echo_linkPath%
-	set /p linkPath=%eset_linkPath%
+if "%workspacePath%"=="" (
+	echo %echo_workspacePath%
+	set /p workspacePath=%eset_workspacePath%
+)
+if not exist %workspacePath% (
+    md %workspacePath%
 )
 
 
 :begin
 
-::4执行
-%~d0
+::goto work path
+cd %current_path%
 
-cd %~dp0
+::print info
+echo ===========================================================
+echo Work path is: %current_path%
+echo Kettle workspace path is: %workspacePath%
+echo Kettle KPT path is: %kptPath%
+echo ===========================================================
+echo Running...      Ctrl+C for exit
 
-cd ..
-
-set kptPath=%cd%
-
-cd %~dp0
-
-if not exist %linkPath% (
-    md %linkPath%
-)
-set linkToolPath=%linkPath%\tool
-set linkDefaultPath=%linkPath%\default
-set linkWindowsPath=%linkPath%\Windows
-set linkPdiPath=%linkPath%\data-integration
-
-
-echo KPT目录为：%kptPath%
-echo 链接目录为：%linkPath%
-echo 运行中...      Ctrl+C结束程序
-
-::执行MKLink
+::create param
 if _%interactive%_ equ _0_ (
 	cls
 ) else  (
-	echo 冲突策略：强制替换已经存在的实体目录或链接目录
+	echo Conflict Policy: Force replacement of an existing entity directory or link directory
     set param=noskip force
 )
 
+::run
 echo ===========================================================
-echo 链接工具目录（tool\）
-call LINK_FOLDER.bat "%linkToolPath%" "%kptPath%\tool" %param%
-
-
-echo ===========================================================
-echo 链接默认资源库目录（default\）
-call LINK_FOLDER.bat "%linkDefaultPath%" "%kptPath%\default" %param%
-
+echo link KPT tool path...
+call LINK_FOLDER.bat "%workspacePath%\tool" "%kptPath%\tool" %param%
 
 echo ===========================================================
-echo 链接脚本目录（Windows\）
-call LINK_FOLDER.bat "%linkWindowsPath%" "%kptPath%\Windows" %param%
-
+echo link KPT defalut path...
+call LINK_FOLDER.bat "%workspacePath%\default" "%kptPath%\default" %param%
 
 echo ===========================================================
-echo 链接Kettle引擎目录（data-integration\）
+echo link KPT Windows path...
+call LINK_FOLDER.bat "%workspacePath%\Windows" "%kptPath%\Windows" %param%
+
+echo ===========================================================
+echo link PDI path...
 if "%pdiPath%"=="" (
-	call LINK_FOLDER.bat "%linkPdiPath%"
+	call LINK_FOLDER.bat "%workspacePath%\data-integration"
 ) else (
-	call LINK_FOLDER.bat "%linkPdiPath%" "%pdiPath%" %param%
+	call LINK_FOLDER.bat "%workspacePath%\data-integration" "%pdiPath%" %param%
 )
 
 
-::执行完毕
+:done
+
 if %errorlevel% equ 0 (
-    echo 已经执行完毕，可以结束此程序
+    echo Ok, run done!
 ) else (
-    echo 执行脚本，发现错误！
+    echo Sorry, some error make failure!
 )
-
-if _%interactive%_ equ _0_ pause
 
 
 :end
 
-::5退出
-
-exit /b 0
+if _%interactive%_ equ _0_ pause
+exit /b %errorlevel%
