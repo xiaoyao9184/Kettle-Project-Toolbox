@@ -75,30 +75,40 @@ echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
 # create param
-if [ $interactive -eq 0 ] 
+if [ $interactive -eq 1 ] 
 then
-    param=""
+    skipConflictCheck=""
+    forceConflictReplace=""
 else
-    echo "link "
-    param="noskip force"
+    echo "Conflict Policy: Force replacement of an existing entity directory or link directory"
+    skipConflictCheck="noskip"
+    forceConflictReplace="force"
 fi
 
 # run
 echo "==========================================================="
 echo "link KPT tool path..."
-bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$param"
+bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$skipConflictCheck" "$forceConflictReplace"
 
 echo "==========================================================="
 echo "link KPT defalut path..."
-bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$param"
+bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$skipConflictCheck" "$forceConflictReplace"
 
 echo "==========================================================="
 echo "link PDI path..."
+echo "kettle not support symbolic link with directory, will get the wrong path"
+echo "linux not support hard link target to directory"
+echo "will use copy command repalce link"
 if [ -z "$pdiPath" ]
 then
-    bash "$current_path/LINK_FOLDER.sh" "$workspacePath/data-integration"
+    # bash "$current_path/LINK_FOLDER.sh" "$workspacePath/data-integration"
+    echo "Need input PDI path"
+    read -p "Please input path or drag path in:" pdiPath
+    pdiPath=$(sed -e "s/^'//" -e "s/'$//" <<<"$pdiPath")
+    cp -R $pdiPath $workspacePath/data-integration
 else
-    bash "$current_path/LINK_FOLDER.sh" "$workspacePath/data-integration" "$kptPath/data-integration" "$param"
+    # bash "$current_path/LINK_FOLDER.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
+    cp -R $pdiPath $workspacePath/data-integration
 fi
 
 
