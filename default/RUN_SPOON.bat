@@ -4,62 +4,75 @@ Setlocal enabledelayedexpansion
 ::TIME 2017-08-21
 ::FILE RUN_SPOON
 ::DESC run spoon with customize KETTLE_HOME
+::PARAM none
+::--------------------
+::CHANGE 2018-12-28
+::remove current_folder
+::--------------------
 
 
+::var
 :v
 
-::1变量赋值
-set tip=Kettle调度程序：运行Spoon
+set tip=Kettle-Project-Toolbox: Run Spoon
 set ver=1.0
-::current folder
-for %%a in (.) do set current_folder=%%~na
-::double-clicking is outer call and will set 0
+::interactive
 set interactive=1
+::default is inter call
+::check double-clicking(outer call) and set 0
+::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
+::check cmdcmdline include ""{scriptfile}" "
 echo %cmdcmdline% | find /i "%~0" >nul
 if not errorlevel 1 set interactive=0
 ::set kettle environment
-call SET_ENVIRONMENT.bat
+if exist "%~dp0SET_ENVIRONMENT.bat" (
+    call %~dp0SET_ENVIRONMENT.bat
+)
 
 
+::title
 :title
 
-::2提示文本
 title %tip% %ver%
-
-echo Kettle调度程序：运行Spoon
-echo 运行结束后可以关闭
+echo %tip%
+echo Will auto close
 echo ...
 
 
+::begin
 :begin
 
-::4执行
+::goto engine
 %~d0
-
 cd %~dp0
-
 cd..
-
 cd data-integration
 
-echo Kettle引擎目录为：%cd%
-echo Kettle工作目录为：%~dp0
-echo KETTLE_HOME为：%KETTLE_HOME%
-echo KETTLE_REPOSITORY为：%KETTLE_REPOSITORY%
-echo 运行中...      Ctrl+C结束程序
+::print info
+if _%interactive%_ equ _0_ cls
+echo ===========================================================
+echo Kettle engine path is: %cd%
+echo Kettle project path is: %~dp0
+echo KETTLE_HOME is: %KETTLE_HOME%
+echo KETTLE_REPOSITORY is: %KETTLE_REPOSITORY%
+echo ===========================================================
+echo Running...      Ctrl+C for exit
 
-::执行Kitchen
+::spoon
 call Spoon.bat
 
-::执行完毕
+
+::done
+
 if %ERRORLEVEL% equ 0 (
     if _%interactive%_ equ _0_ exit /b 0
 )
 
-echo 已经执行完毕，可以结束此程序
+echo Press enter to exit
 pause
 
 
+::end
 :end
 
-::5退出
+exit /b 0
