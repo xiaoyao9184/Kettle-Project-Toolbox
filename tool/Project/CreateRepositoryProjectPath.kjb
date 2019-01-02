@@ -350,7 +350,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>336</xloc>
-      <yloc>2240</yloc>
+      <yloc>2384</yloc>
     </entry>
     <entry>
       <name>&#x521b;&#x5efa;&#x4e00;&#x4e2a;&#x76ee;&#x5f55;&#xff1a;&#x9879;&#x76ee;&#x76ee;&#x5f55;</name>
@@ -474,7 +474,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>208</xloc>
+      <xloc>576</xloc>
       <yloc>2240</yloc>
     </entry>
     <entry>
@@ -798,7 +798,7 @@
       <yloc>1824</yloc>
     </entry>
     <entry>
-      <name>DUMMY&#x3a;Log 2</name>
+      <name>DUMMY&#x3a;Patch</name>
       <description/>
       <type>SPECIAL</type>
       <start>N</start>
@@ -869,8 +869,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>208</xloc>
-      <yloc>2080</yloc>
+      <xloc>336</xloc>
+      <yloc>2240</yloc>
     </entry>
   </entries>
   <hops>
@@ -1155,7 +1155,7 @@
     </hop>
     <hop>
       <from>&#x521b;&#x5efa;&#x6587;&#x4ef6;&#xff1a;.pdi&#x2f;.gitkeep</from>
-      <to>DUMMY&#x3a;Log 2</to>
+      <to>DUMMY&#x3a;Patch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1164,7 +1164,7 @@
     </hop>
     <hop>
       <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;patch&#x6587;&#x4ef6;&#x5939;</from>
-      <to>DUMMY&#x3a;Log 2</to>
+      <to>DUMMY&#x3a;Patch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1172,16 +1172,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY&#x3a;Log 2</from>
-      <to>&#x6210;&#x529f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>DUMMY&#x3a;Log 2</from>
+      <from>DUMMY&#x3a;Patch</from>
       <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;Open.Path</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1196,6 +1187,15 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;Open.Path</from>
+      <to>&#x6210;&#x529f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
@@ -1226,7 +1226,7 @@
       <xloc>576</xloc>
       <yloc>0</yloc>
       <width>286</width>
-      <heigth>266</heigth>
+      <heigth>267</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1246,8 +1246,8 @@
       <note>&#x53c2;&#x6570;&#x4ecb;&#x7ecd;&#xff1a;&#xa;&#xa;Parameters.Create.Open.Path&#xd;&#xa;&#x662f;&#x5426;&#x6253;&#x5f00;&#x9879;&#x76ee;&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;false&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;Parameters.Create.Project.Name&#xd;&#xa;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;&#x3f;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;Parameters.Create.Project.Path&#xa;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;&#x5939;&#x8def;&#x5f84;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;&#x3f;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;Parameters.Create.Use.KettleHome&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;KETTLE_HOME&#x6587;&#x4ef6;&#x5939;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;Parameters.Create.Use.Log	&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;Log&#x6587;&#x4ef6;&#x5939;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;Parameters.Create.Use.Patch&#xd;&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;Patch&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;Parameters.Create.Use.Profile&#xd;&#xa;&#x662f;&#x5426;&#x521b;&#x5efa;Profile&#x6587;&#x4ef6;&#x5939;&#xd;&#xa;&#x9ed8;&#x8ba4;&#x503c;&#x4e3a;&#xff1a;true&#x28;&#x521b;&#x5efa;&#x29;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;</note>
       <xloc>880</xloc>
       <yloc>0</yloc>
-      <width>211</width>
-      <heigth>489</heigth>
+      <width>213</width>
+      <heigth>492</heigth>
       <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
