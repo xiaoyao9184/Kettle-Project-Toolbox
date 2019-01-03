@@ -46,6 +46,22 @@ Unlike 7.0, the name attribute does not support include path symbol!
 But, now it will support it!
 
 
+### Karaf Folder
+
+Cant change Karaf folder without delete caches folder in `data-integration/system/karaf/caches`
+
+Alway create caches in this folder, no matter modify of  `data-integration/system/karaf/instances/instance.properties`
+
+[Wrong answer](https://forums.pentaho.com/threads/207678-Changing-Pentaho-Folder-name-and-Karaf/)
+
+And i think caches files contain own positioning,
+if created via a symbolic link will be accessed via a symbolic link path on windows use **Junction**
+
+### Unix folder link
+
+unix not support folder hard link, and symbolic link for `data-integration/` path 
+not work with current path(./) in KETTLE_HOME use relative repository path.
+
 # Use with jenkins
 
 All scripts can run on jenkins

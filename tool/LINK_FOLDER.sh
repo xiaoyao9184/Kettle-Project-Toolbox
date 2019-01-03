@@ -54,8 +54,9 @@ check_conflict(){
         echo "Is already symbolic link!"
         if [ "$forceConflictReplace" == "force" ]
         then
-             unlink $linkPath
-             return 0
+            echo "Parameter specifies forced replacement, will unlink it!"
+            unlink $linkPath
+            return 0
         fi
         select opt in "Dele" "Replace" "None"
         do
@@ -121,6 +122,9 @@ echo "==========================================================="
 echo "Work path is: $current_path"
 echo "Kettle link path is: $linkPath"
 echo "Kettle target path is: $targetPath"
+echo "--------------------NOTE-----------------------------------"
+echo "linux not support hard link target to directory;"
+echo "will use ln command with symbolic link."
 echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 

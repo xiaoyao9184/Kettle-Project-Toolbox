@@ -3,7 +3,7 @@ Setlocal enabledelayedexpansion
 ::CODER BY xiaoyao9184 1.0 beta
 ::TIME 2015-06-10
 ::FILE LINK_KPT
-::DESC create a symbolic link for Kettle-Project-Toolbox(this directory)
+::DESC create a workspace for Kettle-Project-Toolbox using junction
 ::PARAM params for the workspace path and PDI path
 ::  1: workspacePath 
 ::  2: pdiPath

@@ -4,12 +4,15 @@
 # FILE LINK_PDI
 # DESC create a symbolic link(in this parent directory) for data-integration directory
 # PARAM params for the PDI path
-#   1: pdiPath
-#   2: skipConflictCheck
-#   3: forceConflictReplace
+#   1: linkPath
+#   2: pdiPath
+#   3: skipConflictCheck
+#   4: forceConflictReplace
 # --------------------
-# CHANGE {time}
-# none
+# CHANGE 2019-1-3
+# change param
+# add link path in KPT path check
+# replace symbolic link path with copy folder + hard link file
 # --------------------
 
 
@@ -31,10 +34,11 @@ parent_path="$(dirname "$current_path")"
 echo_pdiPath="Need input kettle engine(data-integration) path"
 eset_pdiPath="Please input path or drag path in:"
 # defult param
-pdiPath=$1
-skipConflictCheck=$2
-forceConflictReplace=$3
-linkPath="$parent_path/data-integration"
+linkPath=$1
+pdiPath=$2
+skipConflictCheck=$3
+forceConflictReplace=$4
+
 
 # title
 
@@ -53,37 +57,16 @@ check_conflict(){
     if [ -L $linkPath ]
     then
         echo "Is already symbolic link!"
-        if [ "$forceConflictReplace" == "force" ]
-        then
-             unlink $linkPath
-             return 0
-        fi
-        select opt in "Dele" "Replace" "None"
-        do
-            case $opt in
-                "Dele")
-                    unlink $linkPath
-                    return 1
-                    ;;
-                "Replace")
-                    unlink $linkPath
-                    return 0
-                    ;;
-                "None")
-                    return 1
-                    ;;
-                *)
-                    echo "Please select option!"
-                    ;;
-            esac
-        done
+        echo "Not support symbolic link on unix, will unlink it!"
+        unlink $linkPath
     elif [ -d $linkPath ]
     then
         echo "The folder already exists!"
         if [ "$forceConflictReplace" == "force" ]
         then
-             rm -f -r $linkPath
-             return 0
+            echo "Parameter specifies forced replacement, will remove it!"
+            rm -f -r $linkPath
+            return 0
         fi
         select opt in "Dele" "Replace" "None"
         do
@@ -106,6 +89,19 @@ check_conflict(){
         done
     fi
 }
+if [ -z $linkPath ]
+then
+    linkPath="$parent_path/data-integration"
+    linkPathKPT="$parent_path/data-integration/.kpt"
+
+    if [ -f $linkPathKPT ]
+    then
+        echo "Error: link path is in KPT!"
+        echo "Please make sure that, current script is running in the KPT directory!"
+        echo "Please run 'LINK_KPT' first create workspace, then run this script under the symbolic link 'tool' directory in workspace."
+        exit 1
+    fi
+fi
 if [ -z $pdiPath ]
 then
     echo $echo_pdiPath
@@ -143,11 +139,15 @@ echo "==========================================================="
 echo "Work path is: $current_path"
 echo "Kettle PDI path is: $linkPath"
 echo "Kettle engine(data-integration) path is: $pdiPath"
+echo "--------------------NOTE-----------------------------------"
+echo "kettle not support symbolic link with directory, will get the wrong path;"
+echo "linux not support hard link target to directory;"
+echo "will use copy command with hard link, copy folder and link file."
 echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
 # create command run
-c="ln -s -T $pdiPath $linkPath"
+c="cp -al $pdiPath $linkPath"
 [ $interactive -ne 0 ] && echo "$c"
 $c
 

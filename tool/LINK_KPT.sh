@@ -2,13 +2,14 @@
 # CODER BY xiaoyao9184 1.0
 # TIME 2018-12-31
 # FILE LINK_KPT
-# DESC create a symbolic link for Kettle-Project-Toolbox(this directory)
+# DESC create a workspace for Kettle-Project-Toolbox using copy and hard link 
 # PARAM params for the workspace path and PDI path
 #   1: workspacePath 
 #   2: pdiPath
 # --------------------
-# CHANGE {time}
-# none
+# CHANGE 2019-1-3
+# fix workspace path auto create
+# use LINK_PDI for link PDI
 # --------------------
 
 
@@ -51,10 +52,7 @@ then
     read -p "$eset_workspacePath" workspacePath
     workspacePath=$(sed -e "s/^'//" -e "s/'$//" <<<"$workspacePath")
 fi
-if [ -d $workspacePath ]
-then
-    mkdir "$workspacePath"
-fi
+[ -d $workspacePath ] || mkdir "$workspacePath"
 
 
 # begin
@@ -89,27 +87,17 @@ fi
 echo "==========================================================="
 echo "link KPT tool path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$skipConflictCheck" "$forceConflictReplace"
+[ $interactive -eq 0 ] && clear
 
 echo "==========================================================="
 echo "link KPT defalut path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$skipConflictCheck" "$forceConflictReplace"
+[ $interactive -eq 0 ] && clear
 
 echo "==========================================================="
 echo "link PDI path..."
-echo "kettle not support symbolic link with directory, will get the wrong path"
-echo "linux not support hard link target to directory"
-echo "will use copy command repalce link"
-if [ -z "$pdiPath" ]
-then
-    # bash "$current_path/LINK_FOLDER.sh" "$workspacePath/data-integration"
-    echo "Need input PDI path"
-    read -p "Please input path or drag path in:" pdiPath
-    pdiPath=$(sed -e "s/^'//" -e "s/'$//" <<<"$pdiPath")
-    cp -R $pdiPath $workspacePath/data-integration
-else
-    # bash "$current_path/LINK_FOLDER.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
-    cp -R $pdiPath $workspacePath/data-integration
-fi
+bash "$current_path/LINK_PDI.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
+[ $interactive -eq 0 ] && clear
 
 
 # done

@@ -41,11 +41,9 @@
                 script {
                     env.ArchiveFile = bat(
                         script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nxF", 
-                        // script: "@echo off & FOR %%F IN ("[Deploy]DataCenter*.zip") DO echo %%~nxF", 
                         returnStdout: true).trim()
                     env.ArchiveName = bat(
                         script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nF", 
-                        // script: "@echo off & FOR %%F IN ("[Deploy]DataCenter*.zip") DO echo %%~nxF", 
                         returnStdout: true).trim()
                 }
                 echo "ArchiveFile is: ${env.ArchiveFile}"
