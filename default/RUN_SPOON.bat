@@ -11,7 +11,6 @@ Setlocal enabledelayedexpansion
 ::--------------------
 
 
-::var
 :v
 
 set tip=Kettle-Project-Toolbox: Run Spoon
@@ -30,7 +29,6 @@ if exist "%~dp0SET_ENVIRONMENT.bat" (
 )
 
 
-::title
 :title
 
 title %tip% %ver%
@@ -39,40 +37,40 @@ echo Will auto close
 echo ...
 
 
-::begin
 :begin
 
-::goto engine
+::goto engine path
 %~d0
 cd %~dp0
 cd..
 cd data-integration
+set pdiPath=%cd%
+set projectPath=%~dp0
 
 ::print info
 if _%interactive%_ equ _0_ cls
 echo ===========================================================
-echo Kettle engine path is: %cd%
-echo Kettle project path is: %~dp0
+echo Kettle engine path is: %pdiPath%
+echo Kettle project path is: %projectPath%
 echo KETTLE_HOME is: %KETTLE_HOME%
 echo KETTLE_REPOSITORY is: %KETTLE_REPOSITORY%
 echo ===========================================================
 echo Running...      Ctrl+C for exit
 
-::spoon
+::run
 call Spoon.bat
 
 
-::done
+:done
 
-if %ERRORLEVEL% equ 0 (
-    if _%interactive%_ equ _0_ exit /b 0
+if %errorlevel% equ 0 (
+    echo Ok, run done!
+) else (
+    echo Sorry, some error make failure!
+    if _%interactive%_ equ _0_ pause
 )
 
-echo Press enter to exit
-pause
 
-
-::end
 :end
 
-exit /b 0
+exit /b %errorlevel%

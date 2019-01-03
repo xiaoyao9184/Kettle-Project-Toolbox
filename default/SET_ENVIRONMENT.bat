@@ -10,7 +10,6 @@
 ::--------------------
 
 
-::var
 :v
 
 ::current info
@@ -20,22 +19,20 @@ for %%i in ("%~dp0.") do set "current_folder_name=%%~ni"
 if exist "%current_path%SET_JAVA_ENVIRONMENT.bat" (
     call %current_path%SET_JAVA_ENVIRONMENT.bat
 )
-
 ::tip info
 set echo_use_project_kettle_home=Use project path as KETTLE_HOME:
 set echo_use_user_kettle_home=Use user home path as KETTLE_HOME!
 set echo_use_dir_name_as_repository_name=Use project path name as KETTLE_REPOSITORY:
-
+::defult param
 set KETTLE_HOME=
 set KETTLE_REPOSITORY=
 
 
-::begin
 :begin
 
 if exist %current_path%.kettle (
     echo %echo_use_project_kettle_home% %current_path%
-    set KETTLE_HOME=%current_path%
+    set KETTLE_HOME=%current_path:\=/%
 ) else ( 
     echo %echo_use_user_kettle_home%
 )
@@ -46,6 +43,9 @@ if exist %current_path%repository.log (
     set _temp_file_repository=1
 )
 if exist %current_path%.meta (
+    set _temp_file_repository=1
+)
+if exist %current_path%.profile (
     set _temp_file_repository=1
 )
 if exist %current_path%*.kdb (
@@ -60,7 +60,6 @@ if %_temp_file_repository% equ 1 (
 )
 
 
-:: end
 :end
 
 exit /b 0
