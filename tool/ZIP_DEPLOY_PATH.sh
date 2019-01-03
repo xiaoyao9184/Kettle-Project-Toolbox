@@ -59,7 +59,7 @@ fcd "$current_path"
 [ $interactive -eq 0 ] && clear
 echo "==========================================================="
 echo "Kettle engine path is: $pdi_path"
-echo "Kettle deploy path is: $rName"
+echo "Kettle deploy path is: $srcPath"
 echo "Kettle deploy file create at: $parent_path"
 echo "==========================================================="
 echo "Running...      Ctrl+C for exit"

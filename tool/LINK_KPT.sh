@@ -73,7 +73,7 @@ echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
 # create param
-if [ $interactive -eq 1 ] 
+if [ $interactive -eq 0 ] 
 then
     skipConflictCheck=""
     forceConflictReplace=""
@@ -87,17 +87,17 @@ fi
 echo "==========================================================="
 echo "link KPT tool path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 0 ] && clear
+[ $? -eq 0 ] && clear
 
 echo "==========================================================="
 echo "link KPT defalut path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 0 ] && clear
+[ $? -eq 0 ] && clear
 
 echo "==========================================================="
 echo "link PDI path..."
 bash "$current_path/LINK_PDI.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 0 ] && clear
+[ $? -eq 0 ] && clear
 
 
 # done
