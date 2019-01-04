@@ -5,8 +5,8 @@
 # DESC run spoon with customize KETTLE_HOME
 # PARAM none
 # --------------------
-# CHANGE {time}
-# none
+# CHANGE 2019-1-4
+# fix interactive check
 # --------------------
 
 
@@ -15,7 +15,7 @@
 tip="Kettle-Project-Toolbox: Run Spoon"
 ver="1.0"
 # interactive
-[[ $- == *i* ]] && interactive=1 || interactive=0
+[[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 # current info
 current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 parent_path="$(dirname "$current_path")"
@@ -43,7 +43,7 @@ function fcd() {
 fcd "$parent_path/data-integration"
 
 # print info
-[ $interactive -eq 0 ] && clear
+[ $interactive -eq 1 ] && clear
 echo "==========================================================="
 echo "Kettle engine path is: $parent_path/data-integration"
 echo "Kettle project path is: $current_path"
@@ -58,7 +58,7 @@ bash spoon.sh
 
 # end
 
-if [ $interactive -eq 0 ] 
+if [ $interactive -eq 1 ] 
 then
     # no need
     # read -p "Press enter to exit"

@@ -6,8 +6,8 @@
 # PARAM params for the job or transformation 
 #   1: ProfileName
 # --------------------
-# CHANGE {time}
-# None
+# CHANGE 2019-1-4
+# fix interactive check
 # --------------------
 
 
@@ -16,7 +16,7 @@
 tip="Kettle-Project-Toolbox: Run kitchen or pan"
 ver="1.0"
 # interactive
-[[ $- == *i* ]] && interactive=1 || interactive=0
+[[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 # current info
 current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 current_script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
@@ -55,6 +55,7 @@ echo "..."
 # repository name
 if [ -z $rName ]
 then
+    [ $interactive -ne 1 ] && echo "miss param:rName in non-interactive mode! exit"; exit 1
     echo $echo_rName
     read -p "$eset_rName" rName
 fi
@@ -91,6 +92,7 @@ then
 fi
 if [ -z "$jName" ]
 then
+    [ $interactive -ne 1 ] && echo "miss param:jName in non-interactive mode! exit"; exit 1
     echo $echo_jName
     read -p "$eset_jName" jName
     kCommand=""
@@ -144,7 +146,7 @@ function fcd() {
 fcd "$parent_path/data-integration"
 
 # print info
-[ $interactive -eq 0 ] && clear
+[ $interactive -eq 1 ] && clear
 echo "==========================================================="
 echo "Kettle engine path is: $parent_path/data-integration"
 echo "Kettle project path is: $current_path"
@@ -158,7 +160,7 @@ echo "Running...      Ctrl+C for exit"
 
 # create command
 c="$kCommand -rep:$rName -user:admin -pass:admin -level:$loglevel -job:$jName$pList"
-[ $interactive -ne 0 ] && echo "$c"
+[ $interactive -ne 1 ] && echo "$c"
 
 # log output
 if [ $JENKINS_HOME ]
@@ -181,7 +183,7 @@ fi
 
 # end
 
-if [ $interactive -eq 0 ] 
+if [ $interactive -eq 1 ] 
 then
     read -p "Press enter to continue"
     exit $code

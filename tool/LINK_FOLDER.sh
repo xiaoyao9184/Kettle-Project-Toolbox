@@ -5,8 +5,8 @@
 # DESC create a symbolic link for directory
 # PARAM none
 # --------------------
-# CHANGE {time}
-# none
+# CHANGE 2019-1-4
+# fix interactive check
 # --------------------
 
 
@@ -15,12 +15,7 @@
 tip="Kettle-Project-Toolbox: Link directory"
 ver="1.0"
 # interactive
-#not set param set 0
-interactive=1
-if [ -z $1 ] 
-then
-    interactive=0
-fi
+[[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 # current info
 current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # tip info
@@ -117,7 +112,7 @@ function fcd() {
 fcd "$current_path"
 
 # print info
-[ $interactive -eq 0 ] && clear
+[ $interactive -eq 1 ] && clear
 echo "==========================================================="
 echo "Work path is: $current_path"
 echo "Kettle link path is: $linkPath"
@@ -130,11 +125,12 @@ echo "Running...      Ctrl+C for exit"
 
 # create command run
 c="ln -s -T $targetPath $linkPath"
-[ $interactive -ne 0 ] && echo "$c"
+[ $interactive -ne 1 ] && echo "$c"
 $c
 
 
 # done
+
 code=$?
 if [ "$code" -eq "0" ]
 then
@@ -145,7 +141,8 @@ fi
 
 
 # end
-if [ $interactive -eq 0 ] 
+
+if [ $interactive -eq 1 ] 
 then
     read -p "Press enter to continue"
     exit $code

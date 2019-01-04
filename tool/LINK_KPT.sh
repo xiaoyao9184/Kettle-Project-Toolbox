@@ -7,6 +7,8 @@
 #   1: workspacePath 
 #   2: pdiPath
 # --------------------
+# CHANGE 2019-1-4
+# fix interactive check
 # CHANGE 2019-1-3
 # fix workspace path auto create
 # use LINK_PDI for link PDI
@@ -18,12 +20,7 @@
 tip="Kettle-Project-Toolbox: Link KPT"
 ver="1.0"
 # interactive
-#not set param set 0
-interactive=1
-if [ -z $1 ] 
-then
-    interactive=0
-fi
+[[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 # current info
 current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 parent_path="$(dirname "$current_path")"
@@ -64,7 +61,7 @@ function fcd() {
 fcd "$current_path"
 
 # print info
-[ $interactive -eq 0 ] && clear
+[ $interactive -eq 1 ] && clear
 echo "==========================================================="
 echo "Work path is: $current_path"
 echo "Kettle workspace path is: $workspacePath"
@@ -73,7 +70,7 @@ echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
 # create param
-if [ $interactive -eq 0 ] 
+if [ $interactive -eq 1 ] 
 then
     skipConflictCheck=""
     forceConflictReplace=""
@@ -87,20 +84,21 @@ fi
 echo "==========================================================="
 echo "link KPT tool path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$skipConflictCheck" "$forceConflictReplace"
-[ $? -eq 0 ] && clear
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear
 
 echo "==========================================================="
 echo "link KPT defalut path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$skipConflictCheck" "$forceConflictReplace"
-[ $? -eq 0 ] && clear
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear
 
 echo "==========================================================="
 echo "link PDI path..."
 bash "$current_path/LINK_PDI.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
-[ $? -eq 0 ] && clear
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear
 
 
 # done
+
 code=$?
 if [ "$code" -eq "0" ]
 then
@@ -111,7 +109,8 @@ fi
 
 
 # end
-if [ $interactive -eq 0 ] 
+
+if [ $interactive -eq 1 ] 
 then
     read -p "Press enter to continue"
     exit $code

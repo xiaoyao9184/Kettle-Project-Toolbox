@@ -5,8 +5,8 @@
 # DESC init file repository as project directory
 # PARAM none
 # --------------------
-# CHANGE {time}
-# none
+# CHANGE 2019-1-4
+# fix interactive check
 # --------------------
 
 
@@ -15,7 +15,7 @@
 tip="Kettle-Project-Toolbox: Init project"
 ver="1.0"
 # interactive
-[[ $- == *i* ]] && interactive=1 || interactive=0
+[[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 # current info
 current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 parent_path="$(dirname "$current_path")"
@@ -55,7 +55,7 @@ function fcd() {
 fcd "$current_path"
 
 # print info
-[ $interactive -eq 0 ] && clear
+[ $interactive -eq 1 ] && clear
 echo "==========================================================="
 echo "Kettle work path is: $current_path"
 echo "Kettle engine path is: $pdi_path"
@@ -66,11 +66,12 @@ echo "Running...      Ctrl+C for exit"
 
 # create command run
 c="$pdi_path/kitchen.sh -file:$current_path/CreateProjectRepository.kjb -param:rName=$rName -param:isOpenShell=$isOpenShell"
-[ $interactive -ne 0 ] && echo "$c"
+[ $interactive -ne 1 ] && echo "$c"
 $c
 
 
 # done
+
 code=$?
 if [ "$code" -eq "0" ]
 then
@@ -81,7 +82,8 @@ fi
 
 
 # end
-if [ $interactive -eq 0 ] 
+
+if [ $interactive -eq 1 ] 
 then
     read -p "Press enter to continue"
     exit $code
