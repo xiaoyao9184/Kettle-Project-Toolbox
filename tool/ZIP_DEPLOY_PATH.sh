@@ -23,7 +23,7 @@ parent_path="$(dirname "$current_path")"
 echo_srcPath="Need input path for create deploy zip"
 eset_srcPath="Please input path or drag path in:"
 # defult param
-set srcPath=$1
+srcPath=$1
 pdi_path=$parent_path/data-integration
 
 
