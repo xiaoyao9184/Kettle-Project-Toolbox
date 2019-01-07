@@ -1,11 +1,21 @@
 ﻿/**
- * Copy form build_kpt_project.jenkinsfile
- * @see https://github.com/xiaoyao9184/Kettle-Project-Toolbox/blob/master/jenkins/build_kpt_project.jenkinsfile
+ * Kettle-Project-Toolbox project pipeline build script
+ * deplloy version in 
+ * @see https://github.com/xiaoyao9184/Kettle-Project-Toolbox/blob/master/jenkins/deploy_kpt_project.jenkinsfile
+ * @see https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries/blob/master/jenkinsfile/deploy_kpt_project.jenkinsfile
+ * Created by xiaoyao9184 on 2019/1/7.
  */
+
+//Note:
+//1. install job-dsl file-operation plugins
+//2. change parameters default for linux or windows system
+//3. script approval 
+//4. disable script security for Job DSL
+
 pipeline {
     agent any
     parameters {
-        string(name: 'ProjectName', defaultValue: 'default', description: 'project name!')
+        string(name: 'ProjectName', description: 'project name!')
         
         //windows path
         string(name: 'PDIPath', defaultValue: 'D:\\Program\\Kettle\\data-integration', description: 'data-integration directory')

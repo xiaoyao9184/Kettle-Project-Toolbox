@@ -1,6 +1,6 @@
 /**
- * Created by xiaoyao9184 on 2018/11/20.
- * Last change by xiaoyao9184 on 2018/11/20.
+ * Copy from deploy_kpt_project_jenkinsfile
+ * @see https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries/blob/master/jenkinsfile/deploy_kpt_project_jenkinsfile.groovy
  */
 import hudson.model.*
 import hudson.FilePath
