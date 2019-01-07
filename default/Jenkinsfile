@@ -32,8 +32,10 @@ pipeline {
 
         stage('Create info') {
             steps {
+                echo 'Create info...'
                 script {
                     flow = [
+                        useSharedLibrary: false,
                         updateKPT: false,
                         downloadPDI: false,
                         applyPatch: false,
@@ -51,74 +53,86 @@ pipeline {
                         projectName: "${params.ProjectName}"
                     ]
 
-                    if (isUnix()) {
-                        archive."path" = "${archive.path}".replace("\\", "/")
-                        info."PDIPath" = params.PDIPath.replace("\\", "/")
-                        info."KPTPath" = params.KPTPath.replace("\\", "/")
-                        info."DeployPath" = params.DeployPath.replace("\\", "/")
-                    } else {
-                        archive."path" = "${archive.path}".replace("/", "\\")
-                        info."PDIPath" = params.PDIPath.replace("/", "\\")
-                        info."KPTPath" = params.KPTPath.replace("/", "\\")
-                        info."DeployPath" = params.DeployPath.replace("/", "\\")
+                    try {
+                        // on linux the following code may be reporting an error
+                        library 'KPT_Shared_Libraries@master'
+                        if(deploy){
+                            println "Global variable 'deploy' exists use Shared Library"
+                            flow."useSharedLibrary" = true
+                        }
+                    } catch(MissingPropertyException ex) {
+                        println("Catching the MissingPropertyException, miss 'deploy' mean not use Shared Library!");
+                    } catch(Exception ex) {
+                        println("Catching unknow Exception, that mean not use Shared Library!");
                     }
+                    
+                    archive."path" = "${archive.path}"
+                    info."PDIPath" = params.PDIPath
+                    info."KPTPath" = params.KPTPath
+                    info."DeployPath" = params.DeployPath
                 }
             }
         }
 
-        stage('Check PDI and KPT[Unix]') {
-            when { 
-                expression { isUnix() }
-            }
+        stage('Check PDI and KPT') {
             steps {
+                echo 'Check kettle tool...'
                 script {
-                    //update KPT when not exist or KPT path is manage by git
-                    flow."updateKPT" = sh(
-                        script: """
-                        [ -d "${info.KPTPath}" ] && [ ! -d "${info.KPTPath}/.git" ] && echo "false" || echo "true"
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-                    //download PDI with not exist
-                    flow."downloadPDI" = sh(
-                        script: """
-                        [ -d "${info.PDIPath}" ] && echo "false" || echo "true"
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-                }
-            }
-        }
-        stage('Check PDI and KPT[Windows]') {
-            when { 
-                expression { !isUnix() }
-            }
-            steps {
-                script {
-                    //update KPT when not exist or KPT path is manage by git
-                    flow."updateKPT" = bat(
-                        script: """
-                        @echo off
-                        if exist "${info.KPTPath}" (
-                            if exist "${info.KPTPath}\\.git" (
-                                echo true
-                            ) else (
-                                echo false
-                            )
-                        ) else (
-                            echo true
-                        )
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-                    //download PDI with not exist
-                    flow."downloadPDI" = bat(
-                        script: """
-                        @echo off
-                        if exist "${info.PDIPath}" (
-                            echo false
-                        ) else (
-                            echo true
-                        )
-                        """, 
-                        returnStdout: true).trim().toBoolean()
+                    if(flow.useSharedLibrary){
+                        //update KPT when not exist or KPT path is manage by git
+                        flow."updateKPT" = deploy.check_path_not_exists_or_manage_by_git("${info.KPTPath}")
+
+                        //download PDI with not exist
+                        flow."downloadPDI" = !deploy.check_file_exists("${info.PDIPath}")
+                    }else if(isUnix()){
+                        //update KPT when not exist or KPT path is manage by git
+                        flow."updateKPT" = sh(
+                                script: """
+                                [ -d "${info.KPTPath}" ] && [ ! -d "${info.KPTPath}/.git" ] && echo "false" || echo "true"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                        //download PDI with not exist
+                        flow."downloadPDI" = sh(
+                                script: """
+                                [ -d "${info.PDIPath}" ] && echo "false" || echo "true"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }else{
+                        //update KPT when not exist or KPT path is manage by git
+                        flow."updateKPT" = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.KPTPath}" (
+                                    if exist "${info.KPTPath}\\.git" (
+                                        echo true
+                                    ) else (
+                                        echo false
+                                    )
+                                ) else (
+                                    echo true
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                        //download PDI with not exist
+                        flow."downloadPDI" = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.PDIPath}" (
+                                    echo false
+                                ) else (
+                                    echo true
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }
                 }
             }
         }
@@ -168,66 +182,76 @@ pipeline {
         stage('[Build]Checkout') {
             steps {
                 dir("${params.ProjectName}") {
+                    echo 'Checkout project...'
                     checkout scm
                 }
             }
         }
 
-        stage('[Build]Link[Unix]') {
+        stage('[Build]Link') {
             when { 
-                expression { isUnix() && info.projectName }
+                expression { info.projectName }
             }
             steps {
-                sh """
-                bash "${info.KPTPath}/tool/LINK_KPT.sh" "\$(pwd)" "${info.PDIPath}" <&-
-                """
-            }
-        }
-        stage('[Build]Link[Windows]') {
-            when { 
-                expression { !isUnix() && info.projectName }
-            }
-            steps {
-                bat """
-                call "${info.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${info.PDIPath}"
-                """
-            }
-        }
-
-        stage('[Build]Package[Unix]') {
-            when { 
-                expression { isUnix() && info.projectName }
-            }
-            steps {
-                sh """
-                bash "\$(pwd)/tool/ZIP_DEPLOY_PATH.sh" "\$(pwd)/${info.projectName}" <&-
-                """
-            }
-        }
-        stage('[Build]Package[Windows]') {
-            when { 
-                expression { !isUnix() && info.projectName }
-            }
-            steps {
-                bat """
-                call %cd%\\tool\\ZIP_DEPLOY_PATH.bat %cd%\\${info.projectName}
-                """
-            }
-        }
-
-        stage('[Build]Archive[Unix]') {
-            when { 
-                expression { isUnix() && info.projectName }
-            }
-            steps {
+                echo 'Link KPT...'
                 script {
-                    archive."path" = "${archive.path}/${info.projectName}"
-                    archive."file" = sh(
-                        script: "find . -name '\\[Deploy\\]${info.projectName}*.zip' -print", 
-                        returnStdout: true).trim()
-                    archive."version" = sh(
-                        script: "basename \$(find . -name '\\[Deploy\\]${info.projectName}*.zip' -print) .zip", 
-                        returnStdout: true).trim()
+                    if(isUnix()){
+                        sh """
+                        bash "${info.KPTPath}/tool/LINK_KPT.sh" "\$(pwd)" "${info.PDIPath}" <&-
+                        """
+                    }else{
+                        bat """
+                        call "${info.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${info.PDIPath}"
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('[Build]Package') {
+            when { 
+                expression { info.projectName }
+            }
+            steps {
+                echo 'Package project...'
+                script {
+                    if(isUnix()){
+                        sh """
+                        bash "\$(pwd)/tool/ZIP_DEPLOY_PATH.sh" "\$(pwd)/${info.projectName}" <&-
+                        """
+                    }else{
+                        bat """
+                        call %cd%\\tool\\ZIP_DEPLOY_PATH.bat %cd%\\${info.projectName}
+                        """
+                    }
+                }
+            }
+        }
+
+        stage('[Build]Archive') {
+            when { 
+                expression { info.projectName }
+            }
+            steps {
+                echo "Archive project..."
+                script {
+                    if(isUnix()){
+                        archive."path" = "${archive.path}/${info.projectName}"
+                        archive."file" = sh(
+                            script: "find . -name '\\[Deploy\\]${info.projectName}*.zip' -print", 
+                            returnStdout: true).trim()
+                        archive."version" = sh(
+                            script: "basename \$(find . -name '\\[Deploy\\]${info.projectName}*.zip' -print) .zip", 
+                            returnStdout: true).trim()
+                    }else{
+                        archive."path" = "${archive.path}\\${info.projectName}"
+                        archive."file" = bat(
+                            script: "@echo off & FOR %%F IN ([Deploy]${info.projectName}*.zip) DO echo %%~nxF", 
+                            returnStdout: true).trim()
+                        archive."version" = bat(
+                            script: "@echo off & FOR %%F IN ([Deploy]${info.projectName}*.zip) DO echo %%~nF", 
+                            returnStdout: true).trim()
+                    }
 
                     if (!archive.file) {
                         echo "No archive file!"
@@ -238,47 +262,29 @@ pipeline {
                 echo "Archive path is: ${archive.path}"
                 echo "Archive file is: ${archive.file}"
                 echo "Archive version is: ${archive.version}"
-                sh """
-                [ -d "${archive.path}" ] || mkdir -p "${archive.path}"
-                mv "${archive.file}" "${archive.path}/"
-                """
-            }
-        }
-        stage('[Build]Archive[Windows]') {
-            when { 
-                expression { !isUnix() && info.projectName }
-            }
-            steps {
+                
                 script {
-                    archive."path" = "${archive.path}\\${info.projectName}"
-                    archive."file" = bat(
-                        script: "@echo off & FOR %%F IN ([Deploy]${info.projectName}*.zip) DO echo %%~nxF", 
-                        returnStdout: true).trim()
-                    archive."version" = bat(
-                        script: "@echo off & FOR %%F IN ([Deploy]${info.projectName}*.zip) DO echo %%~nF", 
-                        returnStdout: true).trim()
-
-                    if (!archive.file) {
-                        echo "No archive file!"
-                        archive = null
-                        currentBuild.result = 'FAILURE'
+                    if(isUnix()){
+                        sh """
+                        [ -d "${archive.path}" ] || mkdir -p "${archive.path}"
+                        mv "${archive.file}" "${archive.path}/"
+                        """
+                    }else{
+                        bat """
+                        @echo off
+                        IF NOT EXIST "${archive.path}" MKDIR "${archive.path}"
+                        MOVE /y "${archive.file}" "${archive.path}"
+                        """
                     }
                 }
-                echo "Archive path is: ${archive.path}"
-                echo "Archive file is: ${archive.file}"
-                echo "Archive version is: ${archive.version}"
-                bat """
-                IF NOT EXIST "${archive.path}" MKDIR "${archive.path}"
-                MOVE /y "${archive.file}" "${archive.path}"
-                """
             }
         }
-
         
         // deploy
 
         stage('[Deploy]Check archive info') {
             steps {
+                echo "Check archive..."
                 script {
                     if (!info.projectName) {
                         echo "No 'ProjectName' param!"
@@ -293,50 +299,46 @@ pipeline {
             }
         }
         
-        stage('[Deploy]Create workspace info[Unix]') {
+        stage('[Deploy]Create workspace info') {
             when { 
-                expression { return isUnix() && archive }
+                expression { archive }
             }
             steps {
+                echo 'Create workspace info...'
                 script {
-                    println 'Create workspace info...'
-                    info."workPath" = "${info.DeployPath}/${archive.version}"
-                    info."projectPath" = "${info.workPath}/${info.projectName}"
-                    
-                    def projectPathExists = sh(
-                        script: """
-                        [ -d "${info.projectPath}" ] && echo "true" || echo "false"
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-                    if (projectPathExists) {
-                        println "Deploy target path already exists ${info.projectPath}, skip it!"
-                        archive = null
-                    } else {
-                        println "Deploy project path is: ${info.projectPath}"
+                    if(isUnix()){
+                        info."workPath" = "${info.DeployPath}/${archive.version}"
+                        info."projectPath" = "${info.workPath}/${info.projectName}"
+                    }else{
+                        info."workPath" = "${info.DeployPath}\\${archive.version}"
+                        info."projectPath" = "${info.workPath}\\${info.projectName}"
                     }
-                }
-            }
-        }
-        stage('[Deploy]Create workspace info[Windows]') {
-            when { 
-                expression { return !isUnix() && archive }
-            }
-            steps {
-                script {
-                    println 'Create workspace info...'
-                    info."workPath" = "${info.DeployPath}\\${archive.version}"
-                    info."projectPath" = "${info.workPath}\\${info.projectName}"
-                    
-                    def projectPathExists = bat(
-                        script: """
-                        @echo off
-                        if exist "${info.projectPath}" (
-                            echo true
-                        ) else (
-                            echo false
-                        )
-                        """, 
-                        returnStdout: true).trim().toBoolean()
+
+                    def projectPathExists = false
+                    if(flow.useSharedLibrary){
+                        projectPathExists = deploy.check_file_exists("${info.projectPath}")
+                    }else if(isUnix()){
+                        projectPathExists = sh(
+                                script: """
+                                [ -d "${info.projectPath}" ] && echo "true" || echo "false"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }else{
+                        projectPathExists = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.projectPath}" (
+                                    echo true
+                                ) else (
+                                    echo false
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }
                     if (projectPathExists) {
                         println "Deploy target path already exists ${info.projectPath}, skip it!"
                         archive = null
@@ -349,104 +351,112 @@ pipeline {
 
         stage('[Deploy]Release archive to project path') {
             when { 
-                expression { return archive } 
+                expression { archive } 
             }
             steps {
                 dir("${info.projectPath}") {
-                    echo 'Checkout project...'
+                    echo 'Release archive...'
                     checkout scm
                 }
             }
         }
 
-        stage('[Deploy]Check project[Unix]') {
+        stage('[Deploy]Check project') {
             when { 
-                expression { return isUnix() && archive } 
+                expression { archive }
             }
             steps {
                 echo 'Check project path...'
                 script {
-                    def profileFileExists = sh(
-                        script: """
-                        [ -f "${info.projectPath}/.profile/.profile" ] && echo "true" || echo "false"
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-
+                    def profileFileExists = false
+                    if(flow.useSharedLibrary){
+                        profileFileExists = deploy.check_file_exists("${info.projectPath}/.profile/.profile")
+                    }else if(isUnix()){
+                        profileFileExists = sh(
+                                script: """
+                                [ -f "${info.projectPath}/.profile/.profile" ] && echo "true" || echo "false"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }else{
+                        profileFileExists = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.projectPath}\\.profile\\.profile" (
+                                    echo true
+                                ) else (
+                                    echo false
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }
                     if (profileFileExists && params.DeployProfile) {
                         flow."activeProfile" = true
                         println 'Profile needs to be activated!'
                     }
 
-                    def patchFileExists = sh(
-                        script: """
-                        [ -f "${info.projectPath}/patch.PatchPDI.sh" ] && echo "true" || echo "false"
-                        """, 
-                        returnStdout: true).trim().toBoolean()
+                    def patchFileExists = false
+                    if(flow.useSharedLibrary && isUnix()){
+                        patchFileExists = 
+                            deploy.check_file_exists("${info.projectPath}/patch.PatchPDI.sh")
+                    }else if(flow.useSharedLibrary && !isUnix()){
+                        patchFileExists = 
+                            deploy.check_file_exists("${info.projectPath}/patch.PatchPDI.bat")
+                    }else if(isUnix()){
+                        patchFileExists = sh(
+                                script: """
+                                [ -f "${info.projectPath}/patch.PatchPDI.sh" ] && echo "true" || echo "false"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }else{
+                        patchFileExists = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.projectPath}\\patch.PatchPDI.bat" (
+                                    echo true
+                                ) else (
+                                    echo false
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }
                     if (patchFileExists) {
                         flow."applyPatch" = true
                         println 'Patch needs to be applied!'
                     }
 
-                    def jenkinsPathExists = sh(
-                        script: """
-                        [ -d "${info.projectPath}/jenkins" ] && echo "true" || echo "false"
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-                    if (jenkinsPathExists) {
-                        flow."addJenkinsJob" = true
-                        println 'JenkinsJob needs to be added!'
+                    def jenkinsPathExists = false
+                    if(flow.useSharedLibrary){
+                        jenkinsPathExists = deploy.check_file_exists("${info.projectPath}/jenkins") 
+                    }else if(isUnix()){
+                        jenkinsPathExists = sh(
+                                script: """
+                                [ -d "${info.projectPath}/jenkins" ] && echo "true" || echo "false"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }else{
+                        jenkinsPathExists = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.projectPath}\\jenkins" (
+                                    echo true
+                                ) else (
+                                    echo false
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
                     }
-                }
-            }
-        }
-        stage('[Deploy]Check project[Windows]') {
-            when { 
-                expression { return !isUnix() && archive } 
-            }
-            steps {
-                echo 'Check project path...'
-                script {
-                    def profileFileExists = bat(
-                        script: """
-                        @echo off
-                        if exist "${info.projectPath}\\.profile\\.profile" (
-                            echo true
-                        ) else (
-                            echo false
-                        )
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-
-                    if (profileFileExists && params.DeployProfile) {
-                        flow."activeProfile" = true
-                        println 'Profile needs to be activated!'
-                    }
-
-                    def patchFileExists = bat(
-                        script: """
-                        @echo off
-                        if exist "${info.projectPath}\\patch.PatchPDI.bat" (
-                            echo true
-                        ) else (
-                            echo false
-                        )
-                        """, 
-                        returnStdout: true).trim().toBoolean()
-                    if (patchFileExists) {
-                        flow."applyPatch" = true
-                        println 'Patch needs to be applied!'
-                    }
-
-                    def jenkinsPathExists = bat(
-                        script: """
-                        @echo off
-                        if exist "${info.projectPath}\\jenkins" (
-                            echo true
-                        ) else (
-                            echo false
-                        )
-                        """, 
-                        returnStdout: true).trim().toBoolean()
                     if (jenkinsPathExists) {
                         flow."addJenkinsJob" = true
                         println 'JenkinsJob needs to be added!'
@@ -457,77 +467,68 @@ pipeline {
 
         stage('[Deploy]Link PDI and KPT[Unix]') {
             when { 
-                expression { return isUnix() && archive } 
+                expression { archive } 
             }
             steps {
                 echo 'Link PDI and KPT...'
-                sh "bash ${params.KPTPath}/tool/LINK_KPT.sh ${info.workPath} ${info.PDIPath} <&-" 
-            }
-        }
-        stage('[Deploy]Link PDI and KPT[Windows]') {
-            when { 
-                expression { return !isUnix() && archive } 
-            }
-            steps {
-                echo 'Link PDI and KPT...'
-                bat "call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${info.PDIPath}"
-            }
-        }
-
-        stage('[Deploy]Apply PDI patch[Unix]') {
-            when { 
-                expression { return isUnix() && archive && flow.applyPatch } 
-            }
-            steps {
-                dir("${info.projectPath}") {
-                    echo 'Apply PDI patch...'
-                    sh 'bash patch.PatchPDI.sh <&-'
+                script {
+                    if(isUnix()){
+                        sh "bash ${params.KPTPath}/tool/LINK_KPT.sh ${info.workPath} ${info.PDIPath} <&-" 
+                    }else{
+                        bat "call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${info.PDIPath}"
+                    }
                 }
             }
         }
-        stage('[Deploy]Apply PDI patch[Windows]') {
+
+        stage('[Deploy]Apply PDI patch') {
             when { 
-                expression { return !isUnix() && archive && flow.applyPatch } 
+                expression { archive && flow.applyPatch } 
             }
             steps {
                 dir("${info.projectPath}") {
-                    echo 'Apply PDI patch...'
-                    bat 'call patch.PatchPDI.bat'
+                    script {
+                        if(isUnix()){
+                            sh 'bash patch.PatchPDI.sh <&-' 
+                        }else{
+                            bat 'call patch.PatchPDI.bat'
+                        }
+                    }
                 }
             }
         }
         
-        stage('[Deploy]Active project profile[Unix]') {
+        stage('[Deploy]Active project profile') {
             when { 
-                expression { return isUnix() && archive && flow.activeProfile } 
+                expression { archive && flow.activeProfile } 
             }
             steps {
-                dir("${info.projectPath}") {
-                    echo 'Active project profile...'
-                    sh """
-                    mv "./.profile/.profile" "./.profile/${params.DeployProfile}.profile"
-                    """
-                }
-            }
-        }
-        stage('[Deploy]Active project profile[Windows]') {
-            when { 
-                expression { return !isUnix() && archive && flow.activeProfile } 
-            }
-            steps {
-                dir("${info.projectPath}") {
-                    echo 'Active project profile...'
-                    bat """
-                    cd ".profile"
-                    REN ".profile" "${params.DeployProfile}.profile"
-                    """
+                echo 'Active project profile...'
+                script {
+                    dir("${info.projectPath}") {
+                        if(flow.useSharedLibrary){
+                            deploy.rename_file(
+                                "${info.projectPath}/.profile/.profile",
+                                "${info.projectPath}/.profile/${params.DeployProfile}.profile")
+                        }else if(isUnix()){
+                            sh """
+                            mv "./.profile/.profile" "./.profile/${params.DeployProfile}.profile"
+                            """
+                        }else{
+                            bat """
+                            @echo off
+                            cd ".profile"
+                            REN ".profile" "${params.DeployProfile}.profile"
+                            """
+                        }
+                    }
                 }
             }
         }
 
         stage('[Deploy]Add Jenkins scheduling job') {
             when { 
-                expression { return archive && flow.addJenkinsJob } 
+                expression { archive && flow.addJenkinsJob } 
             }
             steps {
                 dir("${info.projectPath}") {
