@@ -207,6 +207,7 @@ pipeline {
                             .findAll { it.name ==~ "${params.ArchiveRegex}" }
                         if (!archivePathList) {
                             println "No any archive file!"
+                            archive = null
                             return
                         }
 
