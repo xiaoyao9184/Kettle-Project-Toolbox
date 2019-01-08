@@ -17,10 +17,10 @@ pipeline {
         string(name: 'ProjectName', description: 'project name!')
 
         //windows path
-        string(name: 'PDIPath', defaultValue: 'D:/Program/Kettle/data-integration', description: 'The PDI directory!')
-        string(name: 'KPTPath', defaultValue: 'D:/Program/Kettle/Kettle-Project-Toolbox', description: 'The KPT directory!')
-        string(name: 'DeployPath', defaultValue: 'D:/Program/ETL', description: 'Deploy directory for project')
-        string(name: 'ArchivePath', defaultValue: 'D:/Archive', description: 'Archive directory for find the last archive, format is {ArchivePath}/{ProjectName}/{ArchiveFile}')
+        string(name: 'PDIPath', defaultValue: 'D:\\Program\\Kettle\\data-integration', description: 'The PDI directory!')
+        string(name: 'KPTPath', defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', description: 'The KPT directory!')
+        string(name: 'DeployPath', defaultValue: 'D:\\Program\\ETL', description: 'Deploy directory for project')
+        string(name: 'ArchivePath', defaultValue: 'D:\\Archive', description: 'Archive directory for find the last archive, format is {ArchivePath}/{ProjectName}/{ArchiveFile}')
         
         //linux path
         // string(name: 'PDIPath', defaultValue: '/home/jenkins/kettle/data-integration', description: 'data-integration directory')
@@ -196,22 +196,67 @@ pipeline {
             }
             steps {
                 //TODO use scirpt
+                echo 'Get archive info...'
                 script {
-                    println 'Get archive info...'
-                    def archivePathList = deploy.get_path_list_file_info("${params.ArchivePath}/${params.ProjectName}")
-                        .findAll { it.isFile && !it.isHidden }
-                        .findAll { it.name.endsWith('.zip') }
-                        .findAll { !it.name.contains('syncthing') }
-                        .findAll { it.name ==~ "${params.ArchiveRegex}" }
-                    if (!archivePathList) {
-                        println "No any archive file!"
-                        return
-                    }
+                    def archiveLastFile = null
+                    if (flow.useSharedLibrary) {
+                        def archivePathList = deploy.get_path_list_file_info("${params.ArchivePath}/${params.ProjectName}")
+                            .findAll { it.isFile && !it.isHidden }
+                            .findAll { it.name.endsWith('.zip') }
+                            .findAll { !it.name.contains('syncthing') }
+                            .findAll { it.name ==~ "${params.ArchiveRegex}" }
+                        if (!archivePathList) {
+                            println "No any archive file!"
+                            return
+                        }
 
-                    def archiveLastFile = archivePathList
-                        // https://issues.jenkins-ci.org/browse/JENKINS-44924
-                        // .sort{ it.name }
-                        .last()
+                        archiveLastFile = archivePathList
+                            // https://issues.jenkins-ci.org/browse/JENKINS-44924
+                            // .sort{ it.name }
+                            .last()
+                    } else if (isUnix()) {
+                        def fileName = null
+                        dir("${params.ArchivePath}/${params.ProjectName}") {
+                            fileName = sh(
+                                    script: """
+                                    ls -I "*syncthing*" -t1 | grep "\\[Deploy\\]${params.ProjectName}.*zip" | grep "${params.ArchiveRegex}" | head -n 1
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                        }
+                        archiveLastFile = [
+                            absolutePath: "${params.ArchivePath}/${params.ProjectName}/${fileName}",
+                            name: "${fileName}",
+                        ]
+                    } else {
+                        def fileName = null
+                        dir("${params.ArchivePath}\\${params.ProjectName}") {
+                            fileName = bat(
+                                    script: """
+                                    @echo off
+                                    for /F "TOKENS=*" %%a in ('dir "[Deploy]${params.ProjectName}*.zip" /b /A:-H /O:ND') do call :SUB "%%~a"
+                                    echo %lastfile%
+                                    exit /B
+
+                                    :SUB file
+                                    set file=%1
+                                    set file=%file:"=%
+                                    echo %file% | findstr /r ".*syncthing.*" >nul 2>&1 && goto CONTINUE || rem
+                                    echo %file% | findstr /r "${params.ArchiveRegex}" >nul 2>&1 && rem || goto CONTINUE
+                                    set lastfile=%file%
+                                    exit /B
+                                    :CONTINUE
+                                    rem
+                                    exit /B
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                        }
+                        archiveLastFile = [
+                            absolutePath: "${params.ArchivePath}/${params.ProjectName}/${fileName}",
+                            name: "${fileName}",
+                        ]
+                    }
 
                     println "Last archive is: ${archiveLastFile.absolutePath}"
                     archive = [
@@ -477,8 +522,8 @@ pipeline {
                 expression { archive && flow.activeProfile } 
             }
             steps {
-                echo 'Active project profile...'
                 dir("${info.projectPath}") {
+                    echo 'Active project profile...'
                     script {
                         if (flow.useSharedLibrary) {
                             try {
@@ -514,6 +559,7 @@ pipeline {
                 expression { archive && flow.addJenkinsJob } 
             }
             steps {
+                echo 'Add Jenkins scheduling job...'
                 script {
                     if (flow.useProjectJobDslScript) {
                         dir("${info.projectPath}") {

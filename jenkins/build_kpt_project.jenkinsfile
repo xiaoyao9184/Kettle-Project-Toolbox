@@ -554,8 +554,8 @@ pipeline {
                 expression { archive && flow.activeProfile } 
             }
             steps {
-                echo 'Active project profile...'
                 dir("${info.projectPath}") {
+                    echo 'Active project profile...'
                     script {
                         if (flow.useSharedLibrary) {
                             try {
