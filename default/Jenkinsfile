@@ -465,7 +465,7 @@ pipeline {
             }
         }
 
-        stage('[Deploy]Link PDI and KPT[Unix]') {
+        stage('[Deploy]Link PDI and KPT') {
             when { 
                 expression { archive } 
             }
@@ -487,6 +487,7 @@ pipeline {
             }
             steps {
                 dir("${info.projectPath}") {
+                    echo 'Apply PDI patch...'
                     script {
                         if(isUnix()){
                             sh 'bash patch.PatchPDI.sh <&-' 

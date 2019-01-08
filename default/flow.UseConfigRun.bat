@@ -60,7 +60,6 @@ echo ...
 :check
 
 ::repository name
-echo %rName%
 if "%rName%"=="" (
     echo %echo_rName%
     set /p rName=%eset_rName%
