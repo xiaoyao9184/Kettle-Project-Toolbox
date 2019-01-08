@@ -116,7 +116,9 @@ if "%kCommand%"=="" (
 
 ::param
 if _%1_ neq __ (
-    set pList= "-param:ProfileName=%1"
+    set p1=%1
+    set profile=!p1:"=!
+    set pList= "-param:ProfileName=!profile!"
 )
 if exist "%~n0.SET_PARAM.bat" (
     echo %echo_pList% %~n0.SET_PARAM.bat
