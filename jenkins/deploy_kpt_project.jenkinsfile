@@ -513,35 +513,37 @@ pipeline {
             when { 
                 expression { archive && flow.addJenkinsJob } 
             }
-            script {
-                if (flow.useProjectJobDslScript) {
-                    dir("${info.projectPath}") {
-                        jobDsl(
-                            targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
-                            removedJobAction: 'DELETE', 
-                            removedViewAction: 'DELETE',
-                            additionalParameters: [
-                                ProjectPath: "${info.projectPath}"
-                            ],
-                            lookupStrategy: 'SEED_JOB',
-                            sandbox: false
-                        )
-                    }
-                } else {
-                    dir("KPTJSL") {
-                        git branch: 'master',
-                            url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries.git'
+            steps {
+                script {
+                    if (flow.useProjectJobDslScript) {
+                        dir("${info.projectPath}") {
+                            jobDsl(
+                                targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
+                                removedJobAction: 'DELETE', 
+                                removedViewAction: 'DELETE',
+                                additionalParameters: [
+                                    ProjectPath: "${info.projectPath}"
+                                ],
+                                lookupStrategy: 'SEED_JOB',
+                                sandbox: false
+                            )
+                        }
+                    } else {
+                        dir("KPTJSL") {
+                            git branch: 'master',
+                                url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries.git'
 
-                        jobDsl(
-                            targets: "jenkinsfile/deploy_kpt_project_jenkinsfile.groovy", 
-                            removedJobAction: 'DELETE', 
-                            removedViewAction: 'DELETE',
-                            additionalParameters: [
-                                ProjectPath: "${info.projectPath}"
-                            ],
-                            lookupStrategy: 'SEED_JOB',
-                            sandbox: false
-                        )
+                            jobDsl(
+                                targets: "jenkinsfile/deploy_kpt_project_jenkinsfile.groovy", 
+                                removedJobAction: 'DELETE', 
+                                removedViewAction: 'DELETE',
+                                additionalParameters: [
+                                    ProjectPath: "${info.projectPath}"
+                                ],
+                                lookupStrategy: 'SEED_JOB',
+                                sandbox: false
+                            )
+                        }
                     }
                 }
             }
