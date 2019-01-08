@@ -475,7 +475,7 @@ pipeline {
                         }
 
                         if (useProjectJobDslScript) {
-                            flow."addJenkinsJobUseProject" = true
+                            flow."useProjectJobDslScript" = true
                             println 'JenkinsJob use project script to be added!'
                         }
                     }
