@@ -278,9 +278,9 @@ pipeline {
                         fileOperations([
                             fileCopyOperation(
                                 targetLocation: "${archive.path}",
-                                includes: "${archive.file}"),
+                                includes: "${archive.version}.*"),
                             fileDeleteOperation(
-                                includes: "${archive.file}")
+                                includes: "${archive.version}.*")
                         ])
                     } else if (isUnix()) {
                         sh """
@@ -386,7 +386,6 @@ pipeline {
             steps {
                 echo 'Check project path...'
                 script {
-
                     def patchFileExists = false
                     if (flow.useSharedLibrary && isUnix()) {
                         patchFileExists = 
