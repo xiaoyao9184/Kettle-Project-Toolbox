@@ -310,36 +310,6 @@ pipeline {
             steps {
                 echo 'Check project path...'
                 script {
-                    def profileFileExists = false
-                    if (flow.useSharedLibrary) {
-                        profileFileExists = deploy.check_file_exists("${info.projectPath}/.profile/.profile")
-                    } else if (isUnix()) {
-                        profileFileExists = sh(
-                                script: """
-                                [ -f "${info.projectPath}/.profile/.profile" ] && echo "true" || echo "false"
-                                """, 
-                                returnStdout: true)
-                            .trim()
-                            .toBoolean()
-                    } else {
-                        profileFileExists = bat(
-                                script: """
-                                @echo off
-                                if exist "${info.projectPath}\\.profile\\.profile" (
-                                    echo true
-                                ) else (
-                                    echo false
-                                )
-                                """, 
-                                returnStdout: true)
-                            .trim()
-                            .toBoolean()
-                    }
-                    if (profileFileExists && params.DeployProfile) {
-                        flow."activeProfile" = true
-                        println 'Profile needs to be activated!'
-                    }
-
                     def patchFileExists = false
                     if (flow.useSharedLibrary && isUnix()) {
                         patchFileExists = 
@@ -372,6 +342,36 @@ pipeline {
                     if (patchFileExists) {
                         flow."applyPatch" = true
                         println 'Patch needs to be applied!'
+                    }
+
+                    def profileFileExists = false
+                    if (flow.useSharedLibrary) {
+                        profileFileExists = deploy.check_file_exists("${info.projectPath}/.profile/.profile")
+                    } else if (isUnix()) {
+                        profileFileExists = sh(
+                                script: """
+                                [ -f "${info.projectPath}/.profile/.profile" ] && echo "true" || echo "false"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    } else {
+                        profileFileExists = bat(
+                                script: """
+                                @echo off
+                                if exist "${info.projectPath}\\.profile\\.profile" (
+                                    echo true
+                                ) else (
+                                    echo false
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }
+                    if (profileFileExists && params.DeployProfile) {
+                        flow."activeProfile" = true
+                        println 'Profile needs to be activated!'
                     }
 
                     def jenkinsPathExists = false
