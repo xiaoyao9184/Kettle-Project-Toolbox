@@ -253,7 +253,7 @@ pipeline {
                                 .trim()
                         }
                         archiveLastFile = [
-                            absolutePath: "${params.ArchivePath}/${params.ProjectName}/${fileName}",
+                            absolutePath: "${params.ArchivePath}\\${params.ProjectName}\\${fileName}",
                             name: "${fileName}",
                         ]
                     }
