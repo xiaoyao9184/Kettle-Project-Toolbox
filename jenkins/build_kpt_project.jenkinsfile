@@ -274,7 +274,15 @@ pipeline {
                 echo "Archive version is: ${archive.version}"
                 
                 script {
-                    if (isUnix()) {
+                    if (flow.useSharedLibrary) {
+                        fileOperations([
+                            fileCopyOperation(
+                                targetLocation: "${archive.path}",
+                                includes: "${archive.file}"),
+                            fileDeleteOperation(
+                                includes: "${archive.file}")
+                        ])
+                    } else if (isUnix()) {
                         sh """
                         [ -d "${archive.path}" ] || mkdir -p "${archive.path}"
                         mv "${archive.file}" "${archive.path}/"
@@ -499,7 +507,7 @@ pipeline {
                         }
 
                         if (useProjectJobDslScript) {
-                            flow."addJenkinsJobUseProject" = true
+                            flow."useProjectJobDslScript" = true
                             println 'JenkinsJob use project script to be added!'
                         }
                     }
@@ -550,9 +558,18 @@ pipeline {
                 dir("${info.projectPath}") {
                     script {
                         if (flow.useSharedLibrary) {
-                            deploy.rename_file(
-                                "${info.projectPath}/.profile/.profile",
-                                "${info.projectPath}/.profile/${params.DeployProfile}.profile")
+                            try {
+                                deploy.rename_file(
+                                    "${info.projectPath}/.profile/.profile",
+                                    "${info.projectPath}/.profile/${params.DeployProfile}.profile") 
+                            } catch (Exception ex) {
+                                println("Catching unknow Exception, that mean cant use Shared Library rename file!");
+                                fileOperations([
+                                    fileRenameOperation(
+                                        source: ".profile/.profile",
+                                        destination: ".profile/${params.DeployProfile}.profile")
+                                ])
+                            }
                         } else if (isUnix()) {
                             sh """
                             mv "./.profile/.profile" "./.profile/${params.DeployProfile}.profile"
