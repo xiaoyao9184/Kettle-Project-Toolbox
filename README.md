@@ -62,6 +62,8 @@ if created via a symbolic link will be accessed via a symbolic link path on wind
 unix not support folder hard link, and symbolic link for `data-integration/` path 
 not work with current path(./) in KETTLE_HOME use relative repository path.
 
+So use hard link file and copy folder same time for replace folder link.
+
 # Use with jenkins
 
 All scripts can run on jenkins
