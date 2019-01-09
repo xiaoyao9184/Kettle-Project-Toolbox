@@ -164,7 +164,7 @@ pipeline {
                 expression { flow.updateKPT }
             }
             steps {
-                dir("${params.KPTPath}") {
+                dir("${info.KPTPath}") {
                     echo 'Update KPT...'
                     git branch: 'master',
                         url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git'
@@ -189,7 +189,7 @@ pipeline {
                         filePath: 'pdi-ce.zip',
                         targetLocation: "."),
                     folderCopyOperation(
-                        destinationFolderPath: "${params.PDIPath}",
+                        destinationFolderPath: "${info.PDIPath}",
                         sourceFolderPath: './data-integration'),
                     folderDeleteOperation(
                         './data-integration'),
@@ -203,15 +203,14 @@ pipeline {
 
         stage('Get archive info') {
             when { 
-                expression { params.ProjectName } 
+                expression { info.projectName } 
             }
             steps {
-                //TODO use scirpt
                 echo 'Get archive info...'
                 script {
                     def archiveLastFile = null
                     if (flow.useSharedLibrary) {
-                        def archivePathList = deploy.get_path_list_file_info("${params.ArchivePath}/${params.ProjectName}")
+                        def archivePathList = deploy.get_path_list_file_info("${archive.path}/${info.projectName}")
                             .findAll { it.isFile && !it.isHidden }
                             .findAll { it.name.endsWith('.zip') }
                             .findAll { !it.name.contains('syncthing') }
@@ -228,25 +227,25 @@ pipeline {
                             .last()
                     } else if (isUnix()) {
                         def fileName = null
-                        dir("${params.ArchivePath}/${params.ProjectName}") {
+                        dir("${archive.path}/${info.projectName}") {
                             fileName = sh(
                                     script: """
-                                    ls -I "*syncthing*" -t1 | grep "\\[Deploy\\]${params.ProjectName}.*zip" | grep "${params.ArchiveRegex}" | head -n 1
+                                    ls -I "*syncthing*" -t1 | grep "\\[Deploy\\]${info.projectName}.*zip" | grep "${params.ArchiveRegex}" | head -n 1
                                     """, 
                                     returnStdout: true)
                                 .trim()
                         }
                         archiveLastFile = [
-                            absolutePath: "${params.ArchivePath}/${params.ProjectName}/${fileName}",
+                            absolutePath: "${archive.path}/${info.projectName}/${fileName}",
                             name: "${fileName}",
                         ]
                     } else {
                         def fileName = null
-                        dir("${params.ArchivePath}\\${params.ProjectName}") {
+                        dir("${archive.path}\\${info.projectName}") {
                             fileName = bat(
                                     script: """
                                     @echo off
-                                    for /F "TOKENS=*" %%a in ('dir "[Deploy]${params.ProjectName}*.zip" /b /A:-H /O:ND') do call :SUB "%%~a"
+                                    for /F "TOKENS=*" %%a in ('dir "[Deploy]${info.projectName}*.zip" /b /A:-H /O:ND') do call :SUB "%%~a"
                                     echo %lastfile%
                                     exit /B
 
@@ -265,7 +264,7 @@ pipeline {
                                 .trim()
                         }
                         archiveLastFile = [
-                            absolutePath: "${params.ArchivePath}\\${params.ProjectName}\\${fileName}",
+                            absolutePath: "${archive.path}\\${info.projectName}\\${fileName}",
                             name: "${fileName}",
                         ]
                     }
@@ -283,7 +282,7 @@ pipeline {
             steps {
                 echo "Check archive..."
                 script {
-                    if (!params.ProjectName) {
+                    if (!info.projectName) {
                         echo "No 'ProjectName' param!"
                         archive = null
                         currentBuild.result = 'UNSTABLE'
@@ -587,12 +586,9 @@ pipeline {
                             )
                         }
                     } else {
-                        dir("KPTJSL") {
-                            git branch: 'master',
-                                url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries.git'
-
+                        dir("${info.KPTPath}") {
                             jobDsl(
-                                targets: "jenkinsfile/deploy_kpt_project_jenkinsfile.groovy", 
+                                targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
                                 removedJobAction: 'DELETE', 
                                 removedViewAction: 'DELETE',
                                 additionalParameters: [

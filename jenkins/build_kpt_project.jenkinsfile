@@ -188,7 +188,7 @@ pipeline {
                         filePath: 'pdi-ce.zip',
                         targetLocation: "."),
                     folderCopyOperation(
-                        destinationFolderPath: "${params.PDIPath}",
+                        destinationFolderPath: "${info.PDIPath}",
                         sourceFolderPath: './data-integration'),
                     folderDeleteOperation(
                         './data-integration'),
@@ -202,7 +202,7 @@ pipeline {
 
         stage('[Build]Checkout') {
             steps {
-                dir("${params.ProjectName}") {
+                dir("${info.projectName}") {
                     echo 'Checkout project...'
                     checkout scm
                 }
