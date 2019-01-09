@@ -15,22 +15,26 @@ pipeline {
     agent any
     parameters {
         string(name: 'ProjectName', description: 'project name!')
-
-        //windows path
-        string(name: 'PDIPath', defaultValue: 'D:\\Program\\Kettle\\data-integration', description: 'The PDI directory!')
-        string(name: 'KPTPath', defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', description: 'The KPT directory!')
-        string(name: 'DeployPath', defaultValue: 'D:\\Program\\ETL', description: 'Deploy directory for project')
-        string(name: 'ArchivePath', defaultValue: 'D:\\Archive', description: 'Archive directory for find the last archive, format is {ArchivePath}/{ProjectName}/{ArchiveFile}')
-        
-        //linux path
-        // string(name: 'PDIPath', defaultValue: '/home/jenkins/kettle/data-integration', description: 'data-integration directory')
-        // string(name: 'KPTPath', defaultValue: '/home/jenkins/kettle/kettle-project-toolbox', description: 'Kettle-Project-Toolbox directory')
-        // string(name: 'ArchivePath', defaultValue: '/home/jenkins/archive', description: 'archive directory!')
-        // string(name: 'DeployPath', defaultValue: '/home/jenkins/etl', description: 'project directory!')
-        
         string(name: 'ArchiveRegex', defaultValue: '^.*', description: 'Archive file name filter')
         string(name: 'DeployProfile', defaultValue: 'prod', description: 'The profile for deploy!')
         string(name: 'PDIURL', defaultValue: 'https://jaist.dl.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip', description: 'The PDI URL!')
+    
+        string(name: 'PDIPath', description: 'data-integration directory')
+        string(name: 'KPTPath', description: 'Kettle-Project-Toolbox directory')
+        string(name: 'ArchivePath', description: 'archive directory!')
+        string(name: 'DeployPath', description: 'project directory!')
+        
+        //defalut windows path
+        string(name: 'Windows_PDIPath', defaultValue: 'D:\\Program\\Kettle\\data-integration', description: 'data-integration directory')
+        string(name: 'Windows_KPTPath', defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', description: 'Kettle-Project-Toolbox directory')
+        string(name: 'Windows_ArchivePath', defaultValue: 'D:\\Archive', description: 'archive directory!')
+        string(name: 'Windows_DeployPath', defaultValue: 'D:\\Program\\ETL', description: 'project directory!')
+        
+        //defalut linux path
+        string(name: 'Unix_PDIPath', defaultValue: '/home/jenkins/kettle/data-integration', description: 'data-integration directory')
+        string(name: 'Unix_KPTPath', defaultValue: '/home/jenkins/kettle/kettle-project-toolbox', description: 'Kettle-Project-Toolbox directory')
+        string(name: 'Unix_ArchivePath', defaultValue: '/home/jenkins/archive', description: 'archive directory!')
+        string(name: 'Unix_DeployPath', defaultValue: '/home/jenkins/etl', description: 'project directory!')
     }
     options {
         disableConcurrentBuilds()
@@ -54,7 +58,7 @@ pipeline {
                         useProjectJobDslScript: false
                     ]
                     archive = [
-                        path: "${params.ArchivePath}",
+                        path: null,
                         file: null,
                         version: null
                     ]
@@ -77,10 +81,17 @@ pipeline {
                         println("Catching unknow Exception, that mean not use Shared Library!");
                     }
                     
-                    archive."path" = "${archive.path}"
-                    info."PDIPath" = params.PDIPath
-                    info."KPTPath" = params.KPTPath
-                    info."DeployPath" = params.DeployPath
+                    if (isUnix()) {
+                        archive."path" = params.ArchivePath ?: "${params.Unix_ArchivePath}"
+                        info."DeployPath" = params.DeployPath ?: "${params.Unix_DeployPath}"
+                        info."PDIPath" = params.PDIPath ?: "${params.Unix_PDIPath}"
+                        info."KPTPath" = params.KPTPath ?: "${params.Unix_KPTPath}"
+                    } else {
+                        archive."path" = params.ArchivePath ?: "${params.Windows_ArchivePath}"
+                        info."DeployPath" = params.DeployPath ?: "${params.Windows_DeployPath}"
+                        info."PDIPath" = params.PDIPath ?: "${params.Windows_PDIPath}"
+                        info."KPTPath" = params.KPTPath ?: "${params.Windows_KPTPath}"
+                    }
                 }
             }
         }
@@ -455,7 +466,7 @@ pipeline {
                         } else if (isUnix()) {
                             useProjectJobDslScript = sh(
                                     script: """
-                                    [ -d "${info.projectPath}/jenkins/deploy_kpt_project_jenkinsfile.groovy" ] && echo "true" || echo "false"
+                                    [ -f "${info.projectPath}/jenkins/deploy_kpt_project_jenkinsfile.groovy" ] && echo "true" || echo "false"
                                     """, 
                                     returnStdout: true)
                                 .trim()
@@ -492,9 +503,9 @@ pipeline {
                 echo 'Link PDI and KPT...'
                 script {
                     if (isUnix()) {
-                        sh "bash ${params.KPTPath}/tool/LINK_KPT.sh ${info.workPath} ${info.PDIPath} <&-" 
+                        sh "bash ${info.KPTPath}/tool/LINK_KPT.sh ${info.workPath} ${info.PDIPath} <&-" 
                     } else {
-                        bat "call ${params.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${info.PDIPath}"
+                        bat "call ${info.KPTPath}\\tool\\LINK_KPT.bat ${info.workPath} ${info.PDIPath}"
                     }
                 }
             }
