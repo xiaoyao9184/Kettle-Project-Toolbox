@@ -39,7 +39,8 @@ set linkPath=%1
 set targetPath=%2
 set skipConflictCheck=%3
 set forceConflictReplace=%4
-
+set linkPath=%linkPath:"=%
+set targetPath=%targetPath:"=%
 
 :title
 
