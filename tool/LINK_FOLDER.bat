@@ -39,8 +39,6 @@ set linkPath=%1
 set targetPath=%2
 set skipConflictCheck=%3
 set forceConflictReplace=%4
-set linkPath=%linkPath:"=%
-set targetPath=%targetPath:"=%
 
 :title
 
@@ -55,10 +53,14 @@ echo ...
 if "%linkPath%"=="" (
 	echo %echo_linkPath%
 	set /p linkPath=%eset_linkPath%
+) else (
+    set linkPath=%linkPath:"=%
 )
 if "%targetPath%"=="" (
 	echo %echo_targetPath%
 	set /p targetPath=%eset_targetPath%
+) else (
+    set targetPath=%targetPath:"=%
 )
 if "%skipConflictCheck%"=="skip" (
 	goto begin
