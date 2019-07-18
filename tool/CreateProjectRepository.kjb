@@ -325,7 +325,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>320</xloc>
-      <yloc>816</yloc>
+      <yloc>1088</yloc>
     </entry>
     <entry>
       <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;rName&#x53c2;&#x6570;&#x6b63;&#x5e38;</name>
@@ -527,12 +527,66 @@
             </parameter>            <parameter>            <name>Parameters.Copy.Use.Wait</name>
             <stream_name/>
             <value>true</value>
+            </parameter>            <parameter>            <name>Parameters.Copy.Use.GitPlugin</name>
+            <stream_name/>
+            <value>&#x24;&#x7b;gitPlugin&#x7d;</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>320</xloc>
+      <yloc>944</yloc>
+    </entry>
+    <entry>
+      <name>&#x68c0;&#x67e5;&#x4e00;&#x4e2a;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</name>
+      <description/>
+      <type>FILE_EXISTS</type>
+      <filename>.&#x2f;plugins&#x2f;pdi-git-plugin</filename>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>320</xloc>
       <yloc>688</yloc>
+    </entry>
+    <entry>
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;gitPlugin&#xff1a;Use</name>
+      <description/>
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>gitPlugin</variable_name>
+          <variable_value>true</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>192</xloc>
+      <yloc>816</yloc>
+    </entry>
+    <entry>
+      <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;gitPlugin&#xff1a;NotUse</name>
+      <description/>
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>gitPlugin</variable_name>
+          <variable_value>false</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>816</yloc>
     </entry>
   </entries>
   <hops>
@@ -582,7 +636,43 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>&#x4f5c;&#x4e1a;&#xff1a;&#x590d;&#x5236;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</from>
+      <to>&#x6210;&#x529f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x67e5;&#x4e00;&#x4e2a;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;gitPlugin&#xff1a;Use</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x67e5;&#x4e00;&#x4e2a;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</from>
+      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;gitPlugin&#xff1a;NotUse</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>&#x4f5c;&#x4e1a;&#xff1a;&#x521b;&#x5efa;&#x8d44;&#x6e90;&#x5e93;&#x914d;&#x7f6e;</from>
+      <to>&#x68c0;&#x67e5;&#x4e00;&#x4e2a;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;gitPlugin&#xff1a;NotUse</from>
       <to>&#x4f5c;&#x4e1a;&#xff1a;&#x590d;&#x5236;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -591,8 +681,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x4f5c;&#x4e1a;&#xff1a;&#x590d;&#x5236;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</from>
-      <to>&#x6210;&#x529f;</to>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;gitPlugin&#xff1a;Use</from>
+      <to>&#x4f5c;&#x4e1a;&#xff1a;&#x590d;&#x5236;&#x9ed8;&#x8ba4;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
