@@ -27,6 +27,11 @@
         <description>&#x662f;&#x5426;&#x652f;&#x6301;Config</description>
       </parameter>
       <parameter>
+        <name>Parameters.Copy.Use.GitPlugin</name>
+        <default_value>true</default_value>
+        <description>&#x662f;&#x5426;&#x652f;&#x6301;GitPlugin</description>
+      </parameter>
+      <parameter>
         <name>Parameters.Copy.Use.Jenkins</name>
         <default_value>true</default_value>
         <description>&#x662f;&#x5426;&#x652f;&#x6301;Jenkins</description>
@@ -987,6 +992,112 @@
       <xloc>992</xloc>
       <yloc>464</yloc>
     </entry>
+    <entry>
+      <name>&#x590d;&#x5236;&#x6587;&#x4ef6;&#xff1a;Git Repository</name>
+      <description/>
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>Y</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>&#x24;&#x7b;Internal.Project.Default.Directory&#x7d;&#x2f;.meta&#x2f;metastore&#x2f;pentaho&#x2f;Git Repository&#x2f;.type.xml</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.meta&#x2f;metastore&#x2f;pentaho&#x2f;Git Repository&#x2f;.type.xml</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard/>
+        </field>
+        <field>
+          <source_filefolder>&#x24;&#x7b;Internal.Project.Default.Directory&#x7d;&#x2f;.meta&#x2f;metastore&#x2f;pentaho&#x2f;Git Repository&#x2f;default.xml</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.meta&#x2f;metastore&#x2f;pentaho&#x2f;Git Repository&#x2f;&#x24;&#x7b;Internal.Project.Name&#x7d;.xml</destination_filefolder>
+          <destination_configuration_name/>
+          <wildcard/>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;UseGitPlugin</name>
+      <description/>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>&#x24;&#x7b;isUseProfile&#x7d;</fieldname>
+      <variablename>&#x24;&#x7b;Parameters.Copy.Use.GitPlugin&#x7d;</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>true</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>ContentReplace&#x3a;GitRepositoryName</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Entry.Current.Directory&#x7d;&#x2f;ContentReplace.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>Parameters.File.Find</name>
+          <stream_name/>
+          <value>default</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Path</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;Internal.Project.Directory&#x7d;&#x2f;.meta&#x2f;metastore&#x2f;pentaho&#x2f;Git Repository&#x2f;&#x24;&#x7b;Internal.Project.Name&#x7d;.xml</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Replace</name>
+          <stream_name/>
+          <value>&#x24;&#x7b;Internal.Project.Name&#x7d;</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>608</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -1145,6 +1256,33 @@
     <hop>
       <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;UsePatch</from>
       <to>&#x590d;&#x5236;&#x6587;&#x4ef6;&#xff1a;patch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Internal.Project.Default.Directory</from>
+      <to>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;UseGitPlugin</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>&#x68c0;&#x9a8c;&#x5b57;&#x6bb5;&#x7684;&#x503c;&#xff1a;UseGitPlugin</from>
+      <to>&#x590d;&#x5236;&#x6587;&#x4ef6;&#xff1a;Git Repository</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>&#x590d;&#x5236;&#x6587;&#x4ef6;&#xff1a;Git Repository</from>
+      <to>ContentReplace&#x3a;GitRepositoryName</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
