@@ -17,6 +17,7 @@ pipeline {
         string(name: 'ProjectName', description: 'project name!')
         string(name: 'DeployProfile', defaultValue: 'dev', description: 'active profile!')
         string(name: 'PDIURL', defaultValue: 'https://jaist.dl.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip', description: 'The PDI URL!')
+        string(name: 'KPTURL', defaultValue: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git', description: 'The KPT git url!')
 
         string(name: 'PDIPath', defaultValue: '', description: 'data-integration directory')
         string(name: 'KPTPath', defaultValue: '', description: 'Kettle-Project-Toolbox directory')
@@ -166,7 +167,7 @@ pipeline {
                 dir("${info.KPTPath}") {
                     echo 'Update KPT...'
                     git branch: 'master',
-                        url: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git'
+                        url: "${info.KPTURL}"
                 }
             }
         }
