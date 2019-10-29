@@ -168,7 +168,7 @@ pipeline {
                 dir("${info.KPTPath}") {
                     echo 'Update KPT...'
                     git branch: 'master',
-                        url: "${info.KPTURL}"
+                        url: "${params.KPTURL}"
                 }
             }
         }
