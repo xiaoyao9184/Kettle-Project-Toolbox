@@ -131,8 +131,7 @@ pipeline {
                                 $class: 'FolderContentTrigger', 
                                 cronTabSpec: 'H 0 * * *',
                                 path: "${path}",
-                                includes: "[Deploy]${params.ProjectName}*.zip",
-                                excludes: "*syncthing*",
+                                includes: "*.zip",
                                 excludeCheckLastModificationDate: false,
                                 excludeCheckContent: false,
                                 excludeCheckFewerOrMoreFiles: false
