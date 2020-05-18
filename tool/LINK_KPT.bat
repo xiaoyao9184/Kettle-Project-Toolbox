@@ -81,15 +81,24 @@ if _%interactive%_ equ _0_ (
 echo ===========================================================
 echo link KPT tool path...
 call LINK_FOLDER.bat "%workspacePath%\tool" "%kptPath%\tool" %param%
-
+echo. 
+echo.
+echo.
+echo.
 echo ===========================================================
 echo link KPT defalut path...
 call LINK_FOLDER.bat "%workspacePath%\default" "%kptPath%\default" %param%
-
+echo.
+echo.
+echo.
+echo.
 echo ===========================================================
-echo link KPT Windows path...
+echo link KPT Windows path on windows system...
 call LINK_FOLDER.bat "%workspacePath%\Windows" "%kptPath%\Windows" %param%
-
+echo.
+echo.
+echo.
+echo.
 echo ===========================================================
 echo link PDI path...
 if "%pdiPath%"=="" (

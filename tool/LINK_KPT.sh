@@ -84,17 +84,22 @@ fi
 echo "==========================================================="
 echo "link KPT tool path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo "**********"
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
 
 echo "==========================================================="
 echo "link KPT defalut path..."
 bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo "**********"
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n"
+
+echo "==========================================================="
+echo "link KPT Linux path on linux system..."
+bash "$current_path/LINK_FOLDER.sh" "$workspacePath/Linux" "$kptPath/Linux" "$skipConflictCheck" "$forceConflictReplace"
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
 
 echo "==========================================================="
 echo "link PDI path..."
 bash "$current_path/LINK_PDI.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo "**********"
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
 
 
 # done
