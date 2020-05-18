@@ -107,7 +107,7 @@ pipeline {
             description: 'project directory!')
         string(
             name: 'DeployPath_On_Unix', 
-            defaultValue: '/home/jenkins/etl_prod', 
+            defaultValue: '/home/jenkins/etl/prod_profile', 
             description: 'project directory!')
     }
     options {
