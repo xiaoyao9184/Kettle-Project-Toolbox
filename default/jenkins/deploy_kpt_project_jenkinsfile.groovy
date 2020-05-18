@@ -36,11 +36,11 @@ if(executor == null){
     if(customizeProjectPath?.trim()){
         println 'Try use parameter for work directory!'
         def wd = new FilePath(new File(customizeProjectPath))
-        jenkinsPath = new FilePath(wd, 'jenkins')
+        jenkinsPath = new FilePath(wd, '.jenkins')
     }else{
         println 'Try use current workspace for work directory!'
         def cwd = SEED_JOB.getWorkspace()
-        jenkinsPath = new FilePath(cwd, 'jenkins')
+        jenkinsPath = new FilePath(cwd, '.jenkins')
     }
 }else{
     println 'Job DSL in normal job, use Jenkins API for running!'
