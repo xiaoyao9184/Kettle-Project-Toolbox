@@ -8,7 +8,6 @@ pipeline {
     parameters {
         string(name: 'NodeLabel', defaultValue: 'master', description: 'Node for run job!')
         string(name: 'ProjectPath', defaultValue: 'D:\\Program\\ETL\\default', description: 'The Project directory!')
-        string(name: 'Profile', description: 'Who should I call for run?')
     }
     options {
         disableConcurrentBuilds()
