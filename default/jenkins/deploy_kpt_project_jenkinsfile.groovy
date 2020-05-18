@@ -1,10 +1,20 @@
 /**
- * Copy from deploy_kpt_project_jenkinsfile
- * @see https://github.com/xiaoyao9184/Kettle-Project-Toolbox-Jenkins-Shared-Libraries/blob/master/jenkinsfile/deploy_kpt_project_jenkinsfile.groovy
+ * Kettle-Project-Toolbox project deploy jenkins jobs job dsl
+ *
+ * Created by xiaoyao9184 on 2020/5/15.
+ *
+ * It will deploy jenkins jobs form project,
+ * jobs directory is '.jenkins/'.
+ * 
+ * Parameter substitution
+ * - NodeLabel: alway 'etl'
+ * - ProjectPath: from jobDsl additionalParameters
+ * 
  */
 import hudson.model.*
 import hudson.FilePath
 
+def excludeNames = ['deploy_kpt_project','build_kpt_project','find_kpt_project']
 def files = null
 def customizeProjectPath = null
 def jenkinsPath = null
@@ -49,18 +59,18 @@ if(executor == null){
         println 'Try use parameter for work directory!'
         projectPath = v.getValue().toString()
         def wd = new FilePath(new File(projectPath))
-        jenkinsPath = new FilePath(wd, 'jenkins')
+        jenkinsPath = new FilePath(wd, '.jenkins')
     }else{
         println 'Try use current workspace for work directory!'
         def cwd = executor.getCurrentWorkspace().absolutize()
-        jenkinsPath = new FilePath(cwd, 'jenkins')
+        jenkinsPath = new FilePath(cwd, '.jenkins')
     }
 }
 
 if(jenkinsPath.exists()) {
     files = jenkinsPath.list('*.jenkinsfile')
     if(files == null || files.size() == 0){
-        println "Cant find any jenkinsfile in 'jenkins/' directory!"
+        println "Cant find any jenkinsfile in '.jenkins/' directory!"
         throw new Exception("Cant find any jenkinsfile!")
         return
     }
@@ -68,10 +78,21 @@ if(jenkinsPath.exists()) {
 
 files.each { file ->
     def name = file.getBaseName()
+    if(excludeNames.contains(name)){
+        return
+    }
+
     println "File ${name}"
-    
     pipelineJob("${name}") {
         def strip = file.readToString()
+        if(strip.contains('\'NodeLabel\'')){
+            println "Need replace 'NodeLabel' parameter!"
+            strip = strip.replace(/'NodeLabel'/, "'NotUse_NodeLabel'")
+            parameters {
+                stringParam('NodeLabel', "etl")
+            }
+        }
+
         if(customizeProjectPath != null && strip.contains('\'ProjectPath\'')){
             println "Need replace 'ProjectPath' parameter!"
             strip = strip.replace(/'ProjectPath'/, "'NotUse_ProjectPath'")

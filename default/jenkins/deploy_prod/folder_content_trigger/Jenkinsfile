@@ -1,0 +1,310 @@
+/**
+ * Kettle-Project-Toolbox project archive deploy pipeline script
+ *
+ * Created by xiaoyao9184 on 2020/5/15.
+ *
+ * It will add find_kpt_project and deploy_kpt_project and run it.
+ * Only master run find_kpt_project, 
+ * Only master will run 'Project jobs' stage in deploy_kpt_project
+ *
+ *
+ * Plugin dependencies
+ * - job-dsl
+ * - fstrigger
+ * Disable script security for Job DSL (run as the specified admin user cant run build_kpt_project).
+ * Or run as the specified admin user with script approval if need
+ *
+ * Pipeline script dependencies
+ * - find_kpt_project
+ * - deploy_kpt_project
+ * In 'jenkins/' directory with same repository of this script 
+ *
+ */
+
+//Note:
+//1. install job-dsl authorize-project, file-operation, workflow-multibranch, fstrigger, pipeline-utility-steps plugin
+//2. build_kpt_project must be included in the project's jenkins directory
+//3. disable script security for Job DSL, run as the specified admin user cant run build_kpt_project
+//4. or run as the specified admin user with script approval if need
+//5. only master run build_kpt_project, only master dd Jenkins scheduling job on deploy_kpt_project A
+
+pipeline {
+    agent {
+        node {
+            //cant run on other node, because FolderContentTrigger need ArchivePath
+            label "${params.Node}"
+        }
+    }
+    parameters {
+        //for all
+        string(
+            name: 'Node',
+            defaultValue: 'master',
+            description: 'Node label or node name for run')
+        string(
+            name: 'WorkPath_On_Windows', 
+            defaultValue: 'C:\\Program\\jenkins\\workspace\\TestNewJenkinsJob', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        string(
+            name: 'WorkPath_On_Unix', 
+            defaultValue: '/home/jenkins/workspace/TestNewJenkinsJob', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        
+        //Pass to all child job
+        string(
+            name: 'ProjectName', 
+            defaultValue: 'default', 
+            description: 'project name!')
+
+        string(
+            name: 'PDIURL', 
+            defaultValue: 'https://jaist.dl.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip', 
+            description: 'The PDI URL!')
+        string(
+            name: 'PDIPath_On_Windows', 
+            defaultValue: 'D:\\Program\\Kettle\\data-integration', 
+            description: 'data-integration directory')
+        string(
+            name: 'PDIPath_On_Unix', 
+            defaultValue: '/home/jenkins/kettle/data-integration', 
+            description: 'data-integration directory')
+            
+        string(
+            name: 'KPTURL', 
+            defaultValue: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git', 
+            description: 'The KPT git url!')
+        string(
+            name: 'KPTPath_On_Windows', 
+            defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', 
+            description: 'Kettle-Project-Toolbox directory')
+        string(
+            name: 'KPTPath_On_Unix', 
+            defaultValue: '/home/jenkins/kettle/kettle-project-toolbox', 
+            description: 'Kettle-Project-Toolbox directory')
+        
+        //Pass to build job
+        string(
+            name: 'ArchivePath_On_Windows', 
+            defaultValue: 'D:\\Archive', 
+            description: 'archive directory!')
+        string(
+            name: 'ArchivePath_On_Unix', 
+            defaultValue: '/home/jenkins/archive', 
+            description: 'archive directory!')
+        
+        //Pass to deploy job
+        string(
+            name: 'DeployProfile', 
+            defaultValue: 'prod', 
+            description: 'active profile!')
+        string(
+            name: 'DeployPath_On_Windows', 
+            defaultValue: 'D:\\Program\\ETL', 
+            description: 'project directory!')
+        string(
+            name: 'DeployPath_On_Unix', 
+            defaultValue: '/home/jenkins/etl_prod', 
+            description: 'project directory!')
+    }
+    options {
+        disableConcurrentBuilds()
+        skipDefaultCheckout()
+    }
+    stages {
+
+        stage('Config job trigger') {
+            steps {
+                script {
+                    def path = null;
+                    if (isUnix()) {
+                        path = "${params.ArchivePath_On_Unix}/${params.ProjectName}"
+                    } else {
+                        path = "${params.ArchivePath_On_Windows}\\${params.ProjectName}"
+                    }
+                    properties(
+                        [
+                            pipelineTriggers([[
+                                $class: 'FolderContentTrigger', 
+                                cronTabSpec: 'H 0 * * *',
+                                path: "${path}",
+                                includes: "[Deploy]${params.ProjectName}*.zip",
+                                excludes: "*syncthing*",
+                                excludeCheckLastModificationDate: false,
+                                excludeCheckContent: false,
+                                excludeCheckFewerOrMoreFiles: false
+                            ]])
+                        ]
+                    )
+                }
+            }
+        }
+
+        stage('Add find_kpt_project deploy_kpt_project job') {
+            steps {
+                script {
+                    echo "get scm"
+                    try {
+                        scmUrl = scm.getUserRemoteConfigs()[0].getUrl()
+                        credentialsId = scm.getUserRemoteConfigs()[0].getCredentialsId()
+                        branch = scm.branches[0].name
+                    } catch(Exception ex) {
+                        println("Cant access scm, use KPT on github!")
+                        scmUrl = "${params.KPTURL}"
+                        credentialsId = ''
+                        branch = '*/master'
+                    }
+                    echo "Will use '${credentialsId}' check ${branch} @ ${scmUrl} for pipeline job"
+                }
+                echo 'Add find_kpt_project job...'
+                jobDsl(
+                    scriptText: """
+                    pipelineJob("find_kpt_project") {
+                        parameters {
+                            stringParam('Node', '')
+                            stringParam('WorkPath_On_Windows', '')
+                            stringParam('WorkPath_On_Unix', '')
+                            stringParam('ProjectName', "${params.ProjectName}")
+
+                            stringParam('ArchivePath_On_Windows', '')
+                            stringParam('ArchivePath_On_Unix', '')
+                        }
+                        definition {
+                            cpsScm {
+                                scm {
+                                    git { 
+                                        remote {
+                                            credentials("${credentialsId}")
+                                            url("${scmUrl}")
+                                        }
+                                        branch("${branch}")
+                                    }
+                                }
+                                scriptPath("jenkins/find_kpt_project.jenkinsfile")
+                                lightweight(true)
+                            }
+                        }
+                    }
+                    """, 
+                    removedJobAction: 'IGNORE', 
+                    lookupStrategy: 'SEED_JOB',
+                    sandbox: true
+                )
+                
+                echo 'Add deploy_kpt_project job...'
+                jobDsl(
+                    scriptText: """
+                    pipelineJob("deploy_kpt_project") {
+                        parameters {
+                            stringParam('Node', "master")
+                            stringParam('WorkPath_On_Windows', '')
+                            stringParam('WorkPath_On_Unix', '')
+                            stringParam('ProjectName', "${params.ProjectName}")
+                            
+                            stringParam('PDIURL', "${params.PDIURL}")
+                            stringParam('PDIPath_On_Windows', '')
+                            stringParam('PDIPath_On_Unix', '')
+
+                            stringParam('KPTURL', "${params.KPTURL}")
+                            stringParam('KPTPath_On_Windows', '')
+                            stringParam('KPTPath_On_Unix', '')
+
+                            stringParam('ArchiveProject', "find_kpt_project")
+
+                            stringParam('DeployProfile', "${params.DeployProfile}")
+                            stringParam('DeployPath_On_Windows', '')
+                            stringParam('DeployPath_On_Unix', '')
+                        }
+                        definition {
+                            cpsScm {
+                                scm {
+                                    git { 
+                                        remote {
+                                            credentials("${credentialsId}")
+                                            url("${scmUrl}")
+                                        }
+                                        branch("${branch}")
+                                    }
+                                }
+                                scriptPath("jenkins/deploy_kpt_project.jenkinsfile")
+                                lightweight(true)
+                            }
+                        }
+                    }
+                    """, 
+                    removedJobAction: 'IGNORE', 
+                    lookupStrategy: 'SEED_JOB',
+                    sandbox: true
+                )
+            }
+        }
+
+        stage('Run find_kpt_project job on master') {
+            steps {
+                echo 'Run find_kpt_project job...'
+                script {
+                    build job: 'find_kpt_project', 
+                        parameters: [
+                            string(name: 'Node', value: "master"),
+                            string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
+                            string(name: 'WorkPath_On_Unix', value: "${params.WorkPath_On_Unix}"),
+                            string(name: 'ProjectName', value: "${params.ProjectName}"),
+
+                            string(name: 'ArchivePath_On_Windows', value: "${params.ArchivePath_On_Windows}"),
+                            string(name: 'ArchivePath_On_Unix', value: "${params.ArchivePath_On_Unix}")
+                        ], 
+                        wait: true,
+                        //Will not be deployed by this terminal 
+                        propagate: false
+                }
+            }
+        }
+
+        stage('Run deploy_kpt_project on all nodes') {
+            steps {
+                echo 'Run deploy_kpt_project job...'
+                script {
+                    def etlNodes = nodesByLabel label: 'etl', offline: false
+                    for(i = 0; i < etlNodes.size(); i++) {
+                        def agentName = etlNodes[i]
+                        if (agentName == ''){
+                            agentName = 'master'
+                        }
+                        if (agentName != null) {
+                            println "Prearing task for " + agentName
+                            stage("Run on node[${agentName}]") {
+                                echo "run on agent: ${agentName}"
+
+                                build job: 'deploy_kpt_project', 
+                                    parameters: [
+                                        string(name: 'Node', value: "${agentName}"),
+                                        string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
+                                        string(name: 'WorkPath_On_Unix', value: "${params.WorkPath_On_Unix}"),
+                                        string(name: 'ProjectName', value: "${params.ProjectName}"),
+                                        
+                                        string(name: 'PDIURL', value: "${params.PDIURL}"),
+                                        string(name: 'PDIPath_On_Windows', value: "${params.PDIPath_On_Windows}"),
+                                        string(name: 'PDIPath_On_Unix', value: "${params.PDIPath_On_Unix}"),
+
+                                        string(name: 'KPTURL', value: "${params.KPTURL}"),
+                                        string(name: 'KPTPath_On_Windows', value: "${params.KPTPath_On_Windows}"),
+                                        string(name: 'KPTPath_On_Unix', value: "${params.KPTPath_On_Unix}"),
+
+                                        string(name: 'ArchiveProject', value: "build_kpt_project"),
+
+                                        string(name: 'DeployProfile', value: "${params.DeployProfile}"),
+                                        string(name: 'DeployPath_On_Windows', value: "${params.DeployPath_On_Windows}"),
+                                        string(name: 'DeployPath_On_Unix', value: "${params.DeployPath_On_Unix}")
+                                    ], 
+                                    wait: true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

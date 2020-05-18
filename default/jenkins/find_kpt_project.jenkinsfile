@@ -1,0 +1,241 @@
+/**
+ * Kettle-Project-Toolbox project find archive pipeline script
+ *
+ * Created by xiaoyao9184 on 2020/5/15.
+ *
+ * It will find last artifact(sort by file name) and archive it.
+ *
+ *
+ * Plugin dependencies
+ * - file-operation
+ *
+ * Shared library dependencies(Optional)
+ * - KPT_Shared_Libraries
+ *
+ */
+pipeline {
+    agent {
+        node {
+            //cant run on other node, because jobDsl result empty
+            label "${params.Node}"
+        }
+    }
+    parameters {
+        string(
+            name: 'Node',
+            defaultValue: 'master',
+            description: 'Node label or node name for run')
+        string(
+            name: 'WorkPath_On_Windows', 
+            defaultValue: '', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        string(
+            name: 'WorkPath_On_Unix', 
+            defaultValue: '', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        string(
+            name: 'ProjectName', 
+            description: 'project name!')
+        
+        // find source
+        string(
+            name: 'ArchiveRegex', 
+            defaultValue: '.*', 
+            description: 'archive directory!')
+        string(
+            name: 'ArchivePath_On_Windows', 
+            defaultValue: 'D:\\Archive', 
+            description: 'archive directory!')
+        string(
+            name: 'ArchivePath_On_Unix', 
+            defaultValue: '/home/jenkins/archive', 
+            description: 'archive directory!')
+    }
+    options {
+        disableConcurrentBuilds()
+        skipDefaultCheckout()
+    }
+    stages {
+        
+        // ready
+
+        stage('Create info') {
+            steps {
+                echo 'Create info...'
+                script {
+                    flow = [
+                        useSharedLibrary: false,
+                        needUpdate: false
+                    ]
+                    archive = [
+                        path: null,
+                        file: null,
+                        version: null
+                    ]
+                    info = [
+                        workspace: null
+                    ]
+
+                    try {
+                        // on linux the following code may be reporting an error
+                        library 'KPT_Shared_Libraries@master'
+                        if (deploy) {
+                            println "Global variable 'deploy' exists use Shared Library"
+                            flow."useSharedLibrary" = true
+                        }
+                    } catch(MissingPropertyException ex) {
+                        println("Catching the MissingPropertyException, miss 'deploy' mean not use Shared Library!");
+                    } catch(Exception ex) {
+                        println("Catching unknow Exception, that mean not use Shared Library!");
+                    }
+                    
+                    if (isUnix()) {
+                        info."workspace" = params.WorkPath_On_Unix
+                        archive."path" = params.ArchivePath_On_Unix
+                    } else {
+                        info."workspace" = params.WorkPath_On_Windows
+                        archive."path" = params.ArchivePath_On_Windows
+                    }
+                }
+            }
+        }
+
+        // find
+       
+        stage('Get archive info') {
+            when { 
+                expression { params.ProjectName } 
+            }
+            steps {
+                echo 'Get archive info...'
+                script {
+                    def archiveLastFile = null
+                    if (flow.useSharedLibrary) {
+                        def archivePathList = deploy.get_path_list_file_info("${archive.path}/${params.ProjectName}")
+                            .findAll { it.isFile && !it.isHidden }
+                            .findAll { it.name.endsWith('.zip') }
+                            .findAll { !it.name.contains('syncthing') }
+                            .findAll { it.name ==~ "${params.ArchiveRegex}" }
+                        if (!archivePathList) {
+                            println "No any archive file!"
+                            archive = null
+                            return
+                        }
+
+                        archiveLastFile = archivePathList
+                            // https://issues.jenkins-ci.org/browse/JENKINS-44924
+                            // .sort{ it.name }
+                            .last()
+                    } else if (isUnix()) {
+                        def fileName = null
+                        dir("${archive.path}/${params.ProjectName}") {
+                            fileName = sh(
+                                    script: """
+                                    ls -I "*syncthing*" -t1 | grep "\\[Deploy\\]${params.ProjectName}.*zip" | grep "${params.ArchiveRegex}" | head -n 1
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                        }
+                        archiveLastFile = [
+                            absolutePath: "${archive.path}/${params.ProjectName}/${fileName}",
+                            name: "${fileName}",
+                        ]
+                    } else {
+                        def fileName = null
+                        dir("${archive.path}\\${params.ProjectName}") {
+                            fileName = bat(
+                                    script: """
+                                    @echo off
+                                    for /F "TOKENS=*" %%a in ('dir "[Deploy]${params.ProjectName}*.zip" /b /A:-H /O:ND') do call :SUB "%%~a"
+                                    echo %lastfile%
+                                    exit /B
+
+                                    :SUB file
+                                    set file=%1
+                                    set file=%file:"=%
+                                    echo %file% | findstr /r ".*syncthing.*" >nul 2>&1 && goto CONTINUE || rem
+                                    echo %file% | findstr /r "${params.ArchiveRegex}" >nul 2>&1 && rem || goto CONTINUE
+                                    set lastfile=%file%
+                                    exit /B
+                                    :CONTINUE
+                                    rem
+                                    exit /B
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                        }
+                        archiveLastFile = [
+                            absolutePath: "${archive.path}\\${params.ProjectName}\\${fileName}",
+                            name: "${fileName}",
+                        ]
+                    }
+
+                    println "Last archive is: ${archiveLastFile.absolutePath}"
+
+                    archive."file" = archiveLastFile.absolutePath
+                    archive."version" = archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
+                    
+                    echo "Archive path is: ${archive.path}"
+                    echo "Archive file is: ${archive.file}"
+                    echo "Archive version is: ${archive.version}"
+                }
+            }
+        }
+
+        stage('Check archive need update') {
+            when { 
+                expression { archive.version } 
+            }
+            steps {
+                echo 'Check last archive version still in the workspace...'
+
+                script {
+                    def notNeedUpdate = fileExists(file: "${archive.version}.zip")
+                    if (notNeedUpdate){
+                        echo "No need to update!"
+                        currentBuild.result = 'aborted'
+                    }
+                }
+            }
+        }
+
+        stage('Copy archive last version') {
+            when { 
+                expression { archive.version } 
+            }
+            steps {
+                echo 'Copy archive to workspace...'
+                deleteDir()
+                script {
+                    try {
+                        dir("${archive.path}/${params.ProjectName}") {
+                            fileOperations([
+                                fileCopyOperation(
+                                    targetLocation: "${WORKSPACE}/",
+                                    includes: "${archive.version}.*")
+                            ])
+                        }
+                    } catch(Exception ex) {
+                        println("Catching unknow Exception when use fileCopyOperation!")
+                        if (isUnix()) {
+                            sh """
+                            cp "${archive.file}" "${WORKSPACE}/"
+                            """
+                        } else {
+                            bat """
+                            @echo off
+                            COPY /y "${archive.file}" "${WORKSPACE}\\"
+                            """
+                        }
+                    }
+                }
+                
+                archiveArtifacts artifacts: "*.zip", fingerprint: true
+            }
+        }
+    }
+}
