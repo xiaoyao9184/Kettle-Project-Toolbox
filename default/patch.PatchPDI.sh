@@ -8,6 +8,8 @@
 # --------------------
 # CHANGE 2019-1-4
 # fix interactive check
+# CHANGE 2020-5-19
+# fix error when using named parameters
 # --------------------
 
 
@@ -159,7 +161,7 @@ echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
 # create command
-c="$kCommand -rep:$rName -user:admin -pass:admin -level:$loglevel -job:$jName$pList"
+c="$kCommand -rep:$rName -user:admin -pass:admin -level:$loglevel -job:$jName $pList"
 [ $interactive -ne 1 ] && echo "$c"
 
 # log output
