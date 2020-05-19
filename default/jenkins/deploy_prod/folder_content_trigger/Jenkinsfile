@@ -266,6 +266,7 @@ pipeline {
             steps {
                 echo 'Run deploy_kpt_project job...'
                 script {
+                    def deploy_kpt_project_jobs = [:]
                     def etlNodes = nodesByLabel label: 'etl', offline: false
                     for(i = 0; i < etlNodes.size(); i++) {
                         def agentName = etlNodes[i]
@@ -274,6 +275,8 @@ pipeline {
                         }
                         if (agentName != null) {
                             println "Prearing task for " + agentName
+
+                            deploy_kpt_project_jobs["run_on_node_${agentName}"] = {
                             stage("Run on node[${agentName}]") {
                                 echo "run on agent: ${agentName}"
 
@@ -299,9 +302,10 @@ pipeline {
                                         string(name: 'DeployPath_On_Unix', value: "${params.DeployPath_On_Unix}")
                                     ], 
                                     wait: true
-                            }
+                            }}
                         }
                     }
+                    parallel deploy_kpt_project_jobs
                 }
             }
         }

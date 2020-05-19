@@ -107,7 +107,7 @@ pipeline {
             description: 'project directory!')
     }
     options {
-        disableConcurrentBuilds()
+        // disableConcurrentBuilds()
         skipDefaultCheckout()
     }
     stages {
