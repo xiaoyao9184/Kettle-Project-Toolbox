@@ -2,12 +2,12 @@ pipeline {
     agent {
         node {
             label "${params.NodeLabel}"
-            customWorkspace "${params.ProjectPath}"
         }
     }
     parameters {
         string(name: 'NodeLabel', defaultValue: 'master', description: 'Node for run job!')
-        string(name: 'ProjectPath', defaultValue: 'D:\\Program\\ETL\\default', description: 'The Project directory!')
+        string(name: 'ProjectPath_On_Unix', defaultValue: '/home/jenkins/etl/default', description: 'The Project directory!')
+        string(name: 'ProjectPath_On_Windows', defaultValue: 'D:\\Program\\ETL\\default', description: 'The Project directory!')
     }
     options {
         disableConcurrentBuilds()
@@ -15,10 +15,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat """
-                cd /d ${params.ProjectPath}
-                call patch.PatchPDI.bat
-                """
+                script {
+                    if (isUnix()) {
+                        sh """
+                        cd ${params.ProjectPath_On_Unix} 
+                        bash patch.PatchPDI.sh <&-
+                        """ 
+                    } else {
+                        bat """
+                        cd /d ${params.ProjectPath_On_Windows}
+                        call patch.PatchPDI.bat
+                        """
+                    }
+                }
             }
         }
     }

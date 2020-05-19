@@ -16,7 +16,9 @@ import hudson.FilePath
 
 def excludeNames = ['deploy_kpt_project','build_kpt_project','find_kpt_project']
 def files = null
-def customizeProjectPath = null
+def projectPathOnUnix = null
+def projectPathOnWin = null
+def projectPath = null
 def jenkinsPath = null
 def executor = Executor.currentExecutor()
 
@@ -28,14 +30,16 @@ if(executor == null){
     def binding = getBinding()
     configuration.putAll(binding.getVariables())
 
-    customizeProjectPath = configuration["ProjectPath"] ?: null
-    if(!customizeProjectPath?.trim()){
-        customizeProjectPath = configuration["projectPath"] ?: null
+    projectPathOnUnix = configuration["ProjectPath_On_Unix"] ?: null
+    projectPathOnWin = configuration["ProjectPath_On_Windows"] ?: null
+    projectPath = configuration["ProjectPath"] ?: null
+    if(!projectPath?.trim()){
+        projectPath = configuration["projectPath"] ?: null
     }
 
-    if(customizeProjectPath?.trim()){
+    if(projectPath?.trim()){
         println 'Try use parameter for work directory!'
-        def wd = new FilePath(new File(customizeProjectPath))
+        def wd = new FilePath(new File(projectPath))
         jenkinsPath = new FilePath(wd, '.jenkins')
     }else{
         println 'Try use current workspace for work directory!'
@@ -50,12 +54,16 @@ if(executor == null){
     parametersAction.parameters.each { ParameterValue v ->
         println v
     }
+    ParameterValue vOnUnix = parametersAction.getParameter("ProjectPath_On_Unix")
+    projectPathOnUnix = (vOnUnix != null) ? vOnUnix.getValue().toString() : null
+    ParameterValue vOnWin = parametersAction.getParameter("ProjectPath_On_Windows")
+    projectPathOnWin = (vOnWin != null) ? vOnWin.getValue().toString() : null
     ParameterValue v = parametersAction.getParameter("ProjectPath")
     if(v != null){
-        customizeProjectPath = v.getValue().toString()
+        projectPath = v.getValue().toString()
     }
 
-    if(customizeProjectPath?.trim()){
+    if(projectPath?.trim()){
         println 'Try use parameter for work directory!'
         projectPath = v.getValue().toString()
         def wd = new FilePath(new File(projectPath))
@@ -93,11 +101,27 @@ files.each { file ->
             }
         }
 
-        if(customizeProjectPath != null && strip.contains('\'ProjectPath\'')){
+        if(projectPath != null && strip.contains('\'ProjectPath\'')){
             println "Need replace 'ProjectPath' parameter!"
             strip = strip.replace(/'ProjectPath'/, "'NotUse_ProjectPath'")
             parameters {
-                stringParam('ProjectPath', "${customizeProjectPath}")
+                stringParam('ProjectPath', "${projectPath}")
+            }
+        }
+
+        if(projectPath != null && strip.contains('\'ProjectPath_On_Unix\'')){
+            println "Need replace 'ProjectPath_On_Unix' parameter!"
+            strip = strip.replace(/'ProjectPath_On_Unix'/, "'NotUse_ProjectPath_On_Unix'")
+            parameters {
+                stringParam('ProjectPath_On_Unix', "${projectPathOnUnix}")
+            }
+        }
+
+        if(projectPath != null && strip.contains('\'ProjectPath_On_Windows\'')){
+            println "Need replace 'ProjectPath_On_Windows' parameter!"
+            strip = strip.replace(/'ProjectPath_On_Windows'/, "'NotUse_ProjectPath_On_Windows'")
+            parameters {
+                stringParam('ProjectPath_On_Windows', "${projectPathOnWin}")
             }
         }
 

@@ -670,12 +670,19 @@ pipeline {
             steps {
                 echo 'Add Jenkins scheduling job...'
                 script {
+                    def project = [
+                        ProjectPath_On_Unix: "${params.DeployPath_On_Unix}/${archive.version}/${params.ProjectName}",
+                        ProjectPath_On_Windows: "${params.DeployPath_On_Windows}\\${archive.version}\\${params.ProjectName}"
+                    ]
+
                     if (flow.useProjectJobDslScript) {
                         dir("${target.projectPath}") {
                             jobDsl(
                                 targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
                                 additionalParameters: [
-                                    ProjectPath: "${target.projectPath}"
+                                    ProjectPath: "${target.projectPath}",
+                                    ProjectPath_On_Unix: "${project.ProjectPath_On_Unix}",
+                                    ProjectPath_On_Windows: "${project.ProjectPath_On_Windows}"
                                 ],
                                 removedJobAction: 'DELETE', 
                                 removedViewAction: 'DELETE',
@@ -688,7 +695,9 @@ pipeline {
                             jobDsl(
                                 targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
                                 additionalParameters: [
-                                    ProjectPath: "${target.projectPath}"
+                                    ProjectPath: "${target.projectPath}",
+                                    ProjectPath_On_Unix: "${project.ProjectPath_On_Unix}",
+                                    ProjectPath_On_Windows: "${project.ProjectPath_On_Windows}"
                                 ],
                                 removedJobAction: 'DELETE', 
                                 removedViewAction: 'DELETE',
