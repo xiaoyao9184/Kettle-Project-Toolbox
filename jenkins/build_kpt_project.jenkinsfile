@@ -385,6 +385,11 @@ pipeline {
                 
                 archiveArtifacts artifacts: "*.zip", fingerprint: true
                 stash name: "kpt_build", includes: '*.zip'
+
+                fileOperations([
+                    fileDeleteOperation(
+                        includes: "*.zip")
+                ])
             }
         }
 
