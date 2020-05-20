@@ -105,6 +105,7 @@ pipeline {
                         version: null
                     ]
                     info = [
+                        node: "${env.NODE_NAME}",
                         workspace: null,
                         PDIPath: null,
                         KPTPath: null
@@ -135,10 +136,17 @@ pipeline {
                         archive."path" = params.ArchivePath_On_Windows
                     }
                 }
+                echo "Build run on node: ${info.node}"
             }
         }
 
         stage('Check PDI and KPT') {
+            agent {
+                node {
+                    label info.node
+                    customWorkspace info.workspace
+                }
+            }
             steps {
                 echo 'Check kettle tool...'
                 script {
@@ -202,6 +210,12 @@ pipeline {
         }
 
         stage('Update KPT') {
+            agent {
+                node {
+                    label info.node
+                    customWorkspace info.workspace
+                }
+            }
             when { 
                 expression { flow.updateKPT }
             }
@@ -215,6 +229,12 @@ pipeline {
         }
 
         stage('Download PDI') {
+            agent {
+                node {
+                    label info.node
+                    customWorkspace info.workspace
+                }
+            }
             when { 
                 expression { flow.downloadPDI }
             }
@@ -242,11 +262,11 @@ pipeline {
         }
 
         // build
-
+        
         stage('Project checkout') {
             agent {
                 node {
-                    label "${params.Node}"
+                    label info.node
                     customWorkspace info.workspace
                 }
             }
@@ -273,7 +293,7 @@ pipeline {
         stage('Project link') {
             agent {
                 node {
-                    label "${params.Node}"
+                    label info.node
                     customWorkspace info.workspace
                 }
             }
@@ -299,7 +319,7 @@ pipeline {
         stage('Project package') {
             agent {
                 node {
-                    label "${params.Node}"
+                    label info.node
                     customWorkspace info.workspace
                 }
             }
@@ -325,7 +345,7 @@ pipeline {
         stage('Project archive') {
             agent {
                 node {
-                    label "${params.Node}"
+                    label info.node
                     customWorkspace info.workspace
                 }
             }
@@ -364,28 +384,31 @@ pipeline {
                 echo "Archive version is: ${archive.version}"
                 
                 archiveArtifacts artifacts: "*.zip", fingerprint: true
+                stash name: "kpt_build", includes: '*.zip'
+            }
+        }
 
+        stage('Project archive to path') {
+            agent {
+                node {
+                    label "master"
+                    customWorkspace info.workspace
+                }
+            }
+            when { 
+                expression { params.ProjectName }
+            }
+            steps {
+                echo "Unstash project to path..."
+                unstash name: "kpt_build"
                 script {
-                    if (flow.useSharedLibrary) {
-                        fileOperations([
-                            fileCopyOperation(
-                                targetLocation: "${archive.path}",
-                                includes: "${archive.version}.*"),
-                            fileDeleteOperation(
-                                includes: "${archive.version}.*")
-                        ])
-                    } else if (isUnix()) {
-                        sh """
-                        [ -d "${archive.path}" ] || mkdir -p "${archive.path}"
-                        mv "${archive.file}" "${archive.path}/"
-                        """
-                    } else {
-                        bat """
-                        @echo off
-                        IF NOT EXIST "${archive.path}" MKDIR "${archive.path}"
-                        MOVE /y "${archive.file}" "${archive.path}"
-                        """
-                    }
+                    fileOperations([
+                        fileCopyOperation(
+                            targetLocation: "${archive.path}",
+                            includes: "${archive.version}.*"),
+                        fileDeleteOperation(
+                            includes: "${archive.version}.*")
+                    ])
                 }
             }
         }

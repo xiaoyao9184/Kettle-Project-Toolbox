@@ -224,7 +224,7 @@ pipeline {
             }
         }
 
-        stage('Add find_kpt_project deploy_kpt_project job') {
+        stage('Add find_kpt_project deploy_kpt_project') {
             steps {
                 script {
                     echo "get scm"
@@ -280,7 +280,7 @@ pipeline {
                     scriptText: """
                     pipelineJob("deploy_kpt_project") {
                         parameters {
-                            stringParam('Node', "master")
+                            stringParam('Node', '')
                             stringParam('WorkPath_On_Windows', '')
                             stringParam('WorkPath_On_Unix', '')
                             stringParam('ProjectName', "${params.ProjectName}")
@@ -323,9 +323,9 @@ pipeline {
             }
         }
 
-        stage('Run find_kpt_project job on master') {
+        stage('Run find_kpt_project') {
             steps {
-                echo 'Run find_kpt_project job...'
+                echo 'Run find_kpt_project job on master node...'
                 script {
                     build job: 'find_kpt_project', 
                         parameters: [
@@ -344,9 +344,9 @@ pipeline {
             }
         }
 
-        stage('Run deploy_kpt_project on all nodes') {
+        stage('Run deploy_kpt_project') {
             steps {
-                echo 'Run deploy_kpt_project job...'
+                echo 'Run deploy_kpt_project job on all etl nodes...'
                 script {
                     def deploy_kpt_project_jobs = [:]
                     def etlNodes = nodesByLabel label: 'etl', offline: false
