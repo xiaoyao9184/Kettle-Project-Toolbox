@@ -1,0 +1,38 @@
+
+config:
+  project:
+    name: default
+    cfg:
+      -:
+        key: Name
+        value: PDI project default(use yaml in rep dir)
+      -:
+        key: Repository
+        value: default
+      -:
+        key: Version
+        value: 1.0test
+      -:
+        key: Url
+        value: unknown
+      -:
+        key: ExitFlag
+        value: false
+      -:
+        key: DebugMode
+        value: true
+      -:
+        key: UseStatus
+        value: true
+      -:
+        key: Config.Time.StartTime
+        value: 20000101
+      -:
+        key: Config.Time.EndTime
+        value: 30000101
+      -:
+        key: Config.Main.Job.Path
+        value: /test
+      -:
+        key: Config.Main.Job.Name
+        value: TestRun
