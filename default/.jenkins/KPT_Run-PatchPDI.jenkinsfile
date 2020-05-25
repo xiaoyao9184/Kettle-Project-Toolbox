@@ -5,9 +5,18 @@ pipeline {
         }
     }
     parameters {
-        string(name: 'NodeLabel', defaultValue: 'master', description: 'Node for run job!')
-        string(name: 'ProjectPath_On_Unix', defaultValue: '/home/jenkins/etl/default', description: 'The Project directory!')
-        string(name: 'ProjectPath_On_Windows', defaultValue: 'D:\\Program\\ETL\\default', description: 'The Project directory!')
+        string(
+            name: 'NodeLabel', 
+            defaultValue: "${KPT.NodeLabel}",
+            description: 'Node for run job!')
+        string(
+            name: 'ProjectPath_On_Unix', 
+            defaultValue: "${KPT.ProjectPath_On_Unix}", 
+            description: 'The Project directory!(WILL REPLACE BY deploy_kpt_project_jenkinsfile)')
+        string(
+            name: 'ProjectPath_On_Windows', 
+            defaultValue: "${KPT.ProjectPath_On_Windows}", 
+            description: 'The Project directory!(WILL REPLACE BY deploy_kpt_project_jenkinsfile)')
     }
     options {
         disableConcurrentBuilds()

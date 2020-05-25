@@ -93,32 +93,56 @@ files.each { file ->
     println "File ${name}"
     pipelineJob("${name}") {
         def strip = file.readToString()
-        if(strip.contains('\'NodeLabel\'')){
+        if(strip.contains('${KPT.NodeLabel}')){
             println "Need replace 'NodeLabel' parameter!"
+            strip = strip.replace('${KPT.NodeLabel}', "etl")
+            parameters {
+                stringParam('NodeLabel', "etl")
+            }
+        }else if(strip.contains('\'NodeLabel\'')){
+            println "Need disable 'NodeLabel' parameter!"
             strip = strip.replace(/'NodeLabel'/, "'NotUse_NodeLabel'")
             parameters {
                 stringParam('NodeLabel', "etl")
             }
         }
 
-        if(projectPath != null && strip.contains('\'ProjectPath\'')){
+        if(projectPath != null && strip.contains('${KPT.ProjectPath}')){
             println "Need replace 'ProjectPath' parameter!"
+            strip = strip.replace('${KPT.ProjectPath}', "${projectPath}")
+            parameters {
+                stringParam('ProjectPath', "${projectPath}")
+            }
+        }else if(projectPath != null && strip.contains('\'ProjectPath\'')){
+            println "Need disable 'ProjectPath' parameter!"
             strip = strip.replace(/'ProjectPath'/, "'NotUse_ProjectPath'")
             parameters {
                 stringParam('ProjectPath', "${projectPath}")
             }
         }
 
-        if(projectPath != null && strip.contains('\'ProjectPath_On_Unix\'')){
+        if(projectPath != null && strip.contains('${KPT.ProjectPath_On_Unix}')){
             println "Need replace 'ProjectPath_On_Unix' parameter!"
+            strip = strip.replace('${KPT.ProjectPath_On_Unix}', "${projectPathOnUnix}")
+            parameters {
+                stringParam('ProjectPath_On_Unix', "${projectPathOnUnix}")
+            }
+        }else if(projectPath != null && strip.contains('\'ProjectPath_On_Unix\'')){
+            println "Need disable 'ProjectPath_On_Unix' parameter!"
             strip = strip.replace(/'ProjectPath_On_Unix'/, "'NotUse_ProjectPath_On_Unix'")
             parameters {
                 stringParam('ProjectPath_On_Unix', "${projectPathOnUnix}")
             }
         }
 
-        if(projectPath != null && strip.contains('\'ProjectPath_On_Windows\'')){
+        if(projectPath != null && strip.contains('${KPT.ProjectPath_On_Windows}')){
             println "Need replace 'ProjectPath_On_Windows' parameter!"
+            strip = strip.replace('${KPT.ProjectPath_On_Windows}', "${projectPathOnWin}")
+            parameters {
+                stringParam('ProjectPath_On_Windows', "${projectPathOnWin}")
+            }
+        }else if(projectPath != null && strip.contains('\'ProjectPath_On_Windows\'')){
+            println "Need disable 'ProjectPath_On_Windows' parameter!"
             strip = strip.replace(/'ProjectPath_On_Windows'/, "'NotUse_ProjectPath_On_Windows'")
             parameters {
                 stringParam('ProjectPath_On_Windows', "${projectPathOnWin}")
