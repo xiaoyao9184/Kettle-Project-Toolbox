@@ -123,7 +123,9 @@ files.each { file ->
 
         if(projectPath != null && strip.contains('${KPT.ProjectPath_On_Unix}')){
             println "Need replace 'ProjectPath_On_Unix' parameter!"
-            strip = strip.replace('${KPT.ProjectPath_On_Unix}', "${projectPathOnUnix}")
+            // https://issues.apache.org/jira/browse/GROOVY-2225
+            def groovyWinPath = projectPathOnWin.replaceAll('\\\\','\\\\\\\\')
+            strip = strip.replace('${KPT.ProjectPath_On_Windows}', "${groovyWinPath}")
             parameters {
                 stringParam('ProjectPath_On_Unix', "${projectPathOnUnix}")
             }
