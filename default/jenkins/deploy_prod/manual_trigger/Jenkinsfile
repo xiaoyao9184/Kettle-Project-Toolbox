@@ -234,6 +234,9 @@ pipeline {
                 script {
                     def deploy_kpt_project_jobs = [:]
                     def etlNodes = nodesByLabel label: 'etl', offline: false
+                    if(etlNodes.size() == 0){
+                        etlNodes.add('master')
+                    }
                     for(i = 0; i < etlNodes.size(); i++) {
                         def agentName = etlNodes[i]
                         if (agentName == ''){
