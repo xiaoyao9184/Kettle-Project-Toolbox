@@ -11,7 +11,7 @@
  * Plugin dependencies
  * - job-dsl
  * - pipeline-utility-steps
- * Disable script security for Job DSL (run as the specified admin user cant run build_kpt_project).
+ * Disable script security for Job DSL (run as the specified admin user cant run find_kpt_project).
  * Or run as the specified admin user with script approval if need
  *
  * Pipeline script dependencies
@@ -270,7 +270,7 @@ pipeline {
                                         string(name: 'KPTPath_On_Windows', value: "${params.KPTPath_On_Windows}"),
                                         string(name: 'KPTPath_On_Unix', value: "${params.KPTPath_On_Unix}"),
 
-                                        string(name: 'ArchiveProject', value: "build_kpt_project"),
+                                        string(name: 'ArchiveProject', value: "find_kpt_project"),
 
                                         string(name: 'DeployProfile', value: "${params.DeployProfile}"),
                                         string(name: 'DeployPath_On_Windows', value: "${params.DeployPath_On_Windows}"),
