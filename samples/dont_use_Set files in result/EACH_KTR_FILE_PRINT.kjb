@@ -5,7 +5,7 @@
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#x2f;</directory>
+  <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2016&#x2f;04&#x2f;20 19&#x3a;47&#x3a;38.299</created_date>
   <modified_user>-</modified_user>
@@ -55,7 +55,7 @@
       <yloc>64</yloc>
       </entry>
     <entry>
-      <name>&#x6210;&#x529f;</name>
+      <name>SUCCESS</name>
       <description/>
       <type>SUCCESS</type>
       <parallel>N</parallel>
@@ -65,7 +65,7 @@
       <yloc>336</yloc>
       </entry>
     <entry>
-      <name>T&#xff1a;CreateFileResult</name>
+      <name>TRANS: CreateFileResult</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -98,7 +98,7 @@
       <yloc>144</yloc>
       </entry>
     <entry>
-      <name>T&#xff1a;EachFileRunOnce</name>
+      <name>TRANS: EachFileRunOnce</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -137,7 +137,7 @@
   <hops>
     <hop>
       <from>START</from>
-      <to>T&#xff1a;CreateFileResult</to>
+      <to>TRANS: CreateFileResult</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -145,8 +145,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>T&#xff1a;CreateFileResult</from>
-      <to>T&#xff1a;EachFileRunOnce</to>
+      <from>TRANS: CreateFileResult</from>
+      <to>TRANS: EachFileRunOnce</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -154,8 +154,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>T&#xff1a;EachFileRunOnce</from>
-      <to>&#x6210;&#x529f;</to>
+      <from>TRANS: EachFileRunOnce</from>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -170,7 +170,7 @@
       <yloc>59</yloc>
       <width>690</width>
       <heigth>189</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>

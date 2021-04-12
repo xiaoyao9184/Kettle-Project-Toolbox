@@ -2,37 +2,37 @@
 <transformation>
   <info>
     <name>GetGitCommandResult</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;</directory>
+    <directory>/</directory>
     <parameters>
       <parameter>
         <name>Parameters.Git.Command</name>
-        <default_value>&#x7b;home&#x7d;git -C &#x7b;path&#x7d; rev-parse --short HEAD</default_value>
-        <description>Git&#x547d;&#x4ee4;&#x6a21;&#x677f;</description>
+        <default_value>{home}git -C {path} rev-parse --short HEAD</default_value>
+        <description>Git command template</description>
       </parameter>
       <parameter>
         <name>Parameters.Git.Home</name>
-        <default_value/>
-        <description>Git&#x547d;&#x4ee4;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>Git bin path</description>
       </parameter>
       <parameter>
         <name>Parameters.Git.Path</name>
-        <default_value/>
-        <description>Git&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>Git repository path</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -57,37 +57,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;</subject>
+          <subject>MappingInput</subject>
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject>&#x6620;&#x5c04;&#x8f93;&#x51fa;&#x89c4;&#x8303;</subject>
+          <subject>MappingOutput</subject>
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -141,11 +141,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -223,10 +223,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -289,10 +289,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -365,10 +365,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -417,9 +417,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -430,7 +430,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -443,18 +443,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018&#x2f;09&#x2f;27 14&#x3a;23&#x3a;35.786</created_date>
+    <created_date>2018/09/27 14:23:35.786</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;09&#x2f;27 14&#x3a;23&#x3a;35.786</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2018/09/27 14:23:35.786</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x83b7;&#x53d6;Git&#x547d;&#x4ee4;&#x7ed3;&#x679c;</note>
+      <note>get git command result</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>98</width>
+      <width>144</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -472,11 +472,19 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x8f93;&#x5165;&#xd;&#xa;&#xd;&#xa;home		&#x5fc5;&#x586b;&#xd;&#xa;path		&#x5fc5;&#x586b;&#xd;&#xa;command	&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x8f93;&#x51fa;&#xd;&#xa;&#xd;&#xa;git_result      	Git&#x7ed3;&#x679c;</note>
+      <note>input result
+
+home
+path
+command
+====================
+output result
+
+git_result                                                 git command result</note>
       <xloc>480</xloc>
       <yloc>0</yloc>
-      <width>146</width>
-      <heigth>157</heigth>
+      <width>345</width>
+      <heigth>150</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -495,111 +503,112 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</to>
+      <from>FileExists: repository_mark_full_path</from>
+      <to>FilterRows: repository_mark_full_path_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</from>
-      <to>&#x4e2d;&#x6b62;</to>
+      <from>FilterRows: repository_mark_full_path_exist</from>
+      <to>Abort</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Git</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;mark&#x26;len</to>
+      <from>Constant: Git</from>
+      <to>Calculator: mark: len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;mark&#x26;len</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</to>
+      <from>Calculator: mark: len</from>
+      <to>FileExists: repository_mark_full_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to>
+      <from>FilterRows: repository_mark_full_path_exist</from>
+      <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</to>
+      <from>Dummy</from>
+      <to>FilterRows: customize home</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</to>
+      <from>FilterRows: customize home</from>
+      <to>ReplaceString: use customize home </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;</to>
+      <from>FilterRows: customize home</from>
+      <to>ReplaceString: not use home</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</to>
+      <from>ReplaceString: not use home</from>
+      <to>FilterRows: customize path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</to>
+      <from>ReplaceString: use customize home </from>
+      <to>FilterRows: customize path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;.</to>
+      <from>FilterRows: customize path</from>
+      <to>ReplaceString: not use path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</to>
+      <from>FilterRows: customize path</from>
+      <to>ReplaceString: use customize path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;.</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;</to>
+      <from>ReplaceString: not use path</from>
+      <to>Dummy: together</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;</to>
+      <from>ReplaceString: use customize path</from>
+      <to>Dummy: together</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;</from>
-      <to>&#x542f;&#x52a8;&#x4e00;&#x4e2a;&#x8fdb;&#x7a0b;</to>
+      <from>Dummy: together</from>
+      <to>ExecProcess: git command</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Git</to>
+      <from>MappingInput</from>
+      <to>Constant: Git</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;</from>
-      <to>&#x6620;&#x5c04;&#x8f93;&#x51fa;&#x89c4;&#x8303;</to>
+      <from>SelectValues: git_result</from>
+      <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x542f;&#x52a8;&#x4e00;&#x4e2a;&#x8fdb;&#x7a0b;</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;</to>
+      <from>ExecProcess: git command</from>
+      <to>SelectValues: git_result</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>&#x4e2d;&#x6b62;</name>
+    <name>Abort</name>
     <type>Abort</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <row_threshold>0</row_threshold>
-      <message/>
-      <always_log_rows>Y</always_log_rows>
-    <cluster_schema/>
+    <row_threshold>0</row_threshold>
+    <message />
+    <always_log_rows>Y</always_log_rows>
+    <abort_with_error>Y</abort_with_error>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -611,29 +620,64 @@
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x542f;&#x52a8;&#x4e00;&#x4e2a;&#x8fdb;&#x7a0b;</name>
-    <type>ExecProcess</type>
-    <description/>
+    <name>Calculator: mark: len</name>
+    <type>Calculator</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <processfield>command</processfield>
-    <resultfieldname>result_output</resultfieldname>
-    <errorfieldname>error_output</errorfieldname>
-    <exitvaluefieldname>exit_value</exitvaluefieldname>
-    <failwhennotsuccess>N</failwhennotsuccess>
-    <outputlinedelimiter/>
-    <argumentsInFields>N</argumentsInFields>
-    <argumentFields>
-    </argumentFields>
-    <cluster_schema/>
+    <calculation>
+      <field_name>repository_mark_full_path</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>path</field_a>
+      <field_b>SLASH</field_b>
+      <field_c>GIT_REPOSITORY_MARK</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>home_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>home</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>path</field_a>
+      <field_b />
+      <field_c />
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -641,31 +685,30 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>1312</yloc>
+      <xloc>336</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;Git</name>
+    <name>Constant: Git</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
-        <name>GitRepositoryMark</name>
+        <name>GIT_REPOSITORY_MARK</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>.git</nullif>
         <length>-1</length>
         <precision>-1</precision>
@@ -674,11 +717,11 @@
       <field>
         <name>SLASH</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -686,17 +729,17 @@
       <field>
         <name>CURRENT_DIRECTORY</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>.</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -708,48 +751,19 @@
       <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;&#x6574;&#x7406;</name>
-    <type>SelectValues</type>
-    <description/>
+    <name>Dummy</name>
+    <type>Dummy</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>home</name>
-      </remove>      <remove>        <name>path</name>
-      </remove>      <remove>        <name>command</name>
-      </remove>      <remove>        <name>GitRepositoryMark</name>
-      </remove>      <remove>        <name>SLASH</name>
-      </remove>      <remove>        <name>CURRENT_DIRECTORY</name>
-      </remove>      <remove>        <name>repository_mark_full_path</name>
-      </remove>      <remove>        <name>home_len</name>
-      </remove>      <remove>        <name>path_len</name>
-      </remove>      <remove>        <name>repository_mark_full_path_exist</name>
-      </remove>      <remove>        <name>error_output</name>
-      </remove>      <remove>        <name>exit_value</name>
-      </remove>      <meta>        <name>result_output</name>
-        <rename>git_result</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>    </fields>    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -758,47 +772,22 @@
     </remotesteps>
     <GUI>
       <xloc>432</xloc>
-      <yloc>1440</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;</name>
-    <type>ReplaceString</type>
-    <description/>
+    <name>Dummy: together</name>
+    <type>Dummy</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>home</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>&#x5c;&#x5c;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>command</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x7b;home&#x7d;</replace_string>
-        <replace_by_string/>
-        <set_empty_string>Y</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -806,48 +795,32 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>848</yloc>
+      <xloc>432</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;.</name>
-    <type>ReplaceString</type>
-    <description/>
+    <name>ExecProcess: git command</name>
+    <type>ExecProcess</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>path</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>&#x5c;&#x5c;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>command</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x7b;path&#x7d;</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>CURRENT_DIRECTORY</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
+    <processfield>command</processfield>
+    <resultfieldname>result_output</resultfieldname>
+    <errorfieldname>error_output</errorfieldname>
+    <exitvaluefieldname>exit_value</exitvaluefieldname>
+    <failwhennotsuccess>N</failwhennotsuccess>
+    <outputlinedelimiter />
+    <argumentsInFields>N</argumentsInFields>
+    <argumentFields>
+    </argumentFields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -855,48 +828,28 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1072</yloc>
+      <xloc>432</xloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</name>
-    <type>ReplaceString</type>
-    <description/>
+    <name>FileExists: repository_mark_full_path</name>
+    <type>FileExists</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>home</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>&#x5c;&#x5c;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>command</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x7b;home&#x7d;</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>home</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
+    <filenamefield>repository_mark_full_path</filenamefield>
+    <resultfieldname>repository_mark_full_path_exist</resultfieldname>
+    <includefiletype>N</includefiletype>
+    <filetypefieldname />
+    <addresultfilenames>N</addresultfilenames>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -904,48 +857,42 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>848</yloc>
+      <xloc>336</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</name>
-    <type>ReplaceString</type>
-    <description/>
+    <name>FilterRows: customize home</name>
+    <type>FilterRows</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>path</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>&#x5c;&#x5c;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-      <field>
-        <in_stream_name>command</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>&#x7b;path&#x7d;</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>path</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
+    <send_true_to>ReplaceString: use customize home </send_true_to>
+    <send_false_to>ReplaceString: not use home</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>home_len</leftvalue>
+        <function>&gt;</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#.#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -953,22 +900,107 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>1072</yloc>
+      <xloc>432</xloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x6620;&#x5c04;&#x8f93;&#x5165;&#x89c4;&#x8303;</name>
+    <name>FilterRows: customize path</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>ReplaceString: use customize path</send_true_to>
+    <send_false_to>ReplaceString: not use path</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>path_len</leftvalue>
+        <function>&gt;</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#.#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>960</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: repository_mark_full_path_exist</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Dummy</send_true_to>
+    <send_false_to>Abort</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>repository_mark_full_path_exist</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingInput</name>
     <type>MappingInput</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
@@ -989,9 +1021,9 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
-        <select_unspecified>N</select_unspecified>
+      <select_unspecified>N</select_unspecified>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1003,20 +1035,19 @@
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x6620;&#x5c04;&#x8f93;&#x51fa;&#x89c4;&#x8303;</name>
+    <name>MappingOutput</name>
     <type>MappingOutput</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1028,25 +1059,43 @@
       <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;</name>
-    <type>FileExists</type>
-    <description/>
+    <name>ReplaceString: not use home</name>
+    <type>ReplaceString</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <filenamefield>repository_mark_full_path</filenamefield>
-    <resultfieldname>repository_mark_full_path_exist</resultfieldname>
-    <includefiletype>N</includefiletype>
-    <filetypefieldname/>
-    <addresultfilenames>N</addresultfilenames>
-    <cluster_schema/>
+    <fields>
+      <field>
+        <in_stream_name>home</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>\\</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>command</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>{home}</replace_string>
+        <replace_by_string />
+        <set_empty_string>Y</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1054,24 +1103,223 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>416</yloc>
+      <xloc>304</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</name>
-    <type>Dummy</type>
-    <description/>
+    <name>ReplaceString: not use path</name>
+    <type>ReplaceString</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <cluster_schema/>
+    <fields>
+      <field>
+        <in_stream_name>path</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>\\</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>command</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>{path}</replace_string>
+        <replace_by_string />
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>CURRENT_DIRECTORY</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: use customize home </name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>home</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>\\</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>command</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>{home}</replace_string>
+        <replace_by_string />
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>home</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: use customize path</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>path</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>\\</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>command</in_stream_name>
+        <out_stream_name />
+        <use_regex>no</use_regex>
+        <replace_string>{path}</replace_string>
+        <replace_by_string />
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>path</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: git_result</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>home</name>
+      </remove>
+      <remove>
+        <name>path</name>
+      </remove>
+      <remove>
+        <name>command</name>
+      </remove>
+      <remove>
+        <name>GIT_REPOSITORY_MARK</name>
+      </remove>
+      <remove>
+        <name>SLASH</name>
+      </remove>
+      <remove>
+        <name>CURRENT_DIRECTORY</name>
+      </remove>
+      <remove>
+        <name>repository_mark_full_path</name>
+      </remove>
+      <remove>
+        <name>home_len</name>
+      </remove>
+      <remove>
+        <name>path_len</name>
+      </remove>
+      <remove>
+        <name>repository_mark_full_path_exist</name>
+      </remove>
+      <remove>
+        <name>error_output</name>
+      </remove>
+      <remove>
+        <name>exit_value</name>
+      </remove>
+      <meta>
+        <name>result_output</name>
+        <rename>git_result</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1080,211 +1328,10 @@
     </remotesteps>
     <GUI>
       <xloc>432</xloc>
-      <yloc>624</yloc>
+      <yloc>1440</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;&#x6c47;&#x805a;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>1184</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;mark&#x26;len</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>repository_mark_full_path</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>path</field_a>
-      <field_b>SLASH</field_b>
-      <field_c>GitRepositoryMark</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>home_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>home</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>path_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>path</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</send_true_to>
-<send_false_to>&#x4e2d;&#x6b62;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>repository_mark_full_path_exist</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>528</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Home</send_true_to>
-<send_false_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>home_len</leftvalue>
- <function>&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;.&#x23;</mask></value> </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x81ea;&#x5b9a;&#x4e49;Path</send_true_to>
-<send_false_to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;&#x5f53;&#x524d;&#x76ee;&#x5f55;.</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>path_len</leftvalue>
- <function>&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;.&#x23;</mask></value> </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>432</xloc>
-      <yloc>960</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

@@ -4,7 +4,7 @@
   <extended_description/>
   <job_version/>
   <job_status>0</job_status>
-  <directory>&#x2f;test</directory>
+  <directory>/test</directory>
   <created_user>-</created_user>
   <created_date>2017&#x2f;08&#x2f;28 09&#x3a;16&#x3a;59.521</created_date>
   <modified_user>-</modified_user>
@@ -307,7 +307,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>&#x5199;&#x65e5;&#x5fd7;</name>
+      <name>WRITE_TO_LOG</name>
       <description/>
       <type>WRITE_TO_LOG</type>
       <logmessage>&#x5df2;&#x7ecf;&#x8fd0;&#x884c;</logmessage>
@@ -320,7 +320,7 @@
       <yloc>288</yloc>
     </entry>
     <entry>
-      <name>&#x6210;&#x529f;</name>
+      <name>SUCCESS</name>
       <description/>
       <type>SUCCESS</type>
       <parallel>N</parallel>
@@ -334,7 +334,7 @@
       <repname/>
       <isspecificuser>N</isspecificuser>
       <username/>
-      <name>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x8fde;&#x63a5;&#x5230;&#x8d44;&#x6e90;&#x5e93;</name>
+      <name>CONNECTED_TO_REPOSITORY</name>
       <description/>
       <type>CONNECTED_TO_REPOSITORY</type>
       <parallel>N</parallel>
@@ -344,7 +344,7 @@
       <yloc>160</yloc>
     </entry>
     <entry>
-      <name>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</name>
+      <name>ABORT</name>
       <description/>
       <type>ABORT</type>
       <message/>
@@ -358,7 +358,7 @@
   <hops>
     <hop>
       <from>START</from>
-      <to>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x8fde;&#x63a5;&#x5230;&#x8d44;&#x6e90;&#x5e93;</to>
+      <to>CONNECTED_TO_REPOSITORY</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -366,8 +366,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x8fde;&#x63a5;&#x5230;&#x8d44;&#x6e90;&#x5e93;</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;</to>
+      <from>CONNECTED_TO_REPOSITORY</from>
+      <to>WRITE_TO_LOG</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -375,8 +375,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x662f;&#x5426;&#x8fde;&#x63a5;&#x5230;&#x8d44;&#x6e90;&#x5e93;</from>
-      <to>&#x4e2d;&#x6b62;&#x4f5c;&#x4e1a;</to>
+      <from>CONNECTED_TO_REPOSITORY</from>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -384,8 +384,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x5199;&#x65e5;&#x5fd7;</from>
-      <to>&#x6210;&#x529f;</to>
+      <from>WRITE_TO_LOG</from>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

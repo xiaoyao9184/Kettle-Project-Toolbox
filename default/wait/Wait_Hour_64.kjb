@@ -4,7 +4,7 @@
   <extended_description/>
   <job_version/>
   <job_status>0</job_status>
-  <directory>&#x2f;wait</directory>
+  <directory>/wait</directory>
   <created_user>-</created_user>
   <created_date>2017&#x2f;08&#x2f;26 21&#x3a;34&#x3a;40.812</created_date>
   <modified_user>-</modified_user>
@@ -307,7 +307,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>WAIT&#x3a;64Hour</name>
+      <name>DELAY: 64Hour</name>
       <description/>
       <type>DELAY</type>
       <maximumTimeout>64</maximumTimeout>
@@ -322,7 +322,7 @@
   <hops>
     <hop>
       <from>START</from>
-      <to>WAIT&#x3a;64Hour</to>
+      <to>DELAY: 64Hour</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

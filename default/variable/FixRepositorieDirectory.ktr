@@ -1,32 +1,32 @@
 <transformation>
   <info>
     <name>FixRepositorieDirectory</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;variable</directory>
+    <directory>/variable</directory>
     <parameters>
       <parameter>
         <name>Position.Ktr.MappingRelativePath2AbsolutePath</name>
         <default_value>MappingRelativePath2AbsolutePath</default_value>
-        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+        <description>rely on conversion relative position</description>
       </parameter>
       <parameter>
         <name>Position.Path.Variable</name>
-        <default_value>&#x2f;variable</default_value>
-        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+        <default_value>/variable</default_value>
+        <description>rely on conversion relative position</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -51,37 +51,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -135,11 +135,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -217,10 +217,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -283,10 +283,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -359,10 +359,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -411,9 +411,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -424,7 +424,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -437,20 +437,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2015&#x2f;01&#x2f;07 16&#x3a;17&#x3a;40.301</created_date>
+    <created_date>2015/01/07 16:17:40.301</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;11&#x2f;06 17&#x3a;04&#x3a;42.880</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2021/04/12 11:13:02.453</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x4fee;&#x590d;&#x8d44;&#x6e90;&#x5e93;&#x4e0d;&#x80fd;&#x4f7f;&#x7528;&#x4f5c;&#x4e1a;&#x2f;&#x8f6c;&#x6362;&#x8def;&#x5f84;&#x53d8;&#x91cf;&#x95ee;&#x9898;</note>
+      <note>fix the problem that the resource library cannot use the job/conversion path variable</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>243</width>
+      <width>494</width>
       <heigth>26</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -466,12 +466,21 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xa;Kettle.Home.Directory&#xa;Internal.Repository.Name&#xa;&#xa;&#x4f1a;&#x4fee;&#x590d;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xa;Internal.Job.Filename.Directory                     &#x4f5c;&#x4e1a;&#x6587;&#x4ef6;&#x5f53;&#x524d;&#x76ee;&#x5f55;&#xa;Internal.Transformation.Filename.Directory    &#x8f6c;&#x6362;&#x6587;&#x4ef6;&#x5f53;&#x524d;&#x76ee;&#x5f55;</note>
-      <xloc>496</xloc>
+      <note>input variable
+
+Kettle.Home.Directory                Must
+Internal.Repository.Name           Must
+
+====================
+output variable
+
+Internal.Job.Filename.Directory
+Internal.Transformation.Filename.Directory</note>
+      <xloc>512</xloc>
       <yloc>0</yloc>
-      <width>368</width>
-      <heigth>123</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <width>254</width>
+      <heigth>165</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -489,74 +498,225 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;not this</to>
+      <from>FilterRows: matching repository</from>
+      <to>Dummy: not this</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x2b;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;</from>
-      <to>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</to>
+      <from>GetVariable: repository name and repository meta location</from>
+      <to>getXMLData: repository meta file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x514b;&#x9686;&#x884c;&#xff1a;2</from>
-      <to>&#x503c;&#x6620;&#x5c04;&#xff1a;Internal.&#x2a;.Filename.Directory</to>
+      <from>CloneRow: 2</from>
+      <to>ValueMapper:  Internal.*.Filename.Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript&#x4ee3;&#x7801;&#xff1a;set_variable</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;variable</to>
+      <from>ScriptValueMod: set_variable</from>
+      <to>WriteToLog: variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</from>
-      <to>JavaScript&#x4ee3;&#x7801;&#xff1a;set_variable</to>
+      <from>SelectValues: variable_name_value</from>
+      <to>ScriptValueMod: set_variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x503c;&#x6620;&#x5c04;&#xff1a;Internal.&#x2a;.Filename.Directory</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</to>
+      <from>ValueMapper:  Internal.*.Filename.Directory</from>
+      <to>SelectValues: variable_name_value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</from>
-      <to>&#x514b;&#x9686;&#x884c;&#xff1a;2</to>
+      <from>FilterRows: matching repository</from>
+      <to>CloneRow: 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</from>
-      <to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingRelativePath2AbsolutePath&#x3a; base_directory</to>
+      <from>getXMLData: repository meta file</from>
+      <to>Simple Mapping (sub-transformation): MappingRelativePath2AbsolutePath: base_directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingRelativePath2AbsolutePath&#x3a; base_directory</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</to>
+      <from>Simple Mapping (sub-transformation): MappingRelativePath2AbsolutePath: base_directory</from>
+      <to>FilterRows: matching repository</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>JavaScript&#x4ee3;&#x7801;&#xff1a;set_variable</name>
-    <type>ScriptValueMod</type>
-    <description/>
+    <name>CloneRow: 2</name>
+    <type>CloneRow</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
+    </partitioning>
+    <nrclones>1</nrclones>
+    <addcloneflag>N</addcloneflag>
+    <cloneflagfield />
+    <nrcloneinfield>N</nrcloneinfield>
+    <nrclonefield />
+    <addclonenum>Y</addclonenum>
+    <clonenumfield>row_number</clonenumfield>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: not this</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: matching repository</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>CloneRow: 2</send_true_to>
+    <send_false_to>Dummy: not this</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>name</leftvalue>
+        <function>=</function>
+        <rightvalue>rep_name</rightvalue>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: repository name and repository meta location</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>rep_meta_file</name>
+        <variable>${Kettle.Home.Directory}/.kettle/repositories.xml</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>rep_name</name>
+        <variable>${Internal.Repository.Name}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: set_variable</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
     </partitioning>
     <compatible>N</compatible>
     <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>setVariable&#x28;variable_name,variable_value,&#x22;r&#x22;&#x29;&#x3b;&#xa;&#xa;log &#x3d; getVariable&#x28;variable_name, &#x22;&#x22;&#x29;&#x3b;&#xa;&#xa;writeToLog&#x28;&#x22;d&#x22;,log&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>log</name>
+        <jsScript_script>setVariable(variable_name,variable_value,"r");
+
+log = getVariable(variable_name, "");
+
+writeToLog("d",log);</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>log</name>
         <rename>log</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
-      </field>    </fields>    <cluster_schema/>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -568,44 +728,86 @@
       <yloc>816</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingRelativePath2AbsolutePath&#x3a; base_directory</name>
-    <type>SimpleMapping</type>
-    <description/>
+    <name>SelectValues: variable_name_value</name>
+    <type>SelectValues</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>result_name</name>
+        <rename>variable_name</rename>
+      </field>
+      <field>
+        <name>base_directory</name>
+        <rename>variable_value</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Simple Mapping (sub-transformation): MappingRelativePath2AbsolutePath: base_directory</name>
+    <type>SimpleMapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
     </partitioning>
     <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>&#x24;&#x7b;Position.Ktr.MappingRelativePath2AbsolutePath&#x7d;</trans_name>
-    <filename/>
-    <directory_path>&#x24;&#x7b;Position.Path.Variable&#x7d;</directory_path>
+    <trans_object_id />
+    <trans_name>${Position.Ktr.MappingRelativePath2AbsolutePath}</trans_name>
+    <filename />
+    <directory_path>${Position.Path.Variable}</directory_path>
     <mappings>
       <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-       <connector><parent>base_directory</parent><child>path</child></connector>
-    </mapping>      </input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+          <connector>
+            <parent>base_directory</parent>
+            <child>path</child>
+          </connector>
+        </mapping>
+      </input>
       <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
     </mappings>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -617,169 +819,17 @@
       <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>XML &#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x6587;&#x4ef6;</name>
-    <type>getXMLData</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <namespaceaware>N</namespaceaware>
-    <ignorecomments>N</ignorecomments>
-    <readurl>N</readurl>
-    <validating>N</validating>
-    <usetoken>N</usetoken>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding>UTF-8</encoding>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>id</name>
-        <xpath>id</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>name</name>
-        <xpath>name</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>description</name>
-        <xpath>description</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>base_directory</name>
-        <xpath>base_directory</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>read_only</name>
-        <xpath>read_only</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>hides_hidden_files</name>
-        <xpath>hides_hidden_files</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <loopxpath>&#x2f;repositories&#x2f;repository</loopxpath>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>Y</IsAFile>
-    <XmlField>rep_meta_file</XmlField>
-    <prunePath/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x503c;&#x6620;&#x5c04;&#xff1a;Internal.&#x2a;.Filename.Directory</name>
+    <name>ValueMapper:  Internal.*.Filename.Directory</name>
     <type>ValueMapper</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <field_to_use>row_number</field_to_use>
     <target_field>result_name</target_field>
@@ -794,7 +844,7 @@
         <target_value>Internal.Transformation.Filename.Directory</target_value>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -806,65 +856,32 @@
       <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x514b;&#x9686;&#x884c;&#xff1a;2</name>
-    <type>CloneRow</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <nrclones>1</nrclones>
-    <addcloneflag>N</addcloneflag>
-    <cloneflagfield/>
-    <nrcloneinfield>N</nrcloneinfield>
-    <nrclonefield/>
-    <addclonenum>Y</addclonenum>
-    <clonenumfield>row_number</clonenumfield>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;variable</name>
+    <name>WriteToLog: variable</name>
     <type>WriteToLog</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>&#x53d8;&#x91cf;</logmessage>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>变量</logmessage>
     <fields>
       <field>
         <name>variable_name</name>
-        </field>
+      </field>
       <field>
         <name>variable_value</name>
-        </field>
-      </fields>
-    <cluster_schema/>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -876,101 +893,145 @@
       <yloc>816</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</name>
-    <type>SelectValues</type>
-    <description/>
+    <name>getXMLData: repository meta file</name>
+    <type>getXMLData</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <fields>      <field>        <name>result_name</name>
-        <rename>variable_name</rename>
-      </field>      <field>        <name>base_directory</name>
-        <rename>variable_value</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>704</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;not this</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;&#x8d44;&#x6e90;&#x5e93;&#x540d;&#x79f0;&#x2b;&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <namespaceaware>N</namespaceaware>
+    <ignorecomments>N</ignorecomments>
+    <readurl>N</readurl>
+    <validating>N</validating>
+    <usetoken>N</usetoken>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field />
+    <encoding>UTF-8</encoding>
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <fields>
       <field>
-        <name>rep_meta_file</name>
-        <variable>&#x24;&#x7b;Kettle.Home.Directory&#x7d;&#x2f;.kettle&#x2f;repositories.xml</variable>
+        <name>id</name>
+        <xpath>id</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
+        <repeat>N</repeat>
       </field>
       <field>
-        <name>rep_name</name>
-        <variable>&#x24;&#x7b;Internal.Repository.Name&#x7d;</variable>
+        <name>name</name>
+        <xpath>name</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>description</name>
+        <xpath>description</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>base_directory</name>
+        <xpath>base_directory</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>read_only</name>
+        <xpath>read_only</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+        <xpath>hides_hidden_files</xpath>
+        <element_type>node</element_type>
+        <result_type>valueof</result_type>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
       </field>
     </fields>
-    <cluster_schema/>
+    <limit>0</limit>
+    <loopxpath>/repositories/repository</loopxpath>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>Y</IsAFile>
+    <XmlField>rep_meta_file</XmlField>
+    <prunePath />
+    <shortFileFieldName />
+    <pathFieldName />
+    <hiddenFieldName />
+    <lastModificationTimeFieldName />
+    <uriNameFieldName />
+    <rootUriNameFieldName />
+    <extensionFieldName />
+    <sizeFieldName />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -979,46 +1040,10 @@
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>32</yloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;&#x6307;&#x5b9a;&#x8d44;&#x6e90;&#x5e93;</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x514b;&#x9686;&#x884c;&#xff1a;2</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;not this</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>name</leftvalue>
- <function>&#x3d;</function>
- <rightvalue>rep_name</rightvalue>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

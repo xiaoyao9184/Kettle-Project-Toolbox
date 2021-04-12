@@ -12,12 +12,12 @@
       <parameter>
         <name>Parameters.File.Find</name>
         <default_value>?</default_value>
-        <description>搜索内容</description>
+        <description>search part for replace</description>
       </parameter>
       <parameter>
         <name>Parameters.File.Replace</name>
         <default_value>?</default_value>
-        <description>替换内容</description>
+        <description>repalce part for replace</description>
       </parameter>
     </parameters>
     <log>
@@ -445,26 +445,78 @@
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>params
+
+Parameters.File.Find               Must
+Parameters.File.Replace         Must
+====================
+input result
+
+file path</note>
+      <xloc>416</xloc>
+      <yloc>0</yloc>
+      <width>206</width>
+      <heigth>134</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
-      <from>文件内容加载至内存</from>
-      <to>字符串替换</to>
+      <from>LoadFileInput</from>
+      <to>ReplaceString</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字符串替换</from>
-      <to>文本文件输出</to>
+      <from>ReplaceString</from>
+      <to>TextFileOutput</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>从结果获取文件</from>
-      <to>文件内容加载至内存</to>
+      <from>FilesFromResult</from>
+      <to>LoadFileInput</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>字符串替换</name>
+    <name>FilesFromResult</name>
+    <type>FilesFromResult</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString</name>
     <type>ReplaceString</type>
     <description />
     <distribute>Y</distribute>
@@ -501,7 +553,7 @@
     </GUI>
   </step>
   <step>
-    <name>文件内容加载至内存</name>
+    <name>LoadFileInput</name>
     <type>LoadFileInput</type>
     <description />
     <distribute>Y</distribute>
@@ -560,7 +612,7 @@
     </GUI>
   </step>
   <step>
-    <name>文本文件输出</name>
+    <name>TextFileOutput</name>
     <type>TextFileOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -625,30 +677,6 @@
     <GUI>
       <xloc>272</xloc>
       <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>从结果获取文件</name>
-    <type>FilesFromResult</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

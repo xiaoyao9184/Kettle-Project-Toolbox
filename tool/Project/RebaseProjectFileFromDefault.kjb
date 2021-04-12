@@ -1,0 +1,1485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<job>
+  <name>RebaseProjectFileFromDefault</name>
+  <description />
+  <extended_description />
+  <job_version />
+  <job_status>0</job_status>
+  <directory>/</directory>
+  <created_user>-</created_user>
+  <created_date>2017/09/08 11:57:40.156</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2017/09/08 11:57:40.156</modified_date>
+  <parameters>
+    <parameter>
+      <name>Parameters.Copy.Default.Path</name>
+      <default_value />
+      <description>default project path</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Project.Name</name>
+      <default_value />
+      <description>project name</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Project.Path</name>
+      <default_value />
+      <description>project path</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Use.Config</name>
+      <default_value>true</default_value>
+      <description>project support Config</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Use.GitPlugin</name>
+      <default_value>true</default_value>
+      <description>project support GitPlugin</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Use.Jenkins</name>
+      <default_value>true</default_value>
+      <description>project support Jenkins</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Use.Patch</name>
+      <default_value>true</default_value>
+      <description>project support Patch</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Use.Profile</name>
+      <default_value>true</default_value>
+      <description>project support Profile</description>
+    </parameter>
+    <parameter>
+      <name>Parameters.Copy.Use.Wait</name>
+      <default_value>true</default_value>
+      <description>project support Wait</description>
+    </parameter>
+  </parameters>
+  <slaveservers>
+    </slaveservers>
+  <job-log-table>
+    <connection />
+    <schema />
+    <table />
+    <size_limit_lines />
+    <interval />
+    <timeout_days />
+    <field>
+      <id>ID_JOB</id>
+      <enabled>Y</enabled>
+      <name>ID_JOB</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>JOBNAME</name>
+    </field>
+    <field>
+      <id>STATUS</id>
+      <enabled>Y</enabled>
+      <name>STATUS</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>STARTDATE</id>
+      <enabled>Y</enabled>
+      <name>STARTDATE</name>
+    </field>
+    <field>
+      <id>ENDDATE</id>
+      <enabled>Y</enabled>
+      <name>ENDDATE</name>
+    </field>
+    <field>
+      <id>LOGDATE</id>
+      <enabled>Y</enabled>
+      <name>LOGDATE</name>
+    </field>
+    <field>
+      <id>DEPDATE</id>
+      <enabled>Y</enabled>
+      <name>DEPDATE</name>
+    </field>
+    <field>
+      <id>REPLAYDATE</id>
+      <enabled>Y</enabled>
+      <name>REPLAYDATE</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>Y</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>EXECUTING_SERVER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_SERVER</name>
+    </field>
+    <field>
+      <id>EXECUTING_USER</id>
+      <enabled>N</enabled>
+      <name>EXECUTING_USER</name>
+    </field>
+    <field>
+      <id>START_JOB_ENTRY</id>
+      <enabled>N</enabled>
+      <name>START_JOB_ENTRY</name>
+    </field>
+    <field>
+      <id>CLIENT</id>
+      <enabled>N</enabled>
+      <name>CLIENT</name>
+    </field>
+  </job-log-table>
+  <jobentry-log-table>
+    <connection />
+    <schema />
+    <table />
+    <timeout_days />
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>JOBNAME</id>
+      <enabled>Y</enabled>
+      <name>TRANSNAME</name>
+    </field>
+    <field>
+      <id>JOBENTRYNAME</id>
+      <enabled>Y</enabled>
+      <name>STEPNAME</name>
+    </field>
+    <field>
+      <id>LINES_READ</id>
+      <enabled>Y</enabled>
+      <name>LINES_READ</name>
+    </field>
+    <field>
+      <id>LINES_WRITTEN</id>
+      <enabled>Y</enabled>
+      <name>LINES_WRITTEN</name>
+    </field>
+    <field>
+      <id>LINES_UPDATED</id>
+      <enabled>Y</enabled>
+      <name>LINES_UPDATED</name>
+    </field>
+    <field>
+      <id>LINES_INPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_INPUT</name>
+    </field>
+    <field>
+      <id>LINES_OUTPUT</id>
+      <enabled>Y</enabled>
+      <name>LINES_OUTPUT</name>
+    </field>
+    <field>
+      <id>LINES_REJECTED</id>
+      <enabled>Y</enabled>
+      <name>LINES_REJECTED</name>
+    </field>
+    <field>
+      <id>ERRORS</id>
+      <enabled>Y</enabled>
+      <name>ERRORS</name>
+    </field>
+    <field>
+      <id>RESULT</id>
+      <enabled>Y</enabled>
+      <name>RESULT</name>
+    </field>
+    <field>
+      <id>NR_RESULT_ROWS</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_ROWS</name>
+    </field>
+    <field>
+      <id>NR_RESULT_FILES</id>
+      <enabled>Y</enabled>
+      <name>NR_RESULT_FILES</name>
+    </field>
+    <field>
+      <id>LOG_FIELD</id>
+      <enabled>N</enabled>
+      <name>LOG_FIELD</name>
+    </field>
+    <field>
+      <id>COPY_NR</id>
+      <enabled>N</enabled>
+      <name>COPY_NR</name>
+    </field>
+  </jobentry-log-table>
+  <channel-log-table>
+    <connection />
+    <schema />
+    <table />
+    <timeout_days />
+    <field>
+      <id>ID_BATCH</id>
+      <enabled>Y</enabled>
+      <name>ID_BATCH</name>
+    </field>
+    <field>
+      <id>CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>LOG_DATE</id>
+      <enabled>Y</enabled>
+      <name>LOG_DATE</name>
+    </field>
+    <field>
+      <id>LOGGING_OBJECT_TYPE</id>
+      <enabled>Y</enabled>
+      <name>LOGGING_OBJECT_TYPE</name>
+    </field>
+    <field>
+      <id>OBJECT_NAME</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_NAME</name>
+    </field>
+    <field>
+      <id>OBJECT_COPY</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_COPY</name>
+    </field>
+    <field>
+      <id>REPOSITORY_DIRECTORY</id>
+      <enabled>Y</enabled>
+      <name>REPOSITORY_DIRECTORY</name>
+    </field>
+    <field>
+      <id>FILENAME</id>
+      <enabled>Y</enabled>
+      <name>FILENAME</name>
+    </field>
+    <field>
+      <id>OBJECT_ID</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_ID</name>
+    </field>
+    <field>
+      <id>OBJECT_REVISION</id>
+      <enabled>Y</enabled>
+      <name>OBJECT_REVISION</name>
+    </field>
+    <field>
+      <id>PARENT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>PARENT_CHANNEL_ID</name>
+    </field>
+    <field>
+      <id>ROOT_CHANNEL_ID</id>
+      <enabled>Y</enabled>
+      <name>ROOT_CHANNEL_ID</name>
+    </field>
+  </channel-log-table>
+  <pass_batchid>N</pass_batchid>
+  <shared_objects_file />
+  <entries>
+    <entry>
+      <name>COPY_FILES: profile</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/profile</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/profile</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UseProfile</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Profile}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>272</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>START</name>
+      <description />
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>368</xloc>
+      <yloc>48</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: config</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/config</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/config</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/config.xml</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow/UseConfigRun.kjb</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/flow/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow/UseConfigWithParamRun.kjb</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/flow/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigRun.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigWithParamRun.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-5</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigWithParamRun.SET_PARAM.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-6</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UseConfig</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Config}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: wait</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/wait</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/wait</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>624</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UseWait</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Wait}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>624</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: variable</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/variable</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/variable</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>112</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: script</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/RUN_SPOON.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/SET_ENVIRONMENT.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/RUN_SPOON.sh</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/SET_ENVIRONMENT.sh</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>112</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SET_VARIABLES: Internal.Project.Default.Directory</name>
+      <description />
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename />
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>Internal.Project.Default.Directory</variable_name>
+          <variable_value>${Parameters.Copy.Default.Path}</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+        <field>
+          <variable_name>Internal.Project.Directory</variable_name>
+          <variable_value>${Parameters.Copy.Project.Path}</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+        <field>
+          <variable_name>Internal.Project.Name</variable_name>
+          <variable_value>${Parameters.Copy.Project.Name}</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>368</xloc>
+      <yloc>176</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: UseProfileConfigRun</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow/UseProfileConfigRun.kjb</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/flow/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseProfileConfigRun.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseProfileConfigRun.sh</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>1040</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UseProfile &amp; UseConfig</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Profile}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>896</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: UseConfigRun&amp;UseConfigWithParamRun</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow/UseConfigRun.kjb</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/flow/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigRun.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigRun.sh</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow/UseConfigWithParamRun.kjb</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/flow/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigWithParamRun.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigWithParamRun.sh</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-5</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/flow.UseConfigWithParamRun.SET_PARAM.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-6</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-6</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>752</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: jenkins</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/jenkins</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/jenkins</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/.jenkins</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/.jenkins</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-1</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/jenkins/build_dev/Jenkinsfile</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>816</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UseJenkins</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Jenkins}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>816</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>ContentReplace: config</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/ContentReplace.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>Parameters.File.Find</name>
+          <stream_name />
+          <value>default</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Path</name>
+          <stream_name />
+          <value>${Internal.Project.Directory}/config.xml</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Replace</name>
+          <stream_name />
+          <value>${Internal.Project.Name}</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>448</xloc>
+      <yloc>608</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UsePatch</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.Patch}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: patch</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/patch</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/patch</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/patch.PatchPDI.bat</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/patch.PatchPDI.sh</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>992</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: Git Repository</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>Y</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/.meta/metastore/pentaho/Git Repository/.type.xml</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/.meta/metastore/pentaho/Git Repository/.type.xml</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/.meta/metastore/pentaho/Git Repository/default.xml</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/.meta/metastore/pentaho/Git Repository/${Internal.Project.Name}.xml</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-1</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>464</yloc>
+    </entry>
+    <entry>
+      <name>SETSIMPLE_EVAL: UseGitPlugin</name>
+      <description />
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${isUseProfile}</fieldname>
+      <variablename>${Parameters.Copy.Use.GitPlugin}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue>true</comparevalue>
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>336</yloc>
+    </entry>
+    <entry>
+      <name>ContentReplace: GitRepositoryName</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/ContentReplace.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>Parameters.File.Find</name>
+          <stream_name />
+          <value>default</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Path</name>
+          <stream_name />
+          <value>${Internal.Project.Directory}/.meta/metastore/pentaho/Git Repository/${Internal.Project.Name}.xml</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Replace</name>
+          <stream_name />
+          <value>${Internal.Project.Name}</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>752</yloc>
+    </entry>
+    <entry>
+      <name>COPY_FILES: .gitignore and dev.profile</name>
+      <description />
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>Y</destination_is_a_file>
+      <create_destination_folder>Y</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/.gitignore</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
+          <wildcard />
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/.profile/dev.profile</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/.profile/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-1</destination_configuration_name>
+          <wildcard />
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1152</xloc>
+      <yloc>608</yloc>
+    </entry>
+    <entry>
+      <name>GetJenkinsCIFileToFileResult</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/GetJenkinsCIFileToFileResult.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>Parameters.Project.Path</name>
+          <stream_name />
+          <value>${Internal.Project.Directory}</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>816</xloc>
+      <yloc>608</yloc>
+    </entry>
+    <entry>
+      <name>ContentReplaceFromFileResult</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>${Internal.Entry.Current.Directory}/ContentReplaceFromFileResult.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+        <parameter>
+          <name>Parameters.File.Find</name>
+          <stream_name />
+          <value>defaultValue: 'default'</value>
+        </parameter>
+        <parameter>
+          <name>Parameters.File.Replace</name>
+          <stream_name />
+          <value>defaultValue: '${Internal.Project.Name}'</value>
+        </parameter>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>816</xloc>
+      <yloc>752</yloc>
+    </entry>
+    <entry>
+      <name>成功</name>
+      <description />
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>112</xloc>
+      <yloc>176</yloc>
+    </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>SETSIMPLE_EVAL: UseProfile</from>
+      <to>COPY_FILES: profile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SETSIMPLE_EVAL: UseConfig</from>
+      <to>COPY_FILES: config</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SETSIMPLE_EVAL: UseWait</from>
+      <to>COPY_FILES: wait</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>COPY_FILES: variable</from>
+      <to>COPY_FILES: script</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>SET_VARIABLES: Internal.Project.Default.Directory</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>COPY_FILES: variable</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>SETSIMPLE_EVAL: UseProfile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>SETSIMPLE_EVAL: UseConfig</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>SETSIMPLE_EVAL: UseWait</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SETSIMPLE_EVAL: UseProfile &amp; UseConfig</from>
+      <to>COPY_FILES: UseProfileConfigRun</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>COPY_FILES: UseConfigRun&amp;UseConfigWithParamRun</from>
+      <to>SETSIMPLE_EVAL: UseProfile &amp; UseConfig</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>SETSIMPLE_EVAL: UseJenkins</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SETSIMPLE_EVAL: UseJenkins</from>
+      <to>COPY_FILES: jenkins</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>COPY_FILES: config</from>
+      <to>ContentReplace: config</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>ContentReplace: config</from>
+      <to>COPY_FILES: UseConfigRun&amp;UseConfigWithParamRun</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>SETSIMPLE_EVAL: UsePatch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SETSIMPLE_EVAL: UsePatch</from>
+      <to>COPY_FILES: patch</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>SETSIMPLE_EVAL: UseGitPlugin</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SETSIMPLE_EVAL: UseGitPlugin</from>
+      <to>COPY_FILES: Git Repository</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>COPY_FILES: Git Repository</from>
+      <to>COPY_FILES: .gitignore and dev.profile</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>COPY_FILES: .gitignore and dev.profile</from>
+      <to>ContentReplace: GitRepositoryName</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>GetJenkinsCIFileToFileResult</from>
+      <to>ContentReplaceFromFileResult</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>COPY_FILES: jenkins</from>
+      <to>GetJenkinsCIFileToFileResult</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Default.Directory</from>
+      <to>成功</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+    <notepad>
+      <note>rebase project from default project</note>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
+      <width>209</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>params
+
+Parameters.Copy.Default.Path      Must
+Parameters.Copy.Project.Name    Must
+Parameters.Copy.Project.Path    Must
+Parameters.Copy.Use.Config      Optional
+Parameters.Copy.Use.GitPlugin   Optional
+Parameters.Copy.Use.Jenkins     Optional
+Parameters.Copy.Use.Patch       Optional
+Parameters.Copy.Use.Profile     Optional 
+Parameters.Copy.Use.Wait        Optional</note>
+      <xloc>624</xloc>
+      <yloc>0</yloc>
+      <width>248</width>
+      <heigth>181</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <attributes>
+    <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Default Run Configuration</key>
+        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <attribute>
+        <key>Pentaho local</key>
+        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+    </group>
+  </attributes>
+</job>

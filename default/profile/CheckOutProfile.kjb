@@ -8,17 +8,17 @@
   <created_user>-</created_user>
   <created_date>2017/08/29 09:43:14.775</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2018/10/19 14:49:40.350</modified_date>
+  <modified_date>2021/04/12 11:22:48.934</modified_date>
   <parameters>
     <parameter>
       <name>Parameters.Profile.Name</name>
       <default_value />
-      <description>激活的参数Profile名称</description>
+      <description>profile name of the activated parameter</description>
     </parameter>
     <parameter>
       <name>Parameters.Profile.UseMix</name>
       <default_value>true</default_value>
-      <description>混合激活Profile</description>
+      <description>hybrid activation profile</description>
     </parameter>
   </parameters>
   <slaveservers>
@@ -393,7 +393,7 @@
       <yloc>416</yloc>
     </entry>
     <entry>
-      <name>检查一个文件是否存在：.profile/</name>
+      <name>FILE_EXISTS: .profile/</name>
       <description />
       <type>FILE_EXISTS</type>
       <filename>${Internal.Repository.Directory}/.profile</filename>
@@ -404,7 +404,7 @@
       <yloc>288</yloc>
     </entry>
     <entry>
-      <name>设置变量：Profile.Use: NONE</name>
+      <name>SetVariable: Profile.Use: NONE</name>
       <description />
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
@@ -424,7 +424,7 @@
       <yloc>288</yloc>
     </entry>
     <entry>
-      <name>设置变量：Profile.Use: ERROR</name>
+      <name>SetVariable: Profile.Use: ERROR</name>
       <description />
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
@@ -501,7 +501,7 @@
       <yloc>544</yloc>
     </entry>
     <entry>
-      <name>成功</name>
+      <name>SUCCESS</name>
       <description />
       <type>SUCCESS</type>
       <parallel>N</parallel>
@@ -511,7 +511,7 @@
       <yloc>672</yloc>
     </entry>
     <entry>
-      <name>中止作业</name>
+      <name>ABORT</name>
       <description />
       <type>ABORT</type>
       <message />
@@ -525,7 +525,7 @@
   <hops>
     <hop>
       <from>InitVariable</from>
-      <to>检查一个文件是否存在：.profile/</to>
+      <to>FILE_EXISTS: .profile/</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -533,8 +533,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检查一个文件是否存在：.profile/</from>
-      <to>设置变量：Profile.Use: NONE</to>
+      <from>FILE_EXISTS: .profile/</from>
+      <to>SetVariable: Profile.Use: NONE</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -542,7 +542,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检查一个文件是否存在：.profile/</from>
+      <from>FILE_EXISTS: .profile/</from>
       <to>ReadProfile</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -552,7 +552,7 @@
     </hop>
     <hop>
       <from>ReadProfile</from>
-      <to>设置变量：Profile.Use: ERROR</to>
+      <to>SetVariable: Profile.Use: ERROR</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -570,7 +570,7 @@
     </hop>
     <hop>
       <from>ActiveProfile</from>
-      <to>成功</to>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -579,7 +579,7 @@
     </hop>
     <hop>
       <from>ActiveProfile</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -598,13 +598,13 @@
   </hops>
   <notepads>
     <notepad>
-      <note>激活Profile</note>
+      <note>activate Profile</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>71</width>
+      <width>95</width>
       <heigth>26</heigth>
-      <fontname />
-      <fontsize>-1</fontsize>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
@@ -619,21 +619,25 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Parameters.Profile.Name	激活的参数Profile名称(多个,号分割)
-Parameters.Profile.UseMix	混合激活Profile(通过参数+文件名激活)
+      <note>params
 
-依赖以下变量
-Internal.Repository.Directory		资源库目录
+Parameters.Profile.Name             Must(Multiple, split by number)
+Parameters.Profile.UseMix           Must(Activated by parameter + file name)
 
-会生成以下变量
-Profile.Use				profile名称
-Profile.Meta.Path			profile路径
-Profile.Meta.Location			profile描述文件</note>
+====================
+input variable
+
+Internal.Repository.Directory    Must
+====================
+output variable
+
+Profile.Use
+Profile.Meta.Path
+Profile.Meta.Location</note>
       <xloc>416</xloc>
       <yloc>0</yloc>
-      <width>413</width>
-      <heigth>188</heigth>
+      <width>438</width>
+      <heigth>243</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>

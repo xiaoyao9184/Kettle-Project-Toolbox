@@ -11,27 +11,27 @@
       <parameter>
         <name>Parameters.Cfg.Name</name>
         <default_value />
-        <description>配置文件名称</description>
+        <description>config name</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Path</name>
         <default_value />
-        <description>配置文件路径</description>
+        <description>config path</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Profile</name>
         <default_value />
-        <description>配置文件profile</description>
+        <description>config profile</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Tag</name>
         <default_value />
-        <description>配置文件标签</description>
+        <description>config tag</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Type</name>
         <default_value />
-        <description>配置文件类型</description>
+        <description>config type</description>
       </parameter>
     </parameters>
     <log>
@@ -454,7 +454,7 @@
     <created_user>-</created_user>
     <created_date>2017/08/25 16:10:36.439</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/19 11:08:15.719</modified_date>
+    <modified_date>2021/04/12 12:44:57.252</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -505,7 +505,7 @@
       <note>cfg_type</note>
       <xloc>416</xloc>
       <yloc>2944</yloc>
-      <width>58</width>
+      <width>59</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -628,31 +628,35 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Parameters.Cfg.Path		配置文件路径
-Parameters.Cfg.Name		配置文件名称
-Parameters.Cfg.Profile		配置文件Profile
-Parameters.Cfg.Tag		配置文件标签
-Parameters.Cfg.Type		配置文件类型
+      <note>params
 
+Parameters.Cfg.Path        Must
+Parameters.Cfg.Name      Must
+Parameters.Cfg.Profile     Must
+Parameters.Cfg.Tag         Must
+Parameters.Cfg.Type       Must
 
-依赖以下变量
-Kettle.Home.Directory		可选(填充Config.Path)
-Internal.Repository.Directory	可选(填充Config.Path)
-Profile.Use			可选(填充Config.Profile)
-Internal.Repository.Name	可选(填充Config.Tag)
+====================
+input variable
 
-生成以下变量
+Kettle.Home.Directory
+Internal.Repository.Directory
+Profile.Use
+Internal.Repository.Name
+
+====================
+output variable
+
 Config.Transformation
 Config.Path
 Config.Name
 Config.Profile
 Config.Tag
 Config.Type</note>
-      <xloc>160</xloc>
+      <xloc>240</xloc>
       <yloc>0</yloc>
-      <width>337</width>
-      <heigth>349</heigth>
+      <width>190</width>
+      <heigth>398</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -669,10 +673,10 @@ Config.Type</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>生成Config.[Base]变量</note>
+      <note>generate Config.[Base] variable</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>135</width>
+      <width>188</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -690,44 +694,44 @@ Config.Type</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>支持2种处理逻辑流程(cfg_circuit)：
-1. Customize	自定义
-2. Directory	文件夹
+      <note>Support 2 kinds of processing logic flow (cfg_circuit):
+1. Customize
+2. Directory Folder
 
-未指定参数Parameters.Cfg.Path，
-将使用预制的2种cfg_circuit：Directory按优先级生成Config.Path
-1.RepositorieDirectory	当前资源库文件夹
-2.KettleHomeDirectory	KettleHome文件夹
+Parameters.Cfg.Path is not specified,
+Two pre-made cfg_circuits will be used: Directory generates Config.Path according to priority
+1.RepositorieDirectory current resource library folder
+2.KettleHomeDirectory KettleHome folder
 ==========
 
-未指定参数Parameters.Cfg.Name
-将使用默认：'config'填充Config.Name
+No parameter specified Parameters.Cfg.Name
+Default:'config' will be used to fill Config.Name
 ==========
 
-未指定参数Parameters.Cfg.Profile
-将使用默认：Profile.Use填充Config.Profile
+No parameter specified Parameters.Cfg.Profile
+Will use the default: Profile.Use to fill Config.Profile
 ==========
 
-未指定参数Parameters.Cfg.Tag
-将使用当前资源库名填充Config.Name
+No parameter specified Parameters.Cfg.Tag
+Config.Name will be filled with the name of the current resource library
 ==========
-支持读取任意数据源
-预制读取3种文件的转换
+Support to read any data source
+Read the conversion of 3 kinds of files
 1.xml
 2.ini
 3.properties
 
-未指定参数Parameters.Cfg.Type
-根据预制优先级填充Config.Type
+No parameter specified Parameters.Cfg.Type
+Fill Config.Type according to the pre-made priority
 
-注意：
-根据Config.Type确定要动态加载的转换名称，
-通常为ReadConfig_*
+note:
+Determine the conversion name to be dynamically loaded according to Config.Type,
+Usually ReadConfig_*
 ==========</note>
-      <xloc>608</xloc>
+      <xloc>464</xloc>
       <yloc>0</yloc>
-      <width>362</width>
-      <heigth>560</heigth>
+      <width>540</width>
+      <heigth>537</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -788,423 +792,423 @@ Config.Type</note>
   </notepads>
   <order>
     <hop>
-      <from>计算器：cfg_path_len</from>
-      <to>过滤记录：cfg_path_len</to>
+      <from>Calculator: cfg_path_len</from>
+      <to>FilterRows: cfg_path_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_path_len</from>
-      <to>空操作 (什么也不做)：ok_len</to>
+      <from>FilterRows: cfg_path_len</from>
+      <to>Dummy: ok_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_path_len</from>
-      <to>空操作 (什么也不做)：no_len</to>
+      <from>FilterRows: cfg_path_len</from>
+      <to>Dummy: no_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：ParameterPath: cfg_path</from>
-      <to>增加常量：Customize: cfg_circuit</to>
+      <from>GetVariable: ParameterPath: cfg_path</from>
+      <to>Constant: Customize: cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：RepositorieDirectory: cfg_path</from>
-      <to>增加常量：Repositorie: Directory: cfg_circuit</to>
+      <from>GetVariable: RepositorieDirectory: cfg_path</from>
+      <to>Constant: Repositorie: Directory: cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：KettleHomeDirectory: cfg_path</from>
-      <to>增加常量：KettleHome: Directory: cfg_circuit</to>
+      <from>GetVariable: KettleHomeDirectory: cfg_path</from>
+      <to>Constant: KettleHome: Directory: cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_path_exist</from>
-      <to>空操作 (什么也不做)：cfg_path: exist</to>
+      <from>FilterRows: cfg_path_exist</from>
+      <to>Dummy: cfg_path: exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>检查文件是否存在：cfg_path_exist</from>
-      <to>过滤记录：cfg_path_exist</to>
+      <from>FileExists: cfg_path_exist</from>
+      <to>FilterRows: cfg_path_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_path_exist</from>
-      <to>空操作 (什么也不做)：cfg_path: not_exist</to>
+      <from>FilterRows: cfg_path_exist</from>
+      <to>Dummy: cfg_path: not_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字符串替换：cfg_location: extra delimiter</from>
-      <to>检查文件是否存在：cfg_location_exist</to>
+      <from>ReplaceString: cfg_location: extra delimiter</from>
+      <to>FileExists: cfg_location_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>检查文件是否存在：cfg_location_exist</from>
-      <to>过滤记录：cfg_location_exist</to>
+      <from>FileExists: cfg_location_exist</from>
+      <to>FilterRows: cfg_location_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_location_exist</from>
-      <to>空操作 (什么也不做)：cfg_location: not_exist</to>
+      <from>FilterRows: cfg_location_exist</from>
+      <to>Dummy: cfg_location: not_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_location_exist</from>
-      <to>空操作 (什么也不做)：cfg_location: exist</to>
+      <from>FilterRows: cfg_location_exist</from>
+      <to>Dummy: cfg_location: exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_name_len</from>
-      <to>过滤记录：cfg_name_len</to>
+      <from>Calculator: cfg_name_len</from>
+      <to>FilterRows: cfg_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_name: no len</from>
-      <to>将字段值设置为常量：cfg_name</to>
+      <from>Dummy: cfg_name: no len</from>
+      <to>SetValueConstant: cfg_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_type_len</from>
-      <to>过滤记录：cfg_type_len</to>
+      <from>Calculator: cfg_type_len</from>
+      <to>FilterRows: cfg_type_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：cfg_type_list</from>
-      <to>列拆分为多行：cfg_type_list</to>
+      <from>Constant: cfg_type_list</from>
+      <to>SplitFieldToRows3: cfg_type_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字符串替换：cfg_path: extra delimiter</from>
-      <to>检查文件是否存在：cfg_path_exist</to>
+      <from>ReplaceString: cfg_path: extra delimiter</from>
+      <to>FileExists: cfg_path_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_path: exist</from>
-      <to>字段选择：cfg_path_exist: remove</to>
+      <from>Dummy: cfg_path: exist</from>
+      <to>SelectValues: cfg_path_exist: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：Customize: cfg_circuit</from>
-      <to>空操作 (什么也不做)：all cfg_circuit</to>
+      <from>Constant: Customize: cfg_circuit</from>
+      <to>Dummy: all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：all cfg_circuit</from>
-      <to>计算器：cfg_path_len</to>
+      <from>Dummy: all cfg_circuit</from>
+      <to>Calculator: cfg_path_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>列拆分为多行：cfg_type_list</from>
-      <to>计算器：cfg_order</to>
+      <from>SplitFieldToRows3: cfg_type_list</from>
+      <to>Calculator: cfg_order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_order</from>
-      <to>字段选择：replace type&amp;order</to>
+      <from>Calculator: cfg_order</from>
+      <to>SelectValues: replace type&amp;order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_type: ok_len</from>
-      <to>字段选择：replace order</to>
+      <from>Dummy: cfg_type: ok_len</from>
+      <to>SelectValues: replace order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：replace order</from>
-      <to>空操作 (什么也不做)：cfg_type done</to>
+      <from>SelectValues: replace order</from>
+      <to>Dummy: cfg_type done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：replace type&amp;order</from>
-      <to>空操作 (什么也不做)：cfg_type done</to>
+      <from>SelectValues: replace type&amp;order</from>
+      <to>Dummy: cfg_type done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_type_len</from>
-      <to>空操作 (什么也不做)：cfg_type: no_len</to>
+      <from>FilterRows: cfg_type_len</from>
+      <to>Dummy: cfg_type: no_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_type_len</from>
-      <to>空操作 (什么也不做)：cfg_type: ok_len</to>
+      <from>FilterRows: cfg_type_len</from>
+      <to>Dummy: cfg_type: ok_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_tag_len</from>
-      <to>过滤记录：cfg_tag_len</to>
+      <from>Calculator: cfg_tag_len</from>
+      <to>FilterRows: cfg_tag_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_tag_len</from>
-      <to>空操作 (什么也不做)：cfg_tag: no_len</to>
+      <from>FilterRows: cfg_tag_len</from>
+      <to>Dummy: cfg_tag: no_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_tag: no_len</from>
-      <to>获取变量：Internal.Repository.Name</to>
+      <from>Dummy: cfg_tag: no_len</from>
+      <to>GetVariable: Internal.Repository.Name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：Internal.Repository.Name</from>
-      <to>字段选择：replace tag</to>
+      <from>GetVariable: Internal.Repository.Name</from>
+      <to>SelectValues: replace tag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：replace tag</from>
-      <to>空操作 (什么也不做)：cfg_tag: done</to>
+      <from>SelectValues: replace tag</from>
+      <to>Dummy: cfg_tag: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_circuit: Directory</from>
-      <to>空操作 (什么也不做)：cfg_circuit: not Directory</to>
+      <from>FilterRows: cfg_circuit: Directory</from>
+      <to>Dummy: cfg_circuit: not Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>排序记录：cfg_order</from>
-      <to>增加常量：cfg_group</to>
+      <from>SortRows: cfg_order</from>
+      <to>Constant: cfg_group</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：cfg_group</from>
-      <to>在内存中分组：first</to>
+      <from>Constant: cfg_group</from>
+      <to>MemoryGroupBy: first</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_type done</from>
-      <to>过滤记录：cfg_circuit: Directory</to>
+      <from>Dummy: cfg_type done</from>
+      <to>FilterRows: cfg_circuit: Directory</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_name_len</from>
-      <to>空操作 (什么也不做)：cfg_name: no len</to>
+      <from>FilterRows: cfg_name_len</from>
+      <to>Dummy: cfg_name: no len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_tag: done</from>
-      <to>计算器：cfg_type_len</to>
+      <from>Dummy: cfg_tag: done</from>
+      <to>Calculator: cfg_type_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_type: no_len</from>
-      <to>增加常量：cfg_type_list</to>
+      <from>Dummy: cfg_type: no_len</from>
+      <to>Constant: cfg_type_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_circuit: not Directory</from>
-      <to>空操作 (什么也不做)：cant check exist</to>
+      <from>Dummy: cfg_circuit: not Directory</from>
+      <to>Dummy: cant check exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_location: exist</from>
-      <to>字段选择：cfg_file&amp;cfg_location remove</to>
+      <from>Dummy: cfg_location: exist</from>
+      <to>SelectValues: cfg_file&amp;cfg_location remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cant check exist</from>
-      <to>空操作 (什么也不做)：cfg_profile: done</to>
+      <from>Dummy: cant check exist</from>
+      <to>Dummy: cfg_profile: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：cfg_file&amp;cfg_location remove</from>
-      <to>空操作 (什么也不做)：cfg_profile: done</to>
+      <from>SelectValues: cfg_file&amp;cfg_location remove</from>
+      <to>Dummy: cfg_profile: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_name_len</from>
-      <to>空操作 (什么也不做)：cfg_name: ok len</to>
+      <from>FilterRows: cfg_name_len</from>
+      <to>Dummy: cfg_name: ok len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_name: ok len</from>
-      <to>字段选择：cfg_name_len: remove</to>
+      <from>Dummy: cfg_name: ok len</from>
+      <to>SelectValues: cfg_name_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>将字段值设置为常量：cfg_name</from>
-      <to>字段选择：cfg_name_len: remove</to>
+      <from>SetValueConstant: cfg_name</from>
+      <to>SelectValues: cfg_name_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：ok_len</from>
-      <to>字段选择：cfg_path_len: remove</to>
+      <from>Dummy: ok_len</from>
+      <to>SelectValues: cfg_path_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：cfg_path_len: remove</from>
-      <to>计算器：cfg_name_len</to>
+      <from>SelectValues: cfg_path_len: remove</from>
+      <to>Calculator: cfg_name_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_tag_len</from>
-      <to>字段选择：cfg_tag_len: remove</to>
+      <from>FilterRows: cfg_tag_len</from>
+      <to>SelectValues: cfg_tag_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：cfg_tag_len: remove</from>
-      <to>空操作 (什么也不做)：cfg_tag: done</to>
+      <from>SelectValues: cfg_tag_len: remove</from>
+      <to>Dummy: cfg_tag: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>检查文件是否存在：transformation_exist</from>
-      <to>过滤记录：transformation_exist</to>
+      <from>FileExists: transformation_exist</from>
+      <to>FilterRows: transformation_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：transformation_exist</from>
-      <to>空操作 (什么也不做)：transformation: not exist</to>
+      <from>FilterRows: transformation_exist</from>
+      <to>Dummy: transformation: not exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：transformation_exist</from>
-      <to>空操作 (什么也不做)：transformation: exist</to>
+      <from>FilterRows: transformation_exist</from>
+      <to>Dummy: transformation: exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>设置变量：Config.[Base]</from>
-      <to>写日志：Config.[Base]</to>
+      <from>SetVariable: Config.[Base]</from>
+      <to>WriteToLog: Config.[Base]</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：Repositorie: Directory: cfg_circuit</from>
-      <to>空操作 (什么也不做)：all cfg_circuit</to>
+      <from>Constant: Repositorie: Directory: cfg_circuit</from>
+      <to>Dummy: all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：KettleHome: Directory: cfg_circuit</from>
-      <to>空操作 (什么也不做)：all cfg_circuit</to>
+      <from>Constant: KettleHome: Directory: cfg_circuit</from>
+      <to>Dummy: all cfg_circuit</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_circuit: Directory</from>
-      <to>字符串替换：cfg_path: extra delimiter</to>
+      <from>FilterRows: cfg_circuit: Directory</from>
+      <to>ReplaceString: cfg_path: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：cfg_path_exist: remove</from>
-      <to>增加常量：cfg: delimiter</to>
+      <from>SelectValues: cfg_path_exist: remove</from>
+      <to>Constant: cfg: delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：cfg: delimiter</from>
-      <to>计算器：cfg_location</to>
+      <from>Constant: cfg: delimiter</from>
+      <to>Calculator: cfg_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：transformation: exist</from>
-      <to>字段选择：replace cfg_transformation</to>
+      <from>Dummy: transformation: exist</from>
+      <to>SelectValues: replace cfg_transformation</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：replace cfg_transformation</from>
-      <to>排序记录：cfg_order</to>
+      <from>SelectValues: replace cfg_transformation</from>
+      <to>SortRows: cfg_order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：first</from>
-      <to>中止：cfg_transformation: first not exist</to>
+      <from>FilterRows: first</from>
+      <to>Abort: cfg_transformation: first not exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_profile: done</from>
-      <to>增加常量：transformation: delimiter</to>
+      <from>Dummy: cfg_profile: done</from>
+      <to>Constant: transformation: delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：transformation: delimiter</from>
-      <to>计算器：transformation_location</to>
+      <from>Constant: transformation: delimiter</from>
+      <to>Calculator: transformation_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>在内存中分组：first</from>
-      <to>过滤记录：first</to>
+      <from>MemoryGroupBy: first</from>
+      <to>FilterRows: first</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：first</from>
-      <to>设置变量：Config.[Base]</to>
+      <from>FilterRows: first</from>
+      <to>SetVariable: Config.[Base]</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：transformation_location</from>
-      <to>检查文件是否存在：transformation_exist</to>
+      <from>Calculator: transformation_location</from>
+      <to>FileExists: transformation_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_profile: ok len</from>
-      <to>字段选择：cfg_profile_len: remove</to>
+      <from>Dummy: cfg_profile: ok len</from>
+      <to>SelectValues: cfg_profile_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_profile_len</from>
-      <to>过滤记录：cfg_profile_len</to>
+      <from>Calculator: cfg_profile_len</from>
+      <to>FilterRows: cfg_profile_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：cfg_name_len: remove</from>
-      <to>计算器：cfg_profile_len</to>
+      <from>SelectValues: cfg_name_len: remove</from>
+      <to>Calculator: cfg_profile_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：cfg_profile: no len</from>
-      <to>获取变量：Profile.Use</to>
+      <from>Dummy: cfg_profile: no len</from>
+      <to>GetVariable: Profile.Use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：replace profile</from>
-      <to>字段选择：cfg_profile_len: remove</to>
+      <from>SelectValues: replace profile</from>
+      <to>SelectValues: cfg_profile_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：cfg_profile_len: remove</from>
-      <to>计算器：cfg_tag_len</to>
+      <from>SelectValues: cfg_profile_len: remove</from>
+      <to>Calculator: cfg_tag_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_profile_len</from>
-      <to>空操作 (什么也不做)：cfg_profile: ok len</to>
+      <from>FilterRows: cfg_profile_len</from>
+      <to>Dummy: cfg_profile: ok len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_profile_len</from>
-      <to>空操作 (什么也不做)：cfg_profile: no len</to>
+      <from>FilterRows: cfg_profile_len</from>
+      <to>Dummy: cfg_profile: no len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_location</from>
-      <to>字符串替换：cfg_location: extra delimiter</to>
+      <from>Calculator: cfg_location</from>
+      <to>ReplaceString: cfg_location: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：cfg_profile_default_len</from>
-      <to>过滤记录：cfg_profile_default_len</to>
+      <from>Calculator: cfg_profile_default_len</from>
+      <to>FilterRows: cfg_profile_default_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_profile_default_len</from>
-      <to>将字段值设置为常量：cfg_profile_default</to>
+      <from>FilterRows: cfg_profile_default_len</from>
+      <to>SetValueConstant: cfg_profile_default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：Profile.Use</from>
-      <to>计算器：cfg_profile_default_len</to>
+      <from>GetVariable: Profile.Use</from>
+      <to>Calculator: cfg_profile_default_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>将字段值设置为常量：cfg_profile_default</from>
-      <to>字段选择：replace profile</to>
+      <from>SetValueConstant: cfg_profile_default</from>
+      <to>SelectValues: replace profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：cfg_profile_default_len</from>
-      <to>字段选择：replace profile</to>
+      <from>FilterRows: cfg_profile_default_len</from>
+      <to>SelectValues: replace profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：all cfg_circuit</from>
-      <to>写日志：Cfg_Path</to>
+      <from>Dummy: all cfg_circuit</from>
+      <to>WriteToLog: Cfg_Path</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>中止：cfg_transformation: first not exist</name>
+    <name>Abort: cfg_transformation: first not exist</name>
     <type>Abort</type>
     <description />
     <distribute>Y</distribute>
@@ -1232,7 +1236,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>写日志：Cfg_Path</name>
+    <name>WriteToLog: Cfg_Path</name>
     <type>WriteToLog</type>
     <description />
     <distribute>Y</distribute>
@@ -1284,7 +1288,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>写日志：Config.[Base]</name>
+    <name>WriteToLog: Config.[Base]</name>
     <type>WriteToLog</type>
     <description />
     <distribute>Y</distribute>
@@ -1333,7 +1337,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>列拆分为多行：cfg_type_list</name>
+    <name>SplitFieldToRows3: cfg_type_list</name>
     <type>SplitFieldToRows3</type>
     <description />
     <distribute>Y</distribute>
@@ -1364,7 +1368,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>在内存中分组：first</name>
+    <name>MemoryGroupBy: first</name>
     <type>MemoryGroupBy</type>
     <description />
     <distribute>Y</distribute>
@@ -1432,7 +1436,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：Customize: cfg_circuit</name>
+    <name>Constant: Customize: cfg_circuit</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1482,7 +1486,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：KettleHome: Directory: cfg_circuit</name>
+    <name>Constant: KettleHome: Directory: cfg_circuit</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1532,7 +1536,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：Repositorie: Directory: cfg_circuit</name>
+    <name>Constant: Repositorie: Directory: cfg_circuit</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1582,7 +1586,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：cfg: delimiter</name>
+    <name>Constant: cfg: delimiter</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1632,7 +1636,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：cfg_group</name>
+    <name>Constant: cfg_group</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1670,7 +1674,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：cfg_type_list</name>
+    <name>Constant: cfg_type_list</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1708,7 +1712,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>增加常量：transformation: delimiter</name>
+    <name>Constant: transformation: delimiter</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1794,7 +1798,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：cfg_file&amp;cfg_location remove</name>
+    <name>SelectValues: cfg_file&amp;cfg_location remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1836,7 +1840,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：cfg_name_len: remove</name>
+    <name>SelectValues: cfg_name_len: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1866,7 +1870,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：cfg_path_exist: remove</name>
+    <name>SelectValues: cfg_path_exist: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1896,7 +1900,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：cfg_path_len: remove</name>
+    <name>SelectValues: cfg_path_len: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1926,7 +1930,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：cfg_profile_len: remove</name>
+    <name>SelectValues: cfg_profile_len: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1956,7 +1960,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：cfg_tag_len: remove</name>
+    <name>SelectValues: cfg_tag_len: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1986,7 +1990,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：replace cfg_transformation</name>
+    <name>SelectValues: replace cfg_transformation</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2035,7 +2039,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：replace order</name>
+    <name>SelectValues: replace order</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2084,7 +2088,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：replace profile</name>
+    <name>SelectValues: replace profile</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2136,7 +2140,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：replace tag</name>
+    <name>SelectValues: replace tag</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2185,7 +2189,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字段选择：replace type&amp;order</name>
+    <name>SelectValues: replace type&amp;order</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2234,7 +2238,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字符串替换：cfg_location: extra delimiter</name>
+    <name>ReplaceString: cfg_location: extra delimiter</name>
     <type>ReplaceString</type>
     <description />
     <distribute>Y</distribute>
@@ -2271,7 +2275,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>字符串替换：cfg_path: extra delimiter</name>
+    <name>ReplaceString: cfg_path: extra delimiter</name>
     <type>ReplaceString</type>
     <description />
     <distribute>Y</distribute>
@@ -2308,7 +2312,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>将字段值设置为常量：cfg_name</name>
+    <name>SetValueConstant: cfg_name</name>
     <type>SetValueConstant</type>
     <description />
     <distribute>Y</distribute>
@@ -2341,7 +2345,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>将字段值设置为常量：cfg_profile_default</name>
+    <name>SetValueConstant: cfg_profile_default</name>
     <type>SetValueConstant</type>
     <description />
     <distribute>Y</distribute>
@@ -2374,7 +2378,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>排序记录：cfg_order</name>
+    <name>SortRows: cfg_order</name>
     <type>SortRows</type>
     <description />
     <distribute>Y</distribute>
@@ -2415,7 +2419,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>检查文件是否存在：cfg_location_exist</name>
+    <name>FileExists: cfg_location_exist</name>
     <type>FileExists</type>
     <description />
     <distribute>Y</distribute>
@@ -2444,7 +2448,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>检查文件是否存在：cfg_path_exist</name>
+    <name>FileExists: cfg_path_exist</name>
     <type>FileExists</type>
     <description />
     <distribute>Y</distribute>
@@ -2473,7 +2477,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>检查文件是否存在：transformation_exist</name>
+    <name>FileExists: transformation_exist</name>
     <type>FileExists</type>
     <description />
     <distribute>Y</distribute>
@@ -2502,7 +2506,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：all cfg_circuit</name>
+    <name>Dummy: all cfg_circuit</name>
     <type>Dummy</type>
     <description />
     <distribute>N</distribute>
@@ -2526,7 +2530,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cant check exist</name>
+    <name>Dummy: cant check exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2550,7 +2554,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_circuit: not Directory</name>
+    <name>Dummy: cfg_circuit: not Directory</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2574,7 +2578,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_location: exist</name>
+    <name>Dummy: cfg_location: exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2598,7 +2602,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_location: not_exist</name>
+    <name>Dummy: cfg_location: not_exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2622,7 +2626,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_name: no len</name>
+    <name>Dummy: cfg_name: no len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2646,7 +2650,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_name: ok len</name>
+    <name>Dummy: cfg_name: ok len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2670,7 +2674,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_path: exist</name>
+    <name>Dummy: cfg_path: exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2694,7 +2698,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_path: not_exist</name>
+    <name>Dummy: cfg_path: not_exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2718,7 +2722,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_profile: done</name>
+    <name>Dummy: cfg_profile: done</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2742,7 +2746,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_profile: no len</name>
+    <name>Dummy: cfg_profile: no len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2766,7 +2770,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_profile: ok len</name>
+    <name>Dummy: cfg_profile: ok len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2790,7 +2794,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_tag: done</name>
+    <name>Dummy: cfg_tag: done</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2814,7 +2818,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_tag: no_len</name>
+    <name>Dummy: cfg_tag: no_len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2838,7 +2842,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_type done</name>
+    <name>Dummy: cfg_type done</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2862,7 +2866,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_type: no_len</name>
+    <name>Dummy: cfg_type: no_len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2886,7 +2890,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：cfg_type: ok_len</name>
+    <name>Dummy: cfg_type: ok_len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2910,7 +2914,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：no_len</name>
+    <name>Dummy: no_len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2934,7 +2938,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：ok_len</name>
+    <name>Dummy: ok_len</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2958,7 +2962,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：transformation: exist</name>
+    <name>Dummy: transformation: exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2982,7 +2986,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：transformation: not exist</name>
+    <name>Dummy: transformation: not exist</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -3006,7 +3010,45 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>获取变量：KettleHomeDirectory: cfg_path</name>
+    <name>GetVariable: Internal.Repository.Name</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>cfg_tag_default</name>
+        <variable>${Internal.Repository.Name}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>2752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: KettleHomeDirectory: cfg_path</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -3092,7 +3134,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>获取变量：ParameterPath: cfg_path</name>
+    <name>GetVariable: ParameterPath: cfg_path</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -3178,7 +3220,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>获取变量：Profile.Use</name>
+    <name>GetVariable: Profile.Use</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -3216,7 +3258,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>获取变量：RepositorieDirectory: cfg_path</name>
+    <name>GetVariable: RepositorieDirectory: cfg_path</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -3302,45 +3344,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>获取变量：Internal.Repository.Name</name>
-    <type>GetVariable</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>cfg_tag_default</name>
-        <variable>${Internal.Repository.Name}</variable>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>2752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>计算器：cfg_location</name>
+    <name>Calculator: cfg_location</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3394,7 +3398,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_name_len</name>
+    <name>Calculator: cfg_name_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3433,7 +3437,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_order</name>
+    <name>Calculator: cfg_order</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3472,7 +3476,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_path_len</name>
+    <name>Calculator: cfg_path_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3511,7 +3515,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_profile_default_len</name>
+    <name>Calculator: cfg_profile_default_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3550,7 +3554,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_profile_len</name>
+    <name>Calculator: cfg_profile_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3589,7 +3593,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_tag_len</name>
+    <name>Calculator: cfg_tag_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3628,7 +3632,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：cfg_type_len</name>
+    <name>Calculator: cfg_type_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3667,7 +3671,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>计算器：transformation_location</name>
+    <name>Calculator: transformation_location</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -3751,7 +3755,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>设置变量：Config.[Base]</name>
+    <name>SetVariable: Config.[Base]</name>
     <type>SetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -3814,7 +3818,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_circuit: Directory</name>
+    <name>FilterRows: cfg_circuit: Directory</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3824,8 +3828,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字符串替换：cfg_path: extra delimiter</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_circuit: not Directory</send_false_to>
+    <send_true_to>ReplaceString: cfg_path: extra delimiter</send_true_to>
+    <send_false_to>Dummy: cfg_circuit: not Directory</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3878,7 +3882,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_location_exist</name>
+    <name>FilterRows: cfg_location_exist</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3888,8 +3892,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：cfg_location: exist</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_location: not_exist</send_false_to>
+    <send_true_to>Dummy: cfg_location: exist</send_true_to>
+    <send_false_to>Dummy: cfg_location: not_exist</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3921,7 +3925,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_name_len</name>
+    <name>FilterRows: cfg_name_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3931,8 +3935,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：cfg_name: ok len</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_name: no len</send_false_to>
+    <send_true_to>Dummy: cfg_name: ok len</send_true_to>
+    <send_false_to>Dummy: cfg_name: no len</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3964,7 +3968,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_path_exist</name>
+    <name>FilterRows: cfg_path_exist</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3974,8 +3978,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：cfg_path: exist</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_path: not_exist</send_false_to>
+    <send_true_to>Dummy: cfg_path: exist</send_true_to>
+    <send_false_to>Dummy: cfg_path: not_exist</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4007,7 +4011,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_path_len</name>
+    <name>FilterRows: cfg_path_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4017,8 +4021,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：ok_len</send_true_to>
-    <send_false_to>空操作 (什么也不做)：no_len</send_false_to>
+    <send_true_to>Dummy: ok_len</send_true_to>
+    <send_false_to>Dummy: no_len</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4050,7 +4054,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_profile_default_len</name>
+    <name>FilterRows: cfg_profile_default_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4060,8 +4064,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：replace profile</send_true_to>
-    <send_false_to>将字段值设置为常量：cfg_profile_default</send_false_to>
+    <send_true_to>SelectValues: replace profile</send_true_to>
+    <send_false_to>SetValueConstant: cfg_profile_default</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4114,7 +4118,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_profile_len</name>
+    <name>FilterRows: cfg_profile_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4124,8 +4128,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：cfg_profile: ok len</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_profile: no len</send_false_to>
+    <send_true_to>Dummy: cfg_profile: ok len</send_true_to>
+    <send_false_to>Dummy: cfg_profile: no len</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4157,7 +4161,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_tag_len</name>
+    <name>FilterRows: cfg_tag_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4167,8 +4171,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：cfg_tag_len: remove</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_tag: no_len</send_false_to>
+    <send_true_to>SelectValues: cfg_tag_len: remove</send_true_to>
+    <send_false_to>Dummy: cfg_tag: no_len</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4200,7 +4204,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：cfg_type_len</name>
+    <name>FilterRows: cfg_type_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4210,8 +4214,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：cfg_type: ok_len</send_true_to>
-    <send_false_to>空操作 (什么也不做)：cfg_type: no_len</send_false_to>
+    <send_true_to>Dummy: cfg_type: ok_len</send_true_to>
+    <send_false_to>Dummy: cfg_type: no_len</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4243,7 +4247,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：first</name>
+    <name>FilterRows: first</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4253,8 +4257,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>设置变量：Config.[Base]</send_true_to>
-    <send_false_to>中止：cfg_transformation: first not exist</send_false_to>
+    <send_true_to>SetVariable: Config.[Base]</send_true_to>
+    <send_false_to>Abort: cfg_transformation: first not exist</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -4291,7 +4295,7 @@ Config.Type</note>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：transformation_exist</name>
+    <name>FilterRows: transformation_exist</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -4301,8 +4305,8 @@ Config.Type</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：transformation: exist</send_true_to>
-    <send_false_to>空操作 (什么也不做)：transformation: not exist</send_false_to>
+    <send_true_to>Dummy: transformation: exist</send_true_to>
+    <send_false_to>Dummy: transformation: not exist</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>

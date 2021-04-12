@@ -8,42 +8,42 @@
   <created_user>-</created_user>
   <created_date>2015/03/16 14:47:11.476</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2018/10/19 13:54:19.217</modified_date>
+  <modified_date>2021/04/12 12:34:06.905</modified_date>
   <parameters>
     <parameter>
       <name>Parameters.Cfg.Name</name>
       <default_value />
-      <description>配置文件名称</description>
+      <description>config name</description>
     </parameter>
     <parameter>
       <name>Parameters.Cfg.Path</name>
       <default_value />
-      <description>配置文件路径</description>
+      <description>config path</description>
     </parameter>
     <parameter>
       <name>Parameters.Cfg.Profile</name>
       <default_value />
-      <description>配置Profile</description>
+      <description>config profile</description>
     </parameter>
     <parameter>
       <name>Parameters.Cfg.Tag</name>
       <default_value />
-      <description>配置文件标签</description>
+      <description>config tag</description>
     </parameter>
     <parameter>
       <name>Parameters.Cfg.Type</name>
       <default_value />
-      <description>配置文件类型</description>
+      <description>config type</description>
     </parameter>
     <parameter>
       <name>Parameters.Kettle.Home.Path</name>
       <default_value>${user.home}</default_value>
-      <description>配置文件目录(低优先级默认)</description>
+      <description>kettle home (low priority default)</description>
     </parameter>
     <parameter>
       <name>Parameters.Repository.Name</name>
       <default_value>default</default_value>
-      <description>资源库名称(低优先级默认)</description>
+      <description>repository name(low priority default)</description>
     </parameter>
   </parameters>
   <slaveservers>
@@ -342,7 +342,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>成功</name>
+      <name>SUCCESS</name>
       <description />
       <type>SUCCESS</type>
       <parallel>N</parallel>
@@ -352,7 +352,7 @@
       <yloc>480</yloc>
     </entry>
     <entry>
-      <name>中止作业</name>
+      <name>ABORT</name>
       <description />
       <type>ABORT</type>
       <message />
@@ -499,7 +499,7 @@
   <hops>
     <hop>
       <from>GetConfigBase: Config.Transformation</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -517,7 +517,7 @@
     </hop>
     <hop>
       <from>ReadConfig: Config.Transformation</from>
-      <to>成功</to>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -526,7 +526,7 @@
     </hop>
     <hop>
       <from>ReadConfig: Config.Transformation</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -554,12 +554,12 @@
   </hops>
   <notepads>
     <notepad>
-      <note>读取配置</note>
+      <note>read config</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>58</width>
+      <width>75</width>
       <heigth>26</heigth>
-      <fontname>微软雅黑</fontname>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -575,30 +575,31 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Parameters.Cfg.Path		配置文件路径
-Parameters.Cfg.Name		配置文件名称
-Parameters.Cfg.Profile		配置文件Profile
-Parameters.Cfg.Tag		配置文件标签
-Parameters.Cfg.Type		配置文件类型
-Parameters.Kettle.Home.Path	配置文件目录(默认)
-Parameters.Repository.Name	资源库名称(默认)
+      <note>params
 
-会生成以下变量
-Config.Path		配置文件全路径
-Config.Name		配置文件全名称
-Config.Tag		配置文件分组标签（仅在使用XML或INI时有效）
-Config.Type		配置文件类型
-Config.Transformation	配置文件读取逻辑转换
-Config.Cfg.{变量}        	配置文件具体配置（默认命名空间）
+Parameters.Cfg.Path                      Must
+Parameters.Cfg.Name                     Must
+Parameters.Cfg.Profile                    Must
+Parameters.Cfg.Tag                        Must
+Parameters.Cfg.Type                      Must
+Parameters.Kettle.Home.Path        Must
+Parameters.Repository.Name        Must
 
-关于增加变量：
-直接在配置文件中增加即可</note>
+====================
+output variable
+
+Config.Path
+Config.Name
+Config.Tag
+Config.Type
+Config.Transformation
+Config.Cfg.{*}
+</note>
       <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>414</width>
-      <heigth>316</heigth>
-      <fontname>微软雅黑</fontname>
+      <width>237</width>
+      <heigth>320</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>

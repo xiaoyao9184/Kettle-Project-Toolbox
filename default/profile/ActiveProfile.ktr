@@ -1,52 +1,52 @@
 <transformation>
   <info>
     <name>ActiveProfile</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;profile</directory>
+    <directory>/profile</directory>
     <parameters>
       <parameter>
         <name>Parameters.Profile.Home.Path</name>
-        <default_value/>
-        <description>Profile&#x76ee;&#x6807;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>Profile目标路径</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Meta.Location</name>
-        <default_value/>
-        <description>ProfileMeta&#x6587;&#x4ef6;&#x4f4d;&#x7f6e;</description>
+        <default_value />
+        <description>ProfileMeta文件位置</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Meta.Path</name>
-        <default_value/>
-        <description>ProfileMeta&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>ProfileMeta路径</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Name</name>
         <default_value>dev</default_value>
-        <description>&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;</description>
+        <description>激活的Profile名称</description>
       </parameter>
       <parameter>
         <name>Position.Ktr.MappingPathRemove</name>
         <default_value>MappingPathRemove</default_value>
-        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+        <description>依赖转换相对位置</description>
       </parameter>
       <parameter>
         <name>Position.Path.Variable</name>
-        <default_value>&#x2f;variable</default_value>
-        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+        <default_value>/variable</default_value>
+        <description>依赖转换相对位置</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -71,37 +71,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -155,11 +155,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -237,10 +237,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -303,10 +303,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -379,10 +379,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -431,9 +431,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -444,7 +444,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -457,10 +457,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2017&#x2f;08&#x2f;29 15&#x3a;35&#x3a;13.640</created_date>
+    <created_date>2017/08/29 15:35:13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;11&#x2f;06 16&#x3a;37&#x3a;08.631</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2021/04/12 11:24:08.485</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -654,10 +654,10 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x6fc0;&#x6d3b;Profile</note>
+      <note>activate Profile</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>71</width>
+      <width>95</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -675,11 +675,21 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xa;Parameters.Profile.Meta.Location	ProfileMeta&#x6587;&#x4ef6;&#x4f4d;&#x7f6e;&#xa;Parameters.Profile.Meta.Path		ProfileMeta&#x6587;&#x4ef6;&#x8def;&#x5f84;&#xa;Parameters.Profile.Name		&#x6fc0;&#x6d3b;&#x7684;Profile&#x540d;&#x79f0;&#x28;&#x53c2;&#x6570;&#x29;&#xa;Parameters.Profile.Home.Path		Profile&#x76ee;&#x6807;&#x8def;&#x5f84;&#x28;&#x5305;&#x542b;.profile&#x76ee;&#x5f55;&#x29;&#xa;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xa;&#x5c06;&#x6839;&#x636e;ProfileName&#x4ece;Profile&#x6587;&#x4ef6;&#x5939;&#x4e2d;&#x63d0;&#x53d6;Profile&#x6587;&#x4ef6;&#xff0c;&#xa;&#x7ed3;&#x5408;ProfileMeta&#x4e2d;&#x7684;Profile&#x6587;&#x4ef6;&#x5217;&#x8868;&#xff0c;&#x9488;&#x5bf9;&#x9879;&#x76ee;&#x6587;&#x4ef6;&#x5939;&#xff0c;&#xa;&#x505a;&#x521b;&#x5efa;&#x3001;&#x66ff;&#x6362;&#x3001;&#x5220;&#x9664;&#x64cd;&#x4f5c;</note>
+      <note>params
+
+Parameters.Profile.Meta.Location    Must
+Parameters.Profile.Meta.Path          Must
+Parameters.Profile.Name                 Must
+Parameters.Profile.Home.Path         Must
+
+====================
+The Profile file will be extracted from the Profile folder according to the ProfileName,
+Combined with the list of Profile files in ProfileMeta, for the project folder,
+Do create, replace, and delete operations</note>
       <xloc>384</xloc>
       <yloc>0</yloc>
-      <width>433</width>
-      <heigth>171</heigth>
+      <width>494</width>
+      <heigth>181</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -717,7 +727,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>source&#x26;target</note>
+      <note>source&amp;target</note>
       <xloc>288</xloc>
       <yloc>3024</yloc>
       <width>95</width>
@@ -759,7 +769,8 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>PathUniformSeparator&#xa;Maybe use Mapping</note>
+      <note>PathUniformSeparator
+Maybe use Mapping</note>
       <xloc>416</xloc>
       <yloc>1392</yloc>
       <width>140</width>
@@ -782,342 +793,292 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_location&#x26;target_location</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;source_exist</to>
+      <from>Calculator: source_location: target_location</from>
+      <to>FileExists: source_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;source_exist</from>
-      <to>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;target_exist</to>
+      <from>FileExists: source_exist</from>
+      <to>FileExists: target_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;target_exist</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</to>
+      <from>FileExists: target_exist</from>
+      <to>FilterRows: target_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</to>
+      <from>FilterRows: target_exist</from>
+      <to>Calculator: target_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</to>
+      <from>FilterRows: target_exist</from>
+      <to>Constant: target_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</to>
+      <from>FilterRows: source_exist</from>
+      <to>Calculator: source_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</to>
+      <from>FilterRows: source_exist</from>
+      <to>Constant: source_hash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</to>
+      <from>FilterRows: only source exist</from>
+      <to>FilterRows: only target exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</from>
-      <to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</to>
+      <from>FilterRows: only source exist</from>
+      <to>ProcessFiles: create</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</from>
-      <to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</to>
+      <from>FilterRows: only target exist</from>
+      <to>ProcessFiles: delete</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</to>
+      <from>Calculator: target_hash</from>
+      <to>Dummy: target: hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</to>
+      <from>Calculator: source_hash</from>
+      <to>Dummy: source: hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</to>
+      <from>Constant: source_hash</from>
+      <to>Dummy: source: hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</to>
+      <from>Constant: target_hash</from>
+      <to>Dummy: target: hash done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</to>
+      <from>Dummy: target: hash done</from>
+      <to>FilterRows: source_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</to>
+      <from>Dummy: source: hash done</from>
+      <to>FilterRows: source target same</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</to>
+      <from>FilterRows: source target same</from>
+      <to>Dummy: nothing</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; delete </to>
+      <from>ProcessFiles: delete</from>
+      <to>WriteToLog: target: delete </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; create</to>
+      <from>ProcessFiles: create</from>
+      <to>WriteToLog: target: create</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; nothing</to>
+      <from>Dummy: nothing</from>
+      <to>WriteToLog: target: nothing</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; replace</to>
+      <from>ProcessFiles: replace</from>
+      <to>WriteToLog: target: replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</from>
-      <to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</to>
+      <from>FilterRows: source target exist</from>
+      <to>ProcessFiles: replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_path</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_list_len</to>
+      <from>GetVariable: profile_meta_path</from>
+      <to>Calculator: profile_name_list_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_list_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</to>
+      <from>Calculator: profile_name_list_len</from>
+      <to>FilterRows: profile_name_list_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name_list&#x3a; not set</to>
+      <from>FilterRows: profile_name_list_len</from>
+      <to>Dummy: profile_name_list: not set</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</to>
+      <from>FilterRows: profile_name_list_len</from>
+      <to>SelectValues: profile_name_list_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;file&#x26;order</from>
-      <to>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last profile file</to>
+      <from>SortRows: file: order</from>
+      <to>Unique: last profile file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_location</from>
-      <to>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile_file&#x3a; default</to>
+      <from>GetVariable: profile_meta_location</from>
+      <to>TextFileInput:  profile_file: default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile_file&#x3a; default</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_meta_location&#x3a; remove</to>
+      <from>TextFileInput:  profile_file: default</from>
+      <to>SelectValues: profile_meta_location: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</from>
-      <to>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;profile_name</to>
+      <from>SelectValues: profile_name_list_len: remove</from>
+      <to>SplitFieldToRows3: profile_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path_delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_path</to>
+      <from>Constant: profile_path_delimiter</from>
+      <to>Calculator: profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_meta_location&#x3a; remove</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path</to>
+      <from>SelectValues: profile_meta_location: remove</from>
+      <to>Constant: profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; remove</from>
-      <to>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;file&#x26;order</to>
+      <from>SelectValues: profile_file_location: remove</from>
+      <to>SortRows: file: order</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last profile file</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</to>
+      <from>Unique: last profile file</from>
+      <to>SelectValues: profile_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;profile_name</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list&#x3a; remove</to>
+      <from>SplitFieldToRows3: profile_name</from>
+      <to>SelectValues: profile_name_list: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list&#x3a; remove</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path_delimiter</to>
+      <from>SelectValues: profile_name_list: remove</from>
+      <to>Constant: profile_path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path_delimiter&#x3a; remove</to>
+      <from>Calculator: profile_path</from>
+      <to>SelectValues: profile_path_delimiter: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</from>
-      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</to>
+      <from>SelectValues: profile_file</from>
+      <to>MergeRows: profile_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</from>
-      <to>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</to>
+      <from>Dummy: profile_file: default</from>
+      <to>MergeRows: profile_file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</to>
+      <from>Constant: profile_path</from>
+      <to>Dummy: profile_file: default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_file_location</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; replace</to>
+      <from>GetFileNames: profile_file_location</from>
+      <to>SelectValues: profile_file_location: replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</from>
-      <to>&#x4e2d;&#x6b62;&#xff1a;never</to>
+      <from>FilterRows: only target exist</from>
+      <to>Abort: never</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</to>
+      <from>FilterRows: source target exist</from>
+      <to>FilterRows: only source exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</to>
+      <from>FilterRows: source target same</from>
+      <to>FilterRows: source target exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_location&#x26;target_location</to>
+      <from>Constant: path_delimiter</from>
+      <to>Calculator: source_location: target_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1b;home_path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</to>
+      <from>GetVariable；home_path</from>
+      <to>Constant: path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</from>
-      <to>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1b;home_path</to>
+      <from>MergeRows: profile_file</from>
+      <to>GetVariable；home_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; replace</from>
-      <to>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</to>
+      <from>SelectValues: profile_file_location: replace</from>
+      <to>Simple Mapping (sub-transformation): MappingPathRemove: patch_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; remove</to>
+      <from>Simple Mapping (sub-transformation): MappingPathRemove: patch_path</from>
+      <to>SelectValues: profile_file_location: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</from>
-      <to>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_file_location</to>
+      <from>Constant: profile_file_regex</from>
+      <to>GetFileNames: profile_file_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path_delimiter&#x3a; remove</from>
-      <to>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_path</to>
+      <from>SelectValues: profile_path_delimiter: remove</from>
+      <to>GetFileNames: profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_path</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path&#x3a; replace</to>
+      <from>GetFileNames: profile_path</from>
+      <to>SelectValues: profile_path: replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path&#x3a; replace</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_path&#x3a; extra delimiter</to>
+      <from>SelectValues: profile_path: replace</from>
+      <to>ReplaceString: profile_path: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_path&#x3a; extra delimiter</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</to>
+      <from>ReplaceString: profile_path: extra delimiter</from>
+      <to>Constant: profile_file_regex</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Simple Mapping &#x28;sub-transformation&#x29;&#x3a; MappingPathRemove&#x3a; patch_path</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>&#x24;&#x7b;Position.Ktr.MappingPathRemove&#x7d;</trans_name>
-    <filename/>
-    <directory_path>&#x24;&#x7b;Position.Path.Variable&#x7d;</directory_path>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-       <connector><parent>profile_file_location</parent><child>path</child></connector>
-       <connector><parent>profile_path</parent><child>remove</child></connector>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-       <connector><parent>path_removed</parent><child>profile_file</child></connector>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2208</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x4e2d;&#x6b62;&#xff1a;never</name>
+    <name>Abort: never</name>
     <type>Abort</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <row_threshold>0</row_threshold>
-      <message>never</message>
-      <always_log_rows>Y</always_log_rows>
-    <cluster_schema/>
+    <row_threshold>0</row_threshold>
+    <message>never</message>
+    <always_log_rows>Y</always_log_rows>
+    <abort_with_error>Y</abort_with_error>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1129,167 +1090,34 @@
       <yloc>4608</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; create</name>
-    <type>WriteToLog</type>
-    <description/>
+    <name>Calculator: profile_name_list_len</name>
+    <type>Calculator</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>created</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4352</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; delete </name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>deleted</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4480</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; nothing</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>nothing</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4096</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;target&#x3a; replace</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>replaced</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4224</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5217;&#x62c6;&#x5206;&#x4e3a;&#x591a;&#x884c;&#xff1a;profile_name</name>
-    <type>SplitFieldToRows3</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-   <splitfield>profile_name_list</splitfield>
-   <delimiter>,</delimiter>
-   <newfield>profile_name</newfield>
-   <rownum>Y</rownum>
-   <rownum_field>profile_order</rownum_field>
-   <resetrownumber>Y</resetrownumber>
-   <delimiter_is_regex>N</delimiter_is_regex>
-    <cluster_schema/>
+    <calculation>
+      <field_name>profile_name_list_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>profile_name_list</field_a>
+      <field_b />
+      <field_c />
+      <value_type>None</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1298,29 +1126,37 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>848</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x53bb;&#x9664;&#x91cd;&#x590d;&#x8bb0;&#x5f55;&#xff1a;last profile file</name>
-    <type>Unique</type>
-    <description/>
+    <name>Calculator: profile_path</name>
+    <type>Calculator</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <count_rows>Y</count_rows>
-      <count_field>file_number</count_field>
-      <reject_duplicate_row>N</reject_duplicate_row>
-      <error_description/>
-    <fields>      <field>        <name>profile_file</name>
-        <case_insensitive>N</case_insensitive>
-        </field>      </fields>    <cluster_schema/>
+    <calculation>
+      <field_name>profile_path</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>profile_meta_path</field_a>
+      <field_b>profile_path_delimiter</field_b>
+      <field_c>profile_name</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1329,34 +1165,91 @@
     </remotesteps>
     <GUI>
       <xloc>384</xloc>
-      <yloc>2576</yloc>
+      <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5408;&#x5e76;&#x8bb0;&#x5f55;&#xff1a;profile_file</name>
-    <type>MergeRows</type>
-    <description/>
+    <name>Calculator: source_hash</name>
+    <type>Calculator</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <keys>
-      <key>profile_file</key>
-    </keys>
-    <values>
-      <value>profile_file</value>
-    </values>
-<flag_field>profile_file_flag</flag_field>
-<reference>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</reference>
-<compare>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</compare>
-    <compare>
-    </compare>
-    <cluster_schema/>
+    <calculation>
+      <field_name>source_hash</field_name>
+      <calc_type>SHA1</calc_type>
+      <field_a>source_location</field_a>
+      <field_b />
+      <field_c />
+      <value_type>None</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>3824</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: source_location: target_location</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>source_location</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>profile_path</field_a>
+      <field_b>path_delimiter</field_b>
+      <field_c>profile_file</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>target_location</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>home_path</field_a>
+      <field_b>path_delimiter</field_b>
+      <field_c>profile_file</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1365,37 +1258,75 @@
     </remotesteps>
     <GUI>
       <xloc>256</xloc>
-      <yloc>2816</yloc>
+      <yloc>3216</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;path_delimiter</name>
-    <type>Constant</type>
-    <description/>
+    <name>Calculator: target_hash</name>
+    <type>Calculator</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>target_hash</field_name>
+      <calc_type>SHA1</calc_type>
+      <field_a>target_location</field_a>
+      <field_b />
+      <field_c />
+      <value_type>None</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>3584</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: path_delimiter</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>path_delimiter</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1407,34 +1338,33 @@
       <yloc>3104</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_file_regex</name>
+    <name>Constant: profile_file_regex</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>profile_file_regex</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.&#x2a;</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>.*</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1446,34 +1376,33 @@
       <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path</name>
+    <name>Constant: profile_path</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>profile_path</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>Y</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1485,34 +1414,33 @@
       <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;profile_path_delimiter</name>
+    <name>Constant: profile_path_delimiter</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>profile_path_delimiter</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1524,34 +1452,33 @@
       <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</name>
+    <name>Constant: source_hash</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>source_hash</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>-</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1563,34 +1490,33 @@
       <yloc>3824</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</name>
+    <name>Constant: target_hash</name>
     <type>Constant</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <name>target_hash</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <nullif>-</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1602,18 +1528,880 @@
       <yloc>3584</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</name>
-    <type>ProcessFiles</type>
-    <description/>
+    <name>Dummy: nothing</name>
+    <type>Dummy</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>4096</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: profile_file: default</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>2688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: profile_name_list: not set</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: source: hash done</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3952</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: target: hash done</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3712</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FileExists: source_exist</name>
+    <type>FileExists</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filenamefield>source_location</filenamefield>
+    <resultfieldname>source_exist</resultfieldname>
+    <includefiletype>N</includefiletype>
+    <filetypefieldname />
+    <addresultfilenames>N</addresultfilenames>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3360</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FileExists: target_exist</name>
+    <type>FileExists</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filenamefield>target_location</filenamefield>
+    <resultfieldname>target_exist</resultfieldname>
+    <includefiletype>N</includefiletype>
+    <filetypefieldname />
+    <addresultfilenames>N</addresultfilenames>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3472</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: only source exist</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>ProcessFiles: create</send_true_to>
+    <send_false_to>FilterRows: only target exist</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>source_exist</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Boolean</type>
+              <text>Y</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>target_exist</leftvalue>
+            <function>&lt;></function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Boolean</type>
+              <text>Y</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>4352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: only target exist</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>ProcessFiles: delete</send_true_to>
+    <send_false_to>Abort: never</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>source_exist</leftvalue>
+            <function>&lt;></function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Boolean</type>
+              <text>Y</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>target_exist</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Boolean</type>
+              <text>Y</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>4480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: profile_name_list_len</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>SelectValues: profile_name_list_len: remove</send_true_to>
+    <send_false_to>Dummy: profile_name_list: not set</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>profile_name_list_len</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: source target exist</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>ProcessFiles: replace</send_true_to>
+    <send_false_to>FilterRows: only source exist</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>source_exist</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Boolean</type>
+              <text>Y</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>target_exist</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Boolean</type>
+              <text>Y</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>4224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: source target same</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Dummy: nothing</send_true_to>
+    <send_false_to>FilterRows: source target exist</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <conditions>
+              <condition>
+                <negated>N</negated>
+                <leftvalue>source_exist</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>Boolean</type>
+                  <text>Y</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+              <condition>
+                <negated>N</negated>
+                <operator>AND</operator>
+                <leftvalue>target_exist</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>Boolean</type>
+                  <text>Y</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+              <condition>
+                <negated>N</negated>
+                <operator>AND</operator>
+                <leftvalue>source_hash</leftvalue>
+                <function>=</function>
+                <rightvalue>target_hash</rightvalue>
+              </condition>
+            </conditions>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <conditions>
+              <condition>
+                <negated>N</negated>
+                <operator>AND</operator>
+                <leftvalue>source_exist</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>Boolean</type>
+                  <text>N</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+              <condition>
+                <negated>N</negated>
+                <operator>AND</operator>
+                <leftvalue>target_exist</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>Boolean</type>
+                  <text>N</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+            </conditions>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>4096</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: source_exist</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Calculator: source_hash</send_true_to>
+    <send_false_to>Constant: source_hash</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>source_exist</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3824</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: target_exist</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Calculator: target_hash</send_true_to>
+    <send_false_to>Constant: target_hash</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>target_exist</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3584</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetFileNames: profile_file_location</name>
+    <type>GetFileNames</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filter>
+      <filterfiletype>only_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>Y</filefield>
+    <rownum_field />
+    <filename_Field>profile_path</filename_Field>
+    <wildcard_Field>profile_file_regex</wildcard_Field>
+    <exclude_wildcard_Field />
+    <dynamic_include_subfolders>Y</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1952</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetFileNames: profile_path</name>
+    <type>GetFileNames</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filter>
+      <filterfiletype>only_folders</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>Y</filefield>
+    <rownum_field />
+    <filename_Field>profile_path</filename_Field>
+    <wildcard_Field />
+    <exclude_wildcard_Field />
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1472</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: profile_meta_location</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_location</name>
+        <variable>${Parameters.Profile.Meta.Location}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: profile_meta_path</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_meta_path</name>
+        <variable>${Parameters.Profile.Meta.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>profile_name_list</name>
+        <variable>${Parameters.Profile.Name}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable；home_path</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>home_path</name>
+        <variable>${Parameters.Profile.Home.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>2960</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MergeRows: profile_file</name>
+    <type>MergeRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <keys>
+      <key>profile_file</key>
+    </keys>
+    <values>
+      <value>profile_file</value>
+    </values>
+    <flag_field>profile_file_flag</flag_field>
+    <reference>Dummy: profile_file: default</reference>
+    <compare>SelectValues: profile_file</compare>
+    <compare>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>2816</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ProcessFiles: create</name>
+    <type>ProcessFiles</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
     </partitioning>
     <sourcefilenamefield>source_location</sourcefilenamefield>
     <targetfilenamefield>target_location</targetfilenamefield>
@@ -1622,7 +2410,7 @@
     <overwritetargetfile>N</overwritetargetfile>
     <createparentfolder>Y</createparentfolder>
     <simulate>N</simulate>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1634,27 +2422,26 @@
       <yloc>4352</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</name>
+    <name>ProcessFiles: delete</name>
     <type>ProcessFiles</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <sourcefilenamefield>target_location</sourcefilenamefield>
-    <targetfilenamefield/>
+    <targetfilenamefield />
     <operation_type>delete</operation_type>
     <addresultfilenames>N</addresultfilenames>
     <overwritetargetfile>N</overwritetargetfile>
     <createparentfolder>N</createparentfolder>
     <simulate>N</simulate>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1666,18 +2453,17 @@
       <yloc>4480</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</name>
+    <name>ProcessFiles: replace</name>
     <type>ProcessFiles</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <sourcefilenamefield>source_location</sourcefilenamefield>
     <targetfilenamefield>target_location</targetfilenamefield>
@@ -1686,7 +2472,7 @@
     <overwritetargetfile>Y</overwritetargetfile>
     <createparentfolder>Y</createparentfolder>
     <simulate>N</simulate>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1698,258 +2484,32 @@
       <yloc>4224</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>profile_file</name>
-      </field>      <field>        <name>profile_path</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2688</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; remove</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>profile_file_location</name>
-      </remove>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2320</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_file_location&#x3a; replace</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>profile_name</name>
-      </field>      <field>        <name>profile_order</name>
-      </field>      <field>        <name>profile_path</name>
-      </field>      <field>        <name>filename</name>
-        <rename>profile_file_location</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2064</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_meta_location&#x3a; remove</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>profile_meta_location</name>
-      </remove>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list&#x3a; remove</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>profile_name_list</name>
-      </remove>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>960</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>profile_name_list_len</name>
-      </remove>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>704</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path&#x3a; replace</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>profile_name</name>
-      </field>      <field>        <name>profile_order</name>
-      </field>      <field>        <name>filename</name>
-        <rename>profile_path</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1584</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_path_delimiter&#x3a; remove</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>profile_meta_path</name>
-      </remove>      <remove>        <name>profile_path_delimiter</name>
-      </remove>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1328</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;profile_path&#x3a; extra delimiter</name>
+    <name>ReplaceString: profile_path: extra delimiter</name>
     <type>ReplaceString</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
         <in_stream_name>profile_path</in_stream_name>
-        <out_stream_name/>
+        <out_stream_name />
         <use_regex>yes</use_regex>
-        <replace_string>&#x2f;&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;1,&#x7d;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
+        <replace_string>//{2,}|\\{1,}</replace_string>
+        <replace_by_string>/</replace_by_string>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
+        <replace_field_by_string />
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1961,26 +2521,352 @@
       <yloc>1696</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x6392;&#x5e8f;&#x8bb0;&#x5f55;&#xff1a;file&#x26;order</name>
-    <type>SortRows</type>
-    <description/>
+    <name>SelectValues: profile_file</name>
+    <type>SelectValues</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
-      <prefix>out</prefix>
-      <sort_size>1000000</sort_size>
-      <free_memory/>
-      <compress>N</compress>
-      <compress_variable/>
-      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+      <field>
+        <name>profile_path</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_file_location: remove</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>profile_file_location</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_file_location: replace</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_name</name>
+      </field>
+      <field>
+        <name>profile_order</name>
+      </field>
+      <field>
+        <name>profile_path</name>
+      </field>
+      <field>
+        <name>filename</name>
+        <rename>profile_file_location</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2064</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_meta_location: remove</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>profile_meta_location</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_name_list: remove</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>profile_name_list</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>960</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_name_list_len: remove</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>profile_name_list_len</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_path: replace</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>profile_name</name>
+      </field>
+      <field>
+        <name>profile_order</name>
+      </field>
+      <field>
+        <name>filename</name>
+        <rename>profile_path</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1584</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: profile_path_delimiter: remove</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>profile_meta_path</name>
+      </remove>
+      <remove>
+        <name>profile_path_delimiter</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1328</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Simple Mapping (sub-transformation): MappingPathRemove: patch_path</name>
+    <type>SimpleMapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id />
+    <trans_name>${Position.Ktr.MappingPathRemove}</trans_name>
+    <filename />
+    <directory_path>${Position.Path.Variable}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+          <connector>
+            <parent>profile_file_location</parent>
+            <child>path</child>
+          </connector>
+          <connector>
+            <parent>profile_path</parent>
+            <child>remove</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+          <connector>
+            <parent>path_removed</parent>
+            <child>profile_file</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>2208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SortRows: file: order</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
     <fields>
       <field>
         <name>profile_file</name>
@@ -1999,7 +2885,7 @@
         <presorted>N</presorted>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2011,27 +2897,57 @@
       <yloc>2464</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x6587;&#x672c;&#x6587;&#x4ef6;&#x8f93;&#x5165;&#xff1a;profile_file&#x3a; default</name>
-    <type>TextFileInput</type>
-    <description/>
+    <name>SplitFieldToRows3: profile_name</name>
+    <type>SplitFieldToRows3</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
+    </partitioning>
+    <splitfield>profile_name_list</splitfield>
+    <delimiter>,</delimiter>
+    <newfield>profile_name</newfield>
+    <rownum>Y</rownum>
+    <rownum_field>profile_order</rownum_field>
+    <resetrownumber>Y</resetrownumber>
+    <delimiter_is_regex>N</delimiter_is_regex>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TextFileInput:  profile_file: default</name>
+    <type>TextFileInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
     </partitioning>
     <accept_filenames>Y</accept_filenames>
     <passing_through_fields>Y</passing_through_fields>
     <accept_field>profile_meta_location</accept_field>
-    <accept_stepname>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_location</accept_stepname>
-    <separator>&#x3b;</separator>
-    <enclosure>&#x22;</enclosure>
+    <accept_stepname>GetVariable: profile_meta_location</accept_stepname>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
+    <escapechar />
     <header>N</header>
     <nr_headerlines>1</nr_headerlines>
     <footer>N</footer>
@@ -2043,17 +2959,18 @@
     <nr_lines_doc_header>0</nr_lines_doc_header>
     <noempty>Y</noempty>
     <include>N</include>
-    <include_field/>
+    <include_field />
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
-    <rownum_field/>
+    <rownum_field />
     <format>DOS</format>
-    <encoding/>
+    <encoding />
+    <length />
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
+      <name />
+      <filemask />
+      <exclude_filemask />
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
       <type>Fixed</type>
@@ -2065,12 +2982,12 @@
       <field>
         <name>profile_file</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <ifnull />
         <position>0</position>
         <length>200</length>
         <precision>-1</precision>
@@ -2081,29 +2998,29 @@
     <limit>0</limit>
     <error_ignored>N</error_ignored>
     <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
+    <file_error_field />
+    <file_error_message_field />
     <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
+    <error_count_field />
+    <error_fields_field />
+    <error_text_field />
+    <bad_line_files_destination_directory />
     <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
+    <error_line_files_destination_directory />
     <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
+    <line_number_files_destination_directory />
     <line_number_files_extension>line</line_number_files_extension>
     <date_format_lenient>Y</date_format_lenient>
     <date_format_locale>zh_CN</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <cluster_schema/>
+    <shortFileFieldName />
+    <pathFieldName />
+    <hiddenFieldName />
+    <lastModificationTimeFieldName />
+    <uriNameFieldName />
+    <rootUriNameFieldName />
+    <extensionFieldName />
+    <sizeFieldName />
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2115,219 +3032,29 @@
       <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;source_exist</name>
-    <type>FileExists</type>
-    <description/>
+    <name>Unique: last profile file</name>
+    <type>Unique</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-    <filenamefield>source_location</filenamefield>
-    <resultfieldname>source_exist</resultfieldname>
-    <includefiletype>N</includefiletype>
-    <filetypefieldname/>
-    <addresultfilenames>N</addresultfilenames>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3360</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x68c0;&#x67e5;&#x6587;&#x4ef6;&#x662f;&#x5426;&#x5b58;&#x5728;&#xff1a;target_exist</name>
-    <type>FileExists</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filenamefield>target_location</filenamefield>
-    <resultfieldname>target_exist</resultfieldname>
-    <includefiletype>N</includefiletype>
-    <filetypefieldname/>
-    <addresultfilenames>N</addresultfilenames>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3472</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>4096</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_file&#x3a; default</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>2688</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name_list&#x3a; not set</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;source&#x3a; hash done</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3952</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;target&#x3a; hash done</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3712</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_location</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
+    <count_rows>Y</count_rows>
+    <count_field>file_number</count_field>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description />
     <fields>
       <field>
-        <name>profile_meta_location</name>
-        <variable>&#x24;&#x7b;Parameters.Profile.Meta.Location&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>profile_file</name>
+        <case_insensitive>N</case_insensitive>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2335,50 +3062,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>336</yloc>
+      <xloc>384</xloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;profile_meta_path</name>
-    <type>GetVariable</type>
-    <description/>
+    <name>WriteToLog: target: create</name>
+    <type>WriteToLog</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>created</logmessage>
     <fields>
       <field>
-        <name>profile_meta_path</name>
-        <variable>&#x24;&#x7b;Parameters.Profile.Meta.Path&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>profile_name_list</name>
-        <variable>&#x24;&#x7b;Parameters.Profile.Name&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
+        <name>profile_file</name>
       </field>
     </fields>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2386,437 +3096,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1b;home_path</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>home_path</name>
-        <variable>&#x24;&#x7b;Parameters.Profile.Home.Path&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>2960</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_file_location</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filter>
-      <filterfiletype>only_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>Y</filefield>
-    <rownum_field/>
-    <filename_Field>profile_path</filename_Field>
-    <wildcard_Field>profile_file_regex</wildcard_Field>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>Y</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1952</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x6587;&#x4ef6;&#x540d;&#xff1a;profile_path</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filter>
-      <filterfiletype>only_folders</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>Y</filefield>
-    <rownum_field/>
-    <filename_Field>profile_path</filename_Field>
-    <wildcard_Field/>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1472</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_name_list_len</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>profile_name_list_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>profile_name_list</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;profile_path</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>profile_path</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>profile_meta_path</field_a>
-      <field_b>profile_path_delimiter</field_b>
-      <field_c>profile_name</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1216</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>source_hash</field_name>
-      <calc_type>SHA1</calc_type>
-      <field_a>source_location</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>3824</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_location&#x26;target_location</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>source_location</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>profile_path</field_a>
-      <field_b>path_delimiter</field_b>
-      <field_c>profile_file</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>target_location</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>home_path</field_a>
-      <field_b>path_delimiter</field_b>
-      <field_c>profile_file</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3216</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <calculation>
-      <field_name>target_hash</field_name>
-      <calc_type>SHA1</calc_type>
-      <field_a>target_location</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>None</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>416</xloc>
-      <yloc>3584</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;create</send_true_to>
-<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>source_exist</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>target_exist</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
+      <xloc>576</xloc>
       <yloc>4352</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only target exist</name>
-    <type>FilterRows</type>
-    <description/>
+    <name>WriteToLog: target: delete </name>
+    <type>WriteToLog</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;delete</send_true_to>
-<send_false_to>&#x4e2d;&#x6b62;&#xff1a;never</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>source_exist</leftvalue>
-   <function>&#x3c;&#x3e;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>target_exist</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-    <cluster_schema/>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>deleted</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2824,34 +3130,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
+      <xloc>576</xloc>
       <yloc>4480</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;profile_name_list_len</name>
-    <type>FilterRows</type>
-    <description/>
+    <name>WriteToLog: target: nothing</name>
+    <type>WriteToLog</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;profile_name_list_len&#x3a; remove</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;profile_name_list&#x3a; not set</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>profile_name_list_len</leftvalue>
- <function>&#x3c;&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
-    </compare>
-    <cluster_schema/>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>nothing</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -2859,161 +3164,33 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>592</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x5904;&#x7406;&#x6587;&#x4ef6;&#xff1a;replace</send_true_to>
-<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;only source exist</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <leftvalue>source_exist</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <leftvalue>target_exist</leftvalue>
-   <function>&#x3d;</function>
-   <rightvalue/>
-   <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
-  </conditions>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>4224</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target same</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;nothing</send_true_to>
-<send_false_to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source target exist</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <conditions>
-  <condition>
-   <negated>N</negated>
-   <operator>AND</operator>
-   <conditions>
-    <condition>
-     <negated>N</negated>
-     <leftvalue>source_exist</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue/>
-     <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>AND</operator>
-     <leftvalue>target_exist</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue/>
-     <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>AND</operator>
-     <leftvalue>source_hash</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue>target_hash</rightvalue>
-     </condition>
-    </conditions>
-   </condition>
-  <condition>
-   <negated>N</negated>
-   <operator>OR</operator>
-   <conditions>
-    <condition>
-     <negated>N</negated>
-     <operator>AND</operator>
-     <leftvalue>source_exist</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue/>
-     <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
-    <condition>
-     <negated>N</negated>
-     <operator>AND</operator>
-     <leftvalue>target_exist</leftvalue>
-     <function>&#x3d;</function>
-     <rightvalue/>
-     <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
-    </conditions>
-   </condition>
-  </conditions>
- </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
+      <xloc>576</xloc>
       <yloc>4096</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;source_exist</name>
-    <type>FilterRows</type>
-    <description/>
+    <name>WriteToLog: target: replace</name>
+    <type>WriteToLog</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;source_hash</send_true_to>
-<send_false_to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;source_hash</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>source_exist</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-    <cluster_schema/>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>replaced</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -3021,47 +3198,11 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3824</yloc>
+      <xloc>576</xloc>
+      <yloc>4224</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
-  <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;target_exist</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-<send_true_to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;target_hash</send_true_to>
-<send_false_to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;target_hash</send_false_to>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>target_exist</leftvalue>
- <function>&#x3d;</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>3584</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

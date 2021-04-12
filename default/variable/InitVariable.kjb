@@ -8,17 +8,17 @@
   <created_user>-</created_user>
   <created_date>2015/03/16 14:47:11.476</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2018/10/19 13:39:29.697</modified_date>
+  <modified_date>2021/04/12 11:11:54.133</modified_date>
   <parameters>
     <parameter>
       <name>Parameters.Kettle.Home.Path</name>
       <default_value>${user.home}</default_value>
-      <description>配置文件目录(低优先级默认)</description>
+      <description>kettle home directory (low priority default)</description>
     </parameter>
     <parameter>
       <name>Parameters.Repository.Name</name>
       <default_value>default</default_value>
-      <description>资源库名称(低优先级默认)</description>
+      <description>repository name (low priority default)</description>
     </parameter>
   </parameters>
   <slaveservers>
@@ -317,7 +317,7 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>成功</name>
+      <name>SUCCESS</name>
       <description />
       <type>SUCCESS</type>
       <parallel>N</parallel>
@@ -327,7 +327,7 @@
       <yloc>816</yloc>
     </entry>
     <entry>
-      <name>中止作业</name>
+      <name>ABORT</name>
       <description />
       <type>ABORT</type>
       <message />
@@ -506,7 +506,7 @@
       <yloc>592</yloc>
     </entry>
     <entry>
-      <name>检验字段的值:Internal.Repository.Name</name>
+      <name>SIMPLE_EVAL: Internal.Repository.Name</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -528,7 +528,7 @@
       <yloc>144</yloc>
     </entry>
     <entry>
-      <name>写日志：Skip</name>
+      <name>WriteToLog: Skip</name>
       <description />
       <type>WRITE_TO_LOG</type>
       <logmessage>Skip init variable</logmessage>
@@ -541,7 +541,7 @@
       <yloc>368</yloc>
     </entry>
     <entry>
-      <name>检验字段的值:Internal.Repository.Directory</name>
+      <name>SIMPLE_EVAL: Internal.Repository.Directory</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -595,7 +595,7 @@
     </hop>
     <hop>
       <from>GetDefaultValue: Internal.Repository.Name</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -604,7 +604,7 @@
     </hop>
     <hop>
       <from>GetDefaultValue: Kettle.Home.Directory</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -613,7 +613,7 @@
     </hop>
     <hop>
       <from>FixRepositorieDirectory: Internal.*.Repository.Directory</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -622,7 +622,7 @@
     </hop>
     <hop>
       <from>FixRepositorieDirectory: Internal.*.Repository.Directory</from>
-      <to>成功</to>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -640,7 +640,7 @@
     </hop>
     <hop>
       <from>InitRepositorieDirectory:Internal.Repository.Directory</from>
-      <to>中止作业</to>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -649,7 +649,7 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>检验字段的值:Internal.Repository.Name</to>
+      <to>SIMPLE_EVAL: Internal.Repository.Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -666,8 +666,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值:Internal.Repository.Name</from>
-      <to>检验字段的值:Internal.Repository.Directory</to>
+      <from>SIMPLE_EVAL: Internal.Repository.Name</from>
+      <to>SIMPLE_EVAL: Internal.Repository.Directory</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -675,7 +675,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值:Internal.Repository.Directory</from>
+      <from>SIMPLE_EVAL: Internal.Repository.Directory</from>
       <to>GetDefaultValue: Kettle.Home.Directory</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -684,8 +684,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值:Internal.Repository.Directory</from>
-      <to>写日志：Skip</to>
+      <from>SIMPLE_EVAL: Internal.Repository.Directory</from>
+      <to>WriteToLog: Skip</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -693,7 +693,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>检验字段的值:Internal.Repository.Name</from>
+      <from>SIMPLE_EVAL: Internal.Repository.Name</from>
       <to>DUMMY</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -713,12 +713,12 @@
   </hops>
   <notepads>
     <notepad>
-      <note>初始化变量</note>
+      <note>initialize variables</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>70</width>
+      <width>111</width>
       <heigth>26</heigth>
-      <fontname>微软雅黑</fontname>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -734,25 +734,26 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Parameters.Kettle.Home.Path		配置文件目录(默认)
-Parameters.Repository.Name		资源库名称(默认)
+      <note>params
 
-会修复以下变量
-Internal.Job.Filename.Directory                        作业所在资源库当前路径
-Internal.Transformation.Filename.Directory       转换所在资源库当前路径
+Parameters.Kettle.Home.Path           Must
+Parameters.Repository.Name	          Must
 
-会生成以下变量
-Kettle.Home.Directory                                     KETTLE_HOME
-Internal.Repository.Directory                           资源库路径
-Internal.Repository.Name                                资源库名称
-Internal.Job.Repository.Name                          (废弃)作业所在资源库名称
-Internal.Transformation.Repository.Name         (废弃)转换所在资源库名称</note>
+====================
+output variable
+
+Internal.Job.Filename.Directory
+Internal.Transformation.Filename.Directory
+Kettle.Home.Directory                                     
+Internal.Repository.Directory
+Internal.Repository.Name
+Internal.Job.Repository.Name
+Internal.Transformation.Repository.Name</note>
       <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>426</width>
-      <heigth>236</heigth>
-      <fontname>微软雅黑</fontname>
+      <width>267</width>
+      <heigth>243</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>

@@ -1,42 +1,47 @@
 <transformation>
   <info>
     <name>ReadLogical_yml</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;config</directory>
+    <directory>/config</directory>
     <parameters>
       <parameter>
         <name>Parameters.Cfg.Name</name>
-        <default_value/>
-        <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x540d;</description>
+        <default_value />
+        <description>config name</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Path</name>
-        <default_value/>
-        <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>config path</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Cfg.Profile</name>
+        <default_value />
+        <description>config profile</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Tag</name>
-        <default_value/>
-        <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;project&#x5143;&#x7d20;name&#x5c5e;&#x6027;</description>
+        <default_value />
+        <description>config tag</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Type</name>
-        <default_value>xml</default_value>
-        <description>xml&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#x6269;&#x5c55;&#x540d;</description>
+        <default_value>yaml</default_value>
+        <description>config type</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -61,37 +66,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -145,11 +150,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -227,10 +232,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -293,10 +298,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -369,10 +374,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -421,9 +426,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -434,7 +439,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>Y</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -447,20 +452,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2014&#x2f;09&#x2f;23 16&#x3a;14&#x3a;43.780</created_date>
+    <created_date>2014/09/23 16:14:43.780</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2017&#x2f;08&#x2f;30 09&#x3a;54&#x3a;25.334</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2021/04/12 12:46:14.920</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x8bfb;&#x53d6;xml&#x914d;&#x7f6e;&#xff0c;&#x8bbe;&#x7f6e;&#x5230;&#x53d8;&#x91cf;</note>
+      <note>read yml config and set to variable</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>150</width>
+      <width>208</width>
       <heigth>26</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -476,12 +481,27 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;Parameters.Cfg.Path&#xd;&#xa;Parameters.Cfg.Name&#xd;&#xa;Parameters.Cfg.Tag&#xd;&#xa;Parameters.Cfg.Type&#xd;&#xa;&#xd;&#xa;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#x3d;&#xd;&#xa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#x53ef;&#x4ee5;&#x88ab;&#x540e;&#x7eed;&#x4f7f;&#x7528;&#xd;&#xa;Config.Cfg.&#x7b;key&#x7d;			&#x5b;&#x672a;&#x8bbe;&#x7f6e;namespace&#x5d;&#xd;&#xa;&#x7b;namespace&#x7d;.&#x7b;key&#x7d;		&#x5b;&#x8bbe;&#x7f6e;namespace&#x5d;&#xd;&#xa;&#xd;&#xa;1.namespace		XML&#x4e2d;cfg&#x5143;&#x7d20;&#x7684;&#x5c5e;&#x6027;&#xd;&#xa;2.key			XML&#x4e2d;cfg&#x5143;&#x7d20;&#x7684;&#x5c5e;&#x6027;</note>
+      <note>params
+
+Parameters.Cfg.Path        Must
+Parameters.Cfg.Name      Must
+Parameters.Cfg.Profile     Must
+Parameters.Cfg.Tag         Must
+Parameters.Cfg.Type       Must
+
+====================
+The following variables can be used later
+Config.Cfg.{key} [namespace not set]
+{namespace}.{key} [Set namespace]
+
+1. Attributes of the cfg element in namespace XML
+2. Attributes of the cfg element in the key XML
+</note>
       <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>313</width>
-      <heigth>220</heigth>
-      <fontname>&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;</fontname>
+      <width>301</width>
+      <heigth>258</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
@@ -499,717 +519,91 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;namespace_default</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;namespace&#x3a; empty</to>
+      <from>Constant: namespace_default</from>
+      <to>FilterRows: namespace: empty</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;namespace&#x3a; empty</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace namespace</to>
+      <from>FilterRows: namespace: empty</from>
+      <to>SelectValues: replace namespace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;namespace&#x3a; empty</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</to>
+      <from>FilterRows: namespace: empty</from>
+      <to>Dummy: namespace: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace namespace</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</to>
+      <from>SelectValues: replace namespace</from>
+      <to>Dummy: namespace: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</to>
+      <from>Dummy: namespace: done</from>
+      <to>Calculator: namespace_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_location</to>
+      <from>Constant: file: path_delimiter</from>
+      <to>Calculator: file_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;file</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</to>
+      <from>GetVariable: file</from>
+      <to>Constant: file: path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_location</from>
-      <to>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</to>
+      <from>Calculator: file_location</from>
+      <to>ReplaceString: file_location: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript&#x4ee3;&#x7801;&#xff1a;set_variable</from>
-      <to>&#x5199;&#x65e5;&#x5fd7;&#xff1a;variable</to>
+      <from>ScriptValueMod: set_variable</from>
+      <to>WriteToLog: variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</from>
-      <to>JavaScript&#x4ee3;&#x7801;&#xff1a;set_variable</to>
+      <from>SelectValues: variable_name_value</from>
+      <to>ScriptValueMod: set_variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</from>
-      <to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</to>
+      <from>Calculator: namespace_key</from>
+      <to>SelectValues: variable_name_value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</from>
-      <to>Yaml &#x8f93;&#x5165;</to>
+      <from>ReplaceString: file_location: extra delimiter</from>
+      <to>YamlInput</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Yaml &#x8f93;&#x5165;</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;namespace_default</to>
+      <from>YamlInput</from>
+      <to>Constant: namespace_default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Yaml &#x8f93;&#x5165;&#xff1a;config</from>
-      <to>Yaml &#x8f93;&#x5165;&#xff1a;project</to>
+      <from>YamlInput: config</from>
+      <to>YamlInput: project</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Yaml &#x8f93;&#x5165;&#xff1a;project</from>
-      <to>Yaml &#x8f93;&#x5165;&#xff1a;cfg</to>
+      <from>YamlInput: project</from>
+      <to>YamlInput: cfg</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>JavaScript&#x4ee3;&#x7801;&#xff1a;set_variable</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>setVariable&#x28;variable_name,variable_value,&#x22;r&#x22;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;log &#x3d; getVariable&#x28;variable_name, &#x22;&#x22;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;writeToLog&#x28;&#x22;d&#x22;,log&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>log</name>
-        <rename>log</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>1312</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Yaml &#x8f93;&#x5165;</name>
-    <type>YamlInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <validating>N</validating>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding/>
-    <file>
-    </file>
-    <fields>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <YamlField/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>544</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Yaml &#x8f93;&#x5165;&#xff1a;cfg</name>
-    <type>YamlInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <validating>N</validating>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding/>
-    <file>
-      <name/>
-      <filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>name</name>
-        <path>name</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>cfg</name>
-        <path>cfg</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <YamlField>project</YamlField>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Yaml &#x8f93;&#x5165;&#xff1a;config</name>
-    <type>YamlInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <validating>N</validating>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding/>
-    <file>
-      <name>E&#x3a;&#x5c;Work&#x5c;Kettle&#x5c;default&#x5c;config.yml</name>
-      <filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>config</name>
-        <path>config</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <YamlField/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>Yaml &#x8f93;&#x5165;&#xff1a;project</name>
-    <type>YamlInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <validating>N</validating>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding/>
-    <file>
-      <name/>
-      <filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>project</name>
-        <path>project</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <YamlField>config</YamlField>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5199;&#x65e5;&#x5fd7;&#xff1a;variable</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-      <loglevel>log_level_basic</loglevel>
-      <displayHeader>Y</displayHeader>
-      <limitRows>N</limitRows>
-      <limitRowsNumber>0</limitRowsNumber>
-      <logmessage>&#x53d8;&#x91cf;</logmessage>
-    <fields>
-      <field>
-        <name>variable_name</name>
-        </field>
-      <field>
-        <name>variable_value</name>
-        </field>
-      </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>1312</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;file&#x26;path_delimiter</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>file_delimiter</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>path_delimiter</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x2f;</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;namespace_default</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>EMPTY</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-      <field>
-        <name>NAMESPACE_DEFAULT</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Config.Cfg</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>NAMESPACE_POINT</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace namespace</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>file_path</name>
-      </field>      <field>        <name>file_name</name>
-      </field>      <field>        <name>file_ext</name>
-      </field>      <field>        <name>file_namespace</name>
-      </field>      <field>        <name>file_delimiter</name>
-      </field>      <field>        <name>path_delimiter</name>
-      </field>      <field>        <name>file_full_name</name>
-      </field>      <field>        <name>file_location</name>
-      </field>      <field>        <name>name</name>
-      </field>      <field>        <name>NAMESPACE_DEFAULT</name>
-        <rename>namespace</rename>
-      </field>      <field>        <name>key</name>
-      </field>      <field>        <name>value</name>
-      </field>      <field>        <name>EMPTY</name>
-      </field>      <field>        <name>NAMESPACE_DEFAULT</name>
-      </field>      <field>        <name>NAMESPACE_POINT</name>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>864</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;variable_name_value</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>      <field>        <name>namespace_key</name>
-        <rename>variable_name</rename>
-      </field>      <field>        <name>value</name>
-        <rename>variable_value</rename>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>1184</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x5b57;&#x7b26;&#x4e32;&#x66ff;&#x6362;&#xff1a;file_location&#x3a; extra delimiter</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>file_location</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>&#x2f;&#x7b;2,&#x7d;&#x7c;&#x5c;&#x5c;&#x7b;2,&#x7d;</replace_string>
-        <replace_by_string>&#x2f;</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>928</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;file</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>file_path</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Path&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>file_name</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Name&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>file_ext</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Type&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>file_namespace</name>
-        <variable>&#x24;&#x7b;Parameters.Cfg.Tag&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;file_location</name>
+    <name>Calculator: file_location</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>file_full_name</field_name>
@@ -1221,10 +615,10 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
     <calculation>
       <field_name>file_location</field_name>
@@ -1236,12 +630,12 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1253,18 +647,17 @@
       <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;namespace_key</name>
+    <name>Calculator: namespace_key</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>namespace_key</field_name>
@@ -1276,12 +669,12 @@
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1293,30 +686,165 @@
       <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;namespace&#x3a; empty</name>
-    <type>FilterRows</type>
-    <description/>
+    <name>Constant: file: path_delimiter</name>
+    <type>Constant</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#xff1a;replace namespace</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;&#xff1a;namespace&#x3a; done</send_false_to>
+    <fields>
+      <field>
+        <name>file_delimiter</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>path_delimiter</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: namespace_default</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>EMPTY</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+      <field>
+        <name>NAMESPACE_DEFAULT</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>Config.Cfg</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>NAMESPACE_POINT</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: namespace: done</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: namespace: empty</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>SelectValues: replace namespace</send_true_to>
+    <send_false_to>Dummy: namespace: done</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>namespace</leftvalue>
- <function>&#x3d;</function>
- <rightvalue>EMPTY</rightvalue>
- </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>namespace</leftvalue>
+        <function>=</function>
+        <rightvalue>EMPTY</rightvalue>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1328,31 +856,374 @@
       <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>Yaml &#x8f93;&#x5165;&#xff1a;cfg 2</name>
-    <type>YamlInput</type>
-    <description/>
+    <name>GetVariable: file</name>
+    <type>GetVariable</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>file_path</name>
+        <variable>${Parameters.Cfg.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>file_name</name>
+        <variable>${Parameters.Cfg.Name}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>file_ext</name>
+        <variable>${Parameters.Cfg.Type}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>file_namespace</name>
+        <variable>${Parameters.Cfg.Tag}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: file_location: extra delimiter</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>file_location</in_stream_name>
+        <out_stream_name />
+        <use_regex>yes</use_regex>
+        <replace_string>/{2,}|\\{2,}</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: set_variable</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>setVariable(variable_name,variable_value,"r");
+
+log = getVariable(variable_name, "");
+
+writeToLog("d",log);</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>log</name>
+        <rename>log</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1312</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace namespace</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>file_path</name>
+      </field>
+      <field>
+        <name>file_name</name>
+      </field>
+      <field>
+        <name>file_ext</name>
+      </field>
+      <field>
+        <name>file_namespace</name>
+      </field>
+      <field>
+        <name>file_delimiter</name>
+      </field>
+      <field>
+        <name>path_delimiter</name>
+      </field>
+      <field>
+        <name>file_full_name</name>
+      </field>
+      <field>
+        <name>file_location</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>NAMESPACE_DEFAULT</name>
+        <rename>namespace</rename>
+      </field>
+      <field>
+        <name>key</name>
+      </field>
+      <field>
+        <name>value</name>
+      </field>
+      <field>
+        <name>EMPTY</name>
+      </field>
+      <field>
+        <name>NAMESPACE_DEFAULT</name>
+      </field>
+      <field>
+        <name>NAMESPACE_POINT</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: variable_name_value</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>namespace_key</name>
+        <rename>variable_name</rename>
+      </field>
+      <field>
+        <name>value</name>
+        <rename>variable_value</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: variable</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>变量</logmessage>
+    <fields>
+      <field>
+        <name>variable_name</name>
+      </field>
+      <field>
+        <name>variable_value</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>1312</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>YamlInput</name>
+    <type>YamlInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
     </partitioning>
     <include>N</include>
-    <include_field/>
+    <include_field />
     <rownum>N</rownum>
     <addresultfile>N</addresultfile>
     <validating>N</validating>
     <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
     <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field/>
-    <encoding/>
+    <rownum_field />
+    <encoding />
     <file>
-      <name/>
-      <filemask/>
+    </file>
+    <fields>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>N</IsInFields>
+    <IsAFile>N</IsAFile>
+    <YamlField />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>YamlInput: cfg</name>
+    <type>YamlInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <validating>N</validating>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field />
+    <encoding />
+    <file>
+      <name />
+      <filemask />
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
     </file>
@@ -1361,10 +1232,10 @@
         <name>name</name>
         <path>name</path>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -1373,10 +1244,10 @@
         <name>cfg</name>
         <path>cfg</path>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
+        <format />
+        <currency />
+        <decimal />
+        <group />
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -1386,7 +1257,76 @@
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
     <YamlField>project</YamlField>
-    <cluster_schema/>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>YamlInput: cfg 2</name>
+    <type>YamlInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <validating>N</validating>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field />
+    <encoding />
+    <file>
+      <name />
+      <filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>name</name>
+        <path>name</path>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>cfg</name>
+        <path>cfg</path>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <YamlField>project</YamlField>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -1398,8 +1338,121 @@
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
+  <step>
+    <name>YamlInput: config</name>
+    <type>YamlInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <validating>N</validating>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field />
+    <encoding />
+    <file>
+      <name>E:\Work\Kettle\default\config.yml</name>
+      <filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>config</name>
+        <path>config</path>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>N</IsInFields>
+    <IsAFile>N</IsAFile>
+    <YamlField />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>YamlInput: project</name>
+    <type>YamlInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <validating>N</validating>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <rownum_field />
+    <encoding />
+    <file>
+      <name />
+      <filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>project</name>
+        <path>project</path>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <YamlField>config</YamlField>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

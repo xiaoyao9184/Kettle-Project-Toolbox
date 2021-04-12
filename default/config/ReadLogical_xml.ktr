@@ -11,27 +11,27 @@
       <parameter>
         <name>Parameters.Cfg.Name</name>
         <default_value>config</default_value>
-        <description>xml配置文件名</description>
+        <description>xml config file name</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Path</name>
         <default_value>../default</default_value>
-        <description>xml配置文件路径</description>
+        <description>xml config file name</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Profile</name>
         <default_value />
-        <description>xml配置文件Profile</description>
+        <description>xml config file profile</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Tag</name>
         <default_value>default</default_value>
-        <description>xml配置文件project元素name属性</description>
+        <description>xml config file project element name attribute</description>
       </parameter>
       <parameter>
         <name>Parameters.Cfg.Type</name>
         <default_value>xml</default_value>
-        <description>xml配置文件扩展名</description>
+        <description>xml config file extension</description>
       </parameter>
     </parameters>
     <log>
@@ -454,16 +454,16 @@
     <created_user>-</created_user>
     <created_date>2014/09/23 16:14:43.780</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018/10/24 16:31:51.010</modified_date>
+    <modified_date>2021/04/12 12:43:56.603</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>读取xml配置，设置到变量</note>
+      <note>read xml config set to variable</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>150</width>
+      <width>182</width>
       <heigth>26</heigth>
       <fontname>微软雅黑</fontname>
       <fontsize>9</fontsize>
@@ -481,24 +481,25 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>依赖以下参数
-Parameters.Cfg.Path
-Parameters.Cfg.Name
-Parameters.Cfg.Profile
-Parameters.Cfg.Tag
-Parameters.Cfg.Type
+      <note>params
+
+Parameters.Cfg.Path        Must
+Parameters.Cfg.Name      Must
+Parameters.Cfg.Profile     Must
+Parameters.Cfg.Tag         Must
+Parameters.Cfg.Type       Must
 
 ====================
-以下变量可以被后续使用
-Config.Cfg.{key}			[未设置namespace]
-{namespace}.{key}		[设置namespace]
+The following variables can be used later
+Config.Cfg.{key} [namespace not set]
+{namespace}.{key} [Set namespace]
 
-1.namespace		XML中cfg元素的属性
-2.key			XML中cfg元素的属性</note>
+1. Attributes of the cfg element in namespace XML
+2. Attributes of the cfg element in the key XML</note>
       <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>313</width>
-      <heigth>236</heigth>
+      <width>301</width>
+      <heigth>249</heigth>
       <fontname>微软雅黑</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -581,7 +582,7 @@ Config.Cfg.{key}			[未设置namespace]
       <note>content_profile</note>
       <xloc>368</xloc>
       <yloc>2784</yloc>
-      <width>96</width>
+      <width>97</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -622,293 +623,293 @@ Config.Cfg.{key}			[未设置namespace]
   </notepads>
   <order>
     <hop>
-      <from>增加常量：namespace_default</from>
-      <to>过滤记录：namespace: empty</to>
+      <from>Constant: namespace_default</from>
+      <to>FilterRows: namespace: empty</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：namespace: empty</from>
-      <to>字段选择：replace namespace</to>
+      <from>FilterRows: namespace: empty</from>
+      <to>SelectValues: replace namespace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：namespace: empty</from>
-      <to>空操作 (什么也不做)：namespace: done</to>
+      <from>FilterRows: namespace: empty</from>
+      <to>Dummy: namespace: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：replace namespace</from>
-      <to>空操作 (什么也不做)：namespace: done</to>
+      <from>SelectValues: replace namespace</from>
+      <to>Dummy: namespace: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：namespace: done</from>
-      <to>计算器：namespace_key</to>
+      <from>Dummy: namespace: done</from>
+      <to>Calculator: namespace_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：file&amp;path_delimiter</from>
-      <to>计算器：file_location</to>
+      <from>Constant: file&amp;path_delimiter</from>
+      <to>Calculator: file_location</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：file_location</from>
-      <to>字符串替换：file_location: extra delimiter</to>
+      <from>Calculator: file_location</from>
+      <to>ReplaceString: file_location: extra delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript代码：set_variable</from>
-      <to>写日志：variable</to>
+      <from>ScriptValueMod: set_variable</from>
+      <to>WriteToLog: variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：variable_name_value</from>
-      <to>JavaScript代码：set_variable</to>
+      <from>SelectValues: variable_name_value</from>
+      <to>ScriptValueMod: set_variable</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：file_namespace_len</from>
-      <to>过滤记录：file_namespace exits</to>
+      <from>Calculator: file_namespace_len</from>
+      <to>FilterRows: file_namespace exits</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量：file_*: from param</from>
-      <to>计算器：file_namespace_len</to>
+      <from>GetVariable: file_*: from param</from>
+      <to>Calculator: file_namespace_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：file_namespace exits</from>
-      <to>中止：file_namespace: not exits</to>
+      <from>FilterRows: file_namespace exits</from>
+      <to>Abort: file_namespace: not exits</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：noprofile: select content</from>
-      <to>合并记录：content_profile: replace value in same file</to>
+      <from>SelectValues: noprofile: select content</from>
+      <to>MergeRows: content_profile: replace value in same file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：porfile: select content</from>
-      <to>合并记录：content_profile: replace value in same file</to>
+      <from>SelectValues: porfile: select content</from>
+      <to>MergeRows: content_profile: replace value in same file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：content_profile_len</from>
-      <to>过滤记录：content_profile_len</to>
+      <from>Calculator: content_profile_len</from>
+      <to>FilterRows: content_profile_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：content_profile_len</from>
-      <to>空操作 (什么也不做)：content_profile: not use</to>
+      <from>FilterRows: content_profile_len</from>
+      <to>Dummy: content_profile: not use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：delimiter</from>
-      <to>计算器：file_profile_list</to>
+      <from>Constant: delimiter</from>
+      <to>Calculator: file_profile_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：file_profile_list</from>
-      <to>列拆分为多行：file_profile_list</to>
+      <from>Calculator: file_profile_list</from>
+      <to>SplitFieldToRows3: file_profile_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>列拆分为多行：file_profile_list</from>
-      <to>计算器：file_name_profile_suffix</to>
+      <from>SplitFieldToRows3: file_profile_list</from>
+      <to>Calculator: file_name_profile_suffix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：file_name_profile_suffix</from>
-      <to>过滤记录：file_name_profile_suffix</to>
+      <from>Calculator: file_name_profile_suffix</from>
+      <to>FilterRows: file_name_profile_suffix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>将字段值设置为常量：file_name_profile_suffix: invalid</from>
-      <to>空操作 (什么也不做)：file_name_profile_suffix: good</to>
+      <from>SetValueConstant: file_name_profile_suffix: invalid</from>
+      <to>Dummy: file_name_profile_suffix: good</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：file_name_profile_suffix: good</from>
-      <to>计算器：file_profile_name</to>
+      <from>Dummy: file_name_profile_suffix: good</from>
+      <to>Calculator: file_profile_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：file_profile_name</from>
-      <to>字段选择：file_name: replace</to>
+      <from>Calculator: file_profile_name</from>
+      <to>SelectValues: file_name: replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字符串替换：file_location: extra delimiter</from>
-      <to>检查文件是否存在：file_location_exists</to>
+      <from>ReplaceString: file_location: extra delimiter</from>
+      <to>FileExists: file_location_exists</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>检查文件是否存在：file_location_exists</from>
-      <to>过滤记录：file_location_exists</to>
+      <from>FileExists: file_location_exists</from>
+      <to>FilterRows: file_location_exists</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：file_location_exists</from>
-      <to>空操作 (什么也不做)：file_location:not exists</to>
+      <from>FilterRows: file_location_exists</from>
+      <to>Dummy: file_location:not exists</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：content_profile: not use</from>
-      <to>XML 文件输入：project.cfg</to>
+      <from>Dummy: content_profile: not use</from>
+      <to>getXMLData: project.cfg</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：content_profile_len</from>
-      <to>空操作 (什么也不做)：content_profile: use</to>
+      <from>FilterRows: content_profile_len</from>
+      <to>Dummy: content_profile: use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：content_profile: use</from>
-      <to>XML 文件输入：project.profile.cfg</to>
+      <from>Dummy: content_profile: use</from>
+      <to>getXMLData: project.profile.cfg</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：file_name: replace</from>
-      <to>增加常量：file&amp;path_delimiter</to>
+      <from>SelectValues: file_name: replace</from>
+      <to>Constant: file&amp;path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>XML 文件输入：project.profile.cfg</from>
-      <to>过滤记录：profile_name</to>
+      <from>getXMLData: project.profile.cfg</from>
+      <to>FilterRows: profile_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：profile_name</from>
-      <to>空操作 (什么也不做)：profile_name: not this profile</to>
+      <from>FilterRows: profile_name</from>
+      <to>Dummy: profile_name: not this profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：file_namespace exits</from>
-      <to>字段选择：file_namespace_len: remove</to>
+      <from>FilterRows: file_namespace exits</from>
+      <to>SelectValues: file_namespace_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：file_location_exists</from>
-      <to>字段选择：file&amp;path_delimiter: remove</to>
+      <from>FilterRows: file_location_exists</from>
+      <to>SelectValues: file&amp;path_delimiter: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：file_name_profile_suffix</from>
-      <to>空操作 (什么也不做)：file_name_profile_suffix: good</to>
+      <from>FilterRows: file_name_profile_suffix</from>
+      <to>Dummy: file_name_profile_suffix: good</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：file_name_profile_suffix</from>
-      <to>将字段值设置为常量：file_name_profile_suffix: invalid</to>
+      <from>FilterRows: file_name_profile_suffix</from>
+      <to>SetValueConstant: file_name_profile_suffix: invalid</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：file&amp;path_delimiter: remove</from>
-      <to>字段选择：file_: sorting</to>
+      <from>SelectValues: file&amp;path_delimiter: remove</from>
+      <to>SelectValues: file_: sorting</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：file_: sorting</from>
-      <to>列拆分为多行：content_profile</to>
+      <from>SelectValues: file_: sorting</from>
+      <to>SplitFieldToRows3: content_profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>XML 文件输入：project.cfg</from>
-      <to>过滤记录：project_name</to>
+      <from>getXMLData: project.cfg</from>
+      <to>FilterRows: project_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：project_name</from>
-      <to>字段选择：noprofile: select content</to>
+      <from>FilterRows: project_name</from>
+      <to>SelectValues: noprofile: select content</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：project_name</from>
-      <to>空操作 (什么也不做)：project_name: not this project</to>
+      <from>FilterRows: project_name</from>
+      <to>Dummy: project_name: not this project</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：profile_name</from>
-      <to>字段选择：porfile: select content</to>
+      <from>FilterRows: profile_name</from>
+      <to>SelectValues: porfile: select content</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>列拆分为多行：content_profile</from>
-      <to>字段选择：content_profile_list: remove</to>
+      <from>SplitFieldToRows3: content_profile</from>
+      <to>SelectValues: content_profile_list: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：content_profile_list: remove</from>
-      <to>计算器：content_profile_len</to>
+      <from>SelectValues: content_profile_list: remove</from>
+      <to>Calculator: content_profile_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：namespace_key</from>
-      <to>排序记录：key&amp;file&amp;profile</to>
+      <from>Calculator: namespace_key</from>
+      <to>SortRows: key&amp;file&amp;profile</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>合并记录：content_profile: replace value in same file</from>
-      <to>增加常量：namespace_default</to>
+      <from>MergeRows: content_profile: replace value in same file</from>
+      <to>Constant: namespace_default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>排序记录：key&amp;file&amp;profile</from>
-      <to>去除重复记录：last value</to>
+      <from>SortRows: key&amp;file&amp;profile</from>
+      <to>Unique: last value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>去除重复记录：last value</from>
-      <to>字段选择：variable_name_value</to>
+      <from>Unique: last value</from>
+      <to>SelectValues: variable_name_value</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：profile_list_len</from>
-      <to>过滤记录：profile_list exits</to>
+      <from>Calculator: profile_list_len</from>
+      <to>FilterRows: profile_list exits</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：file_namespace_len: remove</from>
-      <to>计算器：profile_list_len</to>
+      <from>SelectValues: file_namespace_len: remove</from>
+      <to>Calculator: profile_list_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：profile_list exits</from>
-      <to>空操作 (什么也不做)：file_profile: not use</to>
+      <from>FilterRows: profile_list exits</from>
+      <to>Dummy: file_profile: not use</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录：profile_list exits</from>
-      <to>字段选择：profile_list_len: remove</to>
+      <from>FilterRows: profile_list exits</from>
+      <to>SelectValues: profile_list_len: remove</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_list_len: remove</from>
-      <to>增加常量：delimiter</to>
+      <from>SelectValues: profile_list_len: remove</from>
+      <to>Constant: delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：file_profile: not use</from>
-      <to>增加常量：file_order_default</to>
+      <from>Dummy: file_profile: not use</from>
+      <to>Constant: file_order_default</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量：file_order_default</from>
-      <to>字段选择：profile_list_len: replace</to>
+      <from>Constant: file_order_default</from>
+      <to>SelectValues: profile_list_len: replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：profile_list_len: replace</from>
-      <to>空操作 (什么也不做)：file_order: done</to>
+      <from>SelectValues: profile_list_len: replace</from>
+      <to>Dummy: file_order: done</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做)：file_order: done</from>
-      <to>增加常量：file&amp;path_delimiter</to>
+      <from>Dummy: file_order: done</from>
+      <to>Constant: file&amp;path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>JavaScript代码：set_variable</name>
+    <name>ScriptValueMod: set_variable</name>
     <type>ScriptValueMod</type>
     <description />
     <distribute>Y</distribute>
@@ -955,7 +956,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>XML 文件输入：project.cfg</name>
+    <name>getXMLData: project.cfg</name>
     <type>getXMLData</type>
     <description />
     <distribute>Y</distribute>
@@ -1075,7 +1076,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>XML 文件输入：project.profile.cfg</name>
+    <name>getXMLData: project.profile.cfg</name>
     <type>getXMLData</type>
     <description />
     <distribute>Y</distribute>
@@ -1210,7 +1211,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>中止：file_namespace: not exits</name>
+    <name>Abort: file_namespace: not exits</name>
     <type>Abort</type>
     <description />
     <distribute>Y</distribute>
@@ -1238,7 +1239,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>写日志：variable</name>
+    <name>WriteToLog: variable</name>
     <type>WriteToLog</type>
     <description />
     <distribute>Y</distribute>
@@ -1275,7 +1276,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>列拆分为多行：content_profile</name>
+    <name>SplitFieldToRows3: content_profile</name>
     <type>SplitFieldToRows3</type>
     <description />
     <distribute>Y</distribute>
@@ -1306,7 +1307,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>列拆分为多行：file_profile_list</name>
+    <name>SplitFieldToRows3: file_profile_list</name>
     <type>SplitFieldToRows3</type>
     <description />
     <distribute>Y</distribute>
@@ -1337,7 +1338,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>去除重复记录：last value</name>
+    <name>Unique: last value</name>
     <type>Unique</type>
     <description />
     <distribute>Y</distribute>
@@ -1371,7 +1372,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>合并记录：content_profile: replace value in same file</name>
+    <name>MergeRows: content_profile: replace value in same file</name>
     <type>MergeRows</type>
     <description />
     <distribute>Y</distribute>
@@ -1392,8 +1393,8 @@ writeToLog("d",log);</jsScript_script>
       <value>key</value>
     </values>
     <flag_field>status_flag</flag_field>
-    <reference>字段选择：noprofile: select content</reference>
-    <compare>字段选择：porfile: select content</compare>
+    <reference>SelectValues: noprofile: select content</reference>
+    <compare>SelectValues: porfile: select content</compare>
     <compare>
     </compare>
     <cluster_schema />
@@ -1410,7 +1411,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>增加常量：delimiter</name>
+    <name>Constant: delimiter</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1460,7 +1461,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>增加常量：file&amp;path_delimiter</name>
+    <name>Constant: file&amp;path_delimiter</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1510,7 +1511,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>增加常量：file_order_default</name>
+    <name>Constant: file_order_default</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1548,7 +1549,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>增加常量：namespace_default</name>
+    <name>Constant: namespace_default</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -1610,7 +1611,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：content_profile_list: remove</name>
+    <name>SelectValues: content_profile_list: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1640,7 +1641,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：file&amp;path_delimiter: remove</name>
+    <name>SelectValues: file&amp;path_delimiter: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1679,7 +1680,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：file_: sorting</name>
+    <name>SelectValues: file_: sorting</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1719,7 +1720,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：file_name: replace</name>
+    <name>SelectValues: file_name: replace</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1767,7 +1768,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：file_namespace_len: remove</name>
+    <name>SelectValues: file_namespace_len: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1797,7 +1798,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：noprofile: select content</name>
+    <name>SelectValues: noprofile: select content</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1847,7 +1848,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：porfile: select content</name>
+    <name>SelectValues: porfile: select content</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1896,7 +1897,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：profile_list_len: remove</name>
+    <name>SelectValues: profile_list_len: remove</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1926,7 +1927,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：profile_list_len: replace</name>
+    <name>SelectValues: profile_list_len: replace</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1972,7 +1973,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：replace namespace</name>
+    <name>SelectValues: replace namespace</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2033,7 +2034,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字段选择：variable_name_value</name>
+    <name>SelectValues: variable_name_value</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -2068,7 +2069,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>字符串替换：file_location: extra delimiter</name>
+    <name>ReplaceString: file_location: extra delimiter</name>
     <type>ReplaceString</type>
     <description />
     <distribute>Y</distribute>
@@ -2105,7 +2106,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>将字段值设置为常量：file_name_profile_suffix: invalid</name>
+    <name>SetValueConstant: file_name_profile_suffix: invalid</name>
     <type>SetValueConstant</type>
     <description />
     <distribute>Y</distribute>
@@ -2138,7 +2139,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>排序记录：key&amp;file&amp;profile</name>
+    <name>SortRows: key&amp;file&amp;profile</name>
     <type>SortRows</type>
     <description />
     <distribute>Y</distribute>
@@ -2195,7 +2196,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>检查文件是否存在：file_location_exists</name>
+    <name>FileExists: file_location_exists</name>
     <type>FileExists</type>
     <description />
     <distribute>Y</distribute>
@@ -2224,7 +2225,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：content_profile: not use</name>
+    <name>Dummy: content_profile: not use</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2248,7 +2249,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：content_profile: use</name>
+    <name>Dummy: content_profile: use</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2272,7 +2273,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：file_location:not exists</name>
+    <name>Dummy: file_location:not exists</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2296,7 +2297,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：file_name_profile_suffix: good</name>
+    <name>Dummy: file_name_profile_suffix: good</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2320,7 +2321,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：file_order: done</name>
+    <name>Dummy: file_order: done</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2344,7 +2345,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：file_profile: not use</name>
+    <name>Dummy: file_profile: not use</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2368,7 +2369,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：namespace: done</name>
+    <name>Dummy: namespace: done</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2392,7 +2393,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：profile_name: not this profile</name>
+    <name>Dummy: profile_name: not this profile</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2416,7 +2417,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)：project_name: not this project</name>
+    <name>Dummy: project_name: not this project</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -2440,7 +2441,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>获取变量：file_*: from param</name>
+    <name>GetVariable: file_*: from param</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -2526,7 +2527,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：content_profile_len</name>
+    <name>Calculator: content_profile_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2565,7 +2566,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：file_location</name>
+    <name>Calculator: file_location</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2619,7 +2620,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：file_name_profile_suffix</name>
+    <name>Calculator: file_name_profile_suffix</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2658,7 +2659,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：file_namespace_len</name>
+    <name>Calculator: file_namespace_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2697,7 +2698,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：file_profile_list</name>
+    <name>Calculator: file_profile_list</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2736,7 +2737,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：file_profile_name</name>
+    <name>Calculator: file_profile_name</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2775,7 +2776,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：namespace_key</name>
+    <name>Calculator: namespace_key</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2814,7 +2815,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>计算器：profile_list_len</name>
+    <name>Calculator: profile_list_len</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -2853,7 +2854,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：content_profile_len</name>
+    <name>FilterRows: content_profile_len</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -2863,8 +2864,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：content_profile: use</send_true_to>
-    <send_false_to>空操作 (什么也不做)：content_profile: not use</send_false_to>
+    <send_true_to>Dummy: content_profile: use</send_true_to>
+    <send_false_to>Dummy: content_profile: not use</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -2896,7 +2897,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：file_location_exists</name>
+    <name>FilterRows: file_location_exists</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -2906,8 +2907,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：file&amp;path_delimiter: remove</send_true_to>
-    <send_false_to>空操作 (什么也不做)：file_location:not exists</send_false_to>
+    <send_true_to>SelectValues: file&amp;path_delimiter: remove</send_true_to>
+    <send_false_to>Dummy: file_location:not exists</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -2939,7 +2940,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：file_name_profile_suffix</name>
+    <name>FilterRows: file_name_profile_suffix</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -2949,8 +2950,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>空操作 (什么也不做)：file_name_profile_suffix: good</send_true_to>
-    <send_false_to>将字段值设置为常量：file_name_profile_suffix: invalid</send_false_to>
+    <send_true_to>Dummy: file_name_profile_suffix: good</send_true_to>
+    <send_false_to>SetValueConstant: file_name_profile_suffix: invalid</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -2973,7 +2974,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：file_namespace exits</name>
+    <name>FilterRows: file_namespace exits</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -2983,8 +2984,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：file_namespace_len: remove</send_true_to>
-    <send_false_to>中止：file_namespace: not exits</send_false_to>
+    <send_true_to>SelectValues: file_namespace_len: remove</send_true_to>
+    <send_false_to>Abort: file_namespace: not exits</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3016,7 +3017,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：namespace: empty</name>
+    <name>FilterRows: namespace: empty</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3026,8 +3027,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：replace namespace</send_true_to>
-    <send_false_to>空操作 (什么也不做)：namespace: done</send_false_to>
+    <send_true_to>SelectValues: replace namespace</send_true_to>
+    <send_false_to>Dummy: namespace: done</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3050,7 +3051,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：profile_list exits</name>
+    <name>FilterRows: profile_list exits</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3060,8 +3061,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：profile_list_len: remove</send_true_to>
-    <send_false_to>空操作 (什么也不做)：file_profile: not use</send_false_to>
+    <send_true_to>SelectValues: profile_list_len: remove</send_true_to>
+    <send_false_to>Dummy: file_profile: not use</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3093,7 +3094,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：profile_name</name>
+    <name>FilterRows: profile_name</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3103,8 +3104,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：porfile: select content</send_true_to>
-    <send_false_to>空操作 (什么也不做)：profile_name: not this profile</send_false_to>
+    <send_true_to>SelectValues: porfile: select content</send_true_to>
+    <send_false_to>Dummy: profile_name: not this profile</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3139,7 +3140,7 @@ writeToLog("d",log);</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>过滤记录：project_name</name>
+    <name>FilterRows: project_name</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -3149,8 +3150,8 @@ writeToLog("d",log);</jsScript_script>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>字段选择：noprofile: select content</send_true_to>
-    <send_false_to>空操作 (什么也不做)：project_name: not this project</send_false_to>
+    <send_true_to>SelectValues: noprofile: select content</send_true_to>
+    <send_false_to>Dummy: project_name: not this project</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>

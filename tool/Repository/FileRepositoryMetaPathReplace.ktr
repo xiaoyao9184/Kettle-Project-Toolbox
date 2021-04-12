@@ -1,0 +1,2690 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>FileRepositoryMetaPathReplace</name>
+    <description />
+    <extended_description />
+    <trans_version />
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/</directory>
+    <parameters>
+      <parameter>
+        <name>Parameters.Repository.Name.Type</name>
+        <default_value>1</default_value>
+        <description>repository name type</description>
+      </parameter>
+      <parameter>
+        <name>Parameters.Repository.Target.Path</name>
+        <default_value />
+        <description>copy target path</description>
+      </parameter>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject />
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection />
+      <table />
+      <field />
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file />
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2015/06/11 09:45:55.085</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2015/06/11 09:45:55.085</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>replace repository meta path</note>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
+      <width>175</width>
+      <heigth>26</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>params
+
+Parameters.Repository.Meta.Path       Notuse
+Parameters.Repository.Name.Type     Optional
+====================
+input variable
+
+user.home                                            Maybe
+====================
+input result 
+
+*                                                            repository meta
+====================
+output result
+
+*                                                            repository meta</note>
+      <xloc>656</xloc>
+      <yloc>0</yloc>
+      <width>317</width>
+      <heigth>258</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>params
+
+====================
+Parameters.Repository.Name.Type
+
+0             use old path name
+(other)     use repository name
+====================</note>
+      <xloc>656</xloc>
+      <yloc>288</yloc>
+      <width>208</width>
+      <heigth>134</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>SelectValues: replace base_directory</from>
+      <to>WriteToLog: repository meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace base_directory</from>
+      <to>RowsToResult: copyer &amp; repository meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is multiple result</from>
+      <to>Dummy: single</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is multiple result</from>
+      <to>Dummy: multiple</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: uniform delimiter</from>
+      <to>ReplaceString: remove repeat delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: remove repeat delimiter</from>
+      <to>SelectValues: path_source&amp;path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StepsMetrics</from>
+      <to>SelectValues: repository_meta_count</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: path_source_name</from>
+      <to>ScriptValueMod: path_source_father_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: repository_meta_count</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: replace params</from>
+      <to>ReplaceString: uniform delimiter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>RowsFromResult: repository meta</from>
+      <to>BlockUntilStepsFinish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>BlockUntilStepsFinish</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JoinRows</from>
+      <to>Constant: EMPTY&amp;REPEAT&amp;SEPARATOR&amp;REGEX</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: EMPTY&amp;REPEAT&amp;SEPARATOR&amp;REGEX</from>
+      <to>GetVariable: replace params</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: repository_name_type</from>
+      <to>Calculator: path_target name same as path_source_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: repository_name_type</from>
+      <to>Calculator: path_target same as repository</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: use path_source_father_path be path_target</from>
+      <to>SelectValues: path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: path_target</from>
+      <to>Dummy: path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: empty path_target</from>
+      <to>Calculator: use path_source_father_path be path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: empty path_target</from>
+      <to>Dummy: path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: path_target_father_path</from>
+      <to>FilterRows: repository_name_type</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: path_target same as repository</from>
+      <to>Dummy: path_target2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: path_target name same as path_source_name</from>
+      <to>Dummy: path_target2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: path_target2</from>
+      <to>SelectValues: replace path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: path_source_father_path</from>
+      <to>FilterRows: empty path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: multiple</from>
+      <to>ReplaceString: path_target_father_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is path_target end with /</from>
+      <to>ReplaceString: path_target_father_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: path_source&amp;path_target</from>
+      <to>ReplaceString: path_source_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: path_target</from>
+      <to>FilterRows: is path_target end with /</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is path_target end with /</from>
+      <to>FilterRows: is multiple result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: path_target_name</from>
+      <to>ScriptValueMod: path_target_father_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: single</from>
+      <to>ReplaceString: path_target_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: path_target_father_path</from>
+      <to>SelectValues: sort</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace path_target</from>
+      <to>Dummy: together</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: sort</from>
+      <to>Dummy: together</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SortRows: path_target</from>
+      <to>FieldsChangeSequence: path_target_number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: path_target use number</from>
+      <to>SelectValues: path_taraget use number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: path_target_number = 0</from>
+      <to>Calculator: path_target use number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: path_target_number = 0</from>
+      <to>SelectValues: remove path_target_number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FieldsChangeSequence: path_target_number</from>
+      <to>FilterRows: path_target_number = 0</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove path_target_number</from>
+      <to>Dummy: ）</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: path_taraget use number</from>
+      <to>Dummy: ）</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: ）</from>
+      <to>SelectValues: replace base_directory</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: together</from>
+      <to>SortRows: path_target</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>BlockUntilStepsFinish</name>
+    <type>BlockUntilStepsFinish</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <steps>
+      <step>
+        <name>StepsMetrics</name>
+        <CopyNr>0</CopyNr>
+      </step>
+    </steps>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>280</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: path_target name same as path_source_name</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>path_target_name</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>path_source_name</field_a>
+      <field_b />
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_target1</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target_father_path</field_a>
+      <field_b>SEPARATOR</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_target2</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target1</field_a>
+      <field_b>path_target_name</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>2160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: path_target same as repository</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>path_target_name</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>name</field_a>
+      <field_b />
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_target1</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target_father_path</field_a>
+      <field_b>SEPARATOR</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_target2</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target1</field_a>
+      <field_b>path_target_name</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>2160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: path_target use number</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>path_target_name1</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target_name</field_a>
+      <field_b>Num</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_target1</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target_father_path</field_a>
+      <field_b>SEPARATOR</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <calculation>
+      <field_name>path_target2</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_target1</field_a>
+      <field_b>path_target_name1</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3088</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: use path_source_father_path be path_target</name>
+    <type>Calculator</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <calculation>
+      <field_name>path_target1</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>path_source_father_path</field_a>
+      <field_b>SEPARATOR</field_b>
+      <field_c />
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
+    </calculation>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>1344</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: EMPTY&amp;REPEAT&amp;SEPARATOR&amp;REGEX</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>EMPTY</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>.*</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>REPEAT</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>[Copy]</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>SEPARATOR</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>/</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>REGEX</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>380</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: multiple</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>1920</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: path_target</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>1560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: path_target2</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>760</xloc>
+      <yloc>2280</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: single</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>280</xloc>
+      <yloc>1920</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: together</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>2540</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: ）</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>3360</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FieldsChangeSequence: path_target_number</name>
+    <type>FieldsChangeSequence</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <start>0</start>
+    <increment>1</increment>
+    <resultfieldName>path_target_number</resultfieldName>
+    <fields>
+      <field>
+        <name>path_target</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>2860</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: empty path_target</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Calculator: use path_source_father_path be path_target</send_true_to>
+    <send_false_to>Dummy: path_target</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <conditions>
+              <condition>
+                <negated>N</negated>
+                <operator>AND</operator>
+                <leftvalue>path_target</leftvalue>
+                <function>IS NULL</function>
+                <rightvalue />
+              </condition>
+              <condition>
+                <negated>N</negated>
+                <operator>OR</operator>
+                <leftvalue>path_target</leftvalue>
+                <function>=</function>
+                <rightvalue>EMPTY</rightvalue>
+              </condition>
+            </conditions>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>1240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: is multiple result</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Dummy: multiple</send_true_to>
+    <send_false_to>Dummy: single</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>repository_meta_count</leftvalue>
+            <function>&gt;</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>1</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>#;-#</mask>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>1800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: is path_target end with /</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>ReplaceString: path_target_father_path</send_true_to>
+    <send_false_to>FilterRows: is multiple result</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>path_target</leftvalue>
+            <function>REGEXP</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>.*/$</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>1680</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: path_target_number = 0</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>SelectValues: remove path_target_number</send_true_to>
+    <send_false_to>Calculator: path_target use number</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>path_target_number</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>3000</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: repository_name_type</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Calculator: path_target name same as path_source_name</send_true_to>
+    <send_false_to>Calculator: path_target same as repository</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>repository_name_type</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>0</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>#;-#</mask>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>760</xloc>
+      <yloc>2040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: replace params</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>repository_name_type</name>
+        <variable>${Parameters.Repository.Name.Type}</variable>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>repository_target_path</name>
+        <variable>${Parameters.Repository.Target.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JoinRows</name>
+    <type>JoinRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main>SelectValues: ignore步骤数量</main>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>id</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue />
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>260</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: path_source_name</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>path_source</in_stream_name>
+        <out_stream_name>path_source_name</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*/</replace_string>
+        <replace_by_string />
+        <set_empty_string>Y</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>1000</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: path_target_father_path</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>path_target</in_stream_name>
+        <out_stream_name>path_target_father_path</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>/$</replace_string>
+        <replace_by_string />
+        <set_empty_string>Y</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>760</xloc>
+      <yloc>1920</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: path_target_name</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>path_target</in_stream_name>
+        <out_stream_name>path_target_name</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*/</replace_string>
+        <replace_by_string />
+        <set_empty_string>Y</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>280</xloc>
+      <yloc>2040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: remove repeat delimiter</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>path_source1</in_stream_name>
+        <out_stream_name>path_source2</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>//</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>yes</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>path_target1</in_stream_name>
+        <out_stream_name>path_target2</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>//</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>yes</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>740</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: uniform delimiter</name>
+    <type>ReplaceString</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>base_directory</in_stream_name>
+        <out_stream_name>path_source1</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>\</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>yes</case_sensitive>
+      </field>
+      <field>
+        <in_stream_name>repository_target_path</in_stream_name>
+        <out_stream_name>path_target1</out_stream_name>
+        <use_regex>no</use_regex>
+        <replace_string>\</replace_string>
+        <replace_by_string>/</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string />
+        <whole_word>no</whole_word>
+        <case_sensitive>yes</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>620</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>RowsFromResult: repository meta</name>
+    <type>RowsFromResult</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>description</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>base_directory</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>read_only</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>280</xloc>
+      <yloc>20</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>RowsToResult: copyer &amp; repository meta</name>
+    <type>RowsToResult</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>3640</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: path_source_father_path</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//
+var index = indexOf(path_source,path_source_name);
+//Alert("index = " + index);
+path_source_father_path = substr(path_source,0,index-1);
+//Alert("path_source_father_path = " + path_source_father_path);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>path_source_father_path</name>
+        <rename>path_source_father_path</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>1120</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: path_target_father_path</name>
+    <type>ScriptValueMod</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>//
+var index = indexOf(path_target,path_target_name);
+//Alert("index = " + index);
+path_target_father_path = substr(path_target,0,index-1);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>path_target_father_path</name>
+        <rename>path_target_father_path</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>280</xloc>
+      <yloc>2160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: path_source&amp;path_target</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>EMPTY</name>
+      </field>
+      <field>
+        <name>REPEAT</name>
+      </field>
+      <field>
+        <name>SEPARATOR</name>
+      </field>
+      <field>
+        <name>REGEX</name>
+      </field>
+      <field>
+        <name>repository_meta_count</name>
+      </field>
+      <field>
+        <name>repository_target_path</name>
+      </field>
+      <field>
+        <name>repository_name_type</name>
+      </field>
+      <field>
+        <name>path_source2</name>
+        <rename>path_source</rename>
+      </field>
+      <field>
+        <name>path_target2</name>
+        <rename>path_target</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>400</xloc>
+      <yloc>860</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: path_taraget use number</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>EMPTY</name>
+      </field>
+      <field>
+        <name>REPEAT</name>
+      </field>
+      <field>
+        <name>SEPARATOR</name>
+      </field>
+      <field>
+        <name>REGEX</name>
+      </field>
+      <field>
+        <name>DataCount</name>
+      </field>
+      <field>
+        <name>REPPathName</name>
+      </field>
+      <field>
+        <name>REPPath</name>
+      </field>
+      <field>
+        <name>path_source_father_path</name>
+      </field>
+      <field>
+        <name>path_source_name</name>
+      </field>
+      <field>
+        <name>path_source</name>
+      </field>
+      <field>
+        <name>path_target2</name>
+        <rename>path_target</rename>
+      </field>
+      <field>
+        <name>path_target_name1</name>
+        <rename>path_target_name</rename>
+      </field>
+      <field>
+        <name>path_target_father_path</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>3216</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: path_target</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>EMPTY</name>
+      </field>
+      <field>
+        <name>REPEAT</name>
+      </field>
+      <field>
+        <name>SEPARATOR</name>
+      </field>
+      <field>
+        <name>REGEX</name>
+      </field>
+      <field>
+        <name>repository_meta_count</name>
+      </field>
+      <field>
+        <name>repository_target_path</name>
+      </field>
+      <field>
+        <name>repository_name_type</name>
+      </field>
+      <field>
+        <name>path_source</name>
+      </field>
+      <field>
+        <name>path_target1</name>
+        <rename>path_target</rename>
+      </field>
+      <field>
+        <name>path_source_name</name>
+      </field>
+      <field>
+        <name>path_source_father_path</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>1472</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove path_target_number</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>path_target_number</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>3220</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace base_directory</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>path_source</name>
+        <rename />
+      </field>
+      <field>
+        <name>path_target</name>
+        <rename />
+      </field>
+      <field>
+        <name>REGEX</name>
+        <rename>path_regex</rename>
+      </field>
+      <field>
+        <name>id</name>
+        <rename />
+      </field>
+      <field>
+        <name>name</name>
+        <rename />
+      </field>
+      <field>
+        <name>description</name>
+        <rename />
+      </field>
+      <field>
+        <name>path_target</name>
+        <rename>base_directory</rename>
+      </field>
+      <field>
+        <name>read_only</name>
+        <rename />
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+        <rename />
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>3500</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace path_target</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>EMPTY</name>
+      </field>
+      <field>
+        <name>REPEAT</name>
+      </field>
+      <field>
+        <name>SEPARATOR</name>
+      </field>
+      <field>
+        <name>REGEX</name>
+      </field>
+      <field>
+        <name>repository_meta_count</name>
+      </field>
+      <field>
+        <name>repository_target_path</name>
+      </field>
+      <field>
+        <name>repository_name_type</name>
+      </field>
+      <field>
+        <name>path_source_father_path</name>
+      </field>
+      <field>
+        <name>path_source_name</name>
+      </field>
+      <field>
+        <name>path_source</name>
+      </field>
+      <field>
+        <name>path_target2</name>
+        <rename>path_target</rename>
+      </field>
+      <field>
+        <name>path_target_name</name>
+      </field>
+      <field>
+        <name>path_target_father_path</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>760</xloc>
+      <yloc>2400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: repository_meta_count</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>step_write_count</name>
+        <rename>repository_meta_count</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: sort</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>EMPTY</name>
+      </field>
+      <field>
+        <name>REPEAT</name>
+      </field>
+      <field>
+        <name>SEPARATOR</name>
+      </field>
+      <field>
+        <name>REGEX</name>
+      </field>
+      <field>
+        <name>repository_meta_count</name>
+      </field>
+      <field>
+        <name>repository_target_path</name>
+      </field>
+      <field>
+        <name>repository_name_type</name>
+      </field>
+      <field>
+        <name>path_source_father_path</name>
+      </field>
+      <field>
+        <name>path_source_name</name>
+      </field>
+      <field>
+        <name>path_source</name>
+      </field>
+      <field>
+        <name>path_target</name>
+      </field>
+      <field>
+        <name>path_target_name</name>
+      </field>
+      <field>
+        <name>path_target_father_path</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>280</xloc>
+      <yloc>2400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SortRows: path_target</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>path_target</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>description</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>2</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>2720</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StepsMetrics</name>
+    <type>StepsMetrics</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <steps>
+      <step>
+        <name>RowsFromResult: repository meta</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+    </steps>
+    <stepnamefield>step_name</stepnamefield>
+    <stepidfield>step_id</stepidfield>
+    <steplinesinputfield>step_input_count</steplinesinputfield>
+    <steplinesoutputfield>step_output_count</steplinesoutputfield>
+    <steplinesreadfield>step_read_count</steplinesreadfield>
+    <steplinesupdatedfield>step_update_count</steplinesupdatedfield>
+    <steplineswrittentfield>step_write_count</steplineswrittentfield>
+    <steplineserrorsfield>step_drop_count</steplineserrorsfield>
+    <stepsecondsfield>step_time</stepsecondsfield>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>520</xloc>
+      <yloc>20</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: repository meta</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_detailed</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>repository meta replace path</logmessage>
+    <fields>
+      <field>
+        <name>path_source</name>
+      </field>
+      <field>
+        <name>path_target</name>
+      </field>
+      <field>
+        <name>path_regex</name>
+      </field>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>3504</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>

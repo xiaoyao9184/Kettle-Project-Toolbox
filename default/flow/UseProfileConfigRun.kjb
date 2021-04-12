@@ -8,12 +8,12 @@
   <created_user>-</created_user>
   <created_date>2017/08/28 08:58:03.988</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2018/10/19 14:30:29.199</modified_date>
+  <modified_date>2021/04/12 11:28:31.742</modified_date>
   <parameters>
     <parameter>
       <name>ProfileName</name>
       <default_value />
-      <description>激活的参数Profile名称</description>
+      <description>profile name of the activated parameter</description>
     </parameter>
   </parameters>
   <slaveservers>
@@ -346,7 +346,7 @@
       <yloc>288</yloc>
     </entry>
     <entry>
-      <name>成功</name>
+      <name>SUCCESS</name>
       <description />
       <type>SUCCESS</type>
       <parallel>N</parallel>
@@ -441,7 +441,7 @@
     </hop>
     <hop>
       <from>?</from>
-      <to>成功</to>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -469,37 +469,19 @@
   </hops>
   <notepads>
     <notepad>
-      <note>主要运行</note>
-      <xloc>0</xloc>
-      <yloc>0</yloc>
-      <width>58</width>
-      <heigth>26</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
-    <notepad>
-      <note>依赖以下参数
-ProfileName	激活的参数Profile名称(多个,号分割)
+      <note>params
 
-依赖以下Config
-Config.Main.Job.Path		作业路径
-Config.Main.Job.Name		作业名称</note>
+ProfileName           Must(Multiple, split by number)
+
+====================
+input variable
+
+Config.Main.Job.Path
+Config.Main.Job.Name</note>
       <xloc>272</xloc>
       <yloc>0</yloc>
-      <width>299</width>
-      <heigth>107</heigth>
+      <width>300</width>
+      <heigth>150</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>

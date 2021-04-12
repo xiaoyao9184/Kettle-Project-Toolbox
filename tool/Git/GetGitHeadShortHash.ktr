@@ -2,37 +2,37 @@
 <transformation>
   <info>
     <name>GetGitHeadShortHash</name>
-    <description/>
-    <extended_description/>
-    <trans_version/>
+    <description />
+    <extended_description />
+    <trans_version />
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#x2f;</directory>
+    <directory>/</directory>
     <parameters>
       <parameter>
         <name>Parameters.Git.Home</name>
-        <default_value/>
-        <description>Git&#x547d;&#x4ee4;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>Git bin path</description>
       </parameter>
       <parameter>
         <name>Parameters.Git.Path</name>
-        <default_value/>
-        <description>Git&#x8d44;&#x6e90;&#x5e93;&#x8def;&#x5f84;</description>
+        <default_value />
+        <description>Git repository path</description>
       </parameter>
       <parameter>
         <name>Position.Ktr.GetGitCommandResult</name>
-        <default_value>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;GetGitCommandResult.ktr</default_value>
-        <description>&#x4f9d;&#x8d56;&#x8f6c;&#x6362;&#x76f8;&#x5bf9;&#x4f4d;&#x7f6e;</description>
+        <default_value>${Internal.Transformation.Filename.Directory}/GetGitCommandResult.ktr</default_value>
+        <description>mapping GetGitCommandResult path</description>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -57,37 +57,37 @@
           <id>LINES_READ</id>
           <enabled>Y</enabled>
           <name>LINES_READ</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_WRITTEN</id>
           <enabled>Y</enabled>
           <name>LINES_WRITTEN</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_UPDATED</id>
           <enabled>Y</enabled>
           <name>LINES_UPDATED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_INPUT</id>
           <enabled>Y</enabled>
           <name>LINES_INPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_OUTPUT</id>
           <enabled>Y</enabled>
           <name>LINES_OUTPUT</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>LINES_REJECTED</id>
           <enabled>Y</enabled>
           <name>LINES_REJECTED</name>
-          <subject/>
+          <subject />
         </field>
         <field>
           <id>ERRORS</id>
@@ -141,11 +141,11 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -223,10 +223,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -289,10 +289,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -365,10 +365,10 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -417,9 +417,9 @@
       </metrics-log-table>
     </log>
     <maxdate>
-      <connection/>
-      <table/>
-      <field/>
+      <connection />
+      <table />
+      <field />
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
@@ -430,7 +430,7 @@
     <feedback_shown>Y</feedback_shown>
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
-    <shared_objects_file/>
+    <shared_objects_file />
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
@@ -443,18 +443,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018&#x2f;09&#x2f;27 14&#x3a;23&#x3a;35.786</created_date>
+    <created_date>2018/09/27 14:23:35.786</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2018&#x2f;09&#x2f;27 14&#x3a;23&#x3a;35.786</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA&#x3d;</key_for_session_key>
+    <modified_date>2018/09/27 14:23:35.786</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>&#x83b7;&#x53d6;Git HEAD &#x77ed;&#x54c8;&#x5e0c;</note>
+      <note>get Git short hash</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>127</width>
+      <width>113</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -472,11 +472,18 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>&#x4f9d;&#x8d56;&#x4ee5;&#x4e0b;&#x53c2;&#x6570;&#xd;&#xa;&#xd;&#xa;Parameters.Git.Path	&#x5fc5;&#x586b;&#xd;&#xa;Parameters.Git.Home	&#x975e;&#x5fc5;&#x586b;&#xd;&#xa;&#xd;&#xa;&#x8f93;&#x51fa;&#x4ee5;&#x4e0b;&#x53d8;&#x91cf;&#xd;&#xa;&#xd;&#xa;Result.Git.ShortHash	Git&#x77ed;&#x54c8;&#x5e0c;</note>
+      <note>params
+
+Parameters.Git.Path       Must
+Parameters.Git.Home    Optional
+====================
+output result
+
+Result.Git.ShortHash     Git short hash</note>
       <xloc>512</xloc>
       <yloc>0</yloc>
-      <width>206</width>
-      <heigth>141</heigth>
+      <width>226</width>
+      <heigth>134</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -495,228 +502,63 @@
   </notepads>
   <order>
     <hop>
-      <from>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Home&#x26;Path</from>
-      <to>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;command</to>
+      <from>GetVariable: Home: Path</from>
+      <to>Constant: command</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;command</from>
-      <to>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;GetGitCommandResult</to>
+      <from>Constant: command</from>
+      <to>Mapping: GetGitCommandResult</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;reault_len</from>
-      <to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</to>
+      <from>FilterRows: reault_len</from>
+      <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;reault_len</from>
-      <to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Result.Git.ShortHash</to>
+      <from>FilterRows: reault_len</from>
+      <to>set variable: Result.Git.ShortHash</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;GetGitCommandResult</from>
-      <to>&#x8ba1;&#x7b97;&#x5668;&#xff1a;result_len</to>
+      <from>Mapping: GetGitCommandResult</from>
+      <to>Calculator: result_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>&#x8ba1;&#x7b97;&#x5668;&#xff1a;result_len</from>
-      <to>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;reault_len</to>
+      <from>Calculator: result_len</from>
+      <to>FilterRows: reault_len</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>&#x589e;&#x52a0;&#x5e38;&#x91cf;&#xff1a;command</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>command</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>&#x7b;home&#x7d;git -C &#x7b;path&#x7d; rev-parse --short HEAD</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x6620;&#x5c04; &#x28;&#x5b50;&#x8f6c;&#x6362;&#x29;&#xff1a;GetGitCommandResult</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name/>
-    <filename>&#x24;&#x7b;Position.Ktr.GetGitCommandResult&#x7d;</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>Y</rename_on_output>
-    <description/>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step/>
-    <output_step/>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x83b7;&#x53d6;&#x53d8;&#x91cf;&#xff1a;Home&#x26;Path</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>home</name>
-        <variable>&#x24;&#x7b;Parameters.Git.Home&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>path</name>
-        <variable>&#x24;&#x7b;Parameters.Git.Path&#x7d;</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>32</yloc>
-      <draw>Y</draw>
-    </GUI>
-    </step>
-
-  <step>
-    <name>&#x8ba1;&#x7b97;&#x5668;&#xff1a;result_len</name>
+    <name>Calculator: result_len</name>
     <type>Calculator</type>
-    <description/>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <calculation>
       <field_name>result_len</field_name>
       <calc_type>STRING_LEN</calc_type>
       <field_a>git_result</field_a>
-      <field_b/>
-      <field_c/>
+      <field_b />
+      <field_c />
       <value_type>Integer</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
+      <conversion_mask />
+      <decimal_symbol />
+      <grouping_symbol />
+      <currency_symbol />
     </calculation>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -728,29 +570,33 @@
       <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Result.Git.ShortHash</name>
-    <type>SetVariable</type>
-    <description/>
+    <name>Constant: command</name>
+    <type>Constant</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
     <fields>
       <field>
-        <field_name>git_result</field_name>
-        <variable_name>Result.Git.ShortHash</variable_name>
-        <variable_type>ROOT_JOB</variable_type>
-        <default_value>-</default_value>
-        </field>
-      </fields>
-    <use_formatting>Y</use_formatting>
-    <cluster_schema/>
+        <name>command</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>{home}git -C {path} rev-parse --short HEAD</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -759,33 +605,65 @@
     </remotesteps>
     <GUI>
       <xloc>336</xloc>
-      <yloc>608</yloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
   <step>
-    <name>&#x8fc7;&#x6ee4;&#x8bb0;&#x5f55;&#xff1a;reault_len</name>
-    <type>FilterRows</type>
-    <description/>
+    <name>Dummy</name>
+    <type>Dummy</type>
+    <description />
     <distribute>Y</distribute>
-    <custom_distribution/>
+    <custom_distribution />
     <copies>1</copies>
     <partitioning>
       <method>none</method>
-      <schema_name/>
+      <schema_name />
     </partitioning>
-<send_true_to>&#x8bbe;&#x7f6e;&#x53d8;&#x91cf;&#xff1a;Result.Git.ShortHash</send_true_to>
-<send_false_to>&#x7a7a;&#x64cd;&#x4f5c; &#x28;&#x4ec0;&#x4e48;&#x4e5f;&#x4e0d;&#x505a;&#x29;</send_false_to>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: reault_len</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>set variable: Result.Git.ShortHash</send_true_to>
+    <send_false_to>Dummy</send_false_to>
     <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>result_len</leftvalue>
- <function>&#x3e;</function>
- <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>0</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;</mask></value> </condition>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>result_len</leftvalue>
+        <function>&gt;</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>0</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>#</mask>
+        </value>
+      </condition>
     </compare>
-    <cluster_schema/>
+    <cluster_schema />
     <remotesteps>
       <input>
       </input>
@@ -797,8 +675,144 @@
       <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
-    </step>
-
+  </step>
+  <step>
+    <name>GetVariable: Home: Path</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>home</name>
+        <variable>${Parameters.Git.Home}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>path</name>
+        <variable>${Parameters.Git.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mapping: GetGitCommandResult</name>
+    <type>Mapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id />
+    <trans_name />
+    <filename>${Position.Ktr.GetGitCommandResult}</filename>
+    <directory_path />
+    <mappings>
+      <input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <allow_multiple_input>N</allow_multiple_input>
+    <allow_multiple_output>N</allow_multiple_output>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>256</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>set variable: Result.Git.ShortHash</name>
+    <type>SetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <field_name>git_result</field_name>
+        <variable_name>Result.Git.ShortHash</variable_name>
+        <variable_type>ROOT_JOB</variable_type>
+        <default_value>-</default_value>
+      </field>
+    </fields>
+    <use_formatting>Y</use_formatting>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>336</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
