@@ -29,7 +29,7 @@ echorNameRegex="Need input match regex of repository name (default: dev.*)"
 esetrNameRegex="Please input match regex of repository name:"
 
 echorNameRemove="Need input string for seach (default: dev)"
-esetrNameRemove="Pleaseinput string for seach:"
+esetrNameRemove="Please input string for seach:"
 
 echorNameReplace="Need input string for reaplce (default: )"
 esetrNameReplace="Please input string for reaplce"
@@ -37,8 +37,8 @@ esetrNameReplace="Please input string for reaplce"
 echorNameNew="Need input name of new repository"
 esetrNameNew="Please input name of new repository:"
 
-echorPath="Need input path of new repository"
-esetrPath="Please input path of new repository:"
+echorPath="Need input path of copy target"
+esetrPath="Please input path of copy target:"
 
 echorMetaSource="Need input path of read repository meta"
 esetrMetaSource="Please input path of read repository meta"
@@ -74,7 +74,7 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-if [ "$tempOm" != "one" ] ;then
+if [ "$tempOm" == "one" ] ;then
     if [ "$rNameRegex"=="" ]
 	then
 		echo $echorName
@@ -156,7 +156,7 @@ then
 				* ) echo "Please answer yes or no.";;
 			esac
 		done
-	else
+	fi
 fi
 
 while true; do

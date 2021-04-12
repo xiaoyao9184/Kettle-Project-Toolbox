@@ -39,7 +39,7 @@ set echorNameRegex=Need input match regex of repository name, default: dev.*
 set esetrNameRegex="Please input match regex of repository name:"
 
 set echorNameRemove=Need input string for seach, default: 
-set esetrNameRemove="Pleaseinput string for seach:"
+set esetrNameRemove="Please input string for seach:"
 
 set echorNameReplace=Need input string for reaplce, default: 
 set esetrNameReplace="Please input string for reaplce:"
@@ -47,8 +47,8 @@ set esetrNameReplace="Please input string for reaplce:"
 set echorNameNew=Need input name of new repository
 set esetrNameNew="Please input name of new repository:"
 
-set echorPath=Need input path of new repository
-set esetrPath="Please input path of new repository:"
+set echorPath=Need input path of copy target
+set esetrPath="Please input path of copy target:"
 
 set echorMetaSource=Need input path of read repository meta
 set esetrMetaSource="Please input path of read repository meta:"
@@ -235,7 +235,7 @@ echo ===========================================================
 echo Running...      Ctrl+C for exit
 
 ::create command run
-set c=%pdi_path%\kitchen -file:%current_path%\Repository\CopyFileRepositoryAll.kjb %tempParam%
+set c=%pdi_path%\kitchen -file:%current_path%\Repository\CopyFileRepositoryMeta.kjb %tempParam%
 if _%interactive%_ neq _0_ echo %c%
 call %c%
 

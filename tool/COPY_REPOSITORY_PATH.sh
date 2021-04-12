@@ -57,7 +57,7 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-if [ "$tempOm" != "one" ] ;then
+if [ "$tempOm" == "one" ] ;then
     if [ "$rNameRegex"=="" ]
 	then
 		echo $echorName
@@ -97,7 +97,7 @@ then
 				* ) echo "Please answer yes or no.";;
 			esac
 		done
-	else
+	fi
 fi
 
 while true; do
