@@ -61,7 +61,7 @@ echo ...
 
 :check
 
-choice /c yn /m "copy one(Y), copy more(N, default)?" /t 5 /d n
+choice /c yn /m "copy one(Y), copy more(N, default)?" /t 10 /d n
 	if !errorlevel! equ 1 goto one
 	if !errorlevel! equ 2 goto more
 	
@@ -101,13 +101,13 @@ choice /c yn /m "config repository path? (default is use name for path name)" /t
 	del cmd.tmp
 
 	if not "%isDir%"=="" (
-		choice /c yn /m "copy repository path name, same as old path name(Y), or as repository name(N，default)?" /t 15 /d n
+		choice /c yn /m "copy repository path name, same as old path name(Y), or as repository name(N,default)?" /t 15 /d n
 			if !errorlevel! equ 1 set rPathType=1
 			if !errorlevel! equ 2 set rPathType=0
 	)
 :pathend
 
-choice /c yn /m "need change kettle home path? (default is not)" /t 5 /d n
+choice /c yn /m "need change kettle home path? (default is not)" /t 10 /d n
 	if !errorlevel! equ 1 goto user
 	if !errorlevel! equ 2 goto default
 
