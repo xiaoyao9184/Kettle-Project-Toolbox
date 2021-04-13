@@ -438,11 +438,14 @@
     <notepad>
       <note>input/output result
 
-path</note>
+path
+====================
+In PDI7, GetFileNames can get the information of the current directory, 
+in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itself.</note>
       <xloc>432</xloc>
       <yloc>0</yloc>
-      <width>120</width>
-      <heigth>57</heigth>
+      <width>460</width>
+      <heigth>103</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -461,13 +464,8 @@ path</note>
   </notepads>
   <order>
     <hop>
-      <from>SelectValues: filename</from>
-      <to>MappingOutput</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: path</from>
-      <to>GetFileNames: path_file_location</to>
+      <from>SelectValues: path</from>
+      <to>MappingOutput: path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -482,20 +480,120 @@ path</note>
     </hop>
     <hop>
       <from>FilterRows</from>
-      <to>SetValueField: set path</to>
+      <to>SetValueField: set path with path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: set path with path</from>
+      <to>SelectValues: path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>GetFileNames: path_file_location</from>
+      <to>DetectEmptyStream</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: path</from>
+      <to>GetFileNames: path_file_location</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DetectEmptyStream</from>
+      <to>SelectValues: clear</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetFileNames: path_file_location</from>
+      <to>SetValueField: set path with filename</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetSubFolders</from>
       <to>DetectLastRow</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SetValueField: set path</from>
+      <from>SetValueField: set path with filename</from>
       <to>SelectValues: filename</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>SelectValues: filename</from>
+      <to>MappingOutput: path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: path</from>
+      <to>Dummy: copy mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: copy mapping</from>
+      <to>Append</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: clear</from>
+      <to>Append</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append</from>
+      <to>GetSubFolders</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Append</name>
+    <type>Append</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <head_name>SelectValues: clear</head_name>
+    <tail_name>Dummy: copy mapping</tail_name>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DetectEmptyStream</name>
+    <type>DetectEmptyStream</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>DetectLastRow</name>
     <type>DetectLastRow</type>
@@ -516,8 +614,8 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>272</yloc>
+      <xloc>320</xloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -540,8 +638,32 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>384</yloc>
+      <xloc>512</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: copy mapping</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>512</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -556,7 +678,7 @@ path</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>SetValueField: set path</send_true_to>
+    <send_true_to>SetValueField: set path with path</send_true_to>
     <send_false_to>Dummy</send_false_to>
     <compare>
       <condition>
@@ -583,8 +705,8 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>384</yloc>
+      <xloc>320</xloc>
+      <yloc>848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -592,7 +714,7 @@ path</note>
     <name>GetFileNames: path_file_location</name>
     <type>GetFileNames</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -627,8 +749,41 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
+      <xloc>320</xloc>
       <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetSubFolders</name>
+    <type>GetSubFolders</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <rownum>N</rownum>
+    <foldername_dynamic>Y</foldername_dynamic>
+    <rownum_field />
+    <foldername_field>path</foldername_field>
+    <limit>0</limit>
+    <file>
+      <name />
+      <file_required>N</file_required>
+    </file>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -636,7 +791,7 @@ path</note>
     <name>MappingInput: path</name>
     <type>MappingInput</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -660,13 +815,13 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>48</yloc>
+      <xloc>320</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: path</name>
     <type>MappingOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -684,8 +839,134 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>736</yloc>
+      <xloc>320</xloc>
+      <yloc>1232</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: clear</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>filename</name>
+      </remove>
+      <remove>
+        <name>short_filename</name>
+      </remove>
+      <remove>
+        <name>path_1</name>
+      </remove>
+      <remove>
+        <name>type</name>
+      </remove>
+      <remove>
+        <name>exists</name>
+      </remove>
+      <remove>
+        <name>ishidden</name>
+      </remove>
+      <remove>
+        <name>isreadable</name>
+      </remove>
+      <remove>
+        <name>iswriteable</name>
+      </remove>
+      <remove>
+        <name>lastmodifiedtime</name>
+      </remove>
+      <remove>
+        <name>size</name>
+      </remove>
+      <remove>
+        <name>extension</name>
+      </remove>
+      <remove>
+        <name>uri</name>
+      </remove>
+      <remove>
+        <name>rooturi</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: path</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>folderName</name>
+      </remove>
+      <remove>
+        <name>short_folderName</name>
+      </remove>
+      <remove>
+        <name>path_1</name>
+      </remove>
+      <remove>
+        <name>ishidden</name>
+      </remove>
+      <remove>
+        <name>isreadable</name>
+      </remove>
+      <remove>
+        <name>iswriteable</name>
+      </remove>
+      <remove>
+        <name>lastmodifiedtime</name>
+      </remove>
+      <remove>
+        <name>uri</name>
+      </remove>
+      <remove>
+        <name>rooturi</name>
+      </remove>
+      <remove>
+        <name>childrens</name>
+      </remove>
+      <remove>
+        <name>is_last</name>
+      </remove>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -741,9 +1022,6 @@ path</note>
       <remove>
         <name>rooturi</name>
       </remove>
-      <remove>
-        <name>is_last</name>
-      </remove>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -753,13 +1031,13 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>624</yloc>
+      <xloc>128</xloc>
+      <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SetValueField: set path</name>
+    <name>SetValueField: set path with filename</name>
     <type>SetValueField</type>
     <description />
     <distribute>Y</distribute>
@@ -783,8 +1061,38 @@ path</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>288</xloc>
-      <yloc>512</yloc>
+      <xloc>128</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: set path with path</name>
+    <type>SetValueField</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>path</name>
+        <replaceby>path_1</replaceby>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -604,7 +604,7 @@
       <yloc>1344</yloc>
     </entry>
     <entry>
-      <name>set variable: Internal.Project.UseKettleHome</name>
+      <name>SET_VARIABLES: Internal.Project.UseKettleHome</name>
       <description />
       <type>SET_VARIABLES</type>
       <replacevars>Y</replacevars>
@@ -915,8 +915,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>688</yloc>
+      <xloc>192</xloc>
+      <yloc>2224</yloc>
     </entry>
   </entries>
   <hops>
@@ -949,7 +949,7 @@
     </hop>
     <hop>
       <from>SIMPLE_EVAL: KETTLE_HOME directory</from>
-      <to>set variable: Internal.Project.UseKettleHome</to>
+      <to>SET_VARIABLES: Internal.Project.UseKettleHome</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -957,7 +957,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>set variable: Internal.Project.UseKettleHome</from>
+      <from>SET_VARIABLES: Internal.Project.UseKettleHome</from>
       <to>CREATE_FOLDER: KETTLE_HOME directory</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1209,15 +1209,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Patch</from>
-      <to>SIMPLE_EVAL: Open.Path</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>SIMPLE_EVAL: Open.Path</from>
       <to>Shell: open path</to>
       <from_nr>0</from_nr>
@@ -1237,7 +1228,7 @@
     </hop>
     <hop>
       <from>CREATE_FOLDER: project directory</from>
-      <to>TRANS: RelativePath2AbsolutePath</to>
+      <to>SIMPLE_EVAL: KETTLE_HOME directory</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1245,8 +1236,17 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>DUMMY:Patch</from>
+      <to>TRANS: RelativePath2AbsolutePath</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
       <from>TRANS: RelativePath2AbsolutePath</from>
-      <to>SIMPLE_EVAL: KETTLE_HOME directory</to>
+      <to>SIMPLE_EVAL: Open.Path</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
