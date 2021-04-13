@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>FileRepositoryMetaPathCopyerExist</name>
+    <name>FileRepositoryMetaNameFlagRepeat</name>
     <description />
     <extended_description />
     <trans_version />
@@ -428,18 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2015/06/11 16:29:28.117</created_date>
+    <created_date>2015/06/10 12:47:16.180</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2015/06/11 16:29:28.117</modified_date>
+    <modified_date>2015/06/10 12:47:16.180</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>repository path exist process</note>
+      <note>repository name repeat process</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>175</width>
+      <width>192</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -459,15 +459,16 @@
     <notepad>
       <note>output variable
 
-Result.Repository.Exist.Count
+Result.Repository.Repeat.Count          
 ====================
 input/output result
 
-repository meta</note>
-      <xloc>560</xloc>
+*                                                            repository meta
+flag                                                        'old': for read from file, 'new': for read from result</note>
+      <xloc>496</xloc>
       <yloc>0</yloc>
-      <width>190</width>
-      <heigth>119</heigth>
+      <width>508</width>
+      <heigth>134</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -486,73 +487,98 @@ repository meta</note>
   </notepads>
   <order>
     <hop>
-      <from>ReplaceString: path_target_name</from>
-      <to>ScriptValueMod: path_target_father</to>
+      <from>RowsFromResult: repository meta &amp; flag</from>
+      <to>FilterRows: flag is new</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows</from>
-      <to>Dummy: not exist</to>
+      <from>FilterRows: flag is new</from>
+      <to>Dummy: new</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StepsMetrics: exist count</from>
-      <to>SetVariable: Result.Repository.Exist.Count</to>
+      <from>Dummy: new</from>
+      <to>SelectValues: new_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: new_name</from>
+      <to>StreamLookup: look old name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: look old name</from>
+      <to>FilterRows: old_name is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: old_name is null</from>
+      <to>Dummy: not repeat name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: old_name is null</from>
+      <to>Dummy: repeat with old name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: flag is new</from>
+      <to>Dummy: other(old or add)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: other(old or add)</from>
+      <to>StreamLookup: look old name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: not repeat name</from>
+      <to>ValueMapper: flag with add</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: repeat with old name</from>
+      <to>ValueMapper: flag with new</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: REPEAT</from>
+      <to>Calculator: copy_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: copy_name</from>
+      <to>SelectValues: replace name with copy_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ValueMapper: flag with new</from>
+      <to>Constant: REPEAT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ValueMapper: flag with add</from>
+      <to>SelectValues: change flag</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace name with copy_name</from>
+      <to>Dummy: together</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: change flag</from>
+      <to>Dummy: together</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: together</from>
-      <to>RowsToResult: copyer &amp; repository meta</to>
+      <to>RowsToResult: repository meta &amp; flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: path_target_father</from>
-      <to>Calculator: path_target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: path_target</from>
-      <to>SelectValues: replace path_target &amp; base_directory</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows</from>
-      <to>Dummy: exist</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: REPEAT&amp;SEPARATOR</from>
-      <to>ReplaceString: path_target_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>RowsFromResult: copyer &amp; repository meta</from>
-      <to>FileExists: path_target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FileExists: path_target</from>
-      <to>FilterRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exist</from>
-      <to>Constant: REPEAT&amp;SEPARATOR</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: replace path_target &amp; base_directory</from>
-      <to>Dummy: together</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: not exist</from>
-      <to>SelectValues: remove exist</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove exist</from>
-      <to>Dummy: together</to>
+      <from>StepsMetrics: repeat count</from>
+      <to>SetVariable: Result.Repository.Repeat.Count</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -561,13 +587,33 @@ repository meta</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>RowsFromResult: copyer &amp; repository meta</from>
-      <to>WriteToLog: copyer &amp; repository meta</to>
+      <from>RowsFromResult: repository meta &amp; flag</from>
+      <to>WriteToLog: repository meta &amp; flag</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: other(old or add)</from>
+      <to>Dummy: name is ok</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: name is ok</from>
+      <to>SelectValues: not change</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: not change</from>
+      <to>Dummy: together</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: look old name</from>
+      <to>WriteToLog: look old name</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: path_target</name>
+    <name>Calculator: copy_name</name>
     <type>Calculator</type>
     <description />
     <distribute>Y</distribute>
@@ -578,40 +624,10 @@ repository meta</note>
       <schema_name />
     </partitioning>
     <calculation>
-      <field_name>path_target_name1</field_name>
+      <field_name>copy_name</field_name>
       <calc_type>ADD</calc_type>
       <field_a>REPEAT</field_a>
-      <field_b>path_target_name</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>path_target1</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>path_target_father</field_a>
-      <field_b>SEPARATOR</field_b>
-      <field_c />
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask />
-      <decimal_symbol />
-      <grouping_symbol />
-      <currency_symbol />
-    </calculation>
-    <calculation>
-      <field_name>path_target2</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>path_target1</field_a>
-      <field_b>path_target_name1</field_b>
+      <field_b>name</field_b>
       <field_c />
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -630,13 +646,13 @@ repository meta</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>880</yloc>
+      <xloc>320</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Constant: REPEAT&amp;SEPARATOR</name>
+    <name>Constant: REPEAT</name>
     <type>Constant</type>
     <description />
     <distribute>Y</distribute>
@@ -659,18 +675,6 @@ repository meta</note>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
-      <field>
-        <name>SEPARATOR</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>/</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -680,37 +684,13 @@ repository meta</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>512</yloc>
+      <xloc>320</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dummy: exist</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: not exist</name>
+    <name>Dummy: name is ok</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -729,7 +709,103 @@ repository meta</note>
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>400</yloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: new</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: not repeat name</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: other(old or add)</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: repeat with old name</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -753,41 +829,12 @@ repository meta</note>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>1120</yloc>
+      <yloc>1440</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>FileExists: path_target</name>
-    <type>FileExists</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <filenamefield>path_target</filenamefield>
-    <resultfieldname>exist</resultfieldname>
-    <includefiletype>N</includefiletype>
-    <filetypefieldname />
-    <addresultfilenames>N</addresultfilenames>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows</name>
+    <name>FilterRows: flag is new</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -797,18 +844,18 @@ repository meta</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>Dummy: exist</send_true_to>
-    <send_false_to>Dummy: not exist</send_false_to>
+    <send_true_to>Dummy: new</send_true_to>
+    <send_false_to>Dummy: other(old or add)</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>exist</leftvalue>
+        <leftvalue>flag</leftvalue>
         <function>=</function>
         <rightvalue />
         <value>
           <name>constant</name>
           <type>String</type>
-          <text>Y</text>
+          <text>new</text>
           <length>-1</length>
           <precision>-1</precision>
           <isnull>N</isnull>
@@ -825,13 +872,13 @@ repository meta</note>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>272</yloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ReplaceString: path_target_name</name>
-    <type>ReplaceString</type>
+    <name>FilterRows: old_name is null</name>
+    <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -840,19 +887,25 @@ repository meta</note>
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>base_directory</in_stream_name>
-        <out_stream_name>path_target_name</out_stream_name>
-        <use_regex>yes</use_regex>
-        <replace_string>.*/</replace_string>
-        <replace_by_string />
-        <set_empty_string>Y</set_empty_string>
-        <replace_field_by_string />
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
+    <send_true_to>Dummy: not repeat name</send_true_to>
+    <send_false_to>Dummy: repeat with old name</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>old_name</leftvalue>
+        <function>IS NULL</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>new</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -861,13 +914,13 @@ repository meta</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>640</yloc>
+      <xloc>320</xloc>
+      <yloc>688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>RowsFromResult: copyer &amp; repository meta</name>
+    <name>RowsFromResult: repository meta &amp; flag</name>
     <type>RowsFromResult</type>
     <description />
     <distribute>N</distribute>
@@ -878,24 +931,6 @@ repository meta</note>
       <schema_name />
     </partitioning>
     <fields>
-      <field>
-        <name>path_source</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>path_target</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>path_regex</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
       <field>
         <name>id</name>
         <type>String</type>
@@ -928,6 +963,12 @@ repository meta</note>
       </field>
       <field>
         <name>hides_hidden_files</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>flag</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -947,7 +988,7 @@ repository meta</note>
     </GUI>
   </step>
   <step>
-    <name>RowsToResult: copyer &amp; repository meta</name>
+    <name>RowsToResult: repository meta &amp; flag</name>
     <type>RowsToResult</type>
     <description />
     <distribute>Y</distribute>
@@ -966,59 +1007,12 @@ repository meta</note>
     </remotesteps>
     <GUI>
       <xloc>320</xloc>
-      <yloc>1264</yloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: path_target_father</name>
-    <type>ScriptValueMod</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>//
-var index = indexOf(base_directory,path_target_name);
-//Alert("index = " + index);
-path_target_father = substr(base_directory,0,index-1);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>path_target_father</name>
-        <rename>path_target_father</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove exist</name>
+    <name>SelectValues: change flag</name>
     <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
@@ -1029,229 +1023,6 @@ path_target_father = substr(base_directory,0,index-1);
       <schema_name />
     </partitioning>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>exist</name>
-      </remove>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: replace path_target &amp; base_directory</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>path_source</name>
-      </field>
-      <field>
-        <name>path_target2</name>
-        <rename>path_target</rename>
-      </field>
-      <field>
-        <name>path_regex</name>
-      </field>
-      <field>
-        <name>id</name>
-      </field>
-      <field>
-        <name>name</name>
-      </field>
-      <field>
-        <name>description</name>
-      </field>
-      <field>
-        <name>path_target2</name>
-        <rename>base_directory</rename>
-      </field>
-      <field>
-        <name>read_only</name>
-      </field>
-      <field>
-        <name>hides_hidden_files</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SetVariable: Result.Repository.Exist.Count</name>
-    <type>SetVariable</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <field_name>step_read_count</field_name>
-        <variable_name>Result.Repository.Exist.Count</variable_name>
-        <variable_type>PARENT_JOB</variable_type>
-        <default_value>0</default_value>
-      </field>
-    </fields>
-    <use_formatting>Y</use_formatting>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>1264</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>StepsMetrics: exist count</name>
-    <type>StepsMetrics</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <steps>
-      <step>
-        <name>Dummy: exist</name>
-        <copyNr>0</copyNr>
-        <stepRequired>N</stepRequired>
-      </step>
-    </steps>
-    <stepnamefield>step_name</stepnamefield>
-    <stepidfield>step_id</stepidfield>
-    <steplinesinputfield>step_input_count</steplinesinputfield>
-    <steplinesoutputfield>step_output_count</steplinesoutputfield>
-    <steplinesreadfield>step_read_count</steplinesreadfield>
-    <steplinesupdatedfield>step_update_count</steplinesupdatedfield>
-    <steplineswrittentfield>step_write_count</steplineswrittentfield>
-    <steplineserrorsfield>step_drop_count</steplineserrorsfield>
-    <stepsecondsfield>step_time</stepsecondsfield>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>1120</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>StepsMetrics: step info</name>
-    <type>StepsMetrics</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <steps>
-      <step>
-        <name>Dummy: together</name>
-        <copyNr>0</copyNr>
-        <stepRequired>N</stepRequired>
-      </step>
-      <step>
-        <name>Dummy: not exist</name>
-        <copyNr>0</copyNr>
-        <stepRequired>N</stepRequired>
-      </step>
-      <step>
-        <name>Dummy: exist</name>
-        <copyNr>0</copyNr>
-        <stepRequired>N</stepRequired>
-      </step>
-    </steps>
-    <stepnamefield>step_name</stepnamefield>
-    <stepidfield>step_id</stepidfield>
-    <steplinesinputfield>step_input_count</steplinesinputfield>
-    <steplinesoutputfield>step_output_count</steplinesoutputfield>
-    <steplinesreadfield>step_read_count</steplinesreadfield>
-    <steplinesupdatedfield>step_update_count</steplinesupdatedfield>
-    <steplineswrittentfield>step_write_count</steplineswrittentfield>
-    <steplineserrorsfield>step_drop_count</steplineserrorsfield>
-    <stepsecondsfield>step_time</stepsecondsfield>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>1120</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: copyer &amp; repository meta</name>
-    <type>WriteToLog</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <loglevel>log_level_debug</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage />
-    <fields>
-      <field>
-        <name>path_source</name>
-      </field>
-      <field>
-        <name>path_target</name>
-      </field>
-      <field>
-        <name>path_regex</name>
-      </field>
       <field>
         <name>id</name>
       </field>
@@ -1269,6 +1040,451 @@ path_target_father = substr(base_directory,0,index-1);
       </field>
       <field>
         <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>flag</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1280</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: new_name</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>flag</name>
+      </field>
+      <field>
+        <name>name</name>
+        <rename>new_name</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: not change</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>flag</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>1280</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace name with copy_name</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>copy_name</name>
+        <rename>name</rename>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>flag</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>1280</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetVariable: Result.Repository.Repeat.Count</name>
+    <type>SetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <field_name>step_read_count</field_name>
+        <variable_name>Result.Repository.Repeat.Count</variable_name>
+        <variable_type>PARENT_JOB</variable_type>
+        <default_value>0</default_value>
+      </field>
+    </fields>
+    <use_formatting>Y</use_formatting>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>1584</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StepsMetrics: repeat count</name>
+    <type>StepsMetrics</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <steps>
+      <step>
+        <name>Dummy: repeat with old name</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+    </steps>
+    <stepnamefield>step_name</stepnamefield>
+    <stepidfield>step_id</stepidfield>
+    <steplinesinputfield>step_input_count</steplinesinputfield>
+    <steplinesoutputfield>step_output_count</steplinesoutputfield>
+    <steplinesreadfield>step_read_count</steplinesreadfield>
+    <steplinesupdatedfield>step_update_count</steplinesupdatedfield>
+    <steplineswrittentfield>step_write_count</steplineswrittentfield>
+    <steplineserrorsfield>step_drop_count</steplineserrorsfield>
+    <stepsecondsfield>step_time</stepsecondsfield>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>1440</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StepsMetrics: step info</name>
+    <type>StepsMetrics</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <steps>
+      <step>
+        <name>Dummy: new</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+      <step>
+        <name>Dummy: old</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+      <step>
+        <name>Dummy: has old name</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+      <step>
+        <name>Dummy: no old name</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+      <step>
+        <name>Dummy: together</name>
+        <copyNr>0</copyNr>
+        <stepRequired>N</stepRequired>
+      </step>
+    </steps>
+    <stepnamefield>step_name</stepnamefield>
+    <stepidfield>step_id</stepidfield>
+    <steplinesinputfield>step_input_count</steplinesinputfield>
+    <steplinesoutputfield>step_output_count</steplinesoutputfield>
+    <steplinesreadfield>step_read_count</steplinesreadfield>
+    <steplinesupdatedfield>step_update_count</steplinesupdatedfield>
+    <steplineswrittentfield>step_write_count</steplineswrittentfield>
+    <steplineserrorsfield>step_drop_count</steplineserrorsfield>
+    <stepsecondsfield>step_time</stepsecondsfield>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>1440</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StreamLookup: look old name</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>Dummy: other(old or add)</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>new_name</name>
+        <field>name</field>
+      </key>
+      <value>
+        <name>name</name>
+        <rename>old_name</rename>
+        <default />
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ValueMapper: flag with add</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>flag</field_to_use>
+    <target_field />
+    <non_match_default>add</non_match_default>
+    <fields>
+      <field>
+        <source_value>new</source_value>
+        <target_value>add</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ValueMapper: flag with new</name>
+    <type>ValueMapper</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <field_to_use>flag</field_to_use>
+    <target_field />
+    <non_match_default>new</non_match_default>
+    <fields>
+      <field>
+        <source_value>new</source_value>
+        <target_value>new</target_value>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>320</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: repository meta &amp; flag</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_debug</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage />
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>flag</name>
       </field>
     </fields>
     <cluster_schema />
@@ -1338,7 +1554,65 @@ path_target_father = substr(base_directory,0,index-1);
     </remotesteps>
     <GUI>
       <xloc>96</xloc>
-      <yloc>1264</yloc>
+      <yloc>1584</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: look old name</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_debug</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage />
+    <fields>
+      <field>
+        <name>id</name>
+      </field>
+      <field>
+        <name>name</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>base_directory</name>
+      </field>
+      <field>
+        <name>read_only</name>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+      </field>
+      <field>
+        <name>flag</name>
+      </field>
+      <field>
+        <name>new_name</name>
+      </field>
+      <field>
+        <name>old_name</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

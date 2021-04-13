@@ -37,8 +37,8 @@ esetrNameReplace="Please input string for reaplce"
 echorNameNew="Need input name of new repository"
 esetrNameNew="Please input name of new repository:"
 
-echorPath="Need input path of copy target"
-esetrPath="Please input path of copy target:"
+echorPathTarget="Need input path of copy target"
+esetrPathTarget="Please input path of copy target:"
 
 echorMetaSource="Need input path of read repository meta"
 esetrMetaSource="Please input path of read repository meta"
@@ -52,7 +52,7 @@ rNameRegex=
 rNameRemove=
 rNameReplace=
 rNameNew=
-rPath=
+rPathTarget=
 rPathType=
 rMetaSource=
 rMetaTarget=
@@ -139,14 +139,14 @@ while true; do
 done
 if [ "$tempPath"=="config" ]
 then
-	if [ "$rPath"=="" ]
+	if [ "$rPathTarget"=="" ]
 	then
 		echo "NOTE: if use \ suffix, will be judged as a fuzzy path and used as the parent path of the new repository)"
-		echo $echorPath
-		read -p "$esetrPath" rPath
+		echo $echorPathTarget
+		read -p "$esetrPathTarget" rPathTarget
 	fi
 
-	if [ -d "$rPath" ] ; then
+	if [ -d "$rPathTarget" ] ; then
 		while true; do
 			read -p "copy repository path name, same as old path name(Y), or as repository name(N)?" yn
 			case $yn in
@@ -207,10 +207,10 @@ then
 	tempParam="$tempParam -param:rNameRemove=$rNameRemove -param:rNameReplace=$rNameReplace"
 fi
 
-if [ "$rPath" == "" ]
+if [ "$rPathTarget" == "" ]
 	echo "Kettle will modify the meta path to be in the same path as the old meta, and have configured the name to name the path" 
 then
-	echo "Kettle will modify the meta(parent) path to: $rPath"
+	echo "Kettle will modify the meta(parent) path to: $rPathTarget"
 	if [ "$rPathType" == "1" ]
 		echo "Kettle will use the old meta path name"
 		tempParam="$tempParam -param:rPathType=$rPathType"
@@ -218,7 +218,7 @@ then
 		echo "Kettle will modify the meta path name to be the same as the path name"
 		tempParam="$tempParam -param:rPathType=$rPathType"
 	)
-	tempParam="$tempParam -param:rPath=$rPath"
+	tempParam="$tempParam -param:rPathTarget=$rPathTarget"
 fi
 
 # goto current path

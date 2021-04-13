@@ -42,9 +42,9 @@
       <description>repository name replace part</description>
     </parameter>
     <parameter>
-      <name>rPath</name>
+      <name>rPathTarget</name>
       <default_value />
-      <description>repository path</description>
+      <description>repository path target</description>
     </parameter>
     <parameter>
       <name>rPathType</name>
@@ -394,12 +394,12 @@
       <yloc>160</yloc>
     </entry>
     <entry>
-      <name>TRANS: FileRepositoryMetaFlagRead</name>
+      <name>TRANS: FileRepositoryMetaNameFlagRead</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaFlagRead.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaNameFlagRead.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -498,12 +498,12 @@
       <yloc>1040</yloc>
     </entry>
     <entry>
-      <name>TRANS: FileRepositoryMetaNameRepeat</name>
+      <name>TRANS: FileRepositoryMetaNameFlagRepeat</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaNameRepeat.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaNameFlagRepeat.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -534,12 +534,12 @@
       <yloc>816</yloc>
     </entry>
     <entry>
-      <name>TRANS: FileRepositoryMetaFlagPrint</name>
+      <name>TRANS: FileRepositoryMetaNameFlagPrint</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaFlagPrint.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaNameFlagPrint.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -680,12 +680,12 @@
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
-          <name>Parameters.Repository.Meta.Path</name>
+          <name>Parameters.Repository.Path.Target</name>
           <stream_name />
-          <value>${rPath}</value>
+          <value>${rPathTarget}</value>
         </parameter>
         <parameter>
-          <name>Parameters.Repository.Name.Type</name>
+          <name>Parameters.Repository.Path.Type</name>
           <stream_name />
           <value>${rPathType}</value>
         </parameter>
@@ -697,12 +697,12 @@
       <yloc>432</yloc>
     </entry>
     <entry>
-      <name>TRANS: FileRepositoryMetaFlagExtract</name>
+      <name>TRANS: FileRepositoryMetaNameFlagExtract</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaFlagExtract.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/FileRepositoryMetaNameFlagExtract.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -780,8 +780,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>TRANS: FileRepositoryMetaFlagRead</from>
-      <to>TRANS: FileRepositoryMetaNameRepeat</to>
+      <from>TRANS: FileRepositoryMetaNameFlagRead</from>
+      <to>TRANS: FileRepositoryMetaNameFlagRepeat</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -789,8 +789,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>TRANS: FileRepositoryMetaNameRepeat</from>
-      <to>TRANS: FileRepositoryMetaFlagPrint</to>
+      <from>TRANS: FileRepositoryMetaNameFlagRepeat</from>
+      <to>TRANS: FileRepositoryMetaNameFlagPrint</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -817,7 +817,7 @@
     </hop>
     <hop>
       <from>DUMMY: name repeat loop</from>
-      <to>TRANS: FileRepositoryMetaNameRepeat</to>
+      <to>TRANS: FileRepositoryMetaNameFlagRepeat</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -843,7 +843,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>TRANS: FileRepositoryMetaFlagPrint</from>
+      <from>TRANS: FileRepositoryMetaNameFlagPrint</from>
       <to>SIMPLE_EVAL: Result.Repository.Repeat.Count</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -853,7 +853,7 @@
     </hop>
     <hop>
       <from>SIMPLE_EVAL: Result.Repository.Repeat.Count</from>
-      <to>TRANS: FileRepositoryMetaFlagExtract</to>
+      <to>TRANS: FileRepositoryMetaNameFlagExtract</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -861,7 +861,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>TRANS: FileRepositoryMetaFlagExtract</from>
+      <from>TRANS: FileRepositoryMetaNameFlagExtract</from>
       <to>TRANS: FileRepositoryMetaSave</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -880,7 +880,7 @@
     </hop>
     <hop>
       <from>TRANS: FileRepositoryMetaPathCopyerExtract</from>
-      <to>TRANS: FileRepositoryMetaFlagRead</to>
+      <to>TRANS: FileRepositoryMetaNameFlagRead</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -913,14 +913,14 @@
     <notepad>
       <note>params
 
-rNameRegex      Optional
-rNameNew        Optional
+rNameRegex       Optional
+rNameNew          Optional
 rNameRemove    Optional
-rNameReplace    Optional
-rPath                  Optional
-rPathType           Optional
-rMetaSource       Optional
-rMetaTarget       Optional
+rNameReplace     Optional
+rPathTarget          Optional
+rPathType            Optional
+rMetaSource        Optional
+rMetaTarget        Optional
 
 ====================
 output variable

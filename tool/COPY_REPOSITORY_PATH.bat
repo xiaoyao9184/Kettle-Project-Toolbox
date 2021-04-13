@@ -38,8 +38,8 @@ set esetrName="Please input name for copy:"
 set echorNameRegex=Need input match regex of repository name, default: dev.*
 set esetrNameRegex="Please input match regex of repository name:"
 
-set echorPath=Need input path of copy target
-set esetrPath="Please input path of copy target:"
+set echorPathTarget=Need input path of copy target
+set esetrPathTarget="Please input path of copy target:"
 
 set echorMetaSource=Need input path of read repository meta
 set esetrMetaSource="Please input path of read repository meta:"
@@ -47,7 +47,7 @@ set esetrMetaSource="Please input path of read repository meta:"
 ::defult param
 set pdi_path=%parent_path%\data-integration
 set rNameRegex=
-set rPath=
+set rPathTarget=
 set rPathType=
 set rMetaSource=
 
@@ -88,13 +88,13 @@ choice /c yn /m "config repository path? (default is use name for path name)" /t
 	if !errorlevel! equ 2 goto pathend
 
 :path
-	if "%rPath%"=="" (
+	if "%rPathTarget%"=="" (
 		echo "NOTE: if use \ suffix, will be judged as a fuzzy path and used as the parent path of the new repository)"
-		echo %echorPath%
-		set /p rPath=%esetrPath%
+		echo %echorPathTarget%
+		set /p rPathTarget=%esetrPathTarget%
 	)
 	
-	echo %rPath%end|findstr /o /r /c:\\end >cmd.tmp
+	echo %rPathTarget%end|findstr /o /r /c:\\end >cmd.tmp
 	for /f %%i in (cmd.tmp) do (
 		set isDir=%%i
 	)
@@ -142,10 +142,10 @@ if "%tempOm%"=="one" (
 	echo "Kettle will copy multiple repositories: " %rNameRegex%
 )
 
-if "%rPath%"=="" (
+if "%rPathTarget%"=="" (
 	echo "Kettle will modify the meta path to be in the same path as the old meta, and have configured the name to name the path" 
 )else (
-	echo "Kettle will modify the meta(parent) path to:" %rPath%
+	echo "Kettle will modify the meta(parent) path to:" %rPathTarget%
 	if "%rPathType%"=="1" (
 		echo "Kettle will use the old meta path name"
 		set tempParam=!tempParam! "-param:rPathType=%rPathType%"
@@ -153,7 +153,7 @@ if "%rPath%"=="" (
 		echo "Kettle will modify the meta path name to be the same as the path name"
 		set tempParam=!tempParam! "-param:rPathType=%rPathType%"
 	)
-	set tempParam=!tempParam! "-param:rPath=%rPath% "
+	set tempParam=!tempParam! "-param:rPathTarget=%rPathTarget% "
 )
 
 ::goto work path

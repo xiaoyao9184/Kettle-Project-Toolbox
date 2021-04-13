@@ -22,9 +22,9 @@
       <description>repository name match regex</description>
     </parameter>
     <parameter>
-      <name>rPath</name>
+      <name>rPathTarget</name>
       <default_value />
-      <description>repository path</description>
+      <description>repository path target</description>
     </parameter>
     <parameter>
       <name>rPathType</name>
@@ -423,12 +423,12 @@
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
-          <name>Parameters.Repository.Target.Path</name>
+          <name>Parameters.Repository.Path.Target</name>
           <stream_name />
-          <value>${rPath}</value>
+          <value>${rPathTarget}</value>
         </parameter>
         <parameter>
-          <name>Parameters.Repository.Name.Type</name>
+          <name>Parameters.Repository.Path.Type</name>
           <stream_name />
           <value>${rPathType}</value>
         </parameter>
@@ -694,9 +694,9 @@
       <note>params
 
 rMetaSource      Optional
-rNameRegex     Optional
-rPath                 Optional
-rPathType         Optional
+rNameRegex      Optional
+rPathTarget        Optional
+rPathType          Optional
 
 ====================
 output variable

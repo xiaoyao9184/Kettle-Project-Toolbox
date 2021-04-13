@@ -10,14 +10,14 @@
     <directory>/</directory>
     <parameters>
       <parameter>
-        <name>Parameters.Repository.Name.Type</name>
-        <default_value>1</default_value>
-        <description>repository name type</description>
+        <name>Parameters.Repository.Path.Target</name>
+        <default_value />
+        <description>repository path target</description>
       </parameter>
       <parameter>
-        <name>Parameters.Repository.Target.Path</name>
-        <default_value />
-        <description>copy target path</description>
+        <name>Parameters.Repository.Path.Type</name>
+        <default_value>1</default_value>
+        <description>repository path type</description>
       </parameter>
     </parameters>
     <log>
@@ -469,8 +469,8 @@
     <notepad>
       <note>params
 
-Parameters.Repository.Meta.Path       Notuse
-Parameters.Repository.Name.Type     Optional
+Parameters.Repository.Path.Target   Must
+Parameters.Repository.Path.Type      Optional
 ====================
 input variable
 
@@ -506,7 +506,7 @@ output result
       <note>params
 
 ====================
-Parameters.Repository.Name.Type
+Parameters.Repository.Path.Type
 
 0             use old path name
 (other)     use repository name
@@ -578,7 +578,7 @@ Parameters.Repository.Name.Type
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: replace params</from>
+      <from>GetVariable: replace repository path params</from>
       <to>ReplaceString: uniform delimiter</to>
       <enabled>Y</enabled>
     </hop>
@@ -599,7 +599,7 @@ Parameters.Repository.Name.Type
     </hop>
     <hop>
       <from>Constant: EMPTY&amp;REPEAT&amp;SEPARATOR&amp;REGEX</from>
-      <to>GetVariable: replace params</to>
+      <to>GetVariable: replace repository path params</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -751,6 +751,11 @@ Parameters.Repository.Name.Type
       <from>Dummy: together</from>
       <to>SortRows: path_target</to>
       <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>自定义常量数据</from>
+      <to>BlockUntilStepsFinish</to>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -936,7 +941,7 @@ Parameters.Repository.Name.Type
       <field_name>path_target_name1</field_name>
       <calc_type>ADD</calc_type>
       <field_a>path_target_name</field_a>
-      <field_b>Num</field_b>
+      <field_b>path_target_number</field_b>
       <field_c />
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -1522,7 +1527,7 @@ Parameters.Repository.Name.Type
     </GUI>
   </step>
   <step>
-    <name>GetVariable: replace params</name>
+    <name>GetVariable: replace repository path params</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -1535,7 +1540,7 @@ Parameters.Repository.Name.Type
     <fields>
       <field>
         <name>repository_name_type</name>
-        <variable>${Parameters.Repository.Name.Type}</variable>
+        <variable>${Parameters.Repository.Path.Type}</variable>
         <type>Integer</type>
         <format />
         <currency />
@@ -1547,7 +1552,7 @@ Parameters.Repository.Name.Type
       </field>
       <field>
         <name>repository_target_path</name>
-        <variable>${Parameters.Repository.Target.Path}</variable>
+        <variable>${Parameters.Repository.Path.Target}</variable>
         <type>String</type>
         <format />
         <currency />
@@ -2112,13 +2117,13 @@ path_target_father_path = substr(path_target,0,index-1);
         <name>REGEX</name>
       </field>
       <field>
-        <name>DataCount</name>
+        <name>repository_meta_count</name>
       </field>
       <field>
-        <name>REPPathName</name>
+        <name>repository_target_path</name>
       </field>
       <field>
-        <name>REPPath</name>
+        <name>repository_name_type</name>
       </field>
       <field>
         <name>path_source_father_path</name>
@@ -2278,11 +2283,9 @@ path_target_father_path = substr(path_target,0,index-1);
     <fields>
       <field>
         <name>path_source</name>
-        <rename />
       </field>
       <field>
         <name>path_target</name>
-        <rename />
       </field>
       <field>
         <name>REGEX</name>
@@ -2290,15 +2293,12 @@ path_target_father_path = substr(path_target,0,index-1);
       </field>
       <field>
         <name>id</name>
-        <rename />
       </field>
       <field>
         <name>name</name>
-        <rename />
       </field>
       <field>
         <name>description</name>
-        <rename />
       </field>
       <field>
         <name>path_target</name>
@@ -2306,11 +2306,9 @@ path_target_father_path = substr(path_target,0,index-1);
       </field>
       <field>
         <name>read_only</name>
-        <rename />
       </field>
       <field>
         <name>hides_hidden_files</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2679,6 +2677,108 @@ path_target_father_path = substr(path_target,0,index-1);
     <GUI>
       <xloc>272</xloc>
       <yloc>3504</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>自定义常量数据</name>
+    <type>DataGrid</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>String</type>
+        <format>-</format>
+        <currency>normal</currency>
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>name</name>
+        <type>String</type>
+        <format>-</format>
+        <currency>normal</currency>
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>description</name>
+        <type>String</type>
+        <format>-</format>
+        <currency>normal</currency>
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>base_directory</name>
+        <type>String</type>
+        <format>-</format>
+        <currency>normal</currency>
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>read_only</name>
+        <type>String</type>
+        <format>-</format>
+        <currency>normal</currency>
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>hides_hidden_files</name>
+        <type>String</type>
+        <format>-</format>
+        <currency>normal</currency>
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>KettleFileRepository</item>
+        <item>test</item>
+        <item>File repository</item>
+        <item>../test</item>
+        <item>N</item>
+        <item>N</item>
+      </line>
+    </data>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

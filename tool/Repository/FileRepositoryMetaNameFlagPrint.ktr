@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>FileRepositoryMetaFlagRead</name>
+    <name>FileRepositoryMetaNameFlagPrint</name>
     <description />
     <extended_description />
     <trans_version />
@@ -9,16 +9,6 @@
     <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
-      <parameter>
-        <name>Parameters.Repository.Meta.Path</name>
-        <default_value>${user.home}\.kettle\repositories.xml</default_value>
-        <description>repository meta path</description>
-      </parameter>
-      <parameter>
-        <name>Parameters.Repository.Meta.Regex</name>
-        <default_value>.*</default_value>
-        <description>repository meta name match regex</description>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -438,18 +428,18 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2015/06/10 14:17:14.181</created_date>
+    <created_date>2015/06/10 14:48:09.880</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2015/06/10 14:17:14.181</modified_date>
+    <modified_date>2015/06/10 14:48:09.880</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>repository meta read from file and result to result</note>
+      <note>repository meta &amp; flag print</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>292</width>
+      <width>170</width>
       <heigth>26</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
@@ -467,23 +457,18 @@
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>params
+      <note>input variable
 
-Parameters.Repository.Meta.Path       Optional
-Parameters.Repository.Meta.Regex    Optional
+Result.Repository.Repeat.Count                   Must
 ====================
-input variable
-
-user.home                                            Maybe
-====================
-output result
+input/output result
 
 *                                                            repository meta
 flag                                                        'old': for read from file, 'new': for read from result</note>
-      <xloc>448</xloc>
+      <xloc>672</xloc>
       <yloc>0</yloc>
       <width>508</width>
-      <heigth>212</heigth>
+      <heigth>134</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -502,79 +487,24 @@ flag                                                        'old': for read from
   </notepads>
   <order>
     <hop>
-      <from>FileExists: repository meta</from>
-      <to>FilterRows: repository meta exits</to>
+      <from>GetVariable: Result.Repository.Repeat.Count</from>
+      <to>WriteToLog: repeat_count</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: repository params</from>
-      <to>FileExists: repository meta</to>
+      <from>RowsFromResult: repository meta &amp; flag</from>
+      <to>BlockUntilStepsFinish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: repository meta exits</from>
-      <to>getXMLData:  repository config</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: repository meta exits</from>
-      <to>Dummy: not exits</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: repository meta</from>
-      <to>SortRows: name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>RowsFromResult: repository meta</from>
-      <to>Constant: flag new</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SortRows: name</from>
-      <to>Constant: flag old</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: name match regex</from>
-      <to>Dummy: continue</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: name match regex</from>
-      <to>Dummy: ignore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>getXMLData:  repository config</from>
-      <to>FilterRows: name match regex</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: continue</from>
-      <to>SelectValues: repository meta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: flag old</from>
-      <to>Dummy: together</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: flag new</from>
-      <to>Dummy: together</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: together</from>
-      <to>RowsToResult: repository meta &amp; flag</to>
+      <from>BlockUntilStepsFinish</from>
+      <to>WriteToLog: repository meta &amp; flag</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Constant: flag new</name>
-    <type>Constant</type>
+    <name>BlockUntilStepsFinish</name>
+    <type>BlockUntilStepsFinish</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -583,20 +513,12 @@ flag                                                        'old': for read from
       <method>none</method>
       <schema_name />
     </partitioning>
-    <fields>
-      <field>
-        <name>flag</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>new</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+    <steps>
+      <step>
+        <name>WriteToLog: repeat_count</name>
+        <CopyNr>0</CopyNr>
+      </step>
+    </steps>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -605,253 +527,13 @@ flag                                                        'old': for read from
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>1040</yloc>
+      <xloc>240</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Constant: flag old</name>
-    <type>Constant</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>flag</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif>old</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>1040</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: continue</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>680</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: together</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>380</xloc>
-      <yloc>1160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: ignore</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: not exits</name>
-    <type>Dummy</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>480</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FileExists: repository meta</name>
-    <type>FileExists</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <filenamefield>repository_meta_path</filenamefield>
-    <resultfieldname>result</resultfieldname>
-    <includefiletype>N</includefiletype>
-    <filetypefieldname />
-    <addresultfilenames>N</addresultfilenames>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>200</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: name match regex</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>Dummy: continue</send_true_to>
-    <send_false_to>Dummy: ignore</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>name</leftvalue>
-        <function>REGEXP</function>
-        <rightvalue>repository_meta_regex</rightvalue>
-      </condition>
-    </compare>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: repository meta exits</name>
-    <type>FilterRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <send_true_to>getXMLData:  repository config</send_true_to>
-    <send_false_to>Dummy: not exits</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>result</leftvalue>
-        <function>=</function>
-        <rightvalue />
-        <value>
-          <name>constant</name>
-          <type>String</type>
-          <text>Y</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask />
-        </value>
-      </condition>
-    </compare>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GetVariable: repository params</name>
+    <name>GetVariable: Result.Repository.Repeat.Count</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>
@@ -863,21 +545,9 @@ flag                                                        'old': for read from
     </partitioning>
     <fields>
       <field>
-        <name>repository_meta_regex</name>
-        <variable>${Parameters.Repository.Meta.Regex}</variable>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>repository_meta_path</name>
-        <variable>${Parameters.Repository.Meta.Path}</variable>
-        <type>String</type>
+        <name>repeat_count</name>
+        <variable>${Result.Repository.Repeat.Count}</variable>
+        <type>Integer</type>
         <format />
         <currency />
         <decimal />
@@ -895,13 +565,13 @@ flag                                                        'old': for read from
       </output>
     </remotesteps>
     <GUI>
-      <xloc>280</xloc>
-      <yloc>80</yloc>
+      <xloc>512</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>RowsFromResult: repository meta</name>
+    <name>RowsFromResult: repository meta &amp; flag</name>
     <type>RowsFromResult</type>
     <description />
     <distribute>Y</distribute>
@@ -948,6 +618,12 @@ flag                                                        'old': for read from
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>flag</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -957,14 +633,14 @@ flag                                                        'old': for read from
       </output>
     </remotesteps>
     <GUI>
-      <xloc>480</xloc>
-      <yloc>920</yloc>
+      <xloc>240</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>RowsToResult: repository meta &amp; flag</name>
-    <type>RowsToResult</type>
+    <name>WriteToLog: repeat_count</name>
+    <type>WriteToLog</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -973,6 +649,16 @@ flag                                                        'old': for read from
       <method>none</method>
       <schema_name />
     </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>repeat_count</logmessage>
+    <fields>
+      <field>
+        <name>repeat_count</name>
+      </field>
+    </fields>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -981,14 +667,14 @@ flag                                                        'old': for read from
       </output>
     </remotesteps>
     <GUI>
-      <xloc>380</xloc>
-      <yloc>1280</yloc>
+      <xloc>512</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: repository meta</name>
-    <type>SelectValues</type>
+    <name>WriteToLog: repository meta &amp; flag</name>
+    <type>WriteToLog</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -997,6 +683,11 @@ flag                                                        'old': for read from
       <method>none</method>
       <schema_name />
     </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>repository meta &amp; flag</logmessage>
     <fields>
       <field>
         <name>id</name>
@@ -1016,47 +707,8 @@ flag                                                        'old': for read from
       <field>
         <name>hides_hidden_files</name>
       </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>800</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SortRows: name</name>
-    <type>SortRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
-    <fields>
       <field>
-        <name>name</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>2</collator_strength>
-        <presorted>N</presorted>
+        <name>flag</name>
       </field>
     </fields>
     <cluster_schema />
@@ -1067,174 +719,12 @@ flag                                                        'old': for read from
       </output>
     </remotesteps>
     <GUI>
-      <xloc>280</xloc>
-      <yloc>920</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>getXMLData:  repository config</name>
-    <type>getXMLData</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <include>N</include>
-    <include_field />
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <namespaceaware>N</namespaceaware>
-    <ignorecomments>N</ignorecomments>
-    <readurl>N</readurl>
-    <validating>N</validating>
-    <usetoken>N</usetoken>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <rownum_field />
-    <encoding>UTF-8</encoding>
-    <file>
-      <name>${user.home}\.kettle\repositories.xml</name>
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>id</name>
-        <xpath>id</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>name</name>
-        <xpath>name</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>description</name>
-        <xpath>description</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>base_directory</name>
-        <xpath>base_directory</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>read_only</name>
-        <xpath>read_only</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>hides_hidden_files</name>
-        <xpath>hides_hidden_files</xpath>
-        <element_type>node</element_type>
-        <result_type>valueof</result_type>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <loopxpath>/repositories/repository</loopxpath>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>Y</IsAFile>
-    <XmlField>repository_meta_path</XmlField>
-    <prunePath />
-    <shortFileFieldName />
-    <pathFieldName />
-    <hiddenFieldName />
-    <lastModificationTimeFieldName />
-    <uriNameFieldName />
-    <rootUriNameFieldName />
-    <extensionFieldName />
-    <sizeFieldName />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>280</xloc>
-      <yloc>440</yloc>
+      <xloc>240</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
-    <error>
-      <source_step>getXMLData:  repository config</source_step>
-      <target_step>Dummy: not exits</target_step>
-      <is_enabled>N</is_enabled>
-      <nr_valuename />
-      <descriptions_valuename />
-      <fields_valuename />
-      <codes_valuename />
-      <max_errors />
-      <max_pct_errors />
-      <min_pct_rows />
-    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
