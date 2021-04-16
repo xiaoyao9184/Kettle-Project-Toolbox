@@ -1,7 +1,7 @@
 #!/bin/bash
 # CODER BY xiaoyao9184 1.0
 # TIME 2018-12-31
-# FILE LINK_KPT
+# FILE INIT_KPT
 # DESC create a workspace for Kettle-Project-Toolbox using copy and hard link 
 # PARAM params for the workspace path and PDI path
 #   1: workspacePath 

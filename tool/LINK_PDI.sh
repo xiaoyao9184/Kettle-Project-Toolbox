@@ -95,7 +95,7 @@ then
     then
         echo "Error: link path is in KPT!"
         echo "Please make sure that, current script is running in the KPT directory!"
-        echo "Please run 'LINK_KPT' first create workspace, then run this script under the symbolic link 'tool' directory in workspace."
+        echo "Please run 'INIT_KPT' first create workspace, then run this script under the symbolic link 'tool' directory in workspace."
         exit 1
     fi
 fi

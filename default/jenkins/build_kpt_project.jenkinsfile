@@ -305,11 +305,11 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh """
-                        bash "${info.KPTPath}/tool/LINK_KPT.sh" "\$(pwd)" "${info.PDIPath}" <&-
+                        bash "${info.KPTPath}/tool/INIT_KPT.sh" "\$(pwd)" "${info.PDIPath}" <&-
                         """
                     } else {
                         bat """
-                        call "${info.KPTPath}\\tool\\LINK_KPT.bat" "%cd%" "${info.PDIPath}"
+                        call "${info.KPTPath}\\tool\\INIT_KPT.bat" "%cd%" "${info.PDIPath}"
                         """
                     }
                 }
