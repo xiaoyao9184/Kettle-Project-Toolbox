@@ -9,7 +9,13 @@ In general, we need to use in the background PDI, this time it will not run Spoo
 
 Here I offer a set of toolbox script has been used in the actual project.
 
-Of course, now only Batch script for Windows.
+
+
+
+# Use
+
+[wiki](https://github.com/xiaoyao9184/Kettle-Project-Toolbox/wiki)
+
 
 
 
@@ -21,9 +27,34 @@ Of course, now only Batch script for Windows.
 | pdi-ce-7.0.0.0-25 | Yes | Develop on this |
 | pdi-ce-7.1.0.0-12 | Yes | Test default flow directory |
 | pdi-ce-8.0.0.0-28 | Yes | Test default flow directory |
-| pdi-ce-8.1.0.0-365 | No | Some variables fail |
+| pdi-ce-8.1.0.0-365 | Yes | Test default flow directory |
+| pdi-ce-8.2.0.0-342 | Yes | Test default flow directory |
+| pdi-ce-8.3.0.0-371 | Yes | Test default flow directory |
+| pdi-ce-9.0.0.0-423 | Yes | Test default flow directory |
+| pdi-ce-9.1.0.0-324 | Yes | Test default flow directory |
 
 ## compatibility test log
+
+
+### pdi-ce-9.1.0.0-324
+
+not real test
+
+
+### pdi-ce-9.0.0.0-423
+
+not real test
+
+
+### pdi-ce-8.3.0.0-371
+
+not real test
+
+
+### pdi-ce-8.2.0.0-342
+
+not real test
+
 
 ### pdi-ce-8.1.0.0-365
 
@@ -32,6 +63,13 @@ cant read it form other transformation,
 i think variable must replace by parameter,
 and especially at `Transformation (job entry)`,
 maybe it cant use static characters mixed with variables, or for the following reasons.
+
+Need to explicitly declare that the parent variable is passed to the subset job. and it work.
+
+
+### pdi-ce-8.0.0.0-28
+
+No problem found
 
 
 ### pdi-ce-7.1.0.0-12
@@ -57,12 +95,16 @@ Alway create caches in this folder, no matter modify of  `data-integration/syste
 And i think caches files contain own positioning,
 if created via a symbolic link will be accessed via a symbolic link path on windows use **Junction**
 
+
 ### Unix folder link
 
 unix not support folder hard link, and symbolic link for `data-integration/` path 
 not work with current path(./) in KETTLE_HOME use relative repository path.
 
 So use hard link file and copy folder same time for replace folder link.
+
+
+
 
 # Use with jenkins
 
