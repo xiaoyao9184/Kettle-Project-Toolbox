@@ -1,21 +1,16 @@
 <job>
-  <name>UseProfileConfigRun</name>
+  <name>UseProfileConfigRunTransformation</name>
   <description />
   <extended_description />
   <job_version />
   <job_status>0</job_status>
   <directory>/flow</directory>
   <created_user>-</created_user>
-  <created_date>2017/08/28 08:58:03.988</created_date>
+  <created_date>2021/04/20 09:02:45.197</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2021/04/20 09:10:52.092</modified_date>
+  <modified_date>2021/04/20 09:08:48.770</modified_date>
   <parameters>
-    <parameter>
-      <name>ProfileName</name>
-      <default_value />
-      <description>profile name of the activated parameter</description>
-    </parameter>
-  </parameters>
+    </parameters>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -312,181 +307,113 @@
       <yloc>32</yloc>
     </entry>
     <entry>
-      <name>ReadConfig</name>
+      <name>SIMPLE_EVAL: Config.Main.Transformation.Name</name>
       <description />
-      <type>JOB</type>
-      <specification_method>rep_name</specification_method>
-      <job_object_id />
-      <filename />
-      <jobname>ReadConfig</jobname>
-      <directory>/config</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name />
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname>${Internal.Repository.Name}</fieldname>
+      <variablename>${Config.Main.Transformation.Name}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask />
+      <comparevalue />
+      <minvalue />
+      <maxvalue />
+      <successcondition>equal</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>false</successbooleancondition>
+      <successwhenvarset>Y</successwhenvarset>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>288</yloc>
+      <yloc>192</yloc>
     </entry>
     <entry>
-      <name>SUCCESS</name>
+      <name>FILE_EXISTS: Config.Main.Transformation.Name</name>
       <description />
-      <type>SUCCESS</type>
+      <type>FILE_EXISTS</type>
+      <filename>${Internal.Repository.Directory}/${Config.Main.Job.Path}/${Config.Main.Transformation.Name}.ktr</filename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>704</yloc>
+      <yloc>352</yloc>
     </entry>
     <entry>
-      <name>JOB: ?</name>
+      <name>TRANS: ?</name>
       <description />
-      <type>JOB</type>
+      <type>TRANS</type>
       <specification_method>rep_name</specification_method>
-      <job_object_id />
+      <trans_object_id />
       <filename />
-      <jobname>${Config.Main.Job.Name}</jobname>
+      <transname>${Config.Main.Transformation.Name}</transname>
       <directory>${Config.Main.Job.Path}</directory>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
       <set_logfile>N</set_logfile>
       <logfile />
       <logext />
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
       <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
       <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration />
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
       </parameters>
-      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>80</xloc>
-      <yloc>544</yloc>
-    </entry>
-    <entry>
-      <name>CheckOutProfile</name>
-      <description />
-      <type>JOB</type>
-      <specification_method>rep_name</specification_method>
-      <job_object_id />
-      <filename />
-      <jobname>CheckOutProfile</jobname>
-      <directory>/profile</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name />
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-        <parameter>
-          <name>Parameters.Profile.Name</name>
-          <stream_name />
-          <value>${ProfileName}</value>
-        </parameter>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>192</xloc>
-      <yloc>160</yloc>
+      <yloc>512</yloc>
     </entry>
     <entry>
-      <name>FILE_EXISTS: Config.Main.Job</name>
+      <name>WRITE_TO_LOG: Can't find main enter</name>
       <description />
-      <type>FILE_EXISTS</type>
-      <filename>${Internal.Repository.Directory}/${Config.Main.Job.Path}/${Config.Main.Job.Name}.kjb</filename>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>There is no main job or transformation of profiles ${Profile.Use}.
+Need to specify the main job or transformation in the configuration file
+
+Run job
+'Config.Main.Job.Path'
+'Config.Main.Job.Name'
+
+Run transformation
+'Config.Main.Job.Path'
+'Config.Main.Transformation.Name'</logmessage>
+      <loglevel>Error</loglevel>
+      <logsubject>Can't find main enter</logsubject>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>192</xloc>
-      <yloc>416</yloc>
+      <xloc>464</xloc>
+      <yloc>352</yloc>
     </entry>
     <entry>
-      <name>JOB: UseProfileConfigRunTransformation</name>
+      <name>ABORT</name>
       <description />
-      <type>JOB</type>
-      <specification_method>rep_name</specification_method>
-      <job_object_id />
-      <filename />
-      <jobname>UseProfileConfigRunTransformation</jobname>
-      <directory>/flow</directory>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name />
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <set_append_logfile>N</set_append_logfile>
+      <type>ABORT</type>
+      <message />
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>304</xloc>
-      <yloc>544</yloc>
+      <xloc>464</xloc>
+      <yloc>512</yloc>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>JOB: ?</from>
-      <to>SUCCESS</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>CheckOutProfile</to>
+      <to>SIMPLE_EVAL: Config.Main.Transformation.Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -494,8 +421,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>CheckOutProfile</from>
-      <to>ReadConfig</to>
+      <from>SIMPLE_EVAL: Config.Main.Transformation.Name</from>
+      <to>FILE_EXISTS: Config.Main.Transformation.Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -503,8 +430,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>ReadConfig</from>
-      <to>FILE_EXISTS: Config.Main.Job</to>
+      <from>FILE_EXISTS: Config.Main.Transformation.Name</from>
+      <to>TRANS: ?</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -512,8 +439,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>FILE_EXISTS: Config.Main.Job</from>
-      <to>JOB: UseProfileConfigRunTransformation</to>
+      <from>SIMPLE_EVAL: Config.Main.Transformation.Name</from>
+      <to>WRITE_TO_LOG: Can't find main enter</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -521,42 +448,37 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>FILE_EXISTS: Config.Main.Job</from>
-      <to>JOB: ?</to>
+      <from>WRITE_TO_LOG: Can't find main enter</from>
+      <to>ABORT</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>JOB: UseProfileConfigRunTransformation</from>
-      <to>SUCCESS</to>
+      <from>FILE_EXISTS: Config.Main.Transformation.Name</from>
+      <to>WRITE_TO_LOG: Can't find main enter</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>params
+      <note>input variable
 
-ProfileName           Must(Multiple, split by number)
-
-====================
-input variable
-
+Profile.Use
 Config.Main.Job.Path
-Config.Main.Job.Name
 Config.Main.Transformation.Name</note>
-      <xloc>272</xloc>
+      <xloc>432</xloc>
       <yloc>0</yloc>
-      <width>300</width>
-      <heigth>165</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
+      <width>207</width>
+      <heigth>88</heigth>
+      <fontname />
+      <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
