@@ -436,16 +436,36 @@
   </info>
   <notepads>
     <notepad>
-      <note>input/output result
-
+      <note>relative path to absolute path</note>
+      <xloc>0</xloc>
+      <yloc>0</yloc>
+      <width>223</width>
+      <heigth>30</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>input/output mapping
 path
 ====================
 In PDI7, GetFileNames can get the information of the current directory, 
 in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itself.</note>
       <xloc>432</xloc>
       <yloc>0</yloc>
-      <width>460</width>
-      <heigth>103</heigth>
+      <width>572</width>
+      <heigth>108</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -464,89 +484,124 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
   </notepads>
   <order>
     <hop>
-      <from>SelectValues: path</from>
-      <to>MappingOutput: path</to>
-      <enabled>Y</enabled>
+      <from>Data grid</from>
+      <to>Dummy (do nothing)</to>
+      <enabled>N</enabled>
     </hop>
     <hop>
-      <from>DetectLastRow</from>
-      <to>FilterRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows</from>
-      <to>Dummy</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows</from>
-      <to>SetValueField: set path with path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SetValueField: set path with path</from>
-      <to>SelectValues: path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>GetFileNames: path_file_location</from>
-      <to>DetectEmptyStream</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: path</from>
-      <to>GetFileNames: path_file_location</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DetectEmptyStream</from>
-      <to>SelectValues: clear</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>GetFileNames: path_file_location</from>
-      <to>SetValueField: set path with filename</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>GetSubFolders</from>
-      <to>DetectLastRow</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SetValueField: set path with filename</from>
+      <from>FilterRows: is folder</from>
       <to>SelectValues: filename</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: filename</from>
-      <to>MappingOutput: path</to>
+      <from>FilterRows: is folder</from>
+      <to>SetValueField: set filename with path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetFileNames: only sub files</from>
+      <to>Memory Group by: path last file</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>MappingInput: path</from>
-      <to>Dummy: copy mapping</to>
+      <to>Dummy (do nothing)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: copy mapping</from>
-      <to>Append</to>
+      <from>Memory Group by: path last file</from>
+      <to>FilterRows: is folder</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: clear</from>
-      <to>Append</to>
+      <from>SelectValues: filename</from>
+      <to>Stream lookup: filename</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append</from>
-      <to>GetSubFolders</to>
+      <from>SetValueField: set filename with path</from>
+      <to>SelectValues: filename</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>GetFileNames: only sub files</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy (do nothing)</from>
+      <to>Stream lookup: filename</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream lookup: filename</from>
+      <to>FilterRows: is filename null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is filename null</from>
+      <to>Dummy: filename is null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: filename is null</from>
+      <to>GetFileNames: only sub folders</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: filename is null</from>
+      <to>Stream lookup: path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetFileNames: only sub folders</from>
+      <to>Stream lookup: path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is filename null 2</from>
+      <to>WriteToLog: path not exist</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace path</from>
+      <to>MappingOutput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is filename null</from>
+      <to>Dummy:filename not null</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is filename null 2</from>
+      <to>Dummy: converge</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: converge</from>
+      <to>SelectValues: replace path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy:filename not null</from>
+      <to>Dummy: converge</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Stream lookup: path</from>
+      <to>SelectValues: remove filename</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove filename</from>
+      <to>FilterRows: is filename null 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Append</name>
-    <type>Append</type>
+    <name>Data grid</name>
+    <type>DataGrid</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -555,8 +610,33 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       <method>none</method>
       <schema_name />
     </partitioning>
-    <head_name>SelectValues: clear</head_name>
-    <tail_name>Dummy: copy mapping</tail_name>
+    <fields>
+      <field>
+        <name>path</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>../default</item>
+      </line>
+      <line>
+        <item>.</item>
+      </line>
+      <line>
+        <item>E:/Kettle/workspace9.1/tool/../111</item>
+      </line>
+      <line>
+        <item>E:/Kettle/workspace9.1/tool/../123</item>
+      </line>
+    </data>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -565,16 +645,16 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>512</yloc>
+      <xloc>80</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>DetectEmptyStream</name>
-    <type>DetectEmptyStream</type>
+    <name>Dummy (do nothing)</name>
+    <type>Dummy</type>
     <description />
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -589,38 +669,13 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>288</yloc>
+      <xloc>288</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>DetectLastRow</name>
-    <type>DetectLastRow</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <resultfieldname>is_last</resultfieldname>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy</name>
+    <name>Dummy: converge</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -638,13 +693,37 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>848</yloc>
+      <xloc>288</xloc>
+      <yloc>1360</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dummy: copy mapping</name>
+    <name>Dummy: filename is null</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy:filename not null</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -662,13 +741,13 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>288</yloc>
+      <xloc>288</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>FilterRows</name>
+    <name>FilterRows: is filename null</name>
     <type>FilterRows</type>
     <description />
     <distribute>Y</distribute>
@@ -678,18 +757,18 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       <method>none</method>
       <schema_name />
     </partitioning>
-    <send_true_to>SetValueField: set path with path</send_true_to>
-    <send_false_to>Dummy</send_false_to>
+    <send_true_to>Dummy: filename is null</send_true_to>
+    <send_false_to>Dummy:filename not null</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>is_last</leftvalue>
-        <function>=</function>
+        <leftvalue>filename</leftvalue>
+        <function>IS NULL</function>
         <rightvalue />
         <value>
           <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
+          <type>String</type>
+          <text>folder</text>
           <length>-1</length>
           <precision>-1</precision>
           <isnull>N</isnull>
@@ -705,16 +784,146 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>848</yloc>
+      <xloc>288</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>GetFileNames: path_file_location</name>
+    <name>FilterRows: is filename null 2</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>WriteToLog: path not exist</send_true_to>
+    <send_false_to>Dummy: converge</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>filename</leftvalue>
+        <function>IS NULL</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>folder</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1360</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: is folder</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>SelectValues: filename</send_true_to>
+    <send_false_to>SetValueField: set filename with path</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>type</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>folder</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetFileNames: only sub files</name>
     <type>GetFileNames</type>
     <description />
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filter>
+      <filterfiletype>only_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>Y</filefield>
+    <rownum_field />
+    <filename_Field>path</filename_Field>
+    <wildcard_Field />
+    <exclude_wildcard_Field />
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetFileNames: only sub folders</name>
+    <type>GetFileNames</type>
+    <description />
+    <distribute>Y</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -749,41 +958,8 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GetSubFolders</name>
-    <type>GetSubFolders</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <rownum>N</rownum>
-    <foldername_dynamic>Y</foldername_dynamic>
-    <rownum_field />
-    <foldername_field>path</foldername_field>
-    <limit>0</limit>
-    <file>
-      <name />
-      <file_required>N</file_required>
-    </file>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>624</yloc>
+      <xloc>752</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -791,7 +967,7 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
     <name>MappingInput: path</name>
     <type>MappingInput</type>
     <description />
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution />
     <copies>1</copies>
     <partitioning>
@@ -815,13 +991,13 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>32</yloc>
+      <xloc>288</xloc>
+      <yloc>48</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: path</name>
+    <name>MappingOutput</name>
     <type>MappingOutput</type>
     <description />
     <distribute>Y</distribute>
@@ -839,14 +1015,14 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>1232</yloc>
+      <xloc>288</xloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: clear</name>
-    <type>SelectValues</type>
+    <name>Memory Group by: path last file</name>
+    <type>MemoryGroupBy</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -855,47 +1031,91 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       <method>none</method>
       <schema_name />
     </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>path</name>
+      </field>
+    </group>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>filename</name>
-      </remove>
-      <remove>
-        <name>short_filename</name>
-      </remove>
-      <remove>
-        <name>path_1</name>
-      </remove>
-      <remove>
-        <name>type</name>
-      </remove>
-      <remove>
-        <name>exists</name>
-      </remove>
-      <remove>
-        <name>ishidden</name>
-      </remove>
-      <remove>
-        <name>isreadable</name>
-      </remove>
-      <remove>
-        <name>iswriteable</name>
-      </remove>
-      <remove>
-        <name>lastmodifiedtime</name>
-      </remove>
-      <remove>
-        <name>size</name>
-      </remove>
-      <remove>
-        <name>extension</name>
-      </remove>
-      <remove>
-        <name>uri</name>
-      </remove>
-      <remove>
-        <name>rooturi</name>
-      </remove>
+      <field>
+        <aggregate>filename</aggregate>
+        <subject>filename</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>short_filename</aggregate>
+        <subject>short_filename</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>path_1</aggregate>
+        <subject>path_1</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>type</aggregate>
+        <subject>type</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>exists</aggregate>
+        <subject>exists</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>ishidden</aggregate>
+        <subject>ishidden</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>isreadable</aggregate>
+        <subject>isreadable</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>iswriteable</aggregate>
+        <subject>iswriteable</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>lastmodifiedtime</aggregate>
+        <subject>lastmodifiedtime</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>size</aggregate>
+        <subject>size</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>extension</aggregate>
+        <subject>extension</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>uri</aggregate>
+        <subject>uri</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
+      <field>
+        <aggregate>rooturi</aggregate>
+        <subject>rooturi</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield />
+      </field>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -905,68 +1125,8 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: path</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>folderName</name>
-      </remove>
-      <remove>
-        <name>short_folderName</name>
-      </remove>
-      <remove>
-        <name>path_1</name>
-      </remove>
-      <remove>
-        <name>ishidden</name>
-      </remove>
-      <remove>
-        <name>isreadable</name>
-      </remove>
-      <remove>
-        <name>iswriteable</name>
-      </remove>
-      <remove>
-        <name>lastmodifiedtime</name>
-      </remove>
-      <remove>
-        <name>uri</name>
-      </remove>
-      <remove>
-        <name>rooturi</name>
-      </remove>
-      <remove>
-        <name>childrens</name>
-      </remove>
-      <remove>
-        <name>is_last</name>
-      </remove>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>320</xloc>
-      <yloc>1088</yloc>
+      <xloc>528</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -984,9 +1144,6 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>filename</name>
-      </remove>
-      <remove>
         <name>short_filename</name>
       </remove>
       <remove>
@@ -1031,14 +1188,14 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>1088</yloc>
+      <xloc>528</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SetValueField: set path with filename</name>
-    <type>SetValueField</type>
+    <name>SelectValues: remove filename</name>
+    <type>SelectValues</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -1048,10 +1205,27 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       <schema_name />
     </partitioning>
     <fields>
-      <field>
-        <name>path</name>
-        <replaceby>filename</replaceby>
-      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>filename</name>
+      </remove>
+      <meta>
+        <name>filename_1</name>
+        <rename>filename</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
     </fields>
     <cluster_schema />
     <remotesteps>
@@ -1061,13 +1235,60 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>288</yloc>
+      <xloc>528</xloc>
+      <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SetValueField: set path with path</name>
+    <name>SelectValues: replace path</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>path</name>
+      </remove>
+      <meta>
+        <name>filename</name>
+        <rename>path</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask />
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale />
+        <date_format_timezone />
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding />
+        <decimal_symbol />
+        <grouping_symbol />
+        <currency_symbol />
+        <storage_type />
+      </meta>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1504</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: set filename with path</name>
     <type>SetValueField</type>
     <description />
     <distribute>Y</distribute>
@@ -1079,7 +1300,7 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
     </partitioning>
     <fields>
       <field>
-        <name>path</name>
+        <name>filename</name>
         <replaceby>path_1</replaceby>
       </field>
     </fields>
@@ -1091,8 +1312,127 @@ in PDI9.1, it can only obtain the contents of the folder, but cannot obtain itse
       </output>
     </remotesteps>
     <GUI>
-      <xloc>320</xloc>
-      <yloc>976</yloc>
+      <xloc>672</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream lookup: filename</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>SelectValues: filename</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>path</name>
+        <field>path</field>
+      </key>
+      <value>
+        <name>filename</name>
+        <rename>filename</rename>
+        <default />
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Stream lookup: path</name>
+    <type>StreamLookup</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <from>GetFileNames: only sub folders</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>path</name>
+        <field>path</field>
+      </key>
+      <value>
+        <name>path_1</name>
+        <rename>filename</rename>
+        <default />
+        <type>String</type>
+      </value>
+    </lookup>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1104</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: path not exist</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_error</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage />
+    <fields>
+      <field>
+        <name>path</name>
+      </field>
+      <field>
+        <name>filename</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1504</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
