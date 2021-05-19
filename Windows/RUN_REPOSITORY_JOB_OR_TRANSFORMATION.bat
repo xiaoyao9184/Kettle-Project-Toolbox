@@ -161,7 +161,7 @@ if _%JENKINS_HOME%_ neq __ (
     echo Used in Jenkins no log file!
     call %c%
 ) else (
-    call %c%>>%logfile%
+    call %c%>>”%logfile%“
 )
 
 
