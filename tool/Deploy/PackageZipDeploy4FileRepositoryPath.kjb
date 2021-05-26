@@ -741,26 +741,6 @@
       <xloc>432</xloc>
       <yloc>1856</yloc>
     </entry>
-    <entry>
-      <name>DUMMY</name>
-      <description />
-      <type>SPECIAL</type>
-      <start>N</start>
-      <dummy>Y</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>624</xloc>
-      <yloc>2016</yloc>
-    </entry>
   </entries>
   <hops>
     <hop>
@@ -900,7 +880,7 @@
     </hop>
     <hop>
       <from>SIMPLE_EVAL</from>
-      <to>DUMMY</to>
+      <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
