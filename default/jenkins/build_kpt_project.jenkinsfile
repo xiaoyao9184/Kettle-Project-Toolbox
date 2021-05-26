@@ -128,12 +128,10 @@ pipeline {
                         info."workspace" = params.WorkPath_On_Unix
                         info."PDIPath" = params.PDIPath_On_Unix
                         info."KPTPath" = params.KPTPath_On_Unix
-                        archive."path" = params.ArchivePath_On_Unix
                     } else {
                         info."workspace" = params.WorkPath_On_Windows
                         info."PDIPath" = params.PDIPath_On_Windows
                         info."KPTPath" = params.KPTPath_On_Windows
-                        archive."path" = params.ArchivePath_On_Windows
                     }
                 }
                 echo "Build run on node: ${info.node}"
@@ -356,7 +354,6 @@ pipeline {
                 echo "Archive project..."
                 script {
                     if (isUnix()) {
-                        archive."path" = "${archive.path}/${params.ProjectName}"
                         archive."file" = sh(
                             script: "find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print", 
                             returnStdout: true).trim()
@@ -364,7 +361,6 @@ pipeline {
                             script: "basename \$(find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print) .zip", 
                             returnStdout: true).trim()
                     } else {
-                        archive."path" = "${archive.path}\\${params.ProjectName}"
                         archive."file" = bat(
                             script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nxF", 
                             returnStdout: true).trim()
@@ -379,7 +375,6 @@ pipeline {
                         currentBuild.result = 'FAILURE'
                     }
                 }
-                echo "Archive path is: ${archive.path}"
                 echo "Archive file is: ${archive.file}"
                 echo "Archive version is: ${archive.version}"
                 
@@ -407,6 +402,13 @@ pipeline {
                 echo "Unstash project to path..."
                 unstash name: "kpt_build"
                 script {
+                    if (isUnix()) {
+                        archive."path" = "${params.ArchivePath_On_Unix}/${params.ProjectName}"
+                    } else {
+                        archive."path" = "${params.ArchivePath_On_Windows}\\${params.ProjectName}"
+                    }
+                    echo "Archive path is: ${archive.path}"
+
                     fileOperations([
                         fileCopyOperation(
                             targetLocation: "${archive.path}",
