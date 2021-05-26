@@ -484,7 +484,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>1808</yloc>
+      <yloc>1856</yloc>
     </entry>
     <entry>
       <name>SUCCESS</name>
@@ -494,7 +494,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>1968</yloc>
+      <yloc>2016</yloc>
     </entry>
     <entry>
       <name>TRANS: FileRepositoryMetaDeployVariableCreate</name>
@@ -717,7 +717,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>432</xloc>
-      <yloc>1808</yloc>
+      <yloc>2016</yloc>
     </entry>
     <entry>
       <name>SIMPLE_EVAL</name>
@@ -739,7 +739,27 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>432</xloc>
-      <yloc>1696</yloc>
+      <yloc>1856</yloc>
+    </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description />
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>624</xloc>
+      <yloc>2016</yloc>
     </entry>
   </entries>
   <hops>
@@ -878,14 +898,23 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>SIMPLE_EVAL</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
       <note>package file repository path</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>169</width>
-      <heigth>26</heigth>
+      <width>211</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -916,8 +945,8 @@ user.home                                      Maybe
 Internal.Job.Filename.Directory     Must</note>
       <xloc>432</xloc>
       <yloc>0</yloc>
-      <width>243</width>
-      <heigth>196</heigth>
+      <width>305</width>
+      <heigth>244</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -937,8 +966,8 @@ Internal.Job.Filename.Directory     Must</note>
       <note>TODO support package multiple repository</note>
       <xloc>432</xloc>
       <yloc>224</yloc>
-      <width>257</width>
-      <heigth>26</heigth>
+      <width>319</width>
+      <heigth>30</heigth>
       <fontname />
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>

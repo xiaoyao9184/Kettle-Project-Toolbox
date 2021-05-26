@@ -860,6 +860,26 @@
       <xloc>240</xloc>
       <yloc>1408</yloc>
     </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description />
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>608</xloc>
+      <yloc>1888</yloc>
+    </entry>
   </entries>
   <hops>
     <hop>
@@ -1024,14 +1044,23 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>SIMPLE_EVAL</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
       <note>package kettle home</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>130</width>
-      <heigth>26</heigth>
+      <width>161</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1065,8 +1094,8 @@ Internal.Job.Filename.Directory     Must
 </note>
       <xloc>464</xloc>
       <yloc>0</yloc>
-      <width>243</width>
-      <heigth>243</heigth>
+      <width>305</width>
+      <heigth>303</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
