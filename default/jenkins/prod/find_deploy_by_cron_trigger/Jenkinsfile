@@ -1,28 +1,22 @@
 /**
  * Kettle-Project-Toolbox project archive deploy pipeline script
  *
- * Created by xiaoyao9184 on 2020/5/15.
+ * Created by xiaoyao9184 on 2020/5/19.
  *
- * It will add find_kpt_project and deploy_kpt_project and run it.
+ * It will add find_kpt_project and kpt_project_deploy and run it.
  * Only master run find_kpt_project, 
- * Only master will run 'Project jobs' stage in deploy_kpt_project
- *
- * It also add trigger_${env.JOB_NAME} free-style job for trigger this job,
- * Because fstrigger cant use with pipeline job,
- * ee https://issues.jenkins-ci.org/browse/JENKINS-48239
+ * Only master will run 'Project jobs' stage in kpt_project_deploy
  *
  *
  * Plugin dependencies
  * - job-dsl
  * - pipeline-utility-steps
- * - fstrigger
- * - workflow-multibranch
  * Disable script security for Job DSL (run as the specified admin user cant run find_kpt_project).
  * Or run as the specified admin user with script approval if need
  *
  * Pipeline script dependencies
  * - find_kpt_project
- * - deploy_kpt_project
+ * - kpt_project_deploy
  * In 'jenkins/' directory with same repository of this script 
  *
  */
@@ -33,13 +27,10 @@ pipeline {
             label "${params.Node}"
         }
     }
+    triggers {
+        cron('H 0 * * *')
+    }
     parameters {
-        //only this job
-        booleanParam(
-            name: 'CreateTrigger',
-            defaultValue: true,
-            description: 'for trigger job')
-            
         //for all
         string(
             name: 'Node',
@@ -70,11 +61,11 @@ pipeline {
             description: 'The PDI URL!')
         string(
             name: 'PDIPath_On_Windows', 
-            defaultValue: 'D:\\Program\\Kettle\\data-integration', 
+            defaultValue: 'D:\\Program\\Kettle\\pdi-ce-7.1.0.0-12\\data-integration', 
             description: 'data-integration directory')
         string(
             name: 'PDIPath_On_Unix', 
-            defaultValue: '/home/jenkins/kettle/data-integration', 
+            defaultValue: '/home/jenkins/kettle/pdi-ce-7.1.0.0-12/data-integration', 
             description: 'data-integration directory')
             
         string(
@@ -107,7 +98,7 @@ pipeline {
             description: 'active profile!')
         string(
             name: 'DeployPath_On_Windows', 
-            defaultValue: 'D:\\Program\\ETL', 
+            defaultValue: 'D:\\Program\\ETL\\Prod_Profile', 
             description: 'project directory!')
         string(
             name: 'DeployPath_On_Unix', 
@@ -120,111 +111,7 @@ pipeline {
     }
     stages {
 
-        // stage('Config job trigger') {
-        //     steps {
-        //         script {
-        //             def path = null;
-        //             if (isUnix()) {
-        //                 path = "${params.ArchivePath_On_Unix}/${params.ProjectName}"
-        //             } else {
-        //                 path = "${params.ArchivePath_On_Windows}\\${params.ProjectName}"
-        //             }
-        //             properties(
-        //                 [
-        //                     pipelineTriggers([[
-        //                         $class: 'FolderContentTrigger', 
-        //                         cronTabSpec: 'H 0 * * *',
-        //                         path: "${path}",
-        //                         includes: "*.zip",
-        //                         excludeCheckLastModificationDate: false,
-        //                         excludeCheckContent: false,
-        //                         excludeCheckFewerOrMoreFiles: false
-        //                     ]])
-        //                 ]
-        //             )
-        //         }
-        //     }
-        // }
-
-        stage("Add trigger job") {
-            when {
-                expression { params.CreateTrigger } 
-            }
-            steps {
-                script {
-                    ProjectArchivePath = null;
-                    if (isUnix()) {
-                        ProjectArchivePath = "${params.ArchivePath_On_Unix}/${params.ProjectName}"
-                    } else {
-                        ProjectArchivePath = "${params.ArchivePath_On_Windows}\\${params.ProjectName}"
-                        ProjectArchivePath = ProjectArchivePath.replaceAll('\\\\','/')
-                    }
-                    SimpleJobName = "${env.JOB_NAME}".tokenize('/').last()
-                }
-                jobDsl(
-                    scriptText: """
-                    freeStyleJob("${SimpleJobName}(trigger)") {
-                        configure { node ->
-                            node / 'triggers' << 'org.jenkinsci.plugins.fstrigger.triggers.FolderContentTrigger' {
-                                spec 'H/30 * * * *'
-                                path '${ProjectArchivePath}'
-                                includes '[Deploy]${params.ProjectName}*.zip'
-                                excludeCheckLastModificationDate false
-                                excludeCheckContent false
-                                excludeCheckFewerOrMoreFiles false
-                            }
-
-                            node / 'builders' << 'hudson.plugins.parameterizedtrigger.TriggerBuilder' {
-                                configs {
-                                    'hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig' {
-                                        configs {
-                                            'hudson.plugins.parameterizedtrigger.BooleanParameters' {
-                                                configs {
-                                                    'hudson.plugins.parameterizedtrigger.BooleanParameterConfig' {
-                                                        name 'CreateTrigger'
-                                                        value 'false'
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        projects '${SimpleJobName}'
-                                        condition 'ALWAYS'
-                                        triggerWithNoParameters 'false'
-                                        triggerFromChildProjects 'false'
-                                        block {
-                                            buildStepFailureThreshold {
-                                                name FAILURE
-                                                ordinal 2
-                                                color RED
-                                                completeBuild true
-                                            }
-                                            unstableThreshold {
-                                                name UNSTABLE
-                                                ordinal 1
-                                                color YELLOW
-                                                completeBuild true
-                                            }
-                                            failureThreshold {
-                                                name FAILURE
-                                                ordinal 2
-                                                color RED
-                                                completeBuild true
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    """, 
-                    removedJobAction: 'IGNORE', 
-                    lookupStrategy: 'SEED_JOB',
-                    sandbox: true
-                )
-            }
-        }
-
-        stage('Add find_kpt_project deploy_kpt_project') {
+        stage('Add find_kpt_project kpt_project_deploy kpt_project_job') {
             steps {
                 script {
                     echo "get scm"
@@ -275,10 +162,10 @@ pipeline {
                     sandbox: true
                 )
                 
-                echo 'Add deploy_kpt_project job...'
+                echo 'Add kpt_project_deploy job...'
                 jobDsl(
                     scriptText: """
-                    pipelineJob("deploy_kpt_project") {
+                    pipelineJob("kpt_project_deploy") {
                         parameters {
                             stringParam('Node', '')
                             stringParam('WorkPath_On_Windows', '')
@@ -310,7 +197,47 @@ pipeline {
                                         branch("${branch}")
                                     }
                                 }
-                                scriptPath("jenkins/deploy_kpt_project.jenkinsfile")
+                                scriptPath("jenkins/kpt_project_deploy.jenkinsfile")
+                                lightweight(true)
+                            }
+                        }
+                    }
+                    """, 
+                    removedJobAction: 'IGNORE', 
+                    lookupStrategy: 'SEED_JOB',
+                    sandbox: true
+                )
+                
+                echo 'Add kpt_project_job job...'
+                jobDsl(
+                    scriptText: """
+                    pipelineJob("kpt_project_job") {
+                        parameters {
+                            stringParam('WorkPath_On_Windows', '')
+                            stringParam('WorkPath_On_Unix', '')
+                            stringParam('ProjectName', "${params.ProjectName}")
+                            
+                            stringParam('KPTPath_On_Windows', '')
+                            stringParam('KPTPath_On_Unix', '')
+
+                            stringParam('ArchiveProject', "find_kpt_project")
+
+                            stringParam('DeployProfile', "${params.DeployProfile}")
+                            stringParam('DeployPath_On_Windows', '')
+                            stringParam('DeployPath_On_Unix', '')
+                        }
+                        definition {
+                            cpsScm {
+                                scm {
+                                    git { 
+                                        remote {
+                                            credentials("${credentialsId}")
+                                            url("${scmUrl}")
+                                        }
+                                        branch("${branch}")
+                                    }
+                                }
+                                scriptPath("jenkins/kpt_project_job.jenkinsfile")
                                 lightweight(true)
                             }
                         }
@@ -327,7 +254,7 @@ pipeline {
             steps {
                 echo 'Run find_kpt_project job on master node...'
                 script {
-                    build job: 'find_kpt_project', 
+                    def find_result = build job: 'find_kpt_project', 
                         parameters: [
                             string(name: 'Node', value: "master"),
                             string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
@@ -340,15 +267,18 @@ pipeline {
                         wait: true,
                         //Will not be deployed by this terminal 
                         propagate: false
+                    if(find_result.getResult() == 'ABORTED'){
+                        currentBuild.result = 'aborted'
+                    }
                 }
             }
         }
 
-        stage('Run deploy_kpt_project') {
+        stage('Run kpt_project_deploy') {
             steps {
-                echo 'Run deploy_kpt_project job on all etl nodes...'
+                echo 'Run kpt_project_deploy job on all etl nodes...'
                 script {
-                    def deploy_kpt_project_jobs = [:]
+                    def kpt_project_deploy_jobs = [:]
                     def etlNodes = nodesByLabel label: 'etl', offline: false
                     if(etlNodes.size() == 0){
                         etlNodes.add('master')
@@ -361,11 +291,11 @@ pipeline {
                         if (agentName != null) {
                             println "Prearing task for " + agentName
 
-                            deploy_kpt_project_jobs["run_on_node_${agentName}"] = {
+                            kpt_project_deploy_jobs["run_on_node_${agentName}"] = {
                             stage("Run on node[${agentName}]") {
                                 echo "run on agent: ${agentName}"
 
-                                build job: 'deploy_kpt_project', 
+                                build job: 'kpt_project_deploy', 
                                     parameters: [
                                         string(name: 'Node', value: "${agentName}"),
                                         string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
@@ -390,7 +320,31 @@ pipeline {
                             }}
                         }
                     }
-                    parallel deploy_kpt_project_jobs
+                    parallel kpt_project_deploy_jobs
+                }
+            }
+        }
+
+        stage('Run kpt_project_job') {
+            steps {
+                echo 'Run kpt_project_job job on master node...'
+                script {
+                    build job: 'kpt_project_job', 
+                        parameters: [
+                            string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
+                            string(name: 'WorkPath_On_Unix', value: "${params.WorkPath_On_Unix}"),
+                            string(name: 'ProjectName', value: "${params.ProjectName}"),
+
+                            string(name: 'KPTPath_On_Windows', value: "${params.KPTPath_On_Windows}"),
+                            string(name: 'KPTPath_On_Unix', value: "${params.KPTPath_On_Unix}"),
+
+                            string(name: 'ArchiveProject', value: "find_kpt_project"),
+
+                            string(name: 'DeployProfile', value: "${params.DeployProfile}"),
+                            string(name: 'DeployPath_On_Windows', value: "${params.DeployPath_On_Windows}"),
+                            string(name: 'DeployPath_On_Unix', value: "${params.DeployPath_On_Unix}")
+                        ], 
+                        wait: true
                 }
             }
         }

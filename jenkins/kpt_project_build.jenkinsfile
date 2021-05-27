@@ -46,11 +46,11 @@ pipeline {
             description: 'The PDI URL!')
         string(
             name: 'PDIPath_On_Windows', 
-            defaultValue: 'D:\\Program\\Kettle\\data-integration', 
+            defaultValue: 'D:\\Program\\Kettle\\pdi-ce-7.1.0.0-12\\data-integration', 
             description: 'data-integration directory')
         string(
             name: 'PDIPath_On_Unix', 
-            defaultValue: '/home/jenkins/kettle/data-integration', 
+            defaultValue: '/home/jenkins/kettle/pdi-ce-7.1.0.0-12/data-integration', 
             description: 'data-integration directory')
 
         string(

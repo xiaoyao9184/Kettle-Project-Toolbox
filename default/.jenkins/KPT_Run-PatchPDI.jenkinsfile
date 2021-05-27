@@ -12,11 +12,11 @@ pipeline {
         string(
             name: 'ProjectPath_On_Unix', 
             defaultValue: "${KPT.ProjectPath_On_Unix}", 
-            description: 'The Project directory!(WILL REPLACE BY deploy_kpt_project_jenkinsfile)')
+            description: 'The Project directory!(WILL REPLACE BY kpt_project_deploy_jenkinsfile)')
         string(
             name: 'ProjectPath_On_Windows', 
             defaultValue: "${KPT.ProjectPath_On_Windows}", 
-            description: 'The Project directory!(WILL REPLACE BY deploy_kpt_project_jenkinsfile)')
+            description: 'The Project directory!(WILL REPLACE BY kpt_project_deploy_jenkinsfile)')
     }
     options {
         disableConcurrentBuilds()

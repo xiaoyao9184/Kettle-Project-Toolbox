@@ -1,0 +1,391 @@
+/**
+ * Kettle-Project-Toolbox project update job pipeline script
+ *
+ * Created by xiaoyao9184 on 2021/5/27.
+ *
+ * It will add jenkins job form project,
+ * Then find last artifact(sort by file name),
+ * And add/update jenkins job on master node.
+ *
+ *
+ * Plugin dependencies
+ * - copyartifact
+ * - job-dsl
+ *
+ * Job DSL dependencies(Optional)
+ * - kpt_project_job
+ * In 'jenkins/' directory with project directory
+ *
+ * Shared library dependencies(Optional)
+ * - KPT_Shared_Libraries
+ *
+ */
+pipeline {
+    agent {
+        node { 
+            label "master"
+        }
+    }
+    parameters {
+        string(
+            name: 'WorkPath_On_Windows', 
+            defaultValue: '', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        string(
+            name: 'WorkPath_On_Unix', 
+            defaultValue: '', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        string(
+            name: 'ProjectName', 
+            description: 'project name!')
+
+        string(
+            name: 'KPTPath_On_Windows', 
+            defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', 
+            description: 'Kettle-Project-Toolbox directory')
+        string(
+            name: 'KPTPath_On_Unix', 
+            defaultValue: '/home/jenkins/kettle/kettle-project-toolbox', 
+            description: 'Kettle-Project-Toolbox directory')
+
+        // deploy source
+        string(
+            name: 'ArchiveProject',
+            defaultValue: 'kpt_project_build',
+            description: 'Archive project for copy archive')
+        string(
+            name: 'ArchivePath_On_Windows', 
+            defaultValue: 'D:\\Archive', 
+            description: 'archive directory!')
+        string(
+            name: 'ArchivePath_On_Unix', 
+            defaultValue: '/home/jenkins/archive', 
+            description: 'archive directory!')
+        string(
+            name: 'ArchiveRegex', 
+            defaultValue: '^.*', 
+            description: 'Archive file name filter')
+
+        // deploy target
+        string(
+            name: 'DeployProfile', 
+            defaultValue: 'dev', 
+            description: 'active profile!')
+        string(
+            name: 'DeployPath_On_Windows', 
+            defaultValue: 'D:\\Program\\ETL', 
+            description: 'project directory!')
+        string(
+            name: 'DeployPath_On_Unix', 
+            defaultValue: '/home/jenkins/etl', 
+            description: 'project directory!')
+    }
+    options {
+        // disableConcurrentBuilds()
+        skipDefaultCheckout()
+    }
+    stages {
+        
+        // ready
+
+        stage('Base info') {
+            steps {
+                echo 'Get base info...'
+                script {
+                    flow = [
+                        addJenkinsJob: false,
+                        useProjectJobDslScript: false
+                    ]
+                    archive = [
+                        path: null,
+                        file: null,
+                        version: null
+                    ]
+                    info = [
+                        workspace: null,
+                        KPTPath: null
+                    ]
+                    target = [
+                        basePath: null,
+                        workPath: null,
+                        projectPath: null
+                    ]
+
+                    try {
+                        // on linux the following code may be reporting an error
+                        library 'KPT_Shared_Libraries@master'
+                        if (deploy) {
+                            println "Global variable 'deploy' exists use Shared Library"
+                            flow."useSharedLibrary" = true
+                        }
+                    } catch(MissingPropertyException ex) {
+                        println("Catching the MissingPropertyException, miss 'deploy' mean not use Shared Library!");
+                    } catch(Exception ex) {
+                        println("Catching unknow Exception, that mean not use Shared Library!");
+                    }
+                    
+                    if (isUnix()) {
+                        info."workspace" = params.WorkPath_On_Unix
+                        info."KPTPath" = params.KPTPath_On_Unix
+                        archive."path" = params.ArchivePath_On_Unix
+                        target."basePath" = params.DeployPath_On_Unix
+                    } else {
+                        info."workspace" = params.WorkPath_On_Windows
+                        info."KPTPath" = params.KPTPath_On_Windows
+                        archive."path" = params.ArchivePath_On_Windows
+                        target."basePath" = params.DeployPath_On_Windows
+                    }
+                }
+            }
+        }
+
+        // deploy
+
+        stage('Archive copy') {
+            steps {
+                echo 'Copy archive...'
+
+                catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
+                    //Copy Artifact Plugin
+                    copyArtifacts(
+                        projectName: "${params.ArchiveProject}",
+                        filter: "*.zip",
+                        flatten: true,
+                        target: "${archive.path}/${params.ProjectName}"
+                    )
+                }
+            }
+        }
+
+        stage('Archive info') {
+            when { 
+                expression { params.ProjectName } 
+            }
+            steps {
+                echo 'Get archive info...'
+                script {
+                    def archiveLastFile = null
+                    if (flow.useSharedLibrary) {
+                        def archivePathList = deploy.get_path_list_file_info("${archive.path}/${params.ProjectName}")
+                            .findAll { it.isFile && !it.isHidden }
+                            .findAll { it.name.endsWith('.zip') }
+                            .findAll { !it.name.contains('syncthing') }
+                            .findAll { it.name ==~ "${params.ArchiveRegex}" }
+                        if (!archivePathList) {
+                            println "No any archive file!"
+                            archive = null
+                            return
+                        }
+
+                        archiveLastFile = archivePathList
+                            // https://issues.jenkins-ci.org/browse/JENKINS-44924
+                            // .sort{ it.name }
+                            .last()
+                    } else if (isUnix()) {
+                        def fileName = null
+                        dir("${archive.path}/${params.ProjectName}") {
+                            fileName = sh(
+                                    script: """
+                                    ls -I "*syncthing*" -t1 | grep "\\[Deploy\\]${params.ProjectName}.*zip" | grep "${params.ArchiveRegex}" | head -n 1
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                        }
+                        archiveLastFile = [
+                            absolutePath: "${archive.path}/${params.ProjectName}/${fileName}",
+                            name: "${fileName}",
+                        ]
+                    } else {
+                        def fileName = null
+                        dir("${archive.path}\\${params.ProjectName}") {
+                            fileName = bat(
+                                    script: """
+                                    @echo off
+                                    for /F "TOKENS=*" %%a in ('dir "[Deploy]${params.ProjectName}*.zip" /b /A:-H /O:ND') do call :SUB "%%~a"
+                                    echo %lastfile%
+                                    exit /B
+
+                                    :SUB file
+                                    set file=%1
+                                    set file=%file:"=%
+                                    echo %file% | findstr /r ".*syncthing.*" >nul 2>&1 && goto CONTINUE || rem
+                                    echo %file% | findstr /r "${params.ArchiveRegex}" >nul 2>&1 && rem || goto CONTINUE
+                                    set lastfile=%file%
+                                    exit /B
+                                    :CONTINUE
+                                    rem
+                                    exit /B
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                        }
+                        archiveLastFile = [
+                            absolutePath: "${archive.path}\\${params.ProjectName}\\${fileName}",
+                            name: "${fileName}",
+                        ]
+                    }
+
+                    println "Last archive is: ${archiveLastFile.absolutePath}"
+                    archive."file" = archiveLastFile.absolutePath
+                    archive."version" = archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
+                }
+            }
+        }
+        
+        stage('Archive check') {
+            steps {
+                echo "Check archive..."
+                script {
+                    if (!params.ProjectName) {
+                        echo "No 'ProjectName' param!"
+                        archive = null
+                        currentBuild.result = 'UNSTABLE'
+                    } else if (!archive) {
+                        echo "No archive info!"
+                        archive = null
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+
+        stage('Project info') {
+            when { 
+                expression { archive } 
+            }
+            steps {
+                echo 'Get project info...'
+                script {
+                    //get project path
+                    if (isUnix()) {
+                        target."workPath" = "${target.basePath}/${archive.version}"
+                        target."projectPath" = "${target.workPath}/${params.ProjectName}"
+                    } else {
+                        target."workPath" = "${target.basePath}\\${archive.version}"
+                        target."projectPath" = "${target.workPath}\\${params.ProjectName}"
+                    }
+                    //include jenkins path
+                    def jenkinsPathExists = false
+                    if (flow.useSharedLibrary) {
+                        jenkinsPathExists = deploy.check_file_exists("${target.projectPath}/.jenkins") 
+                    } else if (isUnix()) {
+                        jenkinsPathExists = sh(
+                                script: """
+                                [ -d "${target.projectPath}/.jenkins" ] && echo "true" || echo "false"
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    } else {
+                        jenkinsPathExists = bat(
+                                script: """
+                                @echo off
+                                if exist "${target.projectPath}\\.jenkins" (
+                                    echo true
+                                ) else (
+                                    echo false
+                                )
+                                """, 
+                                returnStdout: true)
+                            .trim()
+                            .toBoolean()
+                    }
+                    //run on nodes
+                    if (jenkinsPathExists) {
+                        flow."addJenkinsJob" = true
+                        println 'JenkinsJob needs to be added!'
+
+                        def useProjectJobDslScript = false
+                        if (flow.useSharedLibrary) {
+                            useProjectJobDslScript = deploy.check_file_exists("${target.projectPath}/jenkins/kpt_project_job.groovy") 
+                        } else if (isUnix()) {
+                            useProjectJobDslScript = sh(
+                                    script: """
+                                    [ -f "${target.projectPath}/jenkins/kpt_project_job.groovy" ] && echo "true" || echo "false"
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                                .toBoolean()
+                        } else {
+                            useProjectJobDslScript = bat(
+                                    script: """
+                                    @echo off
+                                    if exist "${target.projectPath}\\jenkins\\kpt_project_job.groovy" (
+                                        echo true
+                                    ) else (
+                                        echo false
+                                    )
+                                    """, 
+                                    returnStdout: true)
+                                .trim()
+                                .toBoolean()
+                        }
+
+                        if (useProjectJobDslScript) {
+                            flow."useProjectJobDslScript" = true
+                            println 'JenkinsJob use project script to be added!'
+                        }
+                    }else{
+                        println 'JenkinsJob won\'t add.'
+                    }
+                }
+            }
+        }
+
+        stage('Project jobs') {
+            when { 
+                expression { archive && flow.addJenkinsJob } 
+            }
+            steps {
+                echo 'Add Jenkins scheduling job...'
+                script {
+                    def project = [
+                        ProjectPath_On_Unix: "${params.DeployPath_On_Unix}/${archive.version}/${params.ProjectName}",
+                        ProjectPath_On_Windows: "${params.DeployPath_On_Windows}\\${archive.version}\\${params.ProjectName}"
+                    ]
+
+                    if (flow.useProjectJobDslScript) {
+                        dir("${target.projectPath}") {
+                            jobDsl(
+                                targets: "jenkins/kpt_project_job.groovy", 
+                                additionalParameters: [
+                                    ProjectPath: "${target.projectPath}",
+                                    ProjectPath_On_Unix: "${project.ProjectPath_On_Unix}",
+                                    ProjectPath_On_Windows: "${project.ProjectPath_On_Windows}"
+                                ],
+                                removedJobAction: 'DELETE', 
+                                removedViewAction: 'DELETE',
+                                lookupStrategy: 'SEED_JOB',
+                                sandbox: true
+                            )
+                        }
+                    } else {
+                        dir("${info.KPTPath}") {
+                            jobDsl(
+                                targets: "jenkins/kpt_project_job.groovy", 
+                                additionalParameters: [
+                                    ProjectPath: "${target.projectPath}",
+                                    ProjectPath_On_Unix: "${project.ProjectPath_On_Unix}",
+                                    ProjectPath_On_Windows: "${project.ProjectPath_On_Windows}"
+                                ],
+                                removedJobAction: 'DELETE', 
+                                removedViewAction: 'DELETE',
+                                lookupStrategy: 'SEED_JOB',
+                                sandbox: true
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+        success {
+            deleteDir()
+        }
+    }
+}

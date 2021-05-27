@@ -11,11 +11,6 @@
  * Plugin dependencies
  * - file-operation
  * - copyartifact
- * - job-dsl
- *
- * Job DSL dependencies(Optional)
- * - deploy_kpt_project_jenkinsfile
- * In 'jenkins/' directory with project directory
  *
  * Shared library dependencies(Optional)
  * - KPT_Shared_Libraries
@@ -54,11 +49,11 @@ pipeline {
             description: 'The PDI URL!')
         string(
             name: 'PDIPath_On_Windows', 
-            defaultValue: 'D:\\Program\\Kettle\\data-integration', 
+            defaultValue: 'D:\\Program\\Kettle\\pdi-ce-7.1.0.0-12\\data-integration_9.1', 
             description: 'data-integration directory')
         string(
             name: 'PDIPath_On_Unix', 
-            defaultValue: '/home/jenkins/kettle/data-integration', 
+            defaultValue: '/home/jenkins/kettle/pdi-ce-7.1.0.0-12/data-integration_9.1', 
             description: 'data-integration directory')
 
         string(
@@ -77,7 +72,7 @@ pipeline {
         // deploy source
         string(
             name: 'ArchiveProject',
-            defaultValue: 'build_kpt_project',
+            defaultValue: 'kpt_project_build',
             description: 'Archive project for copy archive')
         string(
             name: 'ArchivePath_On_Windows', 
@@ -124,9 +119,7 @@ pipeline {
                         downloadPDI: false,
 
                         applyPatch: false,
-                        activeProfile: false,
-                        addJenkinsJob: false,
-                        useProjectJobDslScript: false
+                        activeProfile: false
                     ]
                     archive = [
                         path: null,
@@ -521,73 +514,6 @@ pipeline {
                         flow."activeProfile" = true
                         println 'Profile needs to be activated!'
                     }
-
-                    //include jenkins path
-                    def jenkinsPathExists = false
-                    if (flow.useSharedLibrary) {
-                        jenkinsPathExists = deploy.check_file_exists("${target.projectPath}/jenkins") 
-                    } else if (isUnix()) {
-                        jenkinsPathExists = sh(
-                                script: """
-                                [ -d "${target.projectPath}/jenkins" ] && echo "true" || echo "false"
-                                """, 
-                                returnStdout: true)
-                            .trim()
-                            .toBoolean()
-                    } else {
-                        jenkinsPathExists = bat(
-                                script: """
-                                @echo off
-                                if exist "${target.projectPath}\\jenkins" (
-                                    echo true
-                                ) else (
-                                    echo false
-                                )
-                                """, 
-                                returnStdout: true)
-                            .trim()
-                            .toBoolean()
-                    }
-                    //run on nodes
-                    println "${env.NODE_NAME}"
-                    def runOnMaster = ("${env.NODE_NAME}" == "master");
-                    if (runOnMaster && jenkinsPathExists) {
-                        flow."addJenkinsJob" = true
-                        println 'JenkinsJob needs to be added!'
-
-                        def useProjectJobDslScript = false
-                        if (flow.useSharedLibrary) {
-                            useProjectJobDslScript = deploy.check_file_exists("${target.projectPath}/jenkins/deploy_kpt_project_jenkinsfile.groovy") 
-                        } else if (isUnix()) {
-                            useProjectJobDslScript = sh(
-                                    script: """
-                                    [ -f "${target.projectPath}/jenkins/deploy_kpt_project_jenkinsfile.groovy" ] && echo "true" || echo "false"
-                                    """, 
-                                    returnStdout: true)
-                                .trim()
-                                .toBoolean()
-                        } else {
-                            useProjectJobDslScript = bat(
-                                    script: """
-                                    @echo off
-                                    if exist "${target.projectPath}\\jenkins\\deploy_kpt_project_jenkinsfile.groovy" (
-                                        echo true
-                                    ) else (
-                                        echo false
-                                    )
-                                    """, 
-                                    returnStdout: true)
-                                .trim()
-                                .toBoolean()
-                        }
-
-                        if (useProjectJobDslScript) {
-                            flow."useProjectJobDslScript" = true
-                            println 'JenkinsJob use project script to be added!'
-                        }
-                    }else{
-                        println 'JenkinsJob won\'t add.'
-                    }
                 }
             }
         }
@@ -657,53 +583,6 @@ pipeline {
                             cd ".profile"
                             REN ".profile" "${params.DeployProfile}.profile"
                             """
-                        }
-                    }
-                }
-            }
-        }
-
-        stage('Project jobs') {
-            when { 
-                expression { archive && flow.addJenkinsJob } 
-            }
-            steps {
-                echo 'Add Jenkins scheduling job...'
-                script {
-                    def project = [
-                        ProjectPath_On_Unix: "${params.DeployPath_On_Unix}/${archive.version}/${params.ProjectName}",
-                        ProjectPath_On_Windows: "${params.DeployPath_On_Windows}\\${archive.version}\\${params.ProjectName}"
-                    ]
-
-                    if (flow.useProjectJobDslScript) {
-                        dir("${target.projectPath}") {
-                            jobDsl(
-                                targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
-                                additionalParameters: [
-                                    ProjectPath: "${target.projectPath}",
-                                    ProjectPath_On_Unix: "${project.ProjectPath_On_Unix}",
-                                    ProjectPath_On_Windows: "${project.ProjectPath_On_Windows}"
-                                ],
-                                removedJobAction: 'DELETE', 
-                                removedViewAction: 'DELETE',
-                                lookupStrategy: 'SEED_JOB',
-                                sandbox: true
-                            )
-                        }
-                    } else {
-                        dir("${info.KPTPath}") {
-                            jobDsl(
-                                targets: "jenkins/deploy_kpt_project_jenkinsfile.groovy", 
-                                additionalParameters: [
-                                    ProjectPath: "${target.projectPath}",
-                                    ProjectPath_On_Unix: "${project.ProjectPath_On_Unix}",
-                                    ProjectPath_On_Windows: "${project.ProjectPath_On_Windows}"
-                                ],
-                                removedJobAction: 'DELETE', 
-                                removedViewAction: 'DELETE',
-                                lookupStrategy: 'SEED_JOB',
-                                sandbox: true
-                            )
                         }
                     }
                 }

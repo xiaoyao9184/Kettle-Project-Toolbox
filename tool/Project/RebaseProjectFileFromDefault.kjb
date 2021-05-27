@@ -799,21 +799,21 @@
       <create_destination_folder>Y</create_destination_folder>
       <fields>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/jenkins</source_filefolder>
+          <source_filefolder>${Internal.Project.Default.Directory}/.jenkins</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
-          <destination_filefolder>${Internal.Project.Directory}/jenkins</destination_filefolder>
+          <destination_filefolder>${Internal.Project.Directory}/.jenkins</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-0</destination_configuration_name>
           <wildcard />
         </field>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/.jenkins</source_filefolder>
+          <source_filefolder>${Internal.Project.Default.Directory}/jenkins</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
-          <destination_filefolder>${Internal.Project.Directory}/.jenkins</destination_filefolder>
+          <destination_filefolder>${Internal.Project.Directory}/jenkins</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-1</destination_configuration_name>
           <wildcard />
         </field>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/jenkins/build_dev/Jenkinsfile</source_filefolder>
+          <source_filefolder>${Internal.Project.Default.Directory}/jenkins/test/build_only_by_scm/Jenkinsfile</source_filefolder>
           <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
           <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
           <destination_configuration_name>STATIC-DEST-FILE-2</destination_configuration_name>
@@ -1424,8 +1424,8 @@
       <note>rebase project from default project</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>209</width>
-      <heigth>26</heigth>
+      <width>260</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1455,8 +1455,8 @@ Parameters.Copy.Use.Profile     Optional
 Parameters.Copy.Use.Wait        Optional</note>
       <xloc>624</xloc>
       <yloc>0</yloc>
-      <width>248</width>
-      <heigth>181</heigth>
+      <width>305</width>
+      <heigth>225</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
