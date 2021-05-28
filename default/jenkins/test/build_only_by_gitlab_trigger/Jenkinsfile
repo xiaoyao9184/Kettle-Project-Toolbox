@@ -1,0 +1,189 @@
+/**
+ * Kettle-Project-Toolbox project source code build pipeline script
+ *
+ * Created by xiaoyao9184 on 2021/5/27.
+ *
+ * It will add kpt_project_build and run it.
+ * Only master run kpt_project_build
+ *
+ *
+ * Plugin dependencies
+ * - job-dsl
+ * - pipeline-utility-steps
+ * - gitlab
+ * Disable script security for Job DSL (run as the specified admin user cant run kpt_project_build).
+ * Or run as the specified admin user with script approval if need
+ *
+ * Pipeline script dependencies
+ * - kpt_project_build
+ * In 'jenkins/' directory with same repository of this script 
+ *
+ */
+pipeline {
+    agent {
+        node {
+            label "${params.Node}"
+        }
+    }
+    triggers {
+        gitlab(
+            triggerOnPush: true, 
+            triggerOnMergeRequest: true, 
+            branchFilterType: 'All',
+            secretToken: 'kpt')
+    }
+    parameters {
+        string(
+            name: 'Node',
+            defaultValue: 'master',
+            description: 'Node label or node name for run')
+        string(
+            name: 'WorkPath_On_Windows', 
+            defaultValue: '', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        string(
+            name: 'WorkPath_On_Unix', 
+            defaultValue: '', 
+            description: """jenkins job work directory, 
+                for fix cant cross-device hard link when 
+                jenkins run in docker default workspace and PDI path with different mount.""")
+        
+        //Pass to all child job
+        string(
+            name: 'ProjectName', 
+            defaultValue: 'default', 
+            description: 'project name!')
+        
+        string(
+            name: 'PDIURL', 
+            defaultValue: 'https://jaist.dl.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip', 
+            description: 'The PDI URL!')
+        string(
+            name: 'PDIPath_On_Windows', 
+            defaultValue: 'D:\\Program\\Kettle\\pdi-ce-7.1.0.0-12\\data-integration', 
+            description: 'data-integration directory')
+        string(
+            name: 'PDIPath_On_Unix', 
+            defaultValue: '/home/jenkins/kettle/pdi-ce-7.1.0.0-12/data-integration', 
+            description: 'data-integration directory')
+        
+        string(
+            name: 'KPTURL', 
+            defaultValue: 'https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git', 
+            description: 'The KPT git url!')
+        string(
+            name: 'KPTPath_On_Windows', 
+            defaultValue: 'D:\\Program\\Kettle\\Kettle-Project-Toolbox', 
+            description: 'Kettle-Project-Toolbox directory')
+        string(
+            name: 'KPTPath_On_Unix', 
+            defaultValue: '/home/jenkins/kettle/kettle-project-toolbox', 
+            description: 'Kettle-Project-Toolbox directory')
+        
+        //Pass to build job
+        string(
+            name: 'ArchivePath_On_Windows', 
+            defaultValue: 'D:\\Archive', 
+            description: 'archive directory!')
+        string(
+            name: 'ArchivePath_On_Unix', 
+            defaultValue: '/home/jenkins/archive', 
+            description: 'archive directory!')
+    }
+    options {
+        disableConcurrentBuilds()
+        skipDefaultCheckout()
+    }
+    stages {
+
+        stage('Add kpt_project_build') {
+            steps {
+                script {
+                    scmUrl = scm.getUserRemoteConfigs()[0].getUrl()
+                    credentialsId = scm.getUserRemoteConfigs()[0].getCredentialsId()
+                    branch = scm.branches[0].name
+                    echo "Will use ${credentialsId} check ${branch} @ ${scmUrl} for pipeline job"
+                }
+                echo 'Add kpt_project_build job...'
+                jobDsl(
+                    scriptText: """
+                    pipelineJob("kpt_project_build") {
+                        parameters {
+                            stringParam('Node', '')
+                            stringParam('WorkPath_On_Windows', '')
+                            stringParam('WorkPath_On_Unix', '')
+                            stringParam('ProjectName', "${params.ProjectName}")
+
+                            stringParam('PDIURL', "${params.PDIURL}")
+                            stringParam('PDIPath_On_Windows', '')
+                            stringParam('PDIPath_On_Unix', '')
+
+                            stringParam('KPTURL', "${params.KPTURL}")
+                            stringParam('KPTPath_On_Windows', '')
+                            stringParam('KPTPath_On_Unix', '')
+
+                            stringParam('ArchivePath_On_Windows', '')
+                            stringParam('ArchivePath_On_Unix', '')
+
+                            booleanParam('DeployFlow', false, 'use kpt_project_deploy for deploy')
+                        }
+                        definition {
+                            cpsScm {
+                                scm {
+                                    git { 
+                                        remote {
+                                            credentials("${credentialsId}")
+                                            url("${scmUrl}")
+                                        }
+                                        branch("${branch}")
+                                    }
+                                }
+                                scriptPath("jenkins/kpt_project_build.jenkinsfile")
+                                lightweight(true)
+                            }
+                        }
+                    }
+                    """, 
+                    removedJobAction: 'IGNORE', 
+                    lookupStrategy: 'SEED_JOB',
+                    sandbox: true
+                )
+            }
+        }
+
+        stage('Run kpt_project_build') {
+            steps {
+                echo 'Run kpt_project_build job on any etl node...'
+                script {
+                    build job: 'kpt_project_build', 
+                        parameters: [
+                            string(name: 'Node', value: "etl"),
+                            string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
+                            string(name: 'WorkPath_On_Unix', value: "${params.WorkPath_On_Unix}"),
+                            string(name: 'ProjectName', value: "${params.ProjectName}"),
+
+                            string(name: 'PDIURL', value: "${params.PDIURL}"),
+                            string(name: 'PDIPath_On_Windows', value: "${params.PDIPath_On_Windows}"),
+                            string(name: 'PDIPath_On_Unix', value: "${params.PDIPath_On_Unix}"),
+
+                            string(name: 'KPTURL', value: "${params.KPTURL}"),
+                            string(name: 'KPTPath_On_Windows', value: "${params.KPTPath_On_Windows}"),
+                            string(name: 'KPTPath_On_Unix', value: "${params.KPTPath_On_Unix}"),
+
+                            string(name: 'ArchivePath_On_Windows', value: "${params.ArchivePath_On_Windows}"),
+                            string(name: 'ArchivePath_On_Unix', value: "${params.ArchivePath_On_Unix}")
+                        ], 
+                        wait: true
+                }
+            }
+        }
+
+    }
+    post {
+        cleanup {
+            deleteDir()
+        }
+    }
+}
