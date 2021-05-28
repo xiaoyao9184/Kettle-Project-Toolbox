@@ -638,13 +638,40 @@ file path</note>
         <item>/Jenkinsfile</item>
       </line>
       <line>
-        <item>/jenkins/build_dev/Jenkinsfile</item>
+        <item>/jenkins/test/build_deploy_by_cron_trigger/Jenkinsfile</item>
       </line>
       <line>
-        <item>/jenkins/build_test/Jenkinsfile</item>
+        <item>/jenkins/test/build_deploy_by_gitlab_trigger/Jenkinsfile</item>
       </line>
       <line>
-        <item>/jenkins/deploy_prod/folder_content_trigger/Jenkinsfile</item>
+        <item>/jenkins/test/build_deploy_by_manual_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/test/build_only_by_cron_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/test/build_only_by_gitlab_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/test/build_only_by_manual_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/prod/build_deploy_by_cron_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/prod/build_deploy_by_gitlab_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/prod/build_deploy_by_manual_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/prod/find_deploy_by_cron_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/prod/find_deploy_by_folder_content_trigger/Jenkinsfile</item>
+      </line>
+      <line>
+        <item>/jenkins/prod/find_deploy_by_manual_trigger/Jenkinsfile</item>
       </line>
     </data>
     <cluster_schema />
