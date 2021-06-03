@@ -34,6 +34,11 @@
         <description>依赖转换相对位置</description>
       </parameter>
       <parameter>
+        <name>Position.Ktr.MappingRelativePath2AbsolutePath</name>
+        <default_value>MappingRelativePath2AbsolutePath</default_value>
+        <description>依赖转换相对位置</description>
+      </parameter>
+      <parameter>
         <name>Position.Path.Variable</name>
         <default_value>/variable</default_value>
         <description>依赖转换相对位置</description>
@@ -459,7 +464,7 @@
     <created_user>-</created_user>
     <created_date>2017/08/29 15:35:13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/04/12 11:24:08.485</modified_date>
+    <modified_date>2021/06/03 11:21:27.252</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -468,8 +473,8 @@
       <note>profile_file_location</note>
       <xloc>416</xloc>
       <yloc>1760</yloc>
-      <width>122</width>
-      <heigth>26</heigth>
+      <width>149</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -489,8 +494,8 @@
       <note>profile_path</note>
       <xloc>416</xloc>
       <yloc>1024</yloc>
-      <width>80</width>
-      <heigth>26</heigth>
+      <width>96</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -510,8 +515,8 @@
       <note>last profile_file</note>
       <xloc>416</xloc>
       <yloc>2384</yloc>
-      <width>94</width>
-      <heigth>26</heigth>
+      <width>114</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -531,8 +536,8 @@
       <note>home_path</note>
       <xloc>288</xloc>
       <yloc>2880</yloc>
-      <width>75</width>
-      <heigth>26</heigth>
+      <width>91</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -552,8 +557,8 @@
       <note>exist hash</note>
       <xloc>288</xloc>
       <yloc>3280</yloc>
-      <width>68</width>
-      <heigth>26</heigth>
+      <width>81</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -573,8 +578,8 @@
       <note>handle</note>
       <xloc>288</xloc>
       <yloc>4016</yloc>
-      <width>49</width>
-      <heigth>26</heigth>
+      <width>59</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -594,8 +599,8 @@
       <note>default profile_file</note>
       <xloc>160</xloc>
       <yloc>272</yloc>
-      <width>114</width>
-      <heigth>26</heigth>
+      <width>139</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -615,8 +620,8 @@
       <note>customize profile_file</note>
       <xloc>416</xloc>
       <yloc>272</yloc>
-      <width>132</width>
-      <heigth>26</heigth>
+      <width>162</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -636,8 +641,8 @@
       <note>profile_name</note>
       <xloc>416</xloc>
       <yloc>400</yloc>
-      <width>85</width>
-      <heigth>26</heigth>
+      <width>103</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -657,8 +662,8 @@
       <note>activate Profile</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>95</width>
-      <heigth>26</heigth>
+      <width>117</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -688,8 +693,8 @@ Combined with the list of Profile files in ProfileMeta, for the project folder,
 Do create, replace, and delete operations</note>
       <xloc>384</xloc>
       <yloc>0</yloc>
-      <width>494</width>
-      <heigth>181</heigth>
+      <width>616</width>
+      <heigth>225</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -709,8 +714,8 @@ Do create, replace, and delete operations</note>
       <note>profile_file</note>
       <xloc>416</xloc>
       <yloc>2128</yloc>
-      <width>70</width>
-      <heigth>26</heigth>
+      <width>85</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -730,8 +735,8 @@ Do create, replace, and delete operations</note>
       <note>source&amp;target</note>
       <xloc>288</xloc>
       <yloc>3024</yloc>
-      <width>95</width>
-      <heigth>26</heigth>
+      <width>114</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -751,8 +756,8 @@ Do create, replace, and delete operations</note>
       <note>name</note>
       <xloc>416</xloc>
       <yloc>768</yloc>
-      <width>42</width>
-      <heigth>26</heigth>
+      <width>51</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -769,12 +774,11 @@ Do create, replace, and delete operations</note>
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>PathUniformSeparator
-Maybe use Mapping</note>
+      <note>PathUniformSeparator</note>
       <xloc>416</xloc>
-      <yloc>1392</yloc>
-      <width>140</width>
-      <heigth>42</heigth>
+      <yloc>1472</yloc>
+      <width>170</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1044,21 +1048,11 @@ Maybe use Mapping</note>
     </hop>
     <hop>
       <from>SelectValues: profile_path_delimiter: remove</from>
-      <to>GetFileNames: profile_path</to>
+      <to>Simple Mapping (sub-transformation): MappingRelativePath2AbsolutePath: profile_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetFileNames: profile_path</from>
-      <to>SelectValues: profile_path: replace</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: profile_path: replace</from>
-      <to>ReplaceString: profile_path: extra delimiter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ReplaceString: profile_path: extra delimiter</from>
+      <from>Simple Mapping (sub-transformation): MappingRelativePath2AbsolutePath: profile_path</from>
       <to>Constant: profile_file_regex</to>
       <enabled>Y</enabled>
     </hop>
@@ -2188,50 +2182,6 @@ Maybe use Mapping</note>
     </GUI>
   </step>
   <step>
-    <name>GetFileNames: profile_path</name>
-    <type>GetFileNames</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <filter>
-      <filterfiletype>only_folders</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
-    <rownum>N</rownum>
-    <isaddresult>Y</isaddresult>
-    <filefield>Y</filefield>
-    <rownum_field />
-    <filename_Field>profile_path</filename_Field>
-    <wildcard_Field />
-    <exclude_wildcard_Field />
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
-    <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1472</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>GetVariable: profile_meta_location</name>
     <type>GetVariable</type>
     <description />
@@ -2486,43 +2436,6 @@ Maybe use Mapping</note>
     </GUI>
   </step>
   <step>
-    <name>ReplaceString: profile_path: extra delimiter</name>
-    <type>ReplaceString</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>profile_path</in_stream_name>
-        <out_stream_name />
-        <use_regex>yes</use_regex>
-        <replace_string>//{2,}|\\{1,}</replace_string>
-        <replace_by_string>/</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string />
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1696</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SelectValues: profile_file</name>
     <type>SelectValues</type>
     <description />
@@ -2712,43 +2625,6 @@ Maybe use Mapping</note>
     <GUI>
       <xloc>384</xloc>
       <yloc>704</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: profile_path: replace</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>profile_name</name>
-      </field>
-      <field>
-        <name>profile_order</name>
-      </field>
-      <field>
-        <name>filename</name>
-        <rename>profile_path</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3200,6 +3076,62 @@ Maybe use Mapping</note>
     <GUI>
       <xloc>576</xloc>
       <yloc>4224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Simple Mapping (sub-transformation): MappingRelativePath2AbsolutePath: profile_path</name>
+    <type>SimpleMapping</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id />
+    <trans_name>${Position.Ktr.MappingRelativePath2AbsolutePath}</trans_name>
+    <filename />
+    <directory_path>${Position.Path.Variable}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description />
+          <connector>
+            <parent>profile_path</parent>
+            <child>path</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step />
+          <output_step />
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description />
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
