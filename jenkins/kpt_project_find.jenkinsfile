@@ -178,6 +178,7 @@ pipeline {
 
                     archive."file" = archiveLastFile.absolutePath
                     archive."version" = archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
+                    archive."version" = archive.version.minus('[Deploy]')
                     
                     echo "Archive path is: ${archive.path}"
                     echo "Archive file is: ${archive.file}"

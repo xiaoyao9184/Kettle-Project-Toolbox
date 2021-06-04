@@ -359,6 +359,7 @@ pipeline {
                     println "Last archive is: ${archiveLastFile.absolutePath}"
                     archive."file" = archiveLastFile.absolutePath
                     archive."version" = archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
+                    archive."version" = archive.version.minus('[Deploy]')
                 }
             }
         }
