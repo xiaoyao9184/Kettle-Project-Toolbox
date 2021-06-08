@@ -29,13 +29,13 @@ pipeline {
             description: 'Node label or node name for run')
         string(
             name: 'WorkPath_On_Windows', 
-            defaultValue: '', 
+            defaultValue: 'D:\\Program\\jenkins_workspace',  
             description: """jenkins job work directory, 
                 for fix cant cross-device hard link when 
                 jenkins run in docker default workspace and PDI path with different mount.""")
         string(
             name: 'WorkPath_On_Unix', 
-            defaultValue: '', 
+            defaultValue: '/home/jenkins/workspace', 
             description: """jenkins job work directory, 
                 for fix cant cross-device hard link when 
                 jenkins run in docker default workspace and PDI path with different mount.""")
@@ -151,13 +151,14 @@ pipeline {
                     }
                     
                     if (isUnix()) {
-                        info."workspace" = params.WorkPath_On_Unix
+                        info."workspace" = "${params.WorkPath_On_Unix}/${env.JOB_NAME}"
                         info."PDIPath" = params.PDIPath_On_Unix
                         info."KPTPath" = params.KPTPath_On_Unix
                         archive."path" = params.ArchivePath_On_Unix
                         target."basePath" = params.DeployPath_On_Unix
                     } else {
-                        info."workspace" = params.WorkPath_On_Windows
+                        job_path = "${env.JOB_NAME}".replaceAll('\\/','\\\\')
+                        info."workspace" = "${params.WorkPath_On_Windows}\\${job_path}"
                         info."PDIPath" = params.PDIPath_On_Windows
                         info."KPTPath" = params.KPTPath_On_Windows
                         archive."path" = params.ArchivePath_On_Windows

@@ -41,13 +41,13 @@ pipeline {
             description: 'Node label or node name for run')
         string(
             name: 'WorkPath_On_Windows', 
-            defaultValue: '', 
+            defaultValue: 'D:\\Program\\jenkins_workspace',  
             description: """jenkins job work directory, 
                 for fix cant cross-device hard link when 
                 jenkins run in docker default workspace and PDI path with different mount.""")
         string(
             name: 'WorkPath_On_Unix', 
-            defaultValue: '', 
+            defaultValue: '/home/jenkins/workspace', 
             description: """jenkins job work directory, 
                 for fix cant cross-device hard link when 
                 jenkins run in docker default workspace and PDI path with different mount.""")
