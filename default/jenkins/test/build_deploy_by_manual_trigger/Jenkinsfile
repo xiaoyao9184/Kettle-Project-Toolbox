@@ -280,7 +280,7 @@ pipeline {
                 script {
                     def kpt_project_deploy_jobs = [:]
                     def etlNodes = nodesByLabel label: 'etl', offline: false
-                    if(etlNodes.size() == 0){
+                    if(!etlNodes.contains('') && !etlNodes.contains('master')){
                         etlNodes.add('master')
                     }
                     println etlNodes
