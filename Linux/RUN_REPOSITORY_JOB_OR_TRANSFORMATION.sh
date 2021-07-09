@@ -128,7 +128,8 @@ if [ $2 ]
 then
     pList="-param:ProfileName=$2"
     loglevel=$1
-else
+elif [ $1 ]
+then
     pList="-param:ProfileName=$1"
 fi
 

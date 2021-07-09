@@ -124,9 +124,11 @@ if _%2_ neq __ (
     set p1=%1
     set loglevel=!p1:"=!
 ) else (
-    set p1=%1
-    set profile=!p1:"=!
-    set pList= "-param:ProfileName=!profile!"
+    if _%1_ neq __ (
+        set p1=%1
+        set profile=!p1:"=!
+        set pList= "-param:ProfileName=!profile!"
+    )
 )
 if exist "%~n0.SET_PARAM.bat" (
     echo %echo_pList% %~n0.SET_PARAM.bat
@@ -169,7 +171,7 @@ if _%JENKINS_HOME%_ neq __ (
     echo Used in Jenkins no log file!
     call %c%
 ) else (
-    call %c%>>”%logfile%“
+    call %c%>>"%logfile%"
 )
 
 
