@@ -178,6 +178,7 @@ pipeline {
                     println "Last archive is: ${archiveLastFile.absolutePath}"
 
                     archive."file" = archiveLastFile.absolutePath
+                    archive."name" = archiveLastFile.name
                     archive."version" = archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
                     archive."version" = archive.version.minus('[Deploy]')
                     
@@ -196,7 +197,7 @@ pipeline {
                 echo 'Check last archive version still in the workspace...'
 
                 script {
-                    def notNeedUpdate = fileExists(file: "${archive.version}.zip")
+                    def notNeedUpdate = fileExists(file: "${archive.name}")
                     if (notNeedUpdate){
                         echo "No need to update!"
                         currentBuild.result = 'aborted'
@@ -218,7 +219,7 @@ pipeline {
                             fileOperations([
                                 fileCopyOperation(
                                     targetLocation: "${WORKSPACE}/",
-                                    includes: "${archive.version}.*")
+                                    includes: "${archive.name}")
                             ])
                         }
                     } catch(Exception ex) {

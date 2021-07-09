@@ -14,7 +14,7 @@
 import hudson.model.*
 import hudson.FilePath
 
-def excludeNames = ['kpt_project_deploy','kpt_project_build','find_kpt_project']
+def excludeNames = ['kpt_project_deploy','kpt_project_build','kpt_project_find']
 def files = null
 def projectPathOnUnix = null
 def projectPathOnWin = null

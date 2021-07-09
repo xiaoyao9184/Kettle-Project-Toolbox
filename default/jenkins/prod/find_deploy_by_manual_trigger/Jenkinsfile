@@ -3,19 +3,19 @@
  *
  * Created by xiaoyao9184 on 2020/5/19.
  *
- * It will add find_kpt_project and kpt_project_deploy and run it.
- * Only master run find_kpt_project, 
+ * It will add kpt_project_find and kpt_project_deploy and run it.
+ * Only master run kpt_project_find, 
  * Only master will run 'Project jobs' stage in kpt_project_deploy
  *
  *
  * Plugin dependencies
  * - job-dsl
  * - pipeline-utility-steps
- * Disable script security for Job DSL (run as the specified admin user cant run find_kpt_project).
+ * Disable script security for Job DSL (run as the specified admin user cant run kpt_project_find).
  * Or run as the specified admin user with script approval if need
  *
  * Pipeline script dependencies
- * - find_kpt_project
+ * - kpt_project_find
  * - kpt_project_deploy
  * In 'jenkins/' directory with same repository of this script 
  *
@@ -108,7 +108,7 @@ pipeline {
     }
     stages {
 
-        stage('Add find_kpt_project kpt_project_deploy kpt_project_job') {
+        stage('Add kpt_project_find kpt_project_deploy kpt_project_job') {
             steps {
                 script {
                     echo "get scm"
@@ -124,10 +124,10 @@ pipeline {
                     }
                     echo "Will use '${credentialsId}' check ${branch} @ ${scmUrl} for pipeline job"
                 }
-                echo 'Add find_kpt_project job...'
+                echo 'Add kpt_project_find job...'
                 jobDsl(
                     scriptText: """
-                    pipelineJob("find_kpt_project") {
+                    pipelineJob("kpt_project_find") {
                         parameters {
                             stringParam('Node', '')
                             stringParam('WorkPath_On_Windows', '')
@@ -148,7 +148,7 @@ pipeline {
                                         branch("${branch}")
                                     }
                                 }
-                                scriptPath("jenkins/find_kpt_project.jenkinsfile")
+                                scriptPath("jenkins/kpt_project_find.jenkinsfile")
                                 lightweight(true)
                             }
                         }
@@ -177,7 +177,7 @@ pipeline {
                             stringParam('KPTPath_On_Windows', '')
                             stringParam('KPTPath_On_Unix', '')
 
-                            stringParam('ArchiveProject', "find_kpt_project")
+                            stringParam('ArchiveProject', "kpt_project_find")
 
                             stringParam('DeployProfile', "${params.DeployProfile}")
                             stringParam('DeployPath_On_Windows', '')
@@ -217,7 +217,7 @@ pipeline {
                             stringParam('KPTPath_On_Windows', '')
                             stringParam('KPTPath_On_Unix', '')
 
-                            stringParam('ArchiveProject', "find_kpt_project")
+                            stringParam('ArchiveProject', "kpt_project_find")
 
                             stringParam('DeployProfile', "${params.DeployProfile}")
                             stringParam('DeployPath_On_Windows', '')
@@ -247,11 +247,11 @@ pipeline {
             }
         }
 
-        stage('Run find_kpt_project') {
+        stage('Run kpt_project_find') {
             steps {
-                echo 'Run find_kpt_project job on master node...'
+                echo 'Run kpt_project_find job on master node...'
                 script {
-                    build job: 'find_kpt_project', 
+                    build job: 'kpt_project_find', 
                         parameters: [
                             string(name: 'Node', value: "master"),
                             string(name: 'WorkPath_On_Windows', value: "${params.WorkPath_On_Windows}"),
@@ -304,7 +304,7 @@ pipeline {
                                         string(name: 'KPTPath_On_Windows', value: "${params.KPTPath_On_Windows}"),
                                         string(name: 'KPTPath_On_Unix', value: "${params.KPTPath_On_Unix}"),
 
-                                        string(name: 'ArchiveProject', value: "find_kpt_project"),
+                                        string(name: 'ArchiveProject', value: "kpt_project_find"),
 
                                         string(name: 'DeployProfile', value: "${params.DeployProfile}"),
                                         string(name: 'DeployPath_On_Windows', value: "${params.DeployPath_On_Windows}"),
@@ -332,7 +332,7 @@ pipeline {
                             string(name: 'KPTPath_On_Windows', value: "${params.KPTPath_On_Windows}"),
                             string(name: 'KPTPath_On_Unix', value: "${params.KPTPath_On_Unix}"),
 
-                            string(name: 'ArchiveProject', value: "find_kpt_project"),
+                            string(name: 'ArchiveProject', value: "kpt_project_find"),
 
                             string(name: 'DeployProfile', value: "${params.DeployProfile}"),
                             string(name: 'DeployPath_On_Windows', value: "${params.DeployPath_On_Windows}"),
