@@ -41,6 +41,7 @@ rName=$KETTLE_REPOSITORY
 jName=""
 pList=""
 kCommand=""
+# logging level (Basic, Detailed, Debug, Rowlevel, Error, Nothing) or set position parameter 1
 loglevel=Detailed
 
 
@@ -123,8 +124,11 @@ then
 fi
 
 # param
-if [ $1 ]
+if [ $2 ]
 then
+    pList="-param:ProfileName=$2"
+    loglevel=$1
+else
     pList="-param:ProfileName=$1"
 fi
 if [ -f "$current_path/$current_script_name.SET_PARAM.sh" ]

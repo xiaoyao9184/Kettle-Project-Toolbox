@@ -28,12 +28,12 @@ pipeline {
                     if (isUnix()) {
                         sh """
                         cd ${params.ProjectPath_On_Unix} 
-                        bash patch.PatchPDI.sh <&-
+                        bash patch.PatchPDI.sh Basic <&-
                         """ 
                     } else {
                         bat """
                         cd /d ${params.ProjectPath_On_Windows}
-                        call patch.PatchPDI.bat
+                        call patch.PatchPDI.bat Basic
                         """
                     }
                 }

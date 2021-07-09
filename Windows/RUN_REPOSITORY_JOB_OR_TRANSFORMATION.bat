@@ -46,6 +46,7 @@ set rName=%KETTLE_REPOSITORY%
 set jName=
 set pList=
 set kCommand=
+::logging level (Basic, Detailed, Debug, Rowlevel, Error, Nothing) or set position parameter 1
 set loglevel=Detailed
 
 
@@ -115,7 +116,14 @@ if "%kCommand%"=="" (
 )
 
 ::param
-if _%1_ neq __ (
+if _%2_ neq __ (
+    set p2=%2
+    set profile=!p2:"=!
+    set pList= "-param:ProfileName=!profile!"
+
+    set p1=%1
+    set loglevel=!p1:"=!
+) else (
     set p1=%1
     set profile=!p1:"=!
     set pList= "-param:ProfileName=!profile!"

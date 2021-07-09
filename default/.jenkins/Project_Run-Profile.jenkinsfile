@@ -1,0 +1,48 @@
+pipeline {
+    agent {
+        node {
+            label "${params.NodeLabel}"
+        }
+    }
+    parameters {
+        string(
+            name: 'NodeLabel', 
+            defaultValue: "${KPT.NodeLabel}",
+            description: 'Node for run job!')
+        string(
+            name: 'ProjectPath_On_Unix', 
+            defaultValue: "${KPT.ProjectPath_On_Unix}", 
+            description: 'The Project directory!(WILL REPLACE BY kpt_project_deploy_jenkinsfile)')
+        string(
+            name: 'ProjectPath_On_Windows', 
+            defaultValue: "${KPT.ProjectPath_On_Windows}", 
+            description: 'The Project directory!(WILL REPLACE BY kpt_project_deploy_jenkinsfile)')
+
+        choice(
+            name: 'LogLevel', 
+            choices: ['Basic', 'Detailed', 'Debug', 'Rowlevel', 'Error', 'Nothing'],
+            description: 'Kettle logging level')
+        string(name: 'Profile', description: 'Who should I call for run?')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    def projectPath = isUnix() ? "${params.ProjectPath_On_Unix}" : "${params.ProjectPath_On_Windows}" 
+                    dir("${projectPath}") {
+                        if (isUnix()) {
+                            sh """
+                            bash "flow.UseProfileConfigRun.sh" "${params.LogLevel}" "${params.Profile}" <&-
+                            """
+                        } else {
+                            bat """
+                            @echo off
+                            call flow.UseProfileConfigRun.bat "${params.LogLevel}" "${params.Profile}"
+                            """
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
