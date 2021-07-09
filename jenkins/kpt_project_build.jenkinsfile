@@ -355,14 +355,14 @@ pipeline {
                 echo "Archive project..."
                 script {
                     if (isUnix()) {
-                        archive."file" = sh(
+                        archive."name" = sh(
                             script: "find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print", 
                             returnStdout: true).trim()
                         archive."version" = sh(
                             script: "basename \$(find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print) .zip", 
                             returnStdout: true).trim()
                     } else {
-                        archive."file" = bat(
+                        archive."name" = bat(
                             script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nxF", 
                             returnStdout: true).trim()
                         archive."version" = bat(
@@ -370,13 +370,14 @@ pipeline {
                             returnStdout: true).trim()
                     }
 
-                    if (!archive.file) {
+                    if (!archive.name) {
                         echo "No archive file!"
                         archive = null
                         currentBuild.result = 'FAILURE'
                     }
+                    archive."version" = archive.version.minus('[Deploy]')
                 }
-                echo "Archive file is: ${archive.file}"
+                echo "Archive name is: ${archive.name}"
                 echo "Archive version is: ${archive.version}"
                 
                 archiveArtifacts artifacts: "*.zip", fingerprint: true
@@ -413,9 +414,9 @@ pipeline {
                     fileOperations([
                         fileCopyOperation(
                             targetLocation: "${archive.path}",
-                            includes: "${archive.version}.*"),
+                            includes: "${archive.name}"),
                         fileDeleteOperation(
-                            includes: "${archive.version}.*")
+                            includes: "${archive.name}")
                     ])
                 }
             }
