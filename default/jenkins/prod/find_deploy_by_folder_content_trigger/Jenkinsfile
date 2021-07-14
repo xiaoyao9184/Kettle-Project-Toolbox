@@ -164,6 +164,7 @@ pipeline {
                 jobDsl(
                     scriptText: """
                     freeStyleJob("${SimpleJobName}(trigger)") {
+                        label('master')
                         configure { node ->
                             node / 'triggers' << 'org.jenkinsci.plugins.fstrigger.triggers.FolderContentTrigger' {
                                 spec 'H/30 * * * *'
