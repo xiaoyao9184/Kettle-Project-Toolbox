@@ -35,8 +35,8 @@ RUN /usr/bin/unzip -q /tmp/pdi-ce-${PDI_VERSION}.zip -d $PENTAHO_HOME \
     && rm /tmp/pdi-ce-${PDI_VERSION}.zip
 
 # Init KPT project
-COPY ./tool $PENTAHO_HOME/tool
-COPY ./default $PENTAHO_HOME/default
+COPY --chown=pentaho:pentaho ./tool $PENTAHO_HOME/tool
+COPY --chown=pentaho:pentaho ./default $PENTAHO_HOME/default
 RUN $PENTAHO_HOME/tool/INIT_PROJECT.sh canal-kafka-to-pgsql \
     && cp $PENTAHO_HOME/canal-kafka-to-pgsql/.profile/.profile $PENTAHO_HOME/canal-kafka-to-pgsql/.profile/default.profile
 
