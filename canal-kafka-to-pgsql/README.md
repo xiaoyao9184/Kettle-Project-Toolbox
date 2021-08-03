@@ -8,13 +8,13 @@ Use the Kettle like a consumer to consume canal mysql binlog in kafka to synchro
 ## Build
 
 ```sh
-docker build -t kpt-canal-kafka-to-pgsql:20210801 -f ./canal-kafka-to-pgsql/Dockerfile . 
+DOCKER_BUILDKIT=1 docker build -t kpt-canal-kafka-to-pgsql:20210801 -f ./canal-kafka-to-pgsql/Dockerfile . 
 ```
 
 or use PDI_URL mirror like `http://nexus/repository/image-hosted`
 
 ```sh
-docker build -t kpt-canal-kafka-to-pgsql:20210801 -f ./canal-kafka-to-pgsql/Dockerfile . --build-arg PDI_URL=http://nexus/repository/image-hosted
+DOCKER_BUILDKIT=1 docker build -t kpt-canal-kafka-to-pgsql:20210801 -f ./canal-kafka-to-pgsql/Dockerfile . --build-arg PDI_URL=http://nexus/repository/image-hosted
 ```
 
 
@@ -41,12 +41,12 @@ create same table like mysql table.
 go inside container 
 
 ```sh
-docker run ^
- --rm ^
- -it ^
- -e TZ=Asia/Hong_Kong ^
- -v /etc/localtime:/etc/localtime:ro ^
- --entrypoint="/bin/bash" ^
+docker run \
+ --rm \
+ -it \
+ -e TZ=Asia/Hong_Kong \
+ -v /etc/localtime:/etc/localtime:ro \
+ --entrypoint="/bin/bash" \
  kpt-canal-kafka-to-pgsql:20210801
 ```
 
@@ -62,12 +62,12 @@ bash flow.UseProfileConfigRun.sh Basic test,stream__bin_log_monitor__all
 just run and print log to shell
 
 ```sh
-docker run ^
- --rm ^
- -it ^
- -e PROFILE=test,stream__bin_log_monitor__all ^
- -e TZ=Asia/Hong_Kong ^
- -v /etc/localtime:/etc/localtime:ro ^
+docker run \
+ --rm \
+ -it \
+ -e PROFILE=test,stream__bin_log_monitor__all \
+ -e TZ=Asia/Hong_Kong \
+ -v /etc/localtime:/etc/localtime:ro \
  kpt-canal-kafka-to-pgsql:20210801
 ```
 

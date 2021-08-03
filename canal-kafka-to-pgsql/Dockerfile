@@ -14,9 +14,6 @@ ENV PDI_RELEASE=9.1 \
     PDI_PATH=/home/pentaho/data-integration \
     JENKINS_HOME=/home/jenkins
 
-# RUN apt-get update \
-#     && apt-get install -y git
-
 # Create user
 RUN mkdir ${PENTAHO_HOME} \
     && groupadd -r pentaho \
@@ -35,17 +32,18 @@ RUN /usr/bin/unzip -q /tmp/pdi-ce-${PDI_VERSION}.zip -d $PENTAHO_HOME \
     && rm /tmp/pdi-ce-${PDI_VERSION}.zip
 
 # Init KPT project
-COPY --chown=pentaho:pentaho ./tool $PENTAHO_HOME/tool
-COPY --chown=pentaho:pentaho ./default $PENTAHO_HOME/default
+COPY --chmod=755 --chown=pentaho:pentaho ./tool $PENTAHO_HOME/tool
+COPY --chmod=755 --chown=pentaho:pentaho ./default $PENTAHO_HOME/default
 RUN $PENTAHO_HOME/tool/INIT_PROJECT.sh canal-kafka-to-pgsql \
-    && cp $PENTAHO_HOME/canal-kafka-to-pgsql/.profile/.profile $PENTAHO_HOME/canal-kafka-to-pgsql/.profile/default.profile
+    && cp $PENTAHO_HOME/canal-kafka-to-pgsql/.profile/.profile $PENTAHO_HOME/canal-kafka-to-pgsql/.profile/default.profile \
+    && chmod -R 775 $PENTAHO_HOME/canal-kafka-to-pgsql
 
 # Copy core ktr
-COPY --chown=pentaho:pentaho ./canal-kafka-to-pgsql/mysql-log \
+COPY --chmod=755 --chown=pentaho:pentaho ./canal-kafka-to-pgsql/mysql-log \
     $PENTAHO_HOME/canal-kafka-to-pgsql/mysql-log
-COPY --chown=pentaho:pentaho ./canal-kafka-to-pgsql/db_kpt_bin_log_pgsql_writer.kdb \
+COPY --chmod=755 --chown=pentaho:pentaho ./canal-kafka-to-pgsql/db_kpt_bin_log_pgsql_writer.kdb \
     $PENTAHO_HOME/canal-kafka-to-pgsql/
-COPY --chown=pentaho:pentaho ./canal-kafka-to-pgsql/config.xml \
+COPY --chmod=755 --chown=pentaho:pentaho ./canal-kafka-to-pgsql/config.xml \
     $PENTAHO_HOME/canal-kafka-to-pgsql/
 
 
