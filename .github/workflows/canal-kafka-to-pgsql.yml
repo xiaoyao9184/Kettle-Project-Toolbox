@@ -9,6 +9,13 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+      - 
+        name: Set git sha short
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -21,10 +28,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - 
-        name: Set git sha short
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       -
         name: Build and push
         id: docker_build
