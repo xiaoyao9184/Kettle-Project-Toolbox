@@ -26,7 +26,7 @@ parent_path="$(dirname "$current_path")"
 echo_rName="Need input KPT project name"
 eset_rName="Please input KPT project name:"
 # defult param
-rName=
+rName=$1
 pdi_path=$parent_path/data-integration
 
 

@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  test:
+    image: xiaoyao9184/kpt-canal-kafka-to-pgsql
+    environment:
+      PROFILE: prod,stream__bin_log_monitor__all
+    configs:
+      - source: config.xml
+        target: /home/pentaho/canal-kafka-to-pgsql/config.xml
+    
+configs:
+  config.xml:
+    file: ./config.xml
