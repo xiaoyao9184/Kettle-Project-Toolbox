@@ -8,8 +8,6 @@ ARG KPT_URL="https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git"
 # Set required environment vars
 ENV PDI_RELEASE=9.1 \
     PDI_VERSION=9.1.0.0-324 \
-    CARTE_PORT=8181 \
-    PENTAHO_JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 \
     PENTAHO_HOME=/home/pentaho \
     PDI_PATH=/home/pentaho/data-integration \
     JENKINS_HOME=/home/jenkins
