@@ -1,4 +1,4 @@
-FROM java:8-jre
+FROM openjdk:8-jre
 
 LABEL org.opencontainers.image.authors="xiaoyao9184@gmail.com"
 
