@@ -41,12 +41,23 @@ create same table like mysql table.
 go inside container 
 
 ```sh
+# bash for linux docker
 docker run \
  --rm \
  -it \
  -e TZ=Asia/Hong_Kong \
  -v /etc/localtime:/etc/localtime:ro \
  --entrypoint="/bin/bash" \
+ kpt-canal-kafka-to-pgsql:20210801
+```
+```bat
+:: windows batch for Docker Desktop
+docker run ^
+ --rm ^
+ -it ^
+ -e TZ=Asia/Hong_Kong ^
+ -v /etc/localtime:/etc/localtime:ro ^
+ --entrypoint="/bin/bash" ^
  kpt-canal-kafka-to-pgsql:20210801
 ```
 
