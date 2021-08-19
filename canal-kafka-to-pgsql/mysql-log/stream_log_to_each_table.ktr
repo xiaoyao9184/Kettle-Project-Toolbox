@@ -9,39 +9,39 @@
     <directory>/mysql-log</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Kafka.Consumer.Group</name>
+        <name>!Config.Log.Kafka.Consumer.Group</name>
         <default_value>edata_kpt.mysql.20210819_2</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Data.Topic</name>
+        <name>!Config.Log.Kafka.Data.Topic</name>
         <default_value>bin_log.mysql</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <name>!Config.Log.Kafka.Server.Bootstrap</name>
         <default_value>kafka:9092</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Exists.Mapping</name>
+        <name>!Config.Log.Tatget.Exists.Mapping</name>
         <default_value>pgsql_table_exists.mapping</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Schema.Prefix</name>
+        <name>!Config.Log.Tatget.Schema.Prefix</name>
         <default_value>kpt_sync__</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Table.Prefix</name>
+        <name>!Config.Log.Tatget.Table.Prefix</name>
         <default_value/>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Write.Template</name>
+        <name>!Config.Log.Tatget.Write.Template</name>
         <default_value>pgsql_table_log_write.template</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>>
       </parameter>
     </parameters>
     <log>
@@ -1402,7 +1402,7 @@
     <data>
       <line>
         <item/>
-        <item>{"data":[{"id":"5e4f4ffbe37740309fedb28a0ec0c86a","ps_id":"1636529fce6f4b44b1f990cd3773eab5","port_id":"4c109bac5b2040eabac05af2379a9a66","pollutant_code":"a34013","hour_cou":"0.0","day_cou":"0.0","data_time":"2021-07-12","update_time":"2021-07-13 02:17:29","alter_cou":null,"start_date":null,"end_date":null}],"database":"online_monitor4.0","es":1626113428000,"id":1080530,"isDdl":false,"mysqlType":{"id":"varchar(32)","ps_id":"varchar(32)","port_id":"varchar(32)","pollutant_code":"varchar(32)","hour_cou":"decimal(18,6)","day_cou":"decimal(18,6)","data_time":"varchar(32)","update_time":"datetime","alter_cou":"decimal(18,6)","start_date":"varchar(32)","end_date":"varchar(32)"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":12,"ps_id":12,"port_id":12,"pollutant_code":12,"hour_cou":3,"day_cou":3,"data_time":12,"update_time":93,"alter_cou":3,"start_date":12,"end_date":12},"table":"ol_emissions","ts":1626113888075,"type":"INSERT"}</item>
+        <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
         <item/>
         <item/>
         <item/>
@@ -1410,7 +1410,7 @@
       </line>
       <line>
         <item/>
-        <item>{"data":[{"id":"fe87ea2ad2644c6a9e843a528142bd6e","ps_id":"197502ed438e4cdb9fc36085348495c7","port_id":"95cd67e3cb6f4b90908a64b5d888cf74","receivable":"125","real_receive":"150","date":"2021-07-07","update_time":"2021-07-20 18:06:00"}],"database":"online_monitor4.0","es":1626775156000,"id":911060,"isDdl":false,"mysqlType":{"id":"varchar(32)","ps_id":"varchar(32)","port_id":"varchar(32)","receivable":"int(11)","real_receive":"int(11)","date":"date","update_time":"datetime"},"old":[{"receivable":"100","real_receive":"100","update_time":"2021-07-16 14:15:36"}],"pkNames":["id"],"sql":"","sqlType":{"id":12,"ps_id":12,"port_id":12,"receivable":4,"real_receive":4,"date":91,"update_time":93},"table":"ol_transmission_rate","ts":1626775603386,"type":"UPDATE"}</item>
+        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper1:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
         <item/>
         <item/>
         <item/>
@@ -1418,7 +1418,7 @@
       </line>
       <line>
         <item/>
-        <item>{"data":[{"id":"5e4f4ffbe37740309fedb28a0ec0c86a","ps_id":"1636529fce6f4b44b1f990cd3773eab5","port_id":"4c109bac5b2040eabac05af2379a9a66","pollutant_code":"a34013","hour_cou":"0.0","day_cou":"0.0","data_time":"2021-07-12","update_time":"2021-07-13 02:17:29","alter_cou":null,"start_date":null,"end_date":null}],"database":"online_monitor4.0","es":1626113428000,"id":1080530,"isDdl":false,"mysqlType":{"id":"varchar(32)","ps_id":"varchar(32)","port_id":"varchar(32)","pollutant_code":"varchar(32)","hour_cou":"decimal(18,6)","day_cou":"decimal(18,6)","data_time":"varchar(32)","update_time":"datetime","alter_cou":"decimal(18,6)","start_date":"varchar(32)","end_date":"varchar(32)"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":12,"ps_id":12,"port_id":12,"pollutant_code":12,"hour_cou":3,"day_cou":3,"data_time":12,"update_time":93,"alter_cou":3,"start_date":12,"end_date":12},"table":"ol_emissions","ts":1626113888075,"type":"INSERT"}</item>
+        <item>{"data":[{"id":"6","username":"admin2","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
         <item/>
         <item/>
         <item/>
@@ -1426,7 +1426,7 @@
       </line>
       <line>
         <item/>
-        <item>{"data":[{"id":"fe87ea2ad2644c6a9e843a528142bd6e","ps_id":"197502ed438e4cdb9fc36085348495c7","port_id":"95cd67e3cb6f4b90908a64b5d888cf74","receivable":"125","real_receive":"150","date":"2021-07-07","update_time":"2021-07-20 18:06:00"}],"database":"online_monitor4.0","es":1626775156000,"id":911060,"isDdl":false,"mysqlType":{"id":"varchar(32)","ps_id":"varchar(32)","port_id":"varchar(32)","receivable":"int(11)","real_receive":"int(11)","date":"date","update_time":"datetime"},"old":[{"receivable":"100","real_receive":"100","update_time":"2021-07-16 14:15:36"}],"pkNames":["id"],"sql":"","sqlType":{"id":12,"ps_id":12,"port_id":12,"receivable":4,"real_receive":4,"date":91,"update_time":93},"table":"ol_transmission_rate","ts":1626775603386,"type":"UPDATE"}</item>
+        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper2:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
         <item/>
         <item/>
         <item/>
