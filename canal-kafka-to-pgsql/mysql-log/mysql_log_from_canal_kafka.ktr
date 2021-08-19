@@ -15,12 +15,12 @@
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Data.Topic</name>
-        <default_value>bin_log_monitor</default_value>
+        <default_value>bin_log.mysql</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Server.Bootstrap</name>
-        <default_value>192.168.6.161:9094,192.168.6.162:9094,192.168.6.163:9094</default_value>
+        <default_value>kafka:9092</default_value>
         <description/>
       </parameter>
       <parameter>

@@ -10,17 +10,17 @@
     <parameters>
       <parameter>
         <name>Config.Log.Kafka.Consumer.Group</name>
-        <default_value>edata-kpt-20210726</default_value>
+        <default_value>edata_kpt.mysql.20210819_2</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Data.Topic</name>
-        <default_value>bin_log_monitor</default_value>
+        <default_value>bin_log.mysql</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Server.Bootstrap</name>
-        <default_value>192.168.6.161:9094,192.168.6.162:9094,192.168.6.163:9094</default_value>
+        <default_value>kafka:9092</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -638,7 +638,7 @@
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
     <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}__not-table-log</topic>
+    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-not_table_log</topic>
     <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
     <keyField>key</keyField>
     <messageField>message</messageField>
@@ -686,7 +686,7 @@
     <parameters>
       <variablemapping>
         <variable>Param.Schema.Name</variable>
-        <field>p_database</field>
+        <field>p_schema</field>
         <input/>
       </variablemapping>
       <variablemapping>
@@ -818,68 +818,53 @@
         <rename>p_schema</rename>
       </field>
       <field>
-        <name>SchemaTarget</name>
+        <name>TableTarget</name>
         <rename>p_table</rename>
       </field>
       <field>
         <name>key</name>
-        <rename/>
       </field>
       <field>
         <name>message</name>
-        <rename/>
       </field>
       <field>
         <name>topic</name>
-        <rename/>
       </field>
       <field>
         <name>partition</name>
-        <rename/>
       </field>
       <field>
         <name>offset</name>
-        <rename/>
       </field>
       <field>
         <name>timestamp</name>
-        <rename/>
       </field>
       <field>
         <name>message_id</name>
-        <rename/>
       </field>
       <field>
         <name>message_ts</name>
-        <rename/>
       </field>
       <field>
         <name>message_es</name>
-        <rename/>
       </field>
       <field>
         <name>message_sql</name>
-        <rename/>
       </field>
       <field>
         <name>message_isDdl</name>
-        <rename/>
       </field>
       <field>
         <name>message_type</name>
-        <rename/>
       </field>
       <field>
         <name>message_database</name>
-        <rename/>
       </field>
       <field>
         <name>message_table</name>
-        <rename/>
       </field>
       <field>
         <name>full_table_name</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

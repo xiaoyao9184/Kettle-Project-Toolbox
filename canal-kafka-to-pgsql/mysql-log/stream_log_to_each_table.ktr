@@ -10,17 +10,17 @@
     <parameters>
       <parameter>
         <name>Config.Log.Kafka.Consumer.Group</name>
-        <default_value>edata-kpt-20210726</default_value>
+        <default_value>edata_kpt.mysql.20210819_2</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Data.Topic</name>
-        <default_value>bin_log_monitor</default_value>
+        <default_value>bin_log.mysql</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Server.Bootstrap</name>
-        <default_value>192.168.6.161:9094,192.168.6.162:9094,192.168.6.163:9094</default_value>
+        <default_value>kafka:9092</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -826,7 +826,7 @@
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
     <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}__not-table-log</topic>
+    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-not_table_log</topic>
     <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
     <keyField>key</keyField>
     <messageField>message</messageField>

@@ -3,7 +3,7 @@ services:
   test:
     image: xiaoyao9184/kpt-canal-kafka-to-pgsql
     environment:
-      PROFILE: prod,stream__bin_log_monitor__all
+      PROFILE: prod,stream_all-bin_log.mysql
     configs:
       - source: config.xml
         target: /home/pentaho/canal-kafka-to-pgsql/config.xml

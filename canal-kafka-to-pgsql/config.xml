@@ -17,29 +17,36 @@
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="server">kpt_sync</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="port">5432</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="username">edata_kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt@123</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt.123</cfg>
 		</profile>
 		<profile name="test">
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="database">KPT_SYNC</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="server">kpt_sync</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="port">5432</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="username">edata_kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt@123</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt.123</cfg>
 		</profile>
 		<profile name="prod">
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="database">KPT_SYNC</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="server">kpt_sync</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="port">5432</cfg>
 			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="username">edata_kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt@123</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt.123</cfg>
+		</profile>
+		<profile name="MYSQL">
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="database">MYSQL</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="server">primary</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="port">5432</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="username">edata_kpt</cfg>
+			<cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">edata_kpt.123</cfg>
 		</profile>
 
-		<profile name="kafka_bin_log_monitor__all">
-			<cfg namespace="Config.Main.Transformation" key="Name">mysql_log_from_canal_kafka_to_each_table</cfg>
-			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka</cfg>
-			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">edata-kpt-20210801-mysql_log_from_canal_kafka_to_each_table</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log_monitor</cfg>
-			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_sort_by_db_table</cfg>
+		<profile name="stream_all-bin_log.mysql">
+			<cfg namespace="Config.Main.Transformation" key="Name">mysql_log_from_canal_kafka</cfg>
+			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">edata_kpt.mysql</cfg>
+			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log.mysql</cfg>
+			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_to_each_table</cfg>
 			
 			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
@@ -47,12 +54,12 @@
 			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
 			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
 		</profile>
-		<profile name="stream__bin_log_monitor__all">
-			<cfg namespace="Config.Main.Transformation" key="Name">mysql_log_from_canal_kafka</cfg>
-			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka</cfg>
-			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">edata-kpt-20210801-mysql_log_from_canal_kafka</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log_monitor</cfg>
-			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_to_each_table</cfg>
+		<profile name="kafka_all-bin_log.mysql">
+			<cfg namespace="Config.Main.Transformation" key="Name">mysql_log_from_canal_kafka_to_each_table</cfg>
+			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">edata_kpt.mysql</cfg>
+			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log.mysql</cfg>
+			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_sort_by_db_table</cfg>
 			
 			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>

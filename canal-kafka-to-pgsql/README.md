@@ -25,7 +25,7 @@ DOCKER_BUILDKIT=1 docker build -t kpt-canal-kafka-to-pgsql:20210801 -f ./canal-k
 Need [canal](https://github.com/alibaba/canal) server 
 and output [mysql](https://github.com/mysql/mysql-server) binlog 
 to [kafka](https://github.com/apache/kafka) server with `kafka` bootstrap 
-and `bin_log_monitor` topic
+and `bin_log.mysql` topic
 
 Then install [pgsql](https://github.com/postgres/postgres) server 
 with `kpt_sync` ip, `5432` port, `edata_kpt` user and `edata_kpt@123` password,
@@ -64,7 +64,7 @@ docker run ^
 then you can run any KPT script like this
 
 ```sh
-bash flow.UseProfileConfigRun.sh Basic test,stream__bin_log_monitor__all
+bash flow.UseProfileConfigRun.sh Basic test,stream_all-bin_log.mysql
 ```
 
 
@@ -76,7 +76,7 @@ just run and print log to shell
 docker run \
  --rm \
  -it \
- -e PROFILE=test,stream__bin_log_monitor__all \
+ -e PROFILE=test,stream_all-bin_log.mysql \
  -e TZ=Asia/Hong_Kong \
  -v /etc/localtime:/etc/localtime:ro \
  kpt-canal-kafka-to-pgsql:20210801
@@ -145,11 +145,11 @@ then you can combine all cfgs by referring the `profile` name later.
 
     <!-- defines the run way -->
     <!-- one way (not recommend)-->
-		<profile name="kafka_bin_log_monitor__all">
+		<profile name="kafka_bin_log.mysql__all">
 			<cfg namespace="Config.Main.Transformation" key="Name">mysql_log_from_canal_kafka_to_each_table</cfg>
 			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka</cfg>
 			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">edata-kpt-20210801-mysql_log_from_canal_kafka_to_each_table</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log_monitor</cfg>
+			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log.mysql</cfg>
 			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_sort_by_db_table</cfg>
 			
 			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
@@ -162,11 +162,11 @@ then you can combine all cfgs by referring the `profile` name later.
 		</profile>
 
     <!-- another way (recommend) -->
-		<profile name="stream__bin_log_monitor__all">
+		<profile name="stream_all-bin_log.mysql">
 			<cfg namespace="Config.Main.Transformation" key="Name">mysql_log_from_canal_kafka</cfg>
 			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka</cfg>
 			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">edata-kpt-20210801-mysql_log_from_canal_kafka</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log_monitor</cfg>
+			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log.mysql</cfg>
 			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_to_each_table</cfg>
 			
 			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
@@ -189,7 +189,7 @@ services:
     image: xiaoyao9184/kpt-canal-kafka-to-pgsql:20210801
     # Activate the profile list in the configuration file
     environment:
-      - PROFILE: prod,stream__bin_log_monitor__all
+      - PROFILE: prod,stream_all-bin_log.mysql
     # Overwrite internal configuration files
     configs:
       - source: config.xml
