@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>table_full_name.mapping</name>
+    <name>table_name_group.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -8,6 +8,16 @@
     <trans_status>0</trans_status>
     <directory>/to_rdb</directory>
     <parameters>
+      <parameter>
+        <name>GroupLastCounter</name>
+        <default_value>-1</default_value>
+        <description>last count of group</description>
+      </parameter>
+      <parameter>
+        <name>GroupLastValue</name>
+        <default_value>-</default_value>
+        <description>last value of group</description>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -429,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/26 16:52:11.357</modified_date>
+    <modified_date>2021/09/02 11:16:11.283</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -438,17 +448,12 @@
   <order>
     <hop>
       <from>Constant: POINT</from>
-      <to>Calculator: full_table_name</to>
+      <to>Calculator: group_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: full_table_name</from>
-      <to>SortRows: full_table_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SortRows: full_table_name</from>
-      <to>SelectValues: remove POINT</to>
+      <from>Calculator: group_table_name</from>
+      <to>SortRows: group_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -461,9 +466,24 @@
       <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>SortRows: group_table_name</from>
+      <to>ScriptValueMod: group_table_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: group_table_id</from>
+      <to>SelectValues: remove POINT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test</from>
+      <to>Constant: POINT</to>
+      <enabled>N</enabled>
+    </hop>
   </order>
   <step>
-    <name>Calculator: full_table_name</name>
+    <name>Calculator: group_table_name</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -475,9 +495,9 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>full_table_name</field_name>
+      <field_name>group_table_name</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>database</field_a>
+      <field_a>schema</field_a>
       <field_b>POINT</field_b>
       <field_c>table</field_c>
       <value_type>String</value_type>
@@ -543,6 +563,125 @@
     </GUI>
   </step>
   <step>
+    <name>DataGrid: test</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>offset</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>s</item>
+        <item>t1</item>
+        <item>0</item>
+        <item>1</item>
+      </line>
+      <line>
+        <item>s</item>
+        <item>t2</item>
+        <item>1</item>
+        <item>2</item>
+      </line>
+      <line>
+        <item>s</item>
+        <item>t1</item>
+        <item>2</item>
+        <item>3</item>
+      </line>
+      <line>
+        <item>s</item>
+        <item>t3</item>
+        <item>3</item>
+        <item>4</item>
+      </line>
+      <line>
+        <item>s</item>
+        <item>t3</item>
+        <item>4</item>
+        <item>5</item>
+      </line>
+      <line>
+        <item>s</item>
+        <item>t3</item>
+        <item>5</item>
+        <item>6</item>
+      </line>
+      <line>
+        <item>s</item>
+        <item>t2</item>
+        <item>6</item>
+        <item>7</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>MappingInput</name>
     <type>MappingInput</type>
     <description/>
@@ -555,7 +694,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>database</name>
+        <name>schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -563,6 +702,18 @@
       <field>
         <name>table</name>
         <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>offset</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -603,7 +754,58 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>784</yloc>
+      <yloc>912</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: group_table_id</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var i = parseInt(getVariable("GroupLastCounter",'-1'),0);
+var v = getVariable("GroupLastValue",'-');
+if(group_table_name != v) {
+  i = i + 1;
+  setVariable("GroupLastCounter",i,'p');
+  setVariable("GroupLastValue",group_table_name,'p');
+}
+group_table_id = i;</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <rename>group_table_id</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -634,12 +836,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>640</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SortRows: full_table_name</name>
+    <name>SortRows: group_table_name</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -658,7 +860,15 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>full_table_name</name>
+        <name>group_table_name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>offset</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>

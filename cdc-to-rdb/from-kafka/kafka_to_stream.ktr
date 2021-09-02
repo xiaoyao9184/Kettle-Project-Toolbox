@@ -9,24 +9,24 @@
     <directory>/from-kafka</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Kafka.Consumer.Group</name>
+        <name>!Config.Log.Kafka.Consumer.Group</name>
         <default_value>kpt.mysql.20210831</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Data.Topic</name>
+        <name>!Config.Log.Kafka.Data.Topic</name>
         <default_value>kpt_debezium-mysql</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <name>!Config.Log.Kafka.Server.Bootstrap</name>
         <default_value>kafka:9092</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Stream.Transformation</name>
+        <name>!Config.Log.Kafka.Stream.Transformation</name>
         <default_value>stream_parse_to_each_table</default_value>
-        <description/>
+        <description>Notes only Kafka consumer cannot pass declared variables</description>
       </parameter>
     </parameters>
     <log>
@@ -435,8 +435,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
-    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <capture_step_performance>Y</capture_step_performance>
+    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -449,7 +449,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/07 11:03:26.007</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/31 10:37:03.068</modified_date>
+    <modified_date>2021/09/01 14:46:16.487</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -561,12 +561,12 @@
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
     <AUTO_COMMIT>N</AUTO_COMMIT>
-    <OutputField kafkaName="key" type="String">Key</OutputField>
-    <OutputField kafkaName="message" type="String">Message</OutputField>
-    <OutputField kafkaName="topic" type="String">Topic</OutputField>
-    <OutputField kafkaName="partition" type="Integer">Partition</OutputField>
-    <OutputField kafkaName="offset" type="Integer">Offset</OutputField>
-    <OutputField kafkaName="timestamp" type="Integer">Timestamp</OutputField>
+    <OutputField kafkaName="key" type="String">key</OutputField>
+    <OutputField kafkaName="message" type="String">message</OutputField>
+    <OutputField kafkaName="topic" type="String">topic</OutputField>
+    <OutputField kafkaName="partition" type="Integer">partition</OutputField>
+    <OutputField kafkaName="offset" type="Integer">offset</OutputField>
+    <OutputField kafkaName="timestamp" type="Integer">timestamp</OutputField>
     <advancedConfig>
       <option property="auto.offset.reset" value="earliest"/>
       <option property="ssl.key.password" value=""/>

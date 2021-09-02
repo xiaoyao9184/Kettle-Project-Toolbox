@@ -56,4 +56,7 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
 # Goto kpt project path
 WORKDIR $PENTAHO_HOME/kpt-cdc-to-rdb
 
+# BUG of kettle
+# Only use Basic log level, 
+# more detailed level of logs will make the results wrong
 ENTRYPOINT bash ./flow.UseProfileConfigRun.sh "Basic" "$PROFILE" <&-

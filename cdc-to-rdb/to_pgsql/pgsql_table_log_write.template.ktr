@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/31 16:06:26.740</modified_date>
+    <modified_date>2021/09/01 10:58:17.710</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -567,7 +567,7 @@
     </partitioning>
     <connection>db_kpt_bin_log_pgsql_writer</connection>
     <commit>1000</commit>
-    <update_bypassed>Y</update_bypassed>
+    <update_bypassed>N</update_bypassed>
     <lookup>
       <schema>"${Param.Schema.Name}"</schema>
       <table>"${Param.Table.Name}"</table>

@@ -470,7 +470,7 @@ CREATE INDEX idx_log__table_log_to_specify_table__ktr_2 ON kpt_log.table_log_to_
 -- Name: SCHEMA kpt_log; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON SCHEMA kpt_log TO kpt;
+GRANT ALL ON SCHEMA kpt_log TO edata_kpt;
 
 
 --
@@ -479,7 +479,7 @@ GRANT ALL ON SCHEMA kpt_log TO kpt;
 -- Name: TABLE kafka_to_stream__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__channel TO kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__channel TO edata_kpt;
 
 
 --
@@ -488,7 +488,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__channel TO kpt;
 -- Name: TABLE kafka_to_stream__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__ktr TO kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__ktr TO edata_kpt;
 
 
 --
@@ -497,7 +497,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__ktr TO kpt;
 -- Name: TABLE kafka_to_stream__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__metrics TO kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__metrics TO edata_kpt;
 
 
 --
@@ -506,7 +506,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__metrics TO kpt;
 -- Name: TABLE kafka_to_stream__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__seq TO kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__seq TO edata_kpt;
 
 
 --
@@ -515,7 +515,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__seq TO kpt;
 -- Name: TABLE kafka_to_stream__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__step TO kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__step TO edata_kpt;
 
 
 --
@@ -524,7 +524,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__step TO kpt;
 -- Name: TABLE stream_parse_to_each_table__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__channel TO kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__channel TO edata_kpt;
 
 
 --
@@ -533,7 +533,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__channel TO kpt;
 -- Name: TABLE stream_parse_to_each_table__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__ktr TO kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__ktr TO edata_kpt;
 
 
 --
@@ -542,7 +542,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__ktr TO kpt;
 -- Name: TABLE stream_parse_to_each_table__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__metrics TO kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__metrics TO edata_kpt;
 
 
 --
@@ -551,7 +551,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__metrics TO kpt;
 -- Name: TABLE stream_parse_to_each_table__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__seq TO kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__seq TO edata_kpt;
 
 
 --
@@ -560,7 +560,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__seq TO kpt;
 -- Name: TABLE stream_parse_to_each_table__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO edata_kpt;
 
 
 --
@@ -569,7 +569,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO kpt;
 -- Name: TABLE table_log_to_specify_table__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__channel TO kpt;
+GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__channel TO edata_kpt;
 
 
 --
@@ -578,7 +578,7 @@ GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__channel TO kpt;
 -- Name: TABLE table_log_to_specify_table__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__ktr TO kpt;
+GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__ktr TO edata_kpt;
 
 
 --
@@ -587,7 +587,7 @@ GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__ktr TO kpt;
 -- Name: TABLE table_log_to_specify_table__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__metrics TO kpt;
+GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__metrics TO edata_kpt;
 
 
 --
@@ -596,7 +596,7 @@ GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__metrics TO kpt;
 -- Name: TABLE table_log_to_specify_table__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__seq TO kpt;
+GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__seq TO edata_kpt;
 
 
 --
@@ -605,7 +605,7 @@ GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__seq TO kpt;
 -- Name: TABLE table_log_to_specify_table__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__step TO kpt;
+GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__step TO edata_kpt;
 
 
 --
@@ -614,7 +614,7 @@ GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__step TO kpt;
 --
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON SEQUENCES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON SEQUENCES  TO kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON SEQUENCES  TO edata_kpt;
 
 
 --
@@ -624,7 +624,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON SEQUEN
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON TYPES  FROM PUBLIC;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON TYPES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TYPES  TO kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TYPES  TO edata_kpt;
 
 
 --
@@ -634,7 +634,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TYPES 
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON FUNCTIONS  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON FUNCTIONS  TO kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON FUNCTIONS  TO edata_kpt;
 
 
 --
@@ -643,7 +643,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON FUNCTI
 --
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON TABLES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TABLES  TO kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TABLES  TO edata_kpt;
 
 
 -- Completed on 2021-07-30 09:53:29 UTC
