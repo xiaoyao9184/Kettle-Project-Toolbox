@@ -54,6 +54,32 @@
 			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
 			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
 			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+			
+			<!-- Copy it and quickly set system variables -->
+			<!--
+name	value
+Config.DB.db_kpt_bin_log_pgsql_writer.database	TODO_CHANGE_DB
+Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
+Config.DB.db_kpt_bin_log_pgsql_writer.port	5432
+Config.DB.db_kpt_bin_log_pgsql_writer.username	edata_kpt
+Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
+Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
+Config.Log.Kafka.Consumer.Group	test_kpt.TODO_CHANGE_SOURCE.TODO_CHANGE_DATETIME	
+Config.Log.Kafka.Data.Topic	TODO_CHANGE_TOPIC	
+Config.Log.Kafka.Stream.Transformation	stream_parse_to_each_table	
+Config.Log.Source.Transformation.Path	from-debezium	
+Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
+Config.Log.Source.Column.Mapping	mysql_column_type_to_kettle.mapping	
+Config.Log.Source.Key.Mapping	debezium_key_to_kettle_field.mapping	
+Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
+Config.Log.Tatget.Transformation.Path	to_pgsql	
+Config.Log.Tatget.Exists.Mapping	pgsql_table_exists.mapping	
+Config.Log.Tatget.Column.Mapping	pgsql_column_case.mapping	
+Config.Log.Tatget.Field.Mapping	pgsql_column_case.mapping	
+Config.Log.Tatget.Write.Template	pgsql_table_log_write.template	
+Config.Log.Tatget.Schema.Prefix	kpt_sync__	
+Config.Log.Tatget.Table.Prefix	 
+			-->
 		</profile>
 		<profile name="debezium-mssql-pgsql">
 			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
@@ -74,6 +100,32 @@
 			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
 			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
 			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+			
+			<!-- Copy it and quickly set system variables -->
+			<!--
+name	value
+Config.DB.db_kpt_bin_log_pgsql_writer.database	TODO_CHANGE_DB
+Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
+Config.DB.db_kpt_bin_log_pgsql_writer.port	5432
+Config.DB.db_kpt_bin_log_pgsql_writer.username	edata_kpt
+Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
+Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
+Config.Log.Kafka.Consumer.Group	test_kpt.TODO_CHANGE_SOURCE.TODO_CHANGE_DATETIME	
+Config.Log.Kafka.Data.Topic	TODO_CHANGE_TOPIC	
+Config.Log.Kafka.Stream.Transformation	stream_parse_to_each_table	
+Config.Log.Source.Transformation.Path	from-debezium	
+Config.Log.Source.Table.Mapping	mssql_playload_to_table_name.mapping	
+Config.Log.Source.Column.Mapping	mssql_column_type_to_kettle.mapping	
+Config.Log.Source.Key.Mapping	debezium_key_to_kettle_field.mapping	
+Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
+Config.Log.Tatget.Transformation.Path	to_pgsql	
+Config.Log.Tatget.Exists.Mapping	pgsql_table_exists.mapping	
+Config.Log.Tatget.Column.Mapping	pgsql_column_case.mapping	
+Config.Log.Tatget.Field.Mapping	pgsql_column_case.mapping	
+Config.Log.Tatget.Write.Template	pgsql_table_log_write.template	
+Config.Log.Tatget.Schema.Prefix	kpt_sync__	
+Config.Log.Tatget.Table.Prefix	 
+			-->
 		</profile>
 		<profile name="canal-mysql-pgsql">
 			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
@@ -94,6 +146,32 @@
 			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
 			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
 			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+
+			<!-- Copy it and quickly set system variables -->
+			<!--
+name	value
+Config.DB.db_kpt_bin_log_pgsql_writer.database	TODO_CHANGE_DB
+Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
+Config.DB.db_kpt_bin_log_pgsql_writer.port	5432
+Config.DB.db_kpt_bin_log_pgsql_writer.username	edata_kpt
+Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
+Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
+Config.Log.Kafka.Consumer.Group	test_kpt.TODO_CHANGE_SOURCE.TODO_CHANGE_DATETIME	
+Config.Log.Kafka.Data.Topic	TODO_CHANGE_TOPIC	
+Config.Log.Kafka.Stream.Transformation	stream_parse_to_each_table	
+Config.Log.Source.Transformation.Path	from-canal	
+Config.Log.Source.Table.Mapping	canal_log_to_table_name.mapping	
+Config.Log.Source.Column.Mapping	canal_column_type_to_kettle.mapping	
+Config.Log.Source.Key.Mapping	canal_key_to_kettle_field.mapping	
+Config.Log.Source.Switch.Mapping	canal_type_to_kettle_switch_flag.mapping	
+Config.Log.Tatget.Transformation.Path	to_pgsql	
+Config.Log.Tatget.Exists.Mapping	pgsql_table_exists.mapping	
+Config.Log.Tatget.Column.Mapping	pgsql_column_case.mapping	
+Config.Log.Tatget.Field.Mapping	pgsql_column_case.mapping	
+Config.Log.Tatget.Write.Template	pgsql_table_log_write.template	
+Config.Log.Tatget.Schema.Prefix	kpt_sync__	
+Config.Log.Tatget.Table.Prefix	 
+			-->
 		</profile>
 	</project>
 </config>
