@@ -293,10 +293,10 @@ ALTER TABLE kpt_log.stream_parse_to_each_table__step OWNER TO postgres;
 
 --
 -- TOC entry 575 (class 1259 OID 52536)
--- Name: table_log_to_specify_table__channel; Type: TABLE; Schema: kpt_log; Owner: postgres
+-- Name: table_crud_to_specify_table__channel; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_log_to_specify_table__channel (
+CREATE TABLE kpt_log.table_crud_to_specify_table__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -312,14 +312,14 @@ CREATE TABLE kpt_log.table_log_to_specify_table__channel (
 );
 
 
-ALTER TABLE kpt_log.table_log_to_specify_table__channel OWNER TO postgres;
+ALTER TABLE kpt_log.table_crud_to_specify_table__channel OWNER TO postgres;
 
 --
 -- TOC entry 576 (class 1259 OID 52542)
--- Name: table_log_to_specify_table__ktr; Type: TABLE; Schema: kpt_log; Owner: postgres
+-- Name: table_crud_to_specify_table__ktr; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_log_to_specify_table__ktr (
+CREATE TABLE kpt_log.table_crud_to_specify_table__ktr (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -343,14 +343,14 @@ CREATE TABLE kpt_log.table_log_to_specify_table__ktr (
 );
 
 
-ALTER TABLE kpt_log.table_log_to_specify_table__ktr OWNER TO postgres;
+ALTER TABLE kpt_log.table_crud_to_specify_table__ktr OWNER TO postgres;
 
 --
 -- TOC entry 577 (class 1259 OID 52548)
--- Name: table_log_to_specify_table__metrics; Type: TABLE; Schema: kpt_log; Owner: postgres
+-- Name: table_crud_to_specify_table__metrics; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_log_to_specify_table__metrics (
+CREATE TABLE kpt_log.table_crud_to_specify_table__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -363,14 +363,14 @@ CREATE TABLE kpt_log.table_log_to_specify_table__metrics (
 );
 
 
-ALTER TABLE kpt_log.table_log_to_specify_table__metrics OWNER TO postgres;
+ALTER TABLE kpt_log.table_crud_to_specify_table__metrics OWNER TO postgres;
 
 --
 -- TOC entry 578 (class 1259 OID 52554)
--- Name: table_log_to_specify_table__seq; Type: TABLE; Schema: kpt_log; Owner: postgres
+-- Name: table_crud_to_specify_table__seq; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_log_to_specify_table__seq (
+CREATE TABLE kpt_log.table_crud_to_specify_table__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -389,14 +389,14 @@ CREATE TABLE kpt_log.table_log_to_specify_table__seq (
 );
 
 
-ALTER TABLE kpt_log.table_log_to_specify_table__seq OWNER TO postgres;
+ALTER TABLE kpt_log.table_crud_to_specify_table__seq OWNER TO postgres;
 
 --
 -- TOC entry 579 (class 1259 OID 52560)
--- Name: table_log_to_specify_table__step; Type: TABLE; Schema: kpt_log; Owner: postgres
+-- Name: table_crud_to_specify_table__step; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_log_to_specify_table__step (
+CREATE TABLE kpt_log.table_crud_to_specify_table__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -414,7 +414,7 @@ CREATE TABLE kpt_log.table_log_to_specify_table__step (
 );
 
 
-ALTER TABLE kpt_log.table_log_to_specify_table__step OWNER TO postgres;
+ALTER TABLE kpt_log.table_crud_to_specify_table__step OWNER TO postgres;
 
 --
 -- TOC entry 4265 (class 1259 OID 52566)
@@ -450,18 +450,18 @@ CREATE INDEX idx_log__stream_parse_to_each_table__ktr_2 ON kpt_log.stream_parse_
 
 --
 -- TOC entry 4279 (class 1259 OID 52580)
--- Name: idx_log__table_log_to_specify_table__ktr_1; Type: INDEX; Schema: kpt_log; Owner: postgres
+-- Name: idx_log__table_crud_to_specify_table__ktr_1; Type: INDEX; Schema: kpt_log; Owner: postgres
 --
 
-CREATE INDEX idx_log__table_log_to_specify_table__ktr_1 ON kpt_log.table_log_to_specify_table__ktr USING btree (id_batch);
+CREATE INDEX idx_log__table_crud_to_specify_table__ktr_1 ON kpt_log.table_crud_to_specify_table__ktr USING btree (id_batch);
 
 
 --
 -- TOC entry 4280 (class 1259 OID 52581)
--- Name: idx_log__table_log_to_specify_table__ktr_2; Type: INDEX; Schema: kpt_log; Owner: postgres
+-- Name: idx_log__table_crud_to_specify_table__ktr_2; Type: INDEX; Schema: kpt_log; Owner: postgres
 --
 
-CREATE INDEX idx_log__table_log_to_specify_table__ktr_2 ON kpt_log.table_log_to_specify_table__ktr USING btree (errors, status, transname);
+CREATE INDEX idx_log__table_crud_to_specify_table__ktr_2 ON kpt_log.table_crud_to_specify_table__ktr USING btree (errors, status, transname);
 
 
 --
@@ -566,46 +566,46 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO edata_kpt;
 --
 -- TOC entry 4453 (class 0 OID 0)
 -- Dependencies: 575
--- Name: TABLE table_log_to_specify_table__channel; Type: ACL; Schema: kpt_log; Owner: postgres
+-- Name: TABLE table_crud_to_specify_table__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__channel TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__channel TO edata_kpt;
 
 
 --
 -- TOC entry 4454 (class 0 OID 0)
 -- Dependencies: 576
--- Name: TABLE table_log_to_specify_table__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
+-- Name: TABLE table_crud_to_specify_table__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__ktr TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__ktr TO edata_kpt;
 
 
 --
 -- TOC entry 4455 (class 0 OID 0)
 -- Dependencies: 577
--- Name: TABLE table_log_to_specify_table__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
+-- Name: TABLE table_crud_to_specify_table__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__metrics TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__metrics TO edata_kpt;
 
 
 --
 -- TOC entry 4456 (class 0 OID 0)
 -- Dependencies: 578
--- Name: TABLE table_log_to_specify_table__seq; Type: ACL; Schema: kpt_log; Owner: postgres
+-- Name: TABLE table_crud_to_specify_table__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__seq TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__seq TO edata_kpt;
 
 
 --
 -- TOC entry 4457 (class 0 OID 0)
 -- Dependencies: 579
--- Name: TABLE table_log_to_specify_table__step; Type: ACL; Schema: kpt_log; Owner: postgres
+-- Name: TABLE table_crud_to_specify_table__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_log_to_specify_table__step TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__step TO edata_kpt;
 
 
 --
