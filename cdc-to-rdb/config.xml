@@ -1,62 +1,62 @@
 <config>
-	<project name="kpt-cdc-to-rdb">
-		<cfg key="Name">PDI project:kpt-cdc-to-rdb(use xml in rep dir)</cfg>
-		<cfg key="Repository">kpt-cdc-to-rdb</cfg>
-		<cfg key="Version">1.0</cfg>
-		<cfg key="Url">https://github.com/xiaoyao9184/Kettle-Project-Toolbox</cfg>
-		<cfg key="ExitFlag">false</cfg>
-		<cfg key="DebugMode">false</cfg>
-		<cfg key="UseStatus">false</cfg>
-		<cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
-		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
-		<cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
-		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
-		<cfg namespace="Config.Main.Transformation" key="Name">kafka_to_stream</cfg>
+    <project name="kpt-cdc-to-rdb">
+        <cfg key="Name">PDI project:kpt-cdc-to-rdb(use xml in rep dir)</cfg>
+        <cfg key="Repository">kpt-cdc-to-rdb</cfg>
+        <cfg key="Version">1.0</cfg>
+        <cfg key="Url">https://github.com/xiaoyao9184/Kettle-Project-Toolbox</cfg>
+        <cfg key="ExitFlag">false</cfg>
+        <cfg key="DebugMode">false</cfg>
+        <cfg key="UseStatus">false</cfg>
+        <cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
+        <cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
+        <cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
+        <cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
+        <cfg namespace="Config.Main.Transformation" key="Name">kafka_to_stream</cfg>
 
-		<profile name="dev">
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
-		</profile>
-		<profile name="test">
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
-		</profile>
-		<profile name="prod">
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
-		</profile>
+        <profile name="dev">
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
+        </profile>
+        <profile name="test">
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
+        </profile>
+        <profile name="prod">
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
+        </profile>
 
-		<profile name="debezium-mysql-pgsql">
-			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
-			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
-			
-			<cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
-			<cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_kettle_field.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
-			
-			<cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
-			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
-			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
-			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
-			
-			<!-- Copy it and quickly set system variables -->
-			<!--
+        <profile name="debezium-mysql-pgsql">
+            <cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+            <cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
+            <cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
+            <cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
+            
+            <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
+            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_kettle_field.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
+            
+            <cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
+            <cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
+            <cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+            
+            <!-- Copy it and quickly set system variables -->
+            <!--
 name	value
 Config.DB.db_kpt_bin_log_pgsql_writer.database	TODO_CHANGE_DB
 Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
@@ -79,30 +79,30 @@ Config.Log.Tatget.Field.Mapping	pgsql_column_case.mapping
 Config.Log.Tatget.Write.Template	pgsql_table_log_write.template	
 Config.Log.Tatget.Schema.Prefix	kpt_sync__	
 Config.Log.Tatget.Table.Prefix	 
-			-->
-		</profile>
-		<profile name="debezium-mssql-pgsql">
-			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mssql</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_debezium-mssql</cfg>
-			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
-			
-			<cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
-			<cfg namespace="Config.Log.Source.Table" key="Mapping">mssql_playload_to_table_name.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Column" key="Mapping">mssql_column_type_to_kettle.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_kettle_field.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
-			
-			<cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
-			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
-			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
-			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
-			
-			<!-- Copy it and quickly set system variables -->
-			<!--
+            -->
+        </profile>
+        <profile name="debezium-mssql-pgsql">
+            <cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+            <cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mssql</cfg>
+            <cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_debezium-mssql</cfg>
+            <cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
+            
+            <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
+            <cfg namespace="Config.Log.Source.Table" key="Mapping">mssql_playload_to_table_name.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Column" key="Mapping">mssql_column_type_to_kettle.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_kettle_field.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
+            
+            <cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
+            <cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
+            <cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+            
+            <!-- Copy it and quickly set system variables -->
+            <!--
 name	value
 Config.DB.db_kpt_bin_log_pgsql_writer.database	TODO_CHANGE_DB
 Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
@@ -125,30 +125,30 @@ Config.Log.Tatget.Field.Mapping	pgsql_column_case.mapping
 Config.Log.Tatget.Write.Template	pgsql_table_log_write.template	
 Config.Log.Tatget.Schema.Prefix	kpt_sync__	
 Config.Log.Tatget.Table.Prefix	 
-			-->
-		</profile>
-		<profile name="canal-mysql-pgsql">
-			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mysql</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_canal-mysql</cfg>
-			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
-			
-			<cfg namespace="Config.Log.Source.Transformation" key="Path">from-canal</cfg>
-			<cfg namespace="Config.Log.Source.Table" key="Mapping">canal_log_to_table_name.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Column" key="Mapping">canal_column_type_to_kettle.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Key" key="Mapping">canal_key_to_kettle_field.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Switch" key="Mapping">canal_type_to_kettle_switch_flag.mapping</cfg>
-			
-			<cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
-			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
-			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
-			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+            -->
+        </profile>
+        <profile name="canal-mysql-pgsql">
+            <cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+            <cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mysql</cfg>
+            <cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_canal-mysql</cfg>
+            <cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
+            
+            <cfg namespace="Config.Log.Source.Transformation" key="Path">from-canal</cfg>
+            <cfg namespace="Config.Log.Source.Table" key="Mapping">canal_log_to_table_name.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Column" key="Mapping">canal_column_type_to_kettle.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Key" key="Mapping">canal_key_to_kettle_field.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Switch" key="Mapping">canal_type_to_kettle_switch_flag.mapping</cfg>
+            
+            <cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
+            <cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
+            <cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
+            <cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
 
-			<!-- Copy it and quickly set system variables -->
-			<!--
+            <!-- Copy it and quickly set system variables -->
+            <!--
 name	value
 Config.DB.db_kpt_bin_log_pgsql_writer.database	TODO_CHANGE_DB
 Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
@@ -171,7 +171,7 @@ Config.Log.Tatget.Field.Mapping	pgsql_column_case.mapping
 Config.Log.Tatget.Write.Template	pgsql_table_log_write.template	
 Config.Log.Tatget.Schema.Prefix	kpt_sync__	
 Config.Log.Tatget.Table.Prefix	 
-			-->
-		</profile>
-	</project>
+            -->
+        </profile>
+    </project>
 </config>

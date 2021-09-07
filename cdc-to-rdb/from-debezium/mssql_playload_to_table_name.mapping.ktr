@@ -51,12 +51,12 @@
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__ktr</table>
+        <connection/>
+        <schema/>
+        <table/>
         <size_limit_lines/>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -150,26 +150,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__seq</table>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -247,10 +247,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__channel</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -313,10 +313,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__step</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -384,15 +384,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__metrics</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -469,85 +469,113 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/31 16:09:46.663</modified_date>
+    <modified_date>2021/09/06 15:22:57.832</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_bin_log_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
+      <from>JSON input: Envelope info</from>
+      <to>SelectValues: remove Envelope</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>DataGrid: test ?</from>
-      <to>JSON input: payload info</to>
+      <to>JSON input: schema_name</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
-      <to>JSON input: payload info</to>
+      <from>JSON input: schema_name</from>
+      <to>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: sort field</from>
+      <from>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</from>
+      <to>JSON input: SchemaChangeValue info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</from>
+      <to>JSON input: Envelope info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput</from>
+      <to>JSON input: schema_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: source_schema,source_table</from>
+      <to>SelectValues: remote SchemaChangeValue</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON input: SchemaChangeValue info</from>
+      <to>Constant: EMPTY</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: EMPTY</from>
+      <to>SetValueField: source_schema,source_table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remote SchemaChangeValue</from>
+      <to>SelectValues: rename source_db to source_schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove Envelope</from>
+      <to>SelectValues: rename source_db to source_schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: rename source_db to source_schema</from>
       <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>JSON input: payload info</from>
-      <to>SelectValues: sort field</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
+  <step>
+    <name>Constant: EMPTY</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>EMPTY</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>DataGrid: test ?</name>
     <type>DataGrid</type>
@@ -575,7 +603,10 @@
     </fields>
     <data>
       <line>
-        <item/>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.sqlserver.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium-DC_WATER","ts_ms":1630806127725,"snapshot":"true","db":"DC_WATER","sequence":null,"schema":"dbo","table":"DICT","change_lsn":null,"commit_lsn":"00000083:000791b0:0001","event_serial_no":null},"databaseName":"DC_WATER","schemaName":"dbo","ddl":null,"tableChanges":[{"type":"CREATE","id":"\"DC_WATER\".\"dbo\".\"DICT\"","table":{"defaultCharsetName":null,"primaryKeyColumnNames":[],"columns":[{"name":"CODE_TYPE","jdbcType":12,"nativeType":null,"typeName":"varchar","typeExpression":"varchar","charsetName":null,"length":255,"scale":null,"position":1,"optional":true,"autoIncremented":false,"generated":false},{"name":"CODE","jdbcType":12,"nativeType":null,"typeName":"varchar","typeExpression":"varchar","charsetName":null,"length":255,"scale":null,"position":2,"optional":true,"autoIncremented":false,"generated":false},{"name":"CODE_DESC","jdbcType":12,"nativeType":null,"typeName":"varchar","typeExpression":"varchar","charsetName":null,"length":255,"scale":null,"position":3,"optional":true,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":true,"field":"CODE_TYPE"},{"type":"string","optional":true,"field":"CODE"},{"type":"string","optional":true,"field":"CODE_DESC"}],"optional":true,"name":"test_debezium_DC_WATER.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"CODE_TYPE"},{"type":"string","optional":true,"field":"CODE"},{"type":"string","optional":true,"field":"CODE_DESC"}],"optional":true,"name":"test_debezium_DC_WATER.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_DC_WATER.data_changes.Envelope"},"payload":{"before":null,"after":{"CODE_TYPE":"sectionlevel","CODE":"1","CODE_DESC":"国控"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium-DC_WATER","ts_ms":1630806127902,"snapshot":"true","db":"DC_WATER","sequence":null,"schema":"dbo","table":"DICT","change_lsn":null,"commit_lsn":"00000083:000791b0:0001","event_serial_no":null},"op":"r","ts_ms":1630806127902,"transaction":null}}</item>
       </line>
     </data>
     <attributes/>
@@ -593,7 +624,51 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input: payload info</name>
+    <name>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>JSON input: SchemaChangeValue info</send_true_to>
+    <send_false_to>JSON input: Envelope info</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>schema_name</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>io.debezium.connector.sqlserver.SchemaChangeValue</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: Envelope info</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -638,8 +713,8 @@
       <field>
         <name>payload_ts_ms</name>
         <path>$.payload.ts_ms</path>
-        <type>Timestamp</type>
-        <format>0000000000000</format>
+        <type>String</type>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
@@ -703,8 +778,8 @@
       <field>
         <name>source_ts_ms</name>
         <path>$.payload.source.ts_ms</path>
-        <type>Timestamp</type>
-        <format>0000000000000</format>
+        <type>String</type>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
@@ -840,7 +915,329 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>192</yloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: SchemaChangeValue info</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>payload_databaseName</name>
+        <path>$.payload.databaseName</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>payload_schemaName</name>
+        <path>$.payload.schemaName</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>payload_ddl</name>
+        <path>$.payload.ddl</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_version</name>
+        <path>$.payload.source.version</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_connector</name>
+        <path>$.payload.source.connector</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_name</name>
+        <path>$.payload.source.name</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_ts_ms</name>
+        <path>$.payload.source.ts_ms</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_snapshot</name>
+        <path>$.payload.source.snapshot</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_db</name>
+        <path>$.payload.source.db</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_sequence</name>
+        <path>$.payload.source.sequence</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <path>$.payload.source.schema</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_table</name>
+        <path>$.payload.source.table</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_change_lsn</name>
+        <path>$.payload.source.change_lsn</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_commit_lsn</name>
+        <path>$.payload.source.commit_lsn</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_event_serial_no</name>
+        <path>$.payload.source.event_serial_no</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>message</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: schema_name</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>schema_name</name>
+        <path>$.schema.name</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>message</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -899,12 +1296,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>496</yloc>
+      <yloc>1024</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: sort field</name>
+    <name>SelectValues: remote SchemaChangeValue</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -915,55 +1312,56 @@
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>message</name>
-      </field>
-      <field>
-        <name>payload_op</name>
-      </field>
-      <field>
-        <name>payload_ts_ms</name>
-      </field>
-      <field>
-        <name>payload_transaction</name>
-      </field>
-      <field>
-        <name>source_version</name>
-      </field>
-      <field>
-        <name>source_connector</name>
-      </field>
-      <field>
-        <name>source_name</name>
-      </field>
-      <field>
-        <name>source_ts_ms</name>
-      </field>
-      <field>
-        <name>source_snapshot</name>
-      </field>
-      <field>
-        <name>source_db</name>
-      </field>
-      <field>
-        <name>source_sequence</name>
-      </field>
-      <field>
-        <name>source_schema</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
-        <name>source_change_lsn</name>
-      </field>
-      <field>
-        <name>source_commit_lsn</name>
-      </field>
-      <field>
-        <name>source_event_serial_no</name>
-      </field>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>payload_databaseName</name>
+      </remove>
+      <remove>
+        <name>payload_schemaName</name>
+      </remove>
+      <remove>
+        <name>payload_ddl</name>
+      </remove>
+      <remove>
+        <name>EMPTY</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove Envelope</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>payload_op</name>
+      </remove>
+      <remove>
+        <name>payload_ts_ms</name>
+      </remove>
+      <remove>
+        <name>payload_transaction</name>
+      </remove>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -975,7 +1373,90 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>336</yloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: rename source_db to source_schema</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>Y</select_unspecified>
+      <remove>
+        <name>source_schema</name>
+      </remove>
+      <meta>
+        <name>source_db</name>
+        <rename>source_schema</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: source_schema,source_table</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source_schema</name>
+        <replaceby>EMPTY</replaceby>
+      </field>
+      <field>
+        <name>source_table</name>
+        <replaceby>EMPTY</replaceby>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

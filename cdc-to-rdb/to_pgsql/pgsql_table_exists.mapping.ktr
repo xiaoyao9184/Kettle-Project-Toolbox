@@ -9,14 +9,9 @@
     <directory>/to_pgsql</directory>
     <parameters>
       <parameter>
-        <name>Param.Schema.Name</name>
-        <default_value>-</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Param.Table.Name</name>
-        <default_value>-</default_value>
-        <description/>
+        <name>Param.Case.Name</name>
+        <default_value>true</default_value>
+        <description>Case sensitive</description>
       </parameter>
     </parameters>
     <log>
@@ -439,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/26 14:56:54.763</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/26 16:53:15.069</modified_date>
+    <modified_date>2021/09/06 17:25:46.501</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -498,43 +493,108 @@
   </connection>
   <order>
     <hop>
-      <from>SelectValues: sql location parameters</from>
-      <to>TableInput: information_schema.tables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput</from>
-      <to>SelectValues: sql location parameters</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JoinRows</from>
-      <to>MappingOutput</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: QUOTATION</from>
       <to>Calculator: case_schema,case_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: case_schema,case_table</from>
-      <to>SelectValues: remove and replace</to>
+      <from>GetVariable: Param.Case.Name</from>
+      <to>FilterRows: case</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>TableInput: information_schema.tables</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput</from>
+      <from>FilterRows: case</from>
       <to>Constant: QUOTATION</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove and replace</from>
-      <to>JoinRows</to>
+      <from>DataGrid: test canal_user</from>
+      <to>GetVariable: Param.Case.Name</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput</from>
+      <to>GetVariable: Param.Case.Name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: case</from>
+      <to>Calculator: lower_schema,lower_table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: lower_schema,lower_table</from>
+      <to>SelectValues: replace use lower</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: case_schema,case_table</from>
+      <to>SelectValues: replace use case</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace use lower</from>
+      <to>Dummy: schema,table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace use case</from>
+      <to>Dummy: schema,table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: schema,table</from>
+      <to>SelectValues: sql location parameters</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: sql location parameters</from>
+      <to>TableInput: information_schema.tables</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TableInput: information_schema.tables</from>
+      <to>增加序列: number_exist</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: schema,table</from>
+      <to>增加序列: number_table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>增加序列: number_table</from>
+      <to>流查询</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>增加序列: number_exist</from>
+      <to>流查询</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>流查询</from>
+      <to>SelectValues: select field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: select field</from>
+      <to>MappingOutput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: schema,table</from>
+      <to>WriteToLog: lookup table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: Param.Case.Name</from>
+      <to>WriteToLog: param</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: select field</from>
+      <to>WriteToLog: table exist</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -589,37 +649,53 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>352</yloc>
+      <xloc>656</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
-    <type>MappingInput</type>
+    <name>Calculator: lower_schema,lower_table</name>
+    <type>Calculator</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>lower_schema</field_name>
+      <calc_type>LOWER_CASE</calc_type>
+      <field_a>schema</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>lower_table</field_name>
+      <calc_type>LOWER_CASE</calc_type>
+      <field_a>table</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -630,139 +706,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingOutput</name>
-    <type>MappingOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove and replace</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>schema</name>
-      </remove>
-      <remove>
-        <name>table</name>
-      </remove>
-      <remove>
-        <name>QUOTATION</name>
-      </remove>
-      <meta>
-        <name>case_schema</name>
-        <rename>schema</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>case_table</name>
-        <rename>table</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: sql location parameters</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>schema</name>
-        <rename>1</rename>
-      </field>
-      <field>
-        <name>table</name>
-        <rename>2</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -800,8 +744,408 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
+      <xloc>656</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: test canal_user</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>kpt_sync__DC_WATER</item>
+        <item>T_DRINKING_WATER</item>
+      </line>
+      <line>
+        <item>kpt_sync__DC_WATER</item>
+        <item>t_drinking_water</item>
+      </line>
+      <line>
+        <item>kpt_sync__canal_manager</item>
+        <item>canal_user</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: schema,table</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: case</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Constant: QUOTATION</send_true_to>
+    <send_false_to>Calculator: lower_schema,lower_table</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>CaseName</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: Param.Case.Name</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CaseName</name>
+        <variable>${Param.Case.Name}</variable>
+        <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
       <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingInput</name>
+    <type>MappingInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <select_unspecified>Y</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingOutput</name>
+    <type>MappingOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1312</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace use case</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>case_schema</name>
+        <rename>schema</rename>
+      </field>
+      <field>
+        <name>case_table</name>
+        <rename>table</rename>
+      </field>
+      <field>
+        <name>schema</name>
+        <rename>lookup_schema</rename>
+      </field>
+      <field>
+        <name>table</name>
+        <rename>lookup_table</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace use lower</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>lower_schema</name>
+        <rename>schema</rename>
+      </field>
+      <field>
+        <name>lower_table</name>
+        <rename>table</rename>
+      </field>
+      <field>
+        <name>lower_schema</name>
+        <rename>lookup_schema</rename>
+      </field>
+      <field>
+        <name>lower_table</name>
+        <rename>lookup_table</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select field</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>lookup_schema</name>
+      </remove>
+      <remove>
+        <name>lookup_table</name>
+      </remove>
+      <remove>
+        <name>number_table</name>
+      </remove>
+      <remove>
+        <name>number_exist</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1168</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: sql location parameters</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>lookup_schema</name>
+      </field>
+      <field>
+        <name>lookup_table</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -824,7 +1168,7 @@ WHERE table_schema = ? AND table_name = ?
 ) AS table_exist</sql>
     <limit>0</limit>
     <lookup>SelectValues: sql location parameters</lookup>
-    <execute_each_row>N</execute_each_row>
+    <execute_each_row>Y</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <cached_row_meta_active>N</cached_row_meta_active>
@@ -862,14 +1206,14 @@ WHERE table_schema = ? AND table_name = ?
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
+      <xloc>656</xloc>
+      <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JoinRows</name>
-    <type>JoinRows</type>
+    <name>WriteToLog: lookup table</name>
+    <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -878,24 +1222,177 @@ WHERE table_schema = ? AND table_name = ?
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <cache_size>500</cache_size>
-    <main>SelectValues: remove and replace</main>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <operator>AND</operator>
-            <leftvalue/>
-            <function>TRUE</function>
-            <rightvalue/>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>schema</name>
+      </field>
+      <field>
+        <name>table</name>
+      </field>
+      <field>
+        <name>lookup_schema</name>
+      </field>
+      <field>
+        <name>lookup_table</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: param</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>schema</name>
+      </field>
+      <field>
+        <name>table</name>
+      </field>
+      <field>
+        <name>CaseName</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: table exist</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>1</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>schema</name>
+      </field>
+      <field>
+        <name>table</name>
+      </field>
+      <field>
+        <name>table_exist</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>1168</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加序列: number_exist</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>number_exist</valuename>
+    <use_database>N</use_database>
+    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>增加序列: number_table</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>number_table</valuename>
+    <use_database>N</use_database>
+    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -906,7 +1403,55 @@ WHERE table_schema = ? AND table_name = ?
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>480</yloc>
+      <yloc>896</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>流查询</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>增加序列: number_exist</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>number_table</name>
+        <field>number_exist</field>
+      </key>
+      <value>
+        <name>table_exist</name>
+        <rename>table_exist</rename>
+        <default/>
+        <type>Boolean</type>
+      </value>
+      <value>
+        <name>number_exist</name>
+        <rename>number_exist</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1024</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

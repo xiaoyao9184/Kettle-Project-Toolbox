@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/31 11:08:45.692</modified_date>
+    <modified_date>2021/09/06 14:02:15.540</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -437,26 +437,105 @@
   </notepads>
   <order>
     <hop>
-      <from>DataGrid: test canal_manager</from>
-      <to>JSON input: payload info</to>
-      <enabled>N</enabled>
+      <from>FilterRows: is io.debezium.connector.mysql.SchemaChangeValue</from>
+      <to>JSON input: SchemaChangeValue info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON input: SchemaChangeValue info</from>
+      <to>Constant: EMPTY</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: source_db,source_table</from>
+      <to>SelectValues: remote SchemaChangeValue</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: EMPTY</from>
+      <to>SetValueField: source_db,source_table</to>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>MappingInput</from>
+      <to>JSON input: schema_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test canal_manager</from>
+      <to>JSON input: schema_name</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>JSON input: schema_name</from>
+      <to>FilterRows: is io.debezium.connector.mysql.SchemaChangeValue</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is io.debezium.connector.mysql.SchemaChangeValue</from>
       <to>JSON input: payload info</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>JSON input: payload info</from>
-      <to>SelectValues: sort field</to>
+      <to>SelectValues: remove Envelope</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: sort field</from>
+      <from>SelectValues: remove Envelope</from>
+      <to>SelectValues: rename source_db to source_schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remote SchemaChangeValue</from>
+      <to>SelectValues: rename source_db to source_schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: rename source_db to source_schema</from>
       <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Constant: EMPTY</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>EMPTY</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>DataGrid: test canal_manager</name>
     <type>DataGrid</type>
@@ -534,6 +613,54 @@
       <line>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":1,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
       </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686049,"snapshot":"true","db":"","sequence":null,"table":null,"server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"","schemaName":null,"ddl":"SET character_set_server=utf8, collation_server=utf8_unicode_ci","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686542,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_adapter_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP TABLE IF EXISTS `canal_manager`.`canal_adapter_config`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686553,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_cluster","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP TABLE IF EXISTS `canal_manager`.`canal_cluster`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686554,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP TABLE IF EXISTS `canal_manager`.`canal_config`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686554,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP TABLE IF EXISTS `canal_manager`.`canal_instance_config`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686555,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_node_server","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP TABLE IF EXISTS `canal_manager`.`canal_node_server`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686556,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP TABLE IF EXISTS `canal_manager`.`canal_user`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686559,"snapshot":"true","db":"canal_manager","sequence":null,"table":null,"server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"DROP DATABASE IF EXISTS `canal_manager`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686563,"snapshot":"true","db":"canal_manager","sequence":null,"table":null,"server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE DATABASE `canal_manager` CHARSET utf8 COLLATE utf8_bin","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686568,"snapshot":"true","db":"canal_manager","sequence":null,"table":null,"server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"USE `canal_manager`","tableChanges":[]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686571,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_adapter_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE TABLE `canal_adapter_config` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `category` varchar(45) NOT NULL,\n  `name` varchar(45) NOT NULL,\n  `status` varchar(45) DEFAULT NULL,\n  `content` text NOT NULL,\n  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB DEFAULT CHARSET=utf8","tableChanges":[{"type":"CREATE","id":"\"canal_manager\".\"canal_adapter_config\"","table":{"defaultCharsetName":"utf8","primaryKeyColumnNames":["id"],"columns":[{"name":"id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":1,"optional":false,"autoIncremented":true,"generated":true},{"name":"category","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":2,"optional":false,"autoIncremented":false,"generated":false},{"name":"name","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":3,"optional":false,"autoIncremented":false,"generated":false},{"name":"status","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":4,"optional":true,"autoIncremented":false,"generated":false},{"name":"content","jdbcType":12,"nativeType":null,"typeName":"TEXT","typeExpression":"TEXT","charsetName":"utf8","length":null,"scale":null,"position":5,"optional":false,"autoIncremented":false,"generated":false},{"name":"modified_time","jdbcType":2014,"nativeType":null,"typeName":"TIMESTAMP","typeExpression":"TIMESTAMP","charsetName":null,"length":null,"scale":null,"position":6,"optional":false,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686616,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_cluster","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE TABLE `canal_cluster` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `name` varchar(63) NOT NULL,\n  `zk_hosts` varchar(255) NOT NULL,\n  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8","tableChanges":[{"type":"CREATE","id":"\"canal_manager\".\"canal_cluster\"","table":{"defaultCharsetName":"utf8","primaryKeyColumnNames":["id"],"columns":[{"name":"id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":1,"optional":false,"autoIncremented":true,"generated":true},{"name":"name","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":63,"scale":null,"position":2,"optional":false,"autoIncremented":false,"generated":false},{"name":"zk_hosts","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":255,"scale":null,"position":3,"optional":false,"autoIncremented":false,"generated":false},{"name":"modified_time","jdbcType":2014,"nativeType":null,"typeName":"TIMESTAMP","typeExpression":"TIMESTAMP","charsetName":null,"length":null,"scale":null,"position":4,"optional":false,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686622,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE TABLE `canal_config` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `cluster_id` bigint(20) DEFAULT NULL,\n  `server_id` bigint(20) DEFAULT NULL,\n  `name` varchar(45) NOT NULL,\n  `status` varchar(45) DEFAULT NULL,\n  `content` text NOT NULL,\n  `content_md5` varchar(128) NOT NULL,\n  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `sid_UNIQUE` (`server_id`)\n) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8","tableChanges":[{"type":"CREATE","id":"\"canal_manager\".\"canal_config\"","table":{"defaultCharsetName":"utf8","primaryKeyColumnNames":["id"],"columns":[{"name":"id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":1,"optional":false,"autoIncremented":true,"generated":true},{"name":"cluster_id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":2,"optional":true,"autoIncremented":false,"generated":false},{"name":"server_id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":3,"optional":true,"autoIncremented":false,"generated":false},{"name":"name","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":4,"optional":false,"autoIncremented":false,"generated":false},{"name":"status","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":5,"optional":true,"autoIncremented":false,"generated":false},{"name":"content","jdbcType":12,"nativeType":null,"typeName":"TEXT","typeExpression":"TEXT","charsetName":"utf8","length":null,"scale":null,"position":6,"optional":false,"autoIncremented":false,"generated":false},{"name":"content_md5","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":128,"scale":null,"position":7,"optional":false,"autoIncremented":false,"generated":false},{"name":"modified_time","jdbcType":2014,"nativeType":null,"typeName":"TIMESTAMP","typeExpression":"TIMESTAMP","charsetName":null,"length":null,"scale":null,"position":8,"optional":false,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686632,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE TABLE `canal_instance_config` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `cluster_id` bigint(20) DEFAULT NULL,\n  `server_id` bigint(20) DEFAULT NULL,\n  `name` varchar(45) NOT NULL,\n  `status` varchar(45) DEFAULT NULL,\n  `content` text NOT NULL,\n  `content_md5` varchar(128) DEFAULT NULL,\n  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`),\n  UNIQUE KEY `name_UNIQUE` (`name`)\n) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8","tableChanges":[{"type":"CREATE","id":"\"canal_manager\".\"canal_instance_config\"","table":{"defaultCharsetName":"utf8","primaryKeyColumnNames":["id"],"columns":[{"name":"id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":1,"optional":false,"autoIncremented":true,"generated":true},{"name":"cluster_id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":2,"optional":true,"autoIncremented":false,"generated":false},{"name":"server_id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":3,"optional":true,"autoIncremented":false,"generated":false},{"name":"name","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":4,"optional":false,"autoIncremented":false,"generated":false},{"name":"status","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":5,"optional":true,"autoIncremented":false,"generated":false},{"name":"content","jdbcType":12,"nativeType":null,"typeName":"TEXT","typeExpression":"TEXT","charsetName":"utf8","length":null,"scale":null,"position":6,"optional":false,"autoIncremented":false,"generated":false},{"name":"content_md5","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":128,"scale":null,"position":7,"optional":true,"autoIncremented":false,"generated":false},{"name":"modified_time","jdbcType":2014,"nativeType":null,"typeName":"TIMESTAMP","typeExpression":"TIMESTAMP","charsetName":null,"length":null,"scale":null,"position":8,"optional":false,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686637,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_node_server","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE TABLE `canal_node_server` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `cluster_id` bigint(20) DEFAULT NULL,\n  `name` varchar(63) NOT NULL,\n  `ip` varchar(63) NOT NULL,\n  `admin_port` int(11) DEFAULT NULL,\n  `tcp_port` int(11) DEFAULT NULL,\n  `metric_port` int(11) DEFAULT NULL,\n  `status` varchar(45) DEFAULT NULL,\n  `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8","tableChanges":[{"type":"CREATE","id":"\"canal_manager\".\"canal_node_server\"","table":{"defaultCharsetName":"utf8","primaryKeyColumnNames":["id"],"columns":[{"name":"id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":1,"optional":false,"autoIncremented":true,"generated":true},{"name":"cluster_id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":2,"optional":true,"autoIncremented":false,"generated":false},{"name":"name","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":63,"scale":null,"position":3,"optional":false,"autoIncremented":false,"generated":false},{"name":"ip","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":63,"scale":null,"position":4,"optional":false,"autoIncremented":false,"generated":false},{"name":"admin_port","jdbcType":4,"nativeType":null,"typeName":"INT","typeExpression":"INT","charsetName":null,"length":11,"scale":null,"position":5,"optional":true,"autoIncremented":false,"generated":false},{"name":"tcp_port","jdbcType":4,"nativeType":null,"typeName":"INT","typeExpression":"INT","charsetName":null,"length":11,"scale":null,"position":6,"optional":true,"autoIncremented":false,"generated":false},{"name":"metric_port","jdbcType":4,"nativeType":null,"typeName":"INT","typeExpression":"INT","charsetName":null,"length":11,"scale":null,"position":7,"optional":true,"autoIncremented":false,"generated":false},{"name":"status","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":45,"scale":null,"position":8,"optional":true,"autoIncremented":false,"generated":false},{"name":"modified_time","jdbcType":2014,"nativeType":null,"typeName":"TIMESTAMP","typeExpression":"TIMESTAMP","charsetName":null,"length":null,"scale":null,"position":9,"optional":false,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":true,"field":"databaseName"},{"type":"string","optional":true,"field":"schemaName"},{"type":"string","optional":true,"field":"ddl"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"type"},{"type":"string","optional":false,"field":"id"},{"type":"struct","fields":[{"type":"string","optional":true,"field":"defaultCharsetName"},{"type":"array","items":{"type":"string","optional":false},"optional":true,"field":"primaryKeyColumnNames"},{"type":"array","items":{"type":"struct","fields":[{"type":"string","optional":false,"field":"name"},{"type":"int32","optional":false,"field":"jdbcType"},{"type":"int32","optional":true,"field":"nativeType"},{"type":"string","optional":false,"field":"typeName"},{"type":"string","optional":true,"field":"typeExpression"},{"type":"string","optional":true,"field":"charsetName"},{"type":"int32","optional":true,"field":"length"},{"type":"int32","optional":true,"field":"scale"},{"type":"int32","optional":false,"field":"position"},{"type":"boolean","optional":true,"field":"optional"},{"type":"boolean","optional":true,"field":"autoIncremented"},{"type":"boolean","optional":true,"field":"generated"}],"optional":false,"name":"io.debezium.connector.schema.Column"},"optional":false,"field":"columns"}],"optional":false,"name":"io.debezium.connector.schema.Table","field":"table"}],"optional":false,"name":"io.debezium.connector.schema.Change"},"optional":false,"field":"tableChanges"}],"optional":false,"name":"io.debezium.connector.mysql.SchemaChangeValue"},"payload":{"source":{"version":"1.6.2.Final","connector":"mysql","name":"edata_debezium-mysql","ts_ms":1630896686643,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":12646836,"row":0,"thread":null,"query":null},"databaseName":"canal_manager","schemaName":null,"ddl":"CREATE TABLE `canal_user` (\n  `id` bigint(20) NOT NULL AUTO_INCREMENT,\n  `username` varchar(31) NOT NULL,\n  `password` varchar(128) NOT NULL,\n  `name` varchar(31) NOT NULL,\n  `roles` varchar(31) NOT NULL,\n  `introduction` varchar(255) DEFAULT NULL,\n  `avatar` varchar(255) DEFAULT NULL,\n  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\n  PRIMARY KEY (`id`)\n) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8","tableChanges":[{"type":"CREATE","id":"\"canal_manager\".\"canal_user\"","table":{"defaultCharsetName":"utf8","primaryKeyColumnNames":["id"],"columns":[{"name":"id","jdbcType":-5,"nativeType":null,"typeName":"BIGINT","typeExpression":"BIGINT","charsetName":null,"length":20,"scale":null,"position":1,"optional":false,"autoIncremented":true,"generated":true},{"name":"username","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":31,"scale":null,"position":2,"optional":false,"autoIncremented":false,"generated":false},{"name":"password","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":128,"scale":null,"position":3,"optional":false,"autoIncremented":false,"generated":false},{"name":"name","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":31,"scale":null,"position":4,"optional":false,"autoIncremented":false,"generated":false},{"name":"roles","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":31,"scale":null,"position":5,"optional":false,"autoIncremented":false,"generated":false},{"name":"introduction","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":255,"scale":null,"position":6,"optional":true,"autoIncremented":false,"generated":false},{"name":"avatar","jdbcType":12,"nativeType":null,"typeName":"VARCHAR","typeExpression":"VARCHAR","charsetName":"utf8","length":255,"scale":null,"position":7,"optional":true,"autoIncremented":false,"generated":false},{"name":"creation_date","jdbcType":2014,"nativeType":null,"typeName":"TIMESTAMP","typeExpression":"TIMESTAMP","charsetName":null,"length":null,"scale":null,"position":8,"optional":false,"autoIncremented":false,"generated":false}]}}]}}</item>
+      </line>
     </data>
     <attributes/>
     <cluster_schema/>
@@ -546,6 +673,341 @@
     <GUI>
       <xloc>144</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: is io.debezium.connector.mysql.SchemaChangeValue</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>JSON input: SchemaChangeValue info</send_true_to>
+    <send_false_to>JSON input: payload info</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>schema_name</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>io.debezium.connector.mysql.SchemaChangeValue</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: SchemaChangeValue info</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>payload_databaseName</name>
+        <path>$.payload.databaseName</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>payload_schemaName</name>
+        <path>$.payload.schemaName</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>payload_ddl</name>
+        <path>$.payload.ddl</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_version</name>
+        <path>$.payload.source.version</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_connector</name>
+        <path>$.payload.source.connector</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_name</name>
+        <path>$.payload.source.name</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_ts_ms</name>
+        <path>$.payload.source.ts_ms</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_snapshot</name>
+        <path>$.payload.source.snapshot</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_db</name>
+        <path>$.payload.source.db</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_sequence</name>
+        <path>$.payload.source.sequence</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_table</name>
+        <path>$.payload.source.table</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_server_id</name>
+        <path>$.payload.source.server_id</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_gtid</name>
+        <path>$.payload.source.gtid</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_file</name>
+        <path>$.payload.source.file</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_pos</name>
+        <path>$.payload.source.pos</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_row</name>
+        <path>$.payload.source.row</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_thread</name>
+        <path>$.payload.source.thread</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>source_query</name>
+        <path>$.payload.source.query</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>message</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -596,7 +1058,7 @@
         <name>payload_ts_ms</name>
         <path>$.payload.ts_ms</path>
         <type>String</type>
-        <format>0000000000000</format>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
@@ -661,7 +1123,7 @@
         <name>source_ts_ms</name>
         <path>$.payload.source.ts_ms</path>
         <type>String</type>
-        <format>0000000000000</format>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
@@ -836,7 +1298,77 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>192</yloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: schema_name</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>schema_name</name>
+        <path>$.schema.name</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>message</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -895,12 +1427,89 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>496</yloc>
+      <yloc>1024</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: sort field</name>
+    <name>SelectValues: remote SchemaChangeValue</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>payload_databaseName</name>
+      </remove>
+      <remove>
+        <name>payload_schemaName</name>
+      </remove>
+      <remove>
+        <name>payload_ddl</name>
+      </remove>
+      <remove>
+        <name>EMPTY</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove Envelope</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>payload_op</name>
+      </remove>
+      <remove>
+        <name>payload_ts_ms</name>
+      </remove>
+      <remove>
+        <name>payload_transaction</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>704</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: rename source_db to source_schema</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -913,64 +1522,71 @@
     <fields>
       <field>
         <name>message</name>
+        <rename/>
       </field>
       <field>
-        <name>payload_op</name>
-      </field>
-      <field>
-        <name>payload_ts_ms</name>
-      </field>
-      <field>
-        <name>payload_transaction</name>
+        <name>schema_name</name>
+        <rename/>
       </field>
       <field>
         <name>source_version</name>
+        <rename/>
       </field>
       <field>
         <name>source_connector</name>
+        <rename/>
       </field>
       <field>
         <name>source_name</name>
+        <rename/>
       </field>
       <field>
         <name>source_ts_ms</name>
+        <rename/>
       </field>
       <field>
         <name>source_snapshot</name>
-      </field>
-      <field>
-        <name>source_db</name>
-      </field>
-      <field>
-        <name>source_sequence</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
-        <name>source_server_id</name>
-      </field>
-      <field>
-        <name>source_gtid</name>
-      </field>
-      <field>
-        <name>source_file</name>
-      </field>
-      <field>
-        <name>source_pos</name>
-      </field>
-      <field>
-        <name>source_row</name>
-      </field>
-      <field>
-        <name>source_thread</name>
-      </field>
-      <field>
-        <name>source_query</name>
+        <rename/>
       </field>
       <field>
         <name>source_db</name>
         <rename>source_schema</rename>
+      </field>
+      <field>
+        <name>source_sequence</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_table</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_server_id</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_gtid</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_file</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_pos</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_row</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_thread</name>
+        <rename/>
+      </field>
+      <field>
+        <name>source_query</name>
+        <rename/>
       </field>
       <select_unspecified>Y</select_unspecified>
     </fields>
@@ -984,7 +1600,42 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>336</yloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: source_db,source_table</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source_db</name>
+        <replaceby>EMPTY</replaceby>
+      </field>
+      <field>
+        <name>source_table</name>
+        <replaceby>EMPTY</replaceby>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
