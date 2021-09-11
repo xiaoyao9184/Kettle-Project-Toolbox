@@ -29,7 +29,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Exists.Mapping</name>
+        <name>Config.Log.Target.Ingore.Mapping</name>
         <default_value>pgsql_table_exists.mapping</default_value>
         <description/>
       </parameter>
@@ -1719,7 +1719,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Tatget.Exists.Mapping}</trans_name>
+    <trans_name>${Config.Log.Target.Ingore.Mapping}</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>

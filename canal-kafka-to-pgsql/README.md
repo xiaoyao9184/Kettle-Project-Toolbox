@@ -152,7 +152,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log.mysql</cfg>
 			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_sort_by_db_table</cfg>
 			
-			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
+			<cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
 			
@@ -169,7 +169,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.Log.Kafka.Data" key="Topic">bin_log.mysql</cfg>
 			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_log_to_each_table</cfg>
 			
-			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
+			<cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
 			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>

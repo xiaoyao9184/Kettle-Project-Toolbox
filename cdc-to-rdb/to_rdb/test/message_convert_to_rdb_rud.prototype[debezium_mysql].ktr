@@ -1,21 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>pgsql_table_log_write.template</name>
+    <name>message_convert_to_rdb_rud.prototype[debezium_mysql]</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_pgsql</directory>
+    <directory>/</directory>
     <parameters>
       <parameter>
+        <name>Config.Log.Kafka.Consumer.Group</name>
+        <default_value>kpt.mysql.20210831</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Data.Topic</name>
+        <default_value>kpt_debezium-mysql</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <default_value>kafka:9092</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Column.Mapping</name>
+        <default_value>mysql_schema_to_column_meta.mapping</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Key.Mapping</name>
+        <default_value>debezium_key_to_kettle_field.mapping</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Switch.Mapping</name>
+        <default_value>debezium_operate_to_kettle_switch_flag.mapping</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Transformation.Path</name>
+        <default_value>from-debezium</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Case.Name</name>
+        <default_value>true</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Column.Mapping</name>
+        <default_value>pgsql_column_case_to_column.mapping</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Ingore.Mapping</name>
+        <default_value>pgsql_table_exists_to_ingore.mapping</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Transformation.Path</name>
+        <default_value>to_pgsql</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>Param.Schema.Name</name>
-        <default_value>-</default_value>
+        <default_value>kpt_sync__test_kpt_cdc</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Param.Table.Name</name>
-        <default_value>-</default_value>
+        <default_value>debezium_types</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -425,8 +481,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
-    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <capture_step_performance>Y</capture_step_performance>
+    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -437,338 +493,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/21 14:24:17.424</created_date>
+    <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/01 10:58:17.710</modified_date>
+    <modified_date>2021/09/11 18:10:19.629</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_bin_log_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
-    <hop>
-      <from>JSON input: column</from>
-      <to>Switch / case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>InsertUpdate: insert</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>Delete</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>InsertUpdate: update</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case</from>
-      <to>TableOutput</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
-  <step>
-    <name>Delete</name>
-    <type>Delete</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
-    <commit>1000</commit>
-    <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>608</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>InsertUpdate: insert</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
-    <commit>1000</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>288</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>InsertUpdate: update</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
-    <commit>1000</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input: column</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Switch / case</name>
-    <type>SwitchCase</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fieldname>target_switch_flag</fieldname>
-    <use_contains>N</use_contains>
-    <case_value_type>String</case_value_type>
-    <case_value_format/>
-    <case_value_decimal/>
-    <case_value_group/>
-    <default_target_step>Dummy: ingore not-dml-change</default_target_step>
-    <cases>
-      <case>
-        <value>INSERT</value>
-        <target_step>InsertUpdate: insert</target_step>
-      </case>
-      <case>
-        <value>DELETE</value>
-        <target_step>Delete</target_step>
-      </case>
-      <case>
-        <value>UPDATE</value>
-        <target_step>InsertUpdate: update</target_step>
-      </case>
-      <case>
-        <value>INSERT_BLUK</value>
-        <target_step>TableOutput</target_step>
-      </case>
-    </cases>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>320</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TableOutput</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
-    <schema>"${Param.Schema.Name}"</schema>
-    <table>"${Param.Table.Name}"</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>N</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step_error_handling>
   </step_error_handling>
   <slave-step-copy-partition-distribution>

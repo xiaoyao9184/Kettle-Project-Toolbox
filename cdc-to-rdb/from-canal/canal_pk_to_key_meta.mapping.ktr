@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>canal_key_to_kettle_field.mapping</name>
+    <name>canal_pk_to_key_meta.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/01 11:03:23.259</modified_date>
+    <modified_date>2021/09/11 20:07:31.114</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -446,7 +446,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test canal_manager</from>
+      <from>DataGrid: canal_manager</from>
       <to>ScriptValueMod: from pk</to>
       <enabled>N</enabled>
     </hop>
@@ -547,7 +547,7 @@
     </GUI>
   </step>
   <step>
-    <name>DataGrid: test canal_manager</name>
+    <name>DataGrid: canal_manager</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -598,7 +598,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
+      <xloc>112</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -664,7 +664,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>800</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -690,16 +690,14 @@
 var index_pk = getOutputRowMeta().indexOfValue("pk");
 
 var message_index = getInputRowMeta().indexOfValue("message");
-var message = row[message_index];
-var msg = JSON.parse(message);
-var keys = msg.pkNames;
+var message_col = row[message_index];
+var message_obj = JSON.parse(message_col);
+var keys = message_obj.pkNames;
 
 for (index = 0; index &lt; keys.length; index++) {
   var key = keys[index];
 
-  var row = createRowCopy(getOutputRowMeta().size());
-  var idx = getOutputRowMeta().indexOfValue("pk");
-  
+  var row = createRowCopy(getOutputRowMeta().size());  
   row[index_pk] = key; 
   putRow(row);
 }</jsScript_script>
@@ -725,7 +723,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>192</yloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -773,7 +771,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>640</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

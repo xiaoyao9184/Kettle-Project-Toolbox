@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>table_crud_to_specify_table</name>
+    <name>table_crud_to_specify_table.prototype[debezium_mssql]</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka</directory>
+    <directory>/</directory>
     <parameters>
       <parameter>
         <name>Config.Log.Kafka.Consumer.Group</name>
@@ -15,7 +16,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Data.Topic</name>
-        <default_value>kpt_debezium-mssql</default_value>
+        <default_value>test_debezium_mssql-test_kpt_cdc.data-changes</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -60,23 +61,23 @@
       </parameter>
       <parameter>
         <name>Param.Schema.Name</name>
-        <default_value>-</default_value>
+        <default_value>kpt_sync__test_kpt_cdc</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Param.Table.Name</name>
-        <default_value>-</default_value>
+        <default_value>debezium_types</default_value>
         <description/>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__ktr</table>
+        <connection/>
+        <schema/>
+        <table/>
         <size_limit_lines/>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -170,26 +171,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__seq</table>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -267,10 +268,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__channel</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -333,10 +334,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__step</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -404,15 +405,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__metrics</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -489,63 +490,12 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/11 22:15:23.308</modified_date>
+    <modified_date>2021/09/11 18:10:19.629</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_bin_log_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
       <from>FilterRows: rdb_table_ingore</from>
@@ -553,13 +503,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: sort field</from>
-      <to>RowsToResult</to>
+      <from>Dummy: process logs</from>
+      <to>SampleRows: for column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>RowsFromResult: kafka with table info</from>
-      <to>Dummy: stream logs</to>
+      <from>BlockUntilStepsFinish</from>
+      <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -573,43 +523,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
-      <to>Kafka producer: ingore_table_log</to>
+      <from>SampleRows: for column</from>
+      <to>WriteToLog: source &amp; target table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: column meta</from>
+      <to>SimpleMapping: rdb_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: process logs</from>
-      <to>Kafka producer: process_table_log</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>StepsMetrics</from>
-      <to>GetVariable: full table name</to>
+      <to>SimpleMapping: target_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: full table name</from>
-      <to>SystemInfo: batch_id</to>
+      <from>SimpleMapping: target_switch_flag</from>
+      <to>BlockUntilStepsFinish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id</from>
-      <to>SelectValues: sort field</to>
+      <from>DataGrid: test_kpt_cdc</from>
+      <to>Dummy: stream logs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: stream logs</from>
       <to>SampleRows: for rdb_table_ingore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_table_ingore</from>
-      <to>WriteToLog: rdb_table_ingore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_table_ingore</from>
-      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -619,287 +559,22 @@
     </hop>
     <hop>
       <from>SelectValues: remove repeat</from>
-      <to>SimpleMapping: rdb_table_ingore</to>
+      <to>Constant: rdb_table_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append: GMT_to_Timestamp</from>
-      <to>ETL metadata injection</to>
+      <from>Constant: rdb_table_ingore</from>
+      <to>WriteToLog: rdb_table_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append: scale_to_BigNumber.step1</from>
-      <to>ETL metadata injection</to>
+      <from>Constant: rdb_table_ingore</from>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append: to_BigNumber</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: to_Boolean</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: to_Integer</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: to_Number</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>BlockUntilStepsFinish</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: field_path</from>
-      <to>SelectValues: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR,FLAG</from>
-      <to>FilterRows: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: GMT_to_Timestamp</from>
-      <to>SelectValues: GMT_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: JsonInput</from>
-      <to>Calculator: field_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: days_to_Date</from>
-      <to>SelectValues: days_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: microseconds_to_Date</from>
-      <to>SelectValues: microseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: milliseconds_to_Date</from>
-      <to>SelectValues: milliseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: nanoseconds_to_Date</from>
-      <to>SelectValues: nanoseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: scale_to_BigNumber</from>
-      <to>ReplaceString: template</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: scale_to_BigNumber</from>
-      <to>SelectValues: scale_to_BigNumber.step2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: to_BigNumber</from>
-      <to>SelectValues: to_BigNumber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: to_Boolean</from>
-      <to>SelectValues: to_Boolean</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: to_Integer</from>
-      <to>SelectValues: to_Integer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: to_Number</from>
-      <to>SelectValues: to_Number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: GMT_to_Timestamp</from>
-      <to>Append: GMT_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: scale_to_BigNumber.step1</from>
-      <to>Append: scale_to_BigNumber.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: to_BigNumber</from>
-      <to>Append: to_BigNumber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: to_Boolean</from>
-      <to>Append: to_Boolean</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: to_Integer</from>
-      <to>Append: to_Integer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: to_Number</from>
-      <to>Append: to_Number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>Constant: COMPARATOR,FLAG</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>Constant: JsonInput</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>Dummy: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>Switch / case: kettle_converter</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>WriteToLog: column meta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: field</from>
-      <to>SelectValues: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: key</from>
-      <to>SelectValues: key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: target</from>
-      <to>SampleRows: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>Dummy: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>Dummy: key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ReplaceString: template</from>
-      <to>SelectValues: scale_to_BigNumber.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for column</from>
-      <to>WriteToLog: source &amp; target table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: target</from>
-      <to>SelectValues: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: GMT_to_Timestamp</from>
-      <to>Append: GMT_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: column</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: days_to_Date</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: field</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: key</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: microseconds_to_Date</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: milliseconds_to_Date</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: nanoseconds_to_Date</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: scale_to_BigNumber.step1</from>
-      <to>Append: scale_to_BigNumber.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: scale_to_BigNumber.step2</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: target</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: to_BigNumber</from>
-      <to>Append: to_BigNumber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: to_Boolean</from>
-      <to>Append: to_Boolean</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: to_Integer</from>
-      <to>Append: to_Integer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: to_Number</from>
-      <to>Append: to_Number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: column meta</from>
-      <to>SimpleMapping: rdb_column</to>
+      <from>FilterRows: rdb_table_ingore</from>
+      <to>Dummy: ingore_table_log</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -908,8 +583,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: target_switch_flag</from>
-      <to>BlockUntilStepsFinish</to>
+      <from>Dummy: column meta</from>
+      <to>Switch / case: kettle_converter</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: to_Integer</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: to_Boolean</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: to_Number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: to_BigNumber</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -924,12 +619,12 @@
     </hop>
     <hop>
       <from>Switch / case: kettle_converter</from>
-      <to>Constant: microseconds_to_Date</to>
+      <to>Constant: milliseconds_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Switch / case: kettle_converter</from>
-      <to>Constant: milliseconds_to_Date</to>
+      <to>Constant: microseconds_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -943,33 +638,283 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_BigNumber</to>
+      <from>Constant: to_Integer</from>
+      <to>SelectValues: to_Integer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_Boolean</to>
+      <from>Constant: to_Number</from>
+      <to>SelectValues: to_Number</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_Integer</to>
+      <from>Constant: to_BigNumber</from>
+      <to>SelectValues: to_BigNumber</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_Number</to>
+      <from>Constant: GMT_to_Timestamp</from>
+      <to>SelectValues: GMT_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: process logs</from>
-      <to>SimpleMapping: target_switch_flag</to>
+      <from>Constant: days_to_Date</from>
+      <to>SelectValues: days_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: process logs</from>
-      <to>SampleRows: for column</to>
+      <from>Constant: milliseconds_to_Date</from>
+      <to>SelectValues: milliseconds_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: microseconds_to_Date</from>
+      <to>SelectValues: microseconds_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: nanoseconds_to_Date</from>
+      <to>SelectValues: nanoseconds_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: scale_to_BigNumber</from>
+      <to>SelectValues: scale_to_BigNumber.step2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: scale_to_BigNumber</from>
+      <to>ReplaceString: template</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: template</from>
+      <to>SelectValues: scale_to_BigNumber.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>WriteToLog: column meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Constant: JsonInput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: JsonInput</from>
+      <to>Calculator: field_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: field_path</from>
+      <to>SelectValues: column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: column</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: days_to_Date</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: milliseconds_to_Date</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: microseconds_to_Date</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: nanoseconds_to_Date</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: scale_to_BigNumber.step2</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Constant: COMPARATOR,FLAG</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR,FLAG</from>
+      <to>FilterRows: column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: field</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: column</from>
+      <to>Dummy: key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: column</from>
+      <to>Dummy: field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: key</from>
+      <to>SelectValues: key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Dummy: target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: target</from>
+      <to>SampleRows: target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: target</from>
+      <to>SelectValues: target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: target</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: field</from>
+      <to>SelectValues: field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: key</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: to_Boolean</from>
+      <to>SelectValues: to_Boolean</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: to_Boolean</from>
+      <to>Append: to_Boolean</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: to_Boolean</from>
+      <to>Append: to_Boolean</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_Boolean</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: to_Integer</from>
+      <to>Append: to_Integer</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: to_Integer</from>
+      <to>Append: to_Integer</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: to_Number</from>
+      <to>Append: to_Number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: to_Number</from>
+      <to>Append: to_Number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: to_BigNumber</from>
+      <to>Append: to_BigNumber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: to_BigNumber</from>
+      <to>Append: to_BigNumber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: GMT_to_Timestamp</from>
+      <to>Append: GMT_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_Integer</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_Number</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_BigNumber</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: GMT_to_Timestamp</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: GMT_to_Timestamp</from>
+      <to>Append: GMT_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: scale_to_BigNumber.step1</from>
+      <to>Append: scale_to_BigNumber.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: scale_to_BigNumber.step1</from>
+      <to>Append: scale_to_BigNumber.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: scale_to_BigNumber.step1</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: full table name</from>
+      <to>SystemInfo: batch_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: sort field</from>
+      <to>RowsToResult</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StepsMetrics</from>
+      <to>GetVariable: full table name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch_id</from>
+      <to>SelectValues: sort field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1857,6 +1802,69 @@
     </GUI>
   </step>
   <step>
+    <name>Constant: rdb_table_ingore</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>rdb_schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>"kpt_sync__test_kpt_cdc"</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>rdb_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>"debezium_types"</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>rdb_table_ingore</name>
+        <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>false</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Constant: scale_to_BigNumber</name>
     <type>Constant</type>
     <description/>
@@ -2356,6 +2364,193 @@
     </GUI>
   </step>
   <step>
+    <name>DataGrid: test_kpt_cdc</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>target_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>key</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>topic</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>partition</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>offset</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <type>Timestamp</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>0</item>
+        <item>kpt_sync__test_kpt_cdc.debezium_types</item>
+        <item>test_kpt_cdc</item>
+        <item>debezium_types</item>
+        <item>kpt_sync__test_kpt_cdc</item>
+        <item>debezium_types</item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"1","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"1","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
+        <item>test_debezium_mssql-test_kpt_cdc.data-changes</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2021-09-07 08:47:42.102</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>DataGrid: to_BigNumber</name>
     <type>DataGrid</type>
     <description/>
@@ -2634,6 +2829,31 @@
     </GUI>
   </step>
   <step>
+    <name>Dummy: ingore_table_log</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Dummy: key</name>
     <type>Dummy</type>
     <description/>
@@ -2744,15 +2964,15 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
+    <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>message_convert_to_rdb_rud.template</trans_name>
-    <filename/>
-    <directory_path>to_rdb</directory_path>
+    <trans_name/>
+    <filename>${Internal.Entry.Current.Directory}/../../to_rdb/test/message_convert_to_rdb_rud.template.ktr</filename>
+    <directory_path/>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file/>
-    <no_execution>N</no_execution>
+    <target_file>${Internal.Entry.Current.Directory}/message_convert_to_rdb_rud.injection.ktr</target_file>
+    <no_execution>Y</no_execution>
     <stream_source_step>BlockUntilStepsFinish</stream_source_step>
     <stream_target_step>JSON input: column</stream_target_step>
     <mappings>
@@ -3274,7 +3494,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Kafka producer: ingore_table_log</send_true_to>
+    <send_true_to>Dummy: ingore_table_log</send_true_to>
     <send_false_to>Dummy: process logs</send_false_to>
     <compare>
       <condition>
@@ -3395,86 +3615,6 @@
     </GUI>
   </step>
   <step>
-    <name>Kafka producer: ingore_table_log</name>
-    <type>KafkaProducerOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-ingore_table_log</topic>
-    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
-    <keyField>key</keyField>
-    <messageField>message</messageField>
-    <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Kafka producer: process_table_log</name>
-    <type>KafkaProducerOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-process_table_log</topic>
-    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
-    <keyField>key</keyField>
-    <messageField>message</messageField>
-    <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>ReplaceString: template</name>
     <type>ReplaceString</type>
     <description/>
@@ -3522,105 +3662,6 @@
     <GUI>
       <xloc>768</xloc>
       <yloc>2288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>RowsFromResult: kafka with table info</name>
-    <type>RowsFromResult</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>group_table_id</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>key</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>message</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>topic</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>partition</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>offset</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <type>Timestamp</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3788,6 +3829,7 @@
       </field>
       <field>
         <name>field_path</name>
+        <rename/>
       </field>
       <field>
         <name>JSON_INPUT_FIELD_TYPE</name>
@@ -4185,6 +4227,12 @@
       </remove>
       <remove>
         <name>source_table</name>
+      </remove>
+      <remove>
+        <name>target_schema</name>
+      </remove>
+      <remove>
+        <name>target_table</name>
       </remove>
       <remove>
         <name>key</name>
@@ -4700,11 +4748,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
+    <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <trans_name/>
+    <filename>${Internal.Entry.Current.Directory}/../../${Config.Log.Source.Transformation.Path}/${Config.Log.Source.Column.Mapping}.ktr</filename>
+    <directory_path/>
     <mappings>
       <input>
         <mapping>
@@ -4735,16 +4783,20 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kettle_converter</parent>
-            <child>kettle_converter</child>
+            <parent>kettle_field</parent>
+            <child>kettle_field</child>
+          </connector>
+          <connector>
+            <parent>kettle_json_path</parent>
+            <child>kettle_json_path</child>
           </connector>
           <connector>
             <parent>kettle_type</parent>
             <child>kettle_type</child>
           </connector>
           <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
+            <parent>kettle_converter</parent>
+            <child>kettle_converter</child>
           </connector>
           <connector>
             <parent>column_name</parent>
@@ -4757,6 +4809,14 @@
           <connector>
             <parent>column_key</parent>
             <child>column_key</child>
+          </connector>
+          <connector>
+            <parent>column_scale</parent>
+            <child>column_scale</child>
+          </connector>
+          <connector>
+            <parent>column_precision</parent>
+            <child>column_precision</child>
           </connector>
         </mapping>
       </output>
@@ -4789,11 +4849,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
+    <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <trans_name/>
+    <filename>${Internal.Entry.Current.Directory}/../../${Config.Log.Target.Transformation.Path}/${Config.Log.Target.Column.Mapping}.ktr</filename>
+    <directory_path/>
     <mappings>
       <input>
         <mapping>
@@ -4856,83 +4916,6 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: rdb_table_ingore</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Target.Ingore.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>schema</parent>
-            <child>rdb_schema</child>
-          </connector>
-          <connector>
-            <parent>table</parent>
-            <child>rdb_table</child>
-          </connector>
-          <connector>
-            <parent>ingore</parent>
-            <child>rdb_table_ingore</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SimpleMapping: target_switch_flag</name>
     <type>SimpleMapping</type>
     <description/>
@@ -4943,11 +4926,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
+    <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Source.Switch.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <trans_name/>
+    <filename>${Internal.Entry.Current.Directory}/../../${Config.Log.Source.Transformation.Path}/${Config.Log.Source.Switch.Mapping}.ktr</filename>
+    <directory_path/>
     <mappings>
       <input>
         <mapping>
@@ -5186,6 +5169,9 @@
     <logmessage/>
     <fields>
       <field>
+        <name>rdb_column</name>
+      </field>
+      <field>
         <name>kettle_field</name>
       </field>
       <field>
@@ -5208,6 +5194,12 @@
       </field>
       <field>
         <name>column_key</name>
+      </field>
+      <field>
+        <name>column_scale</name>
+      </field>
+      <field>
+        <name>column_precision</name>
       </field>
     </fields>
     <attributes/>

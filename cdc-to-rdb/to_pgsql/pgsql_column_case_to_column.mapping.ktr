@@ -1,22 +1,32 @@
 <transformation>
   <info>
-    <name>kafka_to_stream</name>
+    <name>pgsql_column_case_to_column.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka</directory>
+    <directory>/to_pgsql</directory>
     <parameters>
+      <parameter>
+        <name>Param.Schema.Name</name>
+        <default_value>-</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Param.Table.Name</name>
+        <default_value>-</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__ktr</table>
+        <connection/>
+        <schema/>
+        <table/>
         <size_limit_lines/>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -110,26 +120,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__seq</table>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -207,10 +217,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__channel</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -273,10 +283,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__step</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -344,15 +354,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__metrics</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -415,8 +425,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>Y</capture_step_performance>
-    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -427,75 +437,44 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/07 11:03:26.007</created_date>
+    <created_date>2021/07/26 14:56:54.763</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/11 21:39:45.277</modified_date>
+    <modified_date>2021/09/10 16:19:12.265</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_bin_log_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
-      <from>Kafka consumer</from>
-      <to>Dummy</to>
+      <from>MappingInput</from>
+      <to>Constant: QUOTATION</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: QUOTATION</from>
+      <to>Calculator: case_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: case_column</from>
+      <to>SelectValues: remove QUOTATION</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove QUOTATION</from>
+      <to>SelectValues: rename</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: rename</from>
+      <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Dummy</name>
-    <type>Dummy</type>
+    <name>Calculator: case_column</name>
+    <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -504,6 +483,61 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>case_column</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>QUOTATION</field_a>
+      <field_b>column</field_b>
+      <field_c>QUOTATION</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: QUOTATION</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>QUOTATION</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>"</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -519,8 +553,8 @@
     </GUI>
   </step>
   <step>
-    <name>Kafka consumer</name>
-    <type>KafkaConsumerInput</type>
+    <name>MappingInput</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -529,32 +563,27 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}</topic>
-    <consumerGroup>${Config.Log.Kafka.Consumer.Group}</consumerGroup>
-    <transformationPath>${Internal.Entry.Current.Directory}/stream_parse_to_each_table</transformationPath>
-    <SUB_STEP>Dummy: return to kafka</SUB_STEP>
-    <batchSize>10000</batchSize>
-    <batchDuration>60000</batchDuration>
-    <PARALLELISM>1</PARALLELISM>
-    <prefetchMessageCount>10000</prefetchMessageCount>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <AUTO_COMMIT>N</AUTO_COMMIT>
-    <OutputField kafkaName="key" type="String">key</OutputField>
-    <OutputField kafkaName="message" type="String">message</OutputField>
-    <OutputField kafkaName="topic" type="String">topic</OutputField>
-    <OutputField kafkaName="partition" type="Integer">partition</OutputField>
-    <OutputField kafkaName="offset" type="Integer">offset</OutputField>
-    <OutputField kafkaName="timestamp" type="Integer">timestamp</OutputField>
-    <advancedConfig>
-      <option property="auto.offset.reset" value="earliest"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
+    <fields>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>column</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -565,7 +594,108 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>64</yloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingOutput</name>
+    <type>MappingOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove QUOTATION</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>QUOTATION</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: rename</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>case_column</name>
+        <rename>rdb_column</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

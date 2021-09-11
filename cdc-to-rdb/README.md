@@ -162,15 +162,12 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
 			<cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
 			<cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
-			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_kettle_field.mapping</cfg>
 			<cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
 			
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
-			<cfg namespace="Config.Log.Tatget.Exists" key="Mapping">pgsql_table_exists.mapping</cfg>
+			<cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists.mapping</cfg>
 			<cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Field" key="Mapping">pgsql_column_case.mapping</cfg>
-			<cfg namespace="Config.Log.Tatget.Write" key="Template">pgsql_table_log_write.template</cfg>
 			<!-- define output destination schema and table prefix -->
 			<cfg namespace="Config.Log.Tatget.Schema" key="Prefix">kpt_sync__</cfg>
 			<cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
