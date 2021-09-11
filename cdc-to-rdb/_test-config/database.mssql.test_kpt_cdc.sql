@@ -1,12 +1,30 @@
 USE [master]
 GO
 
-/****** Object:  Database [test_debezium_mssql]    Script Date: 2021/9/7 16:25:11 ******/
-CREATE DATABASE [test_debezium_mssql]
+/* For security reasons the login is created disabled and with a random password. */
+/****** Object:  Login [kpt]    Script Date: 2021/9/11 11:06:13 ******/
+CREATE LOGIN [kpt] WITH PASSWORD=N'kpt.123', DEFAULT_DATABASE=[master], DEFAULT_LANGUAGE=[us_english], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
 GO
 
-USE [test_debezium_mssql]
+ALTER LOGIN [kpt] ENABLE
 GO
+
+ALTER SERVER ROLE [sysadmin] ADD MEMBER [kpt]
+GO
+
+/****** Object:  Database [test_kpt_cdc]    Script Date: 2021/9/7 16:25:11 ******/
+CREATE DATABASE [test_kpt_cdc]
+GO
+
+USE [test_kpt_cdc]
+GO
+
+CREATE USER [kpt] FOR LOGIN [kpt]
+GO
+
+ALTER ROLE [db_owner] ADD MEMBER [kpt]
+GO
+
 
 /****** Object:  Table [dbo].[debezium_types]    Script Date: 2021/9/7 15:15:27 ******/
 SET ANSI_NULLS ON
@@ -14,7 +32,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[debezium_types](
-	[_id] [varchar](50) NULL,
+	[_id] [varchar](50),
 	[BIT] [bit] NULL,
 	[TINYINT] [tinyint] NULL,
 	[SMALLINT] [smallint] NULL,
@@ -42,7 +60,11 @@ CREATE TABLE [dbo].[debezium_types](
 	[NUMERIC] [numeric](18, 1) NULL,
 	[DECIMAL] [decimal](18, 2) NULL,
 	[SMALLMONEY] [smallmoney] NULL,
-	[MONEY] [money] NULL
+	[MONEY] [money] NULL,
+ CONSTRAINT [PK_debezium_types] PRIMARY KEY CLUSTERED 
+(
+	[_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
@@ -51,7 +73,7 @@ GO
 -- ================================
 -- Enable Database for CDC Template
 -- ================================
-USE [test_debezium_mssql]
+USE [test_kpt_cdc]
 GO
 
 EXEC sys.sp_cdc_enable_db
@@ -61,11 +83,11 @@ GO
 -- ===============================================
 -- Enable All Tables of a Database Schema Template
 -- ===============================================
-USE [test_debezium_mssql]
+USE [test_kpt_cdc]
 GO
 
 DECLARE @source_schema sysname, @source_name sysname
-SET @source_schema = N'<source_schema,sysname,source_schema>'
+SET @source_schema = N'dbo'
 DECLARE #hinstance CURSOR LOCAL fast_forward
 FOR
 	SELECT name  
@@ -92,7 +114,7 @@ DEALLOCATE #hinstance
 GO
 
 
-USE [test_debezium_mssql]
+USE [test_kpt_cdc]
 GO
 
 INSERT INTO [dbo].[debezium_types]
@@ -131,16 +153,16 @@ INSERT INTO [dbo].[debezium_types]
            ,1
            ,2
            ,3
-		   ,4
-		   ,5.5
+           ,4
+           ,5.5
            ,6.6
            ,'7'
            ,'8'
            ,'9'
            ,'10'
            ,'11'
-		   ,'12'
-		   ,N'<?xml version="1.0" encoding="utf-16" standalone="yes"?><!--This is a test XML file--><filemeta filetype="Audio"><Comments /><AlbumTitle /><TrackNumber /><ArtistName /><Year /><Genre /><TrackTitle /></filemeta>'
+        ,'12'
+         ,N'<?xml version="1.0" encoding="utf-16" standalone="yes"?><!--This is a test XML file--><filemeta filetype="Audio"><Comments /><AlbumTitle /><TrackNumber /><ArtistName /><Year /><Genre /><TrackTitle /></filemeta>'
            ,'2021-09-07 06:26:20.6220000 +08:00'
            ,'2021-09-07'
            ,'06:26:20.6220000'
@@ -152,6 +174,71 @@ INSERT INTO [dbo].[debezium_types]
            ,'2021-09-07 06:26:20.6220000'
            ,'2021-09-07 06:26:20.6220000'
            ,24.1
+           ,25.12
+           ,26.1234
+           ,27.1234)
+GO
+
+USE [test_kpt_cdc]
+GO
+
+INSERT INTO [dbo].[debezium_types]
+           ([_id]
+           ,[BIT]
+           ,[TINYINT]
+           ,[SMALLINT]
+           ,[INT]
+           ,[BIGINT]
+           ,[REAL]
+           ,[FLOAT]
+           ,[CHAR]
+           ,[VARCHAR]
+           ,[TEXT]
+           ,[NCHAR]
+           ,[NVARCHAR]
+           ,[NTEXT]
+           ,[XML]
+           ,[DATETIMEOFFSET]
+           ,[DATE]
+           ,[TIME_3]
+           ,[TIME_6]
+           ,[TIME_7]
+           ,[DATETIME]
+           ,[SMALLDATETIME]
+           ,[DATETIME2_3]
+           ,[DATETIME2_6]
+           ,[DATETIME2_7]
+           ,[NUMERIC]
+           ,[DECIMAL]
+           ,[SMALLMONEY]
+           ,[MONEY])
+     VALUES
+           (2
+           ,'1'
+           ,1
+           ,NULL
+           ,3
+           ,4
+           ,5.5
+           ,6.6
+           ,'7'
+           ,'8'
+           ,NULL
+           ,'10'
+           ,'11'
+           ,'12'
+           ,NULL
+           ,'2021-09-07 06:26:20.6220000 +08:00'
+           ,'2021-09-07'
+           ,'06:26:20.6220000'
+           ,NULL
+           ,'06:26:20.6220000'
+           ,'2021-09-07 06:26:20.623'
+           ,'2021-09-07 06:26:00'
+           ,'2021-09-07 06:26:20.6220000'
+           ,NULL
+           ,'2021-09-07 06:26:20.6220000'
+           ,NULL
            ,25.12
            ,26.1234
            ,27.1234)

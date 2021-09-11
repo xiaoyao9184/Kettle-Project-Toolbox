@@ -1,5 +1,5 @@
 {
-	"name": "test_debezium-test_debezium_mssql-string",
+	"name": "test_debezium_mssql-test_kpt_cdc-double",
 	"config": {
 		"connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
 		"tasks.max": "1",
@@ -15,15 +15,15 @@
 		"database.port": "1433",
 		"database.user": "kpt",
 		"database.password": "kpt.123",
-		"database.dbname": "test_debezium_mssql",
-		"database.server.name": "test_debezium-test_debezium_mssql",
+		"database.dbname": "test_kpt_cdc",
+		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
 		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium-test_debezium_mssql.schema-changes",
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium-test_debezium_mssql.data-changes",
-		"decimal.handling.mode": "string"
+		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes",
+		"decimal.handling.mode": "double"
 	}
 }
