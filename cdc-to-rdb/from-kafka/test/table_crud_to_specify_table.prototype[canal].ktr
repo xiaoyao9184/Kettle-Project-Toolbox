@@ -548,11 +548,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: COMPARATOR,FLAG</from>
-      <to>FilterRows: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: GMT_to_Timestamp</from>
       <to>SelectValues: GMT_to_Timestamp</to>
       <enabled>Y</enabled>
@@ -679,11 +674,6 @@
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>Constant: COMPARATOR,FLAG</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
       <to>Constant: JsonInput</to>
       <enabled>Y</enabled>
     </hop>
@@ -700,16 +690,6 @@
     <hop>
       <from>Dummy: column meta</from>
       <to>WriteToLog: column meta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: field</from>
-      <to>SelectValues: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: key</from>
-      <to>SelectValues: key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -735,16 +715,6 @@
     <hop>
       <from>Dummy: target</from>
       <to>SampleRows: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>Dummy: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>Dummy: key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -975,6 +945,36 @@
     <hop>
       <from>SystemInfo: batch_id</from>
       <to>SelectValues: sort field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>FilterRows: column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>ValueMapper: FLAG</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: field</from>
+      <to>Constant: COMPARATOR</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: column</from>
+      <to>SelectValues: key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ValueMapper: FLAG</from>
+      <to>SelectValues: field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Dummy: field</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1327,57 +1327,6 @@
     <GUI>
       <xloc>768</xloc>
       <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: COMPARATOR,FLAG</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>COMPARATOR</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>=</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>FLAG</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Y</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>2992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2804,31 +2753,6 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy: field</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>3040</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Dummy: ingore_table_log</name>
     <type>Dummy</type>
     <description/>
@@ -2850,31 +2774,6 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: key</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3419,50 +3318,6 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: column</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Dummy: key</send_true_to>
-    <send_false_to>Dummy: field</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>column_key</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask/>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>2992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>FilterRows: rdb_table_ingore</name>
     <type>FilterRows</type>
     <description/>
@@ -3727,7 +3582,7 @@
     <name>SampleRows: target</name>
     <type>SampleRows</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -3808,7 +3663,6 @@
       </field>
       <field>
         <name>field_path</name>
-        <rename/>
       </field>
       <field>
         <name>JSON_INPUT_FIELD_TYPE</name>
@@ -5286,6 +5140,152 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: COMPARATOR</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>COMPARATOR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>=</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: field</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>2944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: column</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>SelectValues: key</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>column_key</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1008</xloc>
+      <yloc>2944</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ValueMapper: FLAG</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>column_key</field_to_use>
+    <target_field>FLAG</target_field>
+    <non_match_default>Y</non_match_default>
+    <fields>
+      <field>
+        <source_value>Y</source_value>
+        <target_value>N</target_value>
+      </field>
+      <field>
+        <source_value>N</source_value>
+        <target_value>Y</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1008</xloc>
+      <yloc>3040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
