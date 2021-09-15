@@ -60,6 +60,11 @@
         <description/>
       </parameter>
       <parameter>
+        <name>Config.Log.Delay.Time</name>
+        <default_value>0</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>Param.Schema.Name</name>
         <default_value>kpt_sync__test_kpt_cdc</default_value>
         <description/>
@@ -538,11 +543,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>BlockUntilStepsFinish</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Calculator: field_path</from>
       <to>SelectValues: column</to>
       <enabled>Y</enabled>
@@ -977,6 +977,16 @@
       <to>Dummy: field</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>BlockUntilStepsFinish</from>
+      <to>Delay: for debug</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Delay: for debug</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Append: GMT_to_Timestamp</name>
@@ -1327,6 +1337,45 @@
     <GUI>
       <xloc>768</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: COMPARATOR</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>COMPARATOR</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>=</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2054,7 +2103,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2066,7 +2114,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_conversion_mask</name>
@@ -2078,7 +2125,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2124,7 +2170,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2136,7 +2181,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_conversion_mask</name>
@@ -2148,7 +2192,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2194,7 +2237,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2206,7 +2248,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_conversion_mask</name>
@@ -2218,7 +2259,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2264,7 +2304,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2276,7 +2315,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_conversion_mask</name>
@@ -2288,7 +2326,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2334,7 +2371,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>group_table_name</name>
@@ -2346,7 +2382,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>source_schema</name>
@@ -2358,7 +2393,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>source_table</name>
@@ -2370,7 +2404,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>target_schema</name>
@@ -2382,7 +2415,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>target_table</name>
@@ -2394,7 +2426,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>key</name>
@@ -2406,7 +2437,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>message</name>
@@ -2418,7 +2448,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>topic</name>
@@ -2430,7 +2459,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>partition</name>
@@ -2442,7 +2470,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>offset</name>
@@ -2454,7 +2481,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>timestamp</name>
@@ -2466,7 +2492,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2521,7 +2546,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2533,7 +2557,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2578,7 +2601,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2590,7 +2612,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2635,7 +2656,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2647,7 +2667,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2692,7 +2711,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
       <field>
         <name>field_type</name>
@@ -2704,7 +2722,6 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -2749,6 +2766,31 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: field</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2872,7 +2914,7 @@
     <source_output_fields>    </source_output_fields>
     <target_file>${Internal.Entry.Current.Directory}/../../to_rdb/test/message_convert_to_rdb_rud.injection[canal.${Param.Schema.Name}.${Param.Table.Name}].ktr</target_file>
     <no_execution>Y</no_execution>
-    <stream_source_step>BlockUntilStepsFinish</stream_source_step>
+    <stream_source_step>Delay: for debug</stream_source_step>
     <stream_target_step>JSON input: column</stream_target_step>
     <mappings>
       <mapping>
@@ -3314,6 +3356,50 @@
     <GUI>
       <xloc>1536</xloc>
       <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: column</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>SelectValues: key</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>column_key</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1008</xloc>
+      <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4985,6 +5071,44 @@
     </GUI>
   </step>
   <step>
+    <name>ValueMapper: FLAG</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>column_key</field_to_use>
+    <target_field>FLAG</target_field>
+    <non_match_default>Y</non_match_default>
+    <fields>
+      <field>
+        <source_value>Y</source_value>
+        <target_value>N</target_value>
+      </field>
+      <field>
+        <source_value>N</source_value>
+        <target_value>Y</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1008</xloc>
+      <yloc>3040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>WriteToLog: column meta</name>
     <type>WriteToLog</type>
     <description/>
@@ -5144,47 +5268,8 @@
     </GUI>
   </step>
   <step>
-    <name>Constant: COMPARATOR</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>COMPARATOR</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>=</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>2944</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: field</name>
-    <type>Dummy</type>
+    <name>Delay: for debug</name>
+    <type>Delay</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -5193,6 +5278,8 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <timeout>${Config.Log.Delay.Time}</timeout>
+    <scaletime>milliseconds</scaletime>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -5202,90 +5289,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>2944</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: column</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>SelectValues: key</send_true_to>
-    <send_false_to/>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>column_key</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask/>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>2944</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ValueMapper: FLAG</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <field_to_use>column_key</field_to_use>
-    <target_field>FLAG</target_field>
-    <non_match_default>Y</non_match_default>
-    <fields>
-      <field>
-        <source_value>Y</source_value>
-        <target_value>N</target_value>
-      </field>
-      <field>
-        <source_value>N</source_value>
-        <target_value>Y</target_value>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>3040</yloc>
+      <xloc>1536</xloc>
+      <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
