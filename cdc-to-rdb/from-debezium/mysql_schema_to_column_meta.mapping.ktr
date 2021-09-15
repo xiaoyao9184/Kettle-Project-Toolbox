@@ -428,7 +428,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/14 21:36:07.528</modified_date>
+    <modified_date>2021/09/15 11:33:47.014</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -447,11 +447,11 @@
     </hop>
     <hop>
       <from>DataGrid: mysql type to kettle type</from>
-      <to>FilterRows: decimal.handling.mode!=string</to>
+      <to>FilterRows: not support</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: decimal.handling.mode!=string</from>
+      <from>FilterRows: not support</from>
       <to>Calculator: literal_schema_type</to>
       <enabled>Y</enabled>
     </hop>
@@ -926,8 +926,8 @@
         <item>REAL</item>
         <item>double</item>
         <item/>
-        <item>to_Number</item>
-        <item>Number</item>
+        <item>to_BigNumber</item>
+        <item>BigNumber</item>
       </line>
       <line>
         <item/>
@@ -1573,7 +1573,7 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: decimal.handling.mode!=string</name>
+    <name>FilterRows: not support</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1588,18 +1588,55 @@
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>debezium_when</leftvalue>
-        <function>&lt;></function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>String</type>
-          <text>decimal.handling.mode=string</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask/>
-        </value>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>debezium_when</leftvalue>
+            <function>&lt;></function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>decimal.handling.mode=string</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>debezium_when</leftvalue>
+            <function>&lt;></function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>binary.handling.mode=base64</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>debezium_when</leftvalue>
+            <function>&lt;></function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>binary.handling.mode=hex</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
+        </conditions>
       </condition>
     </compare>
     <attributes/>
