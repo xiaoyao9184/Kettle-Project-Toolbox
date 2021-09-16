@@ -83,6 +83,13 @@ echo.
 echo.
 echo.
 echo ===========================================================
+echo link _test path...
+call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\_test-prototype" "%current_path%\_test-prototype" %param%
+echo.
+echo.
+echo.
+echo.
+echo ===========================================================
 echo copy files and profile...
 copy "%current_path%\config.xml" "%workspacePath%\kpt-cdc-to-rdb\config.xml"
 copy "%current_path%\db_kpt_cdc_event_pgsql_writer.kdb" "%workspacePath%\kpt-cdc-to-rdb\db_kpt_cdc_event_pgsql_writer.kdb"
