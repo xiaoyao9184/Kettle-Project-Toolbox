@@ -10,69 +10,74 @@
     <directory>/</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Delay.Time</name>
+        <name>!Config.Log.Delay.Time</name>
         <default_value>0</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Consumer.Group</name>
-        <default_value>kpt.mysql.20210831</default_value>
-        <description/>
+        <name>!Config.Log.Kafka.Consumer.Group</name>
+        <default_value>test_kpt.test_kpt_cdc.202109023</default_value>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Data.Topic</name>
+        <name>!Config.Log.Kafka.Data.Topic</name>
         <default_value>test_debezium_mysql-test_kpt_cdc.data-changes</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <name>!Config.Log.Kafka.Server.Bootstrap</name>
         <default_value>kafka:9092</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Column.Mapping</name>
+        <name>!Config.Log.Source.Column.Mapping</name>
         <default_value>mysql_schema_to_column_meta.mapping</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Switch.Mapping</name>
+        <name>!Config.Log.Source.Key.Mapping</name>
+        <default_value>debezium_key_to_key_meta.mapping</default_value>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+      </parameter>
+      <parameter>
+        <name>!Config.Log.Source.Switch.Mapping</name>
         <default_value>debezium_operate_to_kettle_switch_flag.mapping</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Transformation.Path</name>
+        <name>!Config.Log.Source.Transformation.Path</name>
         <default_value>from-debezium</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Case.Name</name>
+        <name>!Config.Log.Target.Case.Name</name>
         <default_value>true</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Column.Mapping</name>
+        <name>!Config.Log.Target.Column.Mapping</name>
         <default_value>pgsql_column_case_to_column.mapping</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Ingore.Mapping</name>
+        <name>!Config.Log.Target.Ingore.Mapping</name>
         <default_value>pgsql_table_exists_to_ingore.mapping</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Transformation.Path</name>
+        <name>!Config.Log.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
-        <description/>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Param.Schema.Name</name>
-        <default_value>kpt_sync__test_kpt_cdc</default_value>
-        <description/>
+        <name>!Param.Schema.Name</name>
+        <default_value>test_mysql__test_kpt_cdc</default_value>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
       <parameter>
-        <name>Param.Table.Name</name>
-        <default_value>debezium_types</default_value>
-        <description/>
+        <name>!Param.Table.Name</name>
+        <default_value>change_pk__debezium_types</default_value>
+        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
       </parameter>
     </parameters>
     <log>
@@ -1818,7 +1823,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>"kpt_sync__test_kpt_cdc"</nullif>
+        <nullif>"test_mysql__test_kpt_cdc"</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -1830,7 +1835,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>"debezium_types"</nullif>
+        <nullif>"change_pk__debezium_types"</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -2521,14 +2526,14 @@
     <data>
       <line>
         <item>0</item>
-        <item>kpt_sync__test_kpt_cdc.debezium_types</item>
+        <item>test_mysql__test_kpt_cdc.debezium_types</item>
         <item>test_kpt_cdc</item>
         <item>debezium_types</item>
-        <item>kpt_sync__test_kpt_cdc</item>
-        <item>debezium_types</item>
+        <item>test_mysql__test_kpt_cdc</item>
+        <item>change_pk__debezium_types</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"0","__dbz__physicalTableIdentifier":"test_debezium_mysql-test_kpt_cdc.test_kpt_cdc.debezium_types"}}</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"0","BOOLEAN":0,"BOOL":1,"BIT_1":true,"BIT_not_1":"Ag==","TINYINT":5,"SMALLINT":6,"MEDIUMINT":7,"INT":8,"INTEGER":9,"BIGINT":10,"REAL":11.1,"FLOAT":12.229999542236328,"DOUBLE":13.34,"CHAR":"14","VARCHAR":"15","BINARY":"FgAAAAAAAAAAAAAAAAAAAAAAAAA=","VARBINARY":"Fw==","TINYBLOB":"GA==","TINYTEXT":"\u0019","BLOB":"IA==","TEXT":"!","MEDIUMBLOB":"Ig==","MEDIUMTEXT":"#","LONGBLOB":"JA==","LONGTEXT":"%","JSON":"{}","ENUM":"E1","SET":"S1,S2","YEAR":2021,"TIMESTAMP":"2021-09-11T03:59:00Z","DATE":18881,"TIME":42660000000,"DATETIME_3":1631318400000,"DATETIME_6":1631318400000000,"NUMERIC":"eg==","DECIMAL":"BUI=","GEOMETRY":{"wkb":"AQEAAAAAAAAAAADwPwAAAAAAAPA/","srid":null},"LINESTRING":{"wkb":"AQIAAAACAAAAAAAAAAAAAEAAAAAAAADwPwAAAAAAABhAAAAAAAAAGEA=","srid":null},"POLYGON":{"wkb":"AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAcQAAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAAAAAABRA","srid":null},"MULTIPOINT":{"wkb":"AQQAAAACAAAAAQEAAAAAAAAAAADwPwAAAAAAAPA/AQEAAADNzMzMzMwAQM3MzMzMzABA","srid":null},"MULTILINESTRING":{"wkb":"AQUAAAACAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAgAAAAIAAAAAAAAAAACJQAAAAAAAwIJAAAAAAAAAaUAAAAAAAAB5QA==","srid":null},"MULTIPOLYGON":{"wkb":"AQYAAAABAAAAAQMAAAABAAAABwAAAHMdnuSsxkZAAYAbgAyqXsDESLpM+8JGQAGAG8CvqF7AuMxFlyrDRkAAgBvA8KNewFLqMQahxUZAAYAbgOWjXsDP3y03mcdGQAGAGwCfpl7AWAhuvPfHRkABgBvAvalewHMdnuSsxkZAAYAbgAyqXsA=","srid":null},"GEOMETRYCOLLECTION":{"wkb":"AQcAAAADAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAwAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAAAAAAAACQQAAAAAAAAJBAAAAAAAAAkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","srid":null}},"source":{"version":"1.6.2.Final","connector":"mysql","name":"test_debezium_mysql-test_kpt_cdc","ts_ms":1631334480000,"snapshot":"false","db":"test_kpt_cdc","sequence":null,"table":"debezium_types","server_id":1,"gtid":null,"file":"mysql-bin.000001","pos":15756690,"row":0,"thread":null,"query":null},"op":"c","ts_ms":1631334480327,"transaction":null}}</item>
-        <item>test_debezium_mssql-test_kpt_cdc.data-changes</item>
+        <item>test_debezium_mysql-test_kpt_cdc.data-changes</item>
         <item>0</item>
         <item>1</item>
         <item>2021-09-11 04:28:00.363</item>
@@ -4779,6 +4784,14 @@
             <parent>rdb_table_ingore</parent>
             <child>when</child>
           </connector>
+          <connector>
+            <parent>target_schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>table</child>
+          </connector>
         </mapping>
       </input>
       <output>
@@ -5192,9 +5205,6 @@
     <limitRowsNumber>0</limitRowsNumber>
     <logmessage/>
     <fields>
-      <field>
-        <name>rdb_column</name>
-      </field>
       <field>
         <name>kettle_field</name>
       </field>

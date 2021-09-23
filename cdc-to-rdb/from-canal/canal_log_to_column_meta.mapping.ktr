@@ -5,8 +5,14 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/from-canal</directory>
     <parameters>
+      <parameter>
+        <name>Config.Log.Source.Key.Mapping</name>
+        <default_value>canal_pk_to_key_meta.mapping</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -428,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/16 10:41:45.393</modified_date>
+    <modified_date>2021/09/23 16:44:00.068</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -437,11 +443,11 @@
   <order>
     <hop>
       <from>Dummy</from>
-      <to>SimpleMapping: canal_pk_to_key_meta.mapping</to>
+      <to>SimpleMapping: key meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: canal_pk_to_key_meta.mapping</from>
+      <from>SimpleMapping: key meta</from>
       <to>StreamLookup: key</to>
       <enabled>Y</enabled>
     </hop>
@@ -487,11 +493,11 @@
     </hop>
     <hop>
       <from>DataGrid: jdbc type to kettle type</from>
-      <to>FilterRows: kettle_type!=-</to>
+      <to>FilterRows: not support</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: kettle_type!=-</from>
+      <from>FilterRows: not support</from>
       <to>Dummy: kettle_type</to>
       <enabled>Y</enabled>
     </hop>
@@ -931,8 +937,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>480</yloc>
+      <xloc>896</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1051,13 +1057,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>896</xloc>
       <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>FilterRows: kettle_type!=-</name>
+    <name>FilterRows: not support</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1095,8 +1101,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>608</yloc>
+      <xloc>896</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1126,6 +1132,18 @@
       </field>
       <field>
         <name>message</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1430,7 +1448,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: canal_pk_to_key_meta.mapping</name>
+    <name>SimpleMapping: key meta</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -1442,7 +1460,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>canal_pk_to_key_meta.mapping</trans_name>
+    <trans_name>${Config.Log.Source.Key.Mapping}</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -1460,6 +1478,14 @@ for (index = 0; index &lt; sqlType.length; index++) {
           <connector>
             <parent>message</parent>
             <child>message</child>
+          </connector>
+          <connector>
+            <parent>schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>table</parent>
+            <child>table</child>
           </connector>
         </mapping>
       </input>
@@ -1486,6 +1512,14 @@ for (index = 0; index &lt; sqlType.length; index++) {
             <parent>kettle_field</parent>
             <child>kettle_field</child>
           </connector>
+          <connector>
+            <parent>schema</parent>
+            <child>lookup_schema</child>
+          </connector>
+          <connector>
+            <parent>table</parent>
+            <child>lookup_table</child>
+          </connector>
         </mapping>
       </output>
       <parameters>
@@ -1501,7 +1535,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>640</xloc>
       <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1565,7 +1599,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>SimpleMapping: canal_pk_to_key_meta.mapping</from>
+    <from>SimpleMapping: key meta</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1574,6 +1608,14 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <key>
         <name>column</name>
         <field>source_pk</field>
+      </key>
+      <key>
+        <name>schema</name>
+        <field>lookup_schema</field>
+      </key>
+      <key>
+        <name>table</name>
+        <field>lookup_table</field>
       </key>
       <value>
         <name>source_pk</name>

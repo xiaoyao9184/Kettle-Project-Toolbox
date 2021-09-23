@@ -1,13 +1,18 @@
 <transformation>
   <info>
-    <name>debezium_key_to_key_meta.mapping</name>
+    <name>pgsql_key_to_key_meta.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-debezium</directory>
+    <directory>/to_pgsql</directory>
     <parameters>
+      <parameter>
+        <name>Param.Case.Name</name>
+        <default_value>true</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -429,12 +434,63 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/22 22:17:34.063</modified_date>
+    <modified_date>2021/09/23 15:37:59.728</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>db_kpt_bin_log_pgsql_writer</name>
+    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
+    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
+    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
+    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>SelectValues: remove</from>
@@ -442,23 +498,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
-      <to>ScriptValueMod: from key.schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: test_kpt_cdc</from>
-      <to>ScriptValueMod: from key.schema</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
       <from>Constant: FIELD_PREFIX</from>
       <to>Calculator: kettle_field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: from key.schema</from>
-      <to>Constant: FIELD_PREFIX</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -466,7 +507,199 @@
       <to>SelectValues: remove</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Calculator: lower</from>
+      <to>SelectValues: replace use lower</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: lookup table</from>
+      <to>WriteToLog: lookup table</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: case</from>
+      <to>Calculator: lower</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: Param.Case.Name</from>
+      <to>FilterRows: case</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: Param.Case.Name</from>
+      <to>WriteToLog: param</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace use lower</from>
+      <to>Dummy: lookup table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput</from>
+      <to>GetVariable: Param.Case.Name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test_kpt_cdc</from>
+      <to>GetVariable: Param.Case.Name</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Constant: POINT</from>
+      <to>Calculator: full_table_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: lookup table</from>
+      <to>Constant: POINT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: sql param</from>
+      <to>TableInput: pg_constraint</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: full_table_name</from>
+      <to>Sequence: index</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence: index</from>
+      <to>SelectValues: sql param</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence: index</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TableInput: pg_constraint</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JoinRows</from>
+      <to>Constant: FIELD_PREFIX</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: case</from>
+      <to>Calculator: copy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: copy</from>
+      <to>SelectValues: replace use copy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: replace use copy</from>
+      <to>Dummy: lookup table</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Calculator: copy</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>copy_schema</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>schema</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>copy_table</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>table</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: full_table_name</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>full_table_name</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>lookup_schema</field_a>
+      <field_b>POINT</field_b>
+      <field_c>lookup_table</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Calculator: kettle_field</name>
     <type>Calculator</type>
@@ -483,7 +716,7 @@
       <field_name>kettle_field</field_name>
       <calc_type>ADD</calc_type>
       <field_a>FIELD_PREFIX</field_a>
-      <field_b>schema_field</field_b>
+      <field_b>pg_pk</field_b>
       <field_c/>
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -504,7 +737,63 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>480</yloc>
+      <yloc>1600</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: lower</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>lower_schema</field_name>
+      <calc_type>LOWER_CASE</calc_type>
+      <field_a>schema</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>lower_table</field_name>
+      <calc_type>LOWER_CASE</calc_type>
+      <field_a>table</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -543,7 +832,46 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>352</yloc>
+      <yloc>1472</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: POINT</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>POINT</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -583,27 +911,61 @@
         <set_empty_string>N</set_empty_string>
         <field_null_if/>
       </field>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
     </fields>
     <data>
       <line>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"0","__dbz__physicalTableIdentifier":"test_debezium_mysql-test_kpt_cdc.test_kpt_cdc.debezium_types"}}</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"0","BOOLEAN":0,"BOOL":1,"BIT_1":true,"BIT_not_1":"Ag==","TINYINT":5,"SMALLINT":6,"MEDIUMINT":7,"INT":8,"INTEGER":9,"BIGINT":10,"REAL":11.1,"FLOAT":12.229999542236328,"DOUBLE":13.34,"CHAR":"14","VARCHAR":"15","BINARY":"FgAAAAAAAAAAAAAAAAAAAAAAAAA=","VARBINARY":"Fw==","TINYBLOB":"GA==","TINYTEXT":"\u0019","BLOB":"IA==","TEXT":"!","MEDIUMBLOB":"Ig==","MEDIUMTEXT":"#","LONGBLOB":"JA==","LONGTEXT":"%","JSON":"{}","ENUM":"E1","SET":"S1,S2","YEAR":2021,"TIMESTAMP":"2021-09-11T03:59:00Z","DATE":18881,"TIME":42660000000,"DATETIME_3":1631318400000,"DATETIME_6":1631318400000000,"NUMERIC":"eg==","DECIMAL":"BUI=","GEOMETRY":{"wkb":"AQEAAAAAAAAAAADwPwAAAAAAAPA/","srid":null},"LINESTRING":{"wkb":"AQIAAAACAAAAAAAAAAAAAEAAAAAAAADwPwAAAAAAABhAAAAAAAAAGEA=","srid":null},"POLYGON":{"wkb":"AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAcQAAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAAAAAABRA","srid":null},"MULTIPOINT":{"wkb":"AQQAAAACAAAAAQEAAAAAAAAAAADwPwAAAAAAAPA/AQEAAADNzMzMzMwAQM3MzMzMzABA","srid":null},"MULTILINESTRING":{"wkb":"AQUAAAACAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAgAAAAIAAAAAAAAAAACJQAAAAAAAwIJAAAAAAAAAaUAAAAAAAAB5QA==","srid":null},"MULTIPOLYGON":{"wkb":"AQYAAAABAAAAAQMAAAABAAAABwAAAHMdnuSsxkZAAYAbgAyqXsDESLpM+8JGQAGAG8CvqF7AuMxFlyrDRkAAgBvA8KNewFLqMQahxUZAAYAbgOWjXsDP3y03mcdGQAGAGwCfpl7AWAhuvPfHRkABgBvAvalewHMdnuSsxkZAAYAbgAyqXsA=","srid":null},"GEOMETRYCOLLECTION":{"wkb":"AQcAAAADAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAwAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAAAAAAAACQQAAAAAAAAJBAAAAAAAAAkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","srid":null}},"source":{"version":"1.6.2.Final","connector":"mysql","name":"test_debezium_mysql-test_kpt_cdc","ts_ms":1631334480000,"snapshot":"false","db":"test_kpt_cdc","sequence":null,"table":"debezium_types","server_id":1,"gtid":null,"file":"mysql-bin.000001","pos":15756690,"row":0,"thread":null,"query":null},"op":"c","ts_ms":1631334480327,"transaction":null}}</item>
+        <item>test_mysql__test_kpt_cdc</item>
+        <item>debezium_types</item>
       </line>
       <line>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"0","__dbz__physicalTableIdentifier":"test_debezium_mysql-test_kpt_cdc.test_kpt_cdc.debezium_types"}} </item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"org.apache.kafka.connect.data.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"org.apache.kafka.connect.data.Time","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"org.apache.kafka.connect.data.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"org.apache.kafka.connect.data.Timestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"org.apache.kafka.connect.data.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"org.apache.kafka.connect.data.Time","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"org.apache.kafka.connect.data.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"org.apache.kafka.connect.data.Timestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"0","BOOLEAN":0,"BOOL":1,"BIT_1":true,"BIT_not_1":"Ag==","TINYINT":5,"SMALLINT":6,"MEDIUMINT":7,"INT":8,"INTEGER":9,"BIGINT":10,"REAL":11.1,"FLOAT":12.229999542236328,"DOUBLE":13.34,"CHAR":"14","VARCHAR":"15","BINARY":"FgAAAAAAAAAAAAAAAAAAAAAAAAA=","VARBINARY":"Fw==","TINYBLOB":"GA==","TINYTEXT":"\u0019","BLOB":"IA==","TEXT":"!","MEDIUMBLOB":"Ig==","MEDIUMTEXT":"#","LONGBLOB":"JA==","LONGTEXT":"%","JSON":"{}","ENUM":"E1","SET":"S1,S2","YEAR":2021,"TIMESTAMP":"2021-09-11T03:59:00Z","DATE":18881,"TIME":42660000,"DATETIME_3":1631318400000,"DATETIME_6":1631318400000,"NUMERIC":"eg==","DECIMAL":"BUI=","GEOMETRY":{"wkb":"AQEAAAAAAAAAAADwPwAAAAAAAPA/","srid":null},"LINESTRING":{"wkb":"AQIAAAACAAAAAAAAAAAAAEAAAAAAAADwPwAAAAAAABhAAAAAAAAAGEA=","srid":null},"POLYGON":{"wkb":"AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAcQAAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAAAAAABRA","srid":null},"MULTIPOINT":{"wkb":"AQQAAAACAAAAAQEAAAAAAAAAAADwPwAAAAAAAPA/AQEAAADNzMzMzMwAQM3MzMzMzABA","srid":null},"MULTILINESTRING":{"wkb":"AQUAAAACAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAgAAAAIAAAAAAAAAAACJQAAAAAAAwIJAAAAAAAAAaUAAAAAAAAB5QA==","srid":null},"MULTIPOLYGON":{"wkb":"AQYAAAABAAAAAQMAAAABAAAABwAAAHMdnuSsxkZAAYAbgAyqXsDESLpM+8JGQAGAG8CvqF7AuMxFlyrDRkAAgBvA8KNewFLqMQahxUZAAYAbgOWjXsDP3y03mcdGQAGAGwCfpl7AWAhuvPfHRkABgBvAvalewHMdnuSsxkZAAYAbgAyqXsA=","srid":null},"GEOMETRYCOLLECTION":{"wkb":"AQcAAAADAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAwAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAAAAAAAACQQAAAAAAAAJBAAAAAAAAAkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","srid":null}},"source":{"version":"1.6.2.Final","connector":"mysql","name":"test_debezium_mysql-test_kpt_cdc","ts_ms":1631334480000,"snapshot":"false","db":"test_kpt_cdc","sequence":null,"table":"debezium_types","server_id":1,"gtid":null,"file":"mysql-bin.000001","pos":15756690,"row":0,"thread":null,"query":null},"op":"c","ts_ms":1631334480326,"transaction":null}}</item>
+        <item>test_mysql__test_kpt_cdc</item>
+        <item>debezium_types</item>
       </line>
       <line>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"0","__dbz__physicalTableIdentifier":"test_debezium_mysql-test_kpt_cdc.test_kpt_cdc.debezium_types"}}</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"double","optional":true,"field":"NUMERIC"},{"type":"double","optional":true,"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"double","optional":true,"field":"NUMERIC"},{"type":"double","optional":true,"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"0","BOOLEAN":0,"BOOL":1,"BIT_1":true,"BIT_not_1":"Ag==","TINYINT":5,"SMALLINT":6,"MEDIUMINT":7,"INT":8,"INTEGER":9,"BIGINT":10,"REAL":11.1,"FLOAT":12.229999542236328,"DOUBLE":13.34,"CHAR":"14","VARCHAR":"15","BINARY":"FgAAAAAAAAAAAAAAAAAAAAAAAAA=","VARBINARY":"Fw==","TINYBLOB":"GA==","TINYTEXT":"\u0019","BLOB":"IA==","TEXT":"!","MEDIUMBLOB":"Ig==","MEDIUMTEXT":"#","LONGBLOB":"JA==","LONGTEXT":"%","JSON":"{}","ENUM":"E1","SET":"S1,S2","YEAR":2021,"TIMESTAMP":"2021-09-11T03:59:00Z","DATE":18881,"TIME":42660000000,"DATETIME_3":1631318400000,"DATETIME_6":1631318400000000,"NUMERIC":12.2,"DECIMAL":13.46,"GEOMETRY":{"wkb":"AQEAAAAAAAAAAADwPwAAAAAAAPA/","srid":null},"LINESTRING":{"wkb":"AQIAAAACAAAAAAAAAAAAAEAAAAAAAADwPwAAAAAAABhAAAAAAAAAGEA=","srid":null},"POLYGON":{"wkb":"AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAcQAAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAAAAAABRA","srid":null},"MULTIPOINT":{"wkb":"AQQAAAACAAAAAQEAAAAAAAAAAADwPwAAAAAAAPA/AQEAAADNzMzMzMwAQM3MzMzMzABA","srid":null},"MULTILINESTRING":{"wkb":"AQUAAAACAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAgAAAAIAAAAAAAAAAACJQAAAAAAAwIJAAAAAAAAAaUAAAAAAAAB5QA==","srid":null},"MULTIPOLYGON":{"wkb":"AQYAAAABAAAAAQMAAAABAAAABwAAAHMdnuSsxkZAAYAbgAyqXsDESLpM+8JGQAGAG8CvqF7AuMxFlyrDRkAAgBvA8KNewFLqMQahxUZAAYAbgOWjXsDP3y03mcdGQAGAGwCfpl7AWAhuvPfHRkABgBvAvalewHMdnuSsxkZAAYAbgAyqXsA=","srid":null},"GEOMETRYCOLLECTION":{"wkb":"AQcAAAADAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAwAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAAAAAAAACQQAAAAAAAAJBAAAAAAAAAkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","srid":null}},"source":{"version":"1.6.2.Final","connector":"mysql","name":"test_debezium_mysql-test_kpt_cdc","ts_ms":1631334480000,"snapshot":"false","db":"test_kpt_cdc","sequence":null,"table":"debezium_types","server_id":1,"gtid":null,"file":"mysql-bin.000001","pos":15756690,"row":0,"thread":null,"query":null},"op":"c","ts_ms":1631334480327,"transaction":null}}</item>
+        <item>test_mysql__test_kpt_cdc</item>
+        <item>debezium_types</item>
       </line>
       <line>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"0","__dbz__physicalTableIdentifier":"test_debezium_mysql-test_kpt_cdc.test_kpt_cdc.debezium_types"}}</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"string","optional":true,"field":"NUMERIC"},{"type":"string","optional":true,"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"string","optional":true,"field":"NUMERIC"},{"type":"string","optional":true,"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"0","BOOLEAN":0,"BOOL":1,"BIT_1":true,"BIT_not_1":"Ag==","TINYINT":5,"SMALLINT":6,"MEDIUMINT":7,"INT":8,"INTEGER":9,"BIGINT":10,"REAL":11.1,"FLOAT":12.229999542236328,"DOUBLE":13.34,"CHAR":"14","VARCHAR":"15","BINARY":"FgAAAAAAAAAAAAAAAAAAAAAAAAA=","VARBINARY":"Fw==","TINYBLOB":"GA==","TINYTEXT":"\u0019","BLOB":"IA==","TEXT":"!","MEDIUMBLOB":"Ig==","MEDIUMTEXT":"#","LONGBLOB":"JA==","LONGTEXT":"%","JSON":"{}","ENUM":"E1","SET":"S1,S2","YEAR":2021,"TIMESTAMP":"2021-09-11T03:59:00Z","DATE":18881,"TIME":42660000000,"DATETIME_3":1631318400000,"DATETIME_6":1631318400000000,"NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":{"wkb":"AQEAAAAAAAAAAADwPwAAAAAAAPA/","srid":null},"LINESTRING":{"wkb":"AQIAAAACAAAAAAAAAAAAAEAAAAAAAADwPwAAAAAAABhAAAAAAAAAGEA=","srid":null},"POLYGON":{"wkb":"AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAcQAAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAAAAAABRA","srid":null},"MULTIPOINT":{"wkb":"AQQAAAACAAAAAQEAAAAAAAAAAADwPwAAAAAAAPA/AQEAAADNzMzMzMwAQM3MzMzMzABA","srid":null},"MULTILINESTRING":{"wkb":"AQUAAAACAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAgAAAAIAAAAAAAAAAACJQAAAAAAAwIJAAAAAAAAAaUAAAAAAAAB5QA==","srid":null},"MULTIPOLYGON":{"wkb":"AQYAAAABAAAAAQMAAAABAAAABwAAAHMdnuSsxkZAAYAbgAyqXsDESLpM+8JGQAGAG8CvqF7AuMxFlyrDRkAAgBvA8KNewFLqMQahxUZAAYAbgOWjXsDP3y03mcdGQAGAGwCfpl7AWAhuvPfHRkABgBvAvalewHMdnuSsxkZAAYAbgAyqXsA=","srid":null},"GEOMETRYCOLLECTION":{"wkb":"AQcAAAADAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAwAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAAAAAAAACQQAAAAAAAAJBAAAAAAAAAkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","srid":null}},"source":{"version":"1.6.2.Final","connector":"mysql","name":"test_debezium_mysql-test_kpt_cdc","ts_ms":1631334480000,"snapshot":"false","db":"test_kpt_cdc","sequence":null,"table":"debezium_types","server_id":1,"gtid":null,"file":"mysql-bin.000001","pos":15756690,"row":0,"thread":null,"query":null},"op":"c","ts_ms":1631334480327,"transaction":null}}</item>
+        <item>test_mysql__test_kpt_cdc</item>
+        <item>debezium_types_change_pk</item>
       </line>
       <line>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"0","__dbz__physicalTableIdentifier":"test_debezium_mysql-test_kpt_cdc.test_kpt_cdc.debezium_types"}}</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"default":"","field":"_id"},{"type":"int16","optional":true,"field":"BOOLEAN"},{"type":"int16","optional":true,"field":"BOOL"},{"type":"boolean","optional":true,"field":"BIT_1"},{"type":"bytes","optional":true,"name":"io.debezium.data.Bits","version":1,"parameters":{"length":"2"},"field":"BIT_not_1"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"MEDIUMINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int32","optional":true,"field":"INTEGER"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"double","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"double","optional":true,"field":"DOUBLE"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"bytes","optional":true,"field":"BINARY"},{"type":"bytes","optional":true,"field":"VARBINARY"},{"type":"bytes","optional":true,"field":"TINYBLOB"},{"type":"string","optional":true,"field":"TINYTEXT"},{"type":"bytes","optional":true,"field":"BLOB"},{"type":"string","optional":true,"field":"TEXT"},{"type":"bytes","optional":true,"field":"MEDIUMBLOB"},{"type":"string","optional":true,"field":"MEDIUMTEXT"},{"type":"bytes","optional":true,"field":"LONGBLOB"},{"type":"string","optional":true,"field":"LONGTEXT"},{"type":"string","optional":true,"name":"io.debezium.data.Json","version":1,"field":"JSON"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"E1"},"field":"ENUM"},{"type":"string","optional":true,"name":"io.debezium.data.EnumSet","version":1,"parameters":{"allowed":"S1,S2"},"field":"SET"},{"type":"int32","optional":true,"name":"io.debezium.time.Year","version":1,"field":"YEAR"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"TIMESTAMP"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME_6"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"10"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"10"},"field":"DECIMAL"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRY"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"LINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"POLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOINT"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTILINESTRING"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"MULTIPOLYGON"},{"type":"struct","fields":[{"type":"bytes","optional":false,"field":"wkb"},{"type":"int32","optional":true,"field":"srid"}],"optional":true,"name":"io.debezium.data.geometry.Geometry","version":1,"doc":"Geometry","field":"GEOMETRYCOLLECTION"}],"optional":true,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mysql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"0","BOOLEAN":0,"BOOL":1,"BIT_1":true,"BIT_not_1":"Ag==","TINYINT":5,"SMALLINT":6,"MEDIUMINT":7,"INT":8,"INTEGER":9,"BIGINT":10,"REAL":11.1,"FLOAT":12.229999542236328,"DOUBLE":13.34,"CHAR":"14","VARCHAR":"15","BINARY":"FgAAAAAAAAAAAAAAAAAAAAAAAAA=","VARBINARY":"Fw==","TINYBLOB":"GA==","TINYTEXT":"\u0019","BLOB":"IA==","TEXT":"!","MEDIUMBLOB":"Ig==","MEDIUMTEXT":"#","LONGBLOB":"JA==","LONGTEXT":"%","JSON":"{}","ENUM":"E1","SET":"S1,S2","YEAR":2021,"TIMESTAMP":"2021-09-11T03:59:00Z","DATE":18881,"TIME":42660000000,"DATETIME_3":1631318400000,"DATETIME_6":1631318400000000,"NUMERIC":"eg==","DECIMAL":"BUI=","GEOMETRY":{"wkb":"AQEAAAAAAAAAAADwPwAAAAAAAPA/","srid":null},"LINESTRING":{"wkb":"AQIAAAACAAAAAAAAAAAAAEAAAAAAAADwPwAAAAAAABhAAAAAAAAAGEA=","srid":null},"POLYGON":{"wkb":"AQMAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAFEAAAAAAAAAAQAAAAAAAABRAAAAAAAAAAEAAAAAAAAAcQAAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAAAAAABRA","srid":null},"MULTIPOINT":{"wkb":"AQQAAAACAAAAAQEAAAAAAAAAAADwPwAAAAAAAPA/AQEAAADNzMzMzMwAQM3MzMzMzABA","srid":null},"MULTILINESTRING":{"wkb":"AQUAAAACAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAgAAAAIAAAAAAAAAAACJQAAAAAAAwIJAAAAAAAAAaUAAAAAAAAB5QA==","srid":null},"MULTIPOLYGON":{"wkb":"AQYAAAABAAAAAQMAAAABAAAABwAAAHMdnuSsxkZAAYAbgAyqXsDESLpM+8JGQAGAG8CvqF7AuMxFlyrDRkAAgBvA8KNewFLqMQahxUZAAYAbgOWjXsDP3y03mcdGQAGAGwCfpl7AWAhuvPfHRkABgBvAvalewHMdnuSsxkZAAYAbgAyqXsA=","srid":null},"GEOMETRYCOLLECTION":{"wkb":"AQcAAAADAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgJZAAAAAAAAgjEABAwAAAAEAAAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAAAAAAAACQQAAAAAAAAJBAAAAAAAAAkEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=","srid":null}},"source":{"version":"1.6.2.Final","connector":"mysql","name":"test_debezium_mysql-test_kpt_cdc","ts_ms":1631334480000,"snapshot":"false","db":"test_kpt_cdc","sequence":null,"table":"debezium_types","server_id":1,"gtid":null,"file":"mysql-bin.000001","pos":15756690,"row":0,"thread":null,"query":null},"op":"c","ts_ms":1631334480327,"transaction":null}}</item>
+        <item>test_mysql__test_kpt_cdc</item>
+        <item>debezium_types_change_pk</item>
       </line>
     </data>
     <attributes/>
@@ -617,6 +979,151 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: lookup table</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: case</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Calculator: copy</send_true_to>
+    <send_false_to>Calculator: lower</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>CaseName</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: Param.Case.Name</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>CaseName</name>
+        <variable>${Param.Case.Name}</variable>
+        <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JoinRows</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main>Sequence: index</main>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>index</leftvalue>
+        <function>=</function>
+        <rightvalue>idx</rightvalue>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -693,89 +1200,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ScriptValueMod: from key.schema</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var index_type = getOutputRowMeta().indexOfValue("schema_type");
-var index_field = getOutputRowMeta().indexOfValue("schema_field");
-
-var key_index = getOutputRowMeta().indexOfValue("key");
-var key_col = row[key_index];
-if (key_col != null){
-  var key_object = JSON.parse(key_col);
-
-  var fields = key_object.schema.fields;
-  for (index = 0; index &lt; fields.length; index++) {
-    var schema_field = fields[index];
-
-    var field = schema_field.field;
-    var type = schema_field.type;
-
-    if (field == "__dbz__physicalTableIdentifier"){
-      continue;
-    }
-
-    var row = createRowCopy(getOutputRowMeta().size());  
-    row[index_type] = type;
-    row[index_field] = field;
-    putRow(row);
-  }
-} else {
-  var row = createRowCopy(getOutputRowMeta().size());  
-  putRow(row);
-}
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>schema_field</name>
-        <rename>schema_field</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>schema_type</name>
-        <rename>schema_type</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>1888</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -793,13 +1218,22 @@ if (key_col != null){
     <fields>
       <select_unspecified>Y</select_unspecified>
       <remove>
-        <name>schema_type</name>
+        <name>POINT</name>
+      </remove>
+      <remove>
+        <name>full_table_name</name>
+      </remove>
+      <remove>
+        <name>index</name>
+      </remove>
+      <remove>
+        <name>idx</name>
       </remove>
       <remove>
         <name>FIELD_PREFIX</name>
       </remove>
       <meta>
-        <name>schema_field</name>
+        <name>pg_pk</name>
         <rename>source_pk</rename>
         <type>String</type>
         <length>-2</length>
@@ -826,7 +1260,350 @@ if (key_col != null){
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>608</yloc>
+      <yloc>1728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace use copy</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>copy_schema</name>
+        <rename>lookup_schema</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>copy_table</name>
+        <rename>lookup_table</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: replace use lower</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>lower_schema</name>
+        <rename>lookup_schema</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>lower_table</name>
+        <rename>lookup_table</rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: sql param</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>index</name>
+      </field>
+      <field>
+        <name>full_table_name</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sequence: index</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>index</valuename>
+    <use_database>N</use_database>
+    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>0</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TableInput: pg_constraint</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <sql>SELECT ? AS idx, a.attname AS pg_pk
+FROM
+    pg_constraint AS c
+    CROSS JOIN LATERAL UNNEST(c.conkey) AS cols(colnum) -- conkey is a list of the columns of the constraint; so we split it into rows so that we can join all column numbers onto their names in pg_attribute
+    INNER JOIN pg_attribute AS a ON a.attrelid = c.conrelid AND cols.colnum = a.attnum
+WHERE
+    c.contype = 'p'
+    AND c.conrelid = ?::REGCLASS;</sql>
+    <limit>0</limit>
+    <lookup>SelectValues: sql param</lookup>
+    <execute_each_row>Y</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Boolean</type>
+        <storagetype>normal</storagetype>
+        <name>table_exist</name>
+        <length>-1</length>
+        <precision>-1</precision>
+        <origin>TableInput: information_schema.tables</origin>
+        <comments>table_exist</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>zh_CN</date_format_locale>
+        <date_format_timezone>Asia/Shanghai</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>1312</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: lookup table</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>Y</limitRows>
+    <limitRowsNumber>1</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>schema</name>
+      </field>
+      <field>
+        <name>table</name>
+      </field>
+      <field>
+        <name>lookup_schema</name>
+      </field>
+      <field>
+        <name>lookup_table</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: param</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>schema</name>
+      </field>
+      <field>
+        <name>table</name>
+      </field>
+      <field>
+        <name>CaseName</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
