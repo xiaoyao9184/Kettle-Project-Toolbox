@@ -29,12 +29,12 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Field.Mapping</name>
+        <name>Config.Log.Target.Field.Mapping</name>
         <default_value>pgsql_column_case.mapping</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Write.Template</name>
+        <name>Config.Log.Target.Write.Template</name>
         <default_value>pgsql_table_log_write.template</default_value>
         <description/>
       </parameter>
@@ -726,7 +726,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Tatget.Write.Template}</trans_name>
+    <trans_name>${Config.Log.Target.Write.Template}</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <source_step/>
@@ -1293,7 +1293,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Tatget.Field.Mapping}</trans_name>
+    <trans_name>${Config.Log.Target.Field.Mapping}</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -1370,7 +1370,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Tatget.Field.Mapping}</trans_name>
+    <trans_name>${Config.Log.Target.Field.Mapping}</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>

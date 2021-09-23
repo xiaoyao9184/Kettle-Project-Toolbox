@@ -34,17 +34,17 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Schema.Prefix</name>
+        <name>Config.Log.Target.Schema.Prefix</name>
         <default_value>kpt_sync__</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Table.Prefix</name>
+        <name>Config.Log.Target.Table.Prefix</name>
         <default_value/>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Tatget.Write.Template</name>
+        <name>Config.Log.Target.Write.Template</name>
         <default_value>pgsql_table_log_write.template</default_value>
         <description/>
       </parameter>
@@ -936,11 +936,11 @@
       <parameters>
         <variablemapping>
           <variable>Param.Schema.Prefix</variable>
-          <input>${Config.Log.Tatget.Schema.Prefix}</input>
+          <input>${Config.Log.Target.Schema.Prefix}</input>
         </variablemapping>
         <variablemapping>
           <variable>Param.Table.Prefix</variable>
-          <input>${Config.Log.Tatget.Table.Prefix}</input>
+          <input>${Config.Log.Target.Table.Prefix}</input>
         </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>

@@ -32,11 +32,11 @@
             <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta.mapping</cfg>
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
             
-            <cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
-            <cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
-            <cfg namespace="Config.Log.Tatget.Schema" key="Prefix">test_mysql__</cfg>
-            <cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Schema" key="Prefix">test_mysql__</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
             
             <!-- Copy it and quickly set system variables -->
             <!--
@@ -54,11 +54,11 @@ Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping
 Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta.mapping	
 Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
-Config.Log.Tatget.Transformation.Path	to_pgsql	
+Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
-Config.Log.Tatget.Column.Mapping	pgsql_column_case_to_column.mapping	
-Config.Log.Tatget.Schema.Prefix	test_mysql__	
-Config.Log.Tatget.Table.Prefix	 
+Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
+Config.Log.Target.Schema.Prefix	test_mysql__	
+Config.Log.Target.Table.Prefix	 
             -->
         </profile>
         <profile name="debezium-mssql-pgsql">
@@ -72,11 +72,11 @@ Config.Log.Tatget.Table.Prefix
             <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta.mapping</cfg>
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
             
-            <cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
-            <cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
-            <cfg namespace="Config.Log.Tatget.Schema" key="Prefix">test_mssql__</cfg>
-            <cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Schema" key="Prefix">test_mssql__</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
             
             <!-- Copy it and quickly set system variables -->
             <!--
@@ -94,11 +94,11 @@ Config.Log.Source.Table.Mapping	mssql_playload_to_table_name.mapping
 Config.Log.Source.Column.Mapping	mssql_schema_to_column_meta.mapping	
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta.mapping	
 Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
-Config.Log.Tatget.Transformation.Path	to_pgsql	
+Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
-Config.Log.Tatget.Column.Mapping	pgsql_column_case_to_column.mapping	
-Config.Log.Tatget.Schema.Prefix	test_mssql__	
-Config.Log.Tatget.Table.Prefix	 
+Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
+Config.Log.Target.Schema.Prefix	test_mssql__	
+Config.Log.Target.Table.Prefix	 
             -->
         </profile>
         <profile name="canal-mysql-pgsql">
@@ -111,11 +111,11 @@ Config.Log.Tatget.Table.Prefix
             <cfg namespace="Config.Log.Source.Column" key="Mapping">canal_column_type_to_kettle.mapping</cfg>
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">canal_type_to_kettle_switch_flag.mapping</cfg>
             
-            <cfg namespace="Config.Log.Tatget.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
-            <cfg namespace="Config.Log.Tatget.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
-            <cfg namespace="Config.Log.Tatget.Schema" key="Prefix">test_mysql__</cfg>
-            <cfg namespace="Config.Log.Tatget.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Schema" key="Prefix">test_mysql__</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
 
             <!-- Copy it and quickly set system variables -->
             <!--
@@ -132,11 +132,11 @@ Config.Log.Source.Transformation.Path	from-canal
 Config.Log.Source.Table.Mapping	canal_log_to_table_name.mapping	
 Config.Log.Source.Column.Mapping	canal_column_type_to_kettle.mapping	
 Config.Log.Source.Switch.Mapping	canal_type_to_kettle_switch_flag.mapping	
-Config.Log.Tatget.Transformation.Path	to_pgsql	
+Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
-Config.Log.Tatget.Column.Mapping	pgsql_column_case_to_column.mapping	
-Config.Log.Tatget.Schema.Prefix	test_mysql__	
-Config.Log.Tatget.Table.Prefix	 
+Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
+Config.Log.Target.Schema.Prefix	test_mysql__	
+Config.Log.Target.Table.Prefix	 
             -->
         </profile>
     </project>
