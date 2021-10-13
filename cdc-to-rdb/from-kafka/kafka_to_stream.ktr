@@ -8,6 +8,16 @@
     <trans_status>0</trans_status>
     <directory>/from-kafka</directory>
     <parameters>
+      <parameter>
+        <name>Config.Log.Kafka.Batch.Size</name>
+        <default_value>10000</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Batch.Duration</name>
+        <default_value>60000</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -534,8 +544,8 @@
     <consumerGroup>${Config.Log.Kafka.Consumer.Group}</consumerGroup>
     <transformationPath>${Internal.Entry.Current.Directory}/stream_parse_to_each_table</transformationPath>
     <SUB_STEP>Dummy: return to kafka</SUB_STEP>
-    <batchSize>10000</batchSize>
-    <batchDuration>60000</batchDuration>
+    <batchSize>${Config.Log.Kafka.Batch.Size}</batchSize>
+    <batchDuration>${Config.Log.Kafka.Batch.Duration}</batchDuration>
     <PARALLELISM>1</PARALLELISM>
     <prefetchMessageCount>10000</prefetchMessageCount>
     <connectionType>DIRECT</connectionType>
