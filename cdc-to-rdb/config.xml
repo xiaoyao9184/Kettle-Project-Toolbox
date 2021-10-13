@@ -14,6 +14,7 @@
         <cfg namespace="Config.Main.Transformation" key="Name">kafka_to_stream</cfg>
         <cfg namespace="Config.Log.Kafka.Batch" key="Size">10000</cfg>
         <cfg namespace="Config.Log.Kafka.Batch" key="Duration">60000</cfg>
+        <cfg namespace="Config.Log.Kafka.Batch" key="Max">10000</cfg>
         <cfg namespace="Config.Log.Delay" key="Time">0</cfg>
 
         <profile name="test_kpt">

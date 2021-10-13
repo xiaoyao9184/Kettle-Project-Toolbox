@@ -18,6 +18,11 @@
         <default_value>60000</default_value>
         <description/>
       </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Batch.Max</name>
+        <default_value>10000</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -547,7 +552,7 @@
     <batchSize>${Config.Log.Kafka.Batch.Size}</batchSize>
     <batchDuration>${Config.Log.Kafka.Batch.Duration}</batchDuration>
     <PARALLELISM>1</PARALLELISM>
-    <prefetchMessageCount>10000</prefetchMessageCount>
+    <prefetchMessageCount>${Config.Log.Kafka.Batch.Max}</prefetchMessageCount>
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
     <AUTO_COMMIT>N</AUTO_COMMIT>
