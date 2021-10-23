@@ -19,7 +19,7 @@
 		"database.server.id": "23331",
 		"database.server.name": "test_debezium_mysql-test_kpt_cdc",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.time_schema-changes",
+		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.schema-changes.time_adaptive",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
