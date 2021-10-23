@@ -1,5 +1,5 @@
 {
-	"name": "test_debezium_mysql-test_kpt_cdc-adaptive",
+	"name": "test_debezium_mysql-test_kpt_cdc-binary_bytes",
 	"config": {
 		"connector.class": "io.debezium.connector.mysql.MySqlConnector",
 		"tasks.max": "1",
@@ -16,14 +16,14 @@
 		"database.user": "kpt",
 		"database.password": "kpt.123",
 		"database.include.list": "test_kpt_cdc",
-		"database.server.id": "23331",
+		"database.server.id": "23337",
 		"database.server.name": "test_debezium_mysql-test_kpt_cdc",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.schema-changes",
+		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.schema-changes.binary_bytes",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc.data-changes",
-		"time.precision.mode": "adaptive_time_microseconds"
+		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc.data-changes.binary_bytes",
+		"binary.handling.mode": "bytes"
 	}
 }

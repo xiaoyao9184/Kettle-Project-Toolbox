@@ -1,5 +1,5 @@
 {
-	"name": "test_debezium_mssql-test_kpt_cdc-adaptive",
+	"name": "test_debezium_mssql-test_kpt_cdc-decimal_string",
 	"config": {
 		"connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
 		"tasks.max": "1",
@@ -19,11 +19,11 @@
 		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
 		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes",
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes.decimal_string",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes",
-		"time.precision.mode": "adaptive"
+		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes.decimal_string",
+		"decimal.handling.mode": "string"
 	}
 }

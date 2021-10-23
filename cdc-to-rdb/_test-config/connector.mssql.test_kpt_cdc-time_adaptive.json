@@ -1,7 +1,7 @@
 {
-	"name": "test_debezium_mysql-test_kpt_cdc-double",
+	"name": "test_debezium_mssql-test_kpt_cdc-time_adaptive",
 	"config": {
-		"connector.class": "io.debezium.connector.mysql.MySqlConnector",
+		"connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
 		"tasks.max": "1",
         "snapshot.delay.ms": "0",
         "include.schema.changes": "true",
@@ -11,19 +11,19 @@
 		"event.processing.failure.handling.mode": "ignore",
 		"event.deserialization.failure.handling.mode": "ignore",
 		"inconsistent.schema.handling.mode": "ignore",
-		"database.hostname": "192.168.6.161",
-		"database.port": "3306",
+		"database.hostname": "192.168.6.163",
+		"database.port": "1433",
 		"database.user": "kpt",
 		"database.password": "kpt.123",
-		"database.include.list": "test_kpt_cdc",
-		"database.server.id": "23333",
-		"database.server.name": "test_debezium_mysql-test_kpt_cdc",
+		"database.dbname": "test_kpt_cdc",
+		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
+		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.schema-changes",
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes.time_adaptive",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc.data-changes",
-		"decimal.handling.mode": "double"
+		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes.time_adaptive",
+		"time.precision.mode": "adaptive"
 	}
 }
