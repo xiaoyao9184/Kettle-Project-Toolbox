@@ -984,11 +984,11 @@
     </hop>
     <hop>
       <from>BlockUntilStepsFinish</from>
-      <to>Delay: for debug</to>
+      <to>Delay: debug for crud</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Delay: for debug</from>
+      <from>Delay: debug for crud</from>
       <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
@@ -2782,7 +2782,7 @@
     </GUI>
   </step>
   <step>
-    <name>Delay: for debug</name>
+    <name>Delay: debug for crud</name>
     <type>Delay</type>
     <description/>
     <distribute>Y</distribute>
@@ -2978,7 +2978,7 @@
     <source_output_fields>    </source_output_fields>
     <target_file>${Internal.Entry.Current.Directory}/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.ktr</target_file>
     <no_execution>Y</no_execution>
-    <stream_source_step>Delay: for debug</stream_source_step>
+    <stream_source_step>Delay: debug for crud</stream_source_step>
     <stream_target_step>JSON input: column</stream_target_step>
     <mappings>
       <mapping>
