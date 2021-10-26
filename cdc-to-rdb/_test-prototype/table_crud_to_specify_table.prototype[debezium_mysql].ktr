@@ -2380,7 +2380,7 @@
     <fields>
       <field>
         <name>group_table_id</name>
-        <type>String</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -2488,7 +2488,7 @@
       </field>
       <field>
         <name>partition</name>
-        <type>String</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -2500,7 +2500,7 @@
       </field>
       <field>
         <name>offset</name>
-        <type>String</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -2512,7 +2512,7 @@
       </field>
       <field>
         <name>timestamp</name>
-        <type>Timestamp</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -4345,7 +4345,7 @@
       <meta>
         <name>partition</name>
         <rename>kafka_partition</rename>
-        <type>String</type>
+        <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -4362,7 +4362,7 @@
       <meta>
         <name>offset</name>
         <rename>kafka_offset</rename>
-        <type>String</type>
+        <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -4379,7 +4379,7 @@
       <meta>
         <name>timestamp</name>
         <rename>kafka_timestamp</rename>
-        <type>Timestamp</type>
+        <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
