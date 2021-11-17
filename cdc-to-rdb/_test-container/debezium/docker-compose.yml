@@ -1,0 +1,62 @@
+version: '3'
+services:
+  
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "52181:2181"
+    networks:
+      - test-kpt
+
+  kafka:
+    image: wurstmeister/kafka:2.13-2.7.0
+    environment:
+      HOSTNAME_COMMAND: "docker info | grep '^ Name:' | cut -d ' ' -f 3"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:59094
+      KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:59094
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "59094:59094"
+    networks:
+      - test-kpt
+    depends_on:
+      - zookeeper
+
+  connect:
+    image: debezium/connect:1.6
+    hostname: connect
+    environment:
+      GROUP_ID: "5000"
+      CONFIG_STORAGE_TOPIC: test_kpt_connect_configs
+      OFFSET_STORAGE_TOPIC: test_kpt_connect_offsets
+      STATUS_STORAGE_TOPIC: test_kpt_connect_statuses
+      BOOTSTRAP_SERVERS: kafka:9092
+      HOST_NAME: 0.0.0.0
+      ADVERTISED_HOST_NAME: connect
+    ports:
+      - "58083:8083"
+    networks:
+      - test-kpt
+    depends_on:
+      - kafka
+
+  ui:
+    image: debezium/debezium-ui:1.6
+    environment:
+      KAFKA_CONNECT_URI: "http://connect:8083"
+    ports:
+      - "58082:8080"
+    networks:
+      - test-kpt
+    depends_on:
+      - connect
+
+
+networks:
+  test-kpt:
+    external: true
+    

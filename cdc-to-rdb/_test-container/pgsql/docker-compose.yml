@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+  pgsql:
+    image: postgres:13.2
+    environment:
+      POSTGRES_DB: test_kpt
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: P@ssw0rd
+    # volumes:
+    #   - "./sql/DB.test_kpt.sql:/docker-entrypoint-initdb.d/DB.test_kpt.sql"
+    ports:
+      - 55432:5432
+    networks:
+      - test-kpt
+
+  flyway:
+    image: boxfuse/flyway:5.2.4
+    command: -url=jdbc:postgresql://pgsql:5432/test_kpt -schemas=flyway -user=postgres -password=P@ssw0rd -connectRetries=60 migrate
+    environment:
+      - FLYWAY_EDITION=community
+    volumes:
+      - ./sql:/flyway/sql
+    depends_on:
+      - pgsql
+    networks:
+      - test-kpt
+
+
+networks:
+  test-kpt:
+    external: true
+        

@@ -11,9 +11,3 @@ CREATE DATABASE test_kpt
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
-GRANT ALL ON DATABASE test_kpt TO edata_kpt;
-
-GRANT ALL ON DATABASE test_kpt TO postgres;
-
-GRANT TEMPORARY, CONNECT ON DATABASE test_kpt TO PUBLIC;
-
