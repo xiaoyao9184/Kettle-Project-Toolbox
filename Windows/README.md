@@ -1,10 +1,10 @@
 # Introduction
 
 
-### RUN_REP_JT
+### RUN_REPOSITORY_JOB_OR_TRANSFORMATION
 
 depend
-- SET_ENVIRONMENT _must_
+- SET_ENVIRONMENT _maybe_
 - SET_PARAM _maybe_
 
 this batch can automatically find job or transformation
@@ -38,7 +38,7 @@ This script will check `config.ReadConfig.SET_PARAM.bat` exist, and run it.
 ### RUN_SPOON
 
 depend
-- SET_ENVIRONMENT _must_
+- SET_ENVIRONMENT _maybe_
 
 Run the kettle spoon and automatically connects to the current [project repository](../tool/Project/ProjectRepository.md)
 
@@ -63,8 +63,6 @@ will be set.
 
 
 ### SET_PARAM
-
-**NOTE** This script should be used by [RUN_REP_JT](RUN_REP_JT)
 
 This script is used to combine user input KEYs and VALUEs into kettle command line parameters, like this:
 
