@@ -438,7 +438,7 @@
   <order>
     <hop>
       <from>Get records from stream</from>
-      <to>写日志: just test top 100</to>
+      <to>WriteToLog: just test top 100</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -506,7 +506,7 @@
     </GUI>
   </step>
   <step>
-    <name>写日志: just test top 100</name>
+    <name>WriteToLog: just test top 100</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>

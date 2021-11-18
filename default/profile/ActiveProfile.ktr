@@ -11,37 +11,37 @@
       <parameter>
         <name>Parameters.Profile.Home.Path</name>
         <default_value />
-        <description>Profile目标路径</description>
+        <description>Profile home path</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Meta.Location</name>
         <default_value />
-        <description>ProfileMeta文件位置</description>
+        <description>Profile meta file location</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Meta.Path</name>
         <default_value />
-        <description>ProfileMeta路径</description>
+        <description>Profile meta file path</description>
       </parameter>
       <parameter>
         <name>Parameters.Profile.Name</name>
         <default_value>dev</default_value>
-        <description>激活的Profile名称</description>
+        <description>Profile name for active</description>
       </parameter>
       <parameter>
         <name>Position.Ktr.MappingPathRemove</name>
         <default_value>MappingPathRemove</default_value>
-        <description>依赖转换相对位置</description>
+        <description>MappingPathRemove</description>
       </parameter>
       <parameter>
         <name>Position.Ktr.MappingRelativePath2AbsolutePath</name>
         <default_value>MappingRelativePath2AbsolutePath</default_value>
-        <description>依赖转换相对位置</description>
+        <description>MappingRelativePath2AbsolutePath</description>
       </parameter>
       <parameter>
         <name>Position.Path.Variable</name>
         <default_value>/variable</default_value>
-        <description>依赖转换相对位置</description>
+        <description>variable ktr path</description>
       </parameter>
     </parameters>
     <log>
@@ -1022,13 +1022,13 @@ Do create, replace, and delete operations</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable；home_path</from>
+      <from>GetVariable: home_path</from>
       <to>Constant: path_delimiter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>MergeRows: profile_file</from>
-      <to>GetVariable；home_path</to>
+      <to>GetVariable: home_path</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -2270,7 +2270,7 @@ Do create, replace, and delete operations</note>
     </GUI>
   </step>
   <step>
-    <name>GetVariable；home_path</name>
+    <name>GetVariable: home_path</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>

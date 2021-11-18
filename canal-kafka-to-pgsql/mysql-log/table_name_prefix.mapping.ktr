@@ -447,33 +447,33 @@
   </notepads>
   <order>
     <hop>
-      <from>获取变量: prefix</from>
-      <to>替换NULL值: prefix</to>
+      <from>GetVariable: prefix</from>
+      <to>IfNull: prefix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>替换NULL值: prefix</from>
-      <to>计算器: target</to>
+      <from>IfNull: prefix</from>
+      <to>Calculator: target</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器: target</from>
-      <to>字段选择: remove prefix</to>
+      <from>Calculator: target</from>
+      <to>SelectValues: remove prefix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>映射输入规范: schema and table</from>
-      <to>获取变量: prefix</to>
+      <from>MappingInput: schema and table</from>
+      <to>GetVariable: prefix</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择: remove prefix</from>
-      <to>映射输出规范: schema and table</to>
+      <from>SelectValues: remove prefix</from>
+      <to>MappingOutput: schema and table</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>字段选择: remove prefix</name>
+    <name>SelectValues: remove prefix</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -507,7 +507,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输入规范: schema and table</name>
+    <name>MappingInput: schema and table</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -547,7 +547,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输出规范: schema and table</name>
+    <name>MappingOutput: schema and table</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -572,7 +572,7 @@
     </GUI>
   </step>
   <step>
-    <name>替换NULL值: prefix</name>
+    <name>IfNull: prefix</name>
     <type>IfNull</type>
     <description/>
     <distribute>Y</distribute>
@@ -618,7 +618,7 @@
     </GUI>
   </step>
   <step>
-    <name>获取变量: prefix</name>
+    <name>GetVariable: prefix</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -669,7 +669,7 @@
     </GUI>
   </step>
   <step>
-    <name>计算器: target</name>
+    <name>Calculator: target</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>

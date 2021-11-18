@@ -589,7 +589,7 @@
     </hop>
     <hop>
       <from>WriteToLog: contains \u0000</from>
-      <to>JavaScript代码</to>
+      <to>ScriptValueMod</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -814,7 +814,7 @@
     </GUI>
   </step>
   <step>
-    <name>JavaScript代码</name>
+    <name>ScriptValueMod</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>

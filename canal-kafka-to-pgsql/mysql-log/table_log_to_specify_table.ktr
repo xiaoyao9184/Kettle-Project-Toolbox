@@ -528,188 +528,188 @@
   </connection>
   <order>
     <hop>
-      <from>过滤记录: table_exist</from>
-      <to>空操作 (什么也不做): process logs</to>
+      <from>FilterRows: table_exist</from>
+      <to>Dummy: process logs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做): process logs</from>
-      <to>样本行: read columns field and sql type</to>
+      <from>Dummy: process logs</from>
+      <to>SampleRows: read columns field and sql type</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>样本行: read columns field and sql type</from>
-      <to>JavaScript代码：pk</to>
+      <from>SampleRows: read columns field and sql type</from>
+      <to>ScriptValueMod: pk</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：pk</from>
-      <to>增加常量: COMOARATOR</to>
+      <from>SelectValues: pk</from>
+      <to>Constant: COMOARATOR</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: COMOARATOR</from>
+      <from>Constant: COMOARATOR</from>
       <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做): process logs</from>
-      <to>阻塞数据直到步骤都完成</to>
+      <from>Dummy: process logs</from>
+      <to>BlockUntilStepsFinish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>阻塞数据直到步骤都完成</from>
+      <from>BlockUntilStepsFinish</from>
       <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: JSON_PATH_PREFIX,FIELD_PREFIX</from>
-      <to>计算器：json_path,field</to>
+      <from>Constant: JSON_PATH_PREFIX,FIELD_PREFIX</from>
+      <to>Calculator: json_path,field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: FLAG</from>
+      <from>Constant: FLAG</from>
       <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>样本行: read columns field and sql type</from>
-      <to>JavaScript代码：column</to>
+      <from>SampleRows: read columns field and sql type</from>
+      <to>ScriptValueMod: column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: FIELD_PREFIX</from>
-      <to>计算器：field</to>
+      <from>Constant: FIELD_PREFIX</from>
+      <to>Calculator: field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：column</from>
-      <to>增加常量: FLAG</to>
+      <from>SelectValues: column</from>
+      <to>Constant: FLAG</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取系统信息</from>
-      <to>获取变量: full_table_name</to>
+      <from>SystemInfo</from>
+      <to>GetVariable: full_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>转换步骤信息统计</from>
-      <to>获取系统信息</to>
+      <from>StepsMetrics</from>
+      <to>SystemInfo</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量: full_table_name</from>
-      <to>字段选择：sort</to>
+      <from>GetVariable: full_table_name</from>
+      <to>SelectValues: sort</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：sort</from>
-      <to>复制记录到结果</to>
+      <from>SelectValues: sort</from>
+      <to>RowsToResult</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>自定义常量数据: test canal_user</from>
-      <to>空操作 (什么也不做): stream logs</to>
+      <from>DataGrid: test canal_user</from>
+      <to>Dummy: stream logs</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>从结果获取记录: message info</from>
-      <to>空操作 (什么也不做): stream logs</to>
+      <from>RowsFromResult: message info</from>
+      <to>Dummy: stream logs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做): table_exist</from>
-      <to>记录关联 (笛卡尔输出)</to>
+      <from>Dummy: table_exist</from>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>空操作 (什么也不做): stream logs</from>
-      <to>记录关联 (笛卡尔输出)</to>
+      <from>Dummy: stream logs</from>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>记录关联 (笛卡尔输出)</from>
-      <to>过滤记录: table_exist</to>
+      <from>JoinRows</from>
+      <to>FilterRows: table_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: FLAG</from>
-      <to>写日志: column</to>
+      <from>Constant: FLAG</from>
+      <to>WriteToLog: column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: COMOARATOR</from>
-      <to>写日志: pk</to>
+      <from>Constant: COMOARATOR</from>
+      <to>WriteToLog: pk</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>JDBC datatype -> Kettle data type</from>
-      <to>流查询</to>
+      <to>StreamLookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>自定义常量数据：json-input-field</from>
-      <to>流查询</to>
+      <from>DataGrid: json-input-field</from>
+      <to>StreamLookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>流查询</from>
-      <to>增加常量: JSON_PATH_PREFIX,FIELD_PREFIX</to>
+      <from>StreamLookup</from>
+      <to>Constant: JSON_PATH_PREFIX,FIELD_PREFIX</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Simple mapping: pgsql_table_exists</from>
-      <to>字段选择：rename target</to>
+      <to>SelectValues: rename target</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择：rename target</from>
-      <to>空操作 (什么也不做): table_exist</to>
+      <from>SelectValues: rename target</from>
+      <to>Dummy: table_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>过滤记录: table_exist</from>
+      <from>FilterRows: table_exist</from>
       <to>Kafka producer:  ingore-table-log</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>获取变量: params schema and table name</from>
+      <from>GetVariable: params schema and table name</from>
       <to>Simple mapping: pgsql_table_exists</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：field</from>
+      <from>Calculator: field</from>
       <to>Simple mapping: pgsql_column_case pk</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器：json_path,field</from>
+      <from>Calculator: json_path,field</from>
       <to>Simple mapping: pgsql_column_case column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Simple mapping: pgsql_column_case column</from>
-      <to>字段选择：column</to>
+      <to>SelectValues: column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Simple mapping: pgsql_column_case pk</from>
-      <to>字段选择：pk</to>
+      <to>SelectValues: pk</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript代码：pk</from>
-      <to>增加常量: FIELD_PREFIX</to>
+      <from>ScriptValueMod: pk</from>
+      <to>Constant: FIELD_PREFIX</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JavaScript代码：column</from>
+      <from>ScriptValueMod: column</from>
       <to>JDBC datatype -> Kettle data type</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>样本行: read columns field and sql type</from>
-      <to>写日志: target table</to>
+      <from>SampleRows: read columns field and sql type</from>
+      <to>WriteToLog: target table</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -733,189 +733,189 @@
     <source_output_fields>    </source_output_fields>
     <target_file/>
     <no_execution>N</no_execution>
-    <stream_source_step>阻塞数据直到步骤都完成</stream_source_step>
+    <stream_source_step>BlockUntilStepsFinish</stream_source_step>
     <stream_target_step>JSON input: column</stream_target_step>
     <mappings>
       <mapping>
-        <target_step_name>插入</target_step_name>
+        <target_step_name>InsertUpdate</target_step_name>
         <target_attribute_key>UPDATE_LOOKUP</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>column</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_TRIM_TYPE</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_trim_type</source_field>
       </mapping>
       <mapping>
-        <target_step_name>更新</target_step_name>
+        <target_step_name>Update</target_step_name>
         <target_attribute_key>KEY_CONDITION</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>COMOARATOR</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_NAME</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_name</source_field>
       </mapping>
       <mapping>
-        <target_step_name>删除</target_step_name>
+        <target_step_name>Delete</target_step_name>
         <target_attribute_key>COMPARATOR</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>COMOARATOR</source_field>
       </mapping>
       <mapping>
-        <target_step_name>插入</target_step_name>
+        <target_step_name>InsertUpdate</target_step_name>
         <target_attribute_key>KEY_STREAM</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>field</source_field>
       </mapping>
       <mapping>
-        <target_step_name>插入</target_step_name>
+        <target_step_name>InsertUpdate</target_step_name>
         <target_attribute_key>UPDATE_STREAM</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>field</source_field>
       </mapping>
       <mapping>
-        <target_step_name>删除</target_step_name>
+        <target_step_name>Delete</target_step_name>
         <target_attribute_key>TABLE_NAME_FIELD</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>pk</source_field>
       </mapping>
       <mapping>
-        <target_step_name>更新</target_step_name>
+        <target_step_name>Update</target_step_name>
         <target_attribute_key>KEY_LOOKUP</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>pk</source_field>
       </mapping>
       <mapping>
-        <target_step_name>删除</target_step_name>
+        <target_step_name>Delete</target_step_name>
         <target_attribute_key>STREAM_FIELDNAME_1</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>field</source_field>
       </mapping>
       <mapping>
-        <target_step_name>插入</target_step_name>
+        <target_step_name>InsertUpdate</target_step_name>
         <target_attribute_key>UPDATE_FLAG</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>FLAG</source_field>
       </mapping>
       <mapping>
-        <target_step_name>更新</target_step_name>
+        <target_step_name>Update</target_step_name>
         <target_attribute_key>UPDATE_STREAM</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>field</source_field>
       </mapping>
       <mapping>
-        <target_step_name>更新</target_step_name>
+        <target_step_name>Update</target_step_name>
         <target_attribute_key>KEY_STREAM</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>field</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_CURRENCY</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_currency</source_field>
       </mapping>
       <mapping>
-        <target_step_name>插入</target_step_name>
+        <target_step_name>InsertUpdate</target_step_name>
         <target_attribute_key>KEY_CONDITION</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>COMOARATOR</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_TYPE</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_type</source_field>
       </mapping>
       <mapping>
-        <target_step_name>更新</target_step_name>
+        <target_step_name>Update</target_step_name>
         <target_attribute_key>UPDATE_LOOKUP</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>column</source_field>
       </mapping>
       <mapping>
-        <target_step_name>更新</target_step_name>
+        <target_step_name>Update</target_step_name>
         <target_attribute_key>UPDATE_FLAG</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>FLAG</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_LENGTH</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_length</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_DECIMAL</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_decimal</source_field>
       </mapping>
       <mapping>
-        <target_step_name>插入</target_step_name>
+        <target_step_name>InsertUpdate</target_step_name>
         <target_attribute_key>KEY_LOOKUP</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: COMOARATOR</source_step>
+        <source_step>Constant: COMOARATOR</source_step>
         <source_field>pk</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_FORMAT</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_format</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_REPEAT</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_repeat</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_PRECISION</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_precision</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_PATH</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_path</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
         <target_attribute_key>FIELD_GROUP</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>增加常量: FLAG</source_step>
+        <source_step>Constant: FLAG</source_step>
         <source_field>jif_group</source_field>
       </mapping>
     </mappings>
@@ -1108,7 +1108,7 @@
     </GUI>
   </step>
   <step>
-    <name>JavaScript代码：column</name>
+    <name>ScriptValueMod: column</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1180,7 +1180,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>JavaScript代码：pk</name>
+    <name>ScriptValueMod: pk</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1508,7 +1508,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>从结果获取记录: message info</name>
+    <name>RowsFromResult: message info</name>
     <type>RowsFromResult</type>
     <description/>
     <distribute>Y</distribute>
@@ -1619,7 +1619,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>写日志: column</name>
+    <name>WriteToLog: column</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -1666,7 +1666,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>写日志: pk</name>
+    <name>WriteToLog: pk</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -1707,7 +1707,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>增加常量: COMOARATOR</name>
+    <name>Constant: COMOARATOR</name>
     <type>Constant</type>
     <description/>
     <distribute>N</distribute>
@@ -1746,7 +1746,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>增加常量: FIELD_PREFIX</name>
+    <name>Constant: FIELD_PREFIX</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1785,7 +1785,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>增加常量: FLAG</name>
+    <name>Constant: FLAG</name>
     <type>Constant</type>
     <description/>
     <distribute>N</distribute>
@@ -1824,7 +1824,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>增加常量: JSON_PATH_PREFIX,FIELD_PREFIX</name>
+    <name>Constant: JSON_PATH_PREFIX,FIELD_PREFIX</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1875,7 +1875,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>复制记录到结果</name>
+    <name>RowsToResult</name>
     <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
@@ -1900,7 +1900,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>字段选择：column</name>
+    <name>SelectValues: column</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1971,7 +1971,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>字段选择：pk</name>
+    <name>SelectValues: pk</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2006,7 +2006,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>字段选择：rename target</name>
+    <name>SelectValues: rename target</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2046,7 +2046,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>字段选择：sort</name>
+    <name>SelectValues: sort</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2110,7 +2110,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>样本行: read columns field and sql type</name>
+    <name>SampleRows: read columns field and sql type</name>
     <type>SampleRows</type>
     <description/>
     <distribute>N</distribute>
@@ -2137,7 +2137,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>流查询</name>
+    <name>StreamLookup</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2147,7 +2147,7 @@ for (index = 0; index &lt; keys.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>自定义常量数据：json-input-field</from>
+    <from>DataGrid: json-input-field</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -2227,7 +2227,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做): process logs</name>
+    <name>Dummy: process logs</name>
     <type>Dummy</type>
     <description/>
     <distribute>N</distribute>
@@ -2252,7 +2252,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做): stream logs</name>
+    <name>Dummy: stream logs</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -2277,7 +2277,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做): table_exist</name>
+    <name>Dummy: table_exist</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -2302,7 +2302,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>自定义常量数据: test canal_user</name>
+    <name>DataGrid: test canal_user</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -2515,7 +2515,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>自定义常量数据：json-input-field</name>
+    <name>DataGrid: json-input-field</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
@@ -2751,7 +2751,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>获取变量: full_table_name</name>
+    <name>GetVariable: full_table_name</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -2790,7 +2790,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>获取变量: params schema and table name</name>
+    <name>GetVariable: params schema and table name</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -2841,7 +2841,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>获取系统信息</name>
+    <name>SystemInfo</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -2876,7 +2876,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>计算器：field</name>
+    <name>Calculator: field</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -2917,7 +2917,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>计算器：json_path,field</name>
+    <name>Calculator: json_path,field</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -2973,7 +2973,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>记录关联 (笛卡尔输出)</name>
+    <name>JoinRows</name>
     <type>JoinRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2986,7 +2986,7 @@ for (index = 0; index &lt; keys.length; index++) {
     <directory>%%java.io.tmpdir%%</directory>
     <prefix>out</prefix>
     <cache_size>5000</cache_size>
-    <main>空操作 (什么也不做): stream logs</main>
+    <main>Dummy: stream logs</main>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3016,7 +3016,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>转换步骤信息统计</name>
+    <name>StepsMetrics</name>
     <type>StepsMetrics</type>
     <description/>
     <distribute>Y</distribute>
@@ -3028,12 +3028,12 @@ for (index = 0; index &lt; keys.length; index++) {
     </partitioning>
     <steps>
       <step>
-        <name>空操作 (什么也不做): stream logs</name>
+        <name>Dummy: stream logs</name>
         <copyNr>0</copyNr>
         <stepRequired>Y</stepRequired>
       </step>
       <step>
-        <name>空操作 (什么也不做): process logs</name>
+        <name>Dummy: process logs</name>
         <copyNr>0</copyNr>
         <stepRequired>N</stepRequired>
       </step>
@@ -3062,7 +3062,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>过滤记录: table_exist</name>
+    <name>FilterRows: table_exist</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -3072,7 +3072,7 @@ for (index = 0; index &lt; keys.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>空操作 (什么也不做): process logs</send_true_to>
+    <send_true_to>Dummy: process logs</send_true_to>
     <send_false_to>Kafka producer:  ingore-table-log</send_false_to>
     <compare>
       <condition>
@@ -3127,7 +3127,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>阻塞数据直到步骤都完成</name>
+    <name>BlockUntilStepsFinish</name>
     <type>BlockUntilStepsFinish</type>
     <description/>
     <distribute>Y</distribute>
@@ -3139,11 +3139,11 @@ for (index = 0; index &lt; keys.length; index++) {
     </partitioning>
     <steps>
       <step>
-        <name>增加常量: FLAG</name>
+        <name>Constant: FLAG</name>
         <CopyNr>0</CopyNr>
       </step>
       <step>
-        <name>增加常量: COMOARATOR</name>
+        <name>Constant: COMOARATOR</name>
         <CopyNr>0</CopyNr>
       </step>
     </steps>
@@ -3162,7 +3162,7 @@ for (index = 0; index &lt; keys.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>写日志: target table</name>
+    <name>WriteToLog: target table</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>

@@ -78,7 +78,7 @@ Since 7.1 changed the relative repository selection window,
 such as job items: Job (Job Entry), Transformation (Job Entry),
 transformation steps: Simple Mapping, Mapping, etc. 
 all omit the original path filling box, merged into one text box to fill in the path + name,
-However, this text box is still two attributes and will be split into path + name according to the last ‘/’. 
+However, this text box is still two attributes and will be split into path + name according to the last '/'. 
 Unlike 7.0, the name attribute does not support include path symbol!
 
 But, now it will support it!

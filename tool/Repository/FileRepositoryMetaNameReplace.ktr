@@ -599,13 +599,13 @@ see Parameters.Repository.Name.Remove
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: ）</from>
+      <from>Dummy: )</from>
       <to>WriteToLog: repository meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: replace with number_name</from>
-      <to>Dummy: ）</to>
+      <to>Dummy: )</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -620,11 +620,11 @@ see Parameters.Repository.Name.Remove
     </hop>
     <hop>
       <from>SelectValues: remove name_number</from>
-      <to>Dummy: ）</to>
+      <to>Dummy: )</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: ）</from>
+      <from>Dummy: )</from>
       <to>RowsToResult: repository meta</to>
       <enabled>Y</enabled>
     </hop>
@@ -707,7 +707,7 @@ see Parameters.Repository.Name.Remove
     </GUI>
   </step>
   <step>
-    <name>Dummy: ）</name>
+    <name>Dummy: )</name>
     <type>Dummy</type>
     <description />
     <distribute>N</distribute>
