@@ -18,7 +18,7 @@
         <cfg namespace="Config.Log.Delay" key="Time">0</cfg>
         <cfg namespace="Config.Log.Snapshot.FlashPoint" key="Delay">2592000</cfg>
         <cfg namespace="Config.Log.Snapshot.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
-
+        
         <profile name="test_kpt">
             <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="database">test_kpt</cfg>
             <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="server">test_kpt</cfg>
@@ -55,6 +55,11 @@ Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME	
 Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes	
+Config.Log.Kafka.Batch.Size	10000
+Config.Log.Kafka.Batch.Duration	60000	
+Config.Log.Kafka.Batch.Max	10000	
+Config.Log.Snapshot.FlashPoint.Delay	2592000	
+Config.Log.Snapshot.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.Log.Source.Transformation.Path	from-debezium	
 Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
 Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
@@ -95,6 +100,11 @@ Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME	
 Config.Log.Kafka.Data.Topic	test_debezium_mssql-test_kpt_cdc.data-changes	
+Config.Log.Kafka.Batch.Size	10000
+Config.Log.Kafka.Batch.Duration	60000	
+Config.Log.Kafka.Batch.Max	10000	
+Config.Log.Snapshot.FlashPoint.Delay	2592000	
+Config.Log.Snapshot.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.Log.Source.Transformation.Path	from-debezium	
 Config.Log.Source.Table.Mapping	mssql_playload_to_table_name.mapping	
 Config.Log.Source.Column.Mapping	mssql_schema_to_column_meta.mapping	
