@@ -8,6 +8,16 @@
     <trans_status>0</trans_status>
     <directory>/from-debezium</directory>
     <parameters>
+      <parameter>
+        <name>Param.Snapshot.FlashPoint.Delay</name>
+        <default_value>2592000</default_value>
+        <description>seconds for now delay for insert snapshots or update snapshots</description>
+      </parameter>
+      <parameter>
+        <name>Param.Snapshot.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description>timestamp point for insert snapshots or update snapshots</description>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -429,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/22 22:07:18.215</modified_date>
+    <modified_date>2021/11/18 14:02:58.024</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -452,31 +462,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: snapshot and r</from>
-      <to>FilterRows: key not empty</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ValueMapper: operate to target_switch_flag</from>
-      <to>Constant:UPDATE,INSERT_BLUK</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: key not empty</from>
-      <to>SetValueField: UPDATE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SetValueField: UPDATE</from>
-      <to>Dummy</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SetValueField: INSERT_BLUK</from>
-      <to>Dummy</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Dummy</from>
       <to>SelectValues: remove</to>
       <enabled>Y</enabled>
@@ -487,33 +472,231 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>FilterRows: snapshot and r</from>
-      <to>SetValueField: UPDATE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>NullIf: key</from>
       <to>Calculator: key_len</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant:UPDATE,INSERT_BLUK</from>
-      <to>NullIf: key</to>
+      <from>FilterRows: param_flashpoint_timestamp good</from>
+      <to>Calculator: flashpoint use delay</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Calculator: key_len</from>
-      <to>FilterRows: snapshot and r</to>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: key not empty</from>
-      <to>SetValueField: INSERT_BLUK</to>
+      <from>GetVariable: param_flashpoint</from>
+      <to>SystemInfo: this_time</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: this_time</from>
+      <to>FilterRows: param_flashpoint_timestamp good</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: param_flashpoint_timestamp good</from>
+      <to>Calculator: flashpoint use param</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: flashpoint use param</from>
+      <to>Dummy: flashpoint_timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: flashpoint use delay</from>
+      <to>Dummy: flashpoint_timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: flashpoint_timestamp</from>
+      <to>FilterRows: is after flashpoint</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is after flashpoint</from>
+      <to>Constant: UPDATE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is after flashpoint</from>
+      <to>Constant: INSERT_BLUK</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: UPDATE</from>
+      <to>SelectValues: FLASHPOINT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: INSERT_BLUK</from>
+      <to>SelectValues: FLASHPOINT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: FLASHPOINT</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JoinRows</from>
+      <to>FilterRows: op is r</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: op is r</from>
+      <to>Dummy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: op is r</from>
+      <to>SetValueField: FLASHPOINT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: FLASHPOINT</from>
+      <to>Dummy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ValueMapper: operate to target_switch_flag</from>
+      <to>NullIf: key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: UPDATE</from>
+      <to>WriteToLog: flashpoint</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Constant:UPDATE,INSERT_BLUK</name>
+    <name>Calculator: flashpoint use param</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>flashpoint_timestamp</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>param_flashpoint_timestamp</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Date</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: flashpoint use delay</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>flashpoint_timestamp</field_name>
+      <calc_type>ADD_SECONDS</calc_type>
+      <field_a>param_config_timestamp</field_a>
+      <field_b>param_flashpoint_delay</field_b>
+      <field_c/>
+      <value_type>None</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: key_len</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>key_len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>key</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: INSERT_BLUK</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -525,19 +708,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>UPDATE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>UPDATE</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>INSERT_BLUK</name>
+        <name>FLASHPOINT</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -558,8 +729,47 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>496</yloc>
+      <xloc>592</xloc>
+      <yloc>816</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: UPDATE</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>FLASHPOINT</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>UPDATE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>816</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -677,12 +887,37 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1264</yloc>
+      <yloc>1344</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>FilterRows: key not empty</name>
+    <name>Dummy: flashpoint_timestamp</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: is after flashpoint</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -692,26 +927,17 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>SetValueField: INSERT_BLUK</send_true_to>
-    <send_false_to>SetValueField: UPDATE</send_false_to>
+    <send_true_to>Constant: UPDATE</send_true_to>
+    <send_false_to>Constant: INSERT_BLUK</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>key_len</leftvalue>
+            <leftvalue>this_time</leftvalue>
             <function>&gt;</function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>Integer</type>
-              <text>0</text>
-              <length>-1</length>
-              <precision>0</precision>
-              <isnull>N</isnull>
-              <mask>####0;-####0</mask>
-            </value>
+            <rightvalue>flashpoint_timestamp</rightvalue>
           </condition>
         </conditions>
       </condition>
@@ -725,13 +951,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>1008</yloc>
+      <xloc>720</xloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>FilterRows: snapshot and r</name>
+    <name>FilterRows: param_flashpoint_timestamp good</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -741,27 +967,52 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>FilterRows: key not empty</send_true_to>
-    <send_false_to>SetValueField: UPDATE</send_false_to>
+    <send_true_to>Calculator: flashpoint use param</send_true_to>
+    <send_false_to>Calculator: flashpoint use delay</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>payload_source_snapshot</leftvalue>
-            <function>IN LIST</function>
-            <rightvalue/>
-            <value>
-              <name>constant</name>
-              <type>String</type>
-              <text>true;last</text>
-              <length>-1</length>
-              <precision>-1</precision>
-              <isnull>N</isnull>
-              <mask/>
-            </value>
+            <leftvalue>param_flashpoint_timestamp</leftvalue>
+            <function>&gt;</function>
+            <rightvalue>param_config_timestamp</rightvalue>
           </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: op is r</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>SetValueField: FLASHPOINT</send_true_to>
+    <send_false_to>Dummy</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
           <condition>
             <negated>N</negated>
             <operator>AND</operator>
@@ -791,7 +1042,70 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>880</yloc>
+      <yloc>1088</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: param_flashpoint</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>param_flashpoint_delay</name>
+        <variable>${Param.Snapshot.FlashPoint.Delay}</variable>
+        <type>Integer</type>
+        <format>#.#</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>param_flashpoint_timestamp</name>
+        <variable>${Param.Snapshot.FlashPoint.Timestamp}</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>param_config_timestamp</name>
+        <variable>${Config.Time}</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1087,6 +1401,43 @@
     </GUI>
   </step>
   <step>
+    <name>JoinRows</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue/>
+        <function>TRUE</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>MappingInput</name>
     <type>MappingInput</type>
     <description/>
@@ -1147,7 +1498,70 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1552</yloc>
+      <yloc>1648</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>NullIf: key</name>
+    <type>NullIf</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>key</name>
+        <value/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: FLASHPOINT</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>FLASHPOINT</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1238,12 +1652,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1424</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SetValueField: INSERT_BLUK</name>
+    <name>SetValueField: FLASHPOINT</name>
     <type>SetValueField</type>
     <description/>
     <distribute>Y</distribute>
@@ -1256,7 +1670,7 @@
     <fields>
       <field>
         <name>target_switch_flag</name>
-        <replaceby>INSERT_BLUK</replaceby>
+        <replaceby>FLASHPOINT</replaceby>
       </field>
     </fields>
     <attributes/>
@@ -1268,14 +1682,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>224</xloc>
-      <yloc>1136</yloc>
+      <xloc>480</xloc>
+      <yloc>1216</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SetValueField: UPDATE</name>
-    <type>SetValueField</type>
+    <name>SystemInfo: this_time</name>
+    <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1286,8 +1700,8 @@
     </partitioning>
     <fields>
       <field>
-        <name>target_switch_flag</name>
-        <replaceby>UPDATE</replaceby>
+        <name>this_time</name>
+        <type>system date (fixed)</type>
       </field>
     </fields>
     <attributes/>
@@ -1299,8 +1713,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>1136</yloc>
+      <xloc>720</xloc>
+      <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1351,8 +1765,8 @@
     </GUI>
   </step>
   <step>
-    <name>NullIf: key</name>
-    <type>NullIf</type>
+    <name>WriteToLog: flashpoint</name>
+    <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1361,10 +1775,17 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>now is after flashpoint</logmessage>
     <fields>
       <field>
-        <name>key</name>
-        <value/>
+        <name>this_time</name>
+      </field>
+      <field>
+        <name>flashpoint_timestamp</name>
       </field>
     </fields>
     <attributes/>
@@ -1376,49 +1797,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: key_len</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>key_len</field_name>
-      <calc_type>STRING_LEN</calc_type>
-      <field_a>key</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>752</yloc>
+      <xloc>1040</xloc>
+      <yloc>816</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
