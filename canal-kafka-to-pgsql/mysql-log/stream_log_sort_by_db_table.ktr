@@ -493,7 +493,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>自定义常量数据</from>
+      <from>DataGrid</from>
       <to>JSON input: message info</to>
       <enabled>N</enabled>
     </hop>
@@ -504,7 +504,7 @@
     </hop>
     <hop>
       <from>Simple mapping: table_name_sort</from>
-      <to>空操作 (什么也不做): table-log</to>
+      <to>Dummy: table-log</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -798,7 +798,7 @@
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做): table-log</name>
+    <name>Dummy: table-log</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -823,7 +823,7 @@
     </GUI>
   </step>
   <step>
-    <name>自定义常量数据</name>
+    <name>DataGrid</name>
     <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>

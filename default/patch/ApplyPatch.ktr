@@ -754,7 +754,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable；kettle_dir</from>
+      <from>GetVariable: kettle_dir</from>
       <to>Simple Mapping (sub-transformation):MappingRelativePath2AbsolutePath:kettle_dir</to>
       <enabled>Y</enabled>
     </hop>
@@ -775,7 +775,7 @@
     </hop>
     <hop>
       <from>SelectValues: profile_file_location: remove</from>
-      <to>GetVariable；kettle_dir</to>
+      <to>GetVariable: kettle_dir</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1707,7 +1707,7 @@
     </GUI>
   </step>
   <step>
-    <name>GetVariable；kettle_dir</name>
+    <name>GetVariable: kettle_dir</name>
     <type>GetVariable</type>
     <description />
     <distribute>Y</distribute>

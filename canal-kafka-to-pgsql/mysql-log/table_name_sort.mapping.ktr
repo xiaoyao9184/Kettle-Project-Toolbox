@@ -437,33 +437,33 @@
   </notepads>
   <order>
     <hop>
-      <from>增加常量：POINT</from>
-      <to>计算器: full_table_name</to>
+      <from>Constant: POINT</from>
+      <to>Calculator: full_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器: full_table_name</from>
-      <to>排序记录: full_table_name</to>
+      <from>Calculator: full_table_name</from>
+      <to>SortRows: full_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>排序记录: full_table_name</from>
-      <to>字段选择: remove POINT</to>
+      <from>SortRows: full_table_name</from>
+      <to>SelectValues: remove POINT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>映射输入规范</from>
-      <to>增加常量：POINT</to>
+      <from>MappingInput</from>
+      <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择: remove POINT</from>
-      <to>映射输出规范</to>
+      <from>SelectValues: remove POINT</from>
+      <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>增加常量：POINT</name>
+    <name>Constant: POINT</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -502,7 +502,7 @@
     </GUI>
   </step>
   <step>
-    <name>字段选择: remove POINT</name>
+    <name>SelectValues: remove POINT</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -533,7 +533,7 @@
     </GUI>
   </step>
   <step>
-    <name>排序记录: full_table_name</name>
+    <name>SortRows: full_table_name</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -575,7 +575,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输入规范</name>
+    <name>MappingInput</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -615,7 +615,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输出规范</name>
+    <name>MappingOutput</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -640,7 +640,7 @@
     </GUI>
   </step>
   <step>
-    <name>计算器: full_table_name</name>
+    <name>Calculator: full_table_name</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>

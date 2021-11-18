@@ -509,7 +509,7 @@
   <order>
     <hop>
       <from>Kafka consumer</from>
-      <to>空操作 (什么也不做)</to>
+      <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -528,7 +528,7 @@
     <topic>${Config.Log.Kafka.Data.Topic}</topic>
     <consumerGroup>${Config.Log.Kafka.Consumer.Group}</consumerGroup>
     <transformationPath>${Internal.Entry.Current.Directory}/${Config.Log.Kafka.Stream.Transformation}</transformationPath>
-    <SUB_STEP>空操作 (什么也不做): table-log</SUB_STEP>
+    <SUB_STEP>Dummy: table-log</SUB_STEP>
     <batchSize>10000</batchSize>
     <batchDuration>60000</batchDuration>
     <PARALLELISM>1</PARALLELISM>
@@ -565,7 +565,7 @@
     </GUI>
   </step>
   <step>
-    <name>空操作 (什么也不做)</name>
+    <name>Dummy</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
