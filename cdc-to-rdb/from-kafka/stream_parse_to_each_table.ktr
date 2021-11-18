@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/18 16:51:28.179</modified_date>
+    <modified_date>2021/11/18 17:31:59.408</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -500,11 +500,6 @@
     <hop>
       <from>Calculator: length of schema and table</from>
       <to>FilterRows: is table-log</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: is table-log</from>
-      <to>Kafka producer: not_table_log</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -583,16 +578,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: execution has error</from>
-      <to>JSON output: error_json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: error_json</from>
-      <to>Kafka producer: error_json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Dummy: exec result</from>
       <to>ScriptValueMod: result_id</to>
       <enabled>Y</enabled>
@@ -635,6 +620,26 @@
     <hop>
       <from>SelectValues: sort field</from>
       <to>FilterRows: execution has error</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is table-log</from>
+      <to>Constant: NOT_DML</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: NOT_DML</from>
+      <to>SimpleMapping: logger NOT_DML</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: error_json</from>
+      <to>SimpleMapping: logger ERROR</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: execution has error</from>
+      <to>JSON output: error_json</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1307,7 +1312,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>SimpleMapping: table_name_prefix</send_true_to>
-    <send_false_to>Kafka producer: not_table_log</send_false_to>
+    <send_false_to>Constant: NOT_DML</send_false_to>
     <compare>
       <condition>
         <negated>Y</negated>
@@ -1455,56 +1460,8 @@
     </file>
     <fields>
       <field>
-        <name>key</name>
-        <element>kafka_key</element>
-      </field>
-      <field>
-        <name>message</name>
-        <element>kafka_message</element>
-      </field>
-      <field>
-        <name>topic</name>
-        <element>kafka_topic</element>
-      </field>
-      <field>
-        <name>partition</name>
-        <element>kafka_partition</element>
-      </field>
-      <field>
-        <name>offset</name>
-        <element>kafka_offset</element>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <element>kafka_timestamp</element>
-      </field>
-      <field>
         <name>batch_id</name>
         <element>batch_id</element>
-      </field>
-      <field>
-        <name>group_table_id</name>
-        <element>group_table_id</element>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <element>group_table_name</element>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <element>source_schema</element>
-      </field>
-      <field>
-        <name>source_table</name>
-        <element>source_table</element>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <element>target_schema</element>
-      </field>
-      <field>
-        <name>target_table</name>
-        <element>target_table</element>
       </field>
       <field>
         <name>execution_time</name>
@@ -1519,8 +1476,44 @@
         <element>execution_nr_errors</element>
       </field>
       <field>
+        <name>execution_lines_read</name>
+        <element>execution_lines_read</element>
+      </field>
+      <field>
+        <name>execution_lines_written</name>
+        <element>execution_lines_written</element>
+      </field>
+      <field>
+        <name>execution_lines_input</name>
+        <element>execution_lines_input</element>
+      </field>
+      <field>
+        <name>execution_lines_output</name>
+        <element>execution_lines_output</element>
+      </field>
+      <field>
+        <name>execution_lines_rejected</name>
+        <element>execution_lines_rejected</element>
+      </field>
+      <field>
+        <name>execution_lines_updated</name>
+        <element>execution_lines_updated</element>
+      </field>
+      <field>
+        <name>execution_lines_deleted</name>
+        <element>execution_lines_deleted</element>
+      </field>
+      <field>
+        <name>execution_files_retrieved</name>
+        <element>execution_files_retrieved</element>
+      </field>
+      <field>
         <name>execution_exit_status</name>
         <element>execution_exit_status</element>
+      </field>
+      <field>
+        <name>execution_log_text</name>
+        <element>execution_log_text</element>
       </field>
       <field>
         <name>execution_log_channel_id</name>
@@ -1529,6 +1522,50 @@
       <field>
         <name>execution_id</name>
         <element>execution_id</element>
+      </field>
+      <field>
+        <name>result_full_table_name</name>
+        <element>result_full_table_name</element>
+      </field>
+      <field>
+        <name>result_run_time</name>
+        <element>result_run_time</element>
+      </field>
+      <field>
+        <name>result_step_name</name>
+        <element>result_step_name</element>
+      </field>
+      <field>
+        <name>result_step_id</name>
+        <element>result_step_id</element>
+      </field>
+      <field>
+        <name>result_input_row</name>
+        <element>result_input_row</element>
+      </field>
+      <field>
+        <name>result_output_row</name>
+        <element>result_output_row</element>
+      </field>
+      <field>
+        <name>result_read_row</name>
+        <element>result_read_row</element>
+      </field>
+      <field>
+        <name>result_update_row</name>
+        <element>result_update_row</element>
+      </field>
+      <field>
+        <name>result_write_row</name>
+        <element>result_write_row</element>
+      </field>
+      <field>
+        <name>result_throw_row</name>
+        <element>result_throw_row</element>
+      </field>
+      <field>
+        <name>result_continue_time</name>
+        <element>result_continue_time</element>
       </field>
       <field>
         <name>result_batch_id</name>
@@ -1548,88 +1585,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>640</xloc>
       <yloc>2240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Kafka producer: error_json</name>
-    <type>KafkaProducerOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-error</topic>
-    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
-    <keyField>offset</keyField>
-    <messageField>error_json</messageField>
-    <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>2400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Kafka producer: not_table_log</name>
-    <type>KafkaProducerOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-not_table_log</topic>
-    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
-    <keyField>key</keyField>
-    <messageField>message</messageField>
-    <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2596,6 +2553,287 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>352</xloc>
       <yloc>1152</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: logger NOT_DML</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>crud_logger_to_kafka</trans_name>
+    <filename/>
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>partition</parent>
+            <child>partition</child>
+          </connector>
+          <connector>
+            <parent>offset</parent>
+            <child>offset</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>source_thread</parent>
+            <child>group_table_id</child>
+          </connector>
+          <connector>
+            <parent>source_query</parent>
+            <child>group_table_name</child>
+          </connector>
+          <connector>
+            <parent>len_of_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>len_of_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>json</parent>
+            <child>json</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>code</variable>
+          <input>NOT_DML</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: NOT_DML</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>target_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>-</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>json</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>{}</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: logger ERROR</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>crud_logger_to_kafka</trans_name>
+    <filename/>
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>partition</parent>
+            <child>partition</child>
+          </connector>
+          <connector>
+            <parent>offset</parent>
+            <child>offset</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>group_table_id</parent>
+            <child>group_table_id</child>
+          </connector>
+          <connector>
+            <parent>group_table_name</parent>
+            <child>group_table_name</child>
+          </connector>
+          <connector>
+            <parent>error_json</parent>
+            <child>json</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>code</variable>
+          <input>ERROR</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>2400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
