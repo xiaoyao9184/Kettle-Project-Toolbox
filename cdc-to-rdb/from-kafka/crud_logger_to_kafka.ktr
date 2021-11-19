@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/19 17:56:08.179</modified_date>
+    <modified_date>2021/11/19 20:17:46.520</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -452,11 +452,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: POINT</from>
-      <to>Calculator: key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Calculator: key</from>
       <to>JSON output: message</to>
       <enabled>Y</enabled>
@@ -469,6 +464,16 @@
     <hop>
       <from>Kafka producer: logger</from>
       <to>MappingOutput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: POINT</from>
+      <to>SelectValues: to string</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: to string</from>
+      <to>Calculator: key</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -509,7 +514,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>480</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -665,7 +670,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>624</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -705,7 +710,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>752</yloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -812,7 +817,69 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>896</yloc>
+      <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: to string</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>partition</name>
+        <rename>partition</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>#.#</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>offset</name>
+        <rename>offset</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>#.#</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
