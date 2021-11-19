@@ -434,8 +434,8 @@
     <created_user>-</created_user>
     <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/18 17:38:26.718</modified_date>
-    <key_for_session_key/>
+    <modified_date>2021/11/19 17:56:08.179</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -466,10 +466,56 @@
       <to>Kafka producer: logger</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Kafka producer: logger</from>
+      <to>MappingOutput</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
-    <name>MappingInput</name>
-    <type>MappingInput</type>
+    <name>Calculator: key</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>key</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>partition</field_a>
+      <field_b>POINT</field_b>
+      <field_c>offset</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: POINT</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -480,60 +526,17 @@
     </partitioning>
     <fields>
       <field>
-        <name>group_table_id</name>
+        <name>POINT</name>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>.</nullif>
         <length>-1</length>
         <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
       </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>partition</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>offset</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>json</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -545,13 +548,13 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>96</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Kafka producer: logger</name>
-    <type>KafkaProducerOutput</type>
+    <name>GetVariable: code</name>
+    <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -560,21 +563,20 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-logger</topic>
-    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
-    <keyField>key</keyField>
-    <messageField>message</messageField>
-    <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
-    </advancedConfig>
+    <fields>
+      <field>
+        <name>code</name>
+        <variable>${code}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -585,7 +587,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -668,8 +670,48 @@
     </GUI>
   </step>
   <step>
-    <name>GetVariable: code</name>
-    <type>GetVariable</type>
+    <name>Kafka producer: logger</name>
+    <type>KafkaProducerOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connectionType>DIRECT</connectionType>
+    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
+    <clusterName/>
+    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-logger</topic>
+    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
+    <keyField>key</keyField>
+    <messageField>message</messageField>
+    <advancedConfig>
+      <option property="compression.type" value="none"/>
+      <option property="ssl.key.password" value=""/>
+      <option property="ssl.keystore.location" value=""/>
+      <option property="ssl.keystore.password" value=""/>
+      <option property="ssl.truststore.location" value=""/>
+      <option property="ssl.truststore.password" value=""/>
+    </advancedConfig>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingInput</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -680,17 +722,60 @@
     </partitioning>
     <fields>
       <field>
-        <name>code</name>
-        <variable>${code}</variable>
+        <name>group_table_id</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
       </field>
+      <field>
+        <name>group_table_name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>target_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>partition</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>offset</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>json</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -702,13 +787,13 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Calculator: key</name>
-    <type>Calculator</type>
+    <name>MappingOutput</name>
+    <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -717,22 +802,6 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>key</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>partition</field_a>
-      <field_b>POINT</field_b>
-      <field_c>offset</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -743,46 +812,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: POINT</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>POINT</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
+      <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
