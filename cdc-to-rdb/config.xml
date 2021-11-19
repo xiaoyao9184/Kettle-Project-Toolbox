@@ -144,6 +144,11 @@ Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME	
 Config.Log.Kafka.Data.Topic	test_canal-test_kpt_cdc	
+Config.Log.Kafka.Batch.Size	10000
+Config.Log.Kafka.Batch.Duration	60000	
+Config.Log.Kafka.Batch.Max	10000	
+Config.Log.Snapshot.FlashPoint.Delay	2592000	
+Config.Log.Snapshot.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.Log.Source.Transformation.Path	from-canal	
 Config.Log.Source.Table.Mapping	canal_log_to_table_name.mapping	
 Config.Log.Source.Column.Mapping	canal_column_type_to_kettle.mapping	

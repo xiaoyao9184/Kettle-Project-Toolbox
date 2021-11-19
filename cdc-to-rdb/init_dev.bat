@@ -6,7 +6,7 @@ Setlocal enabledelayedexpansion
 
 :v
 
-set tip=Kettle-Project-Toolbox: link KPT
+set tip=Kettle-Project-Toolbox: init cdc dev env
 set ver=1.0
 ::interactive
 set interactive=1
@@ -41,6 +41,10 @@ if not exist %workspacePath% (
     exit /b 1
 )
 set toolPath=%workspacePath%\tool
+if not exist %toolPath% (
+    echo "%toolPath% must exist, use KPT/tool/INIT_KPT to init workspace!"
+    exit /b 1
+)
 
 :begin
 
