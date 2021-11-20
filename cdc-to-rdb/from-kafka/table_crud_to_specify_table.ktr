@@ -509,7 +509,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/18 17:31:44.511</modified_date>
+    <modified_date>2021/11/20 12:09:37.031</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1054,6 +1054,21 @@
     </hop>
     <hop>
       <from>FilterRows: rdb_table_ingore</from>
+      <to>Memory group by: INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Memory group by: INGORE</from>
+      <to>Constant: INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: INGORE</from>
+      <to>JSON output: INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: INGORE</from>
       <to>SimpleMapping: logger INGORE</to>
       <enabled>Y</enabled>
     </hop>
@@ -1080,7 +1095,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1744</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1107,7 +1122,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2560</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1134,7 +1149,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1161,7 +1176,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1188,7 +1203,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1215,7 +1230,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1242,7 +1257,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1269,7 +1284,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1364,7 +1379,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2153,7 +2168,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2223,7 +2238,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2293,7 +2308,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>2624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2363,7 +2378,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>2208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2420,7 +2435,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2477,7 +2492,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2534,7 +2549,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2591,7 +2606,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1376</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2618,7 +2633,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3263,7 +3278,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3307,7 +3322,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3323,7 +3338,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>SimpleMapping: logger INGORE</send_true_to>
+    <send_true_to>Memory group by: INGORE</send_true_to>
     <send_false_to>Dummy: process logs</send_false_to>
     <compare>
       <condition>
@@ -3395,8 +3410,90 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON output: INGORE</name>
+    <type>JsonOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <outputValue>json</outputValue>
+    <jsonBloc>data</jsonBloc>
+    <nrRowsInBloc>1</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name/>
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
+    <fields>
+      <field>
+        <name>code</name>
+        <element>code</element>
+      </field>
+      <field>
+        <name>group_table_id</name>
+        <element>group_table_id</element>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <element>group_table_name</element>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <element>source_schema</element>
+      </field>
+      <field>
+        <name>source_table</name>
+        <element>source_table</element>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <element>target_schema</element>
+      </field>
+      <field>
+        <name>target_table</name>
+        <element>target_table</element>
+      </field>
+      <field>
+        <name>offset_range</name>
+        <element>offset_range</element>
+      </field>
+      <field>
+        <name>offset_count</name>
+        <element>offset_count</element>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3613,8 +3710,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
-      <yloc>592</yloc>
+      <xloc>1392</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3667,7 +3764,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>768</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3694,7 +3791,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3734,7 +3831,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1744</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3805,7 +3902,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3845,7 +3942,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3885,7 +3982,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>3040</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3925,7 +4022,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2560</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3965,7 +4062,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4005,7 +4102,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4045,7 +4142,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2048</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4085,7 +4182,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4125,7 +4222,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4183,7 +4280,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>768</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4353,7 +4450,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4397,7 +4494,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4473,7 +4570,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4509,7 +4606,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4545,7 +4642,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4581,7 +4678,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4617,7 +4714,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4653,7 +4750,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4756,6 +4853,71 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>1248</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: logger INGORE</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>json_logger_to_kafka</trans_name>
+    <filename/>
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>partition</parent>
+            <child>partition</child>
+          </connector>
+          <connector>
+            <parent>offset</parent>
+            <child>offset</child>
+          </connector>
+          <connector>
+            <parent>json</parent>
+            <child>json</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4912,7 +5074,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>768</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4993,7 +5155,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>768</xloc>
       <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5039,7 +5201,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5156,7 +5318,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5194,7 +5356,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>3040</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5291,7 +5453,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1056</xloc>
+      <xloc>1184</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5356,8 +5518,8 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: logger INGORE</name>
-    <type>SimpleMapping</type>
+    <name>Memory group by: INGORE</name>
+    <type>MemoryGroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -5366,70 +5528,68 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>crud_logger_to_kafka</trans_name>
-    <filename/>
-    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>partition</parent>
-            <child>partition</child>
-          </connector>
-          <connector>
-            <parent>offset</parent>
-            <child>offset</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>group_table_id</parent>
-            <child>group_table_id</child>
-          </connector>
-          <connector>
-            <parent>group_table_name</parent>
-            <child>group_table_name</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>code</variable>
-          <input>INGORE</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>group_table_id</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>group_table_name</aggregate>
+        <subject>group_table_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_schema</aggregate>
+        <subject>target_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_table</aggregate>
+        <subject>target_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>partition</aggregate>
+        <subject>partition</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset</aggregate>
+        <subject>offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_range</aggregate>
+        <subject>offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_count</aggregate>
+        <subject>offset</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -5439,7 +5599,46 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>560</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: INGORE</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>INGORE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
       <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>

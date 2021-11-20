@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/18 17:31:59.408</modified_date>
+    <modified_date>2021/11/20 12:05:37.139</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -623,23 +623,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>JSON output: INGORE</from>
+      <to>SimpleMapping: logger INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: NOT_DML</from>
+      <to>JSON output: INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>FilterRows: is table-log</from>
       <to>Constant: NOT_DML</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: NOT_DML</from>
-      <to>SimpleMapping: logger NOT_DML</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: error_json</from>
+      <from>JSON output: ERROR</from>
       <to>SimpleMapping: logger ERROR</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Constant: ERROR</from>
+      <to>JSON output: ERROR</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>FilterRows: execution has error</from>
-      <to>JSON output: error_json</to>
+      <to>Constant: ERROR</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1268,7 +1278,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Dummy: ok</send_true_to>
-    <send_false_to>JSON output: error_json</send_false_to>
+    <send_false_to>Constant: ERROR</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -1429,168 +1439,6 @@
     </GUI>
   </step>
   <step>
-    <name>JSON output: error_json</name>
-    <type>JsonOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <outputValue>error_json</outputValue>
-    <jsonBloc>error</jsonBloc>
-    <nrRowsInBloc>1</nrRowsInBloc>
-    <operation_type>outputvalue</operation_type>
-    <compatibility_mode>N</compatibility_mode>
-    <encoding>UTF-8</encoding>
-    <addtoresult>N</addtoresult>
-    <file>
-      <name/>
-      <extention>js</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <create_parent_folder>N</create_parent_folder>
-      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
-      <servlet_output>N</servlet_output>
-    </file>
-    <fields>
-      <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
-      </field>
-      <field>
-        <name>execution_time</name>
-        <element>execution_time</element>
-      </field>
-      <field>
-        <name>execution_result</name>
-        <element>execution_result</element>
-      </field>
-      <field>
-        <name>execution_nr_errors</name>
-        <element>execution_nr_errors</element>
-      </field>
-      <field>
-        <name>execution_lines_read</name>
-        <element>execution_lines_read</element>
-      </field>
-      <field>
-        <name>execution_lines_written</name>
-        <element>execution_lines_written</element>
-      </field>
-      <field>
-        <name>execution_lines_input</name>
-        <element>execution_lines_input</element>
-      </field>
-      <field>
-        <name>execution_lines_output</name>
-        <element>execution_lines_output</element>
-      </field>
-      <field>
-        <name>execution_lines_rejected</name>
-        <element>execution_lines_rejected</element>
-      </field>
-      <field>
-        <name>execution_lines_updated</name>
-        <element>execution_lines_updated</element>
-      </field>
-      <field>
-        <name>execution_lines_deleted</name>
-        <element>execution_lines_deleted</element>
-      </field>
-      <field>
-        <name>execution_files_retrieved</name>
-        <element>execution_files_retrieved</element>
-      </field>
-      <field>
-        <name>execution_exit_status</name>
-        <element>execution_exit_status</element>
-      </field>
-      <field>
-        <name>execution_log_text</name>
-        <element>execution_log_text</element>
-      </field>
-      <field>
-        <name>execution_log_channel_id</name>
-        <element>execution_log_channel_id</element>
-      </field>
-      <field>
-        <name>execution_id</name>
-        <element>execution_id</element>
-      </field>
-      <field>
-        <name>result_full_table_name</name>
-        <element>result_full_table_name</element>
-      </field>
-      <field>
-        <name>result_run_time</name>
-        <element>result_run_time</element>
-      </field>
-      <field>
-        <name>result_step_name</name>
-        <element>result_step_name</element>
-      </field>
-      <field>
-        <name>result_step_id</name>
-        <element>result_step_id</element>
-      </field>
-      <field>
-        <name>result_input_row</name>
-        <element>result_input_row</element>
-      </field>
-      <field>
-        <name>result_output_row</name>
-        <element>result_output_row</element>
-      </field>
-      <field>
-        <name>result_read_row</name>
-        <element>result_read_row</element>
-      </field>
-      <field>
-        <name>result_update_row</name>
-        <element>result_update_row</element>
-      </field>
-      <field>
-        <name>result_write_row</name>
-        <element>result_write_row</element>
-      </field>
-      <field>
-        <name>result_throw_row</name>
-        <element>result_throw_row</element>
-      </field>
-      <field>
-        <name>result_continue_time</name>
-        <element>result_continue_time</element>
-      </field>
-      <field>
-        <name>result_batch_id</name>
-        <element>result_batch_id</element>
-      </field>
-      <field>
-        <name>result_id</name>
-        <element>result_id</element>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>640</xloc>
-      <yloc>2240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>ScriptValueMod: result_id</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -1663,51 +1511,39 @@ result_id = i;</jsScript_script>
       </field>
       <field>
         <name>group_table_id</name>
-        <rename/>
       </field>
       <field>
         <name>group_table_name</name>
-        <rename/>
       </field>
       <field>
         <name>source_schema</name>
-        <rename/>
       </field>
       <field>
         <name>source_table</name>
-        <rename/>
       </field>
       <field>
         <name>target_schema</name>
-        <rename/>
       </field>
       <field>
         <name>target_table</name>
-        <rename/>
       </field>
       <field>
         <name>key</name>
-        <rename/>
       </field>
       <field>
         <name>message</name>
-        <rename/>
       </field>
       <field>
         <name>topic</name>
-        <rename/>
       </field>
       <field>
         <name>partition</name>
-        <rename/>
       </field>
       <field>
         <name>offset</name>
-        <rename/>
       </field>
       <field>
         <name>timestamp</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2557,7 +2393,69 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: logger NOT_DML</name>
+    <name>JSON output: INGORE</name>
+    <type>JsonOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <outputValue>json</outputValue>
+    <jsonBloc>data</jsonBloc>
+    <nrRowsInBloc>1</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name/>
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
+    <fields>
+      <field>
+        <name>code</name>
+        <element>code</element>
+      </field>
+      <field>
+        <name>source_group</name>
+        <element>source_group</element>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <element>source_schema</element>
+      </field>
+      <field>
+        <name>source_table</name>
+        <element>source_table</element>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: logger INGORE</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2569,7 +2467,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>crud_logger_to_kafka</trans_name>
+    <trans_name>json_logger_to_kafka</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -2578,7 +2476,7 @@ result_id = i;</jsScript_script>
           <input_step/>
           <output_step/>
           <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
+          <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
             <parent>partition</parent>
@@ -2587,38 +2485,6 @@ result_id = i;</jsScript_script>
           <connector>
             <parent>offset</parent>
             <child>offset</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>source_thread</parent>
-            <child>group_table_id</child>
-          </connector>
-          <connector>
-            <parent>source_query</parent>
-            <child>group_table_name</child>
-          </connector>
-          <connector>
-            <parent>len_of_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>len_of_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2636,10 +2502,6 @@ result_id = i;</jsScript_script>
         </mapping>
       </output>
       <parameters>
-        <variablemapping>
-          <variable>code</variable>
-          <input>NOT_DML</input>
-        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -2652,8 +2514,8 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>752</yloc>
+      <xloc>976</xloc>
+      <yloc>592</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2670,61 +2532,13 @@ result_id = i;</jsScript_script>
     </partitioning>
     <fields>
       <field>
-        <name>group_table_id</name>
+        <name>code</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>-</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>target_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>json</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>{}</nullif>
+        <nullif>NOT_DML</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -2739,8 +2553,198 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
+      <xloc>560</xloc>
       <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON output: ERROR</name>
+    <type>JsonOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <outputValue>json</outputValue>
+    <jsonBloc>data</jsonBloc>
+    <nrRowsInBloc>1</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name/>
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
+    <fields>
+      <field>
+        <name>code</name>
+        <element>code</element>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>group_table_id</name>
+        <element>group_table_id</element>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <element>group_table_name</element>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <element>source_schema</element>
+      </field>
+      <field>
+        <name>source_table</name>
+        <element>source_table</element>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <element>target_schema</element>
+      </field>
+      <field>
+        <name>target_table</name>
+        <element>target_table</element>
+      </field>
+      <field>
+        <name>execution_time</name>
+        <element>execution_time</element>
+      </field>
+      <field>
+        <name>execution_result</name>
+        <element>execution_result</element>
+      </field>
+      <field>
+        <name>execution_nr_errors</name>
+        <element>execution_nr_errors</element>
+      </field>
+      <field>
+        <name>execution_lines_read</name>
+        <element>execution_lines_read</element>
+      </field>
+      <field>
+        <name>execution_lines_written</name>
+        <element>execution_lines_written</element>
+      </field>
+      <field>
+        <name>execution_lines_input</name>
+        <element>execution_lines_input</element>
+      </field>
+      <field>
+        <name>execution_lines_output</name>
+        <element>execution_lines_output</element>
+      </field>
+      <field>
+        <name>execution_lines_rejected</name>
+        <element>execution_lines_rejected</element>
+      </field>
+      <field>
+        <name>execution_lines_updated</name>
+        <element>execution_lines_updated</element>
+      </field>
+      <field>
+        <name>execution_lines_deleted</name>
+        <element>execution_lines_deleted</element>
+      </field>
+      <field>
+        <name>execution_files_retrieved</name>
+        <element>execution_files_retrieved</element>
+      </field>
+      <field>
+        <name>execution_exit_status</name>
+        <element>execution_exit_status</element>
+      </field>
+      <field>
+        <name>execution_log_text</name>
+        <element>execution_log_text</element>
+      </field>
+      <field>
+        <name>execution_log_channel_id</name>
+        <element>execution_log_channel_id</element>
+      </field>
+      <field>
+        <name>execution_id</name>
+        <element>execution_id</element>
+      </field>
+      <field>
+        <name>result_full_table_name</name>
+        <element>result_full_table_name</element>
+      </field>
+      <field>
+        <name>result_run_time</name>
+        <element>result_run_time</element>
+      </field>
+      <field>
+        <name>result_step_name</name>
+        <element>result_step_name</element>
+      </field>
+      <field>
+        <name>result_step_id</name>
+        <element>result_step_id</element>
+      </field>
+      <field>
+        <name>result_input_row</name>
+        <element>result_input_row</element>
+      </field>
+      <field>
+        <name>result_output_row</name>
+        <element>result_output_row</element>
+      </field>
+      <field>
+        <name>result_read_row</name>
+        <element>result_read_row</element>
+      </field>
+      <field>
+        <name>result_update_row</name>
+        <element>result_update_row</element>
+      </field>
+      <field>
+        <name>result_write_row</name>
+        <element>result_write_row</element>
+      </field>
+      <field>
+        <name>result_throw_row</name>
+        <element>result_throw_row</element>
+      </field>
+      <field>
+        <name>result_continue_time</name>
+        <element>result_continue_time</element>
+      </field>
+      <field>
+        <name>result_batch_id</name>
+        <element>result_batch_id</element>
+      </field>
+      <field>
+        <name>result_id</name>
+        <element>result_id</element>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2757,7 +2761,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>crud_logger_to_kafka</trans_name>
+    <trans_name>json_logger_to_kafka</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -2766,7 +2770,7 @@ result_id = i;</jsScript_script>
           <input_step/>
           <output_step/>
           <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
+          <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
             <parent>partition</parent>
@@ -2777,31 +2781,7 @@ result_id = i;</jsScript_script>
             <child>offset</child>
           </connector>
           <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>group_table_id</parent>
-            <child>group_table_id</child>
-          </connector>
-          <connector>
-            <parent>group_table_name</parent>
-            <child>group_table_name</child>
-          </connector>
-          <connector>
-            <parent>error_json</parent>
+            <parent>json</parent>
             <child>json</child>
           </connector>
         </mapping>
@@ -2816,10 +2796,6 @@ result_id = i;</jsScript_script>
         </mapping>
       </output>
       <parameters>
-        <variablemapping>
-          <variable>code</variable>
-          <input>ERROR</input>
-        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -2832,8 +2808,47 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>2400</yloc>
+      <xloc>976</xloc>
+      <yloc>2240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: ERROR</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>ERROR</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>2240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
