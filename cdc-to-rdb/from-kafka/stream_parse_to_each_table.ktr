@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/20 14:25:29.858</modified_date>
+    <modified_date>2021/11/20 17:59:34.252</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -593,11 +593,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup: result</from>
-      <to>SelectValues: sort field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SelectValues: sort field</from>
       <to>FilterRows: execution has error</to>
       <enabled>Y</enabled>
@@ -640,6 +635,16 @@
     <hop>
       <from>Dummy: exec stream</from>
       <to>StreamLookup: execution</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: result</from>
+      <to>Group by: group_table_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: group_table_id</from>
+      <to>SelectValues: sort field</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -734,7 +739,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2240</yloc>
+      <yloc>2144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1167,7 +1172,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>560</xloc>
       <yloc>1344</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1192,7 +1197,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>144</xloc>
       <yloc>1344</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1243,7 +1248,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2400</yloc>
+      <yloc>2304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1312,7 +1317,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2240</yloc>
+      <yloc>2144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1630,7 +1635,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2240</yloc>
+      <yloc>2144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1742,7 +1747,7 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
+      <xloc>560</xloc>
       <yloc>1504</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1966,7 +1971,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2080</yloc>
+      <yloc>1984</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2000,7 +2005,7 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
+      <xloc>144</xloc>
       <yloc>1504</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2066,7 +2071,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2240</yloc>
+      <yloc>2144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2488,7 +2493,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1632</yloc>
+      <yloc>1504</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2608,7 +2613,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1920</yloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2638,8 +2643,8 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>576</xloc>
-      <yloc>1792</yloc>
+      <xloc>560</xloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2777,6 +2782,274 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>352</xloc>
       <yloc>1152</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by: group_table_id</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>group_table_id</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>group_table_name</aggregate>
+        <subject>group_table_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_schema</aggregate>
+        <subject>target_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_table</aggregate>
+        <subject>target_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>partition</aggregate>
+        <subject>partition</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset</aggregate>
+        <subject>offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_range</aggregate>
+        <subject>offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_count</aggregate>
+        <subject>offset</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_time</aggregate>
+        <subject>execution_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_result</aggregate>
+        <subject>execution_result</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_nr_errors</aggregate>
+        <subject>execution_nr_errors</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_read</aggregate>
+        <subject>execution_lines_read</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_written</aggregate>
+        <subject>execution_lines_written</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_input</aggregate>
+        <subject>execution_lines_input</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_output</aggregate>
+        <subject>execution_lines_output</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_rejected</aggregate>
+        <subject>execution_lines_rejected</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_updated</aggregate>
+        <subject>execution_lines_updated</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_lines_deleted</aggregate>
+        <subject>execution_lines_deleted</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_files_retrieved</aggregate>
+        <subject>execution_files_retrieved</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_exit_status</aggregate>
+        <subject>execution_exit_status</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_log_text</aggregate>
+        <subject>execution_log_text</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_log_channel_id</aggregate>
+        <subject>execution_log_channel_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>execution_id</aggregate>
+        <subject>execution_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_batch_id</aggregate>
+        <subject>result_batch_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_full_table_name</aggregate>
+        <subject>result_full_table_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_run_time</aggregate>
+        <subject>result_run_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_step_name</aggregate>
+        <subject>result_step_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_step_id</aggregate>
+        <subject>result_step_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_input_row</aggregate>
+        <subject>result_input_row</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_output_row</aggregate>
+        <subject>result_output_row</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_read_row</aggregate>
+        <subject>result_read_row</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_update_row</aggregate>
+        <subject>result_update_row</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_write_row</aggregate>
+        <subject>result_write_row</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_throw_row</aggregate>
+        <subject>result_throw_row</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_continue_time</aggregate>
+        <subject>result_continue_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>result_id</aggregate>
+        <subject>result_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1824</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
