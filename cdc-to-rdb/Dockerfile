@@ -51,6 +51,8 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/db_kpt_cdc_event_pgsql_wri
     $PENTAHO_HOME/kpt-cdc-to-rdb/
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
     $PENTAHO_HOME/kpt-cdc-to-rdb/
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/kettle.properties \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/.kettle/kettle.properties
 
 
 # Goto kpt project path
