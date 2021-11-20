@@ -509,7 +509,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/20 12:09:37.031</modified_date>
+    <modified_date>2021/11/20 14:23:41.778</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1053,16 +1053,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
-      <to>Memory group by: INGORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Memory group by: INGORE</from>
-      <to>Constant: INGORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: INGORE</from>
       <to>JSON output: INGORE</to>
       <enabled>Y</enabled>
@@ -1070,6 +1060,16 @@
     <hop>
       <from>JSON output: INGORE</from>
       <to>SimpleMapping: logger INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: rdb_table_ingore</from>
+      <to>Group by: INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: INGORE</from>
+      <to>Constant: INGORE</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1512,6 +1512,45 @@
     <GUI>
       <xloc>768</xloc>
       <yloc>1744</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: INGORE</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>INGORE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3338,7 +3377,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Memory group by: INGORE</send_true_to>
+    <send_true_to>Group by: INGORE</send_true_to>
     <send_false_to>Dummy: process logs</send_false_to>
     <compare>
       <condition>
@@ -3412,6 +3451,100 @@
     <GUI>
       <xloc>1392</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by: INGORE</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>group_table_id</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>group_table_name</aggregate>
+        <subject>group_table_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_schema</aggregate>
+        <subject>target_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_table</aggregate>
+        <subject>target_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>partition</aggregate>
+        <subject>partition</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset</aggregate>
+        <subject>offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_range</aggregate>
+        <subject>offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_count</aggregate>
+        <subject>offset</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5514,132 +5647,6 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by: INGORE</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>group_table_id</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>group_table_name</aggregate>
-        <subject>group_table_name</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>source_schema</aggregate>
-        <subject>source_schema</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>source_table</aggregate>
-        <subject>source_table</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>target_schema</aggregate>
-        <subject>target_schema</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>target_table</aggregate>
-        <subject>target_table</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>partition</aggregate>
-        <subject>partition</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>offset</aggregate>
-        <subject>offset</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>offset_range</aggregate>
-        <subject>offset</subject>
-        <type>CONCAT_COMMA</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>offset_count</aggregate>
-        <subject>offset</subject>
-        <type>COUNT_ALL</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: INGORE</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>code</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>INGORE</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
