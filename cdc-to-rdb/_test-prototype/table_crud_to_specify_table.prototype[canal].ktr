@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
     <name>table_crud_to_specify_table.prototype[canal]</name>
@@ -7,77 +6,112 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/</directory>
+    <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
-        <name>!Config.Log.Delay.Time</name>
+        <name>Config.DB.db_kpt_bin_log_pgsql_writer.database</name>
+        <default_value>test_kpt</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_bin_log_pgsql_writer.password</name>
+        <default_value>kpt.123</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_bin_log_pgsql_writer.port</name>
+        <default_value>5432</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_bin_log_pgsql_writer.server</name>
+        <default_value>pgsql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_bin_log_pgsql_writer.username</name>
+        <default_value>kpt</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Delay.Time</name>
         <default_value>0</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Kafka.Consumer.Group</name>
+        <name>Config.Log.Kafka.Consumer.Group</name>
         <default_value>test_kpt.test_kpt_cdc.202109023</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Kafka.Data.Topic</name>
+        <name>Config.Log.Kafka.Data.Topic</name>
         <default_value>test_canal-test_kpt_cdc</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Kafka.Server.Bootstrap</name>
+        <name>Config.Log.Kafka.Server.Bootstrap</name>
         <default_value>kafka:9092</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Source.Column.Mapping</name>
+        <name>Config.Log.Snapshot.FlashPoint.Delay</name>
+        <default_value>2592000</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Snapshot.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Column.Mapping</name>
         <default_value>canal_log_to_column_meta.mapping</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Source.Key.Mapping</name>
+        <name>Config.Log.Source.Key.Mapping</name>
         <default_value>canal_pk_to_key_meta.mapping</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Source.Switch.Mapping</name>
+        <name>Config.Log.Source.Switch.Mapping</name>
         <default_value>canal_type_to_kettle_switch_flag.mapping</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Source.Transformation.Path</name>
+        <name>Config.Log.Source.Transformation.Path</name>
         <default_value>from-canal</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Target.Case.Name</name>
+        <name>Config.Log.Target.Case.Name</name>
         <default_value>true</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Target.Column.Mapping</name>
+        <name>Config.Log.Target.Column.Mapping</name>
         <default_value>pgsql_column_case_to_column.mapping</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Target.Ingore.Mapping</name>
+        <name>Config.Log.Target.Ingore.Mapping</name>
         <default_value>pgsql_table_exists_to_ingore.mapping</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Config.Log.Target.Transformation.Path</name>
+        <name>Config.Log.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>!Param.Schema.Name</name>
+        <name>Param.Schema.Name</name>
         <default_value>test_mysql__test_kpt_cdc</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>!Param.Table.Name</name>
+        <name>Param.Table.Name</name>
         <default_value>change_pk__debezium_types</default_value>
-        <description>NOTE: Comment off for quick test,Use the set environment variables in the menu to set parameters in batches</description>
+        <description>only for protptype</description>
       </parameter>
     </parameters>
     <log>
@@ -478,7 +512,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>10000</size_rowset>
+    <size_rowset>100000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -500,7 +534,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/11 18:10:39.370</modified_date>
+    <modified_date>2021/11/22 14:08:06.953</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -510,41 +544,46 @@
     <hop>
       <from>Append: GMT_to_Timestamp</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: format_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: format_to_Timestamp</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: scale_to_BigNumber.step1</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: to_BigNumber</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: to_Boolean</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: to_Integer</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Append: to_Number</from>
       <to>ETL metadata injection</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>BlockUntilStepsFinish</from>
+      <to>Delay: debug for crud</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -553,8 +592,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>FilterRows: column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>ValueMapper: FLAG</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Constant: GMT_to_Timestamp</from>
       <to>SelectValues: GMT_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: INGORE</from>
+      <to>JSON output: INGORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -590,16 +644,6 @@
     <hop>
       <from>Constant: nanoseconds_to_Date</from>
       <to>SelectValues: nanoseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: rdb_table_ingore</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: rdb_table_ingore</from>
-      <to>WriteToLog: rdb_table_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -653,11 +697,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test_kpt_cdc</from>
-      <to>Dummy: stream logs</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>DataGrid: to_BigNumber</from>
       <to>Append: to_BigNumber</to>
       <enabled>Y</enabled>
@@ -678,8 +717,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Delay: debug for crud</from>
+      <to>ETL metadata injection</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Delay: debug for injection</from>
+      <to>Dummy: column meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Dummy: column meta</from>
       <to>Constant: JsonInput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Dummy: field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -695,6 +749,11 @@
     <hop>
       <from>Dummy: column meta</from>
       <to>WriteToLog: column meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: field</from>
+      <to>Constant: COMPARATOR</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -723,8 +782,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
-      <to>Dummy: ingore_table_log</to>
+      <from>FilterRows: column</from>
+      <to>SelectValues: key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -733,9 +792,24 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: full table name</from>
-      <to>SystemInfo: batch_id</to>
+      <from>FilterRows: rdb_table_ingore</from>
+      <to>Group by: INGORE</to>
       <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: full table name</from>
+      <to>SystemInfo: batch_id&amp;batch_time</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: INGORE</from>
+      <to>Constant: INGORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: INGORE</from>
+      <to>SimpleMapping: logger INGORE</to>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>JoinRows</from>
@@ -746,6 +820,11 @@
       <from>ReplaceString: template</from>
       <to>SelectValues: scale_to_BigNumber.step1</to>
       <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>RowsFromResult: kafka with table info</from>
+      <to>Dummy: stream logs</to>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SampleRows: for column</from>
@@ -775,17 +854,17 @@
     <hop>
       <from>SelectValues: column</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: days_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: field</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: format_to_Date</from>
@@ -800,26 +879,26 @@
     <hop>
       <from>SelectValues: key</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: microseconds_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: milliseconds_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: nanoseconds_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: remove repeat</from>
-      <to>Constant: rdb_table_ingore</to>
+      <to>SimpleMapping: rdb_table_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -835,7 +914,7 @@
     <hop>
       <from>SelectValues: scale_to_BigNumber.step2</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: sort field</from>
@@ -845,7 +924,7 @@
     <hop>
       <from>SelectValues: target</from>
       <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SelectValues: to_BigNumber</from>
@@ -874,7 +953,17 @@
     </hop>
     <hop>
       <from>SimpleMapping: rdb_column</from>
-      <to>Dummy: column meta</to>
+      <to>Delay: debug for injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: rdb_table_ingore</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: rdb_table_ingore</from>
+      <to>WriteToLog: rdb_table_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -948,28 +1037,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id</from>
+      <from>SystemInfo: batch_id&amp;batch_time</from>
       <to>SelectValues: sort field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR</from>
-      <to>FilterRows: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR</from>
-      <to>ValueMapper: FLAG</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: field</from>
-      <to>Constant: COMPARATOR</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>SelectValues: key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -978,18 +1047,98 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: column meta</from>
-      <to>Dummy: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>BlockUntilStepsFinish</from>
-      <to>Delay: debug for crud</to>
+      <from>DataGrid: test_kpt_cdc</from>
+      <to>Dummy: stream logs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Delay: debug for crud</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: column</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_Boolean</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_Integer</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_Number</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: to_BigNumber</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: GMT_to_Timestamp</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: days_to_Date</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: milliseconds_to_Date</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: microseconds_to_Date</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: nanoseconds_to_Date</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: scale_to_BigNumber.step1</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: scale_to_BigNumber.step2</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: format_to_Date</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: format_to_Timestamp</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: target</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: key</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: field</from>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1015,7 +1164,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1744</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1042,7 +1191,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2560</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1069,7 +1218,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1096,7 +1245,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1123,7 +1272,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1150,7 +1299,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1177,7 +1326,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1204,7 +1353,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1299,7 +1448,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1432,6 +1581,45 @@
     <GUI>
       <xloc>768</xloc>
       <yloc>1744</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: INGORE</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>INGORE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1805,69 +1993,6 @@
     </GUI>
   </step>
   <step>
-    <name>Constant: rdb_table_ingore</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>rdb_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>"test_mysql__test_kpt_cdc"</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>rdb_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>"change_pk__debezium_types"</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>rdb_table_ingore</name>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>false</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>752</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Constant: scale_to_BigNumber</name>
     <type>Constant</type>
     <description/>
@@ -2151,7 +2276,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2221,7 +2346,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2291,7 +2416,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>2624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2361,7 +2486,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>2208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2526,7 +2651,7 @@
     <data>
       <line>
         <item>0</item>
-        <item>kpt_sync__test_kpt_cdc.debezium_types</item>
+        <item>test_mysql__test_kpt_cdc.change_pk__debezium_types</item>
         <item>test_kpt_cdc</item>
         <item>debezium_types</item>
         <item>test_mysql__test_kpt_cdc</item>
@@ -2536,7 +2661,7 @@
         <item>test_canal-test_kpt_cdc</item>
         <item>0</item>
         <item>1</item>
-        <item>2021-09-11 04:28:00.404</item>
+        <item>0</item>
       </line>
     </data>
     <attributes/>
@@ -2605,7 +2730,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2662,7 +2787,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1088</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2719,7 +2844,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2776,7 +2901,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
+      <xloc>1072</xloc>
       <yloc>1376</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2803,8 +2928,35 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Delay: debug for injection</name>
+    <type>Delay</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <timeout>${Config.Log.Delay.Time}</timeout>
+    <scaletime>milliseconds</scaletime>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2855,31 +3007,6 @@
     <GUI>
       <xloc>560</xloc>
       <yloc>2944</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: ingore_table_log</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2969,17 +3096,17 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>filename</specification_method>
+    <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name/>
-    <filename>${Internal.Entry.Current.Directory}/message_convert_to_rdb_rud.template.ktr</filename>
-    <directory_path/>
+    <trans_name>message_convert_to_rdb_rud.template</trans_name>
+    <filename/>
+    <directory_path>to_rdb</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>${Internal.Entry.Current.Directory}/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.ktr</target_file>
-    <no_execution>Y</no_execution>
+    <target_file>to_rdb/message_convert_to_rdb_rud.injection/${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
+    <no_execution>N</no_execution>
     <stream_source_step>Delay: debug for crud</stream_source_step>
-    <stream_target_step>JSON input: column</stream_target_step>
+    <stream_target_step>Dummy: start</stream_target_step>
     <mappings>
       <mapping>
         <target_step_name>to_Integer</target_step_name>
@@ -3446,7 +3573,500 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
+      <yloc>1856</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ETL metadata injection: for prototype</name>
+    <type>MetaInject</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>message_convert_to_rdb_rud.template</trans_name>
+    <filename/>
+    <directory_path>to_rdb</directory_path>
+    <source_step/>
+    <source_output_fields>    </source_output_fields>
+    <target_file>_test-prototype/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
+    <no_execution>Y</no_execution>
+    <stream_source_step>Delay: debug for crud</stream_source_step>
+    <stream_target_step>Dummy: start</stream_target_step>
+    <mappings>
+      <mapping>
+        <target_step_name>to_Integer</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_Integer</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>SCHEMA_NAME</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_schema</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>KEY_CONDITION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_comparator</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>KEY_STREAM</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>milliseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: milliseconds_to_Date</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>UPDATE_LOOKUP</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>format_to_Date</target_step_name>
+        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: format_to_Date</source_step>
+        <source_field>field_conversion_mask</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>nanoseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: nanoseconds_to_Date</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>TABLE_NAME</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>KEY_LOOKUP</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step1</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: scale_to_BigNumber.step1</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>format_to_Timestamp</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: format_to_Timestamp</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step2</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>days_to_Date</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: days_to_Date</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>SCHEMA_NAME</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_schema</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>GMT_to_Timestamp</target_step_name>
+        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: GMT_to_Timestamp</source_step>
+        <source_field>field_conversion_mask</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>KEY_CONDITION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_comparator</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>microseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: microseconds_to_Date</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>KEY_STREAM</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>format_to_Timestamp</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: format_to_Timestamp</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step1</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: scale_to_BigNumber.step1</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>UPDATE_LOOKUP</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_Integer</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_Integer</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>TABLE_NAME</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>KEY_LOOKUP</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>nanoseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: nanoseconds_to_Date</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>TableOutput</target_step_name>
+        <target_attribute_key>DATABASE_FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>UPDATE_STREAM</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>format_to_Date</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: format_to_Date</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>JSON input: column</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: column</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>GMT_to_Timestamp</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: GMT_to_Timestamp</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Delete</target_step_name>
+        <target_attribute_key>COMPARATOR</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_comparator</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>microseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: microseconds_to_Date</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_Boolean</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_Boolean</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>format_to_Timestamp</target_step_name>
+        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: format_to_Timestamp</source_step>
+        <source_field>field_conversion_mask</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>milliseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: milliseconds_to_Date</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: update</target_step_name>
+        <target_attribute_key>UPDATE_FLAG</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_flag</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Delete</target_step_name>
+        <target_attribute_key>STREAM_FIELDNAME_1</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Delete</target_step_name>
+        <target_attribute_key>STREAM_FIELDNAME_2</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_Number</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_Number</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>nanoseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: nanoseconds_to_Date</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_BigNumber</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_BigNumber</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step2</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>days_to_Date</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: days_to_Date</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Delete</target_step_name>
+        <target_attribute_key>TABLE_NAME_FIELD</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>UPDATE_STREAM</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>microseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: microseconds_to_Date</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>milliseconds_to_Date</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: milliseconds_to_Date</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_Number</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_Number</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step2</target_step_name>
+        <target_attribute_key>FIELD_PRECISION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
+        <source_field>field_precision</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_BigNumber</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_BigNumber</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>TableOutput</target_step_name>
+        <target_attribute_key>TARGET_TABLE</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>TableOutput</target_step_name>
+        <target_attribute_key>TARGET_SCHEMA</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_schema</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>JSON input: column</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: column</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>InsertUpdate: insert</target_step_name>
+        <target_attribute_key>UPDATE_FLAG</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_flag</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>days_to_Date</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: days_to_Date</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step2</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Delete</target_step_name>
+        <target_attribute_key>TARGET_TABLE</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_table</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>format_to_Date</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: format_to_Date</source_step>
+        <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>GMT_to_Timestamp</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: GMT_to_Timestamp</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>to_Boolean</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: to_Boolean</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>TableOutput</target_step_name>
+        <target_attribute_key>DATABASE_STREAM_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: field</source_step>
+        <source_field>field_stream</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>JSON input: column</target_step_name>
+        <target_attribute_key>FIELD_PATH</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: column</source_step>
+        <source_field>field_path</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>scale_to_BigNumber.step1</target_step_name>
+        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: scale_to_BigNumber.step1</source_step>
+        <source_field>field_conversion_mask</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Delete</target_step_name>
+        <target_attribute_key>TARGET_SCHEMA</target_attribute_key>
+        <target_detail>N</target_detail>
+        <source_step>SelectValues: target</source_step>
+        <source_field>target_schema</source_field>
+      </mapping>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1616</xloc>
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3490,7 +4110,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3506,7 +4126,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Dummy: ingore_table_log</send_true_to>
+    <send_true_to>Group by: INGORE</send_true_to>
     <send_false_to>Dummy: process logs</send_false_to>
     <compare>
       <condition>
@@ -3578,8 +4198,184 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by: INGORE</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>group_table_id</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>group_table_name</aggregate>
+        <subject>group_table_name</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_schema</aggregate>
+        <subject>target_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>target_table</aggregate>
+        <subject>target_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>partition</aggregate>
+        <subject>partition</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset</aggregate>
+        <subject>offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_range</aggregate>
+        <subject>offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_count</aggregate>
+        <subject>offset</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON output: INGORE</name>
+    <type>JsonOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <outputValue>json</outputValue>
+    <jsonBloc>ingore</jsonBloc>
+    <nrRowsInBloc>1</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name/>
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
+    <fields>
+      <field>
+        <name>code</name>
+        <element>code</element>
+      </field>
+      <field>
+        <name>group_table_id</name>
+        <element>group_table_id</element>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <element>group_table_name</element>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <element>source_schema</element>
+      </field>
+      <field>
+        <name>source_table</name>
+        <element>source_table</element>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <element>target_schema</element>
+      </field>
+      <field>
+        <name>target_table</name>
+        <element>target_table</element>
+      </field>
+      <field>
+        <name>offset_range</name>
+        <element>offset_range</element>
+      </field>
+      <field>
+        <name>offset_count</name>
+        <element>offset_count</element>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3678,6 +4474,105 @@
     </GUI>
   </step>
   <step>
+    <name>RowsFromResult: kafka with table info</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>target_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>key</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>message</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>topic</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>partition</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>offset</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>RowsToResult</name>
     <type>RowsToResult</type>
     <description/>
@@ -3697,8 +4592,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
-      <yloc>592</yloc>
+      <xloc>1392</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3751,7 +4646,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>768</xloc>
       <yloc>192</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3778,7 +4673,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3818,7 +4713,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1744</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3889,7 +4784,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3929,7 +4824,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1856</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3969,7 +4864,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>3040</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4009,7 +4904,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2560</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4049,7 +4944,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4089,7 +4984,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2944</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4129,7 +5024,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2048</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4169,7 +5064,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4209,7 +5104,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2144</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4240,12 +5135,6 @@
         <name>source_table</name>
       </remove>
       <remove>
-        <name>target_schema</name>
-      </remove>
-      <remove>
-        <name>target_table</name>
-      </remove>
-      <remove>
         <name>key</name>
       </remove>
       <remove>
@@ -4273,7 +5162,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>768</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4443,7 +5332,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4487,7 +5376,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4509,12 +5398,12 @@
         <rename>result_batch_id</rename>
       </field>
       <field>
-        <name>full_table_name</name>
-        <rename>result_full_table_name</rename>
+        <name>batch_time</name>
+        <rename>result_batch_time</rename>
       </field>
       <field>
-        <name>run_time</name>
-        <rename>result_run_time</rename>
+        <name>full_table_name</name>
+        <rename>result_full_table_name</rename>
       </field>
       <field>
         <name>step_name</name>
@@ -4563,7 +5452,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4599,7 +5488,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1280</xloc>
+      <xloc>1184</xloc>
       <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4635,7 +5524,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1600</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4671,7 +5560,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4707,7 +5596,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4743,7 +5632,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4759,11 +5648,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>filename</specification_method>
+    <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name/>
-    <filename>${Internal.Entry.Current.Directory}/../${Config.Log.Source.Transformation.Path}/${Config.Log.Source.Column.Mapping}.ktr</filename>
-    <directory_path/>
+    <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -4802,20 +5691,16 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
-          </connector>
-          <connector>
-            <parent>kettle_json_path</parent>
-            <child>kettle_json_path</child>
+            <parent>kettle_converter</parent>
+            <child>kettle_converter</child>
           </connector>
           <connector>
             <parent>kettle_type</parent>
             <child>kettle_type</child>
           </connector>
           <connector>
-            <parent>kettle_converter</parent>
-            <child>kettle_converter</child>
+            <parent>kettle_field</parent>
+            <child>kettle_field</child>
           </connector>
           <connector>
             <parent>column_name</parent>
@@ -4829,17 +5714,13 @@
             <parent>column_key</parent>
             <child>column_key</child>
           </connector>
-          <connector>
-            <parent>column_format</parent>
-            <child>column_format</child>
-          </connector>
-          <connector>
-            <parent>column_sql_type_number</parent>
-            <child>column_sql_type_number</child>
-          </connector>
         </mapping>
       </output>
       <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -4858,6 +5739,71 @@
     </GUI>
   </step>
   <step>
+    <name>SimpleMapping: logger INGORE</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>json_logger_to_kafka</trans_name>
+    <filename/>
+    <directory_path>/from-kafka</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>partition</parent>
+            <child>partition</child>
+          </connector>
+          <connector>
+            <parent>offset</parent>
+            <child>offset</child>
+          </connector>
+          <connector>
+            <parent>json</parent>
+            <child>json</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SimpleMapping: rdb_column</name>
     <type>SimpleMapping</type>
     <description/>
@@ -4868,11 +5814,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>filename</specification_method>
+    <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name/>
-    <filename>${Internal.Entry.Current.Directory}/../${Config.Log.Target.Transformation.Path}/${Config.Log.Target.Column.Mapping}.ktr</filename>
-    <directory_path/>
+    <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -4917,6 +5863,10 @@
         </mapping>
       </output>
       <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -4935,6 +5885,83 @@
     </GUI>
   </step>
   <step>
+    <name>SimpleMapping: rdb_table_ingore</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Target.Ingore.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>table</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>schema</parent>
+            <child>rdb_schema</child>
+          </connector>
+          <connector>
+            <parent>table</parent>
+            <child>rdb_table</child>
+          </connector>
+          <connector>
+            <parent>ingore</parent>
+            <child>rdb_table_ingore</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SimpleMapping: target_switch_flag</name>
     <type>SimpleMapping</type>
     <description/>
@@ -4945,11 +5972,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>filename</specification_method>
+    <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name/>
-    <filename>${Internal.Entry.Current.Directory}/../${Config.Log.Source.Transformation.Path}/${Config.Log.Source.Switch.Mapping}.ktr</filename>
-    <directory_path/>
+    <trans_name>${Config.Log.Source.Switch.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -4990,6 +6017,14 @@
         </mapping>
       </output>
       <parameters>
+        <variablemapping>
+          <variable>Param.Snapshot.FlashPoint.Delay</variable>
+          <input>${Config.Log.Snapshot.FlashPoint.Delay}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.Snapshot.FlashPoint.Timestamp</variable>
+          <input>${Config.Log.Snapshot.FlashPoint.Timestamp}</input>
+        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -5002,7 +6037,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>768</xloc>
       <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5048,7 +6083,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5136,7 +6171,7 @@
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch_id</name>
+    <name>SystemInfo: batch_id&amp;batch_time</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -5152,7 +6187,7 @@
         <type>batch ID</type>
       </field>
       <field>
-        <name>run_time</name>
+        <name>batch_time</name>
         <type>system date (fixed)</type>
       </field>
     </fields>
@@ -5165,7 +6200,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1536</xloc>
+      <xloc>1392</xloc>
       <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5203,7 +6238,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1008</xloc>
+      <xloc>976</xloc>
       <yloc>3040</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5248,12 +6283,6 @@
       </field>
       <field>
         <name>column_key</name>
-      </field>
-      <field>
-        <name>column_format</name>
-      </field>
-      <field>
-        <name>column_sql_type_number</name>
       </field>
     </fields>
     <attributes/>
@@ -5306,7 +6335,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1056</xloc>
+      <xloc>1184</xloc>
       <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5328,6 +6357,12 @@
     <limitRowsNumber>1</limitRowsNumber>
     <logmessage/>
     <fields>
+      <field>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
+      </field>
       <field>
         <name>source_schema</name>
       </field>

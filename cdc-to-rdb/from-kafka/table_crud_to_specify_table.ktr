@@ -509,7 +509,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/21 11:32:38.019</modified_date>
+    <modified_date>2021/11/22 13:05:11.017</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -599,11 +599,11 @@
     </hop>
     <hop>
       <from>GetVariable: full table name</from>
-      <to>SystemInfo: batch_id</to>
+      <to>SystemInfo: batch_id&amp;batch_time</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id</from>
+      <from>SystemInfo: batch_id&amp;batch_time</from>
       <to>SelectValues: sort field</to>
       <enabled>Y</enabled>
     </hop>
@@ -4649,12 +4649,12 @@
         <rename>result_batch_id</rename>
       </field>
       <field>
-        <name>full_table_name</name>
-        <rename>result_full_table_name</rename>
+        <name>batch_time</name>
+        <rename>result_batch_time</rename>
       </field>
       <field>
-        <name>run_time</name>
-        <rename>result_run_time</rename>
+        <name>full_table_name</name>
+        <rename>result_full_table_name</rename>
       </field>
       <field>
         <name>step_name</name>
@@ -5004,7 +5004,7 @@
     <trans_object_id/>
     <trans_name>json_logger_to_kafka</trans_name>
     <filename/>
-    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <directory_path>/from-kafka</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -5422,7 +5422,7 @@
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch_id</name>
+    <name>SystemInfo: batch_id&amp;batch_time</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -5438,7 +5438,7 @@
         <type>batch ID</type>
       </field>
       <field>
-        <name>run_time</name>
+        <name>batch_time</name>
         <type>system date (fixed)</type>
       </field>
     </fields>

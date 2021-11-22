@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/21 20:09:34.239</modified_date>
+    <modified_date>2021/11/22 12:33:54.259</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -498,11 +498,6 @@
   </connection>
   <order>
     <hop>
-      <from>Calculator: length of schema and table</from>
-      <to>FilterRows: is table-log</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Transformation executor</from>
       <to>Dummy: exec result</to>
       <enabled>Y</enabled>
@@ -521,21 +516,6 @@
       <from>SelectValues: executor param</from>
       <to>Transformation executor</to>
       <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get records from stream</from>
-      <to>SimpleMapping: source table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: debezium canal_manager</from>
-      <to>SimpleMapping: source table</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: canal canal_manager</from>
-      <to>SimpleMapping: source table</to>
-      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SimpleMapping: table_name_group</from>
@@ -568,16 +548,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: result_id</from>
-      <to>SystemInfo: batch_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch_id</from>
-      <to>StreamLookup: result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>JSON output: DDL</from>
       <to>SimpleMapping: logger DDL</to>
       <enabled>Y</enabled>
@@ -585,11 +555,6 @@
     <hop>
       <from>Constant: DDL</from>
       <to>JSON output: DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: is table-log</from>
-      <to>Constant: DDL</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -657,6 +622,36 @@
       <to>Dummy: return to kafka</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>FilterRows: is table-log</from>
+      <to>Group by: batch_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: batch_id</from>
+      <to>Constant: DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: result_id</from>
+      <to>StreamLookup: result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get records from stream</from>
+      <to>SystemInfo: batch_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch_id</from>
+      <to>SimpleMapping: source table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: length of schema and table</from>
+      <to>FilterRows: is table-log</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Calculator: length of schema and table</name>
@@ -710,7 +705,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>320</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -749,7 +744,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>448</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -788,7 +783,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1840</yloc>
+      <yloc>2000</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -827,377 +822,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: canal canal_manager</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>key</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>topic</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>partition</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>offset</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
-        <item>edata_canal-mysql</item>
-        <item>0</item>
-        <item>1</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper1:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
-        <item>edata_canal-mysql</item>
-        <item>0</item>
-        <item>2</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
-        <item>edata_canal-mysql</item>
-        <item>0</item>
-        <item>3</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper1:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
-        <item>edata_canal-mysql</item>
-        <item>0</item>
-        <item>4</item>
-        <item>1630002794</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: debezium canal_manager</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>key</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>topic</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>partition</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>offset</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":1,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_cluster"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"zk_hosts"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"zk_hosts"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":1,"name":"default","zk_hosts":"zookeeper:2181","modified_time":"2021-07-05T03:16:59Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593731,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_cluster","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593733,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>0</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":1,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_config"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":false,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":false,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":1,"cluster_id":1,"server_id":null,"name":"canal.properties","status":null,"content":"#################################################\r\n######### \t\tcommon argument\t\t#############\r\n#################################################\r\n# tcp bind ip\r\ncanal.ip =\r\n# register ip to zookeeper\r\ncanal.register.ip =\r\ncanal.port = 11111\r\ncanal.metrics.pull.port = 11112\r\n# canal instance user/passwd\r\n# canal.user = canal\r\n# canal.passwd = E3619321C1A937C46A0D8BD1DAC39F93B27D4458\r\n\r\n# canal admin config\r\n#canal.admin.manager = 127.0.0.1:8089\r\ncanal.admin.port = 11110\r\ncanal.admin.user = admin\r\ncanal.admin.passwd = 4ACFE3202A5FF5CF467898FC58AAB1D615029441\r\n# admin auto register\r\n#canal.admin.register.auto = true\r\n#canal.admin.register.cluster =\r\n#canal.admin.register.name =\r\n\r\ncanal.zkServers = zookeeper:2181\r\n# flush data to zk\r\ncanal.zookeeper.flush.period = 1000\r\ncanal.withoutNetty = false\r\n# tcp, kafka, rocketMQ, rabbitMQ\r\ncanal.serverMode = kafka\r\n# flush meta cursor/parse position to file\r\ncanal.file.data.dir = ${canal.conf.dir}\r\ncanal.file.flush.period = 1000\r\n## memory store RingBuffer size, should be Math.pow(2,n)\r\ncanal.instance.memory.buffer.size = 16384\r\n## memory store RingBuffer used memory unit size , default 1kb\r\ncanal.instance.memory.buffer.memunit = 1024 \r\n## meory store gets mode used MEMSIZE or ITEMSIZE\r\ncanal.instance.memory.batch.mode = MEMSIZE\r\ncanal.instance.memory.rawEntry = true\r\n\r\n## detecing config\r\ncanal.instance.detecting.enable = false\r\n#canal.instance.detecting.sql = insert into retl.xdual values(1,now()) on duplicate key update x=now()\r\ncanal.instance.detecting.sql = select 1\r\ncanal.instance.detecting.interval.time = 3\r\ncanal.instance.detecting.retry.threshold = 3\r\ncanal.instance.detecting.heartbeatHaEnable = false\r\n\r\n# support maximum transaction size, more than the size of the transaction will be cut into multiple transactions delivery\r\ncanal.instance.transaction.size =  1024\r\n# mysql fallback connected to new master should fallback times\r\ncanal.instance.fallbackIntervalInSeconds = 60\r\n\r\n# network config\r\ncanal.instance.network.receiveBufferSize = 16384\r\ncanal.instance.network.sendBufferSize = 16384\r\ncanal.instance.network.soTimeout = 30\r\n\r\n# binlog filter config\r\ncanal.instance.filter.druid.ddl = true\r\ncanal.instance.filter.query.dcl = false\r\ncanal.instance.filter.query.dml = false\r\ncanal.instance.filter.query.ddl = false\r\ncanal.instance.filter.table.error = false\r\ncanal.instance.filter.rows = false\r\ncanal.instance.filter.transaction.entry = false\r\ncanal.instance.filter.dml.insert = false\r\ncanal.instance.filter.dml.update = false\r\ncanal.instance.filter.dml.delete = false\r\n\r\n# binlog format/image check\r\ncanal.instance.binlog.format = ROW,STATEMENT,MIXED \r\ncanal.instance.binlog.image = FULL,MINIMAL,NOBLOB\r\n\r\n# binlog ddl isolation\r\ncanal.instance.get.ddl.isolation = false\r\n\r\n# parallel parser config\r\ncanal.instance.parser.parallel = true\r\n## concurrent thread number, default 60% available processors, suggest not to exceed Runtime.getRuntime().availableProcessors()\r\n#canal.instance.parser.parallelThreadSize = 16\r\n## disruptor ringbuffer size, must be power of 2\r\ncanal.instance.parser.parallelBufferSize = 256\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable = true\r\ncanal.instance.tsdb.dir = ${canal.file.data.dir:../conf}/${canal.instance.destination:}\r\ncanal.instance.tsdb.url = jdbc:h2:${canal.instance.tsdb.dir}/h2;CACHE_SIZE=1000;MODE=MYSQL;\r\ncanal.instance.tsdb.dbUsername = canal\r\ncanal.instance.tsdb.dbPassword = canal\r\n# dump snapshot interval, default 24 hour\r\ncanal.instance.tsdb.snapshot.interval = 24\r\n# purge snapshot expire , default 360 hour(15 days)\r\ncanal.instance.tsdb.snapshot.expire = 360\r\n\r\n#################################################\r\n######### \t\tdestinations\t\t#############\r\n#################################################\r\ncanal.destinations = example\r\n# conf root dir\r\ncanal.conf.dir = ../conf\r\n# auto scan instance dir add/remove and start/stop instance\r\ncanal.auto.scan = true\r\ncanal.auto.scan.interval = 5\r\n# set this value to 'true' means that when binlog pos not found, skip to latest.\r\n# WARN: pls keep 'false' in production env, or if you know what you want.\r\ncanal.auto.reset.latest.pos.mode = false\r\n\r\ncanal.instance.tsdb.spring.xml = classpath:spring/tsdb/h2-tsdb.xml\r\n#canal.instance.tsdb.spring.xml = classpath:spring/tsdb/mysql-tsdb.xml\r\n\r\ncanal.instance.global.mode = spring\r\ncanal.instance.global.lazy = false\r\ncanal.instance.global.manager.address = ${canal.admin.manager}\r\n#canal.instance.global.spring.xml = classpath:spring/memory-instance.xml\r\ncanal.instance.global.spring.xml = classpath:spring/file-instance.xml\r\n#canal.instance.global.spring.xml = classpath:spring/default-instance.xml\r\n\r\n##################################################\r\n######### \t      MQ Properties      #############\r\n##################################################\r\n# aliyun ak/sk , support rds/mq\r\ncanal.aliyun.accessKey =\r\ncanal.aliyun.secretKey =\r\ncanal.aliyun.uid=\r\n\r\ncanal.mq.flatMessage = true\r\ncanal.mq.canalBatchSize = 50\r\ncanal.mq.canalGetTimeout = 100\r\n# Set this value to \"cloud\", if you want open message trace feature in aliyun.\r\ncanal.mq.accessChannel = local\r\n\r\ncanal.mq.database.hash = true\r\ncanal.mq.send.thread.size = 30\r\ncanal.mq.build.thread.size = 8\r\n\r\n##################################################\r\n######### \t\t     Kafka \t\t     #############\r\n##################################################\r\nkafka.bootstrap.servers = kafka:9092\r\nkafka.acks = all\r\nkafka.compression.type = none\r\nkafka.batch.size = 16384\r\nkafka.linger.ms = 1\r\nkafka.max.request.size = 1048576\r\nkafka.buffer.memory = 33554432\r\nkafka.max.in.flight.requests.per.connection = 1\r\nkafka.retries = 0\r\n\r\nkafka.kerberos.enable = false\r\nkafka.kerberos.krb5.file = \"../conf/kerberos/krb5.conf\"\r\nkafka.kerberos.jaas.file = \"../conf/kerberos/jaas.conf\"\r\n\r\n##################################################\r\n######### \t\t    RocketMQ\t     #############\r\n##################################################\r\nrocketmq.producer.group = test\r\nrocketmq.enable.message.trace = false\r\nrocketmq.customized.trace.topic =\r\nrocketmq.namespace =\r\nrocketmq.namesrv.addr = 127.0.0.1:9876\r\nrocketmq.retry.times.when.send.failed = 5\r\nrocketmq.vip.channel.enabled = false\r\nrocketmq.tag = \r\n\r\n##################################################\r\n######### \t\t    RabbitMQ\t     #############\r\n##################################################\r\nrabbitmq.host =\r\nrabbitmq.virtual.host =\r\nrabbitmq.exchange =\r\nrabbitmq.username =\r\nrabbitmq.password =\r\nrabbitmq.deliveryMode =","content_md5":"9404d18e172da8de562a27851b5f8b3e","modified_time":"2021-08-25T08:03:39Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593756,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593756,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>1</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":1,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":1,"cluster_id":1,"server_id":null,"name":"db1","status":"0","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db1\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db1\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"c1bf8d684ca1dd5ff7f83f57b51696c2","modified_time":"2021-08-18T09:23:31Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593770,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593770,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>2</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":4,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":4,"cluster_id":1,"server_id":null,"name":"db4","status":"0","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db14\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db4\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"8611345204ccf5085771b75c5f645f46","modified_time":"2021-08-18T09:38:48Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593771,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593771,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>3</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":5,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":5,"cluster_id":1,"server_id":null,"name":"db5","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db5\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db5\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"b95fb948e8417abd2a124fd0a7990379","modified_time":"2021-08-23T06:27:58Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593771,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593771,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>4</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":6,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":6,"cluster_id":1,"server_id":null,"name":"db6","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db14\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db6\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"eb5a5a308ae895883a566c0844461d58","modified_time":"2021-08-17T06:23:34Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593771,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593771,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>5</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":7,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":7,"cluster_id":1,"server_id":null,"name":"db7","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db7\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db7\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"1c846684bb5d6fa05ce8c443ee907804","modified_time":"2021-08-17T06:19:49Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593772,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593772,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>6</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":8,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":8,"cluster_id":1,"server_id":null,"name":"db8","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db8\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db8\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"ca5f13abfda3b70c5f7a5a660f8bb395","modified_time":"2021-08-17T06:20:57Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593772,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593772,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>7</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":9,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":9,"cluster_id":1,"server_id":null,"name":"db9","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db14\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db9\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"3cc978da690d9cb77badcb41d4282c6c","modified_time":"2021-08-17T06:27:30Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593772,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593772,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>8</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":10,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":10,"cluster_id":1,"server_id":null,"name":"db10","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db10\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db10\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"bd397e384f9a2e1d815a8d1a108b0be4","modified_time":"2021-08-18T02:45:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593772,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593772,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>9</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":11,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":11,"cluster_id":1,"server_id":null,"name":"db11","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db11\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-db11\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"8c18c7bcd4732cc9b80147390ec84a90","modified_time":"2021-08-18T02:45:41Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593773,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593773,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>10</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":13,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":13,"cluster_id":1,"server_id":null,"name":"db13","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=db13\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*,sys\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=db13\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"e25d9a56f3dbc28bd9f33461a95e542d","modified_time":"2021-08-25T08:24:27Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593773,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593773,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>11</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":14,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_instance_config"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"int64","optional":true,"field":"server_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"field":"content"},{"type":"string","optional":true,"field":"content_md5"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":14,"cluster_id":1,"server_id":null,"name":"mysql","status":"1","content":"#################################################\r\n## mysql serverId , v1.0.26+ will autoGen\r\n# canal.instance.mysql.slaveId=0\r\n\r\n# enable gtid use true/false\r\ncanal.instance.gtidon=false\r\n\r\n# position info\r\ncanal.instance.master.address=mysql:3306\r\ncanal.instance.master.journal.name=\r\ncanal.instance.master.position=\r\ncanal.instance.master.timestamp=\r\ncanal.instance.master.gtid=\r\n\r\n# rds oss binlog\r\ncanal.instance.rds.accesskey=\r\ncanal.instance.rds.secretkey=\r\ncanal.instance.rds.instanceId=\r\n\r\n# table meta tsdb info\r\ncanal.instance.tsdb.enable=true\r\n#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb\r\n#canal.instance.tsdb.dbUsername=canal\r\n#canal.instance.tsdb.dbPassword=canal\r\n\r\n#canal.instance.standby.address =\r\n#canal.instance.standby.journal.name =\r\n#canal.instance.standby.position =\r\n#canal.instance.standby.timestamp =\r\n#canal.instance.standby.gtid=\r\n\r\n# username/password\r\ncanal.instance.dbUsername=root\r\ncanal.instance.dbPassword=kpt.123\r\ncanal.instance.connectionCharset=UTF-8\r\n# enable druid Decrypt database password\r\ncanal.instance.enableDruid=false\r\n#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==\r\n\r\n# table regex\r\ncanal.instance.filter.regex=.*\\\\..*\r\n# table black regex\r\ncanal.instance.filter.black.regex=mysql\\\\..*,information_schema\\\\..*,performance_schema\\\\..*\r\n# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch\r\n# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)\r\n#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch\r\n\r\n# mq config\r\ncanal.mq.topic=kpt_canal-mysql\r\n# dynamic topic route by schema or table regex\r\n# canal.mq.dynamicTopic=.*\\\\..*\r\ncanal.mq.partition=0\r\n# hash partition config\r\n#canal.mq.partitionsNum=3\r\n#canal.mq.partitionHash=test.table:id^name,.*\\\\..*\r\n#################################################\r\n","content_md5":"fd3798fce7726cc59e2d70b68168df9a","modified_time":"2021-08-25T08:24:52Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593773,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_instance_config","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593773,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>12</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":11,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_node_server"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"ip"},{"type":"int32","optional":true,"field":"admin_port"},{"type":"int32","optional":true,"field":"tcp_port"},{"type":"int32","optional":true,"field":"metric_port"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"ip"},{"type":"int32","optional":true,"field":"admin_port"},{"type":"int32","optional":true,"field":"tcp_port"},{"type":"int32","optional":true,"field":"metric_port"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":11,"cluster_id":1,"name":"canal-server-node1","ip":"canal-server-node1","admin_port":11110,"tcp_port":11111,"metric_port":11112,"status":"-1","modified_time":"2021-08-16T02:45:55Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593792,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_node_server","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593792,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>13</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":12,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_node_server"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"ip"},{"type":"int32","optional":true,"field":"admin_port"},{"type":"int32","optional":true,"field":"tcp_port"},{"type":"int32","optional":true,"field":"metric_port"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"ip"},{"type":"int32","optional":true,"field":"admin_port"},{"type":"int32","optional":true,"field":"tcp_port"},{"type":"int32","optional":true,"field":"metric_port"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":12,"cluster_id":1,"name":"canal-server-node2","ip":"canal-server-node2","admin_port":11110,"tcp_port":11111,"metric_port":11112,"status":"-1","modified_time":"2021-08-16T05:51:17Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593793,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_node_server","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593793,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>14</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":13,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_node_server"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"ip"},{"type":"int32","optional":true,"field":"admin_port"},{"type":"int32","optional":true,"field":"tcp_port"},{"type":"int32","optional":true,"field":"metric_port"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"int64","optional":true,"field":"cluster_id"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"ip"},{"type":"int32","optional":true,"field":"admin_port"},{"type":"int32","optional":true,"field":"tcp_port"},{"type":"int32","optional":true,"field":"metric_port"},{"type":"string","optional":true,"field":"status"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"modified_time"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":13,"cluster_id":1,"name":"canal-server-node3","ip":"canal-server-node3","admin_port":11110,"tcp_port":11111,"metric_port":11112,"status":"-1","modified_time":"2021-08-16T07:01:43Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593793,"snapshot":"true","db":"canal_manager","sequence":null,"table":"canal_node_server","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593793,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>15</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":1,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_user"}} </item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":1,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
-        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
-        <item>0</item>
-        <item>16</item>
-        <item>1630002794</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>64</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1222,7 +847,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1200</yloc>
+      <yloc>1360</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1247,7 +872,7 @@
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>1200</yloc>
+      <yloc>1360</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1272,7 +897,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1200</yloc>
+      <yloc>1360</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1297,7 +922,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2128</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1341,7 +966,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1840</yloc>
+      <yloc>2000</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1357,7 +982,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>SimpleMapping: table_name_prefix</send_true_to>
-    <send_false_to>Constant: DDL</send_false_to>
+    <send_false_to>Group by: batch_id</send_false_to>
     <compare>
       <condition>
         <negated>Y</negated>
@@ -1406,7 +1031,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>448</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1470,6 +1095,76 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by: batch_id</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>Y</give_back_row>
+    <group>
+      <field>
+        <name>batch_id</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>partition</aggregate>
+        <subject>partition</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset</aggregate>
+        <subject>offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_range</aggregate>
+        <subject>offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_count</aggregate>
+        <subject>offset</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1552,6 +1247,18 @@
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
+      <field>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1563,7 +1270,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1360</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1603,16 +1310,20 @@
         <element>code</element>
       </field>
       <field>
-        <name>source_group</name>
-        <element>source_group</element>
+        <name>batch_id</name>
+        <element>batch_id</element>
       </field>
       <field>
-        <name>source_schema</name>
-        <element>source_schema</element>
+        <name>batch_time</name>
+        <element>batch_time</element>
       </field>
       <field>
-        <name>source_table</name>
-        <element>source_table</element>
+        <name>offset_range</name>
+        <element>offset_range</element>
+      </field>
+      <field>
+        <name>offset_count</name>
+        <element>offset_count</element>
       </field>
     </fields>
     <attributes/>
@@ -1625,7 +1336,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>448</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1701,6 +1412,10 @@
         <element>batch_id</element>
       </field>
       <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
+      </field>
+      <field>
         <name>execution_time</name>
         <element>execution_time</element>
       </field>
@@ -1769,10 +1484,6 @@
         <element>result_full_table_name</element>
       </field>
       <field>
-        <name>result_run_time</name>
-        <element>result_run_time</element>
-      </field>
-      <field>
         <name>result_step_name</name>
         <element>result_step_name</element>
       </field>
@@ -1823,7 +1534,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1840</yloc>
+      <yloc>2000</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1899,6 +1610,10 @@
         <element>batch_id</element>
       </field>
       <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
+      </field>
+      <field>
         <name>execution_time</name>
         <element>execution_time</element>
       </field>
@@ -1963,10 +1678,6 @@
         <element>result_full_table_name</element>
       </field>
       <field>
-        <name>result_run_time</name>
-        <element>result_run_time</element>
-      </field>
-      <field>
         <name>result_step_name</name>
         <element>result_step_name</element>
       </field>
@@ -2017,7 +1728,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2128</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2068,7 +1779,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1360</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2111,6 +1822,12 @@ result_id = i;</jsScript_script>
         <name>target_table</name>
       </field>
       <field>
+        <name>batch_id</name>
+      </field>
+      <field>
+        <name>batch_time</name>
+      </field>
+      <field>
         <name>key</name>
       </field>
       <field>
@@ -2140,7 +1857,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>880</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2171,7 +1888,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2000</yloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2206,7 +1923,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>1360</yloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2271,7 +1988,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>448</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2336,7 +2053,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1840</yloc>
+      <yloc>2000</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2401,7 +2118,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2128</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2470,7 +2187,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>192</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2555,7 +2272,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>752</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2632,7 +2349,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>608</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2758,7 +2475,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1520</yloc>
+      <yloc>1680</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2773,7 +2490,7 @@ result_id = i;</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>SystemInfo: batch_id</from>
+    <from>ScriptValueMod: result_id</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -2790,16 +2507,16 @@ result_id = i;</jsScript_script>
         <type>Integer</type>
       </value>
       <value>
+        <name>result_batch_time</name>
+        <rename>result_batch_time</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+      <value>
         <name>result_full_table_name</name>
         <rename>result_full_table_name</rename>
         <default/>
         <type>String</type>
-      </value>
-      <value>
-        <name>result_run_time</name>
-        <rename>result_run_time</rename>
-        <default/>
-        <type>Timestamp</type>
       </value>
       <value>
         <name>result_step_name</name>
@@ -2861,12 +2578,6 @@ result_id = i;</jsScript_script>
         <default/>
         <type>Integer</type>
       </value>
-      <value>
-        <name>batch_id</name>
-        <rename>batch_id</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -2878,7 +2589,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1680</yloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2898,6 +2609,10 @@ result_id = i;</jsScript_script>
         <name>batch_id</name>
         <type>batch ID</type>
       </field>
+      <field>
+        <name>batch_time</name>
+        <type>system date (fixed)</type>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2908,8 +2623,8 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>1520</yloc>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2968,14 +2683,14 @@ result_id = i;</jsScript_script>
       <precision>-1</precision>
     </result_rows_field>
     <result_rows_field>
-      <name>result_full_table_name</name>
-      <type>String</type>
+      <name>result_batch_time</name>
+      <type>Date</type>
       <length>-1</length>
       <precision>-1</precision>
     </result_rows_field>
     <result_rows_field>
-      <name>result_run_time</name>
-      <type>Timestamp</type>
+      <name>result_full_table_name</name>
+      <type>String</type>
       <length>-1</length>
       <precision>-1</precision>
     </result_rows_field>
@@ -3046,7 +2761,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1008</yloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

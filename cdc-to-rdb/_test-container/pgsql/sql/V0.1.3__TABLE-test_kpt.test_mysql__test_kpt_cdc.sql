@@ -26,7 +26,7 @@ SET row_security = off;
 CREATE SCHEMA test_mysql__test_kpt_cdc;
 
 
-ALTER SCHEMA test_mysql__test_kpt_cdc OWNER TO postgres;
+ALTER SCHEMA test_mysql__test_kpt_cdc OWNER TO kpt;
 
 SET default_tablespace = '';
 
@@ -85,7 +85,7 @@ CREATE TABLE test_mysql__test_kpt_cdc.debezium_types (
 );
 
 
-ALTER TABLE test_mysql__test_kpt_cdc.debezium_types OWNER TO postgres;
+ALTER TABLE test_mysql__test_kpt_cdc.debezium_types OWNER TO kpt;
 
 --
 -- TOC entry 278 (class 1259 OID 599956)
@@ -140,7 +140,7 @@ CREATE TABLE test_mysql__test_kpt_cdc.change_pk__debezium_types (
 );
 
 
-ALTER TABLE test_mysql__test_kpt_cdc.change_pk__debezium_types OWNER TO postgres;
+ALTER TABLE test_mysql__test_kpt_cdc.change_pk__debezium_types OWNER TO kpt;
 
 --
 -- TOC entry 3114 (class 2606 OID 599963)
