@@ -136,7 +136,7 @@ ALTER TABLE ONLY test_mssql__test_kpt_cdc.debezium_types
 -- Name: SCHEMA test_mssql__test_kpt_cdc; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON SCHEMA test_mssql__test_kpt_cdc TO edata_kpt;
+GRANT ALL ON SCHEMA test_mssql__test_kpt_cdc TO kpt;
 
 
 --
@@ -145,7 +145,7 @@ GRANT ALL ON SCHEMA test_mssql__test_kpt_cdc TO edata_kpt;
 -- Name: TABLE debezium_types; Type: ACL; Schema: test_mssql__test_kpt_cdc; Owner: postgres
 --
 
-GRANT ALL ON TABLE test_mssql__test_kpt_cdc.debezium_types TO edata_kpt;
+GRANT ALL ON TABLE test_mssql__test_kpt_cdc.debezium_types TO kpt;
 
 
 -- Completed on 2021-09-23 07:51:54 UTC

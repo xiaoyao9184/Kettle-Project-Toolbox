@@ -46,7 +46,7 @@ SET default_table_access_method = heap;
 -- Name: kafka_to_stream__channel; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.kafka_to_stream__channel (
+CREATE TABLE IF NOT EXISTS kpt_log.kafka_to_stream__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -69,7 +69,7 @@ ALTER TABLE kpt_log.kafka_to_stream__channel OWNER TO postgres;
 -- Name: kafka_to_stream__ktr; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.kafka_to_stream__ktr (
+CREATE TABLE IF NOT EXISTS kpt_log.kafka_to_stream__ktr (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -100,7 +100,7 @@ ALTER TABLE kpt_log.kafka_to_stream__ktr OWNER TO postgres;
 -- Name: kafka_to_stream__metrics; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.kafka_to_stream__metrics (
+CREATE TABLE IF NOT EXISTS kpt_log.kafka_to_stream__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -120,7 +120,7 @@ ALTER TABLE kpt_log.kafka_to_stream__metrics OWNER TO postgres;
 -- Name: kafka_to_stream__seq; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.kafka_to_stream__seq (
+CREATE TABLE IF NOT EXISTS kpt_log.kafka_to_stream__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -146,7 +146,7 @@ ALTER TABLE kpt_log.kafka_to_stream__seq OWNER TO postgres;
 -- Name: kafka_to_stream__step; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.kafka_to_stream__step (
+CREATE TABLE IF NOT EXISTS kpt_log.kafka_to_stream__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -171,7 +171,7 @@ ALTER TABLE kpt_log.kafka_to_stream__step OWNER TO postgres;
 -- Name: stream_parse_to_each_table__channel; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.stream_parse_to_each_table__channel (
+CREATE TABLE IF NOT EXISTS kpt_log.stream_parse_to_each_table__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -194,7 +194,7 @@ ALTER TABLE kpt_log.stream_parse_to_each_table__channel OWNER TO postgres;
 -- Name: stream_parse_to_each_table__ktr; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.stream_parse_to_each_table__ktr (
+CREATE TABLE IF NOT EXISTS kpt_log.stream_parse_to_each_table__ktr (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -225,7 +225,7 @@ ALTER TABLE kpt_log.stream_parse_to_each_table__ktr OWNER TO postgres;
 -- Name: stream_parse_to_each_table__metrics; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.stream_parse_to_each_table__metrics (
+CREATE TABLE IF NOT EXISTS kpt_log.stream_parse_to_each_table__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -245,7 +245,7 @@ ALTER TABLE kpt_log.stream_parse_to_each_table__metrics OWNER TO postgres;
 -- Name: stream_parse_to_each_table__seq; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.stream_parse_to_each_table__seq (
+CREATE TABLE IF NOT EXISTS kpt_log.stream_parse_to_each_table__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -271,7 +271,7 @@ ALTER TABLE kpt_log.stream_parse_to_each_table__seq OWNER TO postgres;
 -- Name: stream_parse_to_each_table__step; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.stream_parse_to_each_table__step (
+CREATE TABLE IF NOT EXISTS kpt_log.stream_parse_to_each_table__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -296,7 +296,7 @@ ALTER TABLE kpt_log.stream_parse_to_each_table__step OWNER TO postgres;
 -- Name: table_crud_to_specify_table__channel; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_crud_to_specify_table__channel (
+CREATE TABLE IF NOT EXISTS kpt_log.table_crud_to_specify_table__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -319,7 +319,7 @@ ALTER TABLE kpt_log.table_crud_to_specify_table__channel OWNER TO postgres;
 -- Name: table_crud_to_specify_table__ktr; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_crud_to_specify_table__ktr (
+CREATE TABLE IF NOT EXISTS kpt_log.table_crud_to_specify_table__ktr (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -350,7 +350,7 @@ ALTER TABLE kpt_log.table_crud_to_specify_table__ktr OWNER TO postgres;
 -- Name: table_crud_to_specify_table__metrics; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_crud_to_specify_table__metrics (
+CREATE TABLE IF NOT EXISTS kpt_log.table_crud_to_specify_table__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -370,7 +370,7 @@ ALTER TABLE kpt_log.table_crud_to_specify_table__metrics OWNER TO postgres;
 -- Name: table_crud_to_specify_table__seq; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_crud_to_specify_table__seq (
+CREATE TABLE IF NOT EXISTS kpt_log.table_crud_to_specify_table__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -396,7 +396,7 @@ ALTER TABLE kpt_log.table_crud_to_specify_table__seq OWNER TO postgres;
 -- Name: table_crud_to_specify_table__step; Type: TABLE; Schema: kpt_log; Owner: postgres
 --
 
-CREATE TABLE kpt_log.table_crud_to_specify_table__step (
+CREATE TABLE IF NOT EXISTS kpt_log.table_crud_to_specify_table__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -470,7 +470,7 @@ CREATE INDEX idx_log__table_crud_to_specify_table__ktr_2 ON kpt_log.table_crud_t
 -- Name: SCHEMA kpt_log; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON SCHEMA kpt_log TO edata_kpt;
+GRANT ALL ON SCHEMA kpt_log TO kpt;
 
 
 --
@@ -479,7 +479,7 @@ GRANT ALL ON SCHEMA kpt_log TO edata_kpt;
 -- Name: TABLE kafka_to_stream__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__channel TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__channel TO kpt;
 
 
 --
@@ -488,7 +488,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__channel TO edata_kpt;
 -- Name: TABLE kafka_to_stream__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__ktr TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__ktr TO kpt;
 
 
 --
@@ -497,7 +497,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__ktr TO edata_kpt;
 -- Name: TABLE kafka_to_stream__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__metrics TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__metrics TO kpt;
 
 
 --
@@ -506,7 +506,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__metrics TO edata_kpt;
 -- Name: TABLE kafka_to_stream__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__seq TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__seq TO kpt;
 
 
 --
@@ -515,7 +515,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__seq TO edata_kpt;
 -- Name: TABLE kafka_to_stream__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.kafka_to_stream__step TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.kafka_to_stream__step TO kpt;
 
 
 --
@@ -524,7 +524,7 @@ GRANT ALL ON TABLE kpt_log.kafka_to_stream__step TO edata_kpt;
 -- Name: TABLE stream_parse_to_each_table__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__channel TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__channel TO kpt;
 
 
 --
@@ -533,7 +533,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__channel TO edata_kpt;
 -- Name: TABLE stream_parse_to_each_table__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__ktr TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__ktr TO kpt;
 
 
 --
@@ -542,7 +542,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__ktr TO edata_kpt;
 -- Name: TABLE stream_parse_to_each_table__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__metrics TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__metrics TO kpt;
 
 
 --
@@ -551,7 +551,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__metrics TO edata_kpt;
 -- Name: TABLE stream_parse_to_each_table__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__seq TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__seq TO kpt;
 
 
 --
@@ -560,7 +560,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__seq TO edata_kpt;
 -- Name: TABLE stream_parse_to_each_table__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO kpt;
 
 
 --
@@ -569,7 +569,7 @@ GRANT ALL ON TABLE kpt_log.stream_parse_to_each_table__step TO edata_kpt;
 -- Name: TABLE table_crud_to_specify_table__channel; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__channel TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__channel TO kpt;
 
 
 --
@@ -578,7 +578,7 @@ GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__channel TO edata_kpt;
 -- Name: TABLE table_crud_to_specify_table__ktr; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__ktr TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__ktr TO kpt;
 
 
 --
@@ -587,7 +587,7 @@ GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__ktr TO edata_kpt;
 -- Name: TABLE table_crud_to_specify_table__metrics; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__metrics TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__metrics TO kpt;
 
 
 --
@@ -596,7 +596,7 @@ GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__metrics TO edata_kpt;
 -- Name: TABLE table_crud_to_specify_table__seq; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__seq TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__seq TO kpt;
 
 
 --
@@ -605,7 +605,7 @@ GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__seq TO edata_kpt;
 -- Name: TABLE table_crud_to_specify_table__step; Type: ACL; Schema: kpt_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__step TO edata_kpt;
+GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__step TO kpt;
 
 
 --
@@ -614,7 +614,7 @@ GRANT ALL ON TABLE kpt_log.table_crud_to_specify_table__step TO edata_kpt;
 --
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON SEQUENCES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON SEQUENCES  TO edata_kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON SEQUENCES  TO kpt;
 
 
 --
@@ -624,7 +624,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON SEQUEN
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON TYPES  FROM PUBLIC;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON TYPES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TYPES  TO edata_kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TYPES  TO kpt;
 
 
 --
@@ -634,7 +634,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TYPES 
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON FUNCTIONS  FROM PUBLIC;
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON FUNCTIONS  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON FUNCTIONS  TO edata_kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON FUNCTIONS  TO kpt;
 
 
 --
@@ -643,7 +643,7 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON FUNCTI
 --
 
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log REVOKE ALL ON TABLES  FROM postgres;
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TABLES  TO edata_kpt;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA kpt_log GRANT ALL ON TABLES  TO kpt;
 
 
 -- Completed on 2021-07-30 09:53:29 UTC
