@@ -555,7 +555,7 @@
     <prefetchMessageCount>${Config.Log.Kafka.Batch.Max}</prefetchMessageCount>
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <AUTO_COMMIT>N</AUTO_COMMIT>
+    <AUTO_COMMIT>Y</AUTO_COMMIT>
     <OutputField kafkaName="key" type="String">key</OutputField>
     <OutputField kafkaName="message" type="String">message</OutputField>
     <OutputField kafkaName="topic" type="String">topic</OutputField>
