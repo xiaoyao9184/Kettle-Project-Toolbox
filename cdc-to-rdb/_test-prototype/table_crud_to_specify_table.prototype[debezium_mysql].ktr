@@ -34,7 +34,7 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Delay.Time</name>
+        <name>Config.Delay.Injection.Crud.Time</name>
         <default_value>0</default_value>
         <description>for protptype</description>
       </parameter>
@@ -534,7 +534,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/22 14:44:26.918</modified_date>
+    <modified_date>2021/11/23 09:45:23.093</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -583,7 +583,7 @@
     </hop>
     <hop>
       <from>BlockUntilStepsFinish</from>
-      <to>Delay: debug for crud</to>
+      <to>Delay: debug for crud injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -717,14 +717,9 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Delay: debug for crud</from>
+      <from>Delay: debug for crud injection</from>
       <to>ETL metadata injection</to>
       <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Delay: debug for injection</from>
-      <to>Dummy: column meta</to>
-      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: column meta</from>
@@ -902,11 +897,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: rename</from>
-      <to>SimpleMapping: column meta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SelectValues: scale_to_BigNumber.step1</from>
       <to>Append: scale_to_BigNumber.step1</to>
       <enabled>Y</enabled>
@@ -944,16 +934,6 @@
     <hop>
       <from>SelectValues: to_Number</from>
       <to>Append: to_Number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: column meta</from>
-      <to>SimpleMapping: rdb_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_column</from>
-      <to>Delay: debug for injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1052,7 +1032,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Delay: debug for crud</from>
+      <from>Delay: debug for crud injection</from>
       <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
@@ -1139,6 +1119,26 @@
     <hop>
       <from>SelectValues: field</from>
       <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: column meta</from>
+      <to>SimpleMapping: rdb_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Delay: debug for field injection</from>
+      <to>SimpleMapping: column meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: rename</from>
+      <to>Delay: debug for field injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: rdb_column</from>
+      <to>Dummy: column meta</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -2907,7 +2907,7 @@
     </GUI>
   </step>
   <step>
-    <name>Delay: debug for crud</name>
+    <name>Delay: debug for crud injection</name>
     <type>Delay</type>
     <description/>
     <distribute>Y</distribute>
@@ -2917,7 +2917,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <timeout>${Config.Log.Delay.Time}</timeout>
+    <timeout>${Config.Delay.Injection.Crud.Time}</timeout>
     <scaletime>milliseconds</scaletime>
     <attributes/>
     <cluster_schema/>
@@ -2930,33 +2930,6 @@
     <GUI>
       <xloc>1392</xloc>
       <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Delay: debug for injection</name>
-    <type>Delay</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <timeout>${Config.Log.Delay.Time}</timeout>
-    <scaletime>milliseconds</scaletime>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3105,7 +3078,7 @@
     <source_output_fields>    </source_output_fields>
     <target_file>to_rdb/message_convert_to_rdb_rud.injection/${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
     <no_execution>N</no_execution>
-    <stream_source_step>Delay: debug for crud</stream_source_step>
+    <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
     <mappings>
       <mapping>
@@ -3598,7 +3571,7 @@
     <source_output_fields>    </source_output_fields>
     <target_file>_test-prototype/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
     <no_execution>Y</no_execution>
-    <stream_source_step>Delay: debug for crud</stream_source_step>
+    <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
     <mappings>
       <mapping>
@@ -5638,107 +5611,6 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: column meta</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_key</parent>
-            <child>key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>message</child>
-          </connector>
-          <connector>
-            <parent>rdb_table_ingore</parent>
-            <child>when</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kettle_converter</parent>
-            <child>kettle_converter</child>
-          </connector>
-          <connector>
-            <parent>kettle_type</parent>
-            <child>kettle_type</child>
-          </connector>
-          <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
-          </connector>
-          <connector>
-            <parent>column_name</parent>
-            <child>column_name</child>
-          </connector>
-          <connector>
-            <parent>column_type</parent>
-            <child>column_type</child>
-          </connector>
-          <connector>
-            <parent>column_key</parent>
-            <child>column_key</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1248</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SimpleMapping: logger INGORE</name>
     <type>SimpleMapping</type>
     <description/>
@@ -5800,87 +5672,6 @@
     <GUI>
       <xloc>1184</xloc>
       <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: rdb_column</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>table</child>
-          </connector>
-          <connector>
-            <parent>column_name</parent>
-            <child>column</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>rdb_column</parent>
-            <child>rdb_column</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1376</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6396,6 +6187,215 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: column meta</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_key</parent>
+            <child>key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>message</child>
+          </connector>
+          <connector>
+            <parent>rdb_table_ingore</parent>
+            <child>when</child>
+          </connector>
+          <connector>
+            <parent>target_schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>table</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kettle_converter</parent>
+            <child>kettle_converter</child>
+          </connector>
+          <connector>
+            <parent>kettle_type</parent>
+            <child>kettle_type</child>
+          </connector>
+          <connector>
+            <parent>kettle_field</parent>
+            <child>kettle_field</child>
+          </connector>
+          <connector>
+            <parent>column_name</parent>
+            <child>column_name</child>
+          </connector>
+          <connector>
+            <parent>column_type</parent>
+            <child>column_type</child>
+          </connector>
+          <connector>
+            <parent>column_key</parent>
+            <child>column_key</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1440</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: rdb_column</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>table</child>
+          </connector>
+          <connector>
+            <parent>column_name</parent>
+            <child>column</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>table</parent>
+            <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>rdb_column</parent>
+            <child>rdb_column</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1568</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Delay: debug for field injection</name>
+    <type>Delay</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <timeout>${Config.Delay.Injection.Field.Time}</timeout>
+    <scaletime>milliseconds</scaletime>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

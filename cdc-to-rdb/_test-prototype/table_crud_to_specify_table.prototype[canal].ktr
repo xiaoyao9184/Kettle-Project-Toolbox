@@ -34,7 +34,7 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Delay.Time</name>
+        <name>Config.Delay.Injection.Crud.Time</name>
         <default_value>0</default_value>
         <description>for protptype</description>
       </parameter>
@@ -534,7 +534,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/22 14:08:06.953</modified_date>
+    <modified_date>2021/11/23 09:44:16.843</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -583,7 +583,7 @@
     </hop>
     <hop>
       <from>BlockUntilStepsFinish</from>
-      <to>Delay: debug for crud</to>
+      <to>Delay: debug for crud injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -717,14 +717,9 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Delay: debug for crud</from>
+      <from>Delay: debug for crud injection</from>
       <to>ETL metadata injection</to>
       <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Delay: debug for injection</from>
-      <to>Dummy: column meta</to>
-      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: column meta</from>
@@ -902,11 +897,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: rename</from>
-      <to>SimpleMapping: column meta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SelectValues: scale_to_BigNumber.step1</from>
       <to>Append: scale_to_BigNumber.step1</to>
       <enabled>Y</enabled>
@@ -949,11 +939,6 @@
     <hop>
       <from>SimpleMapping: column meta</from>
       <to>SimpleMapping: rdb_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_column</from>
-      <to>Delay: debug for injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1052,7 +1037,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Delay: debug for crud</from>
+      <from>Delay: debug for crud injection</from>
       <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
@@ -1139,6 +1124,21 @@
     <hop>
       <from>SelectValues: field</from>
       <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: rename</from>
+      <to>Delay: debug for field injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Delay: debug for field injection</from>
+      <to>SimpleMapping: column meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: rdb_column</from>
+      <to>Dummy: column meta</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -2907,7 +2907,7 @@
     </GUI>
   </step>
   <step>
-    <name>Delay: debug for crud</name>
+    <name>Delay: debug for crud injection</name>
     <type>Delay</type>
     <description/>
     <distribute>Y</distribute>
@@ -2917,7 +2917,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <timeout>${Config.Log.Delay.Time}</timeout>
+    <timeout>${Config.Delay.Injection.Crud.Time}</timeout>
     <scaletime>milliseconds</scaletime>
     <attributes/>
     <cluster_schema/>
@@ -2930,33 +2930,6 @@
     <GUI>
       <xloc>1392</xloc>
       <yloc>992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Delay: debug for injection</name>
-    <type>Delay</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <timeout>${Config.Log.Delay.Time}</timeout>
-    <scaletime>milliseconds</scaletime>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3105,7 +3078,7 @@
     <source_output_fields>    </source_output_fields>
     <target_file>to_rdb/message_convert_to_rdb_rud.injection/${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
     <no_execution>N</no_execution>
-    <stream_source_step>Delay: debug for crud</stream_source_step>
+    <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
     <mappings>
       <mapping>
@@ -3598,7 +3571,7 @@
     <source_output_fields>    </source_output_fields>
     <target_file>_test-prototype/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
     <no_execution>Y</no_execution>
-    <stream_source_step>Delay: debug for crud</stream_source_step>
+    <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
     <mappings>
       <mapping>
@@ -5734,7 +5707,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1248</yloc>
+      <yloc>1440</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5880,7 +5853,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1376</yloc>
+      <yloc>1568</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6396,6 +6369,33 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Delay: debug for field injection</name>
+    <type>Delay</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <timeout>${Config.Delay.Injection.Field.Time}</timeout>
+    <scaletime>milliseconds</scaletime>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

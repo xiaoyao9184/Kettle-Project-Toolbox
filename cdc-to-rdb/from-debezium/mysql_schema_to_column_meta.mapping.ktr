@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/10/24 14:39:38.464</modified_date>
+    <modified_date>2021/11/23 13:14:53.128</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -487,13 +487,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: JSON_PATH_PREFIX</from>
-      <to>Calculator: kettle_json_path</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Calculator: kettle_field</from>
-      <to>Constant: JSON_PATH_PREFIX</to>
+      <to>Constant: JSON_PATH_PREFIX_AFTER&amp;JSON_PATH_PREFIX_BEFORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -523,23 +518,48 @@
     </hop>
     <hop>
       <from>MappingInput</from>
-      <to>Delay: debug for column meta</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Delay: debug for column meta</from>
-      <to>ScriptValueMod: from message.schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Delay: debug for column meta</from>
-      <to>SimpleMapping: key meta</to>
+      <to>Dummy: for column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test_kpt_cdc</from>
-      <to>Delay: debug for column meta</to>
+      <to>Dummy: for column</to>
       <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: for column</from>
+      <to>SimpleMapping: key meta</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: for column</from>
+      <to>ScriptValueMod: from message.schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: JSON_PATH_PREFIX_AFTER&amp;JSON_PATH_PREFIX_BEFORE</from>
+      <to>FilterRows: use before</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: use before</from>
+      <to>SetValueField: use payload.before</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: use before</from>
+      <to>SetValueField: use payload.after</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: use payload.before</from>
+      <to>Calculator: kettle_json_path</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: use payload.after</from>
+      <to>Calculator: kettle_json_path</to>
+      <enabled>Y</enabled>
     </hop>
   </order>
   <step>
@@ -620,7 +640,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1376</yloc>
+      <yloc>1632</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -705,7 +725,7 @@
     </GUI>
   </step>
   <step>
-    <name>Constant: JSON_PATH_PREFIX</name>
+    <name>Constant: JSON_PATH_PREFIX_AFTER&amp;JSON_PATH_PREFIX_BEFORE</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -716,6 +736,30 @@
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>JSON_PATH_PREFIX_AFTER</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>$.payload.after.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>JSON_PATH_PREFIX_BEFORE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>$.payload.before.</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
       <field>
         <name>JSON_PATH_PREFIX</name>
         <type>String</type>
@@ -1593,6 +1637,31 @@
     </GUI>
   </step>
   <step>
+    <name>Dummy: for column</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>FilterRows: not support</name>
     <type>FilterRows</type>
     <description/>
@@ -1768,7 +1837,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1792</yloc>
+      <yloc>2048</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2072,7 +2141,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1536</yloc>
+      <yloc>1792</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2136,7 +2205,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1664</yloc>
+      <yloc>1920</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2402,18 +2471,40 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>Delay: debug for column meta</name>
-    <type>Delay</type>
+    <name>FilterRows: use before</name>
+    <type>FilterRows</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <timeout>${Config.Log.Delay.Time}</timeout>
-    <scaletime>milliseconds</scaletime>
+    <send_true_to>SetValueField: use payload.before</send_true_to>
+    <send_false_to>SetValueField: use payload.after</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>when</leftvalue>
+            <function>=</function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>DELETE</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2424,7 +2515,69 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>208</yloc>
+      <yloc>1376</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: use payload.before</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>JSON_PATH_PREFIX</name>
+        <replaceby>JSON_PATH_PREFIX_BEFORE</replaceby>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>1504</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: use payload.after</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>JSON_PATH_PREFIX</name>
+        <replaceby>JSON_PATH_PREFIX_AFTER</replaceby>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>1504</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

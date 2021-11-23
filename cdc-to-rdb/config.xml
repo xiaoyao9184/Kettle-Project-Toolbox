@@ -15,7 +15,8 @@
         <cfg namespace="Config.Log.Kafka.Batch" key="Size">10000</cfg>
         <cfg namespace="Config.Log.Kafka.Batch" key="Duration">60000</cfg>
         <cfg namespace="Config.Log.Kafka.Batch" key="Max">10000</cfg>
-        <cfg namespace="Config.Log.Delay" key="Time">0</cfg>
+        <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
+        <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
         <cfg namespace="Config.Log.Snapshot.FlashPoint" key="Delay">2592000</cfg>
         <cfg namespace="Config.Log.Snapshot.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
         
