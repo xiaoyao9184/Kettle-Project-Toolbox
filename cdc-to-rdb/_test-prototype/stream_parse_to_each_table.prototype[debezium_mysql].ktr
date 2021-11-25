@@ -2409,6 +2409,10 @@ result_id = i;</jsScript_script>
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
+            <parent>key</parent>
+            <child>key</child>
+          </connector>
+          <connector>
             <parent>message</parent>
             <child>message</child>
           </connector>
@@ -2422,8 +2426,8 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>source_group</parent>
-            <child>source_group</child>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
           <connector>
             <parent>source_schema</parent>
@@ -2432,6 +2436,10 @@ result_id = i;</jsScript_script>
           <connector>
             <parent>source_table</parent>
             <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>source_key</child>
           </connector>
         </mapping>
       </output>
@@ -2478,8 +2486,8 @@ result_id = i;</jsScript_script>
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>source_group</parent>
-            <child>group</child>
+            <parent>source_operate</parent>
+            <child>operate</child>
           </connector>
           <connector>
             <parent>source_schema</parent>
@@ -2488,6 +2496,10 @@ result_id = i;</jsScript_script>
           <connector>
             <parent>source_table</parent>
             <child>table</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>group</child>
           </connector>
           <connector>
             <parent>offset</parent>

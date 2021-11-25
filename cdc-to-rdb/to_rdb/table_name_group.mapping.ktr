@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/22 14:53:23.456</modified_date>
+    <modified_date>2021/11/25 16:01:35.315</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -452,34 +452,44 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: group_table_name</from>
-      <to>SortRows: group_table_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput</from>
-      <to>Constant: POINT</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SelectValues: remove POINT</from>
       <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: group_table_name</from>
+      <from>SortRows: schema+table+group+offset</from>
+      <to>Group by: schema+table+group</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test</from>
+      <to>SortRows: schema+table+group+offset</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput</from>
+      <to>SortRows: schema+table+group+offset</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Group by: schema+table+group</from>
+      <to>SortRows: schema+table+operate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: group_table_name</from>
       <to>ScriptValueMod: group_table_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SortRows: schema+table+operate</from>
+      <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>ScriptValueMod: group_table_id</from>
       <to>SelectValues: remove POINT</to>
       <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: test</from>
-      <to>Constant: POINT</to>
-      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -512,7 +522,7 @@
     <calculation>
       <field_name>group_table_name</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>group</field_a>
+      <field_a>operate</field_a>
       <field_b>POINT</field_b>
       <field_c>schema_table_name</field_c>
       <value_type>String</value_type>
@@ -534,7 +544,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>352</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -573,7 +583,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -590,7 +600,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>group</name>
+        <name>operate</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -615,6 +625,18 @@
       </field>
       <field>
         <name>table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>group</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -655,6 +677,7 @@
         <item>INSERT</item>
         <item>s</item>
         <item>t1</item>
+        <item>row1</item>
         <item>0</item>
         <item>1</item>
       </line>
@@ -662,71 +685,121 @@
         <item>INSERT</item>
         <item>s</item>
         <item>t2</item>
+        <item>row1</item>
+        <item>2</item>
         <item>1</item>
-        <item>2</item>
       </line>
       <line>
-        <item>UPDATE</item>
+        <item>INSERT</item>
         <item>s</item>
-        <item>t1</item>
-        <item>2</item>
+        <item>t2</item>
+        <item>row2</item>
         <item>3</item>
+        <item>1</item>
+      </line>
+      <line>
+        <item>INSERT</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row3</item>
+        <item>4</item>
+        <item>1</item>
       </line>
       <line>
         <item>INSERT</item>
         <item>s</item>
         <item>t3</item>
-        <item>3</item>
-        <item>4</item>
-      </line>
-      <line>
-        <item>INSERT</item>
-        <item>s</item>
-        <item>t3</item>
-        <item>4</item>
+        <item>row1</item>
         <item>5</item>
+        <item>1</item>
+      </line>
+      <line>
+        <item>INSERT</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row2</item>
+        <item>6</item>
+        <item>1</item>
+      </line>
+      <line>
+        <item>INSERT</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row3</item>
+        <item>7</item>
+        <item>1</item>
       </line>
       <line>
         <item>DELETE</item>
         <item>s</item>
-        <item>t3</item>
-        <item>5</item>
-        <item>6</item>
+        <item>t2</item>
+        <item>row1</item>
+        <item>8</item>
+        <item>2</item>
       </line>
       <line>
         <item>UPDATE</item>
         <item>s</item>
         <item>t2</item>
-        <item>6</item>
-        <item>7</item>
-      </line>
-      <line>
-        <item>DELETE</item>
-        <item>s</item>
-        <item>t1</item>
-        <item>7</item>
-        <item>8</item>
+        <item>row2</item>
+        <item>9</item>
+        <item>2</item>
       </line>
       <line>
         <item>INSERT</item>
         <item>s</item>
-        <item>t1</item>
-        <item>8</item>
-        <item>9</item>
+        <item>t2</item>
+        <item>row3</item>
+        <item>10</item>
+        <item>2</item>
       </line>
       <line>
         <item>DELETE</item>
         <item>s</item>
-        <item>t1</item>
-        <item>9</item>
-        <item>10</item>
+        <item>t3</item>
+        <item>row1</item>
+        <item>11</item>
+        <item>2</item>
       </line>
       <line>
         <item>UPDATE</item>
         <item>s</item>
         <item>t3</item>
-        <item>10</item>
-        <item>11</item>
+        <item>row2</item>
+        <item>12</item>
+        <item>2</item>
+      </line>
+      <line>
+        <item>UPDATE</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row3</item>
+        <item>13</item>
+        <item>2</item>
+      </line>
+      <line>
+        <item>INSERT</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row1</item>
+        <item>14</item>
+        <item>3</item>
+      </line>
+      <line>
+        <item>UPDATE</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row2</item>
+        <item>15</item>
+        <item>3</item>
+      </line>
+      <line>
+        <item>UPDATE</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row3</item>
+        <item>16</item>
+        <item>3</item>
       </line>
     </data>
     <attributes/>
@@ -756,7 +829,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>group</name>
+        <name>operate</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -769,6 +842,12 @@
       </field>
       <field>
         <name>table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>group</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -822,7 +901,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>912</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -873,7 +952,7 @@ group_table_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>624</yloc>
+      <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -907,12 +986,12 @@ group_table_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SortRows: group_table_name</name>
+    <name>SortRows: schema+table+operate</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -947,15 +1026,7 @@ group_table_id = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>offset</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>group</name>
+        <name>operate</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -973,7 +1044,137 @@ group_table_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>496</yloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SortRows: schema+table+group+offset</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>schema</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>table</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>group</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>offset</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by: schema+table+group</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>schema</name>
+      </field>
+      <field>
+        <name>table</name>
+      </field>
+      <field>
+        <name>group</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>operate</aggregate>
+        <subject>operate</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset</aggregate>
+        <subject>offset</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>timestamp</aggregate>
+        <subject>timestamp</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
