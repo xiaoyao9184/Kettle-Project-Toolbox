@@ -9,17 +9,17 @@
     <directory>/from-kafka</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Kafka.Batch.Size</name>
-        <default_value>10000</default_value>
-        <description/>
-      </parameter>
-      <parameter>
         <name>Config.Log.Kafka.Batch.Duration</name>
         <default_value>60000</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Batch.Max</name>
+        <default_value>10000</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Batch.Size</name>
         <default_value>10000</default_value>
         <description/>
       </parameter>
@@ -444,7 +444,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/07 11:03:26.007</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/11 21:39:45.277</modified_date>
+    <modified_date>2021/11/25 16:55:19.537</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -555,7 +555,7 @@
     <prefetchMessageCount>${Config.Log.Kafka.Batch.Max}</prefetchMessageCount>
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <AUTO_COMMIT>Y</AUTO_COMMIT>
+    <AUTO_COMMIT>N</AUTO_COMMIT>
     <OutputField kafkaName="key" type="String">key</OutputField>
     <OutputField kafkaName="message" type="String">message</OutputField>
     <OutputField kafkaName="topic" type="String">topic</OutputField>
@@ -569,6 +569,7 @@
       <option property="ssl.keystore.password" value=""/>
       <option property="ssl.truststore.location" value=""/>
       <option property="ssl.truststore.password" value=""/>
+      <option property="max.poll.interval.ms" value="600000"/>
     </advancedConfig>
     <attributes/>
     <cluster_schema/>
