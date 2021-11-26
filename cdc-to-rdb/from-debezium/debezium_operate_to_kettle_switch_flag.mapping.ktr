@@ -457,13 +457,13 @@
   </notepads>
   <order>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: debezium_operate_to_kettle_switch_flag</from>
       <to>JSON input: payload info</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: remove payload_*</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: debezium_operate_to_kettle_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -872,7 +872,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: debezium_operate_to_kettle_switch_flag</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -912,7 +912,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: debezium_operate_to_kettle_switch_flag</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

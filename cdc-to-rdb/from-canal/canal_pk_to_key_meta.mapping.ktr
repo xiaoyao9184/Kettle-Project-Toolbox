@@ -437,11 +437,11 @@
   <order>
     <hop>
       <from>SelectValues: remove</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: canal_pk_to_key_meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: canal_pk_to_key_meta</from>
       <to>ScriptValueMod: from pk</to>
       <enabled>Y</enabled>
     </hop>
@@ -604,7 +604,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: canal_pk_to_key_meta</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -656,7 +656,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: canal_pk_to_key_meta</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

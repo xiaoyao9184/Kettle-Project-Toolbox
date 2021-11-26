@@ -438,7 +438,7 @@
   <order>
     <hop>
       <from>Kafka producer: logger</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: json_logger_to_kafka</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -452,7 +452,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: json_logger_to_kafka</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
@@ -583,7 +583,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: json_logger_to_kafka</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -629,7 +629,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: json_logger_to_kafka</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

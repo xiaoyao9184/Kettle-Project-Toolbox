@@ -458,11 +458,11 @@
   <order>
     <hop>
       <from>SelectValues: remove message_*</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: canal_type_to_kettle_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: canal_type_to_kettle_switch_flag</from>
       <to>JSON input: message info</to>
       <enabled>Y</enabled>
     </hop>
@@ -718,7 +718,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: canal_type_to_kettle_switch_flag</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -758,7 +758,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: canal_type_to_kettle_switch_flag</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

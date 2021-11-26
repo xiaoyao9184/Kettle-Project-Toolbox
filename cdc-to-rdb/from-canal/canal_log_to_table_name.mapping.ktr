@@ -438,11 +438,11 @@
   <order>
     <hop>
       <from>SelectValues: rename source_*</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: canal_log_to_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: canal_log_to_table_name</from>
       <to>JSON input: message info</to>
       <enabled>Y</enabled>
     </hop>
@@ -693,7 +693,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: canal_log_to_table_name</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -733,7 +733,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: canal_log_to_table_name</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

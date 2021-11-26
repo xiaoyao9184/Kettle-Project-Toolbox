@@ -452,7 +452,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: pgsql_column_case_to_column</from>
       <to>GetVariable: Param.Case.Name</to>
       <enabled>Y</enabled>
     </hop>
@@ -493,7 +493,7 @@
     </hop>
     <hop>
       <from>Dummy: rdb_column</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: pgsql_column_case_to_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -802,7 +802,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: pgsql_column_case_to_column</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -848,7 +848,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: pgsql_column_case_to_column</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

@@ -513,7 +513,7 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: pgsql_table_exists_to_ingore</from>
       <to>GetVariable: Param.Case.Name</to>
       <enabled>Y</enabled>
     </hop>
@@ -599,7 +599,7 @@
     </hop>
     <hop>
       <from>SelectValues: rename</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: pgsql_table_exists_to_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -933,7 +933,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: pgsql_table_exists_to_ingore</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -973,7 +973,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: pgsql_table_exists_to_ingore</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

@@ -453,7 +453,7 @@
     </hop>
     <hop>
       <from>SelectValues: remove POINT</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: table_name_group</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -462,7 +462,7 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: table_name_group</from>
       <to>SortRows: schema+table+group+offset</to>
       <enabled>Y</enabled>
     </hop>
@@ -822,7 +822,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: table_name_group</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -886,7 +886,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: table_name_group</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

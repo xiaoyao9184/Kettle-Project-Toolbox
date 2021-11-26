@@ -463,7 +463,7 @@
     </hop>
     <hop>
       <from>SelectValues: rename source_*</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: mssql_playload_to_table_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -487,7 +487,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: mssql_playload_to_table_name</from>
       <to>JSON input: payload_key</to>
       <enabled>Y</enabled>
     </hop>
@@ -1333,7 +1333,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: mssql_playload_to_table_name</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1373,7 +1373,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: mssql_playload_to_table_name</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

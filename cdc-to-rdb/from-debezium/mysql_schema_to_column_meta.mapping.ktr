@@ -483,7 +483,7 @@
     </hop>
     <hop>
       <from>SelectValues: select sort</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: mysql_schema_to_column_meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -517,7 +517,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: mysql_schema_to_column_meta</from>
       <to>Dummy: for column</to>
       <enabled>Y</enabled>
     </hop>
@@ -1759,7 +1759,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: mysql_schema_to_column_meta</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1817,7 +1817,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: mysql_schema_to_column_meta</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

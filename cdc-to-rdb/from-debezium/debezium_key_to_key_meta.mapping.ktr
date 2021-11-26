@@ -438,11 +438,11 @@
   <order>
     <hop>
       <from>SelectValues: remove</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: debezium_key_to_key_meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: debezium_key_to_key_meta</from>
       <to>ScriptValueMod: from key.schema</to>
       <enabled>Y</enabled>
     </hop>
@@ -621,7 +621,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: debezium_key_to_key_meta</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -673,7 +673,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: debezium_key_to_key_meta</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

@@ -457,7 +457,7 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput</from>
+      <from>MappingInput: canal_log_to_column_meta</from>
       <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
@@ -483,7 +483,7 @@
     </hop>
     <hop>
       <from>SelectValues: select sort</from>
-      <to>MappingOutput</to>
+      <to>MappingOutput: canal_log_to_column_meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1107,7 +1107,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput</name>
+    <name>MappingInput: canal_log_to_column_meta</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1165,7 +1165,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput</name>
+    <name>MappingOutput: canal_log_to_column_meta</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
