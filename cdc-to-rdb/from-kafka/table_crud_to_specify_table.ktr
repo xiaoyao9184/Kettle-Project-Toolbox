@@ -34,16 +34,6 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Snapshot.FlashPoint.Delay</name>
-        <default_value>2592000</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Snapshot.FlashPoint.Timestamp</name>
-        <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description/>
-      </parameter>
-      <parameter>
         <name>Config.Log.Source.Column.Mapping</name>
         <default_value>mssql_schema_to_column_meta.mapping</default_value>
         <description/>
@@ -81,6 +71,21 @@
       <parameter>
         <name>Config.Log.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
+        <default_value>2592000</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Include</name>
+        <default_value>INSERT,SNAPSHOT</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -492,7 +497,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>10000</size_rowset>
+    <size_rowset>100000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -514,7 +519,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/23 13:02:03.249</modified_date>
+    <modified_date>2021/11/26 21:07:29.092</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -2656,33 +2661,6 @@
     </GUI>
   </step>
   <step>
-    <name>Delay: debug for field injection</name>
-    <type>Delay</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <timeout>${Config.Delay.Injection.Field.Time}</timeout>
-    <scaletime>milliseconds</scaletime>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1280</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Delay: debug for crud injection</name>
     <type>Delay</type>
     <description/>
@@ -2706,6 +2684,33 @@
     <GUI>
       <xloc>1392</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Delay: debug for field injection</name>
+    <type>Delay</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <timeout>${Config.Delay.Injection.Field.Time}</timeout>
+    <scaletime>milliseconds</scaletime>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5274,12 +5279,16 @@
       </output>
       <parameters>
         <variablemapping>
-          <variable>Param.Snapshot.FlashPoint.Delay</variable>
-          <input>${Config.Log.Snapshot.FlashPoint.Delay}</input>
+          <variable>Param.UpdateOnly.FlashPoint.Include</variable>
+          <input>${Config.Log.UpdateOnly.FlashPoint.Include}</input>
         </variablemapping>
         <variablemapping>
-          <variable>Param.Snapshot.FlashPoint.Timestamp</variable>
-          <input>${Config.Log.Snapshot.FlashPoint.Timestamp}</input>
+          <variable>Param.UpdateOnly.FlashPoint.Delay</variable>
+          <input>${Config.Log.UpdateOnly.FlashPoint.Delay}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.UpdateOnly.FlashPoint.Timestamp</variable>
+          <input>${Config.Log.UpdateOnly.FlashPoint.Timestamp}</input>
         </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
