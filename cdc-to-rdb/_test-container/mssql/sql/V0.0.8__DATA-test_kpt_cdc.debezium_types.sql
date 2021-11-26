@@ -32,32 +32,32 @@ INSERT INTO [dbo].[debezium_types]
            ,[SMALLMONEY]
            ,[MONEY])
      VALUES
-           (1
-           ,'0'
+           (2
+           ,'1'
            ,1
-           ,2
+           ,NULL
            ,3
            ,4
            ,5.5
            ,6.6
            ,'7'
            ,'8'
-           ,'9'
+           ,NULL
            ,'10'
            ,'11'
-        ,'12'
-         ,N'<?xml version="1.0" encoding="utf-16" standalone="yes"?><!--This is a test XML file--><filemeta filetype="Audio"><Comments /><AlbumTitle /><TrackNumber /><ArtistName /><Year /><Genre /><TrackTitle /></filemeta>'
+           ,'12'
+           ,NULL
            ,'2021-09-07 06:26:20.6220000 +08:00'
            ,'2021-09-07'
            ,'06:26:20.6220000'
-           ,'06:26:20.6220000'
+           ,NULL
            ,'06:26:20.6220000'
            ,'2021-09-07 06:26:20.623'
            ,'2021-09-07 06:26:00'
            ,'2021-09-07 06:26:20.6220000'
+           ,NULL
            ,'2021-09-07 06:26:20.6220000'
-           ,'2021-09-07 06:26:20.6220000'
-           ,24.1
+           ,NULL
            ,25.12
            ,26.1234
            ,27.1234)

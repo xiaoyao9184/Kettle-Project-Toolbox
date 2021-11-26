@@ -1,12 +1,6 @@
 USE [test_kpt_cdc]
 GO
 
-CREATE USER [kpt] FOR LOGIN [kpt]
-GO
-
-ALTER ROLE [db_owner] ADD MEMBER [kpt]
-GO
-
 
 /****** Object:  Table [dbo].[debezium_types]    Script Date: 2021/9/7 15:15:27 ******/
 SET ANSI_NULLS ON
