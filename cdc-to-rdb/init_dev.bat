@@ -68,6 +68,7 @@ if _%interactive%_ equ _0_ (
 )
 
 ::run
+
 echo ===========================================================
 echo init kpt-cdc-to-rdb project...
 call INIT_PROJECT.bat kpt-cdc-to-rdb
@@ -77,19 +78,14 @@ echo.
 echo.
 echo ===========================================================
 echo link kpt-cdc-to-rdb path...
-call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\from-canal" "%current_path%\from-canal" %param%
-call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\from-debezium" "%current_path%\from-debezium" %param%
-call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\from-kafka" "%current_path%\from-kafka" %param%
-call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\to_rdb" "%current_path%\to_rdb" %param%
-call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\to_pgsql" "%current_path%\to_pgsql" %param%
-echo.
-echo.
-echo.
-echo.
-echo ===========================================================
-echo link _test path...
-call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\_test-prototype" "%current_path%\_test-prototype" %param%
-echo.
+for /d %%i in (%current_path%*) do (
+echo "%%i"
+    for %%f in (%%i) do (
+        set name=%%~nf
+        echo "Link of !name!"
+        call LINK_FOLDER.bat "%workspacePath%\kpt-cdc-to-rdb\!name!" "%%i" %param%
+    )
+)
 echo.
 echo.
 echo.
