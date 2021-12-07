@@ -9,27 +9,27 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
-        <name>Config.DB.db_kpt_bin_log_pgsql_writer.database</name>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
         <default_value>test_kpt</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_bin_log_pgsql_writer.password</name>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
         <default_value>kpt.123</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_bin_log_pgsql_writer.port</name>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
         <default_value>5432</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_bin_log_pgsql_writer.server</name>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
         <default_value>pgsql</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_bin_log_pgsql_writer.username</name>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
         <default_value>kpt</default_value>
         <description>only for protptype</description>
       </parameter>

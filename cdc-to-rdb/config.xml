@@ -22,11 +22,11 @@
         <cfg namespace="Config.Log.Kafka.Batch" key="Max">10000</cfg>
         
         <profile name="test_kpt">
-            <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="database">test_kpt</cfg>
-            <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="server">test_kpt</cfg>
-            <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="port">TODO_CHANGE_IP</cfg>
-            <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="username">TODO_CHANGE_USERNAME</cfg>
-            <cfg namespace="Config.DB.db_kpt_bin_log_pgsql_writer" key="password">TODO_CHANGE_PASSWROD</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">test_kpt</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">test_kpt</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">TODO_CHANGE_IP</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">TODO_CHANGE_USERNAME</cfg>
+            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">TODO_CHANGE_PASSWROD</cfg>
         </profile>
 
         <profile name="debezium-mysql-pgsql">
@@ -49,11 +49,11 @@
             <!-- Copy it and quickly set system variables -->
             <!--
 name	value
-Config.DB.db_kpt_bin_log_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
-Config.DB.db_kpt_bin_log_pgsql_writer.port	5432
-Config.DB.db_kpt_bin_log_pgsql_writer.username	TODO_CHANGE_USERNAME
-Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
+Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.server	TODO_CHANGE_IP
+Config.DB.db_kpt_cdc_event_pgsql_writer.port	5432
+Config.DB.db_kpt_cdc_event_pgsql_writer.username	TODO_CHANGE_USERNAME
+Config.DB.db_kpt_cdc_event_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
@@ -97,11 +97,11 @@ Config.Log.Target.Table.Prefix
             <!-- Copy it and quickly set system variables -->
             <!--
 name	value
-Config.DB.db_kpt_bin_log_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
-Config.DB.db_kpt_bin_log_pgsql_writer.port	5432
-Config.DB.db_kpt_bin_log_pgsql_writer.username	TODO_CHANGE_USERNAME
-Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
+Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.server	TODO_CHANGE_IP
+Config.DB.db_kpt_cdc_event_pgsql_writer.port	5432
+Config.DB.db_kpt_cdc_event_pgsql_writer.username	TODO_CHANGE_USERNAME
+Config.DB.db_kpt_cdc_event_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
@@ -144,11 +144,11 @@ Config.Log.Target.Table.Prefix
             <!-- Copy it and quickly set system variables -->
             <!--
 name	value
-Config.DB.db_kpt_bin_log_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_bin_log_pgsql_writer.server	TODO_CHANGE_IP
-Config.DB.db_kpt_bin_log_pgsql_writer.port	5432
-Config.DB.db_kpt_bin_log_pgsql_writer.username	TODO_CHANGE_USERNAME
-Config.DB.db_kpt_bin_log_pgsql_writer.password	TODO_CHANGE_PASSWROD
+Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.server	TODO_CHANGE_IP
+Config.DB.db_kpt_cdc_event_pgsql_writer.port	5432
+Config.DB.db_kpt_cdc_event_pgsql_writer.username	TODO_CHANGE_USERNAME
+Config.DB.db_kpt_cdc_event_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	

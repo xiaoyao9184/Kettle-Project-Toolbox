@@ -26,7 +26,7 @@
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
         <schema>kpt_log</schema>
         <table>${Internal.Transformation.Name}__ktr</table>
         <size_limit_lines/>
@@ -140,7 +140,7 @@
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
         <schema>kpt_log</schema>
         <table>${Internal.Transformation.Name}__seq</table>
         <interval>60</interval>
@@ -222,7 +222,7 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
         <schema>kpt_log</schema>
         <table>${Internal.Transformation.Name}__channel</table>
         <timeout_days>300</timeout_days>
@@ -288,7 +288,7 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
         <schema>kpt_log</schema>
         <table>${Internal.Transformation.Name}__step</table>
         <timeout_days>300</timeout_days>
@@ -364,7 +364,7 @@
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_bin_log_pgsql_writer</connection>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
         <schema>kpt_log</schema>
         <table>${Internal.Transformation.Name}__metrics</table>
         <timeout_days>300</timeout_days>
@@ -451,14 +451,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>db_kpt_bin_log_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
+    <name>db_kpt_cdc_event_pgsql_writer</name>
+    <server>${Config.DB.db_kpt_cdc_event_pgsql_writer.server}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
+    <database>${Config.DB.db_kpt_cdc_event_pgsql_writer.database}</database>
+    <port>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</port>
+    <username>${Config.DB.db_kpt_cdc_event_pgsql_writer.username}</username>
+    <password>${Config.DB.db_kpt_cdc_event_pgsql_writer.password}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -477,7 +477,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
+        <attribute>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>

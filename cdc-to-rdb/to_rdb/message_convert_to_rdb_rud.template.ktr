@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>db_kpt_bin_log_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_bin_log_pgsql_writer.server}</server>
+    <name>db_kpt_cdc_event_pgsql_writer</name>
+    <server>${Config.DB.db_kpt_cdc_event_pgsql_writer.server}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${Config.DB.db_kpt_bin_log_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_bin_log_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_bin_log_pgsql_writer.password}</password>
+    <database>${Config.DB.db_kpt_cdc_event_pgsql_writer.database}</database>
+    <port>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</port>
+    <username>${Config.DB.db_kpt_cdc_event_pgsql_writer.username}</username>
+    <password>${Config.DB.db_kpt_cdc_event_pgsql_writer.password}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_bin_log_pgsql_writer.port}</attribute>
+        <attribute>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>
@@ -599,7 +599,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <commit>1000</commit>
     <lookup>
       <schema>"${Param.Schema.Name}"</schema>
@@ -683,7 +683,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <commit>1000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
@@ -715,7 +715,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <commit>1000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
@@ -893,7 +893,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_bin_log_pgsql_writer</connection>
+    <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <schema>"${Param.Schema.Name}"</schema>
     <table>"${Param.Table.Name}"</table>
     <commit>1000</commit>
