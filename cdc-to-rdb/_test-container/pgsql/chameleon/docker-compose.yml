@@ -1,0 +1,24 @@
+version: "3"
+services:
+
+  generation-test_kpt_cdc:
+    image: kivra/pg_chameleon:2.0.16
+    environment:
+      - TZ=Asia/Hong_Kong
+      - PC_CONFIG=mysql-to-pgsql
+      - PC_SOURCE=mysql
+      - PC_SCHEMA=test_kpt_cdc
+    entrypoint: 
+      - "/bin/ash"
+      - "/root/.pg_chameleon/only_init.sh"
+    volumes:
+      - ./mysql-to-pgsql.yml:/root/.pg_chameleon/configuration/mysql-to-pgsql.yml
+      - ./only_init.sh:/root/.pg_chameleon/only_init.sh
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - test-kpt
+
+
+networks:
+  test-kpt:
+    external: true

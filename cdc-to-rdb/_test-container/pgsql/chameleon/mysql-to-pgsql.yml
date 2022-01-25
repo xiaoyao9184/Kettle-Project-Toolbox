@@ -1,0 +1,111 @@
+# example config file
+---
+# global settings
+pid_dir: '~/.pg_chameleon/pid/'
+log_dir: '~/.pg_chameleon/logs/'
+log_dest: stdout # <- important to run pg_chameleon in foreground
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# type_override allows the user to override the default type conversion
+# into a different one.
+
+type_override:
+  "geometry":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+  "linestring":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+  "polygon":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+  "multipoint":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+  "multilinestring":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+  "multipolygon":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+  "geometrycollection":
+    override_to: character varying(1000)
+    override_tables:
+      - "*"
+
+  "tinyint(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+  "bit(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+  "bit(2)":
+    override_to: bytea
+    override_tables:
+      - "*"
+
+  "enum('E1')":
+    override_to: text
+    override_tables:
+      - "*"
+
+
+# postgres  destination connection
+pg_conn:
+  host: "pgsql"
+  port: "5432"
+  user: "postgres"
+  password: "P@ssw0rd"
+  database: "test_kpt"
+  charset: "utf8"
+
+
+sources:
+
+  mysql:
+    db_conn:
+      host: "mysql"
+      port: "3306"
+      user: "root"
+      password: "P@ssw0rd"
+      charset: 'utf8'
+      connect_timeout: 10
+    schema_mappings:
+      test_kpt_cdc: chameleon_generation__test_kpt_cdc
+    limit_tables:
+      - test_kpt_cdc.debezium_types_for_chameleon
+    skip_tables:
+    grant_select_to:
+      - usr_readonly
+    lock_timeout: "36000s"
+    my_server_id: 2333
+    replica_batch_size: 6000
+    replay_max_rows: 10000
+    batch_retention: '2 day'
+    copy_max_memory: "600M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 600
+    on_error_replay: continue
+    on_error_read: continue
+    auto_maintenance: "disabled"
+    gtid_enable: false
+    type: mysql
+    skip_events:
+      insert:
+      delete:
+      update:
+    keep_existing_schema: No
