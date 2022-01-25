@@ -38,7 +38,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE test_mssql__test_kpt_cdc.debezium_types (
-    _id bit varying(10) NOT NULL,
+    _id character varying(10) NOT NULL,
     "BIT" bit(1),
     "TINYINT" integer,
     "SMALLINT" smallint,
@@ -78,7 +78,7 @@ ALTER TABLE test_mssql__test_kpt_cdc.debezium_types OWNER TO kpt;
 --
 
 CREATE TABLE test_mssql__test_kpt_cdc.change_pk__debezium_types (
-    _id bit varying(10) NOT NULL,
+    _id character varying(10) NOT NULL,
     "BIT" bit(1),
     "TINYINT" integer,
     "SMALLINT" smallint,

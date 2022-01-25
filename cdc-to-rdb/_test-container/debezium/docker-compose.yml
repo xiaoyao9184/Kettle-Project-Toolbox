@@ -26,6 +26,7 @@ services:
       # - kafka:/kafka
     ports:
       - "59094:59094"
+      - "51099:1099"
     networks:
       - test-kpt
     depends_on:
