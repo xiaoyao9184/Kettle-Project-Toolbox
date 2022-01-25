@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/10/22 15:16:22.720</modified_date>
+    <modified_date>2022/01/25 11:14:04.864</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -568,11 +568,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>scale_to_BigNumber.step2</from>
-      <to>format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>format_to_Timestamp</from>
       <to>Switch / case: target_switch_flag</to>
       <enabled>Y</enabled>
@@ -585,6 +580,21 @@
     <hop>
       <from>Dummy: start</from>
       <to>ReplaceString</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.step1</from>
+      <to>Byte_to_Binary.step2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>scale_to_BigNumber.step2</from>
+      <to>Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.step2</from>
+      <to>format_to_Date</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -615,7 +625,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2448</yloc>
+      <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -700,7 +710,7 @@
     </remotesteps>
     <GUI>
       <xloc>272</xloc>
-      <yloc>2448</yloc>
+      <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -732,7 +742,7 @@
     </remotesteps>
     <GUI>
       <xloc>432</xloc>
-      <yloc>2448</yloc>
+      <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -878,7 +888,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2288</yloc>
+      <yloc>2544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -922,7 +932,7 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>2448</yloc>
+      <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1008,7 +1018,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2000</yloc>
+      <yloc>2256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1036,7 +1046,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2128</yloc>
+      <yloc>2384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1261,13 +1271,11 @@ putRow(row);
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
-var info = "";
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
 	var inMeta = getInputRowMeta().getValueMeta(index);
 	var outMate = getOutputRowMeta().getValueMeta(index);
-	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc() + "\n";
 	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'BigNumber'){
 		var value = row[index];
 		outMate.setConversionMask(null);
@@ -1412,6 +1420,90 @@ putRow(row);
     <GUI>
       <xloc>352</xloc>
       <yloc>816</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary.step1</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1984</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary.step2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var row = createRowCopy(getOutputRowMeta().size());
+var fieldNames = getOutputRowMeta().getFieldNames();
+for (index = 0; index &lt; fieldNames.length; index++) {
+	var inMeta = getInputRowMeta().getValueMeta(index);
+	var outMate = getOutputRowMeta().getValueMeta(index);
+    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+		var value = row[index];
+		outMate.setConversionMask(null);
+		if(value != null &amp;&amp; value.length() != 0) {
+			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
+
+			value = bytes;
+		} else {
+			value = null;
+		}
+		row[index] = value;
+	}
+}
+putRow(row);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

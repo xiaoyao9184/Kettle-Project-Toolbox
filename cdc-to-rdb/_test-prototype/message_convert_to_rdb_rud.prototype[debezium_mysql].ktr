@@ -429,33 +429,46 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/22 12:57:32.210</modified_date>
+    <modified_date>2022/01/25 11:01:21.807</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>TODO 
+      <note>
+NOT support
+====================
+STRUCT + io.debezium.data.geometry.Geometry
+----------------------------------
+is JSON string, There is no kettle type for that
 
-STRUCT
-io.debezium.data.geometry.Geometry
-JSON String to_?
 
-BYTES
-io.debezium.data.Bits
-with need read parameters.length
-alway Base64
 
-STRING of binary
-BUG: cant obtain the method to use by schema
-convert binary to string, need read config of connector
-Byte_to_Binary 
-Base64_to_Binary
-Hex_to_Binary</note>
-      <xloc>928</xloc>
-      <yloc>1648</yloc>
-      <width>402</width>
-      <heigth>342</heigth>
+NOTE support
+====================
+BYTES + io.debezium.data.Bits
+----------------------------------
+use &lt;Byte_to_Binary> for alway base64 encoding string
+there is one 'parameters.length' for read, but not needed
+
+BYTES +(of) binary
+----------------------------------
+use &lt;Byte_to_Binary> for alway base64 encoding string
+
+STRING +(of) binary
+----------------------------------
+two types of binary,
+base64 encoding string use &lt;Base64_to_Binary>
+hex encoding string use Hex_to_Binary
+determine the method by reading the configuration file of connector,
+BUT unknow original/database type of these STRING fields
+these should be BUG of Debezium https://issues.redhat.com/browse/DBZ-4607
+
+</note>
+      <xloc>576</xloc>
+      <yloc>928</yloc>
+      <width>578</width>
+      <heigth>595</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -608,6 +621,61 @@ Hex_to_Binary</note>
       <to>Base64_to_Binary.check</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Hex_to_Binary.step2</from>
+      <to>Hex_to_Binary.check</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Hex_to_Binary.check</from>
+      <to>Hex_to_Binary.two</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Hex_to_Binary.step1</from>
+      <to>Hex_to_Binary.two</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Hex_to_Binary.two</from>
+      <to>Hex_to_Binary.same</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Base64_to_Binary.two</from>
+      <to>Base64_to_Binary.same</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Base64_to_Binary.check</from>
+      <to>Base64_to_Binary.two</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Base64_to_Binary.step1</from>
+      <to>Base64_to_Binary.two</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.check</from>
+      <to>Byte_to_Binary.two</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.two</from>
+      <to>Byte_to_Binary.same</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.step2</from>
+      <to>Byte_to_Binary.check</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.step1</from>
+      <to>Byte_to_Binary.two</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Base64_to_Binary.check</name>
@@ -651,14 +719,6 @@ putRow(row);
       </jsScript>
     </jsScripts>
     <fields>
-      <field>
-        <name>kettle_field_BIT_not_1</name>
-        <rename>kettle_field_BIT_not_1</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
-      </field>
       <field>
         <name>kettle_field_BINARY</name>
         <rename>kettle_field_BINARY</rename>
@@ -726,7 +786,7 @@ putRow(row);
     <name>Base64_to_Binary.step1</name>
     <type>SelectValues</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -753,12 +813,12 @@ putRow(row);
         <storage_type/>
       </meta>
       <meta>
-        <name>kettle_field_BIT_not_1</name>
-        <rename>kettle_field_BIT_not_1</rename>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>2</conversion_mask>
+        <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -770,8 +830,76 @@ putRow(row);
         <storage_type/>
       </meta>
       <meta>
-        <name>kettle_field_BINARY</name>
-        <rename>kettle_field_BINARY</rename>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -820,24 +948,29 @@ putRow(row);
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
+//debug
+var info = "";
+
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
 	var inMeta = getInputRowMeta().getValueMeta(index);
 	var outMate = getOutputRowMeta().getValueMeta(index);
-//var info = fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc();
-//Alert(info);
+	//debug
+	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+	
 	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
 		outMate.setConversionMask(null);
 		var value = row[index];
-//Alert(value);
 		if(value != null &amp;&amp; value.length() != 0) {
-			var length = inMeta.getConversionMask();
 			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
-//Alert('row of ' + value + ' type of ' + typeof bytes + ' len '+ bytes.length);
-//Alert(bytes[0]);
-//var content = Packages.org.pentaho.di.core.Const.createByteArray(length);
-//Alert('content type of ' + typeof content + ' len '+ content.length);
+			//debug
+            var length = inMeta.getConversionMask();
+	        var content = "";
+            content = content + 'source:' + value + "\n";
+            content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+            content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+			//Alert(content);
 			value = bytes;
 		} else {
 			value = null;
@@ -846,18 +979,12 @@ for (index = 0; index &lt; fieldNames.length; index++) {
 	}
 }
 putRow(row);
+//debug
+//Alert(info);
 </jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
-      <field>
-        <name>kettle_field_BIT_not_1</name>
-        <rename>kettle_field_BIT_not_1</rename>
-        <type>Binary</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>Y</replace>
-      </field>
       <field>
         <name>kettle_field_BINARY</name>
         <rename>kettle_field_BINARY</rename>
@@ -925,7 +1052,7 @@ putRow(row);
     <name>Byte_to_Binary.step1</name>
     <type>SelectValues</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -937,6 +1064,125 @@ putRow(row);
       <meta>
         <name>message</name>
         <rename>message</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_BIT_not_1</name>
+        <rename>kettle_field_BIT_not_1</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>2</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -985,24 +1231,29 @@ putRow(row);
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
+//debug
 var info = "";
+
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
 	var inMeta = getInputRowMeta().getValueMeta(index);
 	var outMate = getOutputRowMeta().getValueMeta(index);
-	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc() + "\n";
-	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+    //debug
+	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+	
+    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
 		var value = row[index];
 		outMate.setConversionMask(null);
 		if(value != null &amp;&amp; value.length() != 0) {
-			var length = inMeta.getConversionMask();
-
 			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
-//Alert('row of ' + value + ' type of ' + typeof bytes + ' len '+ bytes.length);
-//Alert(bytes[0]);
-//			var content = Packages.org.pentaho.di.core.Const.createByteArray(length);
-//Alert('content type of ' + typeof content + ' len '+ content.length);
+            //debug
+            var length = inMeta.getConversionMask();
+	        var content = "";
+            content = content + 'source:' + value + "\n";
+            content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+            content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+			//Alert(content);
 			value = bytes;
 		} else {
 			value = null;
@@ -1011,10 +1262,69 @@ for (index = 0; index &lt; fieldNames.length; index++) {
 	}
 }
 putRow(row);
+//debug
+//Alert(info);
 </jsScript_script>
       </jsScript>
     </jsScripts>
-    <fields>    </fields>
+    <fields>
+      <field>
+        <name>kettle_field_BIT_not_1</name>
+        <rename>kettle_field_BIT_not_1</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1324,7 +1634,7 @@ putRow(row);
     <name>Hex_to_Binary.step1</name>
     <type>SelectValues</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1336,6 +1646,108 @@ putRow(row);
       <meta>
         <name>message</name>
         <rename>message</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1384,23 +1796,31 @@ putRow(row);
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
+//debug
 var info = "";
+
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
 	var inMeta = getInputRowMeta().getValueMeta(index);
 	var outMate = getOutputRowMeta().getValueMeta(index);
-	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc() + "\n";
-	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+    //debug
+	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+	
+    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
 		var value = row[index];
 		outMate.setConversionMask(null);
 		if(value != null &amp;&amp; value.length() != 0) {
-			var length = inMeta.getConversionMask();
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64( value.getBytes() );
-Alert(bytes.length)
-Alert(bytes[0])
-Alert(bytes[1])
-			row[index] = bytes;
+			var hex = new Packages.org.apache.commons.codec.binary.Hex();
+            var bytes = hex.decode(value.getBytes());
+			//debug
+            var length = inMeta.getConversionMask();
+	        var content = "";
+            content = content + 'source:' + value + "\n";
+            content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+            content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+			//Alert(content);
+			value = bytes;
 		} else {
 			value = null;
 		}
@@ -1408,10 +1828,60 @@ Alert(bytes[1])
 	}
 }
 putRow(row);
-</jsScript_script>
+//debug
+//Alert(info);</jsScript_script>
       </jsScript>
     </jsScripts>
-    <fields>    </fields>
+    <fields>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2731,13 +3201,17 @@ putRow(row);
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
+//debug
 var info = "";
+
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
 	var inMeta = getInputRowMeta().getValueMeta(index);
 	var outMate = getOutputRowMeta().getValueMeta(index);
-	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc() + "\n";
+	//debug
+	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+
 	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'BigNumber'){
 		var value = row[index];
 		outMate.setConversionMask(null);
@@ -2747,6 +3221,13 @@ for (index = 0; index &lt; fieldNames.length; index++) {
 			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64( value.getBytes() );
 			var bi = new Packages.java.math.BigInteger(bytes);
 			var bd = new java.math.BigDecimal(bi,scale);
+            //debug
+            var length = inMeta.getConversionMask();
+	        var content = "";
+            content = content + 'source:' + value + "\n";
+            content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+            content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+			//Alert(content);
 			value = bd;
 		} else {
 			value = null;
@@ -2755,6 +3236,8 @@ for (index = 0; index &lt; fieldNames.length; index++) {
 	}
 }
 putRow(row);
+//debug
+//Alert(info);
 </jsScript_script>
       </jsScript>
     </jsScripts>
@@ -3188,6 +3671,1070 @@ putRow(row);
     <GUI>
       <xloc>352</xloc>
       <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Hex_to_Binary.check</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var row = createRowCopy(getOutputRowMeta().size());
+var fieldNames = getOutputRowMeta().getFieldNames();
+for (index = 0; index &lt; fieldNames.length; index++) {
+	var inMeta = getInputRowMeta().getValueMeta(index);
+	var outMate = getOutputRowMeta().getValueMeta(index);
+
+	if(inMeta.getTypeDesc() == 'Binary' &amp;&amp; outMate.getTypeDesc() == 'String'){
+		var value = row[index];
+		if(value != null) {
+			var hex = new Packages.org.apache.commons.codec.binary.Hex();
+			var str = new Packages.java.lang.String(hex.encode(value));
+			value = str;
+		} else {
+			value = null;
+		}
+		row[index] = value;
+	}
+}
+putRow(row);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>992</xloc>
+      <yloc>2288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Hex_to_Binary.two</name>
+    <type>Append</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <head_name>Hex_to_Binary.step1</head_name>
+    <tail_name>Hex_to_Binary.check</tail_name>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1168</xloc>
+      <yloc>2288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Hex_to_Binary.same</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>source_table</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>target_table</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>key</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>message</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>topic</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>partition</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>offset</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field__id</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BOOLEAN</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BOOL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIT_1</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIT_not_1</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_SMALLINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_INT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_INTEGER</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIGINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_REAL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_FLOAT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DOUBLE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_CHAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_VARCHAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LONGTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_JSON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_ENUM</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_SET</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_YEAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TIMESTAMP</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TIME</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATETIME_3</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATETIME_6</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_NUMERIC</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DECIMAL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_GEOMETRY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LINESTRING</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_POLYGON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTIPOINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTILINESTRING</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTIPOLYGON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_GEOMETRYCOLLECTION</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>2288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Base64_to_Binary.two</name>
+    <type>Append</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <head_name>Base64_to_Binary.step1</head_name>
+    <tail_name>Base64_to_Binary.check</tail_name>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1168</xloc>
+      <yloc>2032</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Base64_to_Binary.same</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>source_table</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>target_table</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>key</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>message</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>topic</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>partition</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>offset</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field__id</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BOOLEAN</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BOOL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIT_1</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIT_not_1</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_SMALLINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_INT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_INTEGER</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIGINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_REAL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_FLOAT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DOUBLE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_CHAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_VARCHAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LONGTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_JSON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_ENUM</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_SET</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_YEAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TIMESTAMP</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TIME</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATETIME_3</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATETIME_6</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_NUMERIC</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DECIMAL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_GEOMETRY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LINESTRING</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_POLYGON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTIPOINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTILINESTRING</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTIPOLYGON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_GEOMETRYCOLLECTION</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>2032</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary.check</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var row = createRowCopy(getOutputRowMeta().size());
+var fieldNames = getOutputRowMeta().getFieldNames();
+for (index = 0; index &lt; fieldNames.length; index++) {
+	var inMeta = getInputRowMeta().getValueMeta(index);
+	var outMate = getOutputRowMeta().getValueMeta(index);
+//var info = fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc();
+//Alert(info);
+	if(inMeta.getTypeDesc() == 'Binary' &amp;&amp; outMate.getTypeDesc() == 'String'){
+		var value = row[index];
+		if(value != null) {
+			var str = Packages.org.apache.commons.codec.binary.Base64.encodeBase64String(value);
+			value = str;
+		} else {
+			value = null;
+		}
+		row[index] = value;
+	}
+}
+putRow(row);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>kettle_field_BIT_not_1</name>
+        <rename>kettle_field_BIT_not_1</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <rename>kettle_field_BINARY</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <rename>kettle_field_VARBINARY</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <rename>kettle_field_TINYBLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <rename>kettle_field_BLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <rename>kettle_field_MEDIUMBLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <rename>kettle_field_LONGBLOB</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>992</xloc>
+      <yloc>1776</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary.two</name>
+    <type>Append</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <head_name>Byte_to_Binary.step1</head_name>
+    <tail_name>Byte_to_Binary.check</tail_name>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1168</xloc>
+      <yloc>1776</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary.same</name>
+    <type>Unique</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <count_rows>N</count_rows>
+    <count_field/>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>source_table</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>target_table</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>key</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>message</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>topic</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>partition</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>offset</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field__id</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BOOLEAN</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BOOL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIT_1</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIT_not_1</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_SMALLINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_INT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_INTEGER</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BIGINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_REAL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_FLOAT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DOUBLE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_CHAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_VARCHAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BINARY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_VARBINARY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TINYTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_BLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MEDIUMTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LONGBLOB</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LONGTEXT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_JSON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_ENUM</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_SET</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_YEAR</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TIMESTAMP</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATE</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_TIME</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATETIME_3</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DATETIME_6</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_NUMERIC</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_DECIMAL</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_GEOMETRY</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_LINESTRING</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_POLYGON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTIPOINT</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTILINESTRING</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_MULTIPOLYGON</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+      <field>
+        <name>kettle_field_GEOMETRYCOLLECTION</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1344</xloc>
+      <yloc>1776</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

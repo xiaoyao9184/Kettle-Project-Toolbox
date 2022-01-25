@@ -519,7 +519,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/26 21:07:29.092</modified_date>
+    <modified_date>2022/01/25 14:40:35.290</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1082,6 +1082,46 @@
       <to>SampleRows: for column</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Constant: Byte_to_Binary</from>
+      <to>ReplaceString: template 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: Byte_to_Binary</from>
+      <to>SelectValues: Byte_to_Binary.step2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: Byte_to_Binary.step1</from>
+      <to>Append: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: template 2</from>
+      <to>SelectValues: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: Byte_to_Binary.step1</from>
+      <to>Append: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: Byte_to_Binary</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: Byte_to_Binary.step2</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: Byte_to_Binary.step1</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Append: GMT_to_Timestamp</name>
@@ -1133,7 +1173,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2560</yloc>
+      <yloc>2832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1160,7 +1200,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2704</yloc>
+      <yloc>2976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1470,7 +1510,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2944</yloc>
+      <yloc>3216</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1773,7 +1813,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2560</yloc>
+      <yloc>2832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1812,7 +1852,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2704</yloc>
+      <yloc>2976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2288,7 +2328,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>2480</yloc>
+      <yloc>2752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2358,7 +2398,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>2624</yloc>
+      <yloc>2896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2760,7 +2800,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2944</yloc>
+      <yloc>3216</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2835,7 +2875,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2848</yloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2884,6 +2924,13 @@
         <source_field>key_comparator</source_field>
       </mapping>
       <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
         <target_step_name>InsertUpdate: update</target_step_name>
         <target_attribute_key>KEY_STREAM</target_attribute_key>
         <target_detail>Y</target_detail>
@@ -2896,6 +2943,13 @@
         <target_detail>Y</target_detail>
         <source_step>SelectValues: milliseconds_to_Date</source_step>
         <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step1</target_step_name>
+        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: Byte_to_Binary.step1</source_step>
+        <source_field>field_conversion_mask</source_field>
       </mapping>
       <mapping>
         <target_step_name>InsertUpdate: update</target_step_name>
@@ -2917,6 +2971,13 @@
         <target_detail>Y</target_detail>
         <source_step>SelectValues: nanoseconds_to_Date</source_step>
         <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_PRECISION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_precision</source_field>
       </mapping>
       <mapping>
         <target_step_name>InsertUpdate: update</target_step_name>
@@ -3008,6 +3069,13 @@
         <target_detail>Y</target_detail>
         <source_step>Append: scale_to_BigNumber.step1</source_step>
         <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_name</source_field>
       </mapping>
       <mapping>
         <target_step_name>InsertUpdate: insert</target_step_name>
@@ -3171,6 +3239,13 @@
         <source_field>field_name</source_field>
       </mapping>
       <mapping>
+        <target_step_name>Byte_to_Binary.step1</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: Byte_to_Binary.step1</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
         <target_step_name>Delete</target_step_name>
         <target_attribute_key>TABLE_NAME_FIELD</target_attribute_key>
         <target_detail>Y</target_detail>
@@ -3232,6 +3307,20 @@
         <target_detail>N</target_detail>
         <source_step>SelectValues: target</source_step>
         <source_field>target_schema</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step1</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: Byte_to_Binary.step1</source_step>
+        <source_field>field_name</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
@@ -3372,7 +3461,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2944</yloc>
+      <yloc>3216</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3935,7 +4024,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2848</yloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4126,7 +4215,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>3040</yloc>
+      <yloc>3312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4166,7 +4255,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2560</yloc>
+      <yloc>2832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4206,7 +4295,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2704</yloc>
+      <yloc>2976</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4246,7 +4335,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2944</yloc>
+      <yloc>3216</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4750,7 +4839,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2848</yloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5420,6 +5509,10 @@
         <value>format_to_Timestamp</value>
         <target_step>Constant: format_to_Timestamp</target_step>
       </case>
+      <case>
+        <value>Byte_to_Binary</value>
+        <target_step>Constant: Byte_to_Binary</target_step>
+      </case>
     </cases>
     <attributes/>
     <cluster_schema/>
@@ -5504,7 +5597,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>3040</yloc>
+      <yloc>3312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5664,6 +5757,301 @@
     <GUI>
       <xloc>112</xloc>
       <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Append: Byte_to_Binary.step1</name>
+    <type>Append</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <head_name>DataGrid: Byte_to_Binary.step1</head_name>
+    <tail_name>SelectValues: Byte_to_Binary.step1</tail_name>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>2560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: Byte_to_Binary</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>REPLACE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Y</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>TEMPLATE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ALWAY_STRING</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>String</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: Byte_to_Binary.step1</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>field_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>field_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>field_conversion_mask</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>message</item>
+        <item>String</item>
+        <item/>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>2480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: template 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{precision}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>column_precision</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{scale}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>column_scale</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: Byte_to_Binary.step1</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kettle_field</name>
+        <rename>field_name</rename>
+      </field>
+      <field>
+        <name>ALWAY_STRING</name>
+        <rename>field_type</rename>
+      </field>
+      <field>
+        <name>TEMPLATE</name>
+        <rename>field_conversion_mask</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>2560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: Byte_to_Binary.step2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kettle_field</name>
+        <rename>field_name</rename>
+      </field>
+      <field>
+        <name>kettle_type</name>
+        <rename>field_type</rename>
+      </field>
+      <field>
+        <name>REPLACE</name>
+        <rename>field_replace</rename>
+      </field>
+      <field>
+        <name>column_precision</name>
+        <rename>field_precision</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>2688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
