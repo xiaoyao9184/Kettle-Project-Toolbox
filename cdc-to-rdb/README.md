@@ -33,12 +33,48 @@ this project will only use the data change topic.
 
 ## Compatibility
 
+Developed based on Debezium v1.7, canal v1.1.5
+
 | CDC producer | db event | support |
 |:-----:|:-----:|:-----:|
 | canal | mysql | yes |
 | debezium | mysql | yes |
 | debezium | mssql | yes |
 | debezium | ... | no |
+
+| Debezium Property | value | support |
+|:-----:|:-----:|:-----:|
+| time.precision.mode | adaptive_time_microseconds | yes |
+|  | connect | yes |
+| decimal.handling.mode | precise | yes |
+| | double | yes |
+|  | string | yes |
+| binary.handling.mode | bytes | yes |
+|  | base64 | no |
+|  | hex | no |
+
+| database | db type | debezium type | support |
+|:-----:|:-----:|:-----:|:-----:|
+| mssql | _all type on debezium doc_ | | yes |
+| mysql | BINARY | BYTES | yes |
+|  |  | STRING | no |
+|  | VARBINARY | BYTES | yes |
+|  |  | STRING | no |
+|  | TINYBLOB | BYTES | yes |
+|  |  | STRING | no |
+|  | BLOB | BYTES | yes |
+|  |  | STRING | no |
+|  | MEDIUMBLOB | BYTES | yes |
+|  |  | STRING | no |
+|  | LONGBLOB | BYTES | yes |
+|  |  | STRING | no |
+|  | GEOMETRY | STRUCT | no |
+|  | LINESTRING | STRUCT | no |
+|  | POLYGON | STRUCT | no |
+|  | MULTIPOINT | STRUCT | no |
+|  | MULTILINESTRING | STRUCT | no |
+|  | GEOMETRYCOLLECTION | STRUCT | no |
+|  | _other type on debezium doc_ | | yes |
 
 
 ## Test
