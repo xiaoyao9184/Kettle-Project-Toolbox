@@ -13,54 +13,99 @@ rollbar_env: ''
 # into a different one.
 
 type_override:
-  "geometry":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-  "linestring":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-  "polygon":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-  "multipoint":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-  "multilinestring":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-  "multipolygon":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-  "geometrycollection":
-    override_to: character varying(1000)
-    override_tables:
-      - "*"
-
+  # mysql not have boolean
   "tinyint(1)":
     override_to: boolean
     override_tables:
       - "*"
 
+  # kpt not support
+  # GIS type not support 
+  "geometry":
+    override_to: text
+    override_tables:
+      - "*"
+  "linestring":
+    override_to: text
+    override_tables:
+      - "*"
+  "polygon":
+    override_to: text
+    override_tables:
+      - "*"
+  "multipoint":
+    override_to: text
+    override_tables:
+      - "*"
+  "multilinestring":
+    override_to: text
+    override_tables:
+      - "*"
+  "multipolygon":
+    override_to: text
+    override_tables:
+      - "*"
+  "geometrycollection":
+    override_to: text
+    override_tables:
+      - "*"
+  # json type not support
+  "json":
+    override_to: text
+    override_tables:
+      - "*"
+  # enum type not support
+  # special case
+  "enum('E1')":
+    override_to: character varying(10)
+    override_tables:
+      - "*"
+      
+  # pg_chameleon mistake
+  # mysql tinyint,smallint must to pgsql smallint(2 bytes)
+  "tinyint(4)":
+    override_to: smallint
+    override_tables:
+      - "*"
+  "smallint(6)":
+    override_to: smallint
+    override_tables:
+      - "*"
+  # mysql mediumint,int must to pgsql integer(4 bytes)
+  "mediumint(9)":
+    override_to: integer
+    override_tables:
+      - "*"
+  "int(11)":
+    override_to: integer
+    override_tables:
+      - "*"
+  # mysql bigint must to pgsql bigint(8 bytes)
+  "bigint(20)":
+    override_to: bigint
+    override_tables:
+      - "*"
+  # mysql float must to pgsql real(4 bytes)
+  "float":
+    override_to: real
+    override_tables:
+      - "*"
+  # mysql double/real must to pgsql double(8 bytes)
+  "double":
+    override_to: double precision
+    override_tables:
+      - "*"
+  # fix pg_chameleon
   "bit(1)":
     override_to: boolean
     override_tables:
       - "*"
-
+  # special case fix pg_chameleon
   "bit(2)":
     override_to: bytea
     override_tables:
       - "*"
 
-  "enum('E1')":
-    override_to: text
-    override_tables:
-      - "*"
 
 
 # postgres  destination connection
