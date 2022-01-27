@@ -25,8 +25,8 @@ USER pentaho
 RUN /usr/bin/wget \
     --progress=dot:giga \
     ${PDI_URL}/pentaho/Pentaho%20${PDI_RELEASE}/client-tools/pdi-ce-${PDI_VERSION}.zip \
-    -O /tmp/pdi-ce-${PDI_VERSION}.zip
-RUN /usr/bin/unzip -q /tmp/pdi-ce-${PDI_VERSION}.zip -d $PENTAHO_HOME \
+    -O /tmp/pdi-ce-${PDI_VERSION}.zip \
+    && /usr/bin/unzip -q /tmp/pdi-ce-${PDI_VERSION}.zip -d $PENTAHO_HOME \
     && rm /tmp/pdi-ce-${PDI_VERSION}.zip
 
 # Init KPT project
