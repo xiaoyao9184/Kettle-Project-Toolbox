@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  mysql-decimal_double:
+    image: xiaoyao9184/kpt-cdc-to-rdb
+    environment:
+      PROFILE: test_kpt,debezium-mysql-pgsql
+    volumes:
+       - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml

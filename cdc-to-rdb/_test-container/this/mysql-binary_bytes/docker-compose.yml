@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  mysql-binary_bytes:
+    # build:  
+    #   context: ./../../../../
+    #   dockerfile: ./cdc-to-rdb/Dockerfile
+    image: xiaoyao9184/kpt-cdc-to-rdb
+    environment:
+      PROFILE: test_kpt,debezium-mysql-pgsql
+    volumes:
+       - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
+    networks:
+      - test-kpt
+
+
+networks:
+  test-kpt:
+    external: true
