@@ -64,8 +64,8 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Ingore.Mapping</name>
-        <default_value>pgsql_table_exists_to_ingore.mapping</default_value>
+        <name>Config.Log.Target.Table.Mapping</name>
+        <default_value>config_prefix_lookup</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -519,19 +519,18 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/28 10:36:40.406</modified_date>
+    <modified_date>2022/01/28 21:26:41.178</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
       <note>TODO 
-use 'rdb_table' mapping to add table prefix 
-and check it ingore</note>
-      <xloc>720</xloc>
-      <yloc>96</yloc>
-      <width>324</width>
-      <heigth>69</heigth>
+use 'target_column.mapping'</note>
+      <xloc>32</xloc>
+      <yloc>1552</yloc>
+      <width>217</width>
+      <heigth>49</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -617,7 +616,7 @@ and check it ingore</note>
     </hop>
     <hop>
       <from>JoinRows</from>
-      <to>FilterRows: rdb_table_ingore</to>
+      <to>FilterRows: target_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -637,27 +636,7 @@ and check it ingore</note>
     </hop>
     <hop>
       <from>Dummy: stream logs</from>
-      <to>SampleRows: for rdb_table_ingore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_table_ingore</from>
-      <to>WriteToLog: rdb_table_ingore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_table_ingore</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for rdb_table_ingore</from>
-      <to>SelectValues: remove repeat</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove repeat</from>
-      <to>SimpleMapping: rdb_table_ingore</to>
+      <to>SampleRows: for target_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -816,8 +795,8 @@ and check it ingore</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SampleRows: for column</from>
-      <to>WriteToLog: source &amp; target table</to>
+      <from>SampleRows: for target_column</from>
+      <to>WriteToLog: target_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -901,7 +880,7 @@ and check it ingore</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: column meta</from>
+      <from>SimpleMapping: ${Config.Log.Source.Column.Mapping}</from>
       <to>SimpleMapping: rdb_column</to>
       <enabled>Y</enabled>
     </hop>
@@ -956,7 +935,7 @@ and check it ingore</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SampleRows: for column</from>
+      <from>SampleRows: for target_column</from>
       <to>SelectValues: rename</to>
       <enabled>Y</enabled>
     </hop>
@@ -1061,7 +1040,7 @@ and check it ingore</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
+      <from>FilterRows: target_ingore</from>
       <to>Group by: INGORE</to>
       <enabled>Y</enabled>
     </hop>
@@ -1077,7 +1056,7 @@ and check it ingore</note>
     </hop>
     <hop>
       <from>Delay: debug for field injection</from>
-      <to>SimpleMapping: column meta</to>
+      <to>SimpleMapping: ${Config.Log.Source.Column.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1096,13 +1075,13 @@ and check it ingore</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
+      <from>FilterRows: target_ingore</from>
       <to>SimpleMapping: target_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SimpleMapping: target_switch_flag</from>
-      <to>SampleRows: for column</to>
+      <to>SampleRows: for target_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1143,6 +1122,26 @@ and check it ingore</note>
     <hop>
       <from>Append: Byte_to_Binary.step1</from>
       <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_table.mapping</from>
+      <to>SelectValues: remove repeat</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_table.mapping</from>
+      <to>WriteToLog: target_ingore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: for target_table</from>
+      <to>SimpleMapping: target_table.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove repeat</from>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -3649,7 +3648,7 @@ and check it ingore</note>
     </GUI>
   </step>
   <step>
-    <name>FilterRows: rdb_table_ingore</name>
+    <name>FilterRows: target_ingore</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -3667,12 +3666,12 @@ and check it ingore</note>
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>rdb_table_ingore</leftvalue>
+            <leftvalue>target_ingore</leftvalue>
             <function>=</function>
             <rightvalue/>
             <value>
               <name>constant</name>
-              <type>Boolean</type>
+              <type>String</type>
               <text>Y</text>
               <length>-1</length>
               <precision>-1</precision>
@@ -3792,6 +3791,18 @@ and check it ingore</note>
         <valuefield/>
       </field>
       <field>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
         <aggregate>partition</aggregate>
         <subject>partition</subject>
         <type>FIRST_INCL_NULL</type>
@@ -3888,6 +3899,14 @@ and check it ingore</note>
       <field>
         <name>target_table</name>
         <element>target_table</element>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
       </field>
       <field>
         <name>offset_range</name>
@@ -4094,14 +4113,14 @@ and check it ingore</note>
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_schema</name>
+        <name>batch_id</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_table</name>
-        <type>String</type>
+        <name>batch_time</name>
+        <type>Date</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -4182,7 +4201,7 @@ and check it ingore</note>
     </GUI>
   </step>
   <step>
-    <name>SampleRows: for column</name>
+    <name>SampleRows: for target_column</name>
     <type>SampleRows</type>
     <description/>
     <distribute>N</distribute>
@@ -4209,7 +4228,7 @@ and check it ingore</note>
     </GUI>
   </step>
   <step>
-    <name>SampleRows: for rdb_table_ingore</name>
+    <name>SampleRows: for target_table</name>
     <type>SampleRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -4803,6 +4822,12 @@ and check it ingore</note>
         <name>source_table</name>
       </remove>
       <remove>
+        <name>batch_id</name>
+      </remove>
+      <remove>
+        <name>batch_time</name>
+      </remove>
+      <remove>
         <name>key</name>
       </remove>
       <remove>
@@ -4831,7 +4856,7 @@ and check it ingore</note>
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>320</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5138,11 +5163,11 @@ and check it ingore</note>
     </partitioning>
     <fields>
       <field>
-        <name>rdb_schema</name>
+        <name>target_schema</name>
         <rename>target_schema</rename>
       </field>
       <field>
-        <name>rdb_table</name>
+        <name>target_table</name>
         <rename>target_table</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5306,7 +5331,7 @@ and check it ingore</note>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: column meta</name>
+    <name>SimpleMapping: ${Config.Log.Source.Column.Mapping}</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -5339,7 +5364,7 @@ and check it ingore</note>
           </connector>
           <connector>
             <parent>target_switch_flag</parent>
-            <child>when</child>
+            <child>flag</child>
           </connector>
           <connector>
             <parent>target_schema</parent>
@@ -5385,10 +5410,6 @@ and check it ingore</note>
         </mapping>
       </output>
       <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -5553,83 +5574,6 @@ and check it ingore</note>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: rdb_table_ingore</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Target.Ingore.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>schema</parent>
-            <child>rdb_schema</child>
-          </connector>
-          <connector>
-            <parent>table</parent>
-            <child>rdb_table</child>
-          </connector>
-          <connector>
-            <parent>ingore</parent>
-            <child>rdb_table_ingore</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SimpleMapping: target_switch_flag</name>
     <type>SimpleMapping</type>
     <description/>
@@ -5711,6 +5655,99 @@ and check it ingore</note>
     <GUI>
       <xloc>352</xloc>
       <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: target_table.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Target.Table.Mapping}</trans_name>
+    <filename/>
+    <directory_path>/to_rdb/target_table.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>target_ingore</parent>
+            <child>target_ingore</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.Schema.Prefix</variable>
+          <input>${Config.Log.Target.Schema.Prefix}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.Table.Prefix</variable>
+          <input>${Config.Log.Target.Table.Prefix}</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5976,48 +6013,7 @@ and check it ingore</note>
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: rdb_table_ingore</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>Y</limitRows>
-    <limitRowsNumber>1</limitRowsNumber>
-    <logmessage/>
-    <fields>
-      <field>
-        <name>rdb_schema</name>
-      </field>
-      <field>
-        <name>rdb_table</name>
-      </field>
-      <field>
-        <name>rdb_table_ingore</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1184</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: source &amp; target table</name>
+    <name>WriteToLog: target_ingore</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -6046,7 +6042,57 @@ and check it ingore</note>
         <name>source_table</name>
       </field>
       <field>
-        <name>target_switch_flag</name>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_ingore</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target_switch_flag</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>Y</limitRows>
+    <limitRowsNumber>1</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
       </field>
       <field>
         <name>target_schema</name>
@@ -6055,13 +6101,10 @@ and check it ingore</note>
         <name>target_table</name>
       </field>
       <field>
-        <name>rdb_schema</name>
+        <name>target_ingore</name>
       </field>
       <field>
-        <name>rdb_table</name>
-      </field>
-      <field>
-        <name>rdb_table_ingore</name>
+        <name>target_switch_flag</name>
       </field>
     </fields>
     <attributes/>

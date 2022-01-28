@@ -439,34 +439,11 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/28 10:35:49.611</modified_date>
+    <modified_date>2022/01/28 19:46:08.160</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>TODO 
-use 'rdb_table' to add table prefix 
-in 'table_crud_to_specify_table'</note>
-      <xloc>80</xloc>
-      <yloc>704</yloc>
-      <width>255</width>
-      <heigth>69</heigth>
-      <fontname>Microsoft YaHei UI</fontname>
-      <fontsize>9</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <connection>
     <name>db_kpt_cdc_event_pgsql_writer</name>
@@ -541,16 +518,6 @@ in 'table_crud_to_specify_table'</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: is table-log</from>
-      <to>SimpleMapping: table_name_prefix</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: table_name_prefix</from>
-      <to>SimpleMapping: table_name_group</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Dummy: exec statistics</from>
       <to>Sequence: execution_id</to>
       <enabled>Y</enabled>
@@ -591,7 +558,7 @@ in 'table_crud_to_specify_table'</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: source table</from>
+      <from>SimpleMapping: ${Config.Log.Source.Table.Mapping}</from>
       <to>Calculator: length of schema and table</to>
       <enabled>Y</enabled>
     </hop>
@@ -657,12 +624,12 @@ in 'table_crud_to_specify_table'</note>
     </hop>
     <hop>
       <from>Get records from stream</from>
-      <to>SystemInfo: batch_id</to>
+      <to>SystemInfo: batch_id, batch_time</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id</from>
-      <to>SimpleMapping: source table</to>
+      <from>SystemInfo: batch_id, batch_time</from>
+      <to>SimpleMapping: ${Config.Log.Source.Table.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -671,8 +638,13 @@ in 'table_crud_to_specify_table'</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: table_name_group</from>
+      <from>SimpleMapping: table_name_group.mapping</from>
       <to>SelectValues: executor param</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is table-log</from>
+      <to>SimpleMapping: table_name_group.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -806,7 +778,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2048</yloc>
+      <yloc>1904</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -845,7 +817,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2336</yloc>
+      <yloc>2192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -870,7 +842,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1408</yloc>
+      <yloc>1264</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -895,7 +867,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>1408</yloc>
+      <yloc>1264</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -920,7 +892,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1408</yloc>
+      <yloc>1264</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -945,7 +917,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2336</yloc>
+      <yloc>2192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -989,7 +961,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2048</yloc>
+      <yloc>1904</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1004,7 +976,7 @@ in 'table_crud_to_specify_table'</note>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>SimpleMapping: table_name_prefix</send_true_to>
+    <send_true_to>SimpleMapping: table_name_group.mapping</send_true_to>
     <send_false_to>Group by: batch_id</send_false_to>
     <compare>
       <condition>
@@ -1235,14 +1207,20 @@ in 'table_crud_to_specify_table'</note>
         <valuefield/>
       </field>
       <field>
-        <aggregate>target_schema</aggregate>
-        <subject>target_schema</subject>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>target_table</aggregate>
-        <subject>target_table</subject>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>topic</aggregate>
+        <subject>topic</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
@@ -1270,18 +1248,6 @@ in 'table_crud_to_specify_table'</note>
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
-      <field>
-        <aggregate>batch_id</aggregate>
-        <subject>batch_id</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>batch_time</aggregate>
-        <subject>batch_time</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1293,7 +1259,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1568</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1415,12 +1381,12 @@ in 'table_crud_to_specify_table'</note>
         <element>source_table</element>
       </field>
       <field>
-        <name>target_schema</name>
-        <element>target_schema</element>
+        <name>batch_id</name>
+        <element>batch_id</element>
       </field>
       <field>
-        <name>target_table</name>
-        <element>target_table</element>
+        <name>batch_time</name>
+        <element>batch_time</element>
       </field>
       <field>
         <name>offset_range</name>
@@ -1429,14 +1395,6 @@ in 'table_crud_to_specify_table'</note>
       <field>
         <name>offset_count</name>
         <element>offset_count</element>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <element>batch_time</element>
       </field>
       <field>
         <name>execution_time</name>
@@ -1557,7 +1515,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2048</yloc>
+      <yloc>1904</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1613,12 +1571,12 @@ in 'table_crud_to_specify_table'</note>
         <element>source_table</element>
       </field>
       <field>
-        <name>target_schema</name>
-        <element>target_schema</element>
+        <name>batch_id</name>
+        <element>batch_id</element>
       </field>
       <field>
-        <name>target_table</name>
-        <element>target_table</element>
+        <name>batch_time</name>
+        <element>batch_time</element>
       </field>
       <field>
         <name>offset_range</name>
@@ -1627,14 +1585,6 @@ in 'table_crud_to_specify_table'</note>
       <field>
         <name>offset_count</name>
         <element>offset_count</element>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <element>batch_time</element>
       </field>
       <field>
         <name>execution_time</name>
@@ -1751,7 +1701,7 @@ in 'table_crud_to_specify_table'</note>
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2336</yloc>
+      <yloc>2192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1802,7 +1752,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1568</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1819,11 +1769,11 @@ result_id = i;</jsScript_script>
     </partitioning>
     <fields>
       <field>
-        <name>target_schema</name>
+        <name>source_schema</name>
         <rename>p_schema</rename>
       </field>
       <field>
-        <name>target_table</name>
+        <name>source_table</name>
         <rename>p_table</rename>
       </field>
       <field>
@@ -1837,12 +1787,6 @@ result_id = i;</jsScript_script>
       </field>
       <field>
         <name>source_table</name>
-      </field>
-      <field>
-        <name>target_schema</name>
-      </field>
-      <field>
-        <name>target_table</name>
       </field>
       <field>
         <name>batch_id</name>
@@ -1880,7 +1824,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1072</yloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1911,7 +1855,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2208</yloc>
+      <yloc>2064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1946,7 +1890,84 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>1568</yloc>
+      <yloc>1424</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: ${Config.Log.Source.Table.Mapping}</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Source.Table.Mapping}</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>key</parent>
+            <child>key</child>
+          </connector>
+          <connector>
+            <parent>message</parent>
+            <child>message</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>source_key</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2076,7 +2097,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2048</yloc>
+      <yloc>1904</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2141,89 +2162,12 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2336</yloc>
+      <yloc>2192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: source table</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Source.Table.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>key</parent>
-            <child>key</child>
-          </connector>
-          <connector>
-            <parent>message</parent>
-            <child>message</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>source_key</parent>
-            <child>source_key</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: table_name_group</name>
+    <name>SimpleMapping: table_name_group.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2291,85 +2235,8 @@ result_id = i;</jsScript_script>
       </output>
       <parameters>
         <variablemapping>
-          <variable>Counter</variable>
+          <variable>GroupLastCounter</variable>
           <input>-1</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>912</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: table_name_prefix</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>table_name_prefix.mapping</trans_name>
-    <filename/>
-    <directory_path>/to_rdb</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_schema</parent>
-            <child>SchemaName</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>TableName</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>SchemaTarget</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>TableTarget</parent>
-            <child>target_table</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Schema.Prefix</variable>
-          <input>${Config.Log.Target.Schema.Prefix}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.Table.Prefix</variable>
-          <input>${Config.Log.Target.Table.Prefix}</input>
         </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
@@ -2510,7 +2377,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1728</yloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2624,12 +2491,12 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1888</yloc>
+      <yloc>1744</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch_id</name>
+    <name>SystemInfo: batch_id, batch_time</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -2796,7 +2663,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1216</yloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

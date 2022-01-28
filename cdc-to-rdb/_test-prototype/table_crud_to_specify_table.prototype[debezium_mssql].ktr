@@ -20,7 +20,7 @@
       </parameter>
       <parameter>
         <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
-        <default_value>5432</default_value>
+        <default_value>55432</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
@@ -39,6 +39,11 @@
         <description>for protptype</description>
       </parameter>
       <parameter>
+        <name>Config.Delay.Injection.Field.Time</name>
+        <default_value>0</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.Log.Kafka.Consumer.Group</name>
         <default_value>kpt.mssql.20210831</default_value>
         <description>for protptype</description>
@@ -51,16 +56,6 @@
       <parameter>
         <name>Config.Log.Kafka.Server.Bootstrap</name>
         <default_value>kafka:9092</default_value>
-        <description>for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
-        <default_value>2592000</default_value>
-        <description>for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
-        <default_value>2000-01-01T00:00:00.000Z</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -94,13 +89,33 @@
         <description>for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Ingore.Mapping</name>
-        <default_value>pgsql_table_exists_to_ingore.mapping</default_value>
+        <name>Config.Log.Target.Schema.Prefix</name>
+        <default_value>mysql_manual_generation__</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Table.Mapping</name>
+        <default_value>config_prefix_lookup</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Table.Prefix</name>
+        <default_value/>
         <description>for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
+        <default_value>2592000</default_value>
+        <description>for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -534,7 +549,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/26 21:17:49.205</modified_date>
+    <modified_date>2022/01/28 21:25:46.123</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -763,7 +778,7 @@
     </hop>
     <hop>
       <from>Dummy: stream logs</from>
-      <to>SampleRows: for rdb_table_ingore</to>
+      <to>SampleRows: for target_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -777,7 +792,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
+      <from>FilterRows: target_ingore</from>
       <to>Group by: INGORE</to>
       <enabled>Y</enabled>
     </hop>
@@ -798,7 +813,7 @@
     </hop>
     <hop>
       <from>JoinRows</from>
-      <to>FilterRows: rdb_table_ingore</to>
+      <to>FilterRows: target_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -810,21 +825,6 @@
       <from>RowsFromResult: kafka with table info</from>
       <to>Dummy: stream logs</to>
       <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for column</from>
-      <to>SelectValues: rename</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for column</from>
-      <to>WriteToLog: source &amp; target table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for rdb_table_ingore</from>
-      <to>SelectValues: remove repeat</to>
-      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SampleRows: target</from>
@@ -882,11 +882,6 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove repeat</from>
-      <to>SimpleMapping: rdb_table_ingore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SelectValues: scale_to_BigNumber.step1</from>
       <to>Append: scale_to_BigNumber.step1</to>
       <enabled>Y</enabled>
@@ -924,16 +919,6 @@
     <hop>
       <from>SelectValues: to_Number</from>
       <to>Append: to_Number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_table_ingore</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: rdb_table_ingore</from>
-      <to>WriteToLog: rdb_table_ingore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1107,13 +1092,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: column meta</from>
+      <from>SimpleMapping: ${Config.Log.Source.Column.Mapping}</from>
       <to>SimpleMapping: rdb_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Delay: debug for field injection</from>
-      <to>SimpleMapping: column meta</to>
+      <to>SimpleMapping: ${Config.Log.Source.Column.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1127,18 +1112,48 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: rdb_table_ingore</from>
+      <from>FilterRows: target_ingore</from>
       <to>SimpleMapping: target_switch_flag</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: target_switch_flag</from>
-      <to>SampleRows: for column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: process logs</from>
       <to>BlockUntilStepsFinish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_table.mapping</from>
+      <to>SelectValues: remove repeat</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_table.mapping</from>
+      <to>WriteToLog: target_ingore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: for target_table</from>
+      <to>SimpleMapping: target_table.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove repeat</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: for target_column</from>
+      <to>WriteToLog: target_switch_flag</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_switch_flag</from>
+      <to>SampleRows: for target_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: for target_column</from>
+      <to>SelectValues: rename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -2552,7 +2567,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>target_schema</name>
+        <name>batch_id</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -2564,9 +2579,9 @@
         <field_null_if/>
       </field>
       <field>
-        <name>target_table</name>
-        <type>String</type>
-        <format/>
+        <name>batch_time</name>
+        <type>Date</type>
+        <format>yyyy-MM-dd</format>
         <currency/>
         <decimal/>
         <group/>
@@ -2651,11 +2666,11 @@
     <data>
       <line>
         <item>0</item>
-        <item>mssql_manual_generation__test_kpt_cdc.change_pk__debezium_types</item>
+        <item>mssql_manual_generation__test_kpt_cdc.debezium_types</item>
         <item>test_kpt_cdc</item>
         <item>debezium_types</item>
-        <item>mssql_manual_generation__test_kpt_cdc</item>
-        <item>change_pk__debezium_types</item>
+        <item>0</item>
+        <item>2020-01-28</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"1","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
         <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"1","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
         <item>test_debezium_mssql-test_kpt_cdc.data-changes</item>
@@ -4116,7 +4131,7 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: rdb_table_ingore</name>
+    <name>FilterRows: target_ingore</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -4134,12 +4149,12 @@
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>rdb_table_ingore</leftvalue>
+            <leftvalue>target_ingore</leftvalue>
             <function>=</function>
             <rightvalue/>
             <value>
               <name>constant</name>
-              <type>Boolean</type>
+              <type>String</type>
               <text>Y</text>
               <length>-1</length>
               <precision>-1</precision>
@@ -4259,6 +4274,18 @@
         <valuefield/>
       </field>
       <field>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
         <aggregate>partition</aggregate>
         <subject>partition</subject>
         <type>FIRST_INCL_NULL</type>
@@ -4355,6 +4382,14 @@
       <field>
         <name>target_table</name>
         <element>target_table</element>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
       </field>
       <field>
         <name>offset_range</name>
@@ -4510,14 +4545,14 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_schema</name>
+        <name>batch_id</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_table</name>
-        <type>String</type>
+        <name>batch_time</name>
+        <type>Date</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -4598,7 +4633,7 @@
     </GUI>
   </step>
   <step>
-    <name>SampleRows: for column</name>
+    <name>SampleRows: for target_column</name>
     <type>SampleRows</type>
     <description/>
     <distribute>N</distribute>
@@ -4625,7 +4660,7 @@
     </GUI>
   </step>
   <step>
-    <name>SampleRows: for rdb_table_ingore</name>
+    <name>SampleRows: for target_table</name>
     <type>SampleRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -5135,6 +5170,12 @@
         <name>source_table</name>
       </remove>
       <remove>
+        <name>batch_id</name>
+      </remove>
+      <remove>
+        <name>batch_time</name>
+      </remove>
+      <remove>
         <name>key</name>
       </remove>
       <remove>
@@ -5163,7 +5204,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>320</yloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5470,11 +5511,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>rdb_schema</name>
+        <name>target_schema</name>
         <rename>target_schema</rename>
       </field>
       <field>
-        <name>rdb_table</name>
+        <name>target_table</name>
         <rename>target_table</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5638,7 +5679,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: column meta</name>
+    <name>SimpleMapping: ${Config.Log.Source.Column.Mapping}</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -5670,8 +5711,8 @@
             <child>message</child>
           </connector>
           <connector>
-            <parent>rdb_table_ingore</parent>
-            <child>when</child>
+            <parent>target_switch_flag</parent>
+            <child>flag</child>
           </connector>
           <connector>
             <parent>target_schema</parent>
@@ -5717,10 +5758,6 @@
         </mapping>
       </output>
       <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -5885,83 +5922,6 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: rdb_table_ingore</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Target.Ingore.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>schema</parent>
-            <child>rdb_schema</child>
-          </connector>
-          <connector>
-            <parent>table</parent>
-            <child>rdb_table</child>
-          </connector>
-          <connector>
-            <parent>ingore</parent>
-            <child>rdb_table_ingore</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SimpleMapping: target_switch_flag</name>
     <type>SimpleMapping</type>
     <description/>
@@ -6043,6 +6003,99 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: target_table.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Target.Table.Mapping}</trans_name>
+    <filename/>
+    <directory_path>/to_rdb/target_table.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>target_ingore</parent>
+            <child>target_ingore</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>Param.Case.Name</variable>
+          <input>${Config.Log.Target.Case.Name}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.Schema.Prefix</variable>
+          <input>${Config.Log.Target.Schema.Prefix}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.Table.Prefix</variable>
+          <input>${Config.Log.Target.Table.Prefix}</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6304,48 +6357,7 @@
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: rdb_table_ingore</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>Y</limitRows>
-    <limitRowsNumber>1</limitRowsNumber>
-    <logmessage/>
-    <fields>
-      <field>
-        <name>rdb_schema</name>
-      </field>
-      <field>
-        <name>rdb_table</name>
-      </field>
-      <field>
-        <name>rdb_table_ingore</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1184</xloc>
-      <yloc>448</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: source &amp; target table</name>
+    <name>WriteToLog: target_ingore</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -6374,7 +6386,57 @@
         <name>source_table</name>
       </field>
       <field>
-        <name>target_switch_flag</name>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_ingore</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target_switch_flag</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>Y</limitRows>
+    <limitRowsNumber>1</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
       </field>
       <field>
         <name>target_schema</name>
@@ -6383,13 +6445,10 @@
         <name>target_table</name>
       </field>
       <field>
-        <name>rdb_schema</name>
+        <name>target_ingore</name>
       </field>
       <field>
-        <name>rdb_table</name>
-      </field>
-      <field>
-        <name>rdb_table_ingore</name>
+        <name>target_switch_flag</name>
       </field>
     </fields>
     <attributes/>
