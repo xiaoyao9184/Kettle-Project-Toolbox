@@ -1,16 +1,25 @@
 version: "3.7"
 services:
-  mysql-binary_bytes:
+  mysql-binary_bytes-manual:
     # build:  
     #   context: ./../../../../
     #   dockerfile: ./cdc-to-rdb/Dockerfile
     image: xiaoyao9184/kpt-cdc-to-rdb
     environment:
-      PROFILE: test_kpt,debezium-mysql-pgsql
+      PROFILE: test_kpt,debezium-mysql-pgsql.manual
     volumes:
        - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
     networks:
       - test-kpt
+  # TODO waiting rdb_table and rdb_cloumn mapping support
+  # mysql-binary_bytes-chameleon:
+  #   image: xiaoyao9184/kpt-cdc-to-rdb
+  #   environment:
+  #     PROFILE: test_kpt,debezium-mysql-pgsql.chameleon
+  #   volumes:
+  #      - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
+  #   networks:
+  #     - test-kpt
 
 
 networks:

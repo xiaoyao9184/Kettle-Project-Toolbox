@@ -43,7 +43,7 @@
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
-            <cfg namespace="Config.Log.Target.Schema" key="Prefix">test_mysql__</cfg>
+            <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
             
             <!-- Copy it and quickly set system variables -->
@@ -73,7 +73,7 @@ Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping
 Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
 Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
-Config.Log.Target.Schema.Prefix	test_mysql__	
+Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
 Config.Log.Target.Table.Prefix	 
             -->
         </profile>
@@ -91,7 +91,7 @@ Config.Log.Target.Table.Prefix
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
-            <cfg namespace="Config.Log.Target.Schema" key="Prefix">test_mssql__</cfg>
+            <cfg namespace="Config.Log.Target.Schema" key="Prefix">mssql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
             
             <!-- Copy it and quickly set system variables -->
@@ -121,7 +121,7 @@ Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping
 Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
 Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
-Config.Log.Target.Schema.Prefix	test_mssql__	
+Config.Log.Target.Schema.Prefix	mssql_manual_generation__	
 Config.Log.Target.Table.Prefix	 
             -->
         </profile>
@@ -138,7 +138,7 @@ Config.Log.Target.Table.Prefix
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
-            <cfg namespace="Config.Log.Target.Schema" key="Prefix">test_mysql__</cfg>
+            <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
 
             <!-- Copy it and quickly set system variables -->
@@ -167,7 +167,7 @@ Config.Log.Source.Switch.Mapping	canal_type_to_kettle_switch_flag.mapping
 Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
 Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
-Config.Log.Target.Schema.Prefix	test_mysql__	
+Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
 Config.Log.Target.Table.Prefix	 
             -->
         </profile>

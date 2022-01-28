@@ -1,8 +1,8 @@
 --
--- Create table `debezium_types_for_chameleon`
+-- Create table `for_chameleon__debezium_types`
 --
-CREATE TABLE test_kpt_cdc.debezium_types_for_chameleon (
-  `_id` varchar(255) NOT NULL DEFAULT '',
+CREATE TABLE test_kpt_cdc.for_chameleon__debezium_types (
+  `type__id` varchar(255) NOT NULL DEFAULT '',
   `type_BOOLEAN` boolean DEFAULT NULL,
   `type_BOOL` bool DEFAULT NULL,
   `type_BIT_1` bit(1) DEFAULT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE test_kpt_cdc.debezium_types_for_chameleon (
   `type_MULTILINESTRING` multilinestring DEFAULT NULL,
   `type_MULTIPOLYGON` multipolygon DEFAULT NULL,
   `type_GEOMETRYCOLLECTION` geometrycollection DEFAULT NULL,
-  PRIMARY KEY (_id)
+  PRIMARY KEY (type__id)
 )
 ENGINE = INNODB;
 

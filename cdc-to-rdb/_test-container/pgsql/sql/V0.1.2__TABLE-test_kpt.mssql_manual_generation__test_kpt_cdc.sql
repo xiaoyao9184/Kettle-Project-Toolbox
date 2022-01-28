@@ -20,13 +20,13 @@ SET row_security = off;
 
 --
 -- TOC entry 9 (class 2615 OID 599055)
--- Name: test_mssql__test_kpt_cdc; Type: SCHEMA; Schema: -; Owner: postgres
+-- Name: mssql_manual_generation__test_kpt_cdc; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-CREATE SCHEMA test_mssql__test_kpt_cdc;
+CREATE SCHEMA mssql_manual_generation__test_kpt_cdc;
 
 
-ALTER SCHEMA test_mssql__test_kpt_cdc OWNER TO kpt;
+ALTER SCHEMA mssql_manual_generation__test_kpt_cdc OWNER TO kpt;
 
 SET default_tablespace = '';
 
@@ -34,10 +34,10 @@ SET default_table_access_method = heap;
 
 --
 -- TOC entry 277 (class 1259 OID 599106)
--- Name: debezium_types; Type: TABLE; Schema: test_mssql__test_kpt_cdc; Owner: postgres
+-- Name: debezium_types; Type: TABLE; Schema: mssql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-CREATE TABLE test_mssql__test_kpt_cdc.debezium_types (
+CREATE TABLE mssql_manual_generation__test_kpt_cdc.debezium_types (
     _id character varying(10) NOT NULL,
     "BIT" bit(1),
     "TINYINT" integer,
@@ -70,14 +70,14 @@ CREATE TABLE test_mssql__test_kpt_cdc.debezium_types (
 );
 
 
-ALTER TABLE test_mssql__test_kpt_cdc.debezium_types OWNER TO kpt;
+ALTER TABLE mssql_manual_generation__test_kpt_cdc.debezium_types OWNER TO kpt;
 
 --
 -- TOC entry 278 (class 1259 OID 599956)
--- Name: change_pk__debezium_types; Type: TABLE; Schema: test_mssql__test_kpt_cdc; Owner: postgres
+-- Name: change_pk__debezium_types; Type: TABLE; Schema: mssql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-CREATE TABLE test_mssql__test_kpt_cdc.change_pk__debezium_types (
+CREATE TABLE mssql_manual_generation__test_kpt_cdc.change_pk__debezium_types (
     _id character varying(10) NOT NULL,
     "BIT" bit(1),
     "TINYINT" integer,
@@ -110,42 +110,42 @@ CREATE TABLE test_mssql__test_kpt_cdc.change_pk__debezium_types (
 );
 
 
-ALTER TABLE test_mssql__test_kpt_cdc.change_pk__debezium_types OWNER TO kpt;
+ALTER TABLE mssql_manual_generation__test_kpt_cdc.change_pk__debezium_types OWNER TO kpt;
 
 --
 -- TOC entry 3114 (class 2606 OID 599963)
--- Name: change_pk__debezium_types change_pk__debezium_types_pkey; Type: CONSTRAINT; Schema: test_mssql__test_kpt_cdc; Owner: postgres
+-- Name: change_pk__debezium_types change_pk__debezium_types_pkey; Type: CONSTRAINT; Schema: mssql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-ALTER TABLE ONLY test_mssql__test_kpt_cdc.change_pk__debezium_types
+ALTER TABLE ONLY mssql_manual_generation__test_kpt_cdc.change_pk__debezium_types
     ADD CONSTRAINT change_pk__debezium_types_pkey PRIMARY KEY ("VARCHAR", "DATETIME");
 
 
 --
 -- TOC entry 3112 (class 2606 OID 599948)
--- Name: debezium_types debezium_types_pkey; Type: CONSTRAINT; Schema: test_mssql__test_kpt_cdc; Owner: postgres
+-- Name: debezium_types debezium_types_pkey; Type: CONSTRAINT; Schema: mssql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-ALTER TABLE ONLY test_mssql__test_kpt_cdc.debezium_types
+ALTER TABLE ONLY mssql_manual_generation__test_kpt_cdc.debezium_types
     ADD CONSTRAINT debezium_types_pkey PRIMARY KEY (_id);
 
 
 --
 -- TOC entry 3250 (class 0 OID 0)
 -- Dependencies: 9
--- Name: SCHEMA test_mssql__test_kpt_cdc; Type: ACL; Schema: -; Owner: postgres
+-- Name: SCHEMA mssql_manual_generation__test_kpt_cdc; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON SCHEMA test_mssql__test_kpt_cdc TO kpt;
+GRANT ALL ON SCHEMA mssql_manual_generation__test_kpt_cdc TO kpt;
 
 
 --
 -- TOC entry 3251 (class 0 OID 0)
 -- Dependencies: 277
--- Name: TABLE debezium_types; Type: ACL; Schema: test_mssql__test_kpt_cdc; Owner: postgres
+-- Name: TABLE debezium_types; Type: ACL; Schema: mssql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-GRANT ALL ON TABLE test_mssql__test_kpt_cdc.debezium_types TO kpt;
+GRANT ALL ON TABLE mssql_manual_generation__test_kpt_cdc.debezium_types TO kpt;
 
 
 -- Completed on 2021-09-23 07:51:54 UTC

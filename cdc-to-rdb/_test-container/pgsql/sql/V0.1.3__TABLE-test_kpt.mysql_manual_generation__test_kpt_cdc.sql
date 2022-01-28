@@ -20,13 +20,13 @@ SET row_security = off;
 
 --
 -- TOC entry 9 (class 2615 OID 599055)
--- Name: test_mysql__test_kpt_cdc; Type: SCHEMA; Schema: -; Owner: postgres
+-- Name: mysql_manual_generation__test_kpt_cdc; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-CREATE SCHEMA test_mysql__test_kpt_cdc;
+CREATE SCHEMA mysql_manual_generation__test_kpt_cdc;
 
 
-ALTER SCHEMA test_mysql__test_kpt_cdc OWNER TO kpt;
+ALTER SCHEMA mysql_manual_generation__test_kpt_cdc OWNER TO kpt;
 
 SET default_tablespace = '';
 
@@ -34,10 +34,10 @@ SET default_table_access_method = heap;
 
 --
 -- TOC entry 277 (class 1259 OID 599106)
--- Name: debezium_types; Type: TABLE; Schema: test_mysql__test_kpt_cdc; Owner: postgres
+-- Name: debezium_types; Type: TABLE; Schema: mysql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-CREATE TABLE test_mysql__test_kpt_cdc.debezium_types (
+CREATE TABLE mysql_manual_generation__test_kpt_cdc.debezium_types (
     _id character varying(255) NOT NULL,
     "BOOLEAN" boolean,
     "BOOL" boolean,
@@ -85,14 +85,14 @@ CREATE TABLE test_mysql__test_kpt_cdc.debezium_types (
 );
 
 
-ALTER TABLE test_mysql__test_kpt_cdc.debezium_types OWNER TO kpt;
+ALTER TABLE mysql_manual_generation__test_kpt_cdc.debezium_types OWNER TO kpt;
 
 --
 -- TOC entry 278 (class 1259 OID 599956)
--- Name: change_pk__debezium_types; Type: TABLE; Schema: test_mysql__test_kpt_cdc; Owner: postgres
+-- Name: change_pk__debezium_types; Type: TABLE; Schema: mysql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-CREATE TABLE test_mysql__test_kpt_cdc.change_pk__debezium_types (
+CREATE TABLE mysql_manual_generation__test_kpt_cdc.change_pk__debezium_types (
     _id character varying(255) NOT NULL,
     "BOOLEAN" boolean,
     "BOOL" boolean,
@@ -140,42 +140,42 @@ CREATE TABLE test_mysql__test_kpt_cdc.change_pk__debezium_types (
 );
 
 
-ALTER TABLE test_mysql__test_kpt_cdc.change_pk__debezium_types OWNER TO kpt;
+ALTER TABLE mysql_manual_generation__test_kpt_cdc.change_pk__debezium_types OWNER TO kpt;
 
 --
 -- TOC entry 3114 (class 2606 OID 599963)
--- Name: change_pk__debezium_types change_pk__debezium_types_pkey; Type: CONSTRAINT; Schema: test_mysql__test_kpt_cdc; Owner: postgres
+-- Name: change_pk__debezium_types change_pk__debezium_types_pkey; Type: CONSTRAINT; Schema: mysql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-ALTER TABLE ONLY test_mysql__test_kpt_cdc.change_pk__debezium_types
+ALTER TABLE ONLY mysql_manual_generation__test_kpt_cdc.change_pk__debezium_types
     ADD CONSTRAINT change_pk__debezium_types_pkey PRIMARY KEY ("VARCHAR", "TIMESTAMP");
 
 
 --
 -- TOC entry 3112 (class 2606 OID 599948)
--- Name: debezium_types debezium_types_pkey; Type: CONSTRAINT; Schema: test_mysql__test_kpt_cdc; Owner: postgres
+-- Name: debezium_types debezium_types_pkey; Type: CONSTRAINT; Schema: mysql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-ALTER TABLE ONLY test_mysql__test_kpt_cdc.debezium_types
+ALTER TABLE ONLY mysql_manual_generation__test_kpt_cdc.debezium_types
     ADD CONSTRAINT debezium_types_pkey PRIMARY KEY (_id);
 
 
 --
 -- TOC entry 3250 (class 0 OID 0)
 -- Dependencies: 9
--- Name: SCHEMA test_mysql__test_kpt_cdc; Type: ACL; Schema: -; Owner: postgres
+-- Name: SCHEMA mysql_manual_generation__test_kpt_cdc; Type: ACL; Schema: -; Owner: postgres
 --
 
-GRANT ALL ON SCHEMA test_mysql__test_kpt_cdc TO kpt;
+GRANT ALL ON SCHEMA mysql_manual_generation__test_kpt_cdc TO kpt;
 
 
 --
 -- TOC entry 3251 (class 0 OID 0)
 -- Dependencies: 277
--- Name: TABLE debezium_types; Type: ACL; Schema: test_mysql__test_kpt_cdc; Owner: postgres
+-- Name: TABLE debezium_types; Type: ACL; Schema: mysql_manual_generation__test_kpt_cdc; Owner: postgres
 --
 
-GRANT ALL ON TABLE test_mysql__test_kpt_cdc.debezium_types TO kpt;
+GRANT ALL ON TABLE mysql_manual_generation__test_kpt_cdc.debezium_types TO kpt;
 
 
 -- Completed on 2021-09-23 07:51:54 UTC
