@@ -41,10 +41,44 @@
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
+
+            <!-- Copy it and quickly set system variables -->
+            <!-- Differences: external port, delay used, add Config.Profile -->
+            <!--
+name	value
+Config.Profile	test_kpt,debezium-mysql-pgsql.manual
+Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.server	pgsql
+Config.DB.db_kpt_cdc_event_pgsql_writer.port	55432
+Config.DB.db_kpt_cdc_event_pgsql_writer.username	kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.password	kpt.123	
+Config.Delay.Injection.Crud.Time	1000		
+Config.Delay.Injection.Field.Time	10000	
+Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
+Config.Log.UpdateOnly.FlashPoint.Delay	2592000	
+Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.Log.Kafka.Batch.Size	10000
+Config.Log.Kafka.Batch.Duration	60000	
+Config.Log.Kafka.Batch.Max	10000	
+Config.Log.Kafka.Server.Bootstrap	kafka:59094	
+Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.manual.20220128	
+Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.binary_bytes		
+Config.Log.Source.Transformation.Path	from-debezium	
+Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
+Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
+Config.Log.Source.Key.Mapping	debezium_key_to_key_meta.mapping	
+Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
+Config.Log.Target.Transformation.Path	to_pgsql	
+Config.Log.Target.Table.Mapping	config_prefix_lookup
+Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
+Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
+Config.Log.Target.Table.Prefix		
+
+            -->
         </profile>
 
         <profile name="debezium-mysql-pgsql.chameleon">
@@ -59,10 +93,44 @@
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_chameleon_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix">for_chameleon__</cfg>
+
+            <!-- Copy it and quickly set system variables -->
+            <!-- Differences: external port, delay used, add Config.Profile -->
+            <!--
+name	value
+Config.Profile	test_kpt,debezium-mysql-pgsql.chameleon
+Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.server	pgsql
+Config.DB.db_kpt_cdc_event_pgsql_writer.port	55432
+Config.DB.db_kpt_cdc_event_pgsql_writer.username	kpt
+Config.DB.db_kpt_cdc_event_pgsql_writer.password	kpt.123
+Config.Delay.Injection.Crud.Time	1000		
+Config.Delay.Injection.Field.Time	10000	
+Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
+Config.Log.UpdateOnly.FlashPoint.Delay	2592000	
+Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.Log.Kafka.Batch.Size	10000
+Config.Log.Kafka.Batch.Duration	60000	
+Config.Log.Kafka.Batch.Max	10000	
+Config.Log.Kafka.Server.Bootstrap	kafka:59094	
+Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.chameleon.20220128	
+Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.binary_bytes		
+Config.Log.Source.Transformation.Path	from-debezium	
+Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
+Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
+Config.Log.Source.Key.Mapping	debezium_key_to_key_meta.mapping	
+Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
+Config.Log.Target.Transformation.Path	to_pgsql	
+Config.Log.Target.Table.Mapping	config_prefix_lookup
+Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
+Config.Log.Target.Schema.Prefix	mysql_chameleon_generation__	
+Config.Log.Target.Table.Prefix	for_chameleon__	
+
+            -->
         </profile>
         
     </project>
