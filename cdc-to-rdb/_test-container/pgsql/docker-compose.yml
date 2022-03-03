@@ -3,6 +3,7 @@ services:
 
   pgsql:
     image: postgres:13.2
+    command: postgres -c max_connections=1000
     environment:
       POSTGRES_DB: test_kpt
       POSTGRES_USER: postgres
