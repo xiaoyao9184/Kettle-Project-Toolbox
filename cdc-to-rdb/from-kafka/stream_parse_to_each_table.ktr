@@ -24,7 +24,7 @@
         <connection>db_kpt_cdc_event_pgsql_writer</connection>
         <schema>kpt_cdc_log</schema>
         <table>${Internal.Transformation.Name}__trans</table>
-        <size_limit_lines/>
+        <size_limit_lines>10000</size_limit_lines>
         <interval>60</interval>
         <timeout_days>300</timeout_days>
         <field>
@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/01 16:50:04.247</modified_date>
+    <modified_date>2022/03/03 16:30:36.813</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -2501,6 +2501,49 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
+    <name>SystemInfo: batch info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>process_id</name>
+        <type>Current PID</type>
+      </field>
+      <field>
+        <name>transname</name>
+        <type>transformation name</type>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <type>batch ID</type>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SystemInfo: batch_id, batch_time</name>
     <type>SystemInfo</type>
     <description/>
@@ -2669,49 +2712,6 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>352</xloc>
       <yloc>1072</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SystemInfo: batch info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>process_id</name>
-        <type>Current PID</type>
-      </field>
-      <field>
-        <name>transname</name>
-        <type>transformation name</type>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <type>batch ID</type>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>system date (fixed)</type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
