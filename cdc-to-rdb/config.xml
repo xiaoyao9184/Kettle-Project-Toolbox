@@ -41,7 +41,7 @@
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
@@ -71,7 +71,7 @@ Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta.mapping	
 Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
 Config.Log.Target.Transformation.Path	to_pgsql	
-Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
+Config.Log.Target.Table.Mapping	config_prefix_lookup	
 Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
 Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
 Config.Log.Target.Table.Prefix	 
@@ -89,7 +89,7 @@ Config.Log.Target.Table.Prefix
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mssql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
@@ -119,7 +119,7 @@ Config.Log.Source.Column.Mapping	mssql_schema_to_column_meta.mapping
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta.mapping	
 Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
 Config.Log.Target.Transformation.Path	to_pgsql	
-Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
+Config.Log.Target.Table.Mapping	config_prefix_lookup	
 Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
 Config.Log.Target.Schema.Prefix	mssql_manual_generation__	
 Config.Log.Target.Table.Prefix	 
@@ -136,7 +136,7 @@ Config.Log.Target.Table.Prefix
             <cfg namespace="Config.Log.Source.Switch" key="Mapping">canal_type_to_kettle_switch_flag.mapping</cfg>
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists_to_ingore.mapping</cfg>
+            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
@@ -165,7 +165,7 @@ Config.Log.Source.Table.Mapping	canal_log_to_table_name.mapping
 Config.Log.Source.Column.Mapping	canal_column_type_to_kettle.mapping	
 Config.Log.Source.Switch.Mapping	canal_type_to_kettle_switch_flag.mapping	
 Config.Log.Target.Transformation.Path	to_pgsql	
-Config.Log.Target.Ingore.Mapping	pgsql_table_exists_to_ingore.mapping	
+Config.Log.Target.Table.Mapping	config_prefix_lookup	
 Config.Log.Target.Column.Mapping	pgsql_column_case_to_column.mapping	
 Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
 Config.Log.Target.Table.Prefix	 

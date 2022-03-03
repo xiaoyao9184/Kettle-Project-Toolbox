@@ -160,6 +160,20 @@ then you can combine all cfgs by referring the `profile` name later.
 		<cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
 		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
 		<cfg namespace="Config.Main.Transformation" key="Name">kafka_to_stream</cfg>
+		<!-- delay for debug reduce rate -->
+        <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
+        <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
+		<!-- flashpoint, before make the INSERT (SNAPSHOT) event change into UPDATE operation for compatibility -->
+		<!-- even if the data INSERT event is lost, it will not affect subsequent events -->
+		<!-- can define a future timestamp, or a delay seconds for now with past timestamp -->
+        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
+        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Delay">2592000</cfg>
+        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
+		<!-- kafka streaming to batch window settings -->
+		<!-- bigger mean more memory, more faster and more loss ratio if it fails -->
+        <cfg namespace="Config.Log.Kafka.Batch" key="Size">10000</cfg>
+        <cfg namespace="Config.Log.Kafka.Batch" key="Duration">60000</cfg>
+        <cfg namespace="Config.Log.Kafka.Batch" key="Max">10000</cfg>
 
     <!-- defines database related information -->
     <!-- You can define multiple databases, like 'dev' 'test' 'prod' -->
@@ -188,23 +202,34 @@ then you can combine all cfgs by referring the `profile` name later.
     <!-- defines the run way -->
 	
 		<profile name="debezium-mysql-pgsql">
+		<!-- kafka consumer -->
 			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
 			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
 			<cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
-			<cfg namespace="Config.Log.Kafka.Stream" key="Transformation">stream_parse_to_each_table</cfg>
-			
-			<!-- source of cdc -->
-			<!-- can be from-debezium of from-canal -->
+
+		<!-- source of cdc -->
+			<!-- can be 'from-debezium' of 'from-canal' -->
 			<cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
+			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
 			<cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
+			<!-- use '../to_pgsql/pgsql_key_to_key_meta.mapping' if source table no primary key -->
+			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta.mapping</cfg>
+			<!-- no change -->
 			<cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
 			
+		<!-- target of rdb -->
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-			<cfg namespace="Config.Log.Target.Ingore" key="Mapping">pgsql_table_exists.mapping</cfg>
-			<cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case.mapping</cfg>
-			<!-- define output destination schema and table prefix -->
+			<!-- config_prefix_lookup or database_mapping_exist -->
+			<!-- config_prefix_lookup use xml config mapping target table -->
+			<!-- database_mapping_exist use table 'kpt_cdc_data.mapping_table' mapping target table -->
+			<cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+			<!-- no change for now -->
+			<cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
+			<!-- true case sensitive or pgsql will automatically convert to lowercase -->
+			<cfg namespace="Config.Log.Target.Case" key="Name">true</cfg>
+			<!-- define output destination schema and table prefix by 'config_prefix_lookup' -->
 			<cfg namespace="Config.Log.Target.Schema" key="Prefix">kpt_sync__</cfg>
 			<cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
 		</profile>
