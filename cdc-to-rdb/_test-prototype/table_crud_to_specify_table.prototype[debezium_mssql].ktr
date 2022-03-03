@@ -549,7 +549,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/28 21:25:46.123</modified_date>
+    <modified_date>2022/03/01 16:49:48.058</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1156,6 +1156,11 @@
       <to>SelectValues: rename</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>SystemInfo: batch info</from>
+      <to>Transformation executor: log_environment_to_logtable</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Append: GMT_to_Timestamp</name>
@@ -1180,7 +1185,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1744</yloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1207,7 +1212,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2560</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1234,7 +1239,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2704</yloc>
+      <yloc>2720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1261,7 +1266,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2288</yloc>
+      <yloc>2304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1288,7 +1293,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1600</yloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1315,7 +1320,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1168</yloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1342,7 +1347,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1312</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1369,7 +1374,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1456</yloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1464,7 +1469,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>768</yloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1505,7 +1510,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>992</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1544,7 +1549,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2944</yloc>
+      <yloc>2960</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1595,7 +1600,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1744</yloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1634,7 +1639,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>608</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1769,7 +1774,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>992</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1808,7 +1813,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1847,7 +1852,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2560</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1886,7 +1891,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2704</yloc>
+      <yloc>2720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1925,7 +1930,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2048</yloc>
+      <yloc>2064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1964,7 +1969,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1952</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2003,7 +2008,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2144</yloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2066,7 +2071,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2416</yloc>
+      <yloc>2432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2105,7 +2110,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1600</yloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2144,7 +2149,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1168</yloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2183,7 +2188,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1312</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2222,7 +2227,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1456</yloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2292,7 +2297,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>1664</yloc>
+      <yloc>1680</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2362,7 +2367,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>2480</yloc>
+      <yloc>2496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2432,7 +2437,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>2624</yloc>
+      <yloc>2640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2502,7 +2507,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>2208</yloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2746,7 +2751,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>1520</yloc>
+      <yloc>1536</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2803,7 +2808,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>1088</yloc>
+      <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2860,7 +2865,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>1232</yloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2917,7 +2922,7 @@
     </remotesteps>
     <GUI>
       <xloc>1072</xloc>
-      <yloc>1376</yloc>
+      <yloc>1392</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2944,7 +2949,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>992</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2971,7 +2976,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1280</yloc>
+      <yloc>1296</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2996,7 +3001,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3021,7 +3026,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2944</yloc>
+      <yloc>2960</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3046,7 +3051,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>768</yloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3071,7 +3076,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>192</yloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3096,7 +3101,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>2848</yloc>
+      <yloc>2864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3589,7 +3594,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4082,7 +4087,7 @@
     </remotesteps>
     <GUI>
       <xloc>1616</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4126,7 +4131,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2944</yloc>
+      <yloc>2960</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4175,7 +4180,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>608</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4214,7 +4219,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>192</yloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4320,7 +4325,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>608</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4410,7 +4415,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>608</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4453,7 +4458,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>448</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4504,7 +4509,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2288</yloc>
+      <yloc>2304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4628,7 +4633,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>608</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4655,7 +4660,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>992</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4681,8 +4686,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>192</yloc>
+      <xloc>560</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4709,7 +4714,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2848</yloc>
+      <yloc>2864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4749,7 +4754,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1744</yloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4820,7 +4825,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>992</yloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4860,7 +4865,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4900,7 +4905,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>3040</yloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4940,7 +4945,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2560</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4980,7 +4985,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2704</yloc>
+      <yloc>2720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5020,7 +5025,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2944</yloc>
+      <yloc>2960</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5060,7 +5065,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2048</yloc>
+      <yloc>2064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5100,7 +5105,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>1952</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5140,7 +5145,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2144</yloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5203,8 +5208,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>448</yloc>
+      <xloc>560</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5334,7 +5339,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1120</yloc>
+      <yloc>1136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5374,7 +5379,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2288</yloc>
+      <yloc>2304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5418,7 +5423,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2416</yloc>
+      <yloc>2432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5494,7 +5499,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>448</yloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5530,7 +5535,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>2848</yloc>
+      <yloc>2864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5566,7 +5571,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1600</yloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5602,7 +5607,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1168</yloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5638,7 +5643,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1312</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5674,7 +5679,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1456</yloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5771,7 +5776,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1440</yloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5788,7 +5793,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>json_logger_to_kafka</trans_name>
+    <trans_name>log_json_to_kafka</trans_name>
     <filename/>
     <directory_path>/from-kafka</directory_path>
     <mappings>
@@ -5836,7 +5841,7 @@
     </remotesteps>
     <GUI>
       <xloc>1184</xloc>
-      <yloc>608</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5917,7 +5922,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1568</yloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6002,7 +6007,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6094,8 +6099,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>320</yloc>
+      <xloc>560</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6141,7 +6146,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>64</yloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6223,7 +6228,7 @@
     </remotesteps>
     <GUI>
       <xloc>544</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6258,7 +6263,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>320</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6296,7 +6301,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>3040</yloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6352,7 +6357,7 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>1856</yloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6404,8 +6409,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>320</yloc>
+      <xloc>976</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6461,7 +6466,105 @@
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>992</yloc>
+      <yloc>1008</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SystemInfo: batch info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>process_id</name>
+        <type>Current PID</type>
+      </field>
+      <field>
+        <name>transname</name>
+        <type>transformation name</type>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <type>batch ID</type>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Transformation executor: log_environment_to_logtable</name>
+    <type>TransExecutor</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>log_environment_to_logtable</trans_name>
+    <filename/>
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <group_size>1</group_size>
+    <group_field/>
+    <group_time/>
+    <parameters>
+      <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    <execution_result_target_step/>
+    <execution_time_field>ExecutionTime</execution_time_field>
+    <execution_result_field>ExecutionResult</execution_result_field>
+    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
+    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
+    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
+    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
+    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
+    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
+    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
+    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
+    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
+    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
+    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
+    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
+    <result_rows_target_step/>
+    <result_files_target_step/>
+    <result_files_file_name_field>FileName</result_files_file_name_field>
+    <executors_output_step/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

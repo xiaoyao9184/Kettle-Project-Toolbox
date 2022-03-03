@@ -22,8 +22,8 @@
     <log>
       <trans-log-table>
         <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_log</schema>
-        <table>${Internal.Transformation.Name}__ktr</table>
+        <schema>kpt_cdc_log</schema>
+        <table>${Internal.Transformation.Name}__trans</table>
         <size_limit_lines/>
         <interval>60</interval>
         <timeout_days>300</timeout_days>
@@ -136,7 +136,7 @@
       </trans-log-table>
       <perf-log-table>
         <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_log</schema>
+        <schema>kpt_cdc_log</schema>
         <table>${Internal.Transformation.Name}__seq</table>
         <interval>60</interval>
         <timeout_days>300</timeout_days>
@@ -218,7 +218,7 @@
       </perf-log-table>
       <channel-log-table>
         <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_log</schema>
+        <schema>kpt_cdc_log</schema>
         <table>${Internal.Transformation.Name}__channel</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -284,7 +284,7 @@
       </channel-log-table>
       <step-log-table>
         <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_log</schema>
+        <schema>kpt_cdc_log</schema>
         <table>${Internal.Transformation.Name}__step</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -360,7 +360,7 @@
       </step-log-table>
       <metrics-log-table>
         <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_log</schema>
+        <schema>kpt_cdc_log</schema>
         <table>${Internal.Transformation.Name}__metrics</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/28 19:46:08.160</modified_date>
+    <modified_date>2022/03/01 16:50:04.247</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -645,6 +645,11 @@
     <hop>
       <from>FilterRows: is table-log</from>
       <to>SimpleMapping: table_name_group.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch info</from>
+      <to>Transformation executor: log_environment_to_logtable</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1984,7 +1989,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>json_logger_to_kafka</trans_name>
+    <trans_name>log_json_to_kafka</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -2049,7 +2054,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>json_logger_to_kafka</trans_name>
+    <trans_name>log_json_to_kafka</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -2114,7 +2119,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>json_logger_to_kafka</trans_name>
+    <trans_name>log_json_to_kafka</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <mappings>
@@ -2664,6 +2669,104 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>352</xloc>
       <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SystemInfo: batch info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>process_id</name>
+        <type>Current PID</type>
+      </field>
+      <field>
+        <name>transname</name>
+        <type>transformation name</type>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <type>batch ID</type>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Transformation executor: log_environment_to_logtable</name>
+    <type>TransExecutor</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>log_environment_to_logtable</trans_name>
+    <filename/>
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <group_size>1</group_size>
+    <group_field/>
+    <group_time/>
+    <parameters>
+      <inherit_all_vars>Y</inherit_all_vars>
+    </parameters>
+    <execution_result_target_step/>
+    <execution_time_field>ExecutionTime</execution_time_field>
+    <execution_result_field>ExecutionResult</execution_result_field>
+    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
+    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
+    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
+    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
+    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
+    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
+    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
+    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
+    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
+    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
+    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
+    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
+    <result_rows_target_step/>
+    <result_files_target_step/>
+    <result_files_file_name_field>FileName</result_files_file_name_field>
+    <executors_output_step/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

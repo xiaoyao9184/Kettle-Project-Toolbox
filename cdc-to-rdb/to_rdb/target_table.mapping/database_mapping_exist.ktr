@@ -499,7 +499,7 @@
     </hop>
     <hop>
       <from>SelectValues: sql location parameters</from>
-      <to>TableInput: kpt_data.mapping_table</to>
+      <to>TableInput: kpt_cdc_data.mapping_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -523,7 +523,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>TableInput: kpt_data.mapping_table</from>
+      <from>TableInput: kpt_cdc_data.mapping_table</from>
       <to>StreamLookup</to>
       <enabled>Y</enabled>
     </hop>
@@ -1000,7 +1000,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>TableInput: kpt_data.mapping_table</from>
+    <from>TableInput: kpt_cdc_data.mapping_table</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -1046,7 +1046,7 @@
     </GUI>
   </step>
   <step>
-    <name>TableInput: kpt_data.mapping_table</name>
+    <name>TableInput: kpt_cdc_data.mapping_table</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1058,7 +1058,7 @@
     </partitioning>
     <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <sql>SELECT source_name, source_schema, source_table, target_schema, target_table
-FROM kpt_data.mapping_table
+FROM kpt_cdc_data.mapping_table
 WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
     <limit>0</limit>
     <lookup>SelectValues: sql location parameters</lookup>
@@ -1073,7 +1073,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
         <name>source_name</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>TableInput: kpt_data.mapping_table</origin>
+        <origin>TableInput: kpt_cdc_data.mapping_table</origin>
         <comments>source_name</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1096,7 +1096,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
         <name>source_schema</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>TableInput: kpt_data.mapping_table</origin>
+        <origin>TableInput: kpt_cdc_data.mapping_table</origin>
         <comments>source_schema</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1119,7 +1119,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
         <name>source_table</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>TableInput: kpt_data.mapping_table</origin>
+        <origin>TableInput: kpt_cdc_data.mapping_table</origin>
         <comments>source_table</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1142,7 +1142,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
         <name>target_schema</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>TableInput: kpt_data.mapping_table</origin>
+        <origin>TableInput: kpt_cdc_data.mapping_table</origin>
         <comments>target_schema</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -1165,7 +1165,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
         <name>target_table</name>
         <length>2147483647</length>
         <precision>-1</precision>
-        <origin>TableInput: kpt_data.mapping_table</origin>
+        <origin>TableInput: kpt_cdc_data.mapping_table</origin>
         <comments>target_table</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
