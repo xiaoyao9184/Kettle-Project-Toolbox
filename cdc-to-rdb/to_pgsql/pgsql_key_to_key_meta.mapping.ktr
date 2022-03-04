@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/10/26 10:25:30.129</modified_date>
+    <modified_date>2022/03/04 10:22:57.955</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1516,14 +1516,16 @@
       <schema_name/>
     </partitioning>
     <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <sql>SELECT ? AS idx, a.attname AS pg_pk
-FROM
-    pg_constraint AS c
-    CROSS JOIN LATERAL UNNEST(c.conkey) AS cols(colnum) -- conkey is a list of the columns of the constraint; so we split it into rows so that we can join all column numbers onto their names in pg_attribute
-    INNER JOIN pg_attribute AS a ON a.attrelid = c.conrelid AND cols.colnum = a.attnum
-WHERE
+    <sql>select ? as idx, a.attname as pg_pk
+from
+    pg_constraint as c
+    cross join lateral unnest(c.conkey) as cols(colnum)
+    inner join pg_attribute as a 
+    on a.attrelid = c.conrelid 
+    and cols.colnum = a.attnum
+where
     c.contype = 'p'
-    AND c.conrelid = ?::REGCLASS;</sql>
+    and c.conrelid = to_regclass(?);</sql>
     <limit>0</limit>
     <lookup>SelectValues: sql param</lookup>
     <execute_each_row>Y</execute_each_row>
@@ -1532,13 +1534,36 @@ WHERE
     <cached_row_meta_active>N</cached_row_meta_active>
     <row-meta>
       <value-meta>
-        <type>Boolean</type>
+        <type>Integer</type>
         <storagetype>normal</storagetype>
-        <name>table_exist</name>
-        <length>-1</length>
+        <name>idx</name>
+        <length>2147483647</length>
+        <precision>0</precision>
+        <origin>TableInput: pg_constraint</origin>
+        <comments>idx</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>zh_CN</date_format_locale>
+        <date_format_timezone>Asia/Shanghai</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
+        <name>pg_pk</name>
+        <length>2147483647</length>
         <precision>-1</precision>
-        <origin>TableInput: information_schema.tables</origin>
-        <comments>table_exist</comments>
+        <origin>TableInput: pg_constraint</origin>
+        <comments>pg_pk</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol>,</grouping_symbol>
