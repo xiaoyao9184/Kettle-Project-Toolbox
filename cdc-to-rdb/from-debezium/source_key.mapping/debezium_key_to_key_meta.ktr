@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>debezium_key_to_key_meta.mapping</name>
+    <name>debezium_key_to_key_meta</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-debezium</directory>
+    <directory>/from-debezium/source_key.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/22 22:17:34.063</modified_date>
+    <modified_date>2022/03/04 14:05:46.049</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -438,11 +438,11 @@
   <order>
     <hop>
       <from>SelectValues: remove</from>
-      <to>MappingOutput: debezium_key_to_key_meta</to>
+      <to>MappingOutput: source_key.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: debezium_key_to_key_meta</from>
+      <from>MappingInput: source_key.mapping</from>
       <to>ScriptValueMod: from key.schema</to>
       <enabled>Y</enabled>
     </hop>
@@ -621,7 +621,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: debezium_key_to_key_meta</name>
+    <name>MappingInput: source_key.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -673,7 +673,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: debezium_key_to_key_meta</name>
+    <name>MappingOutput: source_key.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

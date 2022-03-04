@@ -443,11 +443,11 @@
   <order>
     <hop>
       <from>Dummy</from>
-      <to>SimpleMapping: key meta</to>
+      <to>SimpleMapping: ${Config.Log.Source.Key.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: key meta</from>
+      <from>SimpleMapping: ${Config.Log.Source.Key.Mapping}</from>
       <to>StreamLookup: key</to>
       <enabled>Y</enabled>
     </hop>
@@ -1474,7 +1474,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: key meta</name>
+    <name>SimpleMapping: ${Config.Log.Source.Key.Mapping}</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -1625,7 +1625,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>SimpleMapping: key meta</from>
+    <from>SimpleMapping: ${Config.Log.Source.Key.Mapping}</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>

@@ -478,11 +478,11 @@
     </hop>
     <hop>
       <from>ValueMapper: operate to target_switch_flag</from>
-      <to>SimpleMapping: replace_target_switch_flag</to>
+      <to>SimpleMapping: replace_target_switch_flag.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: replace_target_switch_flag</from>
+      <from>SimpleMapping: replace_target_switch_flag.mapping</from>
       <to>SelectValues: remove payload_*</to>
       <enabled>Y</enabled>
     </hop>
@@ -1019,7 +1019,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: replace_target_switch_flag</name>
+    <name>SimpleMapping: replace_target_switch_flag.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>

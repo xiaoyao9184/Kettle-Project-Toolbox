@@ -10,7 +10,7 @@
     <parameters>
       <parameter>
         <name>Config.Log.Source.Key.Mapping</name>
-        <default_value>debezium_key_to_key_meta.mapping</default_value>
+        <default_value>debezium_key_to_key_meta</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -457,7 +457,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: key meta</from>
+      <from>SimpleMapping: source_key.mapping</from>
       <to>StreamLookup: key</to>
       <enabled>Y</enabled>
     </hop>
@@ -523,7 +523,7 @@
     </hop>
     <hop>
       <from>Dummy: for column</from>
-      <to>SimpleMapping: key meta</to>
+      <to>SimpleMapping: source_key.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -2026,7 +2026,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: key meta</name>
+    <name>SimpleMapping: source_key.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2040,7 +2040,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     <trans_object_id/>
     <trans_name>${Config.Log.Source.Key.Mapping}</trans_name>
     <filename/>
-    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
+    <directory_path>${Config.Log.Source.Transformation.Path}/source_key.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -2179,7 +2179,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>SimpleMapping: key meta</from>
+    <from>SimpleMapping: source_key.mapping</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>

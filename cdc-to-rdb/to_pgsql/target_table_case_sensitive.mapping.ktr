@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>target_table_case.mapping</name>
+    <name>target_table_case_sensitive.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -472,7 +472,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: target</from>
+      <from>MappingInput: target_table_case_sensitive.mapping</from>
       <to>GetVariable: is_case_name</to>
       <enabled>Y</enabled>
     </hop>
@@ -493,12 +493,12 @@
     </hop>
     <hop>
       <from>SelectValues: remove lower</from>
-      <to>MappingOutput: target</to>
+      <to>MappingOutput: target_table_case_sensitive.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: remove case</from>
-      <to>MappingOutput: target</to>
+      <to>MappingOutput: target_table_case_sensitive.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -798,7 +798,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: target</name>
+    <name>MappingInput: target_table_case_sensitive.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -838,7 +838,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: target</name>
+    <name>MappingOutput: target_table_case_sensitive.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

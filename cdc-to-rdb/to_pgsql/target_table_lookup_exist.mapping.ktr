@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>lookup_table_exist.mapping</name>
+    <name>target_table_lookup_exist.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -524,7 +524,7 @@
     </hop>
     <hop>
       <from>SelectValues: remove lookup</from>
-      <to>MappingOutput: target</to>
+      <to>MappingOutput: target_table_lookup_exist.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -608,7 +608,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: target</from>
+      <from>MappingInput: target_table_lookup_exist.mapping</from>
       <to>GetVariable: is_case_name</to>
       <enabled>Y</enabled>
     </hop>
@@ -1051,7 +1051,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: target</name>
+    <name>MappingInput: target_table_lookup_exist.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1091,7 +1091,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: target</name>
+    <name>MappingOutput: target_table_lookup_exist.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

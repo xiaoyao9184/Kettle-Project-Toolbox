@@ -65,7 +65,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Source.Key.Mapping</name>
-        <default_value>debezium_key_to_key_meta.mapping</default_value>
+        <default_value>debezium_key_to_key_meta</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -85,7 +85,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Target.Column.Mapping</name>
-        <default_value>pgsql_column_case_to_column.mapping</default_value>
+        <default_value>target_column_case_sensitive</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -1088,7 +1088,7 @@
     </hop>
     <hop>
       <from>SimpleMapping: ${Config.Log.Source.Column.Mapping}</from>
-      <to>SimpleMapping: rdb_column</to>
+      <to>SimpleMapping: target_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1102,17 +1102,17 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: rdb_column</from>
+      <from>SimpleMapping: target_column.mapping</from>
       <to>Dummy: column meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>FilterRows: target_ingore</from>
-      <to>SimpleMapping: target_switch_flag</to>
+      <to>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: target_switch_flag</from>
+      <from>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</from>
       <to>Dummy: process logs</to>
       <enabled>Y</enabled>
     </hop>
@@ -1187,7 +1187,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: target_switch_flag</from>
+      <from>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</from>
       <to>SampleRows: for target_column</to>
       <enabled>Y</enabled>
     </hop>
@@ -4396,7 +4396,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Group by: INGORE</send_true_to>
-    <send_false_to>SimpleMapping: target_switch_flag</send_false_to>
+    <send_false_to>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -6230,7 +6230,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: rdb_column</name>
+    <name>SimpleMapping: target_column.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -6244,7 +6244,7 @@
     <trans_object_id/>
     <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
     <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <directory_path>${Config.Log.Target.Transformation.Path}/target_column.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -6311,7 +6311,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: target_switch_flag</name>
+    <name>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>N</distribute>

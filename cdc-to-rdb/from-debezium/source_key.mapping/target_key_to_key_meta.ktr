@@ -1,23 +1,12 @@
 <transformation>
   <info>
-    <name>table_name_prefix.mapping</name>
+    <name>target_key_to_key_meta</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
-    <directory>/to_rdb</directory>
+    <directory>/from-debezium/source_key.mapping</directory>
     <parameters>
-      <parameter>
-        <name>Param.Schema.Prefix</name>
-        <default_value></default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Param.Table.Prefix</name>
-        <default_value></default_value>
-        <description/>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -437,9 +426,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/26 14:56:54.763</created_date>
+    <created_date>2022/03/04 12:23:36.981</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/08/31 16:06:44.600</modified_date>
+    <modified_date>2022/03/04 14:06:05.625</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -447,186 +436,18 @@
   </notepads>
   <order>
     <hop>
-      <from>GetVariable: prefix</from>
-      <to>IfNull: prefix</to>
+      <from>MappingInput: source_key.mapping</from>
+      <to>SimpleMapping: source_key.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>IfNull: prefix</from>
-      <to>Calculator: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: target</from>
-      <to>SelectValues: remove prefix</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: schema and table</from>
-      <to>GetVariable: prefix</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove prefix</from>
-      <to>MappingOutput: schema and table</to>
+      <from>SimpleMapping: source_key.mapping</from>
+      <to>MappingOutput: source_key.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: target</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>SchemaTarget</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>SchemaPrefix</field_a>
-      <field_b>SchemaName</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>TableTarget</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>TablePrefix</field_a>
-      <field_b>TableName</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GetVariable: prefix</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>SchemaPrefix</name>
-        <variable>${Param.Schema.Prefix}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>TablePrefix</name>
-        <variable>${Param.Table.Prefix}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>IfNull: prefix</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue/>
-    <replaceAllMask/>
-    <selectFields>Y</selectFields>
-    <selectValuesType>N</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>SchemaPrefix</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-      <field>
-        <name>TablePrefix</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: schema and table</name>
+    <name>MappingInput: source_key.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -638,13 +459,25 @@
     </partitioning>
     <fields>
       <field>
-        <name>SchemaName</name>
+        <name>key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>TableName</name>
+        <name>message</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -660,13 +493,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>80</yloc>
+      <xloc>352</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: schema and table</name>
+    <name>MappingOutput: source_key.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -685,14 +518,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>784</yloc>
+      <xloc>352</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove prefix</name>
-    <type>SelectValues</type>
+    <name>SimpleMapping: source_key.mapping</name>
+    <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -701,15 +534,74 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>SchemaPrefix</name>
-      </remove>
-      <remove>
-        <name>TablePrefix</name>
-      </remove>
-    </fields>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>source_key.mapping</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>key</parent>
+            <child>key</child>
+          </connector>
+          <connector>
+            <parent>message</parent>
+            <child>message</child>
+          </connector>
+          <connector>
+            <parent>schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>table</parent>
+            <child>table</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>key</parent>
+            <child>key</child>
+          </connector>
+          <connector>
+            <parent>message</parent>
+            <child>message</child>
+          </connector>
+          <connector>
+            <parent>schema</parent>
+            <child>schema</child>
+          </connector>
+          <connector>
+            <parent>table</parent>
+            <child>table</child>
+          </connector>
+          <connector>
+            <parent>source_pk</parent>
+            <child>source_pk</child>
+          </connector>
+          <connector>
+            <parent>kettle_field</parent>
+            <child>kettle_field</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -719,8 +611,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>640</yloc>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

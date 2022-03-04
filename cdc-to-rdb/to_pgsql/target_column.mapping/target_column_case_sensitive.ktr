@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>pgsql_table_exists_to_ingore.mapping</name>
+    <name>target_column_case_sensitive</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_pgsql</directory>
+    <directory>/to_pgsql/target_column.mapping</directory>
     <parameters>
       <parameter>
         <name>Param.Case.Name</name>
@@ -434,67 +434,26 @@
     <created_user>-</created_user>
     <created_date>2021/07/26 14:56:54.763</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/09/15 15:42:57.990</modified_date>
+    <modified_date>2022/03/04 13:35:31.702</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_cdc_event_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_cdc_event_pgsql_writer.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.DB.db_kpt_cdc_event_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_cdc_event_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_cdc_event_pgsql_writer.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
       <from>Constant: QUOTATION</from>
-      <to>Calculator: case_schema,case_table</to>
+      <to>Calculator: case_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: case_column</from>
+      <to>SelectValues: remove replace use case</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: target_column.mapping</from>
+      <to>GetVariable: Param.Case.Name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -503,8 +462,38 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>GetVariable: Param.Case.Name</from>
+      <to>WriteToLog: param</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
       <from>FilterRows: case</from>
       <to>Constant: QUOTATION</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: lower_column</from>
+      <to>SelectValues: remove replace use lower</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: case</from>
+      <to>Calculator: lower_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove replace use lower</from>
+      <to>Dummy: rdb_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove replace use case</from>
+      <to>Dummy: rdb_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: rdb_column</from>
+      <to>MappingOutput: target_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -512,104 +501,9 @@
       <to>GetVariable: Param.Case.Name</to>
       <enabled>N</enabled>
     </hop>
-    <hop>
-      <from>MappingInput: pgsql_table_exists_to_ingore</from>
-      <to>GetVariable: Param.Case.Name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: case</from>
-      <to>Calculator: lower_schema,lower_table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: lower_schema,lower_table</from>
-      <to>SelectValues: replace use lower</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: case_schema,case_table</from>
-      <to>SelectValues: replace use case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: replace use lower</from>
-      <to>Dummy: schema,table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: replace use case</from>
-      <to>Dummy: schema,table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: schema,table</from>
-      <to>SelectValues: sql location parameters</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: sql location parameters</from>
-      <to>TableInput: information_schema.tables</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>TableInput: information_schema.tables</from>
-      <to>Sequence: number_exist</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: schema,table</from>
-      <to>Sequence: number_table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sequence: number_table</from>
-      <to>StreamLookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sequence: number_exist</from>
-      <to>StreamLookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>StreamLookup</from>
-      <to>SelectValues: select field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: schema,table</from>
-      <to>WriteToLog: lookup table</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>GetVariable: Param.Case.Name</from>
-      <to>WriteToLog: param</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: select field</from>
-      <to>ValueMapper: not table_exist</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ValueMapper: not table_exist</from>
-      <to>SelectValues: rename</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: rename</from>
-      <to>MappingOutput: pgsql_table_exists_to_ingore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>StreamLookup</from>
-      <to>WriteToLog: table exist</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <step>
-    <name>Calculator: case_schema,case_table</name>
+    <name>Calculator: case_column</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -621,25 +515,10 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>case_schema</field_name>
+      <field_name>case_column</field_name>
       <calc_type>ADD3</calc_type>
       <field_a>QUOTATION</field_a>
-      <field_b>schema</field_b>
-      <field_c>QUOTATION</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>case_table</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>QUOTATION</field_a>
-      <field_b>table</field_b>
+      <field_b>column</field_b>
       <field_c>QUOTATION</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -665,7 +544,7 @@
     </GUI>
   </step>
   <step>
-    <name>Calculator: lower_schema,lower_table</name>
+    <name>Calculator: lower_column</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -677,24 +556,9 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>lower_schema</field_name>
+      <field_name>lower_column</field_name>
       <calc_type>LOWER_CASE</calc_type>
-      <field_a>schema</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>lower_table</field_name>
-      <calc_type>LOWER_CASE</calc_type>
-      <field_a>table</field_a>
+      <field_a>column</field_a>
       <field_b/>
       <field_c/>
       <value_type>String</value_type>
@@ -795,19 +659,24 @@
         <set_empty_string>N</set_empty_string>
         <field_null_if/>
       </field>
+      <field>
+        <name>column</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
     </fields>
     <data>
       <line>
-        <item>kpt_sync__DC_WATER</item>
-        <item>T_DRINKING_WATER</item>
-      </line>
-      <line>
-        <item>kpt_sync__DC_WATER</item>
-        <item>t_drinking_water</item>
-      </line>
-      <line>
         <item>kpt_sync__canal_manager</item>
         <item>canal_user</item>
+        <item>ID</item>
       </line>
     </data>
     <attributes/>
@@ -825,10 +694,10 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy: schema,table</name>
+    <name>Dummy: rdb_column</name>
     <type>Dummy</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -845,7 +714,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -861,7 +730,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Constant: QUOTATION</send_true_to>
-    <send_false_to>Calculator: lower_schema,lower_table</send_false_to>
+    <send_false_to>Calculator: lower_column</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -933,7 +802,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: pgsql_table_exists_to_ingore</name>
+    <name>MappingInput: target_column.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -956,7 +825,13 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
-      <select_unspecified>Y</select_unspecified>
+      <field>
+        <name>column</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -973,7 +848,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: pgsql_table_exists_to_ingore</name>
+    <name>MappingOutput: target_column.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -993,12 +868,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1600</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: rename</name>
+    <name>SelectValues: remove replace use case</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1010,10 +885,16 @@
     </partitioning>
     <fields>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>CaseName</name>
+      </remove>
+      <remove>
+        <name>QUOTATION</name>
+      </remove>
       <meta>
-        <name>schema</name>
-        <rename>schema</rename>
-        <type>None</type>
+        <name>case_column</name>
+        <rename>rdb_column</rename>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1027,84 +908,6 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
-      <meta>
-        <name>table</name>
-        <rename>table</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>table_exist</name>
-        <rename>ingore</rename>
-        <type>None</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1472</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: replace use case</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>case_schema</name>
-        <rename>schema</rename>
-      </field>
-      <field>
-        <name>case_table</name>
-        <rename>table</rename>
-      </field>
-      <field>
-        <name>schema</name>
-        <rename>lookup_schema</rename>
-      </field>
-      <field>
-        <name>table</name>
-        <rename>lookup_table</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1121,7 +924,7 @@
     </GUI>
   </step>
   <step>
-    <name>SelectValues: replace use lower</name>
+    <name>SelectValues: remove replace use lower</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1132,23 +935,27 @@
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>lower_schema</name>
-        <rename>schema</rename>
-      </field>
-      <field>
-        <name>lower_table</name>
-        <rename>table</rename>
-      </field>
-      <field>
-        <name>lower_schema</name>
-        <rename>lookup_schema</rename>
-      </field>
-      <field>
-        <name>lower_table</name>
-        <rename>lookup_table</rename>
-      </field>
       <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>CaseName</name>
+      </remove>
+      <meta>
+        <name>lower_column</name>
+        <rename>rdb_column</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1161,338 +968,6 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: select field</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>lookup_schema</name>
-      </remove>
-      <remove>
-        <name>lookup_table</name>
-      </remove>
-      <remove>
-        <name>number_table</name>
-      </remove>
-      <remove>
-        <name>number_exist</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1168</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: sql location parameters</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>lookup_schema</name>
-      </field>
-      <field>
-        <name>lookup_table</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sequence: number_exist</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>number_exist</valuename>
-    <use_database>N</use_database>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>1</start_at>
-    <increment_by>1</increment_by>
-    <max_value>999999999</max_value>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>1024</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sequence: number_table</name>
-    <type>Sequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <valuename>number_table</valuename>
-    <use_database>N</use_database>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <schema/>
-    <seqname>SEQ_</seqname>
-    <use_counter>Y</use_counter>
-    <counter_name/>
-    <start_at>1</start_at>
-    <increment_by>1</increment_by>
-    <max_value>999999999</max_value>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>StreamLookup</name>
-    <type>StreamLookup</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <from>Sequence: number_exist</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>number_table</name>
-        <field>number_exist</field>
-      </key>
-      <value>
-        <name>table_exist</name>
-        <rename>table_exist</rename>
-        <default/>
-        <type>Boolean</type>
-      </value>
-      <value>
-        <name>number_exist</name>
-        <rename>number_exist</rename>
-        <default/>
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1024</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TableInput: information_schema.tables</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <sql>SELECT EXISTS (
-SELECT table_schema, table_name
-FROM information_schema.tables 
-WHERE table_schema = ? AND table_name = ?
-) AS table_exist</sql>
-    <limit>0</limit>
-    <lookup>SelectValues: sql location parameters</lookup>
-    <execute_each_row>Y</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cached_row_meta_active>N</cached_row_meta_active>
-    <row-meta>
-      <value-meta>
-        <type>Boolean</type>
-        <storagetype>normal</storagetype>
-        <name>table_exist</name>
-        <length>-1</length>
-        <precision>-1</precision>
-        <origin>TableInput: information_schema.tables</origin>
-        <comments>table_exist</comments>
-        <conversion_Mask/>
-        <decimal_symbol>.</decimal_symbol>
-        <grouping_symbol>,</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>zh_CN</date_format_locale>
-        <date_format_timezone>Asia/Shanghai</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-    </row-meta>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ValueMapper: not table_exist</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <field_to_use>table_exist</field_to_use>
-    <target_field/>
-    <non_match_default>Y</non_match_default>
-    <fields>
-      <field>
-        <source_value>Y</source_value>
-        <target_value>N</target_value>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1296</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: lookup table</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage/>
-    <fields>
-      <field>
-        <name>schema</name>
-      </field>
-      <field>
-        <name>table</name>
-      </field>
-      <field>
-        <name>lookup_schema</name>
-      </field>
-      <field>
-        <name>lookup_table</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1520,6 +995,9 @@ WHERE table_schema = ? AND table_name = ?
         <name>table</name>
       </field>
       <field>
+        <name>column</name>
+      </field>
+      <field>
         <name>CaseName</name>
       </field>
     </fields>
@@ -1534,53 +1012,6 @@ WHERE table_schema = ? AND table_name = ?
     <GUI>
       <xloc>128</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: table exist</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>1</limitRowsNumber>
-    <logmessage/>
-    <fields>
-      <field>
-        <name>schema</name>
-      </field>
-      <field>
-        <name>table</name>
-      </field>
-      <field>
-        <name>lookup_schema</name>
-      </field>
-      <field>
-        <name>lookup_table</name>
-      </field>
-      <field>
-        <name>table_exist</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>1024</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

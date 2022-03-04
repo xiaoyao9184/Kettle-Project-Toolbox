@@ -213,20 +213,22 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
 			<cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
-			<!-- use '../to_pgsql/pgsql_key_to_key_meta.mapping' if source table no primary key -->
-			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta.mapping</cfg>
+			<!-- see from-debezium/source_key.mapping -->
+			<!-- use 'target_key_to_key_meta' if source table no primary key but target have -->
+			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
 			<!-- no change -->
 			<cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
 			
 		<!-- target of rdb -->
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-			<!-- config_prefix_lookup or database_mapping_exist -->
+			<!-- see to_rdb/target_table.mapping -->
 			<!-- config_prefix_lookup use xml config mapping target table -->
 			<!-- database_mapping_exist use table 'kpt_cdc_data.mapping_table' mapping target table -->
 			<cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+			<!-- see to_pgsql/target_column.mapping -->
 			<!-- no change for now -->
-			<cfg namespace="Config.Log.Target.Column" key="Mapping">pgsql_column_case_to_column.mapping</cfg>
+			<cfg namespace="Config.Log.Target.Column" key="Mapping">target_column_case_sensitive</cfg>
 			<!-- true case sensitive or pgsql will automatically convert to lowercase -->
 			<cfg namespace="Config.Log.Target.Case" key="Name">true</cfg>
 			<!-- define output destination schema and table prefix by 'config_prefix_lookup' -->

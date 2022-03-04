@@ -458,7 +458,7 @@
   <order>
     <hop>
       <from>SelectValues: remove flashpoint_include&amp;flashpoint_flag</from>
-      <to>MappingOutput: replace_target_switch_flag</to>
+      <to>MappingOutput: replace_target_switch_flag.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -547,7 +547,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: replace_target_switch_flag</from>
+      <from>MappingInput: replace_target_switch_flag.mapping</from>
       <to>JoinRows: flashpoint_include&amp;flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
@@ -1121,7 +1121,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: replace_target_switch_flag</name>
+    <name>MappingInput: replace_target_switch_flag.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1167,7 +1167,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: replace_target_switch_flag</name>
+    <name>MappingOutput: replace_target_switch_flag.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
