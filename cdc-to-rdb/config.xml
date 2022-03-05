@@ -15,7 +15,7 @@
         <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
         <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
         <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
-        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Delay">2592000</cfg>
+        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
         <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
         <cfg namespace="Config.Log.Kafka.Batch" key="Size">10000</cfg>
         <cfg namespace="Config.Log.Kafka.Batch" key="Duration">60000</cfg>
@@ -57,7 +57,7 @@ Config.DB.db_kpt_cdc_event_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
-Config.Log.UpdateOnly.FlashPoint.Delay	2592000	
+Config.Log.UpdateOnly.FlashPoint.Delay	86400	
 Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME	
@@ -105,7 +105,7 @@ Config.DB.db_kpt_cdc_event_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
-Config.Log.UpdateOnly.FlashPoint.Delay	2592000	
+Config.Log.UpdateOnly.FlashPoint.Delay	86400	
 Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME	
@@ -152,7 +152,7 @@ Config.DB.db_kpt_cdc_event_pgsql_writer.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
-Config.Log.UpdateOnly.FlashPoint.Delay	2592000	
+Config.Log.UpdateOnly.FlashPoint.Delay	86400	
 Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.Log.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA	
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME	
