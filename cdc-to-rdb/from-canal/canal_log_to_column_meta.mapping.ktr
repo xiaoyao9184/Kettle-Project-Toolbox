@@ -1240,22 +1240,38 @@
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
 var index_column = getOutputRowMeta().indexOfValue("column");
-var index_sql_type_number = getOutputRowMeta().indexOfValue("sql_type_number");
 var index_mysql_type = getOutputRowMeta().indexOfValue("mysql_type");
+var index_mysql_scale = getOutputRowMeta().indexOfValue("mysql_scale");
+var index_mysql_precision = getOutputRowMeta().indexOfValue("mysql_precision");
 
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = JSON.parse(message_col);
 var sqlType = Object.keys(message_obj.sqlType);
-var mysqlType = Object.keys(message_obj.mysqlType);
 
 for (index = 0; index &lt; sqlType.length; index++) {
   var key = sqlType[index];
 
+  var sql_type_number = num2str(message_obj.sqlType[key],'0');
+  
   var row = createRowCopy(getOutputRowMeta().size());
   row[index_column] = key;
-  row[index_sql_type_number] = num2str(message_obj.sqlType[key],'0');
   row[index_mysql_type] = message_obj.mysqlType[key];
+  // only mysql type decimal
+  if (3 == sql_type_number) { 
+    // parse like 'decimal(10,1)' to '10,1'
+    var type = message_obj.mysqlType[key];
+
+    var index_start = indexOf(type, "(");
+    var index_end = indexOf(type, ")");
+    var index_split = indexOf(type, ",");
+
+    var precision = substr(type, index_start + 1, index_split - index_start - 1);
+    var scale = substr(type, index_split + 1, index_end - index_split - 1);    
+
+    row[index_mysql_precision] = num2str(precision,'0');
+    row[index_mysql_scale] = num2str(scale,'0');
+  }
   putRow(row);
 }
 </jsScript_script>
@@ -1271,17 +1287,25 @@ for (index = 0; index &lt; sqlType.length; index++) {
         <replace>N</replace>
       </field>
       <field>
-        <name>sql_type_number</name>
-        <rename>sql_type_number</rename>
+        <name>mysql_type</name>
+        <rename>mysql_type</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>
       <field>
-        <name>mysql_type</name>
-        <rename>mysql_type</rename>
-        <type>String</type>
+        <name>mysql_precision</name>
+        <rename>mysql_precision</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>mysql_scale</name>
+        <rename>mysql_scale</rename>
+        <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
@@ -1392,9 +1416,26 @@ for (index = 0; index &lt; sqlType.length; index++) {
         <storage_type/>
       </meta>
       <meta>
-        <name>sql_type_number</name>
-        <rename>column_sql_type_number</rename>
-        <type>String</type>
+        <name>mysql_precision</name>
+        <rename>column_precision</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>mysql_scale</name>
+        <rename>column_scale</rename>
+        <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1478,7 +1519,10 @@ for (index = 0; index &lt; sqlType.length; index++) {
         <name>column_format</name>
       </field>
       <field>
-        <name>column_sql_type_number</name>
+        <name>column_precision</name>
+      </field>
+      <field>
+        <name>column_scale</name>
       </field>
       <select_unspecified>Y</select_unspecified>
     </fields>

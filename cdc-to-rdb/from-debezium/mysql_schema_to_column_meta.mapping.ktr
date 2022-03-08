@@ -2203,62 +2203,48 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     <fields>
       <field>
         <name>kafka_key</name>
-        <rename/>
       </field>
       <field>
         <name>kafka_message</name>
-        <rename/>
       </field>
       <field>
         <name>target_schema</name>
-        <rename/>
       </field>
       <field>
         <name>target_table</name>
-        <rename/>
       </field>
       <field>
         <name>target_switch_flag</name>
-        <rename/>
       </field>
       <field>
         <name>kettle_field</name>
-        <rename/>
       </field>
       <field>
         <name>kettle_json_path</name>
-        <rename/>
       </field>
       <field>
         <name>kettle_type</name>
-        <rename/>
       </field>
       <field>
         <name>kettle_converter</name>
-        <rename/>
       </field>
       <field>
         <name>column_name</name>
-        <rename/>
       </field>
       <field>
         <name>column_type</name>
-        <rename/>
       </field>
       <field>
         <name>column_key</name>
-        <rename/>
+      </field>
       <field>
         <name>column_format</name>
       </field>
+      <field>
+        <name>column_precision</name>
       </field>
       <field>
         <name>column_scale</name>
-        <rename/>
-      </field>
-      <field>
-        <name>column_precision</name>
-        <rename/>
       </field>
       <select_unspecified>Y</select_unspecified>
     </fields>

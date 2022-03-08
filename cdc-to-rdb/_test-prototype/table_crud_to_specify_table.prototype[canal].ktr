@@ -5760,6 +5760,18 @@
             <parent>column_key</parent>
             <child>column_key</child>
           </connector>
+          <connector>
+            <parent>column_format</parent>
+            <child>column_format</child>
+          </connector>
+          <connector>
+            <parent>column_precision</parent>
+            <child>column_precision</child>
+          </connector>
+          <connector>
+            <parent>column_scale</parent>
+            <child>column_scale</child>
+          </connector>
         </mapping>
       </output>
       <parameters>
