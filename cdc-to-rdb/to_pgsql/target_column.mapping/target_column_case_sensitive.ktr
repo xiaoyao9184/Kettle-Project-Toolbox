@@ -483,16 +483,16 @@
     </hop>
     <hop>
       <from>SelectValues: remove replace use lower</from>
-      <to>Dummy: rdb_column</to>
+      <to>Dummy: target_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: remove replace use case</from>
-      <to>Dummy: rdb_column</to>
+      <to>Dummy: target_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: rdb_column</from>
+      <from>Dummy: target_column</from>
       <to>MappingOutput: target_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
@@ -518,7 +518,7 @@
       <field_name>case_column</field_name>
       <calc_type>ADD3</calc_type>
       <field_a>QUOTATION</field_a>
-      <field_b>column</field_b>
+      <field_b>source_column</field_b>
       <field_c>QUOTATION</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -558,7 +558,7 @@
     <calculation>
       <field_name>lower_column</field_name>
       <calc_type>LOWER_CASE</calc_type>
-      <field_a>column</field_a>
+      <field_a>source_column</field_a>
       <field_b/>
       <field_c/>
       <value_type>String</value_type>
@@ -660,7 +660,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>column</name>
+        <name>source_column</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -694,7 +694,7 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy: rdb_column</name>
+    <name>Dummy: target_column</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -826,7 +826,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>column</name>
+        <name>source_column</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -893,7 +893,7 @@
       </remove>
       <meta>
         <name>case_column</name>
-        <rename>rdb_column</rename>
+        <rename>target_column</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -941,7 +941,7 @@
       </remove>
       <meta>
         <name>lower_column</name>
-        <rename>rdb_column</rename>
+        <rename>target_column</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -995,7 +995,7 @@
         <name>table</name>
       </field>
       <field>
-        <name>column</name>
+        <name>source_column</name>
       </field>
       <field>
         <name>CaseName</name>

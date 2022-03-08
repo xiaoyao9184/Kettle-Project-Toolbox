@@ -473,11 +473,11 @@
     </hop>
     <hop>
       <from>StreamLookup: key</from>
-      <to>ValueMapper: schema_key</to>
+      <to>ValueMapper: column_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ValueMapper: schema_key</from>
+      <from>ValueMapper: column_key</from>
       <to>StreamLookup</to>
       <enabled>Y</enabled>
     </hop>
@@ -1530,7 +1530,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>flag</name>
+        <name>target_switch_flag</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1542,7 +1542,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1554,7 +1554,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1566,7 +1566,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1578,7 +1578,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1766,7 +1766,7 @@
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>flag</leftvalue>
+            <leftvalue>target_switch_flag</leftvalue>
             <function>=</function>
             <rightvalue/>
             <value>
@@ -1809,31 +1809,31 @@
     </partitioning>
     <fields>
       <field>
-        <name>flag</name>
+        <name>target_switch_flag</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1935,7 +1935,7 @@ var index_name = getOutputRowMeta().indexOfValue("schema_name");
 var index_parameters_scale = getOutputRowMeta().indexOfValue("schema_parameters_scale");
 var index_parameters_precision = getOutputRowMeta().indexOfValue("schema_parameters_precision");
 
-var message_index = getInputRowMeta().indexOfValue("message");
+var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_object = JSON.parse(message_col);
 
@@ -2058,13 +2058,19 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
         <name>schema_name</name>
       </remove>
       <remove>
-        <name>pk_name</name>
+        <name>key_name</name>
       </remove>
       <remove>
         <name>FIELD_PREFIX</name>
       </remove>
       <remove>
         <name>JSON_PATH_PREFIX</name>
+      </remove>
+      <remove>
+        <name>JSON_PATH_PREFIX_AFTER</name>
+      </remove>
+      <remove>
+        <name>JSON_PATH_PREFIX_BEFORE</name>
       </remove>
       <meta>
         <name>schema_field</name>
@@ -2196,11 +2202,23 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <rename/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
+        <rename/>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <rename/>
+      </field>
+      <field>
+        <name>target_table</name>
+        <rename/>
+      </field>
+      <field>
+        <name>target_switch_flag</name>
         <rename/>
       </field>
       <field>
@@ -2230,6 +2248,9 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
       <field>
         <name>column_key</name>
         <rename/>
+      <field>
+        <name>column_format</name>
+      </field>
       </field>
       <field>
         <name>column_scale</name>
@@ -2342,20 +2363,20 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>schema</parent>
-            <child>schema</child>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
           </connector>
           <connector>
-            <parent>table</parent>
-            <child>table</child>
+            <parent>target_table</parent>
+            <child>target_table</child>
           </connector>
         </mapping>
       </input>
@@ -2367,20 +2388,28 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>source_pk</parent>
-            <child>source_pk</child>
+            <parent>target_schema</parent>
+            <child>lookup_schema</child>
           </connector>
           <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
+            <parent>target_table</parent>
+            <child>lookup_table</child>
+          </connector>
+          <connector>
+            <parent>key_name</parent>
+            <child>key_name</child>
+          </connector>
+          <connector>
+            <parent>key_kettle_field</parent>
+            <child>key_kettle_field</child>
           </connector>
         </mapping>
       </output>
@@ -2478,20 +2507,20 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     <integer_pair>N</integer_pair>
     <lookup>
       <key>
+        <name>target_schema</name>
+        <field>lookup_schema</field>
+      </key>
+      <key>
+        <name>target_table</name>
+        <field>lookup_table</field>
+      </key>
+      <key>
         <name>schema_field</name>
-        <field>source_pk</field>
-      </key>
-      <key>
-        <name>schema</name>
-        <field>schema</field>
-      </key>
-      <key>
-        <name>table</name>
-        <field>table</field>
+        <field>key_name</field>
       </key>
       <value>
-        <name>source_pk</name>
-        <rename>pk_name</rename>
+        <name>key_name</name>
+        <rename>key_name</rename>
         <default>-</default>
         <type>String</type>
       </value>
@@ -2545,7 +2574,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>ValueMapper: schema_key</name>
+    <name>ValueMapper: column_key</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -2555,7 +2584,7 @@ for (index = 0; index &lt; after_schema.fields.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>pk_name</field_to_use>
+    <field_to_use>key_name</field_to_use>
     <target_field>schema_key</target_field>
     <non_match_default>true</non_match_default>
     <fields>

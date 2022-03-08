@@ -560,7 +560,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -572,7 +572,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -633,25 +633,25 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -719,7 +719,7 @@
 var index_type = getOutputRowMeta().indexOfValue("schema_type");
 var index_field = getOutputRowMeta().indexOfValue("schema_field");
 
-var key_index = getOutputRowMeta().indexOfValue("key");
+var key_index = getOutputRowMeta().indexOfValue("kafka_key");
 var key_col = row[key_index];
 if (key_col != null){
   var key_object = JSON.parse(key_col);
@@ -800,7 +800,24 @@ if (key_col != null){
       </remove>
       <meta>
         <name>schema_field</name>
-        <rename>source_pk</rename>
+        <rename>key_name</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field</name>
+        <rename>key_kettle_field</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>

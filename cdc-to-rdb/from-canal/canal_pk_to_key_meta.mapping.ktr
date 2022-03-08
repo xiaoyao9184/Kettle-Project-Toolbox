@@ -559,7 +559,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -571,7 +571,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -616,25 +616,25 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -701,7 +701,7 @@
 
 var index_pk = getOutputRowMeta().indexOfValue("pk");
 
-var message_index = getInputRowMeta().indexOfValue("message");
+var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = JSON.parse(message_col);
 var keys = message_obj.pkNames;
@@ -757,7 +757,24 @@ for (index = 0; index &lt; keys.length; index++) {
       </remove>
       <meta>
         <name>pk</name>
-        <rename>source_pk</rename>
+        <rename>key_name</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field</name>
+        <rename>key_kettle_field</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>

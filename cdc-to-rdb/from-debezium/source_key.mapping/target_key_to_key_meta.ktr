@@ -459,25 +459,25 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -548,20 +548,20 @@
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>schema</parent>
-            <child>schema</child>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
           </connector>
           <connector>
-            <parent>table</parent>
-            <child>table</child>
+            <parent>target_table</parent>
+            <child>target_table</child>
           </connector>
         </mapping>
       </input>
@@ -573,28 +573,28 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>schema</parent>
-            <child>schema</child>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
           </connector>
           <connector>
-            <parent>table</parent>
-            <child>table</child>
+            <parent>target_table</parent>
+            <child>target_table</child>
           </connector>
           <connector>
-            <parent>source_pk</parent>
-            <child>source_pk</child>
+            <parent>key_name</parent>
+            <child>key_name</child>
           </connector>
           <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
+            <parent>key_kettle_field</parent>
+            <child>key_kettle_field</child>
           </connector>
         </mapping>
       </output>

@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/08 10:13:26.409</modified_date>
+    <modified_date>2022/03/08 16:27:32.677</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -960,7 +960,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>flag</name>
+        <name>target_switch_flag</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -972,7 +972,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -984,7 +984,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -996,7 +996,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1008,7 +1008,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1150,31 +1150,31 @@
     </partitioning>
     <fields>
       <field>
-        <name>flag</name>
+        <name>target_switch_flag</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>table</name>
+        <name>target_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1243,7 +1243,7 @@ var index_column = getOutputRowMeta().indexOfValue("column");
 var index_sql_type_number = getOutputRowMeta().indexOfValue("sql_type_number");
 var index_mysql_type = getOutputRowMeta().indexOfValue("mysql_type");
 
-var message_index = getInputRowMeta().indexOfValue("message");
+var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = JSON.parse(message_col);
 var sqlType = Object.keys(message_obj.sqlType);
@@ -1315,7 +1315,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>pk_name</name>
+        <name>key_name</name>
       </remove>
       <remove>
         <name>FIELD_PREFIX</name>
@@ -1436,6 +1436,24 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </partitioning>
     <fields>
       <field>
+        <name>kafka_key</name>
+      </field>
+      <field>
+        <name>kafka_message</name>
+      </field>
+      <field>
+        <name>target_schema</name>
+        <rename/>
+      </field>
+      <field>
+        <name>target_table</name>
+        <rename/>
+      </field>
+      <field>
+        <name>target_switch_flag</name>
+        <rename/>
+      </field>
+      <field>
         <name>kettle_field</name>
       </field>
       <field>
@@ -1503,20 +1521,20 @@ for (index = 0; index &lt; sqlType.length; index++) {
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>schema</parent>
-            <child>schema</child>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
           </connector>
           <connector>
-            <parent>table</parent>
-            <child>table</child>
+            <parent>target_table</parent>
+            <child>target_table</child>
           </connector>
         </mapping>
       </input>
@@ -1528,28 +1546,28 @@ for (index = 0; index &lt; sqlType.length; index++) {
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>source_pk</parent>
-            <child>source_pk</child>
-          </connector>
-          <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
-          </connector>
-          <connector>
-            <parent>schema</parent>
+            <parent>target_schema</parent>
             <child>lookup_schema</child>
           </connector>
           <connector>
-            <parent>table</parent>
+            <parent>target_table</parent>
             <child>lookup_table</child>
+          </connector>
+          <connector>
+            <parent>key_name</parent>
+            <child>key_name</child>
+          </connector>
+          <connector>
+            <parent>key_kettle_field</parent>
+            <child>key_kettle_field</child>
           </connector>
         </mapping>
       </output>
@@ -1637,20 +1655,20 @@ for (index = 0; index &lt; sqlType.length; index++) {
     <integer_pair>N</integer_pair>
     <lookup>
       <key>
-        <name>column</name>
-        <field>source_pk</field>
-      </key>
-      <key>
-        <name>schema</name>
+        <name>target_schema</name>
         <field>lookup_schema</field>
       </key>
       <key>
-        <name>table</name>
+        <name>target_table</name>
         <field>lookup_table</field>
       </key>
+      <key>
+        <name>column</name>
+        <field>key_name</field>
+      </key>
       <value>
-        <name>source_pk</name>
-        <rename>pk_name</rename>
+        <name>key_name</name>
+        <rename>key_name</rename>
         <default>-</default>
         <type>String</type>
       </value>
@@ -1754,7 +1772,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>pk_name</field_to_use>
+    <field_to_use>key_name</field_to_use>
     <target_field>column_key</target_field>
     <non_match_default>true</non_match_default>
     <fields>

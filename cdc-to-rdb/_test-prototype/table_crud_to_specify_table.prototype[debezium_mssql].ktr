@@ -4882,7 +4882,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>rdb_column</name>
+        <name>target_column</name>
         <rename>field_table</rename>
       </field>
       <field>
@@ -5002,7 +5002,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>rdb_column</name>
+        <name>target_column</name>
         <rename>key_table</rename>
       </field>
       <field>
@@ -5709,23 +5709,23 @@
           <description/>
           <connector>
             <parent>kafka_key</parent>
-            <child>key</child>
+            <child>kafka_key</child>
           </connector>
           <connector>
             <parent>kafka_message</parent>
-            <child>message</child>
+            <child>kafka_message</child>
           </connector>
           <connector>
             <parent>target_switch_flag</parent>
-            <child>flag</child>
+            <child>target_switch_flag</child>
           </connector>
           <connector>
             <parent>target_schema</parent>
-            <child>schema</child>
+            <child>target_schema</child>
           </connector>
           <connector>
             <parent>target_table</parent>
-            <child>table</child>
+            <child>target_table</child>
           </connector>
         </mapping>
       </input>
@@ -5879,7 +5879,7 @@
           </connector>
           <connector>
             <parent>column_name</parent>
-            <child>column</child>
+            <child>source_column</child>
           </connector>
         </mapping>
       </input>
@@ -5891,16 +5891,8 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>rdb_column</parent>
-            <child>rdb_column</child>
+            <parent>target_column</parent>
+            <child>target_column</child>
           </connector>
         </mapping>
       </output>
@@ -6347,7 +6339,7 @@
         <name>kettle_converter</name>
       </field>
       <field>
-        <name>rdb_column</name>
+        <name>target_column</name>
       </field>
       <field>
         <name>column_name</name>
