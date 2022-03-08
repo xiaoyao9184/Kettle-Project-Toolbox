@@ -780,7 +780,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
+    <valueField>kafka_message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -816,7 +816,7 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>message</in_stream_name>
+        <in_stream_name>kafka_message</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
         <replace_string>\\u0000</replace_string>

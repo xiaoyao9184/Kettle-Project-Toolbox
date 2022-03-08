@@ -556,12 +556,12 @@
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
     <AUTO_COMMIT>N</AUTO_COMMIT>
-    <OutputField kafkaName="key" type="String">key</OutputField>
-    <OutputField kafkaName="message" type="String">message</OutputField>
-    <OutputField kafkaName="topic" type="String">topic</OutputField>
-    <OutputField kafkaName="partition" type="Integer">partition</OutputField>
-    <OutputField kafkaName="offset" type="Integer">offset</OutputField>
-    <OutputField kafkaName="timestamp" type="Integer">timestamp</OutputField>
+    <OutputField kafkaName="key" type="String">kafka_key</OutputField>
+    <OutputField kafkaName="message" type="String">kafka_message</OutputField>
+    <OutputField kafkaName="topic" type="String">kafka_topic</OutputField>
+    <OutputField kafkaName="partition" type="Integer">kafka_partition</OutputField>
+    <OutputField kafkaName="offset" type="Integer">kafka_offset</OutputField>
+    <OutputField kafkaName="timestamp" type="Integer">kafka_timestamp</OutputField>
     <advancedConfig>
       <option property="auto.offset.reset" value="earliest"/>
       <option property="request.timeout.ms" value="605000"/>

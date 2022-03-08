@@ -1102,11 +1102,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: rename</from>
-      <to>Delay: debug for field injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SimpleMapping: target_column.mapping</from>
       <to>Dummy: column meta</to>
       <enabled>Y</enabled>
@@ -1153,7 +1148,7 @@
     </hop>
     <hop>
       <from>SampleRows: for target_column</from>
-      <to>SelectValues: rename</to>
+      <to>Delay: debug for field injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -2282,7 +2277,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
         <item/>
       </line>
@@ -2352,7 +2347,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
         <item/>
       </line>
@@ -2422,7 +2417,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
         <item/>
       </line>
@@ -2492,7 +2487,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
         <item/>
       </line>
@@ -2596,7 +2591,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -2608,7 +2603,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -2620,7 +2615,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>topic</name>
+        <name>kafka_topic</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -2632,7 +2627,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>partition</name>
+        <name>kafka_partition</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -2644,7 +2639,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>offset</name>
+        <name>kafka_offset</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -2656,7 +2651,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>timestamp</name>
+        <name>kafka_timestamp</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -2737,7 +2732,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
       </line>
     </data>
@@ -2794,7 +2789,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
       </line>
     </data>
@@ -2851,7 +2846,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
       </line>
     </data>
@@ -2908,7 +2903,7 @@
     </fields>
     <data>
       <line>
-        <item>message</item>
+        <item>kafka_message</item>
         <item>String</item>
       </line>
     </data>
@@ -4291,26 +4286,26 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>partition</aggregate>
-        <subject>partition</subject>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>offset</aggregate>
-        <subject>offset</subject>
+        <aggregate>kafka_offset</aggregate>
+        <subject>kafka_offset</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_range</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>CONCAT_COMMA</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_count</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
@@ -4562,37 +4557,37 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>topic</name>
+        <name>kafka_topic</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>partition</name>
+        <name>kafka_partition</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>offset</name>
+        <name>kafka_offset</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>timestamp</name>
+        <name>kafka_timestamp</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -5181,22 +5176,22 @@
         <name>batch_time</name>
       </remove>
       <remove>
-        <name>key</name>
+        <name>kafka_key</name>
       </remove>
       <remove>
-        <name>message</name>
+        <name>kafka_message</name>
       </remove>
       <remove>
-        <name>topic</name>
+        <name>kafka_topic</name>
       </remove>
       <remove>
-        <name>partition</name>
+        <name>kafka_partition</name>
       </remove>
       <remove>
-        <name>offset</name>
+        <name>kafka_offset</name>
       </remove>
       <remove>
-        <name>timestamp</name>
+        <name>kafka_timestamp</name>
       </remove>
     </fields>
     <attributes/>
@@ -5210,136 +5205,6 @@
     <GUI>
       <xloc>560</xloc>
       <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: rename</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>key</name>
-        <rename>kafka_key</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>message</name>
-        <rename>kafka_message</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>topic</name>
-        <rename>kafka_topic</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>partition</name>
-        <rename>kafka_partition</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>offset</name>
-        <rename>kafka_offset</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>timestamp</name>
-        <rename>kafka_timestamp</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5817,12 +5682,12 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
-            <child>partition</child>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
-            <child>offset</child>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -5955,11 +5820,11 @@
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
+            <parent>kafka_key</parent>
             <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
+            <parent>kafka_message</parent>
             <child>kafka_message</child>
           </connector>
         </mapping>
@@ -5971,14 +5836,6 @@
           <main_path>Y</main_path>
           <rename_on_output>N</rename_on_output>
           <description/>
-          <connector>
-            <parent>kafka_key</parent>
-            <child>key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>message</child>
-          </connector>
           <connector>
             <parent>source_switch_flag</parent>
             <child>source_switch_flag</child>
@@ -6075,14 +5932,6 @@
           <connector>
             <parent>target_ingore</parent>
             <child>target_ingore</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
           </connector>
         </mapping>
       </output>
@@ -6351,9 +6200,6 @@
         <name>kettle_converter</name>
       </field>
       <field>
-        <name>target_column</name>
-      </field>
-      <field>
         <name>column_name</name>
       </field>
       <field>
@@ -6361,6 +6207,18 @@
       </field>
       <field>
         <name>column_key</name>
+      </field>
+      <field>
+        <name>column_format</name>
+      </field>
+      <field>
+        <name>column_precision</name>
+      </field>
+      <field>
+        <name>column_scale</name>
+      </field>
+      <field>
+        <name>target_column</name>
       </field>
     </fields>
     <attributes/>

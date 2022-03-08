@@ -838,14 +838,6 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
             <parent>target_ingore</parent>
             <child>target_ingore</child>
           </connector>

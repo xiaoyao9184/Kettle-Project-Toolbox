@@ -475,7 +475,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -487,7 +487,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -669,7 +669,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
+    <valueField>kafka_message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -705,13 +705,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -770,7 +770,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <rename/>
       </field>
       <field>
@@ -858,7 +858,7 @@
 
 var index_pk_list = getOutputRowMeta().indexOfValue("pk_list");
 
-var message_index = getInputRowMeta().indexOfValue("message");
+var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = JSON.parse(message_col);
 var keys = message_obj.pkNames;

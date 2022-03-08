@@ -520,7 +520,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -532,7 +532,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -578,8 +578,8 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1215,7 +1215,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
+    <valueField>kafka_message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -1341,8 +1341,8 @@ putRow(row);</jsScript_script>
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1454,8 +1454,8 @@ putRow(row);</jsScript_script>
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1696,8 +1696,8 @@ putRow(row);
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1802,8 +1802,8 @@ putRow(row);
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1881,8 +1881,8 @@ putRow(row);
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1943,8 +1943,8 @@ putRow(row);
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -2141,8 +2141,8 @@ putRow(row);
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>message</name>
-        <rename>message</rename>
+        <name>kafka_message</name>
+        <rename>kafka_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>

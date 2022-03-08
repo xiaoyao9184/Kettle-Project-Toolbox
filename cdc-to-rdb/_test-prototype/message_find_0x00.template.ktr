@@ -683,7 +683,7 @@
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>message</leftvalue>
+            <leftvalue>kafka_message</leftvalue>
             <function>CONTAINS</function>
             <rightvalue/>
             <value>
@@ -839,7 +839,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
+    <valueField>kafka_message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -875,7 +875,7 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>message</in_stream_name>
+        <in_stream_name>kafka_message</in_stream_name>
         <out_stream_name/>
         <use_regex>yes</use_regex>
         <replace_string>\\u0000</replace_string>
@@ -914,7 +914,7 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>message</in_stream_name>
+        <in_stream_name>kafka_message</in_stream_name>
         <out_stream_name>no_x00</out_stream_name>
         <use_regex>yes</use_regex>
         <replace_string>\\u0000</replace_string>
@@ -1098,10 +1098,10 @@ if(match){
     <logmessage/>
     <fields>
       <field>
-        <name>offset</name>
+        <name>kafka_offset</name>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
       </field>
       <field>
         <name>no_x00</name>

@@ -928,7 +928,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -940,7 +940,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -952,7 +952,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>topic</name>
+        <name>kafka_topic</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -964,7 +964,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>partition</name>
+        <name>kafka_partition</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -976,7 +976,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>offset</name>
+        <name>kafka_offset</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -988,7 +988,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>timestamp</name>
+        <name>kafka_timestamp</name>
         <type>Integer</type>
         <format/>
         <currency/>
@@ -1189,7 +1189,7 @@
             <negated>N</negated>
             <leftvalue>redirect_offset</leftvalue>
             <function>=</function>
-            <rightvalue>offset</rightvalue>
+            <rightvalue>kafka_offset</rightvalue>
           </condition>
         </conditions>
       </condition>
@@ -1286,37 +1286,37 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>topic</name>
+        <name>kafka_topic</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>partition</name>
+        <name>kafka_partition</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>offset</name>
+        <name>kafka_offset</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>timestamp</name>
+        <name>kafka_timestamp</name>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1368,26 +1368,26 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>partition</aggregate>
-        <subject>partition</subject>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>offset</aggregate>
-        <subject>offset</subject>
+        <aggregate>kafka_offset</aggregate>
+        <subject>kafka_offset</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_range</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>CONCAT_COMMA</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_count</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
@@ -1462,32 +1462,32 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>topic</aggregate>
-        <subject>topic</subject>
+        <aggregate>kafka_topic</aggregate>
+        <subject>kafka_topic</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>partition</aggregate>
-        <subject>partition</subject>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>offset</aggregate>
-        <subject>offset</subject>
+        <aggregate>kafka_offset</aggregate>
+        <subject>kafka_offset</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_range</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>CONCAT_COMMA</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_count</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
@@ -1544,26 +1544,26 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>partition</aggregate>
-        <subject>partition</subject>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>offset</aggregate>
-        <subject>offset</subject>
+        <aggregate>kafka_offset</aggregate>
+        <subject>kafka_offset</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_range</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>CONCAT_COMMA</type>
         <valuefield/>
       </field>
       <field>
         <aggregate>offset_count</aggregate>
-        <subject>offset</subject>
+        <subject>kafka_offset</subject>
         <type>COUNT_ALL</type>
         <valuefield/>
       </field>
@@ -2218,22 +2218,22 @@ result_id = i;</jsScript_script>
         <name>batch_time</name>
       </field>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
       </field>
       <field>
-        <name>topic</name>
+        <name>kafka_topic</name>
       </field>
       <field>
-        <name>partition</name>
+        <name>kafka_partition</name>
       </field>
       <field>
-        <name>offset</name>
+        <name>kafka_offset</name>
       </field>
       <field>
-        <name>timestamp</name>
+        <name>kafka_timestamp</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2342,12 +2342,12 @@ result_id = i;</jsScript_script>
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
         </mapping>
       </input>
@@ -2419,15 +2419,15 @@ result_id = i;</jsScript_script>
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
+            <parent>kafka_partition</parent>
             <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
+            <parent>kafka_offset</parent>
             <child>kafka_offset</child>
           </connector>
           <connector>
-            <parent>timestamp</parent>
+            <parent>kafka_timestamp</parent>
             <child>kafka_timestamp</child>
           </connector>
           <connector>
@@ -2516,15 +2516,15 @@ result_id = i;</jsScript_script>
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
+            <parent>kafka_partition</parent>
             <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
+            <parent>kafka_offset</parent>
             <child>kafka_offset</child>
           </connector>
           <connector>
-            <parent>timestamp</parent>
+            <parent>kafka_timestamp</parent>
             <child>kafka_timestamp</child>
           </connector>
           <connector>
@@ -2613,12 +2613,12 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
-            <child>partition</child>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
-            <child>offset</child>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2678,12 +2678,12 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
-            <child>partition</child>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
-            <child>offset</child>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2743,12 +2743,12 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
-            <child>partition</child>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
-            <child>offset</child>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2808,12 +2808,12 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>partition</parent>
-            <child>partition</child>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
           </connector>
           <connector>
-            <parent>offset</parent>
-            <child>offset</child>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
           </connector>
           <connector>
             <parent>json</parent>

@@ -573,22 +573,6 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kafka_key</parent>
-            <child>kafka_key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>kafka_message</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
             <parent>key_name</parent>
             <child>key_name</child>
           </connector>
