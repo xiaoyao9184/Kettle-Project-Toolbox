@@ -602,11 +602,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: field_path</from>
-      <to>SelectValues: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: COMPARATOR</from>
       <to>FilterRows: column</to>
       <enabled>Y</enabled>
@@ -628,7 +623,7 @@
     </hop>
     <hop>
       <from>Constant: JsonInput</from>
-      <to>Calculator: field_path</to>
+      <to>SelectValues: column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1532,47 +1527,6 @@
     <GUI>
       <xloc>1392</xloc>
       <yloc>784</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: field_path</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>field_path</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>kettle_json_path</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5154,7 +5108,8 @@
         <rename>field_name</rename>
       </field>
       <field>
-        <name>field_path</name>
+        <name>kettle_json_path</name>
+        <rename>field_path</rename>
       </field>
       <field>
         <name>JSON_INPUT_FIELD_TYPE</name>
@@ -5999,7 +5954,7 @@
           </connector>
           <connector>
             <parent>column_name</parent>
-            <child>column_name</child>
+            <child>source_column</child>
           </connector>
           <connector>
             <parent>column_type</parent>
@@ -6588,7 +6543,7 @@
         <name>kettle_converter</name>
       </field>
       <field>
-        <name>column_name</name>
+        <name>source_column</name>
       </field>
       <field>
         <name>column_type</name>
