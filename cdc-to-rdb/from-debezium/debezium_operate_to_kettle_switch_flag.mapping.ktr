@@ -9,9 +9,9 @@
     <directory>/from-debezium</directory>
     <parameters>
       <parameter>
-        <name>Config.Time</name>
+        <name>Param.Root.Job.Timestamp</name>
         <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description>config time is kpt run time</description>
+        <description>timestamp point for root job run</description>
       </parameter>
       <parameter>
         <name>Param.UpdateOnly.FlashPoint.Delay</name>
@@ -500,7 +500,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -512,7 +512,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -848,7 +848,7 @@
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
     <IsAFile>N</IsAFile>
-    <valueField>message</valueField>
+    <valueField>kafka_message</valueField>
     <shortFileFieldName/>
     <pathFieldName/>
     <hiddenFieldName/>
@@ -884,13 +884,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1043,12 +1043,12 @@
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
-            <child>key</child>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
           </connector>
           <connector>
-            <parent>message</parent>
-            <child>message</child>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
           </connector>
           <connector>
             <parent>target_switch_flag</parent>

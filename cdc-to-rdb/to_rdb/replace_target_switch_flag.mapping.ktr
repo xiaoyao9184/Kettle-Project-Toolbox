@@ -9,9 +9,9 @@
     <directory>/to_rdb</directory>
     <parameters>
       <parameter>
-        <name>Config.Time</name>
+        <name>Param.Root.Job.Timestamp</name>
         <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description>config time is kpt run time</description>
+        <description>timestamp point for root job run</description>
       </parameter>
       <parameter>
         <name>Param.UpdateOnly.FlashPoint.Delay</name>
@@ -577,7 +577,7 @@
     <calculation>
       <field_name>flashpoint_timestamp</field_name>
       <calc_type>ADD_SECONDS</calc_type>
-      <field_a>config_loaded_root_job_timestamp</field_a>
+      <field_a>config_root_job_timestamp</field_a>
       <field_b>config_flashpoint_delay</field_b>
       <field_c/>
       <value_type>Date</value_type>
@@ -735,7 +735,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -747,7 +747,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -989,7 +989,7 @@
             <negated>N</negated>
             <leftvalue>config_flashpoint_timestamp</leftvalue>
             <function>&gt;</function>
-            <rightvalue>config_loaded_root_job_timestamp</rightvalue>
+            <rightvalue>config_root_job_timestamp</rightvalue>
           </condition>
         </conditions>
       </condition>
@@ -1057,8 +1057,8 @@
         <trim_type>none</trim_type>
       </field>
       <field>
-        <name>config_loaded_root_job_timestamp</name>
-        <variable>${Config.Time}</variable>
+        <name>config_root_job_timestamp</name>
+        <variable>${Param.Root.Job.Timestamp}</variable>
         <type>Date</type>
         <format>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</format>
         <currency/>
@@ -1133,13 +1133,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>key</name>
+        <name>kafka_key</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>message</name>
+        <name>kafka_message</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1350,7 +1350,7 @@
         <name>config_flashpoint_timestamp</name>
       </field>
       <field>
-        <name>config_loaded_root_job_timestamp</name>
+        <name>config_root_job_timestamp</name>
       </field>
       <field>
         <name>flashpoint_timestamp</name>

@@ -1199,7 +1199,7 @@
     <hop>
       <from>SystemInfo: batch info</from>
       <to>Transformation executor: log_environment_to_logtable</to>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -6336,11 +6336,11 @@
           <description/>
           <connector>
             <parent>key</parent>
-            <child>key</child>
+            <child>kafka_key</child>
           </connector>
           <connector>
             <parent>message</parent>
-            <child>message</child>
+            <child>kafka_message</child>
           </connector>
         </mapping>
       </input>
@@ -6352,11 +6352,11 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>key</parent>
+            <parent>kafka_key</parent>
             <child>key</child>
           </connector>
           <connector>
-            <parent>message</parent>
+            <parent>kafka_message</parent>
             <child>message</child>
           </connector>
           <connector>
@@ -6366,6 +6366,10 @@
         </mapping>
       </output>
       <parameters>
+        <variablemapping>
+          <variable>Param.Root.Job.Timestamp</variable>
+          <input>${Config.Time}</input>
+        </variablemapping>
         <variablemapping>
           <variable>Param.UpdateOnly.FlashPoint.Delay</variable>
           <input>${Config.Log.UpdateOnly.FlashPoint.Delay}</input>
