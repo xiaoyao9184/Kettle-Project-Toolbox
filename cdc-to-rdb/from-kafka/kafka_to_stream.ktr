@@ -547,7 +547,7 @@
     <clusterName/>
     <topic>${Config.Log.Kafka.Data.Topic}</topic>
     <consumerGroup>${Config.Log.Kafka.Consumer.Group}</consumerGroup>
-    <transformationPath>${Internal.Entry.Current.Directory}/stream_parse_to_each_table</transformationPath>
+    <transformationPath>/from-kafka/stream_parse_to_each_table</transformationPath>
     <SUB_STEP>Dummy: return to kafka</SUB_STEP>
     <batchSize>${Config.Log.Kafka.Batch.Size}</batchSize>
     <batchDuration>${Config.Log.Kafka.Batch.Duration}</batchDuration>
