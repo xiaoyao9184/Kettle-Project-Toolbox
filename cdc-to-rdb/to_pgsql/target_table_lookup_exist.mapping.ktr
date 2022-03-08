@@ -9,9 +9,9 @@
     <directory>/to_pgsql</directory>
     <parameters>
       <parameter>
-        <name>Param.Case.Name</name>
+        <name>Param.Case.Sensitive</name>
         <default_value>true</default_value>
-        <description>Case sensitive</description>
+        <description>case sensitive</description>
       </parameter>
     </parameters>
     <log>
@@ -1025,7 +1025,7 @@
     <fields>
       <field>
         <name>is_case_name</name>
-        <variable>${Param.Case.Name}</variable>
+        <variable>${Param.Case.Sensitive}</variable>
         <type>Boolean</type>
         <format/>
         <currency/>

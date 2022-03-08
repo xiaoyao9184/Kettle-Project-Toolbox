@@ -9,9 +9,9 @@
     <directory>/to_pgsql/target_column.mapping</directory>
     <parameters>
       <parameter>
-        <name>Param.Case.Name</name>
+        <name>Param.Case.Sensitive</name>
         <default_value>true</default_value>
-        <description>Case sensitive</description>
+        <description>case sensitive</description>
       </parameter>
     </parameters>
     <log>
@@ -453,16 +453,16 @@
     </hop>
     <hop>
       <from>MappingInput: target_column.mapping</from>
-      <to>GetVariable: Param.Case.Name</to>
+      <to>GetVariable: Param.Case.Sensitive</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: Param.Case.Name</from>
+      <from>GetVariable: Param.Case.Sensitive</from>
       <to>FilterRows: case</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: Param.Case.Name</from>
+      <from>GetVariable: Param.Case.Sensitive</from>
       <to>WriteToLog: param</to>
       <enabled>N</enabled>
     </hop>
@@ -498,7 +498,7 @@
     </hop>
     <hop>
       <from>DataGrid: test canal_user</from>
-      <to>GetVariable: Param.Case.Name</to>
+      <to>GetVariable: Param.Case.Sensitive</to>
       <enabled>N</enabled>
     </hop>
   </order>
@@ -763,7 +763,7 @@
     </GUI>
   </step>
   <step>
-    <name>GetVariable: Param.Case.Name</name>
+    <name>GetVariable: Param.Case.Sensitive</name>
     <type>GetVariable</type>
     <description/>
     <distribute>N</distribute>
@@ -776,7 +776,7 @@
     <fields>
       <field>
         <name>CaseName</name>
-        <variable>${Param.Case.Name}</variable>
+        <variable>${Param.Case.Sensitive}</variable>
         <type>Boolean</type>
         <format/>
         <currency/>

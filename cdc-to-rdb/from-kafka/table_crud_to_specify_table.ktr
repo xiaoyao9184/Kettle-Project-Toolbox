@@ -54,7 +54,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Case.Name</name>
+        <name>Config.Log.Target.Case.Sensitive</name>
         <default_value>true</default_value>
         <description/>
       </parameter>
@@ -5471,8 +5471,8 @@
       </output>
       <parameters>
         <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
+          <variable>Param.Case.Sensitive</variable>
+          <input>${Config.Log.Target.Case.Sensitive}</input>
         </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
@@ -5710,8 +5710,8 @@
       </output>
       <parameters>
         <variablemapping>
-          <variable>Param.Case.Name</variable>
-          <input>${Config.Log.Target.Case.Name}</input>
+          <variable>Param.Case.Sensitive</variable>
+          <input>${Config.Log.Target.Case.Sensitive}</input>
         </variablemapping>
         <variablemapping>
           <variable>Param.Schema.Prefix</variable>
@@ -5720,6 +5720,10 @@
         <variablemapping>
           <variable>Param.Table.Prefix</variable>
           <input>${Config.Log.Target.Table.Prefix}</input>
+        </variablemapping>
+        <variablemapping>
+          <variable>Param.Source.Name</variable>
+          <input>${Config.Log.Target.Mapping.Name}</input>
         </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
