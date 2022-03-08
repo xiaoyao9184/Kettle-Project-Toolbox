@@ -5976,6 +5976,10 @@
             <child>message</child>
           </connector>
           <connector>
+            <parent>source_switch_flag</parent>
+            <child>source_switch_flag</child>
+          </connector>
+          <connector>
             <parent>target_switch_flag</parent>
             <child>target_switch_flag</child>
           </connector>

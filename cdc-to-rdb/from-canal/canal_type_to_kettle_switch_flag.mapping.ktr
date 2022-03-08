@@ -449,7 +449,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/26 21:35:46.970</modified_date>
+    <modified_date>2022/03/08 14:25:34.173</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -457,22 +457,22 @@
   </notepads>
   <order>
     <hop>
-      <from>SelectValues: remove message_*</from>
+      <from>SelectValues: rename</from>
       <to>MappingOutput: canal_type_to_kettle_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>MappingInput: canal_type_to_kettle_switch_flag</from>
-      <to>JSON input: message info</to>
+      <to>JSON input: type</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: canal_manager</from>
-      <to>JSON input: message info</to>
+      <to>JSON input: type</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>JSON input: message info</from>
+      <from>JSON input: type</from>
       <to>ValueMapper: type to target_switch_flag</to>
       <enabled>Y</enabled>
     </hop>
@@ -483,7 +483,7 @@
     </hop>
     <hop>
       <from>SimpleMapping: replace_target_switch_flag.mapping</from>
-      <to>SelectValues: remove message_*</to>
+      <to>SelectValues: rename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -557,7 +557,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input: message info</name>
+    <name>JSON input: type</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -587,99 +587,8 @@
     </file>
     <fields>
       <field>
-        <name>message_id</name>
-        <path>$.id</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_ts</name>
-        <path>$.ts</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_es</name>
-        <path>$.es</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_sql</name>
-        <path>$.sql</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_isDdl</name>
-        <path>$.isDdl</path>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
         <name>message_type</name>
         <path>$.type</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_database</name>
-        <path>$.database</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_table</name>
-        <path>$.table</path>
         <type>String</type>
         <format/>
         <currency/>
@@ -783,7 +692,7 @@
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove message_*</name>
+    <name>SelectValues: rename</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -795,30 +704,23 @@
     </partitioning>
     <fields>
       <select_unspecified>Y</select_unspecified>
-      <remove>
-        <name>message_id</name>
-      </remove>
-      <remove>
-        <name>message_ts</name>
-      </remove>
-      <remove>
-        <name>message_es</name>
-      </remove>
-      <remove>
-        <name>message_sql</name>
-      </remove>
-      <remove>
-        <name>message_isDdl</name>
-      </remove>
-      <remove>
+      <meta>
         <name>message_type</name>
-      </remove>
-      <remove>
-        <name>message_database</name>
-      </remove>
-      <remove>
-        <name>message_table</name>
-      </remove>
+        <rename>source_switch_flag</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
