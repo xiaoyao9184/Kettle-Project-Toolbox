@@ -716,7 +716,7 @@
     <fields>
       <field>
         <name>jdbc_type</name>
-        <type>String</type>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1240,6 +1240,7 @@
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
 var index_column = getOutputRowMeta().indexOfValue("column");
+var index_sql_type_number = getOutputRowMeta().indexOfValue("sql_type_number");
 var index_mysql_type = getOutputRowMeta().indexOfValue("mysql_type");
 var index_mysql_scale = getOutputRowMeta().indexOfValue("mysql_scale");
 var index_mysql_precision = getOutputRowMeta().indexOfValue("mysql_precision");
@@ -1252,10 +1253,11 @@ var sqlType = Object.keys(message_obj.sqlType);
 for (index = 0; index &lt; sqlType.length; index++) {
   var key = sqlType[index];
 
-  var sql_type_number = num2str(message_obj.sqlType[key],'0');
+  var sql_type_number = message_obj.sqlType[key];
   
   var row = createRowCopy(getOutputRowMeta().size());
   row[index_column] = key;
+  row[index_sql_type_number] = Packages.java.lang.Long.valueOf(sql_type_number);
   row[index_mysql_type] = message_obj.mysqlType[key];
   // only mysql type decimal
   if (3 == sql_type_number) { 
@@ -1269,8 +1271,8 @@ for (index = 0; index &lt; sqlType.length; index++) {
     var precision = substr(type, index_start + 1, index_split - index_start - 1);
     var scale = substr(type, index_split + 1, index_end - index_split - 1);    
 
-    row[index_mysql_precision] = num2str(precision,'0');
-    row[index_mysql_scale] = num2str(scale,'0');
+    row[index_mysql_precision] = Packages.java.lang.Long.valueOf(precision);
+    row[index_mysql_scale] = Packages.java.lang.Long.valueOf(scale);
   }
   putRow(row);
 }
@@ -1282,6 +1284,14 @@ for (index = 0; index &lt; sqlType.length; index++) {
         <name>column</name>
         <rename>column</rename>
         <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>sql_type_number</name>
+        <rename>sql_type_number</rename>
+        <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
@@ -1340,6 +1350,9 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <select_unspecified>N</select_unspecified>
       <remove>
         <name>key_name</name>
+      </remove>
+      <remove>
+        <name>sql_type_number</name>
       </remove>
       <remove>
         <name>FIELD_PREFIX</name>
@@ -1476,24 +1489,6 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>kafka_key</name>
-      </field>
-      <field>
-        <name>kafka_message</name>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_table</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_switch_flag</name>
-        <rename/>
-      </field>
       <field>
         <name>kettle_field</name>
       </field>

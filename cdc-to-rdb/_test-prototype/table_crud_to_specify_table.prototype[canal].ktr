@@ -9,6 +9,11 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
+        <name>Config.Time</name>
+        <default_value>2022-03-07T14:56:32.402+08:00</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
         <default_value>test_kpt</default_value>
         <description>only for protptype</description>
@@ -913,6 +918,11 @@
     </hop>
     <hop>
       <from>SimpleMapping: ${Config.Log.Source.Column.Mapping}</from>
+      <to>Calculator: source_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: source_column</from>
       <to>SimpleMapping: target_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
@@ -1459,7 +1469,48 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>784</yloc>
+      <yloc>1008</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+    <step>
+    <name>Calculator: source_column</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>source_column</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>column_name</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2898,7 +2949,7 @@
     </remotesteps>
     <GUI>
       <xloc>1392</xloc>
-      <yloc>1008</yloc>
+      <yloc>1299</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2999,7 +3050,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
+      <xloc>1392</xloc>
       <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4475,30 +4526,6 @@
     </partitioning>
     <fields>
       <field>
-        <name>group_table_id</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>batch_id</name>
         <type>String</type>
         <length>-1</length>
@@ -4507,6 +4534,18 @@
       <field>
         <name>batch_time</name>
         <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>group_table_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -4543,6 +4582,18 @@
       <field>
         <name>kafka_timestamp</name>
         <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -5570,7 +5621,7 @@
           </connector>
           <connector>
             <parent>column_name</parent>
-            <child>source_column</child>
+            <child>column_name</child>
           </connector>
           <connector>
             <parent>column_type</parent>
@@ -5710,7 +5761,7 @@
             <child>table</child>
           </connector>
           <connector>
-            <parent>column_name</parent>
+            <parent>source_column</parent>
             <child>source_column</child>
           </connector>
         </mapping>
@@ -5746,7 +5797,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1584</yloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6047,7 +6098,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>560</xloc>
       <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6155,7 +6206,7 @@
         <name>kettle_converter</name>
       </field>
       <field>
-        <name>source_column</name>
+        <name>column_name</name>
       </field>
       <field>
         <name>column_type</name>
@@ -6171,6 +6222,9 @@
       </field>
       <field>
         <name>column_scale</name>
+      </field>
+      <field>
+        <name>source_column</name>
       </field>
       <field>
         <name>target_column</name>
