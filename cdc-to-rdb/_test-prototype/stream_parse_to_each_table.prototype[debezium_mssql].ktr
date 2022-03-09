@@ -2200,22 +2200,16 @@ result_id = i;</jsScript_script>
         <rename>p_table</rename>
       </field>
       <field>
-        <name>group_table_id</name>
-      </field>
-      <field>
-        <name>group_table_name</name>
-      </field>
-      <field>
-        <name>source_schema</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
         <name>batch_id</name>
       </field>
       <field>
         <name>batch_time</name>
+      </field>
+      <field>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
       </field>
       <field>
         <name>kafka_key</name>
@@ -2234,6 +2228,12 @@ result_id = i;</jsScript_script>
       </field>
       <field>
         <name>kafka_timestamp</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

@@ -453,11 +453,11 @@
     </hop>
     <hop>
       <from>JSON input: message info</from>
-      <to>ScriptValueMod: pk_list</to>
+      <to>ScriptValueMod: message_pk_list</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: pk_list</from>
+      <from>ScriptValueMod: message_pk_list</from>
       <to>SelectValues: rename source_*</to>
       <enabled>Y</enabled>
     </hop>
@@ -561,71 +561,6 @@
       <include_subfolders>N</include_subfolders>
     </file>
     <fields>
-      <field>
-        <name>message_id</name>
-        <path>$.id</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_ts</name>
-        <path>$.ts</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_es</name>
-        <path>$.es</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_sql</name>
-        <path>$.sql</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_isDdl</name>
-        <path>$.isDdl</path>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
       <field>
         <name>message_type</name>
         <path>$.type</path>
@@ -769,59 +704,75 @@
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>kafka_message</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_id</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_ts</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_es</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_sql</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_isDdl</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_type</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_database</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_table</name>
-        <rename/>
-      </field>
-      <field>
-        <name>message_type</name>
-        <rename>source_operate</rename>
-      </field>
-      <field>
+      <select_unspecified>Y</select_unspecified>
+      <meta>
         <name>message_database</name>
         <rename>source_schema</rename>
-      </field>
-      <field>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
         <name>message_table</name>
         <rename>source_table</rename>
-      </field>
-      <field>
-        <name>pk_list</name>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>message_pk_list</name>
         <rename>source_key</rename>
-      </field>
-      <select_unspecified>Y</select_unspecified>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>message_type</name>
+        <rename>source_operate</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -838,7 +789,7 @@
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: pk_list</name>
+    <name>ScriptValueMod: message_pk_list</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -856,7 +807,7 @@
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
-var index_pk_list = getOutputRowMeta().indexOfValue("pk_list");
+var index_message_pk_list = getOutputRowMeta().indexOfValue("message_pk_list");
 
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
@@ -878,14 +829,14 @@ for (i = 0; i &lt; datas.length; i++) {
 }
 
 var row = createRowCopy(getOutputRowMeta().size());  
-row[index_pk_list] = key_values.join(','); 
+row[index_message_pk_list] = key_values.join(','); 
 putRow(row);</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>pk_list</name>
-        <rename>pk_list</rename>
+        <name>message_pk_list</name>
+        <rename>message_pk_list</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>

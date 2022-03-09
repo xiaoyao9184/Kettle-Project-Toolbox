@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/26 20:25:51.721</modified_date>
+    <modified_date>2022/03/09 22:52:56.919</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -448,17 +448,12 @@
     </hop>
     <hop>
       <from>SetValueField: source_schema,source_table</from>
-      <to>SelectValues: remote SchemaChangeValue</to>
+      <to>SelectValues: remove SchemaChangeValue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Constant: EMPTY</from>
       <to>JSON input: SchemaChangeValue info</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove Envelope</from>
-      <to>SelectValues: rename source_*</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -477,58 +472,63 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remote SchemaChangeValue</from>
-      <to>SelectValues: rename source_*</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input: schema_name</from>
+      <from>JSON input: message_schema_name</from>
       <to>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: mssql_playload_to_table_name</from>
-      <to>JSON input: payload_key</to>
+      <from>JSON input: key_payload</from>
+      <to>NullIf: key_payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test_kpt_cdc</from>
-      <to>JSON input: payload_key</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>JSON input: payload_key</from>
-      <to>NullIf: payload_key</to>
+      <from>NullIf: key_payload</from>
+      <to>FilterRows: key_payload is null</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>NullIf: payload_key</from>
-      <to>FilterRows: payload_key is null</to>
+      <from>FilterRows: key_payload is null</from>
+      <to>Dummy: key_payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: payload_key is null</from>
-      <to>Dummy: payload_key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: payload_key is null</from>
+      <from>FilterRows: key_payload is null</from>
       <to>RandomValue: uuid</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>RandomValue: uuid</from>
-      <to>SelectValues: replace uuid to payload_key</to>
+      <to>SelectValues: replace uuid to key_payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: replace uuid to payload_key</from>
-      <to>Dummy: payload_key</to>
+      <from>SelectValues: replace uuid to key_payload</from>
+      <to>Dummy: key_payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: payload_key</from>
-      <to>JSON input: schema_name</to>
+      <from>MappingInput: mssql_playload_to_table_name</from>
+      <to>JSON input: message_schema_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test_kpt_cdc</from>
+      <to>JSON input: message_schema_name</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove Envelope</from>
+      <to>JSON input: key_payload</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove SchemaChangeValue</from>
+      <to>JSON input: key_payload</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: key_payload</from>
+      <to>SelectValues: rename source_*</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -567,7 +567,7 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>896</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -645,6 +645,31 @@
     </GUI>
   </step>
   <step>
+    <name>Dummy: key_payload</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1280</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</name>
     <type>FilterRows</type>
     <description/>
@@ -660,7 +685,7 @@
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>schema_name</leftvalue>
+        <leftvalue>message_schema_name</leftvalue>
         <function>=</function>
         <rightvalue/>
         <value>
@@ -684,7 +709,42 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>896</yloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: key_payload is null</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>RandomValue: uuid</send_true_to>
+    <send_false_to>Dummy: key_payload</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>key_payload</leftvalue>
+        <function>IS NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1152</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -719,7 +779,7 @@
     </file>
     <fields>
       <field>
-        <name>payload_databaseName</name>
+        <name>message_payload_databaseName</name>
         <path>$.payload.databaseName</path>
         <type>String</type>
         <format/>
@@ -732,7 +792,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>payload_schemaName</name>
+        <name>message_payload_schemaName</name>
         <path>$.payload.schemaName</path>
         <type>String</type>
         <format/>
@@ -745,7 +805,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>payload_ddl</name>
+        <name>message_payload_ddl</name>
         <path>$.payload.ddl</path>
         <type>String</type>
         <format/>
@@ -758,72 +818,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>source_version</name>
-        <path>$.payload.source.version</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_connector</name>
-        <path>$.payload.source.connector</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_name</name>
-        <path>$.payload.source.name</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_ts_ms</name>
-        <path>$.payload.source.ts_ms</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_snapshot</name>
-        <path>$.payload.source.snapshot</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_db</name>
+        <name>message_payload_source_db</name>
         <path>$.payload.source.db</path>
         <type>String</type>
         <format/>
@@ -836,20 +831,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>source_sequence</name>
-        <path>$.payload.source.sequence</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_schema</name>
+        <name>message_payload_source_schema</name>
         <path>$.payload.source.schema</path>
         <type>String</type>
         <format/>
@@ -862,47 +844,8 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>source_table</name>
+        <name>message_payload_source_table</name>
         <path>$.payload.source.table</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_change_lsn</name>
-        <path>$.payload.source.change_lsn</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_commit_lsn</name>
-        <path>$.payload.source.commit_lsn</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_event_serial_no</name>
-        <path>$.payload.source.event_serial_no</path>
         <type>String</type>
         <format/>
         <currency/>
@@ -936,7 +879,147 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>1024</yloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: key_payload</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>key_payload</name>
+        <path>$.payload</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>kafka_key</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>896</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON input: message_schema_name</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>message_schema_name</name>
+        <path>$.schema.name</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>kafka_message</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1010,72 +1093,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>source_version</name>
-        <path>$.payload.source.version</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_connector</name>
-        <path>$.payload.source.connector</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_name</name>
-        <path>$.payload.source.name</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_ts_ms</name>
-        <path>$.payload.source.ts_ms</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_snapshot</name>
-        <path>$.payload.source.snapshot</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_db</name>
+        <name>message_payload_source_db</name>
         <path>$.payload.source.db</path>
         <type>String</type>
         <format/>
@@ -1088,20 +1106,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>source_sequence</name>
-        <path>$.payload.source.sequence</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_schema</name>
+        <name>message_payload_source_schema</name>
         <path>$.payload.source.schema</path>
         <type>String</type>
         <format/>
@@ -1114,7 +1119,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>source_table</name>
+        <name>message_payload_source_table</name>
         <path>$.payload.source.table</path>
         <type>String</type>
         <format/>
@@ -1126,45 +1131,6 @@
         <trim_type>none</trim_type>
         <repeat>N</repeat>
       </field>
-      <field>
-        <name>source_change_lsn</name>
-        <path>$.payload.source.change_lsn</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_commit_lsn</name>
-        <path>$.payload.source.commit_lsn</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_event_serial_no</name>
-        <path>$.payload.source.event_serial_no</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
     </fields>
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
@@ -1188,147 +1154,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1152</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input: payload_key</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>payload_key</name>
-        <path>$.payload</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>kafka_key</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input: schema_name</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>schema_name</name>
-        <path>$.schema.name</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>kafka_message</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1398,7 +1224,69 @@
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remote SchemaChangeValue</name>
+    <name>NullIf: key_payload</name>
+    <type>NullIf</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>key_payload</name>
+        <value/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1024</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>RandomValue: uuid</name>
+    <type>RandomValue</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>uuid</name>
+        <type>random uuid4</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>1152</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove SchemaChangeValue</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1411,13 +1299,13 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>payload_databaseName</name>
+        <name>message_payload_databaseName</name>
       </remove>
       <remove>
-        <name>payload_schemaName</name>
+        <name>message_payload_schemaName</name>
       </remove>
       <remove>
-        <name>payload_ddl</name>
+        <name>message_payload_ddl</name>
       </remove>
       <meta>
         <name>EMPTY</name>
@@ -1447,7 +1335,7 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>1280</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1481,7 +1369,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1280</yloc>
+      <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1499,11 +1387,48 @@
     <fields>
       <select_unspecified>Y</select_unspecified>
       <remove>
-        <name>source_schema</name>
+        <name>message_schema_name</name>
+      </remove>
+      <remove>
+        <name>message_payload_source_schema</name>
       </remove>
       <meta>
-        <name>source_db</name>
+        <name>message_payload_source_db</name>
         <rename>source_schema</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>message_payload_source_table</name>
+        <rename>source_table</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>key_payload</name>
+        <rename>source_key</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1535,23 +1460,6 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
-      <meta>
-        <name>payload_key</name>
-        <rename>source_key</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1568,164 +1476,7 @@
     </GUI>
   </step>
   <step>
-    <name>SetValueField: source_schema,source_table</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source_schema</name>
-        <replaceby>EMPTY</replaceby>
-      </field>
-      <field>
-        <name>source_table</name>
-        <replaceby>EMPTY</replaceby>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>736</xloc>
-      <yloc>1152</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: payload_key is null</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>RandomValue: uuid</send_true_to>
-    <send_false_to>Dummy: payload_key</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>payload_key</leftvalue>
-        <function>IS NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>NullIf: payload_key</name>
-    <type>NullIf</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>payload_key</name>
-        <value/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: payload_key</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>608</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>RandomValue: uuid</name>
-    <type>RandomValue</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>uuid</name>
-        <type>random uuid4</type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>736</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: replace uuid to payload_key</name>
+    <name>SelectValues: replace uuid to key_payload</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1738,11 +1489,11 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>payload_key</name>
+        <name>key_payload</name>
       </remove>
       <meta>
         <name>uuid</name>
-        <rename>payload_key</rename>
+        <rename>key_payload</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1757,6 +1508,41 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>736</xloc>
+      <yloc>1280</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: source_schema,source_table</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>message_payload_source_schema</name>
+        <replaceby>EMPTY</replaceby>
+      </field>
+      <field>
+        <name>message_payload_source_table</name>
+        <replaceby>EMPTY</replaceby>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
