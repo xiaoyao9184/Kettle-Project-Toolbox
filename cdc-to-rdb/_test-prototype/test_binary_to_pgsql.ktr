@@ -5,8 +5,34 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/_test-prototype</directory>
     <parameters>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
+        <default_value>test_kpt</default_value>
+        <description>just for prototype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
+        <default_value>kpt.123</default_value>
+        <description>just for prototype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
+        <default_value>55432</default_value>
+        <description>just for prototype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
+        <default_value>pgsql</default_value>
+        <description>just for prototype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
+        <default_value>kpt</default_value>
+        <description>just for prototype</description>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -428,8 +454,8 @@
     <created_user>-</created_user>
     <created_date>2022/01/25 15:10:51.179</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/25 17:23:38.492</modified_date>
-    <key_for_session_key/>
+    <modified_date>2022/03/09 09:48:43.310</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -580,7 +606,7 @@
     <update_bypassed>N</update_bypassed>
     <lookup>
       <schema>mysql_manual_generation__test_kpt_cdc</schema>
-      <table>debezium_types_for_chameleon</table>
+      <table>debezium_types</table>
       <key>
         <name>_id</name>
         <field>_id</field>
