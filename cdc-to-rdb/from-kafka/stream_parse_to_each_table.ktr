@@ -9,14 +9,14 @@
     <directory>/from-kafka</directory>
     <parameters>
       <parameter>
-        <name>CursorLastExecutorResultIndex</name>
-        <default_value>-1</default_value>
-        <description>last index of executor result</description>
-      </parameter>
-      <parameter>
         <name>CursorLastExecutorResultBatchId</name>
         <default_value>-</default_value>
         <description>last batch_id of executor result</description>
+      </parameter>
+      <parameter>
+        <name>CursorLastExecutorResultIndex</name>
+        <default_value>-1</default_value>
+        <description>last index of executor result</description>
       </parameter>
     </parameters>
     <log>
@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/08 10:38:39.881</modified_date>
+    <modified_date>2022/03/10 15:27:50.279</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -533,16 +533,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: DDL</from>
-      <to>SimpleMapping: logger DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: DDL</from>
-      <to>JSON output: DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>JSON output: ERROR</from>
       <to>SimpleMapping: logger ERROR</to>
       <enabled>Y</enabled>
@@ -613,11 +603,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: batch_id</from>
-      <to>Constant: DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>ScriptValueMod: result_id</from>
       <to>StreamLookup: result</to>
       <enabled>Y</enabled>
@@ -643,11 +628,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: MERGE</from>
-      <to>JSON output: MERGE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>FilterRows: is redirect</from>
       <to>Group by: redirect_key</to>
       <enabled>Y</enabled>
@@ -655,16 +635,6 @@
     <hop>
       <from>FilterRows: is redirect</from>
       <to>SimpleMapping: group_table_operate.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by: redirect_key</from>
-      <to>Constant: MERGE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: MERGE</from>
-      <to>SimpleMapping: logger MERGE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -680,6 +650,46 @@
     <hop>
       <from>SimpleMapping: group_table_operate.mapping</from>
       <to>SelectValues: executor param</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: DDL</from>
+      <to>JSON output: DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: batch_id</from>
+      <to>Constant: DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: DDL</from>
+      <to>SimpleMapping: logger DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: MERGE</from>
+      <to>JSON output: MERGE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: MERGE</from>
+      <to>SetValueConstant: group</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueConstant: group</from>
+      <to>SystemInfo: batch</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch</from>
+      <to>SimpleMapping: logger MERGE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: redirect_key</from>
+      <to>Constant: MERGE</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1013,6 +1023,46 @@
     </GUI>
   </step>
   <step>
+    <name>FilterRows: is redirect</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>SimpleMapping: group_table_operate.mapping</send_true_to>
+    <send_false_to>Group by: redirect_key</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>redirect_offset</leftvalue>
+            <function>=</function>
+            <rightvalue>kafka_offset</rightvalue>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>896</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>FilterRows: is table-log</name>
     <type>FilterRows</type>
     <description/>
@@ -1307,6 +1357,112 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>1664</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by: redirect_key</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>redirect_key</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>kafka_offset</aggregate>
+        <subject>kafka_offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_range</aggregate>
+        <subject>kafka_offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>offset_count</aggregate>
+        <subject>kafka_offset</subject>
+        <type>COUNT_ALL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>redirect_operate</aggregate>
+        <subject>source_operate</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>redirect_offset</aggregate>
+        <subject>redirect_offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_key</aggregate>
+        <subject>source_key</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2021,6 +2177,200 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
+    <name>SimpleMapping: group_table_key.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>group_table_key.mapping</trans_name>
+    <filename/>
+    <directory_path>/to_rdb</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
+          </connector>
+          <connector>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
+          </connector>
+          <connector>
+            <parent>kafka_timestamp</parent>
+            <child>kafka_timestamp</child>
+          </connector>
+          <connector>
+            <parent>batch_id</parent>
+            <child>batch_id</child>
+          </connector>
+          <connector>
+            <parent>batch_time</parent>
+            <child>batch_time</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>param_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>param_table</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>param_key</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>group_name</parent>
+            <child>redirect_key</child>
+          </connector>
+          <connector>
+            <parent>group_id</parent>
+            <child>redirect_offset</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>CursorLastGroupOffset</variable>
+          <input>-1</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: group_table_operate.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>group_table_operate.mapping</trans_name>
+    <filename/>
+    <directory_path>/to_rdb</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
+          </connector>
+          <connector>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
+          </connector>
+          <connector>
+            <parent>kafka_timestamp</parent>
+            <child>kafka_timestamp</child>
+          </connector>
+          <connector>
+            <parent>batch_id</parent>
+            <child>batch_id</child>
+          </connector>
+          <connector>
+            <parent>batch_time</parent>
+            <child>batch_time</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>param_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>param_table</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>param_operate</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>group_name</parent>
+            <child>group_table_name</child>
+          </connector>
+          <connector>
+            <parent>group_id</parent>
+            <child>group_table_id</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <variablemapping>
+          <variable>CursorLastGroupIndex</variable>
+          <input>-1</input>
+        </variablemapping>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SimpleMapping: logger DDL</name>
     <type>SimpleMapping</type>
     <description/>
@@ -2047,10 +2397,6 @@ result_id = i;</jsScript_script>
           <connector>
             <parent>batch_id</parent>
             <child>batch</child>
-          </connector>
-          <connector>
-            <parent>group</parent>
-            <child>group</child>
           </connector>
           <connector>
             <parent>code</parent>
@@ -2789,152 +3135,6 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>FilterRows: is redirect</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>SimpleMapping: group_table_operate.mapping</send_true_to>
-    <send_false_to>Group by: redirect_key</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <conditions>
-          <condition>
-            <negated>N</negated>
-            <leftvalue>redirect_offset</leftvalue>
-            <function>=</function>
-            <rightvalue>kafka_offset</rightvalue>
-          </condition>
-        </conditions>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Group by: redirect_key</name>
-    <type>GroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <all_rows>N</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore/>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname/>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>redirect_key</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>batch_id</aggregate>
-        <subject>batch_id</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>batch_time</aggregate>
-        <subject>batch_time</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>kafka_partition</aggregate>
-        <subject>kafka_partition</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>kafka_offset</aggregate>
-        <subject>kafka_offset</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>offset_range</aggregate>
-        <subject>kafka_offset</subject>
-        <type>CONCAT_COMMA</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>offset_count</aggregate>
-        <subject>kafka_offset</subject>
-        <type>COUNT_ALL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>redirect_operate</aggregate>
-        <subject>source_operate</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>redirect_offset</aggregate>
-        <subject>redirect_offset</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>source_schema</aggregate>
-        <subject>source_schema</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>source_table</aggregate>
-        <subject>source_table</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
-        <aggregate>source_key</aggregate>
-        <subject>source_key</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>592</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>JSON output: MERGE</name>
     <type>JsonOutput</type>
     <description/>
@@ -3025,8 +3225,8 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: group_table_key.mapping</name>
-    <type>SimpleMapping</type>
+    <name>SetValueConstant: group</name>
+    <type>SetValueConstant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -3035,78 +3235,15 @@ result_id = i;</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>group_table_key.mapping</trans_name>
-    <filename/>
-    <directory_path>/to_rdb</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_partition</parent>
-            <child>kafka_partition</child>
-          </connector>
-          <connector>
-            <parent>kafka_offset</parent>
-            <child>kafka_offset</child>
-          </connector>
-          <connector>
-            <parent>kafka_timestamp</parent>
-            <child>kafka_timestamp</child>
-          </connector>
-          <connector>
-            <parent>batch_id</parent>
-            <child>batch_id</child>
-          </connector>
-          <connector>
-            <parent>batch_time</parent>
-            <child>batch_time</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>param_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>param_table</child>
-          </connector>
-          <connector>
-            <parent>source_key</parent>
-            <child>param_key</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>group_name</parent>
-            <child>redirect_key</child>
-          </connector>
-          <connector>
-            <parent>group_id</parent>
-            <child>redirect_offset</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>CursorLastGroupOffset</variable>
-          <input>-1</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
+    <usevar>N</usevar>
+    <fields>
+      <field>
+        <name>group</name>
+        <value>MERGE</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -3116,105 +3253,8 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: group_table_operate.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>group_table_operate.mapping</trans_name>
-    <filename/>
-    <directory_path>/to_rdb</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_partition</parent>
-            <child>kafka_partition</child>
-          </connector>
-          <connector>
-            <parent>kafka_offset</parent>
-            <child>kafka_offset</child>
-          </connector>
-          <connector>
-            <parent>kafka_timestamp</parent>
-            <child>kafka_timestamp</child>
-          </connector>
-          <connector>
-            <parent>batch_id</parent>
-            <child>batch_id</child>
-          </connector>
-          <connector>
-            <parent>batch_time</parent>
-            <child>batch_time</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>param_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>param_table</child>
-          </connector>
-          <connector>
-            <parent>source_operate</parent>
-            <child>param_operate</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>group_name</parent>
-            <child>group_table_name</child>
-          </connector>
-          <connector>
-            <parent>group_id</parent>
-            <child>group_table_id</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>CursorLastGroupIndex</variable>
-          <input>-1</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1056</yloc>
+      <xloc>768</xloc>
+      <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3243,16 +3283,16 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>batch_id</parent>
+            <parent>batch</parent>
             <child>batch</child>
-          </connector>
-          <connector>
-            <parent>group</parent>
-            <child>group</child>
           </connector>
           <connector>
             <parent>code</parent>
             <child>code</child>
+          </connector>
+          <connector>
+            <parent>group</parent>
+            <child>group</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -3284,6 +3324,37 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>976</xloc>
       <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SystemInfo: batch</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>batch</name>
+        <type>batch ID</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>896</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
