@@ -39,7 +39,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE mssql_manual_generation__test_kpt_cdc.debezium_types (
     _id character varying(10) NOT NULL,
-    "BIT" bit(1),
+    "BIT" boolean,
     "TINYINT" integer,
     "SMALLINT" smallint,
     "INT" integer,
@@ -52,7 +52,7 @@ CREATE TABLE mssql_manual_generation__test_kpt_cdc.debezium_types (
     "NCHAR" character varying(10),
     "NVARCHAR" character varying(50),
     "NTEXT" text,
-    "XML" xml,
+    "XML" text,
     "DATETIMEOFFSET" timestamp with time zone,
     "DATE" date,
     "TIME_3" time without time zone,
