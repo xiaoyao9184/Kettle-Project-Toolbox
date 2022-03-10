@@ -684,8 +684,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>json</name>
-        <rename>log_message</rename>
+        <name>kafka_offset</name>
+        <rename>log_offset</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -701,8 +701,8 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>offset</name>
-        <rename>log_offset</rename>
+        <name>json</name>
+        <rename>log_message</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>

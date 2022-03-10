@@ -9,6 +9,71 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
+        <default_value>test_kpt</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
+        <default_value>kpt.123</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
+        <default_value>55432</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
+        <default_value>pgsql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
+        <default_value>kpt</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Delay.Injection.Crud.Time</name>
+        <default_value>0</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Delay.Injection.Field.Time</name>
+        <default_value>0</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Consumer.Group</name>
+        <default_value>kpt.mysql.20220310</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Data.Topic</name>
+        <default_value>kpt_debezium-mysql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <default_value>kafka:59094</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Column.Mapping</name>
+        <default_value>mysql_schema_to_column_meta.mapping</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Key.Mapping</name>
+        <default_value>debezium_key_to_key_meta</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Switch.Mapping</name>
+        <default_value>debezium_operate_to_kettle_switch_flag.mapping</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.Log.Source.Table.Mapping</name>
         <default_value>mysql_playload_to_table_name.mapping</default_value>
         <description>just for prototype</description>
@@ -16,12 +81,27 @@
       <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
         <default_value>from-debezium</default_value>
-        <description>just for prototype</description>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Case.Sensitive</name>
+        <default_value>true</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Column.Mapping</name>
+        <default_value>target_column_case_sensitive</default_value>
+        <description>only for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Schema.Prefix</name>
-        <default_value>kpt_sync__</default_value>
-        <description>just for prototype</description>
+        <default_value>mysql_manual_generation__</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Table.Mapping</name>
+        <default_value>config_prefix_lookup</default_value>
+        <description>only for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Table.Prefix</name>
@@ -29,14 +109,34 @@
         <description>just for prototype</description>
       </parameter>
       <parameter>
-        <name>CursorLastExecutorResultIndex</name>
-        <default_value>-1</default_value>
-        <description>last index of executor result</description>
+        <name>Config.Log.Target.Transformation.Path</name>
+        <default_value>to_pgsql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
+        <default_value>86400</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Time</name>
+        <default_value>2022-03-07T14:56:32.402+08:00</default_value>
+        <description>only for protptype</description>
       </parameter>
       <parameter>
         <name>CursorLastExecutorResultBatchId</name>
         <default_value>-</default_value>
         <description>last batch_id of executor result</description>
+      </parameter>
+      <parameter>
+        <name>CursorLastExecutorResultIndex</name>
+        <default_value>-1</default_value>
+        <description>last index of executor result</description>
       </parameter>
     </parameters>
     <log>
@@ -459,7 +559,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/08 10:41:35.958</modified_date>
+    <modified_date>2022/03/10 10:25:08.169</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1137,6 +1237,62 @@
         <item>16</item>
         <item>1630002794</item>
       </line>
+      <line>
+        <item/>
+        <item/>
+        <item>ddl</item>
+        <item>99</item>
+        <item>99</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{}</item>
+        <item>{}</item>
+        <item>ddl</item>
+        <item>99</item>
+        <item>100</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":2,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_user"}} </item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":2,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
+        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
+        <item>999</item>
+        <item>1</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":2,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_user"}} </item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":2,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
+        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
+        <item>999</item>
+        <item>2</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":3,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_user"}} </item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":3,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
+        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
+        <item>999</item>
+        <item>3</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":3,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_user"}} </item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":3,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
+        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
+        <item>999</item>
+        <item>4</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{"schema":{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Key"},"payload":{"id":3,"__dbz__physicalTableIdentifier":"kpt_debezium-mysql.canal_manager.canal_user"}} </item>
+        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"before"},{"type":"struct","fields":[{"type":"int64","optional":false,"field":"id"},{"type":"string","optional":false,"field":"username"},{"type":"string","optional":false,"field":"password"},{"type":"string","optional":false,"field":"name"},{"type":"string","optional":false,"field":"roles"},{"type":"string","optional":true,"field":"introduction"},{"type":"string","optional":true,"field":"avatar"},{"type":"string","optional":false,"name":"io.debezium.time.ZonedTimestamp","version":1,"default":"1970-01-01T00:00:00Z","field":"creation_date"}],"optional":true,"name":"kpt_debezium_mysql.data_changes.canal_manager.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":true,"field":"table"},{"type":"int64","optional":false,"field":"server_id"},{"type":"string","optional":true,"field":"gtid"},{"type":"string","optional":false,"field":"file"},{"type":"int64","optional":false,"field":"pos"},{"type":"int32","optional":false,"field":"row"},{"type":"int64","optional":true,"field":"thread"},{"type":"string","optional":true,"field":"query"}],"optional":false,"name":"io.debezium.connector.mysql.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"kpt_debezium_mysql.data_changes.canal_manager.Envelope"},"payload":{"before":null,"after":{"id":3,"username":"admin","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-13T16:05:28Z"},"source":{"version":"1.7.0.Beta1","connector":"mysql","name":"kpt_debezium-mysql","ts_ms":1630031593813,"snapshot":"last","db":"canal_manager","sequence":null,"table":"canal_user","server_id":0,"gtid":null,"file":"mysql-bin.000001","pos":6357978,"row":0,"thread":null,"query":null},"op":"r","ts_ms":1630031593813,"transaction":null}}</item>
+        <item>kpt_debezium-mysql.data-changes.canal_manager</item>
+        <item>999</item>
+        <item>5</item>
+        <item>1630002794</item>
+      </line>
     </data>
     <attributes/>
     <cluster_schema/>
@@ -1482,16 +1638,13 @@
     <prefix>grp</prefix>
     <add_linenr>N</add_linenr>
     <linenr_fieldname/>
-    <give_back_row>Y</give_back_row>
+    <give_back_row>N</give_back_row>
     <group>
-      </group>
-    <fields>
       <field>
-        <aggregate>batch_id</aggregate>
-        <subject>batch_id</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
+        <name>batch_id</name>
       </field>
+    </group>
+    <fields>
       <field>
         <aggregate>batch_time</aggregate>
         <subject>batch_time</subject>
@@ -1707,6 +1860,24 @@
       <field>
         <aggregate>redirect_offset</aggregate>
         <subject>redirect_offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_key</aggregate>
+        <subject>source_key</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>

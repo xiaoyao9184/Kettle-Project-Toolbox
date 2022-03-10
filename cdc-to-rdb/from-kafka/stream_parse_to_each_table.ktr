@@ -2865,6 +2865,24 @@ result_id = i;</jsScript_script>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
+      <field>
+        <aggregate>source_schema</aggregate>
+        <subject>source_schema</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_table</aggregate>
+        <subject>source_table</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_key</aggregate>
+        <subject>source_key</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
