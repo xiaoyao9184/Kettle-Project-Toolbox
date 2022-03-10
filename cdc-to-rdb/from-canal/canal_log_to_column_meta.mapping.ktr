@@ -1254,22 +1254,22 @@ for (index = 0; index &lt; sqlType.length; index++) {
   var key = sqlType[index];
 
   var sql_type_number = message_obj.sqlType[key];
+  var mysql_type = message_obj.mysqlType == null ? '' : message_obj.mysqlType[key];
   
   var row = createRowCopy(getOutputRowMeta().size());
   row[index_column] = key;
   row[index_sql_type_number] = Packages.java.lang.Long.valueOf(sql_type_number);
-  row[index_mysql_type] = message_obj.mysqlType[key];
+  row[index_mysql_type] = mysql_type;
   // only mysql type decimal
   if (3 == sql_type_number) { 
     // parse like 'decimal(10,1)' to '10,1'
-    var type = message_obj.mysqlType[key];
 
-    var index_start = indexOf(type, "(");
-    var index_end = indexOf(type, ")");
-    var index_split = indexOf(type, ",");
+    var index_start = indexOf(mysql_type, "(");
+    var index_end = indexOf(mysql_type, ")");
+    var index_split = indexOf(mysql_type, ",");
 
-    var precision = substr(type, index_start + 1, index_split - index_start - 1);
-    var scale = substr(type, index_split + 1, index_end - index_split - 1);    
+    var precision = substr(mysql_type, index_start + 1, index_split - index_start - 1);
+    var scale = substr(mysql_type, index_split + 1, index_end - index_split - 1);    
 
     row[index_mysql_precision] = Packages.java.lang.Long.valueOf(precision);
     row[index_mysql_scale] = Packages.java.lang.Long.valueOf(scale);

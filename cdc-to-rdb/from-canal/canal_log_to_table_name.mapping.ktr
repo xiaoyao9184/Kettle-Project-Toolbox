@@ -808,29 +808,30 @@
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
 var index_message_pk_list = getOutputRowMeta().indexOfValue("message_pk_list");
+var key_values = [];
 
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = JSON.parse(message_col);
-var keys = message_obj.pkNames;
-var datas = message_obj.data
-
-var key_values = [];
-
-for (i = 0; i &lt; datas.length; i++) {
-	var data = datas[i];
-	var data_key_values = [];
-	for (j = 0; j &lt; keys.length; j++) {
-  		var key_name = keys[j];
-  		var key_value = data[key_name];
-		data_key_values.push(key_value);
-	}
-	key_values.push(data_key_values.join('&amp;'));
+if (message_obj != null) {
+  var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
+  var datas = message_obj.data == null ? [] : message_obj.data;
+  for (i = 0; i &lt; datas.length; i++) {
+    var data = datas[i];
+    var data_key_values = [];
+    for (j = 0; j &lt; keys.length; j++) {
+      var key_name = keys[j];
+      var key_value = data[key_name];
+      data_key_values.push(key_value);
+    }
+    key_values.push(data_key_values.join('&amp;'));
+  }
 }
 
 var row = createRowCopy(getOutputRowMeta().size());  
 row[index_message_pk_list] = key_values.join(','); 
-putRow(row);</jsScript_script>
+putRow(row);
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>

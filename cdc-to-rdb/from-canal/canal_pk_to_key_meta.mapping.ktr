@@ -704,15 +704,18 @@ var index_pk = getOutputRowMeta().indexOfValue("pk");
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = JSON.parse(message_col);
-var keys = message_obj.pkNames;
+if (message_obj != null) {
+  var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
 
-for (index = 0; index &lt; keys.length; index++) {
-  var key = keys[index];
+  for (index = 0; index &lt; keys.length; index++) {
+    var key = keys[index];
 
-  var row = createRowCopy(getOutputRowMeta().size());  
-  row[index_pk] = key; 
-  putRow(row);
-}</jsScript_script>
+    var row = createRowCopy(getOutputRowMeta().size());  
+    row[index_pk] = key; 
+    putRow(row);
+  }
+}
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>

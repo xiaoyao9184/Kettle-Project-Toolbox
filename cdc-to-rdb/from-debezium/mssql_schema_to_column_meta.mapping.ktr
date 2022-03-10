@@ -1669,7 +1669,10 @@ var message_col = row[message_index];
 var message_object = JSON.parse(message_col);
 
 var after_schema = null;
-var fields = message_object.schema.fields;
+var fields = [];
+if (message_object != null &amp;&amp; message_object.schema != null &amp;&amp; message_object.schema.fields != null) {
+  fields = message_object.schema.fields;
+}
 for (index = 0; index &lt; fields.length; index++) {
   var field = fields[index];
   if(field.field == 'after'){
@@ -1680,8 +1683,12 @@ for (index = 0; index &lt; fields.length; index++) {
   }
 }
 
-for (index = 0; index &lt; after_schema.fields.length; index++) {
-  var schema_field = after_schema.fields[index];
+fields = [];
+if (after_schema != null &amp;&amp; after_schema.fields != null) {
+  fields = after_schema.fields;
+}
+for (index = 0; index &lt; fields.length; index++) {
+  var schema_field = fields[index];
 
   var field = schema_field.field;
   var type = schema_field.type;

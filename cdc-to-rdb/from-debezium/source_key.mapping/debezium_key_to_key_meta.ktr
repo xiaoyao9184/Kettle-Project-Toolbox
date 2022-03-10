@@ -724,7 +724,10 @@ var key_col = row[key_index];
 if (key_col != null){
   var key_object = JSON.parse(key_col);
 
-  var fields = key_object.schema.fields;
+  var fields = [];
+  if (key_object != null &amp;&amp; key_object.schema != null &amp;&amp; key_object.schema.fields != null) {
+    fields = key_object.schema.fields;
+  }
   for (index = 0; index &lt; fields.length; index++) {
     var schema_field = fields[index];
 
