@@ -763,6 +763,18 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>group</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2033,12 +2045,16 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kafka_partition</parent>
-            <child>kafka_partition</child>
+            <parent>batch_id</parent>
+            <child>batch</child>
           </connector>
           <connector>
-            <parent>kafka_offset</parent>
-            <child>kafka_offset</child>
+            <parent>group</parent>
+            <child>group</child>
+          </connector>
+          <connector>
+            <parent>code</parent>
+            <child>code</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2098,12 +2114,16 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kafka_partition</parent>
-            <child>kafka_partition</child>
+            <parent>batch_id</parent>
+            <child>batch</child>
           </connector>
           <connector>
-            <parent>kafka_offset</parent>
-            <child>kafka_offset</child>
+            <parent>group_table_id</parent>
+            <child>group</child>
+          </connector>
+          <connector>
+            <parent>code</parent>
+            <child>code</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2163,12 +2183,16 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kafka_partition</parent>
-            <child>kafka_partition</child>
+            <parent>batch_id</parent>
+            <child>batch</child>
           </connector>
           <connector>
-            <parent>kafka_offset</parent>
-            <child>kafka_offset</child>
+            <parent>group_table_id</parent>
+            <child>group</child>
+          </connector>
+          <connector>
+            <parent>code</parent>
+            <child>code</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2737,6 +2761,18 @@ result_id = i;</jsScript_script>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>group</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3207,12 +3243,16 @@ result_id = i;</jsScript_script>
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kafka_partition</parent>
-            <child>kafka_partition</child>
+            <parent>batch_id</parent>
+            <child>batch</child>
           </connector>
           <connector>
-            <parent>kafka_offset</parent>
-            <child>kafka_offset</child>
+            <parent>group</parent>
+            <child>group</child>
+          </connector>
+          <connector>
+            <parent>code</parent>
+            <child>code</child>
           </connector>
           <connector>
             <parent>json</parent>

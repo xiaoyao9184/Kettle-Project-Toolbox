@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/01 09:08:08.643</modified_date>
+    <modified_date>2022/03/10 14:54:57.618</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -447,23 +447,38 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: rename</from>
-      <to>Calculator: log_key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>MappingInput: log_json_to_kafka</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: log_key</from>
+      <from>Calculator: log_key use group</from>
+      <to>Kafka producer: logger</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: rename</from>
+      <to>FilterRows: have group</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: have group</from>
+      <to>Calculator: log_key use group</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: have group</from>
+      <to>Calculator: log_key use code</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: log_key use code</from>
       <to>Kafka producer: logger</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: log_key</name>
+    <name>Calculator: log_key use code</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -477,9 +492,9 @@
     <calculation>
       <field_name>log_key</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>log_partition</field_a>
+      <field_a>log_batch</field_a>
       <field_b>POINT</field_b>
-      <field_c>log_offset</field_c>
+      <field_c>log_code</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -498,8 +513,49 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>608</yloc>
+      <xloc>496</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: log_key use group</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>log_key</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>log_batch</field_a>
+      <field_b>POINT</field_b>
+      <field_c>log_group</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -543,6 +599,41 @@
     </GUI>
   </step>
   <step>
+    <name>FilterRows: have group</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Calculator: log_key use code</send_true_to>
+    <send_false_to>Calculator: log_key use group</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>log_group</leftvalue>
+        <function>IS NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Kafka producer: logger</name>
     <type>KafkaProducerOutput</type>
     <description/>
@@ -578,7 +669,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>752</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -595,14 +686,20 @@
     </partitioning>
     <fields>
       <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
+        <name>batch</name>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
+        <name>group</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>code</name>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -649,7 +746,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>896</yloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -667,8 +764,8 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>kafka_partition</name>
-        <rename>log_partition</rename>
+        <name>batch</name>
+        <rename>log_batch</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -684,12 +781,29 @@
         <storage_type/>
       </meta>
       <meta>
-        <name>kafka_offset</name>
-        <rename>log_offset</rename>
+        <name>group</name>
+        <rename>log_group</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask>#.#</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>code</name>
+        <rename>log_code</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
