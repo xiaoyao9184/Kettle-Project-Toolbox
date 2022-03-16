@@ -539,7 +539,7 @@
     </hop>
     <hop>
       <from>SelectValues: remove number</from>
-      <to>ValueMapper: target_ingore</to>
+      <to>ValueMapper: target_ignore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -568,7 +568,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ValueMapper: target_ingore</from>
+      <from>ValueMapper: target_ignore</from>
       <to>SelectValues: remove lookup</to>
       <enabled>Y</enabled>
     </hop>
@@ -1548,7 +1548,7 @@ WHERE table_schema = ? AND table_name = ?
     </GUI>
   </step>
   <step>
-    <name>ValueMapper: target_ingore</name>
+    <name>ValueMapper: target_ignore</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -1559,7 +1559,7 @@ WHERE table_schema = ? AND table_name = ?
       <schema_name/>
     </partitioning>
     <field_to_use>lookup_exist</field_to_use>
-    <target_field>target_ingore</target_field>
+    <target_field>target_ignore</target_field>
     <non_match_default>Y</non_match_default>
     <fields>
       <field>

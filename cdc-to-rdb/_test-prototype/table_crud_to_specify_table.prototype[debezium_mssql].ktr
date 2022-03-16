@@ -632,8 +632,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: INGORE</from>
-      <to>JSON output: INGORE</to>
+      <from>Constant: IGNORE</from>
+      <to>JSON output: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -802,8 +802,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: target_ingore</from>
-      <to>Group by: INGORE</to>
+      <from>FilterRows: target_ignore</from>
+      <to>Group by: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -812,18 +812,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: INGORE</from>
-      <to>Constant: INGORE</to>
+      <from>Group by: IGNORE</from>
+      <to>Constant: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: INGORE</from>
-      <to>SimpleMapping: logger INGORE</to>
+      <from>JSON output: IGNORE</from>
+      <to>SimpleMapping: logger IGNORE</to>
       <enabled>N</enabled>
     </hop>
     <hop>
       <from>JoinRows</from>
-      <to>FilterRows: target_ingore</to>
+      <to>FilterRows: target_ignore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1122,7 +1122,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: target_ingore</from>
+      <from>FilterRows: target_ignore</from>
       <to>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
@@ -1138,7 +1138,7 @@
     </hop>
     <hop>
       <from>SimpleMapping: target_table.mapping</from>
-      <to>WriteToLog: target_ingore</to>
+      <to>WriteToLog: target_ignore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1615,7 +1615,7 @@
     </GUI>
   </step>
   <step>
-    <name>Constant: INGORE</name>
+    <name>Constant: IGNORE</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1633,7 +1633,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>INGORE</nullif>
+        <nullif>IGNORE</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -4146,7 +4146,7 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: target_ingore</name>
+    <name>FilterRows: target_ignore</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -4156,7 +4156,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Group by: INGORE</send_true_to>
+    <send_true_to>Group by: IGNORE</send_true_to>
     <send_false_to>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</send_false_to>
     <compare>
       <condition>
@@ -4164,7 +4164,7 @@
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>target_ingore</leftvalue>
+            <leftvalue>target_ignore</leftvalue>
             <function>=</function>
             <rightvalue/>
             <value>
@@ -4234,7 +4234,7 @@
     </GUI>
   </step>
   <step>
-    <name>Group by: INGORE</name>
+    <name>Group by: IGNORE</name>
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
@@ -4340,7 +4340,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON output: INGORE</name>
+    <name>JSON output: IGNORE</name>
     <type>JsonOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -4351,7 +4351,7 @@
       <schema_name/>
     </partitioning>
     <outputValue>json</outputValue>
-    <jsonBloc>ingore</jsonBloc>
+    <jsonBloc>ignore</jsonBloc>
     <nrRowsInBloc>1</nrRowsInBloc>
     <operation_type>outputvalue</operation_type>
     <compatibility_mode>N</compatibility_mode>
@@ -5759,7 +5759,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: logger INGORE</name>
+    <name>SimpleMapping: logger IGNORE</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -5950,8 +5950,8 @@
             <child>target_table</child>
           </connector>
           <connector>
-            <parent>target_ingore</parent>
-            <child>target_ingore</child>
+            <parent>target_ignore</parent>
+            <child>target_ignore</child>
           </connector>
         </mapping>
       </output>
@@ -6357,7 +6357,7 @@
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: target_ingore</name>
+    <name>WriteToLog: target_ignore</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -6392,7 +6392,7 @@
         <name>target_table</name>
       </field>
       <field>
-        <name>target_ingore</name>
+        <name>target_ignore</name>
       </field>
     </fields>
     <attributes/>

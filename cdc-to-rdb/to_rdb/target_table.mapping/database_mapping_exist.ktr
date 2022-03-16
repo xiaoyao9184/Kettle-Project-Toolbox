@@ -548,7 +548,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ValueMapper: target_ingore</from>
+      <from>ValueMapper: target_ignore</from>
       <to>SelectValues: remove mapping</to>
       <enabled>Y</enabled>
     </hop>
@@ -559,12 +559,12 @@
     </hop>
     <hop>
       <from>SimpleMapping: target_table_case_sensitive.mapping</from>
-      <to>ValueMapper: target_ingore</to>
+      <to>ValueMapper: target_ignore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: none</from>
-      <to>ValueMapper: target_ingore</to>
+      <to>ValueMapper: target_ignore</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1224,7 +1224,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
     </GUI>
   </step>
   <step>
-    <name>ValueMapper: target_ingore</name>
+    <name>ValueMapper: target_ignore</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -1235,7 +1235,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
       <schema_name/>
     </partitioning>
     <field_to_use>mapping_exist</field_to_use>
-    <target_field>target_ingore</target_field>
+    <target_field>target_ignore</target_field>
     <non_match_default>Y</non_match_default>
     <fields>
       <field>
