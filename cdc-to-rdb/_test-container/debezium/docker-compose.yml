@@ -60,7 +60,7 @@ services:
   ui:
     image: debezium/debezium-ui:1.7
     environment:
-      KAFKA_CONNECT_URI: "http://connect:8083"
+      KAFKA_CONNECT_URIS: "http://connect:8083"
     ports:
       - "58082:8080"
     networks:
