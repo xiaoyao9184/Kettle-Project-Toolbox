@@ -2,26 +2,26 @@
 Setlocal enabledelayedexpansion
 
 set current_path=%~dp0
-set connect_config=%1
-@REM set name_prefix=test-kpt_debezium_connector_
-@REM set connect_network=host
-@REM set connect_host=connect
+set connector_config=%1
 
-if not exist "%connect_config%" (
-    echo "Run all"
-    for %%f in (%current_path%\config_of_connector\*.json) do (
-        set name=%%~nf
-        @REM n="${name//\./_}" 
-        echo "Run of !name!"
+if not exist "%connector_config%" set connector_config=%current_path%config_of_connector
 
-        curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @config_of_connector/!name!.json localhost:58083/connectors/ 
+if exist %connector_config%\NUL (
+    cd !connector_config!
+    echo "Run all in !connector_config!"
+    for %%f in (!connector_config!\*.json) do (
+        set connector_file=%%~nxf
+        echo "Run of !connector_file!"
+
+        curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @!connector_file! localhost:58083/connectors/ 
     )
 ) else (
-    for %%F in ("!connect_config!") do set name=%%~nF
-    echo "Run of !name! at %connect_config%"
+    for %%F in ("!connector_config!") do set connector_path=%%~dpF
+    for %%F in ("!connector_config!") do set connector_file=%%~nxF
+    cd !connector_path!
+    echo "Run of !connector_file! at %connector_path%"
 
-    curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @config_of_connector/!name!.json http://localhost:58083/connectors/
-            
+    curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @!connector_file! localhost:58083/connectors/
 )
 
 cd %current_path%
