@@ -1,0 +1,32 @@
+version: '3'
+services:
+  
+  server:
+    image: confluentinc/cp-ksqldb-server:7.0.0
+    environment:
+      KSQL_BOOTSTRAP_SERVERS: kafka:9092
+      KSQL_LISTENERS: http://0.0.0.0:8088/
+      KSQL_KSQL_SERVICE_ID: ksql_standalone_1_  
+    ports:
+      - 58088:8088
+    networks:
+      - test-kpt
+    container_name: ksqldb-server
+
+  cli:
+    image: confluentinc/cp-ksqldb-cli:7.0.0
+    entrypoint: /bin/sh
+    tty: true
+    networks:
+      - test-kpt
+    container_name: ksqldb-cli
+    depends_on:
+      - server
+
+networks:
+  test-kpt:
+    external: true
+
+# volumes:
+#   kafka:
+    
