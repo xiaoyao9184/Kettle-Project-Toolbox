@@ -19,10 +19,8 @@ Setlocal enabledelayedexpansion
 set tip=Kettle-Project-Toolbox: Link PDI
 set ver=1.0
 ::interactive
-set interactive=1
-::default is inter call
-::no parameters will set 0
-if "%1" equ "" set interactive=0
+echo %cmdcmdline% | find /i "%~0" >nul
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::current info
 set current_path=%~dp0
 %~d0

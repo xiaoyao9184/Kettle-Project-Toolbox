@@ -16,13 +16,8 @@ Setlocal enabledelayedexpansion
 set tip=Kettle-Project-Toolbox: Run Spoon
 set ver=1.0
 ::interactive
-set interactive=1
-::default is inter call
-::check double-clicking(outer call) and set 0
-::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
-::check cmdcmdline include ""{scriptfile}" "
 echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 set interactive=0
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::set kettle environment
 if exist "%~dp0SET_ENVIRONMENT.bat" (
     call %~dp0SET_ENVIRONMENT.bat
