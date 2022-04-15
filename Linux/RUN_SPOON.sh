@@ -14,7 +14,8 @@
 
 tip="Kettle-Project-Toolbox: Run Spoon"
 ver="1.0"
-# interactive
+# here interactive mean user input can be obtained, 
+# determined by checking is connected to a terminal 
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 # current info
 current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

@@ -17,7 +17,7 @@ Setlocal enabledelayedexpansion
 
 set tip=Kettle-Project-Toolbox: link KPT
 set ver=1.0
-::interactive
+::interactive 1 for true
 echo %cmdcmdline% | find /i "%~0" >nul
 if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::current info
