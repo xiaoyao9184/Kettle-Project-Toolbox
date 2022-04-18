@@ -3,7 +3,9 @@ SETLOCAL EnableDelayedExpansion
 ::CODER BY xiaoyao9184 1.0
 ::TIME 2022-04-16
 ::FILE UPDATE_SCRIPT
-::SYNTAX UPDATE_SCRIPT [target_path [source_path_list]... ]
+::SYNTAX UPDATE_SCRIPT: [target_path [source_path]]
+::SYNTAX target_path: path[;path]...
+::SYNTAX source_path: path[;path]...
 
 :init_variable
 
@@ -13,7 +15,7 @@ SET ver=1.0
 SET NL=^
 
 
-rem two empty line required
+REM two empty line required
 
 ::interactive 1 for true
 ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
@@ -23,14 +25,19 @@ IF NOT ERRORLEVEL 1 ( SET interactive=0 ) ELSE ( SET interactive=1 )
 SET current_script_dir=%~dp0
 
 ::interactive tip
-SET tip_set_target_path=Please input target_path or drag path in[empty is ../default]:
+SET tip_set_target_path=Please input target_path or drag path in[empty use default '../default']:
+SET tip_set_target_path_again=Again input target_path or drag path in[empty end]:
 SET tip_miss_target_path=Missing param 'target_path' at position 1.
-SET stip_set_source_path=Please input source_path_list or drag path in[empty is ../Window and ../Linux]:
-SET tip_miss_source_path=Missing param 'source_path_list' at position 1.
+SET tip_set_source_path=Please input source_path or drag path in[empty use default '../Window;../Linux']:
+SET tip_set_source_path_again=Again input source_path or drag path in[empty end]:
+SET tip_miss_source_path=Missing param 'source_path' at position 1.
 
 ::default param
-SET target_path=%1
-SET source_path_list=
+SET target_path_list=%1
+SET source_path_list=%2
+SET default_target_path_list=%current_script_dir%..\default
+SET default_source_path_list=%current_script_dir%..\Windows;%current_script_dir%..\Linux
+SET input_list=
 
 
 :tip_version
@@ -38,46 +45,88 @@ SET source_path_list=
 IF %interactive% equ 1 ( TITLE %tip% %ver% ) ELSE ( ECHO %tip% )
 
 
-:check_variable
+:loop_check_variable
 
-IF "%target_path%"=="" (
-    IF %interactive% equ 1 ( 
-        SET /p target_path=%tip_set_target_path%
-        IF "!target_path!"=="" SET target_path=%current_script_dir%..\default
-        GOTO:check_variable
+SET delimiter=;
+SET input_item=
+
+IF "!target_path_list!"=="" (
+    IF %interactive% equ 1 (
+        SET /p input_item=!tip_set_target_path!
+        IF "!input_item!"=="" (
+            IF "!input_list!"=="" (
+                :: default param use 'default_target_path_list'
+                SET target_path_list=%default_target_path_list%
+            ) ELSE (
+                :: input param end
+                SET target_path_list=!input_list!
+                SET input_list=
+            )
+        ) ELSE (
+            IF "!input_list!"=="" SET delimiter=
+            SET input_list=!input_list!!delimiter!!input_item!
+            SET tip_set_target_path=%tip_set_target_path_again%
+        )
+        GOTO:loop_check_variable
     ) ELSE ( 
         ECHO %tip_miss_target_path%
         EXIT /B 1
     )
 ) ELSE (
-    SHIFT
-)
-FOR %%F IN (%target_path%.) DO SET target_path=%%~dpnF
+    :: to list for run FOR command
+    SET target_path_list=!target_path_list:;=^
 
-:loop__source_path_list
-    IF "%1"=="" GOTO:end__source_path_list
-    FOR %%F IN (%1.) DO SET source_path=%%~dpnF
-    IF "!source_path_list!"=="" (
-        SET source_path_list=!source_path!
-    ) ELSE (
-        SET source_path_list=!source_path_list!!NL!!source_path!
+    !
+    REM newline symbol two empty line required
+    :: to absolute path
+    SET path_list=!target_path_list!
+    SET target_path_list=
+    FOR /F %%L IN ("!path_list!") DO (
+        SET path_item=%%L
+        ::remove "
+        SET path_item=!path_item:"=!
+        FOR %%F IN (!path_item!.) DO SET path_item=%%~dpnF
+        SET target_path_list=!target_path_list!!NL!!path_item!
     )
-    SHIFT
-    GOTO:loop__source_path_list
-:end__source_path_list
+)
 
 IF "!source_path_list!"=="" (
     IF %interactive% equ 1 ( 
-        SET /p source_path_list=%stip_set_source_path%
-        IF "!source_path_list!"=="" (
-            FOR %%F IN (%current_script_dir%..\Windows) DO SET source_windows=%%~dpnF
-            FOR %%F IN (%current_script_dir%..\Linux) DO SET source_linux=%%~dpnF
-            SET source_path_list=!source_windows!!NL!!source_linux!
+        SET /p input_item=!tip_set_source_path!
+        IF "!input_item!"=="" (
+            IF "!input_list!"=="" (
+                :: default param use 'default_target_path_list'
+                SET source_path_list=%default_source_path_list%
+            ) ELSE (
+                :: input param end
+                SET source_path_list=!input_list!
+                SET input_list=
+            )
+        ) ELSE (
+            IF "!input_list!"=="" SET delimiter=
+            SET input_list=!input_list!!delimiter!!input_item!
+            SET tip_set_source_path=%tip_set_source_path_again%
         )
-        GOTO:check_variable
+        GOTO:loop_check_variable
     ) ELSE ( 
         ECHO %tip_miss_source_path%
         EXIT /B 1
+    )
+) ELSE (
+    :: to list for run FOR command
+    SET source_path_list=!source_path_list:;=^
+
+    !
+    REM newline symbol two empty line required
+    :: to absolute path
+    SET path_list=!source_path_list!
+    SET source_path_list=
+    FOR /F %%L IN ("!path_list!") DO (
+        SET path_item=%%L
+        ::remove "
+        SET path_item=!path_item:"=!
+        FOR %%F IN (!path_item!.) DO SET path_item=%%~dpnF
+        SET source_path_list=!source_path_list!!NL!!path_item!
     )
 )
 
@@ -87,9 +136,8 @@ IF "!source_path_list!"=="" (
 ::print info for debug
 ECHO ===========================================================
 ECHO Work directory is: %current_script_dir%
-ECHO Target directory is: %target_path%
-ECHO Source directory is: 
-ECHO !source_path_list!
+ECHO Target directory is: !NL!!target_path_list!
+ECHO Source directory is: !NL!!source_path_list!
 ECHO ===========================================================
 ECHO Running...      Ctrl+C for exit
 
@@ -97,17 +145,19 @@ ECHO Running...      Ctrl+C for exit
 CD %current_script_dir%
 
 ::bat
-FOR %%f IN (%target_path%\*.bat) DO (
-    SET target_file_path=%%f
-    FOR /F "tokens=1,2 delims= " %%A IN (!target_file_path!) DO (
-        IF "%%A"=="::FILE" (
-            SET source_file_name=%%B.bat
-            FOR /F "delims=" %%S IN ("!source_path_list!") DO (
-                SET source_dir=%%S
-                SET source_file_path=!source_dir!\!source_file_name!
-                IF EXIST !source_file_path! (
-                    ECHO !target_file_path! ^<- !source_file_path!
-                    COPY /Y "!source_file_path!" "!target_file_path!"
+FOR /F "delims=" %%T IN ("!target_path_list!") DO (
+    FOR %%f IN (%%T\*.bat) DO (
+        SET target_file_path=%%f
+        FOR /F "tokens=1,2 delims= " %%A IN (!target_file_path!) DO (
+            IF "%%A"=="::FILE" (
+                SET source_file_name=%%B.bat
+                FOR /F "delims=" %%S IN ("!source_path_list!") DO (
+                    SET source_dir=%%S
+                    SET source_file_path=!source_dir!\!source_file_name!
+                    IF EXIST !source_file_path! (
+                        ECHO !target_file_path! ^<- !source_file_path!
+                        COPY /Y "!source_file_path!" "!target_file_path!"
+                    )
                 )
             )
         )
@@ -115,17 +165,19 @@ FOR %%f IN (%target_path%\*.bat) DO (
 )
 
 ::sh
-FOR %%f IN (%target_path%\*.sh) DO (
-    SET target_file_path=%%f
-    FOR /F "tokens=1,2,3 delims= " %%A IN (!target_file_path!) DO (
-        IF "%%B"=="FILE" (
-            SET source_file_name=%%C.sh
-            FOR /F "delims=" %%S IN ("!source_path_list!") DO (
-                SET source_dir=%%S
-                SET source_file_path=!source_dir!\!source_file_name!
-                IF EXIST !source_file_path! (
-                    ECHO !target_file_path! ^<- !source_file_path!
-                    COPY /Y "!source_file_path!" "!target_file_path!"
+FOR /F "delims=" %%T IN ("!target_path_list!") DO (
+    FOR %%f IN (%%T\*.sh) DO (
+        SET target_file_path=%%f
+        FOR /F "tokens=1,2,3 delims= " %%A IN (!target_file_path!) DO (
+            IF "%%B"=="FILE" (
+                SET source_file_name=%%C.sh
+                FOR /F "delims=" %%S IN ("!source_path_list!") DO (
+                    SET source_dir=%%S
+                    SET source_file_path=!source_dir!\!source_file_name!
+                    IF EXIST !source_file_path! (
+                        ECHO !target_file_path! ^<- !source_file_path!
+                        COPY /Y "!source_file_path!" "!target_file_path!"
+                    )
                 )
             )
         )
