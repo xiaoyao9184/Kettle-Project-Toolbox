@@ -19,9 +19,9 @@ ver="1.0"
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # interactive tip
-tip_set_target_path="Please input target_path or drag path in:"
+tip_set_target_path="Please input target_path or drag path in[empty is ../default]:"
 tip_miss_target_path="Missing param 'target_path' at position 1."
-tip_set_source_path="Please input source_path or drag path in:"
+tip_set_source_path="Please input source_path or drag path in[empty is ../Window and ../Linux]:"
 tip_miss_source_path="Missing param 'source_path' at position 1."
 
 # default param
@@ -41,6 +41,7 @@ do
     if [[ $interactive -eq 1 ]]
     then 
         read -p "$tip_set_target_path" target_path
+        [[ -z $target_path ]] && target_path=$( realpath "$current_script_dir/../default")
     else 
         echo $tip_miss_target_path
         exit 1
@@ -54,13 +55,19 @@ do
     if [[ $interactive -eq 1 ]]
     then 
         read -p "$tip_set_source_path" source_path
+        if [[ -z $source_path ]]
+        then
+            source_windows=$( realpath "$current_script_dir/../Windows" )
+            source_linux=$( realpath "$current_script_dir/../Linux" )
+            source_path="$source_windows $source_linux"
+        fi
     else 
         echo $tip_miss_source_path
         exit 1
     fi
 done
 IFS=' ' read -r -a source_path <<< "$source_path"; unset IFS;
-# source_path=( "$source_path" )
+
 
 #begin
 
@@ -68,7 +75,7 @@ IFS=' ' read -r -a source_path <<< "$source_path"; unset IFS;
 echo "==========================================================="
 echo "Work directory is: $current_script_dir"
 echo "Target directory is: $target_path"
-echo "Source directory is: $source_path"
+echo "Source directory is: ${source_path[@]}"
 echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
