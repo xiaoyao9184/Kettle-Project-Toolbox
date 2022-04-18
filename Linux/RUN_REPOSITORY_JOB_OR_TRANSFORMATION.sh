@@ -167,7 +167,12 @@ echo "==========================================================="
 echo "Running...      Ctrl+C for exit"
 
 # create command
-c="$kCommand -rep:$rName -user:admin -pass:admin -level:$loglevel -job:$jName $pList"
+if [ "$kCommand" -eq "kitchen" ]
+then
+    c="$kCommand -rep:$rName -user:admin -pass:admin -level:$loglevel -job:$jName $pList"
+else
+    c="$kCommand -rep:$rName -user:admin -pass:admin -level:$loglevel -trans:$jName $pList"
+fi
 [ $interactive -ne 1 ] && echo "$c"
 
 # log output
