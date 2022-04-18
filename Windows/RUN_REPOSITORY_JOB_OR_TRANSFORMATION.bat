@@ -163,7 +163,11 @@ echo ===========================================================
 echo Running...      Ctrl+C for exit
 
 ::create command
-set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -job:%jName%%pList%
+if "%kCommand%"=="kitchen" (
+    set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -job:%jName%%pList%
+) else (
+    set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -trans:%jName%%pList%
+)
 if _%interactive%_ neq _0_ echo %c%
 
 ::log output run
