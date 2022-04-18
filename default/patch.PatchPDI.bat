@@ -150,7 +150,7 @@ cd..
 cd data-integration
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle engine path is: %cd%
 echo Kettle project path is: %current_path%
@@ -164,7 +164,7 @@ echo Running...      Ctrl+C for exit
 
 ::create command
 set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -job:%jName%%pList%
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 
 ::log output run
 if _%JENKINS_HOME%_ neq __ (
@@ -186,5 +186,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b %errorlevel%

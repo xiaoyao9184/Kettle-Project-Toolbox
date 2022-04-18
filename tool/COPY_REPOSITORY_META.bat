@@ -222,7 +222,7 @@ if "%rPathTarget%"=="" (
 cd %current_path%
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle engine path is: %pdi_path%
 echo Kettle copy params is: %tempParam%
@@ -231,7 +231,7 @@ echo Running...      Ctrl+C for exit
 
 ::create command run
 set c=%pdi_path%\kitchen -file:%current_path%\Repository\CopyFileRepositoryMeta.kjb %tempParam%
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 call %c%
 
 
@@ -246,5 +246,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b %errorlevel%

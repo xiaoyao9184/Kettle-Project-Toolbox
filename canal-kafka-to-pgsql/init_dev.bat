@@ -54,7 +54,7 @@ echo ===========================================================
 echo Running...      Ctrl+C for exit
 
 ::create param
-if _%interactive%_ equ _0_ (
+if %interactive% equ 0 (
 	cls
 ) else  (
 	echo Conflict Policy: Force replacement of an existing entity directory or link directory
@@ -99,5 +99,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b %errorlevel%

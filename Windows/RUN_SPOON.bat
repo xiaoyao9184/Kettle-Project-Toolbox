@@ -43,7 +43,7 @@ set pdiPath=%cd%
 set projectPath=%~dp0
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle engine path is: %pdiPath%
 echo Kettle project path is: %projectPath%
@@ -62,7 +62,7 @@ if %errorlevel% equ 0 (
     echo Ok, run done!
 ) else (
     echo Sorry, some error make failure!
-    if _%interactive%_ equ _0_ pause
+    if %interactive% equ 0 pause
 )
 
 

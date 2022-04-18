@@ -100,7 +100,7 @@ echo Running...      Ctrl+C for exit
 
 ::create command run
 set c=mklink /j %linkPath% %pdiPath% 
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 call %c%
 
 
@@ -115,5 +115,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b
