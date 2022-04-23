@@ -734,16 +734,16 @@ Parameters.Repository.Path.Type
     </hop>
     <hop>
       <from>SelectValues: remove path_target_number</from>
-      <to>Dummy: ）</to>
+      <to>Dummy: )</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: path_taraget use number</from>
-      <to>Dummy: ）</to>
+      <to>Dummy: )</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: ）</from>
+      <from>Dummy: )</from>
       <to>SelectValues: replace base_directory</to>
       <enabled>Y</enabled>
     </hop>
@@ -753,7 +753,7 @@ Parameters.Repository.Path.Type
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>自定义常量数据</from>
+      <from>DataGrid</from>
       <to>BlockUntilStepsFinish</to>
       <enabled>N</enabled>
     </hop>
@@ -1229,7 +1229,7 @@ Parameters.Repository.Path.Type
     </GUI>
   </step>
   <step>
-    <name>Dummy: ）</name>
+    <name>Dummy: )</name>
     <type>Dummy</type>
     <description />
     <distribute>Y</distribute>
@@ -1590,7 +1590,7 @@ Parameters.Repository.Path.Type
     <directory>%%java.io.tmpdir%%</directory>
     <prefix>out</prefix>
     <cache_size>500</cache_size>
-    <main>SelectValues: ignore步骤数量</main>
+    <main>BlockUntilStepsFinish</main>
     <compare>
       <condition>
         <negated>N</negated>
@@ -2681,7 +2681,7 @@ path_target_father_path = substr(path_target,0,index-1);
     </GUI>
   </step>
   <step>
-    <name>自定义常量数据</name>
+    <name>DataGrid</name>
     <type>DataGrid</type>
     <description />
     <distribute>Y</distribute>

@@ -498,48 +498,48 @@
   </connection>
   <order>
     <hop>
-      <from>字段选择: sql location parameters</from>
-      <to>表输入: information_schema.tables</to>
+      <from>SelectValues: sql location parameters</from>
+      <to>TableInput: information_schema.tables</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>映射输入规范</from>
-      <to>字段选择: sql location parameters</to>
+      <from>MappingInput</from>
+      <to>SelectValues: sql location parameters</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>记录关联 (笛卡尔输出)</from>
-      <to>映射输出规范</to>
+      <from>JoinRows</from>
+      <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: QUOTATION</from>
-      <to>计算器: case_schema,case_table</to>
+      <from>Constant: QUOTATION</from>
+      <to>Calculator: case_schema,case_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器: case_schema,case_table</from>
-      <to>字段选择: remove and replace</to>
+      <from>Calculator: case_schema,case_table</from>
+      <to>SelectValues: remove and replace</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>表输入: information_schema.tables</from>
-      <to>记录关联 (笛卡尔输出)</to>
+      <from>TableInput: information_schema.tables</from>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>映射输入规范</from>
-      <to>增加常量: QUOTATION</to>
+      <from>MappingInput</from>
+      <to>Constant: QUOTATION</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择: remove and replace</from>
-      <to>记录关联 (笛卡尔输出)</to>
+      <from>SelectValues: remove and replace</from>
+      <to>JoinRows</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>增加常量: QUOTATION</name>
+    <name>Constant: QUOTATION</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -578,7 +578,7 @@
     </GUI>
   </step>
   <step>
-    <name>字段选择: remove and replace</name>
+    <name>SelectValues: remove and replace</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -649,7 +649,7 @@
     </GUI>
   </step>
   <step>
-    <name>字段选择: sql location parameters</name>
+    <name>SelectValues: sql location parameters</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -685,7 +685,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输入规范</name>
+    <name>MappingInput</name>
     <type>MappingInput</type>
     <description/>
     <distribute>N</distribute>
@@ -725,7 +725,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输出规范</name>
+    <name>MappingOutput</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -750,7 +750,7 @@
     </GUI>
   </step>
   <step>
-    <name>表输入: information_schema.tables</name>
+    <name>TableInput: information_schema.tables</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -767,7 +767,7 @@ FROM information_schema.tables
 WHERE table_schema = ? AND table_name = ?
 ) AS table_exist</sql>
     <limit>0</limit>
-    <lookup>字段选择: sql location parameters</lookup>
+    <lookup>SelectValues: sql location parameters</lookup>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
@@ -779,7 +779,7 @@ WHERE table_schema = ? AND table_name = ?
         <name>table_exist</name>
         <length>-1</length>
         <precision>-1</precision>
-        <origin>表输入: information_schema.tables</origin>
+        <origin>TableInput: information_schema.tables</origin>
         <comments>table_exist</comments>
         <conversion_Mask/>
         <decimal_symbol>.</decimal_symbol>
@@ -812,7 +812,7 @@ WHERE table_schema = ? AND table_name = ?
     </GUI>
   </step>
   <step>
-    <name>计算器: case_schema,case_table</name>
+    <name>Calculator: case_schema,case_table</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -868,7 +868,7 @@ WHERE table_schema = ? AND table_name = ?
     </GUI>
   </step>
   <step>
-    <name>记录关联 (笛卡尔输出)</name>
+    <name>JoinRows</name>
     <type>JoinRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -881,7 +881,7 @@ WHERE table_schema = ? AND table_name = ?
     <directory>%%java.io.tmpdir%%</directory>
     <prefix>out</prefix>
     <cache_size>500</cache_size>
-    <main>字段选择: remove and replace</main>
+    <main>SelectValues: remove and replace</main>
     <compare>
       <condition>
         <negated>N</negated>

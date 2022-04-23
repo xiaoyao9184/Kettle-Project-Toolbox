@@ -7,11 +7,11 @@
 
 :v
 
-::1变量赋值
+::tip info
 set pList=
 
-set eset_pName=请输入参数名，然后回车（空结束）：
-set eset_pValue=请输入参数值，然后回车：
+set eset_pName=Need input param name('NONE' end loop):
+set eset_pValue=Need input param value:
 
 
 :loop
@@ -31,5 +31,5 @@ goto loop
 
 :end
 
-::5退出
+::exit
 exit /b 0

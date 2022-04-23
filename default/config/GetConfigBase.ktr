@@ -1231,7 +1231,7 @@ Usually ReadConfig_*
       <schema_name />
     </partitioning>
     <row_threshold>0</row_threshold>
-    <message>未取得Config.[Base]</message>
+    <message>not exist Config.[Base]</message>
     <always_log_rows>Y</always_log_rows>
     <abort_with_error>Y</abort_with_error>
     <cluster_schema />
@@ -4269,7 +4269,7 @@ Usually ReadConfig_*
     <displayHeader>Y</displayHeader>
     <limitRows>N</limitRows>
     <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>获取配置文件路径</logmessage>
+    <logmessage>Cfg_Path</logmessage>
     <fields>
       <field>
         <name>cfg_path</name>

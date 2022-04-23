@@ -504,17 +504,17 @@
     </hop>
     <hop>
       <from>Switch / case</from>
-      <to>插入</to>
+      <to>InsertUpdate</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Switch / case</from>
-      <to>删除</to>
+      <to>Delete</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Switch / case</from>
-      <to>更新</to>
+      <to>Update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -592,19 +592,19 @@
     <case_value_format/>
     <case_value_decimal/>
     <case_value_group/>
-    <default_target_step>空操作 (什么也不做): ingore not-dml-change</default_target_step>
+    <default_target_step>Dummy: ingore not-dml-change</default_target_step>
     <cases>
       <case>
         <value>INSERT</value>
-        <target_step>插入</target_step>
+        <target_step>InsertUpdate</target_step>
       </case>
       <case>
         <value>DELETE</value>
-        <target_step>删除</target_step>
+        <target_step>Delete</target_step>
       </case>
       <case>
         <value>UPDATE</value>
-        <target_step>更新</target_step>
+        <target_step>Update</target_step>
       </case>
     </cases>
     <attributes/>
@@ -622,7 +622,7 @@
     </GUI>
   </step>
   <step>
-    <name>删除</name>
+    <name>Delete</name>
     <type>Delete</type>
     <description/>
     <distribute>Y</distribute>
@@ -653,7 +653,7 @@
     </GUI>
   </step>
   <step>
-    <name>插入</name>
+    <name>InsertUpdate</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -685,7 +685,7 @@
     </GUI>
   </step>
   <step>
-    <name>更新</name>
+    <name>Update</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>

@@ -447,28 +447,28 @@
   </notepads>
   <order>
     <hop>
-      <from>映射输入规范</from>
-      <to>增加常量: QUOTATION</to>
+      <from>MappingInput</from>
+      <to>Constant: QUOTATION</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>增加常量: QUOTATION</from>
-      <to>计算器: case_column</to>
+      <from>Constant: QUOTATION</from>
+      <to>Calculator: case_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>计算器: case_column</from>
-      <to>字段选择: remove QUOTATION</to>
+      <from>Calculator: case_column</from>
+      <to>SelectValues: remove QUOTATION</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>字段选择: remove QUOTATION</from>
-      <to>映射输出规范</to>
+      <from>SelectValues: remove QUOTATION</from>
+      <to>MappingOutput</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>增加常量: QUOTATION</name>
+    <name>Constant: QUOTATION</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -507,7 +507,7 @@
     </GUI>
   </step>
   <step>
-    <name>字段选择: remove QUOTATION</name>
+    <name>SelectValues: remove QUOTATION</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -538,7 +538,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输入规范</name>
+    <name>MappingInput</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -584,7 +584,7 @@
     </GUI>
   </step>
   <step>
-    <name>映射输出规范</name>
+    <name>MappingOutput</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -609,7 +609,7 @@
     </GUI>
   </step>
   <step>
-    <name>计算器: case_column</name>
+    <name>Calculator: case_column</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
