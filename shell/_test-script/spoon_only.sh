@@ -1,12 +1,15 @@
-#!/bin/bash
+
+#  like this
+# spoon
 
 
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+parent_folder_dir="$(dirname $current_script_dir)"
 
 
 export KPT_COMMAND="spoon"
 
-bash "$current_script_dir/KPT_RUN_COMMAND.sh"
+bash "$parent_folder_dir/KPT_RUN_COMMAND.sh"
 
 
 current_script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"

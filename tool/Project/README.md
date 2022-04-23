@@ -39,7 +39,7 @@ Like this:
 │  ├─Repository
 │  ├─Path
 │  └─Project
-└─Windows
+└─shell
 ```
 
 

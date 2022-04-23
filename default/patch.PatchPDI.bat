@@ -1,190 +1,239 @@
-@echo off
-Setlocal enabledelayedexpansion
+@ECHO OFF
+SETLOCAL EnableDelayedExpansion
 ::CODER BY xiaoyao9184 1.0
-::TIME 2017-08-26
-::FILE RUN_REPOSITORY_JOB_OR_TRANSFORMATION
-::DESC run a job or transformation in filesystem repositorie 
-::PARAM params for the job or transformation 
-::  1: ProfileName
-::--------------------
-::CHANGE 2018-11-20
-::english
-::CHANGE 2018-11-20
-::use more special character judgment inter active
-::--------------------
+::TIME 2022-04-21
+::FILE KPT_RUN_COMMAND
 
 
-:v
+GOTO:init_variable
 
-set tip=Kettle-Project-Toolbox: Run kitchen or pan
-set ver=1.0
-::interactive
-set interactive=1
-::default is inter call
-::check double-clicking(outer call) and set 0
-::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
-::check cmdcmdline include ""{scriptfile}" "
-echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 set interactive=0
-::current info
-set current_path=%~dp0
-set current_script_name=%~n0
-::tip info
-set echo_rName=Need input kettle repository name!
-set eset_rName=Please input kettle repository name:
-set echo_jName=Need input kettle repository job or transformation name!
-set eset_jName=Please input kettle repository job or transformation name:
-set echo_jFile=The kettle job path is:
-set echo_pList=Enter parameters setting script!
-set echo_kCommand=Run job^(J^) or transformation^(T^)?
-::set kettle environment
-if exist "%current_path%SET_ENVIRONMENT.bat" (
-    call %current_path%SET_ENVIRONMENT.bat
-)
+
+@REM ::
+@REM ::https://www.robvanderwoude.com/battech_convertcase.php
+:function_lower
+    SETLOCAL EnableDelayedExpansion
+    SET _LCase=a b c d e f g h i j k l m n o p q r s t u v w x y z
+    SET _Lib_UCase_Tmp=!%1!
+    FOR %%Z IN (%_LCase%) DO SET _Lib_UCase_Tmp=!_Lib_UCase_Tmp:%%Z=%%Z!
+    ENDLOCAL & (
+        SET %2=%_Lib_UCase_Tmp%
+    )
+GOTO:EOF
+
+
+@REM :: parse environment variable to kettle command param name and value
+@REM ::KPT_KETTLE_PARAM_ prefix will extract prefix for the value, set param name to 'param'
+@REM ::1. Remove prefix KPT_KETTLE_PARAM_
+@REM ::2. Replace a period (.) with a single underscore (_).
+@REM ::3. Replace a dash (-) with double underscores (__).
+@REM ::4. Replace an underscore (_) with triple underscores (___).
+@REM ::5. Replace value concatenate equal-sign(=) with value
+@REM ::
+@REM ::other environment variable extract param name
+@REM ::1. Remove prefix KPT_KETTLE_
+@REM ::2. Upper case
+@REM ::
+:function_param_parse
+    SETLOCAL EnableDelayedExpansion
+    SET kettle_param_name=%1
+    SET kettle_param_value=%2
+
+    @REM ::remove prefix
+    SET kettle_param_name=!kettle_param_name:KPT_KETTLE_=!
+    IF /I "!kettle_param_name:~0,6!"=="PARAM_" (
+        @REM ::remove prefix
+        SET kettle_param_name=!kettle_param_name:PARAM_=!
+
+        @REM ::replace
+        SET kettle_param_name=!kettle_param_name:___=_!
+        SET kettle_param_name=!kettle_param_name:__=-!
+        SET kettle_param_name=!kettle_param_name:_=.!
+
+        @REM ::recreate value
+        SET kettle_param_value=!kettle_param_name!=!kettle_param_value!
+        SET kettle_param_name=param
+    ) ELSE IF "!kettle_param_name:_=!"=="!kettle_param_name!" (
+        @REM ::lower case
+        CALL :function_lower kettle_param_name kettle_param_name
+    ) ELSE (
+        ::ignore underlined variable
+        SET kettle_param_name=
+        SET kettle_param_value=
+    )
+
+    ENDLOCAL & (
+        SET %3=%kettle_param_name%
+        SET %4=%kettle_param_value%
+    )
+GOTO:EOF
+
+
+@REM :: generation kettle command positional parameters 
+@REM ::1. Empty value not need append to result
+@REM ::2. Contain spaces need add quotation
+:function_param_generation
+    SETLOCAL EnableDelayedExpansion
+    SET kettle_param_name=%1
+    :: remove quotation
+    SET kettle_param_value=%~2
+
+    @REM ::check value is empty
+    IF "!kettle_param_value: =!"=="" SET empty_value=true
+    IF "!kettle_param_value::=!"=="" SET empty_value=true
+
+    @REM ::start with name
+    SET command_param=/%kettle_param_name%
+
+    @REM ::append value if need
+    IF NOT "%empty_value%"=="true" (
+        SET command_param=%command_param%:%kettle_param_value%
+    )
+
+    @REM ::add quotation marks if spaces in param
+    IF NOT "%command_param: =%"=="%command_param%" (
+        SET command_param="%command_param%"
+    )
+
+    ENDLOCAL & (
+        SET %3=%command_param%
+    )
+GOTO:EOF
+
+
+:init_variable
+
+::version
+SET tip=Kettle-Project-Toolbox: Run kitchen or pan
+SET ver=1.0
+
+::interactive 1 for true
+SET interactive=1
+IF NOT "!JENKINS_HOME!"=="" SET interactive=0
+IF NOT "!DEBUG!"=="" SET interactive=0
+
+::script info
+SET current_script_dir=%~dp0
+SET current_script_name=%~n0
+
+::interactive tip
+SET tip_set_engine_dir=Please input or drop kettle engine path:
+SET tip_miss_engine_dir=Missing param '_engine_dir' at environment variable 'KPT_ENGINE_PATH'.
+SET tip_set_full_file_path=Please input or drop kettle file path:
+SET tip_set_repository_item_path=Please input repository kettle file path [use / delimiter include extension]:
+SET tip_choice_command_name=Please choice kettle command: [J]ob or [T]ransformation?
+SET tip_miss_command_name=Missing param '_command_name' at environment variable 'KPT_COMMAND'.
+
 ::default param
-set rName=%KETTLE_REPOSITORY%
-set jName=
-set pList=
-set kCommand=
-::logging level (Basic, Detailed, Debug, Rowlevel, Error, Nothing) or set position parameter 1
-set loglevel=Detailed
-
-
-:title
-
-title %tip% %ver%
-echo %tip%
-echo Can be closed after the run ends
-echo ...
-
-
-:check
-
-::repository name
-if "%rName%"=="" (
-    echo %echo_rName%
-    set /p rName=%eset_rName%
+IF EXIST "%current_script_dir%KPT_EXPORT_ENVIRONMENT.bat" (
+    CALL %current_script_dir%KPT_EXPORT_ENVIRONMENT.bat %0
 )
+SET _engine_dir=%KPT_ENGINE_PATH%\
+SET _command_name=%KPT_COMMAND%
+SET _log_redirect=%KPT_LOG_PATH%
 
-::job or transformation name
-goto notfound
 
-:finding
+:tip_version
 
-echo finding file in this path: %fileName%.%extName%
-if exist "%fileName%.%extName%" (
-    set jName=%fileName%
-    goto found
-) else (
-    set fileName=%fileName:.=\%
-    echo finding file in sub path: !fileName!.%extName%
-    if exist "!fileName!.%extName%" (
-        set jName=!fileName:.=/!
-        goto found
-    ) else (
-        goto notfound
+IF %interactive% EQU 1 ( TITLE %tip% %ver% ) ELSE ( ECHO %tip% )
+
+
+:loop_check_variable
+
+IF %interactive% EQU 1 (
+    IF "%_command_name%"=="" (
+        @REM :: check input exist
+        IF "%KETTLE_REPOSITORY%"=="" (
+            SET /P _file_path=%tip_set_full_file_path%
+        ) ELSE (
+            SET /P _item_path=%tip_set_repository_item_path%
+            SET _file_path=%KPT_PROJECT_PATH%\!_item_path:/=\!
+        )
+        IF NOT EXIST !_file_path! ECHO not exist !_file_path! &  GOTO:loop_check_variable
+        @REM :: set _command_name
+        FOR %%F IN (!_file_path!) DO SET _file_ext=%%~xF
+        IF "!_file_ext!"==".kjb" (
+            SET _command_name=kitchen
+        ) ELSE IF "!_file_ext!"==".ktr" (
+            SET _command_name=pan
+        )
+        @REM :: set KPT variable
+        IF "%KETTLE_REPOSITORY%"=="" (
+            FOR %%F IN (!_file_path!) DO SET _file_path=%%~dpnxF
+            SET KPT_KETTLE_FILE=!_file_path!
+        ) ELSE IF "!_file_ext!"==".kjb" (
+            SET KPT_KETTLE_JOB=!_item_path:.kjb=!
+        ) ELSE IF "!_file_ext!"==".ktr" (
+            SET KPT_KETTLE_TRANS=!_item_path:.ktr=!
+        )
+        GOTO:loop_check_variable
+    )
+    WHERE /Q !_command_name!
+    IF !ERRORLEVEL! EQU 0 SET _engine_dir=
+    IF "%_engine_dir%"=="\" (
+        SET /P _engine_dir=%tip_set_engine_dir%
+        FOR %%F IN (!_engine_dir!.) DO SET _engine_dir=%%~dpnF\
+        GOTO:loop_check_variable
+    )
+) ELSE ( 
+    IF "%_engine_dir%"=="\" (
+        ECHO %tip_miss_engine_dir%
+        EXIT /B 1
+    )
+    IF "%_command_name%"=="" (
+        ECHO %tip_miss_command_name%
+        EXIT /B 1
     )
 )
-
-:notfound
-
-if "%extName%"=="" (
-    set kCommand=kitchen
-    set fileName=%current_script_name%
-    set extName=kjb
-    goto finding
-)
-if "%extName%"=="kjb" (
-    set kCommand=pan
-    set fileName=%current_script_name%
-    set extName=ktr
-    goto finding
-)
-if "%extName%"=="ktr" (
-    echo %echo_jName%
-    set /p jName=%eset_jName%
-    set kCommand=""
-)
-
-:found
-
-::command is use kitchen or pan
-if "%kCommand%"=="" (
-    choice /c JT /m !echo_kCommand!
-    if !errorlevel! equ 1 set kCommand=kitchen
-    if !errorlevel! equ 2 set kCommand=pan
-)
-
-::param
-if _%2_ neq __ (
-    set p2=%2
-    set profile=!p2:"=!
-    set pList= "-param:ProfileName=!profile!"
-
-    set p1=%1
-    set loglevel=!p1:"=!
-) else (
-    if _%1_ neq __ (
-        set p1=%1
-        set profile=!p1:"=!
-        set pList= "-param:ProfileName=!profile!"
-    )
-)
-if exist "%~n0.SET_PARAM.bat" (
-    echo %echo_pList% %~n0.SET_PARAM.bat
-    call %~n0.SET_PARAM.bat
-)
-
-::log
-set d=%date:~0,10%
-set t=%time:~0,8%
-set logfile=%current_path%log\%~n0%d:/=-%_%t::=-%.log
 
 
 :begin
 
-::goto engine path
-%~d0
-cd %~dp0
-cd..
-cd data-integration
-
 ::print info
-if %interactive% equ 0 cls
-echo ===========================================================
-echo Kettle engine path is: %cd%
-echo Kettle project path is: %current_path%
-echo Kettle command is: %kCommand%
-echo Kettle run it: %rName%:%jName%
-echo Kettle parameters is: %pList% 
-echo Kettle log level is: %loglevel%
-echo Kettle log location is: %logfile%
-echo ===========================================================
-echo Running...      Ctrl+C for exit
+IF %interactive% EQU 1 CLS
+ECHO ==========%~n0==========
+ECHO Script directory is: %current_script_dir%
+ECHO Engine directory is: %_engine_dir%
+ECHO Command name is: %_command_name%
+ECHO Command log is: %_log_redirect%
+ECHO __________%~n0__________
 
 ::create command
-set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -job:%jName%%pList%
-if %interactive% neq 0 echo %c%
+SET _command_opt=
+FOR /F "delims== tokens=1,2" %%A IN ('SET ^| FINDSTR /I /R "^KPT_KETTLE_"') DO (
+    CALL :function_param_parse %%A %%B _result_param_name _result_param_value
+    CALL :function_param_generation !_result_param_name! !_result_param_value! _result_param
+    IF NOT DEFINED _command_opt (
+        SET _command_opt=!_result_param!
+    ) ELSE (
+        SET _command_opt=!_command_opt! !_result_param!
+    )
+)
+SET _command=%_engine_dir%%_command_name% %_command_opt%
 
-::log output run
-if _%JENKINS_HOME%_ neq __ (
-    echo Used in Jenkins no log file!
-    call %c%
-) else (
-    call %c%>>"%logfile%"
+::print command
+ECHO %_command%
+
+::run command
+ECHO:
+IF "%_log_redirect%"=="" (
+    CALL %_command%
+) ELSE (
+    CALL %_command%>>"%_log_redirect%"
 )
 
+::done command
 
-:done
-
-if %errorlevel% equ 0 (
-    echo Ok, run done!
-) else (
-    echo Sorry, some error make failure!
+ECHO:
+IF %ERRORLEVEL% EQU 0 (
+    ECHO Ok, run done!
+) ELSE (
+    ECHO Sorry, some error '%ERRORLEVEL%' make failure!
 )
+
+ECHO ##########%~n0##########
 
 
 :end
 
-if %interactive% equ 0 pause
-exit /b %errorlevel%
+IF %interactive% EQU 1 PAUSE
+EXIT /B %ERRORLEVEL%

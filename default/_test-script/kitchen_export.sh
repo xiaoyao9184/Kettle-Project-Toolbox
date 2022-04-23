@@ -1,12 +1,20 @@
 #!/bin/bash
 
+#  like this
+# KETTLE_HOME=/mnt/e/Kettle/workspace9.1/default
+# KETTLE_REPOSITORY=default
+# kitchen /job:patch/PatchPDI /export
+
 
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+parent_folder_dir="$(dirname $current_script_dir)"
 
 
-export KPT_COMMAND="spoon"
+export KPT_COMMAND="kitchen"
+export KPT_KETTLE_EXPORT=" "
+export KPT_KETTLE_JOB="patch/PatchPDI"
 
-bash "$current_script_dir/KPT_RUN_COMMAND.sh"
+bash $parent_folder_dir/KPT_RUN_COMMAND.sh
 
 
 current_script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"

@@ -27,7 +27,7 @@ cd %~dp0
 cd..
 set parent_path=%cd%
 ::tip info
-set echo_workspacePath=Need input workspace path for link KPT's paths(tool,default,Windows)
+set echo_workspacePath=Need input workspace path for link KPT's paths
 set eset_workspacePath=Please input path or drag path in:
 ::defult param
 set workspacePath=%1
@@ -93,6 +93,13 @@ echo.
 echo ===========================================================
 echo link KPT Windows path on windows system...
 call LINK_FOLDER.bat "%workspacePath%\Windows" "%kptPath%\Windows" %param%
+echo.
+echo.
+echo.
+echo.
+echo ===========================================================
+echo link KPT shell path...
+call LINK_FOLDER.bat "%workspacePath%\shell" "%kptPath%\shell" %param%
 echo.
 echo.
 echo.
