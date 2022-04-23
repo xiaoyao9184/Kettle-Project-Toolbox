@@ -98,6 +98,11 @@ bash "$current_path/LINK_FOLDER.sh" "$workspacePath/Linux" "$kptPath/Linux" "$sk
 [ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
 
 echo "==========================================================="
+echo "link KPT shell path..."
+bash "$current_path/LINK_FOLDER.sh" "$workspacePath/shell" "$kptPath/shell" "$skipConflictCheck" "$forceConflictReplace"
+[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
+
+echo "==========================================================="
 echo "link PDI path..."
 bash "$current_path/LINK_PDI.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
 [ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"

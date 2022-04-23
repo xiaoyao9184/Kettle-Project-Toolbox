@@ -36,7 +36,7 @@ SET tip_miss_source_path=Missing param 'source_path' at position 1.
 SET target_path_list=%1
 SET source_path_list=%2
 SET default_target_path_list=%current_script_dir%..\default
-SET default_source_path_list=%current_script_dir%..\Windows;%current_script_dir%..\Linux
+SET default_source_path_list=%current_script_dir%..\shell;%current_script_dir%..\Windows;%current_script_dir%..\Linux
 SET input_list=
 
 

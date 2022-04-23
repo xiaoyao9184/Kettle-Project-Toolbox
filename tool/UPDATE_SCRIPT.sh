@@ -34,7 +34,8 @@ target_path_list=$2
 default_target_path_list=$(realpath "$current_script_dir/../default")
 default_windows_path=$(realpath "$current_script_dir/../Windows")
 default_linux_path=$(realpath "$current_script_dir/../Linux")
-default_source_path_list="$default_windows_path;$default_linux_path"
+default_shell_path=$(realpath "$current_script_dir/../shell")
+default_source_path_list="$default_windows_path;$default_linux_path;$default_shell_path"
 
 
 
