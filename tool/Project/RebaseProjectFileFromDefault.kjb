@@ -568,32 +568,46 @@
       <create_destination_folder>Y</create_destination_folder>
       <fields>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/RUN_SPOON.bat</source_filefolder>
-          <source_configuration_name>STATIC-SOURCE-FILE-0</source_configuration_name>
+          <source_filefolder>${Internal.Project.Default.Directory}/</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
           <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
-          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
-          <wildcard />
+          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <wildcard>RUN_.*bat</wildcard>
         </field>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/SET_ENVIRONMENT.bat</source_filefolder>
-          <source_configuration_name>STATIC-SOURCE-FILE-1</source_configuration_name>
+          <source_filefolder>${Internal.Project.Default.Directory}/</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
           <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
-          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
-          <wildcard />
+          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <wildcard>RUN_.*sh</wildcard>
         </field>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/RUN_SPOON.sh</source_filefolder>
-          <source_configuration_name>STATIC-SOURCE-FILE-2</source_configuration_name>
+          <source_filefolder>${Internal.Project.Default.Directory}/</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
           <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
-          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
-          <wildcard />
+          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <wildcard>RUN_.*ps1</wildcard>
         </field>
         <field>
-          <source_filefolder>${Internal.Project.Default.Directory}/SET_ENVIRONMENT.sh</source_filefolder>
-          <source_configuration_name>STATIC-SOURCE-FILE-3</source_configuration_name>
+          <source_filefolder>${Internal.Project.Default.Directory}/</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
           <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
-          <destination_configuration_name>STATIC-DEST-FILE-3</destination_configuration_name>
-          <wildcard />
+          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <wildcard>KPT_.*bat</wildcard>
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <wildcard>KPT_.*sh</wildcard>
+        </field>
+        <field>
+          <source_filefolder>${Internal.Project.Default.Directory}/</source_filefolder>
+          <source_configuration_name>STATIC-SOURCE-FILE-4</source_configuration_name>
+          <destination_filefolder>${Internal.Project.Directory}/</destination_filefolder>
+          <destination_configuration_name>STATIC-DEST-FILE-4</destination_configuration_name>
+          <wildcard>KPT_.*ps1</wildcard>
         </field>
       </fields>
       <parallel>N</parallel>
