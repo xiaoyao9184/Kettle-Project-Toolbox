@@ -18,14 +18,9 @@ Setlocal enabledelayedexpansion
 
 set tip=Kettle-Project-Toolbox: Run kitchen or pan
 set ver=1.0
-::interactive
-set interactive=1
-::default is inter call
-::check double-clicking(outer call) and set 0
-::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
-::check cmdcmdline include ""{scriptfile}" "
+::interactive 1 for true
 echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 set interactive=0
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::current info
 set current_path=%~dp0
 set current_script_name=%~n0
@@ -150,7 +145,7 @@ cd..
 cd data-integration
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle engine path is: %cd%
 echo Kettle project path is: %current_path%
@@ -168,7 +163,7 @@ if "%kCommand%"=="kitchen" (
 ) else (
     set c=%kCommand% -rep:%rName% -user:admin -pass:admin -level:%loglevel% -trans:%jName%%pList%
 )
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 
 ::log output run
 if _%JENKINS_HOME%_ neq __ (
@@ -190,5 +185,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b %errorlevel%

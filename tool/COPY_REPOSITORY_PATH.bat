@@ -15,14 +15,9 @@ Setlocal enabledelayedexpansion
 set tip=Kettle-Project-Toolbox: Copy Repository path
 set ver=1.0
 
-::interactive
-set interactive=1
-::default is inter call
-::check double-clicking(outer call) and set 0
-::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
-::check cmdcmdline include ""{scriptfile}" "
+::interactive 1 for true
 echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 set interactive=0
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 
 ::current info
 set current_path=%~dp0
@@ -160,7 +155,7 @@ if "%rPathTarget%"=="" (
 cd %current_path%
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle engine path is: %pdi_path%
 echo Kettle copy params is: %tempParam%
@@ -169,7 +164,7 @@ echo Running...      Ctrl+C for exit
 
 ::create command run
 set c=%pdi_path%\kitchen -file:%current_path%\Repository\CopyFileRepositoryPath.kjb %tempParam%
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 call %c%
 
 
@@ -184,5 +179,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b %errorlevel%

@@ -14,7 +14,8 @@
 tip="Kettle-Project-Toolbox: Copy Repository"
 ver="1.0"
 
-# interactive
+# here interactive mean user input can be obtained, 
+# determined by checking is connected to a terminal 
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 
 # current info

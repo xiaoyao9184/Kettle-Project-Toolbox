@@ -18,14 +18,9 @@ Setlocal enabledelayedexpansion
 
 set tip=Kettle-Project-Toolbox: Init project
 set ver=1.0
-::interactive
-set interactive=1
-::default is inter call
-::check double-clicking(outer call) and set 0
-::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
-::check cmdcmdline include ""{scriptfile}" "
+::interactive 1 for true
 echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 set interactive=0
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::current info
 set current_path=%~dp0
 %~d0
@@ -54,7 +49,7 @@ if "%rName%"=="" (
 	echo %echo_rName%
 	set /p rName=%eset_rName%
 )
-if _%interactive%_ equ _0_ (
+if %interactive% equ 0 (
 	set isOpenShell="true"
 ) else (
     set isOpenShell="false"
@@ -67,7 +62,7 @@ if _%interactive%_ equ _0_ (
 cd %current_path%
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle work path is: %current_path%
 echo Kettle engine path is: %pdi_path%
@@ -78,7 +73,7 @@ echo Running...      Ctrl+C for exit
 
 ::create command run
 set c=%pdi_path%\kitchen -file:%current_path%\Project\CreateProject.kjb "-param:rName=%rName%" "-param:isOpenShell=%isOpenShell%"
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 call %c%
 
 :done
@@ -92,5 +87,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b %errorlevel%

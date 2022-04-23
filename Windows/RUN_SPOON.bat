@@ -15,14 +15,9 @@ Setlocal enabledelayedexpansion
 
 set tip=Kettle-Project-Toolbox: Run Spoon
 set ver=1.0
-::interactive
-set interactive=1
-::default is inter call
-::check double-clicking(outer call) and set 0
-::double-clicking use cmdline like this: cmd /d ""{scriptfile}" "
-::check cmdcmdline include ""{scriptfile}" "
+::interactive 1 for true
 echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 set interactive=0
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::set kettle environment
 if exist "%~dp0SET_ENVIRONMENT.bat" (
     call %~dp0SET_ENVIRONMENT.bat
@@ -48,7 +43,7 @@ set pdiPath=%cd%
 set projectPath=%~dp0
 
 ::print info
-if _%interactive%_ equ _0_ cls
+if %interactive% equ 0 cls
 echo ===========================================================
 echo Kettle engine path is: %pdiPath%
 echo Kettle project path is: %projectPath%
@@ -67,7 +62,7 @@ if %errorlevel% equ 0 (
     echo Ok, run done!
 ) else (
     echo Sorry, some error make failure!
-    if _%interactive%_ equ _0_ pause
+    if %interactive% equ 0 pause
 )
 
 

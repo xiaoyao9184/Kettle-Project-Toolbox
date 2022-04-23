@@ -18,11 +18,9 @@ Setlocal enabledelayedexpansion
 
 set tip=Kettle-Project-Toolbox: Link PDI
 set ver=1.0
-::interactive
-set interactive=1
-::default is inter call
-::no parameters will set 0
-if "%1" equ "" set interactive=0
+::interactive 1 for true
+echo %cmdcmdline% | find /i "%~0" >nul
+if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
 ::current info
 set current_path=%~dp0
 %~d0
@@ -102,7 +100,7 @@ echo Running...      Ctrl+C for exit
 
 ::create command run
 set c=mklink /j %linkPath% %pdiPath% 
-if _%interactive%_ neq _0_ echo %c%
+if %interactive% neq 0 echo %c%
 call %c%
 
 
@@ -117,5 +115,5 @@ if %errorlevel% equ 0 (
 
 :end
 
-if _%interactive%_ equ _0_ pause
+if %interactive% equ 0 pause
 exit /b
