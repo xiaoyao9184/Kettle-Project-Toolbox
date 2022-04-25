@@ -2,129 +2,159 @@
 # CODER BY xiaoyao9184 1.0
 # TIME 2018-12-31
 # FILE INIT_KPT
-# DESC create a workspace for Kettle-Project-Toolbox using copy and hard link 
-# PARAM params for the workspace path and PDI path
-#   1: workspacePath 
-#   2: pdiPath
-# --------------------
-# CHANGE 2019-1-4
-# fix interactive check
-# CHANGE 2019-1-3
-# fix workspace path auto create
-# use LINK_PDI for link PDI
-# --------------------
+# DESC create a workspace for Kettle-Project-Toolbox using LINK_FOLDER
+# SYNTAX INIT_KPT [kpt_workspace_path [pdi_engine_path [kpt_repository_path]]]
 
 
-# var
+#####init_variable
 
-tip="Kettle-Project-Toolbox: Link KPT"
+tip="Kettle-Project-Toolbox: init workspace"
 ver="1.0"
+
 # here interactive mean user input can be obtained, 
 # determined by checking is connected to a terminal 
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
-# current info
-current_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-parent_path="$(dirname "$current_path")"
+
+# script info
+current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+current_script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
+current_script_name="${current_script_name%.*}"
+
 # tip info
-echo_workspacePath="Need input workspace path for link KPT's paths(tool default)"
-eset_workspacePath="Please input path or drag path in:"
+tip_kpt_workspace_path_input="Need input 'kpt_workspace_path' or drag path in:"
+tip_kpt_workspace_path_miss="Missing param 'kpt_workspace_path' at position 1."
+tip_pdi_engine_path_input="Need input 'pdi_engine_path' or drag path in:"
+tip_pdi_engine_path_miss="Missing param 'pdi_engine_path' at position 2."
+tip_pdi_engine_path_wrong="Wrong param 'pdi_engine_path' at position 2."
+tip_kpt_repository_path_input="Need input 'kpt_repository_path' or drag path in:"
+tip_kpt_repository_path_miss="Missing param 'kpt_repository_path' at position 3."
+tip_kpt_workspace_exist_strategy="KPT workspace exist strategy: replac of exist symbolic link directory"
+
 # defult param
-workspacePath=$1
-pdiPath=$2
-kptPath="$parent_path"
+kpt_workspace_path=$1
+pdi_engine_path=$2
+kpt_repository_path="$parent_path"
+default_link_path_list="tool;shell;default"
 
 
-# title
+#####tip_version
 
-echo -e '\033]2;'$tip $ver'\007'
-echo "$tip"
-echo "Can be closed after the run ends"
-echo "..."
+[ $interactive -eq 1 ] && echo -e '\033]2;'$tip $ver'\007' || echo "$tip"
 
 
-# check
+#####check_variable
 
-if [ -z $workspacePath ]
-then
-    echo $echo_workspacePath
-    read -p "$eset_workspacePath" workspacePath
-    workspacePath=$(sed -e "s/^'//" -e "s/'$//" <<<"$workspacePath")
+while [[ -z "$kpt_workspace_path" ]]; do
+    if [[ $interactive -eq 1 ]]; then 
+        read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
+	else 
+        echo "$tip_kpt_workspace_path_miss"
+        exit 1
+    fi
+done
+
+while [[ -z "$pdi_engine_path" ]]; do
+    if [[ $interactive -eq 1]]; then
+        read -p "$tip_pdi_engine_path_input" pdi_engine_path
+	else 
+        echo "$tip_pdi_engine_path_miss"
+        exit 1
+    fi
+done
+while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; then
+    if [[ $interactive -eq 1 ]]; then 
+        echo "wrong path $pdi_engine_path"
+        read -p "$tip_pdi_engine_path_input" pdi_engine_path
+    else
+        echo "$tip_pdi_engine_path_wrong"
+        exit 1
+    fi
 fi
-[ -d $workspacePath ] || mkdir "$workspacePath"
+
+while [[ -z $kpt_repository_path ]]; do
+    # auto discover kpt
+	if [[ -d "$parent_folder_dir/.git" ]]; then
+		kpt_repository_path="$parent_folder_dir"
+        continue
+	fi
+    if [[ $interactive -eq 1]]; then
+        read -p "$tip_kpt_repository_path_input" kpt_repository_path
+    else
+        echo "$tip_kpt_repository_path_miss"
+        exit 1
+    fi
+done
+
+IFS=';' read -r -a default_link_path_list <<< "$default_link_path_list"; unset IFS;
 
 
-# begin
-
-# goto current path
-function fcd() {
-  cd $1
-}
-fcd "$current_path"
+#####begin
 
 # print info
-[ $interactive -eq 1 ] && clear
-echo "==========================================================="
-echo "Work path is: $current_path"
-echo "Kettle workspace path is: $workspacePath"
-echo "Kettle KPT path is: $kptPath"
-echo "==========================================================="
-echo "Running...      Ctrl+C for exit"
+echo "==========$current_script_name=========="
+echo "Script directory is: $current_script_dir"
+echo "Kettle engine path is: $pdi_engine_path"
+echo "KPT workspace path is: $kpt_workspace_path"
+echo "KPT repository path is: $kpt_repository_path"
+echo "KPT link path list is: ${default_link_path_list[@]}"
+echo "-----------------NOTE--------------------"
+echo "kettle engine not support symbolic link with directory, will get the wrong path;"
+echo "use 'copy_link' for Kettle engine path, copy folder and hard link file."
+echo "use 'symbolic' for KPT repository path."
+echo "----------$current_script_name----------"
 
-# create param
-if [ $interactive -eq 1 ] 
-then
-    skipConflictCheck=""
-    forceConflictReplace=""
-else
-    echo "Conflict Policy: Force replacement of an existing entity directory or link directory"
-    skipConflictCheck="noskip"
-    forceConflictReplace="force"
+# create workspace
+if [[ ! -d "$kpt_workspace_path" ]]; then
+	echo "create directory for not exist $kpt_workspace_path"
+	mkdir "$kpt_workspace_path"
 fi
 
-# run
-echo "==========================================================="
-echo "link KPT tool path..."
-bash "$current_path/LINK_FOLDER.sh" "$workspacePath/tool" "$kptPath/tool" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
+# create param
+if [[ $interactive -eq 1]]; then
+    echo
+else
+    echo "$tip_kpt_workspace_exist_strategy"
+    exist_strategy="replace"
+fi
 
-echo "==========================================================="
-echo "link KPT defalut path..."
-bash "$current_path/LINK_FOLDER.sh" "$workspacePath/default" "$kptPath/default" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n"
+_result_code=0
 
-echo "==========================================================="
-echo "link KPT Linux path on linux system..."
-bash "$current_path/LINK_FOLDER.sh" "$workspacePath/Linux" "$kptPath/Linux" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
+# link kpt source path
+for link_name in "${default_link_path_list[@]}"; do
+	_step="Step: link '$link_name'"
+	echo
+	echo
+	echo "==========$_step=========="
+    bash "$current_script_dir/LINK_FOLDER.sh" "$kpt_workspace_path/$link_name" "$kpt_repository_path/$link_name" "symbolic" "$exist_strategy"
+    [[ $? -ne 0 ]] || _result_code=1
+	echo "##########$_step##########"
+done
 
-echo "==========================================================="
-echo "link KPT shell path..."
-bash "$current_path/LINK_FOLDER.sh" "$workspacePath/shell" "$kptPath/shell" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
+# link pdi engine path
+_step="Step: link PDI engine path"
+echo
+echo
+echo "==========$_step=========="
+bash "$current_script_dir/LINK_FOLDER.sh" "$kpt_workspace_path/data-integration" "$pdi_engine_path" "copy_link" "$exist_strategy"
+[[ $? -ne 0 ]] || _result_code=1
+echo "##########$_step##########"
 
-echo "==========================================================="
-echo "link PDI path..."
-bash "$current_path/LINK_PDI.sh" "$workspacePath/data-integration" "$pdiPath" "$skipConflictCheck" "$forceConflictReplace"
-[ $interactive -eq 1 ] && [ $? -eq 0 ] && clear || echo -e "**********\n\n\n\n"
-
-
-# done
-
-code=$?
-if [ "$code" -eq "0" ]
+# done command
+if [[ $_result_code -eq 0 ]]
 then
     echo "Ok, run done!"
 else
-    echo "Sorry, some error make failure!"
+    echo "Sorry, some error '$_result_code' make failure!"
 fi
+echo "##########$current_script_name##########"
 
 
-# end
+#####end
 
-if [ $interactive -eq 1 ] 
+if [[ $interactive -eq 1 ]]
 then
     read -p "Press enter to continue"
-    exit $code
+    exit $_result_code
 else
-    exit $code
+    exit $_result_code
 fi

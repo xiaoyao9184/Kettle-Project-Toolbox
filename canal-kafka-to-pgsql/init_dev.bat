@@ -58,7 +58,7 @@ if %interactive% equ 0 (
 	cls
 ) else  (
 	echo Conflict Policy: Force replacement of an existing entity directory or link directory
-    set param=noskip force
+    set param=replace
 )
 
 ::run
@@ -71,7 +71,7 @@ echo.
 echo.
 echo ===========================================================
 echo link canal-kafka-to-pgsql/mysql-log path...
-call LINK_FOLDER.bat "%workspacePath%\canal-kafka-to-pgsql\mysql-log" "%current_path%\mysql-log" %param%
+call LINK_FOLDER.bat "%workspacePath%\canal-kafka-to-pgsql\mysql-log" "%current_path%\mysql-log" junction %param%
 echo.
 echo.
 echo.

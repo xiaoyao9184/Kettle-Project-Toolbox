@@ -1,128 +1,174 @@
-@echo off
-Setlocal enabledelayedexpansion
-::CODER BY xiaoyao9184 1.0 beta
+@ECHO OFF
+SETLOCAL EnableDelayedExpansion
+::CODER BY xiaoyao9184 1.0
 ::TIME 2015-06-10
 ::FILE INIT_KPT
-::DESC create a workspace for Kettle-Project-Toolbox using junction
-::PARAM params for the workspace path and PDI path
-::  1: workspacePath 
-::  2: pdiPath
-::--------------------
-::CHANGE 2018-12-31
-::english
-::--------------------
+::DESC create a workspace for Kettle-Project-Toolbox using LINK_FOLDER
+::SYNTAX INIT_KPT [kpt_workspace_path [pdi_engine_path [kpt_repository_path]]]
 
 
-:v
+:init_variable
 
-set tip=Kettle-Project-Toolbox: link KPT
-set ver=1.0
-::interactive 1 for true
-echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
-::current info
-set current_path=%~dp0
-%~d0
-cd %~dp0
-cd..
-set parent_path=%cd%
+::version
+SET tip=Kettle-Project-Toolbox: init workspace
+SET ver=1.0
+SET NL=^
+
+
+REM two empty line required
+
+::interactive
+::same as caller
+IF "%interactive%"=="" (
+	::double-clicking with no caller will true:1
+	ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
+	IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
+	IF NOT "!JENKINS_HOME!"=="" SET interactive=0
+	IF NOT "!DEBUG!"=="" SET interactive=0
+)
+
+::script info
+SET current_script_dir=%~dp0
+SET current_script_name=%~n0
+FOR %%F IN (%current_script_dir%.) DO SET parent_folder_dir=%%~dpF
+
 ::tip info
-set echo_workspacePath=Need input workspace path for link KPT's paths
-set eset_workspacePath=Please input path or drag path in:
+SET tip_kpt_workspace_path_input=Need input 'kpt_workspace_path' or drag path in:
+SET tip_kpt_workspace_path_miss=Missing param 'kpt_workspace_path' at position 1.
+SET tip_pdi_engine_path_input=Need input 'pdi_engine_path' or drag path in:
+SET tip_pdi_engine_path_miss=Missing param 'pdi_engine_path' at position 2.
+SET tip_pdi_engine_path_wrong=Wrong param 'pdi_engine_path' at position 2.
+SET tip_kpt_repository_path_input=Need input 'kpt_repository_path' or drag path in:
+SET tip_kpt_repository_path_miss=Missing param 'kpt_repository_path' at position 3.
+SET tip_kpt_workspace_exist_strategy=KPT workspace exist strategy: replace of exist symbolic link directory
+
 ::defult param
-set workspacePath=%1
-set pdiPath=%2
-set kptPath=%parent_path%
+SET kpt_workspace_path=%1
+SET pdi_engine_path=%2
+SET kpt_repository_path=%3
+SET default_link_path_list=tool;shell;default
 
 
-:title
+:tip_version
 
-title %tip% %ver%
-echo %tip%
-echo Can be closed after the run ends
-echo ...
+IF %interactive% EQU 1 ( TITLE %tip% %ver% ) ELSE ( ECHO %tip% )
 
 
-:check
+:loop_check_variable
 
-if "%workspacePath%"=="" (
-	echo %echo_workspacePath%
-	set /p workspacePath=%eset_workspacePath%
+IF "%kpt_workspace_path%"=="" (
+    IF %interactive% EQU 1 (
+		SET /P kpt_workspace_path=%tip_kpt_workspace_path_input%
+		GOTO:loop_check_variable
+	) ELSE ( 
+        ECHO %tip_kpt_workspace_path_miss%
+        EXIT /B 1
+    )
 )
-if not exist %workspacePath% (
-    md %workspacePath%
+
+IF "%pdi_engine_path%"=="" (
+    IF %interactive% EQU 1 (
+		SET /P pdi_engine_path=%tip_pdi_engine_path_input%
+		GOTO:loop_check_variable
+	) ELSE ( 
+        ECHO %tip_pdi_engine_path_miss%
+        EXIT /B 1
+    )
 )
+IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
+    IF %interactive% EQU 1 (
+        ECHO wrong path %pdi_engine_path%
+        SET pdi_engine_path=
+		GOTO:loop_check_variable
+	) ELSE ( 
+        ECHO %tip_pdi_engine_path_wrong%
+        EXIT /B 1
+    )
+)
+
+IF "%kpt_repository_path%"=="" (
+	@REM ::auto discover kpt
+	IF EXIST "%parent_folder_dir%.git" (
+		SET kpt_repository_path=%parent_folder_dir%
+		GOTO:loop_check_variable
+	)
+	IF %interactive% EQU 1 (
+		SET /P kpt_repository_path=%tip_kpt_repository_path_input%
+		GOTO:loop_check_variable
+	) ELSE ( 
+		ECHO %tip_kpt_repository_path_miss%
+		EXIT /B 1
+	)
+)
+
+SET default_link_path_list=!default_link_path_list:;=^
+
+!
+REM newline symbol two empty line required
 
 
 :begin
 
-::goto work path
-cd %current_path%
-
 ::print info
-echo ===========================================================
-echo Work path is: %current_path%
-echo Kettle workspace path is: %workspacePath%
-echo Kettle KPT path is: %kptPath%
-echo ===========================================================
-echo Running...      Ctrl+C for exit
+ECHO ==========%current_script_name%==========
+ECHO Script directory is: %current_script_dir%
+ECHO Kettle engine path is: %pdi_engine_path%
+ECHO KPT workspace path is: %kpt_workspace_path%
+ECHO KPT repository path is: %kpt_repository_path%
+ECHO KPT link path list is: !NL!!default_link_path_list!
+ECHO -----------------NOTE--------------------
+ECHO windows not support hard link target to directory;
+ECHO use 'junction'[soft link] for all, it can link across hard drives.
+ECHO __________%current_script_name%__________
 
-::create param
-if %interactive% equ 0 (
-	cls
-) else  (
-	echo Conflict Policy: Force replacement of an existing entity directory or link directory
-    set param=noskip force
+::create workspace
+IF NOT EXIST "%kpt_workspace_path%" (
+	ECHO create directory for not exist %kpt_workspace_path%
+	MD "%kpt_workspace_path%"
 )
 
-::run
-echo ===========================================================
-echo link KPT tool path...
-call LINK_FOLDER.bat "%workspacePath%\tool" "%kptPath%\tool" %param%
-echo. 
-echo.
-echo.
-echo.
-echo ===========================================================
-echo link KPT defalut path...
-call LINK_FOLDER.bat "%workspacePath%\default" "%kptPath%\default" %param%
-echo.
-echo.
-echo.
-echo.
-echo ===========================================================
-echo link KPT Windows path on windows system...
-call LINK_FOLDER.bat "%workspacePath%\Windows" "%kptPath%\Windows" %param%
-echo.
-echo.
-echo.
-echo.
-echo ===========================================================
-echo link KPT shell path...
-call LINK_FOLDER.bat "%workspacePath%\shell" "%kptPath%\shell" %param%
-echo.
-echo.
-echo.
-echo.
-echo ===========================================================
-echo link PDI path...
-if "%pdiPath%"=="" (
-	call LINK_FOLDER.bat "%workspacePath%\data-integration"
-) else (
-	call LINK_FOLDER.bat "%workspacePath%\data-integration" "%pdiPath%" %param%
+::create exist_strategy
+IF %interactive% EQU 1 (
+	ECHO:
+) ELSE  (
+	ECHO %tip_kpt_workspace_exist_strategy%
+    SET exist_strategy=replace
 )
 
+SET _result_code=0
 
-:done
-
-if %errorlevel% equ 0 (
-    echo Ok, run done!
-) else (
-    echo Sorry, some error make failure!
+::link kpt source path
+FOR /F "delims=" %%P IN ("!default_link_path_list!") DO (
+	SET link_name=%%P
+	SET _step=Step: link '!link_name!'
+	ECHO:
+	ECHO:
+	ECHO ==========!_step!==========
+	CALL %current_script_dir%LINK_FOLDER.bat "%kpt_workspace_path%\!link_name!" "%kpt_repository_path%\!link_name!" junction %exist_strategy%
+	IF !ERRORLEVEL! NEQ 0 SET _result_code=1
+	ECHO ##########!_step!##########
 )
+
+::link pdi engine path
+SET _step=Step: link PDI engine path
+ECHO:
+ECHO:
+ECHO ==========%_step%==========
+CALL %current_script_dir%LINK_FOLDER.bat "%kpt_workspace_path%\data-integration" "%pdi_engine_path%" junction %exist_strategy%
+IF !ERRORLEVEL! NEQ 0 SET _result_code=1
+ECHO ##########%_step%##########
+
+::done command
+ECHO:
+IF %_result_code% EQU 0 (
+    ECHO Ok, run done!
+) ELSE (
+    ECHO Sorry, some error '%_result_code%' make failure!
+)
+ECHO ##########%current_script_name%##########
 
 
 :end
 
-if %interactive% equ 0 pause
-exit /b %errorlevel%
+IF %interactive% EQU 1 PAUSE
+EXIT /B %_result_code%
