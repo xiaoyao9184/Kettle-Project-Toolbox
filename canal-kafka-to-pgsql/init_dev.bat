@@ -1,103 +1,30 @@
-@echo off
-Setlocal enabledelayedexpansion
+@ECHO OFF
+SETLOCAL EnableDelayedExpansion
 ::CODER BY xiaoyao9184 1.0 beta
-::TIME 2021-08-19
+::TIME 2022-04-25
 
 
-:v
+SET current_script_dir=%~dp0
+FOR %%F IN (%current_script_dir%.) DO SET parent_folder_dir=%%~dpF
+FOR %%F IN (%current_script_dir%.) DO SET parent_folder_name=%%~nF
 
-set tip=Kettle-Project-Toolbox: link KPT
-set ver=1.0
-::interactive 1 for true
-echo %cmdcmdline% | find /i "%~0" >nul
-if not errorlevel 1 ( set interactive=0 ) else ( set interactive=1 )
-::current info
-set current_path=%~dp0
+ENDLOCAL & (
+    SET kpt_workspace_path=
+    SET kpt_project_name=%parent_folder_name%
+    SET kpt_folder_name=%parent_folder_name%
+    SET copy_item_name_list=config.xml;db_kpt_bin_log_pgsql_writer.kdb
+    SET link_item_name_list=from-canal;from-debezium;from-kafka;mysql-log;to_pgsql;to_rdb
 
-::tip info
-set echo_workspacePath=Need input workspace path for link KPT's paths(tool,default,Windows)
-set eset_workspacePath=Please input path or drag path in:
-::defult param
-set workspacePath=%1
-
-:title
-
-title %tip% %ver%
-echo %tip%
-echo Can be closed after the run ends
-echo ...
-
-
-:check
-
-if "%workspacePath%"=="" (
-	echo %echo_workspacePath%
-	set /p workspacePath=%eset_workspacePath%
-)
-if not exist %workspacePath% (
-    echo "%workspacePath% must exist!"
-    exit /b 1
-)
-set toolPath=%workspacePath%\tool
-
-:begin
-
-::goto tool path
-cd %toolPath%
-
-::print info
-echo ===========================================================
-echo Work path is: %current_path%
-echo Kettle workspace path is: %workspacePath%
-echo Kettle KPT tool path is: %toolPath%
-echo ===========================================================
-echo Running...      Ctrl+C for exit
-
-::create param
-if %interactive% equ 0 (
-	cls
-) else  (
-	echo Conflict Policy: Force replacement of an existing entity directory or link directory
-    set param=replace
+    CALL %parent_folder_dir%tool\LINK_PROJECT.bat
 )
 
-::run
-echo ===========================================================
-echo init canal-kafka-to-pgsql project...
-call INIT_PROJECT.bat canal-kafka-to-pgsql
-echo. 
-echo.
-echo.
-echo.
-echo ===========================================================
-echo link canal-kafka-to-pgsql/mysql-log path...
-call LINK_FOLDER.bat "%workspacePath%\canal-kafka-to-pgsql\mysql-log" "%current_path%\mysql-log" junction %param%
-echo.
-echo.
-echo.
-echo.
-echo ===========================================================
-echo copy files and profile...
-copy "%current_path%\config.xml" "%workspacePath%\canal-kafka-to-pgsql\config.xml"
-copy "%current_path%\db_kpt_bin_log_pgsql_writer.kdb" "%workspacePath%\canal-kafka-to-pgsql\db_kpt_bin_log_pgsql_writer.kdb"
-copy "%workspacePath%\canal-kafka-to-pgsql\.profile\.profile" "%workspacePath%\canal-kafka-to-pgsql\.profile\default.profile"
-echo.
-echo.
-echo.
-echo.
-echo ===========================================================
+SET kpt_workspace_path=
+SET kpt_project_name=
+SET kpt_folder_name=
+SET copy_item_name_list=
+SET link_item_name_list=
 
 
-:done
-
-if %errorlevel% equ 0 (
-    echo Ok, run done!
-) else (
-    echo Sorry, some error make failure!
-)
-
-
-:end
-
-if %interactive% equ 0 pause
-exit /b %errorlevel%
+ECHO:
+ECHO pause by %~nx0
+PAUSE
