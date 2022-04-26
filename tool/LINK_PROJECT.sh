@@ -191,7 +191,7 @@ _step="Step: create kpt project '$kpt_project_name'"
 echo ""
 echo ""
 echo "==========$_step=========="
-bash "$kpt_workspace_path/tool/INIT_PROJECT.sh $kpt_project_name"
+bash "$kpt_workspace_path/tool/create_project.sh $kpt_project_name"
 [[ $? -ne 0 ]] || _result_code=1
 echo "##########$_step##########"
 

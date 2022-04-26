@@ -225,7 +225,7 @@ SET _step=Step: create kpt project '!kpt_project_name!'
 ECHO:
 ECHO:
 ECHO ==========!_step!==========
-CALL %kpt_workspace_path%\tool\INIT_PROJECT.bat %kpt_project_name%
+CALL %kpt_workspace_path%\tool\create_project.bat %kpt_project_name%
 IF %ERRORLEVEL% NEQ 0 SET _result_code=1
 ECHO ##########!_step!##########
 
