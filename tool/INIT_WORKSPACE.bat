@@ -2,9 +2,9 @@
 SETLOCAL EnableDelayedExpansion
 ::CODER BY xiaoyao9184 1.0
 ::TIME 2015-06-10
-::FILE INIT_KPT
+::FILE INIT_WORKSPACE
 ::DESC create a workspace for Kettle-Project-Toolbox using LINK_FOLDER
-::SYNTAX INIT_KPT [kpt_workspace_path [pdi_engine_path [kpt_repository_path]]]
+::SYNTAX INIT_WORKSPACE [kpt_workspace_path [pdi_engine_path [kpt_repository_path]]]
 
 
 :init_variable
