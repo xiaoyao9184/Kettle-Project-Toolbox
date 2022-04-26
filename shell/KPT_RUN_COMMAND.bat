@@ -92,6 +92,11 @@ GOTO:EOF
     @REM ::add quotation marks if spaces in param
     IF NOT "%command_param: =%"=="%command_param%" (
         SET command_param="%command_param%"
+    ) ELSE (
+        @REM ::https://stackoverflow.com/questions/3777110/remove-an-equals-symbol-from-text-string
+        FOR /F "delims== tokens=1-2" %%A IN ('ECHO !command_param!') DO (
+            IF NOT "%%B"=="" SET command_param="%command_param%"
+        )
     )
 
     ENDLOCAL & (
@@ -211,7 +216,7 @@ FOR /F "delims== tokens=1,2" %%A IN ('SET ^| FINDSTR /I /R "^KPT_KETTLE_"') DO (
         SET _command_opt=!_command_opt! !_result_param!
     )
 )
-SET _command=%_engine_dir%%_command_name% %_command_opt%
+SET _command=%_engine_dir%%_command_name% !_command_opt!
 
 ::print command
 ECHO %_command%
