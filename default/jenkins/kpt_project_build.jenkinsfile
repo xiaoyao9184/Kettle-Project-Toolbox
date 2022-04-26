@@ -330,11 +330,11 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh """
-                        bash "\$(pwd)/tool/PACKAGE_DEPLOY_PATH.sh" "\$(pwd)/${params.ProjectName}" <&-
+                        bash "\$(pwd)/tool/package_path.sh" "\$(pwd)/${params.ProjectName}" <&-
                         """
                     } else {
                         bat """
-                        call %cd%\\tool\\PACKAGE_DEPLOY_PATH.bat %cd%\\${params.ProjectName}
+                        call %cd%\\tool\\package_path.bat %cd%\\${params.ProjectName}
                         """
                     }
                 }
