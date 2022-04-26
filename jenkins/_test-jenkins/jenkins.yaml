@@ -1,0 +1,195 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          scope: GLOBAL
+          id: "root@node-kpt"
+          description: "root@node-kpt"
+          username: "root"
+          password: "kpt.123"
+
+jenkins:
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "http://updates.jenkins-ci.org/update-center.json"
+  
+  mode: NORMAL
+  scmCheckoutRetryCount: 1
+  quietPeriod: 5
+  labelString: "linux"
+  numExecutors: 10
+  projectNamingStrategy: "standard"
+  slaveAgentPort: 50000
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  disableRememberMe: false
+  markupFormatter: "plainText"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+      - "Job/Build:authenticated"
+      - "Job/Cancel:authenticated"
+      - "Job/Configure:authenticated"
+      - "Job/Create:authenticated"
+      - "Job/Discover:authenticated"
+      - "Job/Move:authenticated"
+      - "Job/Read:authenticated"
+      - "Job/Workspace:authenticated"
+      - "Overall/Administer:admin"
+      - "Overall/Read:authenticated"
+      - "Run/Delete:authenticated"
+      - "Run/Replay:authenticated"
+      - "Run/Update:authenticated"
+      - "SCM/Tag:authenticated"
+      - "View/Configure:authenticated"
+      - "View/Create:authenticated"
+      - "View/Read:authenticated"
+  securityRealm:
+    local:
+      allowsSignup: true
+      enableCaptcha: false
+      users:
+       - id: admin
+         password: kpt.123
+  labelAtoms:
+  - name: "master"
+  - name: "etl"
+  - name: "linux"
+  - name: "windows"
+  nodes:
+  - permanent:
+      labelString: "etl linux"
+      name: "node-linux"
+      numExecutors: 5
+      remoteFS: "/home/jenkins/remote"
+      retentionStrategy: "always"
+      mode: EXCLUSIVE
+      launcher:
+        jnlp:
+          workDirSettings:
+            disabled: false
+            failIfWorkDirIsMissing: false
+            internalDir: "remoting"
+  - permanent:
+      labelString: "etl windows"
+      name: "node-windows"
+      numExecutors: 5
+      remoteFS: "D:\\Program\\jenkins\\remote"
+      retentionStrategy: "always"
+      mode: EXCLUSIVE
+      launcher:
+        jnlp:
+          workDirSettings:
+            disabled: false
+            failIfWorkDirIsMissing: false
+            internalDir: "remoting"
+  - permanent:
+      labelString: "etl linux"
+      name: "node-ssh"
+      numExecutors: 5
+      remoteFS: "/home/jenkins/remote/"
+      retentionStrategy: "always"
+      mode: EXCLUSIVE
+      launcher:
+        ssh:
+          credentialsId: "root@node-kpt"
+          host: "node1-kpt"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      nodeProperties:
+      - envVars:
+          env:
+          - key: "PATH"
+            value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/bin"
+      - toolLocation:
+          locations:
+          - home: "git"
+            key: "hudson.plugins.git.GitTool$DescriptorImpl@Default"
+          - home: "java"
+            key: "hudson.model.JDK$DescriptorImpl@1.8"
+  viewsTabBar: "standard"
+  myViewsTabBar: "standard"
+  views:
+  - all:
+      name: "all"
+  primaryView:
+    all:
+      name: "all"
+
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  jdk:
+    installations:
+    - home: "java"
+      name: "Default"
+
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  copyartifact:
+    mode: MIGRATION
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: false
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: "systemAuthorizationStrategy"
+  scriptApproval:
+    approvedSignatures:
+    - "method groovy.lang.GroovyObject getProperty java.lang.String"
+    - "method groovy.lang.GroovyObject invokeMethod java.lang.String java.lang.Object"
+    - "method hudson.model.Cause$UpstreamCause getUpstreamProject"
+    - "method hudson.model.ItemGroup getItem java.lang.String"
+    - "method hudson.model.Run getCause java.lang.Class"
+    - "method hudson.plugins.git.BranchSpec getName"
+    - "method hudson.plugins.git.GitSCM getBranches"
+    - "method hudson.plugins.git.GitSCM getUserRemoteConfigs"
+    - "method hudson.plugins.git.UserRemoteConfig getCredentialsId"
+    - "method hudson.plugins.git.UserRemoteConfig getUrl"
+    - "method java.io.File exists"
+    - "method java.io.File getAbsolutePath"
+    - "method java.io.File getName"
+    - "method java.io.File isDirectory"
+    - "method java.io.File isHidden"
+    - "method java.io.File listFiles"
+    - "method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild"
+    - "new groovy.util.AntBuilder"
+    - "new java.io.File java.lang.String"
+    - "staticMethod jenkins.model.Jenkins get"
+    - "staticMethod jenkins.model.Jenkins getInstance"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods renameTo java.io.File java.lang.String"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods reverse java.util.List"
+    - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.Object java.lang.String"
+
+unclassified:
+  pollSCM:
+    pollingThreadCount: 10
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"  
+  buildStepOperation:
+    enabled: false
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  sshPublisher:
+    commonConfig:
+      disableAllExec: false
+  upstream:
+    globalUpstreamFilterStrategy: UseOldest
