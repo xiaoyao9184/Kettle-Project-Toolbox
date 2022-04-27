@@ -132,18 +132,17 @@ IF %interactive% EQU 1 (
 
 :begin
 
-ENDLOCAL & (
-    SET KPT_COMMAND=kitchen
-    SET KPT_ENGINE_PATH=%pdi_engine_path%
-    SET KPT_KETTLE_FILE=%current_script_dir%Deploy\PackageZipDeploy4FileRepositoryPath.kjb
-    SET KPT_KETTLE_PARAM_rNameRegex=%kpt_project_name%
-    SET KPT_KETTLE_PARAM_isOpenShell=%open_project_path%
-    SET KPT_KETTLE_PARAM_fExcludeRegex=".*\.backup$|.*\.log$|.*\.git\\.*|.*db\.cache.*|.*data-integration.*"
-    SET KPT_KETTLE_PARAM_fIncludeRegex=".*"
+SET KPT_COMMAND=kitchen
+SET KPT_ENGINE_PATH=%pdi_engine_path%
+SET KPT_KETTLE_FILE=%current_script_dir%Deploy\PackageZipDeploy4FileRepositoryPath.kjb
+SET KPT_KETTLE_PARAM_rNameRegex=%kpt_project_name%
+SET KPT_KETTLE_PARAM_isOpenShell=%open_project_path%
+SET KPT_KETTLE_PARAM_fExcludeRegex=".*\.backup$|.*\.log$|.*\.git\\.*|.*db\.cache.*|.*data-integration.*"
+SET KPT_KETTLE_PARAM_fIncludeRegex=".*"
 
-    CALL %parent_folder_dir%shell\KPT_RUN_COMMAND.bat
-    IF !ERRORLEVEL! NEQ 0 SET _result_code=1
-)
+CALL %parent_folder_dir%shell\KPT_RUN_COMMAND.bat
+IF !ERRORLEVEL! NEQ 0 SET _result_code=1
+
 SET KPT_COMMAND=
 SET KPT_ENGINE_PATH=
 SET KPT_KETTLE_FILE=
