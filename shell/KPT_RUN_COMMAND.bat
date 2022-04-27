@@ -73,7 +73,7 @@ GOTO:EOF
 @REM ::2. Contain spaces need add quotation
 :function_param_generation
     SETLOCAL EnableDelayedExpansion
-    SET kettle_param_name=%1
+    SET kettle_param_name=%~1
     :: remove quotation
     SET kettle_param_value=%~2
 
@@ -92,6 +92,11 @@ GOTO:EOF
     @REM ::add quotation marks if spaces in param
     IF NOT "%command_param: =%"=="%command_param%" (
         SET command_param="%command_param%"
+    ) ELSE (
+        @REM ::https://stackoverflow.com/questions/3777110/remove-an-equals-symbol-from-text-string
+        FOR /F "delims== tokens=1-2" %%A IN ('ECHO !command_param!') DO (
+            IF NOT "%%B"=="" SET command_param="%command_param%"
+        )
     )
 
     ENDLOCAL & (
@@ -189,7 +194,7 @@ IF %interactive% EQU 1 (
 :begin
 
 ::print info
-IF %interactive% EQU 1 CLS
+@REM IF %interactive% EQU 1 CLS
 ECHO ==========%~n0==========
 ECHO Script directory is: %current_script_dir%
 ECHO Engine directory is: %_engine_dir%
@@ -200,15 +205,18 @@ ECHO __________%~n0__________
 ::create command
 SET _command_opt=
 FOR /F "delims== tokens=1,2" %%A IN ('SET ^| FINDSTR /I /R "^KPT_KETTLE_"') DO (
+    SET _result_param_name=
+    SET _result_param_value=
+    SET _result_param=
     CALL :function_param_parse %%A %%B _result_param_name _result_param_value
-    CALL :function_param_generation !_result_param_name! !_result_param_value! _result_param
+    CALL :function_param_generation "!_result_param_name!" "!_result_param_value!" _result_param
     IF NOT DEFINED _command_opt (
         SET _command_opt=!_result_param!
     ) ELSE (
         SET _command_opt=!_command_opt! !_result_param!
     )
 )
-SET _command=%_engine_dir%%_command_name% %_command_opt%
+SET _command=%_engine_dir%%_command_name% !_command_opt!
 
 ::print command
 ECHO %_command%
