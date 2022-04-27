@@ -92,7 +92,7 @@ while [[ -z "$pdi_engine_path" ]]; do
         pdi_engine_path="$parent_folder_dir/data-integration"
         continue
     fi
-    if [[ $interactive -eq 1]]; then
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
 	else 
         echo "$tip_pdi_engine_path_miss"

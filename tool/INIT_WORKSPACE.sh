@@ -54,7 +54,7 @@ while [[ -z "$kpt_workspace_path" ]]; do
 done
 
 while [[ -z "$pdi_engine_path" ]]; do
-    if [[ $interactive -eq 1]]; then
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
 	else 
         echo "$tip_pdi_engine_path_miss"
@@ -77,7 +77,7 @@ while [[ -z $kpt_repository_path ]]; do
 		kpt_repository_path="$parent_folder_dir"
         continue
 	fi
-    if [[ $interactive -eq 1]]; then
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_repository_path_input" kpt_repository_path
     else
         echo "$tip_kpt_repository_path_miss"
@@ -110,7 +110,7 @@ if [[ ! -d "$kpt_workspace_path" ]]; then
 fi
 
 # create param
-if [[ $interactive -eq 1]]; then
+if [[ $interactive -eq 1 ]]; then
     echo
 else
     echo "$tip_kpt_workspace_exist_strategy"

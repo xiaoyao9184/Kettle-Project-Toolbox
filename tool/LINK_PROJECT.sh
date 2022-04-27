@@ -196,7 +196,7 @@ bash "$kpt_workspace_path/tool/create_project.sh $kpt_project_name"
 echo "##########$_step##########"
 
 # create link_strategy
-if [[ $interactive -eq 1]]; then
+if [[ $interactive -eq 1 ]]; then
     echo
 else
     echo "$tip_kpt_workspace_link_strategy"
