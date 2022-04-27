@@ -73,10 +73,10 @@ Function Update-Script($target_path,$source_path,$target_include) {
     }
     if(! $source_path){
         Write-Host ""
-        Write-Host "Need input source path(empty will use '../Linux;../Windows;../shell;'):"
+        Write-Host "Need input source path(empty will use '../shell;'):"
         $source_path = $non_interactive ? $null : (Read-Host)
         if(! $source_path) {
-            $source_path = $script_dir + "/../Linux;" + $script_dir + "/../Windows;" + $script_dir + "/../shell;"
+            $source_path = $script_dir + "/../shell;"
             Write-Host "param source_path is" $source_path
         }
     }

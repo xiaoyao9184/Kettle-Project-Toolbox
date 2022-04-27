@@ -35,7 +35,7 @@ SET current_script_dir=%~dp0
 SET tip_target_path_input_first=Please input target_path or drag path in[empty use default '../default']:
 SET tip_target_path_input_again=Again input target_path or drag path in[empty end]:
 SET tip_target_path_miss=Missing param 'target_path' at position 1.
-SET tip_source_path_input_first=Please input source_path or drag path in[empty use default '../Window;../Linux']:
+SET tip_source_path_input_first=Please input source_path or drag path in[empty use default '../shell']:
 SET tip_source_path_input_again=Again input source_path or drag path in[empty end]:
 SET tip_source_path_miss=Missing param 'source_path' at position 1.
 
@@ -43,7 +43,7 @@ SET tip_source_path_miss=Missing param 'source_path' at position 1.
 SET target_path_list=%1
 SET source_path_list=%2
 SET default_target_path_list=%current_script_dir%..\default
-SET default_source_path_list=%current_script_dir%..\shell;%current_script_dir%..\Windows;%current_script_dir%..\Linux
+SET default_source_path_list=%current_script_dir%..\shell
 SET input_list=
 
 

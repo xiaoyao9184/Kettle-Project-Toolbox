@@ -26,7 +26,7 @@ current_script_name="${current_script_name%.*}"
 tip_target_path_input_first="Please input target_path or drag path in[empty is ../default]:"
 tip_target_path_input_again="Again input target_path or drag path in[empty end]:"
 tip_target_path_miss="Missing param 'target_path' at position 1."
-tip_source_path_input_first="Please input source_path or drag path in[empty is ../Window and ../Linux]:"
+tip_source_path_input_first="Please input source_path or drag path in[empty is ../shell]:"
 tip_source_path_input_again="Again input source_path or drag path in[empty end]:"
 tip_source_path_miss="Missing param 'source_path' at position 1."
 
@@ -34,10 +34,7 @@ tip_source_path_miss="Missing param 'source_path' at position 1."
 target_path_list=$1
 target_path_list=$2
 default_target_path_list=$(realpath "$current_script_dir/../default")
-default_windows_path=$(realpath "$current_script_dir/../Windows")
-default_linux_path=$(realpath "$current_script_dir/../Linux")
-default_shell_path=$(realpath "$current_script_dir/../shell")
-default_source_path_list="$default_windows_path;$default_linux_path;$default_shell_path"
+default_source_path_list=$(realpath "$current_script_dir/../shell")
 
 
 #####tip_version
