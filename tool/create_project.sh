@@ -23,7 +23,7 @@ current_script_name="${current_script_name%.*}"
 # tip info
 tip_kpt_project_name_input="Need input 'kpt_project_name' or drag path in:"
 tip_kpt_project_name_miss="Missing param 'kpt_project_name' at position 1."
-tip_kpt_project_name_wrong="Wrong param 'kpt_project_name' at position 1."
+tip_kpt_project_name_exist="keep this name[y], or input new one[n]?"
 tip_kpt_workspace_path_input="Need input 'kpt_workspace_path' or drag path in:"
 tip_kpt_workspace_path_miss="Missing param 'kpt_workspace_path' at position 2."
 tip_kpt_workspace_path_wrong="Wrong param 'kpt_workspace_path' at position 2."
@@ -77,11 +77,22 @@ while [[ -z "$kpt_project_name" ]]; do
     fi
 done
 while [[ -f "$kpt_workspace_path/$kpt_project_name" ]]; then
+    echo "exist $kpt_workspace_path/$kpt_project_name"
     if [[ $interactive -eq 1 ]]; then 
-        echo "exist $kpt_workspace_path/$kpt_project_name"
-        read -p "$tip_kpt_project_name_input" kpt_project_name
+        select opt in "y" "n"; do
+            case $opt in
+                "y")
+                    ;;
+                "n")
+                    read -p "$tip_kpt_project_name_input" kpt_project_name
+                    ;;
+                *)
+                    echo "$tip_kpt_project_name_exist"
+                    ;;
+            esac
+        done
     else
-        echo "$tip_kpt_project_name_wrong"
+        echo "$tip_kpt_project_name_exist"
         exit 1
     fi
 fi
