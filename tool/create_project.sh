@@ -123,8 +123,6 @@ done
 
 if [[ $interactive -eq 1 ]]; then
     open_project_path="xdg-open"
-else
-    open_project_path=""
 fi
 
 

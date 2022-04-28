@@ -126,8 +126,6 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
 
 IF %interactive% EQU 1 (
     SET open_project_path=start
-) ELSE (
-    SET open_project_path=
 )
 
 
