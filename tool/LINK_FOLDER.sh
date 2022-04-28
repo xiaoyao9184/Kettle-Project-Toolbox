@@ -69,7 +69,7 @@ while [[ -z "$target_path" ]]; do
         exit 1
     fi
 done
-while [[ ! -d "$target_path" ]]; then
+while [[ ! -d "$target_path" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "not exist $target_path"
         read -p "$tip_target_path_input" target_path
@@ -77,7 +77,7 @@ while [[ ! -d "$target_path" ]]; then
         echo "$tip_target_path_wrong"
         exit 1
     fi
-fi
+done
 
 if [[ -z "$link_type" ]]; then
     link_type="symbolic"

@@ -70,7 +70,7 @@ while [[ -z "$kpt_workspace_path" ]]; do
         exit 1
     fi
 done
-while [[ ! -d "$kpt_workspace_path" ]]; then
+while [[ ! -d "$kpt_workspace_path" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "not exist $kpt_workspace_path"
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
@@ -78,7 +78,7 @@ while [[ ! -d "$kpt_workspace_path" ]]; then
         echo "$tip_kpt_workspace_path_wrong"
         exit 1
     fi
-fi
+done
 
 while [[ -z "$kpt_project_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
@@ -88,7 +88,7 @@ while [[ -z "$kpt_project_name" ]]; do
         exit 1
     fi
 done
-while [[ -d "$kpt_workspace_path/$kpt_project_name" ]]; then
+while [[ -d "$kpt_workspace_path/$kpt_project_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "exist $kpt_workspace_path/$kpt_project_name"
         read -p "$tip_kpt_project_name" kpt_project_name
@@ -96,7 +96,7 @@ while [[ -d "$kpt_workspace_path/$kpt_project_name" ]]; then
         echo "$tip_kpt_project_name_wrong"
         exit 1
     fi
-fi
+done
 
 while [[ -z "$kpt_folder_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
@@ -106,7 +106,7 @@ while [[ -z "$kpt_folder_name" ]]; do
         exit 1
     fi
 done
-while [[ ! -d "$parent_folder_dir/$kpt_folder_name" ]]; then
+while [[ ! -d "$parent_folder_dir/$kpt_folder_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "not exist $parent_folder_dir/$kpt_folder_name"
         read -p "$tip_kpt_folder_name" kpt_folder_name
@@ -114,7 +114,7 @@ while [[ ! -d "$parent_folder_dir/$kpt_folder_name" ]]; then
         echo "$tip_kpt_folder_name_wrong"
         exit 1
     fi
-fi
+done
 
 delimiter=";"
 input_list=

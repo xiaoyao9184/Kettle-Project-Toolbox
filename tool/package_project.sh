@@ -58,7 +58,7 @@ while [[ -z "$kpt_workspace_path" ]]; do
         exit 1
     fi
 done
-while [[ ! -d "$kpt_workspace_path" ]]; then
+while [[ ! -d "$kpt_workspace_path" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "not exist $kpt_workspace_path"
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
@@ -66,7 +66,7 @@ while [[ ! -d "$kpt_workspace_path" ]]; then
         echo "$tip_kpt_workspace_path_wrong"
         exit 1
     fi
-fi
+done
 
 while [[ -z "$kpt_project_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
@@ -76,7 +76,7 @@ while [[ -z "$kpt_project_name" ]]; do
         exit 1
     fi
 done
-while [[ -f "$kpt_workspace_path/$kpt_project_name" ]]; then
+while [[ -f "$kpt_workspace_path/$kpt_project_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "exist $kpt_workspace_path/$kpt_project_name"
         read -p "$tip_kpt_project_name_input" kpt_project_name
@@ -84,7 +84,7 @@ while [[ -f "$kpt_workspace_path/$kpt_project_name" ]]; then
         echo "$tip_kpt_project_name_wrong"
         exit 1
     fi
-fi
+done
 
 while [[ -z "$pdi_engine_path" ]]; do
     # auto discover pdi
@@ -99,7 +99,7 @@ while [[ -z "$pdi_engine_path" ]]; do
         exit 1
     fi
 done
-while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; then
+while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "wrong path $pdi_engine_path"
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
@@ -107,7 +107,7 @@ while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; then
         echo "$tip_pdi_engine_path_wrong"
         exit 1
     fi
-fi
+done
 
 if [[ $interactive -eq 1 ]]; then 
     open_project_path="true"

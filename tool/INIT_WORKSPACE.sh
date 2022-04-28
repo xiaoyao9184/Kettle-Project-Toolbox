@@ -61,7 +61,7 @@ while [[ -z "$pdi_engine_path" ]]; do
         exit 1
     fi
 done
-while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; then
+while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         echo "wrong path $pdi_engine_path"
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
@@ -69,7 +69,7 @@ while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; then
         echo "$tip_pdi_engine_path_wrong"
         exit 1
     fi
-fi
+done
 
 while [[ -z $kpt_repository_path ]]; do
     # auto discover kpt
