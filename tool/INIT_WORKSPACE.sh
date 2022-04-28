@@ -19,6 +19,7 @@ ver="1.0"
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 current_script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 current_script_name="${current_script_name%.*}"
+parent_folder_dir="$(dirname $current_script_dir)"
 
 # tip info
 tip_kpt_workspace_path_input="Need input 'kpt_workspace_path' or drag path in:"
@@ -73,7 +74,7 @@ done
 
 while [[ -z $kpt_repository_path ]]; do
     # auto discover kpt
-	if [[ -d "$parent_folder_dir/.git" ]]; then
+    if [[ -d "$parent_folder_dir/.git" ]]; then
 		kpt_repository_path="$parent_folder_dir"
         continue
 	fi

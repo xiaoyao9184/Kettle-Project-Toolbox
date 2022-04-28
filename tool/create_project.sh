@@ -19,6 +19,7 @@ ver="1.0"
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 current_script_name="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 current_script_name="${current_script_name%.*}"
+parent_folder_dir="$(dirname $current_script_dir)"
 
 # tip info
 tip_kpt_project_name_input="Need input 'kpt_project_name' or drag path in:"
