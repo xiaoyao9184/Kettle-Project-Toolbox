@@ -115,7 +115,7 @@ if [[ -d $link_path ]]; then
         exist_type="normal"
 		echo "$tip_exist_normal_path"
 	fi
-done
+fi
 
 
 #####begin
@@ -137,26 +137,26 @@ echo "----------$current_script_name----------"
 
 #remove exist
 if [[ "$exist_type" = "link" ]]; then
-    if [[ "$exist_strategy"=="remove" ]]; then
+    if [[ "$exist_strategy" = "remove" ]]; then
 		echo "$tip_exist_symbolic_remove"
         unlink $link_path
         link_type="none"
-    elif [[ "$exist_strategy"=="replace" ]]; then
+    elif [[ "$exist_strategy" = "replace" ]]; then
 		echo "$tip_exist_symbolic_remove"
         unlink $link_path
-    elif [[ "$exist_strategy"=="none" ]]; then
+    elif [[ "$exist_strategy" = "none" ]]; then
 		echo "$tip_exist_none"
         link_type="none"
     fi
 elif [[ "$exist_type" = "normal" ]]; then
-    if [[ "$exist_strategy"=="remove" ]]; then
+    if [[ "$exist_strategy" = "remove" ]]; then
 		echo "$tip_exist_normal_remove"
         rm -rdf $link_path
         link_type="none"
-    elif [[ "$exist_strategy"=="replace" ]]; then
+    elif [[ "$exist_strategy" = "replace" ]]; then
 		echo "$tip_exist_normal_remove"
         rm -rdf $link_path
-    elif [[ "$exist_strategy"=="none" ]]; then
+    elif [[ "$exist_strategy" = "none" ]]; then
 		echo "$tip_exist_none"
         link_type="none"
     fi
@@ -166,16 +166,16 @@ _result_code=0
 
 # run command
 echo "--------------------"
-if [[ "$link_type"=="symbolic" ]]; then
+if [[ "$link_type" = "symbolic" ]]; then
 	ln -s -T $target_path $link_path
     [[ $? -ne 0 ]] || _result_code=1
-elif [[ "$link_type"=="hard" ]]; then
+elif [[ "$link_type" = "hard" ]]; then
 	ln -d -T $target_path $link_path
     [[ $? -ne 0 ]] || _result_code=1
-elif [[ "$link_type"=="copy_link" ]]; then
+elif [[ "$link_type" = "copy_link" ]]; then
 	cp -al $target_path $link_path
     [[ $? -ne 0 ]] || _result_code=1
-elif [[ "$link_type"=="none" ]]; then
+elif [[ "$link_type" = "none" ]]; then
 	echo "$tip_none"
 fi
 
