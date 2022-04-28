@@ -4,7 +4,7 @@ SETLOCAL EnableDelayedExpansion
 ::TIME 2022-04-25
 ::FILE LINK_PROJECT
 ::DESC create a project and link to KPT source code
-::SYNTAX LINK_PROJECT [kpt_workspace_path [kpt_project_name [kpt_folder_name [link_item_name_list [copy_item_name_list]]]]]
+::SYNTAX LINK_PROJECT [kpt_project_name [kpt_workspace_path [pdi_engine_path [kpt_folder_name [link_item_name_list [copy_item_name_list]]]]]]
 ::SYNTAX link_item_name_list: name[;name]...
 ::SYNTAX copy_item_name_list: name[;name]...
 ::SYNTAX_DESC kpt_folder_name: folder in kpt
@@ -42,28 +42,34 @@ SET tip_kpt_workspace_path_wrong=Wrong param 'kpt_workspace_path' at position 1.
 SET tip_kpt_project_name_input=Need input 'kpt_project_name' or drag path in:
 SET tip_kpt_project_name_miss=Missing param 'kpt_project_name' at position 2.
 SET tip_kpt_project_name_wrong=Wrong param 'kpt_project_name' at position 2.
+SET tip_pdi_engine_path_input=Need input 'pdi_engine_path' or drag path in:
+SET tip_pdi_engine_path_miss=Missing param 'pdi_engine_path' at position 3.
+SET tip_pdi_engine_path_wrong=Wrong param 'pdi_engine_path' at position 3.
 SET tip_kpt_folder_name_input=Need input 'kpt_folder_name' or drag path in:
-SET tip_kpt_folder_name_miss=Missing param 'kpt_folder_name' at position 3.
-SET tip_kpt_folder_name_wrong=Wrong param 'kpt_folder_name' at position 3.
+SET tip_kpt_folder_name_miss=Missing param 'kpt_folder_name' at position 4.
+SET tip_kpt_folder_name_wrong=Wrong param 'kpt_folder_name' at position 4.
 SET tip_link_item_name_input_first=Please input 'link_item_name' or use default[all folder] with empty input:
 SET tip_link_item_name_input_again=Again input 'link_item_name' or end with empty input:
-SET tip_link_item_name_miss=Missing param 'kpt_folder_name' at position 4.
+SET tip_link_item_name_miss=Missing param 'kpt_folder_name' at position 5.
 SET tip_copy_item_name_input_first=Please input 'copy_item_name' or use default[all file] with empty input:
 SET tip_copy_item_name_input_again=Again input 'copy_item_name' or end with empty input:
-SET tip_copy_item_name_miss=Missing param 'copy_item_name' at position 5.
+SET tip_copy_item_name_miss=Missing param 'copy_item_name' at position 6.
 
 ::defult param
-SET kpt_workspace_path=%kpt_workspace_path%
 SET kpt_project_name=%kpt_project_name%
+SET kpt_workspace_path=%kpt_workspace_path%
+SET pdi_engine_path=%pdi_engine_path%
 SET kpt_folder_name=%kpt_folder_name%
 SET link_item_name_list=%link_item_name_list%
 SET copy_item_name_list=%copy_item_name_list%
-IF NOT "%1"=="" SET kpt_workspace_path=%~1
-IF NOT "%2"=="" SET kpt_project_name=%~2
-IF NOT "%3"=="" SET kpt_folder_name=%~3
-IF NOT "%4"=="" SET link_item_name_list=%4
-IF NOT "%5"=="" SET copy_item_name_list=%5
+IF NOT "%1"=="" SET kpt_project_name=%~1
+IF NOT "%2"=="" SET kpt_workspace_path=%~2
+IF NOT "%3"=="" SET pdi_engine_path=%~3
+IF NOT "%4"=="" SET kpt_folder_name=%~4
+IF NOT "%5"=="" SET link_item_name_list=%5
+IF NOT "%6"=="" SET copy_item_name_list=%6
 SET input_list=
+
 
 :tip_version
 
@@ -108,6 +114,31 @@ IF EXIST "%kpt_workspace_path%\%kpt_project_name%" (
 		GOTO:loop_check_variable
 	) ELSE ( 
         ECHO %tip_kpt_project_name_wrong%
+        EXIT /B 1
+    )
+)
+
+IF "%pdi_engine_path%"=="" (
+    @REM ::auto discover pdi
+    IF EXIST "%kpt_workspace_path%data-integration\Spoon.bat" (
+        SET pdi_engine_path=%kpt_workspace_path%data-integration
+        GOTO:loop_check_variable
+    )
+    IF %interactive% EQU 1 (
+		SET /P pdi_engine_path=%tip_pdi_engine_path_input%
+		GOTO:loop_check_variable
+	) ELSE ( 
+        ECHO %tip_pdi_engine_path_miss%
+        EXIT /B 1
+    )
+)
+IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
+    IF %interactive% EQU 1 (
+        ECHO wrong path %pdi_engine_path%
+        SET pdi_engine_path=
+		GOTO:loop_check_variable
+	) ELSE ( 
+        ECHO %tip_pdi_engine_path_wrong%
         EXIT /B 1
     )
 )

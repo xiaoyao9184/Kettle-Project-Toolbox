@@ -9,7 +9,6 @@ FOR %%F IN (%current_script_dir%.) DO SET parent_folder_dir=%%~dpF
 FOR %%F IN (%current_script_dir%.) DO SET parent_folder_name=%%~nF
 
 ENDLOCAL & (
-    SET kpt_workspace_path=
     SET kpt_project_name=%parent_folder_name%
     SET kpt_folder_name=%parent_folder_name%
     SET copy_item_name_list=config.xml;db_kpt_bin_log_pgsql_writer.kdb
@@ -18,7 +17,6 @@ ENDLOCAL & (
     CALL %parent_folder_dir%tool\LINK_PROJECT.bat
 )
 
-SET kpt_workspace_path=
 SET kpt_project_name=
 SET kpt_folder_name=
 SET copy_item_name_list=
