@@ -122,7 +122,7 @@ export KPT_ENGINE_PATH="$pdi_engine_path"
 export KPT_KETTLE_FILE="$current_script_dir/Deploy/PackageZipDeploy4FileRepositoryPath.kjb"
 export KPT_KETTLE_PARAM_rNameRegex="$kpt_project_name"
 export KPT_KETTLE_PARAM_oCommand="$open_project_path"
-export KPT_KETTLE_PARAM_fExcludeRegex=".*\.backup$|.*\.log$|.*\.git\\.*|.*\.git\/.*|.*db\.cache.*|.*data-integration.*"
+export KPT_KETTLE_PARAM_fExcludeRegex=".*\.backup$|.*\.log$|.*\.git\\\\.*|.*\.git\/.*|.*db\.cache.*|.*data-integration.*"
 export KPT_KETTLE_PARAM_fIncludeRegex=".*"
 
 bash "$parent_folder_dir/shell/KPT_RUN_COMMAND.sh"
