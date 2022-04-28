@@ -84,14 +84,14 @@ if [[ -z "$link_type" ]]; then
 fi
 
 if [[ -d $link_path ]]; then
-	if [[ -L $link_path ]]; then
+    if [[ -L $link_path ]]; then
         exist_type="link"
         echo "$tip_exist_symbolic_link"
-	else
+    else
         exist_type="normal"
-		echo "$tip_exist_normal_path"
-	fi
-	# link_path exist with no exist_strategy
+        echo "$tip_exist_normal_path"
+    fi
+    # link_path exist with no exist_strategy
     if [[ -z "$exist_strategy" ]]; then
         if [[ $interactive -eq 1 ]]; then 
             echo "$tip_exist_strategy_choice"
@@ -114,10 +114,10 @@ if [[ -d $link_path ]]; then
                         ;;
                 esac
             done
-		else
+        else
             echo "$tip_exist_strategy_miss"
-			exit 1
-		fi
+            exit 1
+        fi
     fi
 fi
 
@@ -142,26 +142,26 @@ echo "----------$current_script_name----------"
 #remove exist
 if [[ "$exist_type" = "link" ]]; then
     if [[ "$exist_strategy" = "remove" ]]; then
-		echo "$tip_exist_symbolic_remove"
+        echo "$tip_exist_symbolic_remove"
         unlink $link_path
         link_type="none"
     elif [[ "$exist_strategy" = "replace" ]]; then
-		echo "$tip_exist_symbolic_remove"
+        echo "$tip_exist_symbolic_remove"
         unlink $link_path
     elif [[ "$exist_strategy" = "none" ]]; then
-		echo "$tip_exist_none"
+        echo "$tip_exist_none"
         link_type="none"
     fi
 elif [[ "$exist_type" = "normal" ]]; then
     if [[ "$exist_strategy" = "remove" ]]; then
-		echo "$tip_exist_normal_remove"
+        echo "$tip_exist_normal_remove"
         rm -rdf $link_path
         link_type="none"
     elif [[ "$exist_strategy" = "replace" ]]; then
-		echo "$tip_exist_normal_remove"
+        echo "$tip_exist_normal_remove"
         rm -rdf $link_path
     elif [[ "$exist_strategy" = "none" ]]; then
-		echo "$tip_exist_none"
+        echo "$tip_exist_none"
         link_type="none"
     fi
 fi
@@ -171,16 +171,16 @@ _result_code=0
 # run command
 echo "--------------------"
 if [[ "$link_type" = "symbolic" ]]; then
-	ln -s -T $target_path $link_path
+    ln -s -T $target_path $link_path
     [[ $? -ne 0 ]] && _result_code=1
 elif [[ "$link_type" = "hard" ]]; then
-	ln -d -T $target_path $link_path
+    ln -d -T $target_path $link_path
     [[ $? -ne 0 ]] && _result_code=1
 elif [[ "$link_type" = "copy_link" ]]; then
-	cp -al $target_path $link_path
+    cp -al $target_path $link_path
     [[ $? -ne 0 ]] && _result_code=1
 elif [[ "$link_type" = "none" ]]; then
-	echo "$tip_none"
+    echo "$tip_none"
 fi
 
 # done command

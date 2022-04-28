@@ -111,7 +111,7 @@ while [[ -z "$pdi_engine_path" ]]; do
     fi
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
-	else 
+    else 
         echo "$tip_pdi_engine_path_miss"
         exit 1
     fi
@@ -237,13 +237,13 @@ for link_name in "${link_item_name_list[@]}"; do
     link_path="$kpt_workspace_path/$kpt_project_name/$link_name"
     target_path="$parent_folder_dir/$kpt_folder_name/$link_name"
     
-	_step="Step: link folder item '$link_name'"
+    _step="Step: link folder item '$link_name'"
     echo
-	echo
-	echo "==========$_step=========="
+    echo
+    echo "==========$_step=========="
     bash "$current_script_dir/LINK_FOLDER.sh" "$link_path" "$target_path" "symbolic" "$link_strategy"
-	[[ $? -ne 0 ]] && _result_code=1
-	echo "##########$_step##########"
+    [[ $? -ne 0 ]] && _result_code=1
+    echo "##########$_step##########"
 done
 
 # copy item
@@ -251,17 +251,17 @@ for copy_name in "${copy_item_name_list[@]}"; do
     copy_path="$kpt_workspace_path/$kpt_project_name/$copy_name"
     target_path="$parent_folder_dir/$kpt_folder_name/$copy_name"
     
-	_step="Step: copy folder item '$copy_name'"
+    _step="Step: copy folder item '$copy_name'"
     echo
-	echo
-	echo "==========$_step=========="
+    echo
+    echo "==========$_step=========="
     if [[ -d "$target_path" ]]; then
         cp -a "$target_path" "$copy_path"
     else
         cp "$target_path" "$copy_path"
     fi
-	[[ $? -ne 0 ]] && _result_code=1
-	echo "##########$_step##########"
+    [[ $? -ne 0 ]] && _result_code=1
+    echo "##########$_step##########"
 done
 
 

@@ -13,17 +13,17 @@ GOTO:init_variable
 
 
 :function_uac
-	ECHO Auto requires elevated privileges...
-	@REM https://stackoverflow.com/questions/6811372/how-to-code-a-bat-file-to-always-run-as-admin-mode
-	SET _vbsFile=%temp%\%~n0.vbs
-	SET _batchFile=%~f0
-   	SET _Args=%*
-   	SET _batchFile=""%_batchFile:"=%""
-   	SET _Args=%_Args:"=""%
-   	ECHO Set UAC = CreateObject^("Shell.Application"^) > "%_vbsFile%"
+    ECHO Auto requires elevated privileges...
+    @REM https://stackoverflow.com/questions/6811372/how-to-code-a-bat-file-to-always-run-as-admin-mode
+    SET _vbsFile=%temp%\%~n0.vbs
+    SET _batchFile=%~f0
+       SET _Args=%*
+       SET _batchFile=""%_batchFile:"=%""
+       SET _Args=%_Args:"=""%
+       ECHO Set UAC = CreateObject^("Shell.Application"^) > "%_vbsFile%"
     ECHO UAC.ShellExecute "cmd", "/c ""%_batchFile% %_Args%""", "", "runas", 1 >> "%_vbsFile%"
-   	CSCRIPT "%_vbsFile%"
-	DEL "%_vbsFile%"
+       CSCRIPT "%_vbsFile%"
+    DEL "%_vbsFile%"
 GOTO:EOF
 
 
@@ -36,11 +36,11 @@ SET ver=1.0
 ::interactive
 ::same as caller
 IF "%interactive%"=="" (
-	::double-clicking with no caller will true:1
-	ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
-	IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
-	IF NOT "!JENKINS_HOME!"=="" SET interactive=0
-	IF NOT "!DEBUG!"=="" SET interactive=0
+    ::double-clicking with no caller will true:1
+    ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
+    IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
+    IF NOT "!JENKINS_HOME!"=="" SET interactive=0
+    IF NOT "!DEBUG!"=="" SET interactive=0
 )
 
 ::script info
@@ -80,9 +80,9 @@ IF %interactive% EQU 1 ( TITLE %tip% %ver% ) ELSE ( ECHO %tip% )
 
 IF "%link_path%"=="" (
     IF %interactive% EQU 1 (
-		SET /P link_path=%tip_link_path_input%
-		GOTO:loop_check_variable
-	) ELSE ( 
+        SET /P link_path=%tip_link_path_input%
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_link_path_miss%
         EXIT /B 1
     )
@@ -90,9 +90,9 @@ IF "%link_path%"=="" (
 
 IF "%target_path%"=="" (
     IF %interactive% EQU 1 (
-		SET /P target_path=%tip_target_path_input%
-		GOTO:loop_check_variable
-	) ELSE ( 
+        SET /P target_path=%tip_target_path_input%
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_target_path_miss%
         EXIT /B 1
     )
@@ -101,8 +101,8 @@ IF NOT EXIST "%target_path%" (
     IF %interactive% EQU 1 (
         ECHO not exist %target_path%
         SET target_path=
-		GOTO:loop_check_variable
-	) ELSE ( 
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_target_path_wrong%
         EXIT /B 1
     )
@@ -113,42 +113,42 @@ IF "%link_type%"=="" (
 )
 
 IF NOT "%link_type%"=="junction" (
-	ECHO %tip_request_superuser%
-	WHOAMI /GROUPS | FIND "12288" >NUL
-	IF ERRORLEVEL 1 (
-		CALL :function_uac %link_path% %target_path% %link_type% 
-		GOTO:EOF
-	)
+    ECHO %tip_request_superuser%
+    WHOAMI /GROUPS | FIND "12288" >NUL
+    IF ERRORLEVEL 1 (
+        CALL :function_uac %link_path% %target_path% %link_type% 
+        GOTO:EOF
+    )
 )
 
 ::exist_strategy
 ::exist_type
 IF EXIST "%link_path%" (
-	FOR %%F IN ("%link_path%") DO SET attributes=%%~aF
-	IF "!attributes:l=!" NEQ "!attributes!" (
-		SET exist_type=link
-		ECHO %tip_exist_symbolic_link%
-	) ELSE (
-		SET exist_type=normal
-		ECHO %tip_exist_normal_path%
-	)
-	::link_path exist with no exist_strategy
-	IF "%exist_strategy%"=="" (
-		IF %interactive% EQU 1 (
-			CHOICE /c drn /m "%tip_exist_strategy_choice%" /t 10 /d n
-			IF !ERRORLEVEL! EQU 1 (
-				SET exist_strategy=remove
-			) ELSE IF !ERRORLEVEL! EQU 2 (
-				SET exist_strategy=replace
-			) ELSE IF !ERRORLEVEL! EQU 3 (
-				SET exist_strategy=none
-			)
-			GOTO:loop_check_variable
-		) ELSE ( 
-			ECHO %tip_exist_strategy_miss%
-			EXIT /B 1
-		)
-	)
+    FOR %%F IN ("%link_path%") DO SET attributes=%%~aF
+    IF "!attributes:l=!" NEQ "!attributes!" (
+        SET exist_type=link
+        ECHO %tip_exist_symbolic_link%
+    ) ELSE (
+        SET exist_type=normal
+        ECHO %tip_exist_normal_path%
+    )
+    ::link_path exist with no exist_strategy
+    IF "%exist_strategy%"=="" (
+        IF %interactive% EQU 1 (
+            CHOICE /c drn /m "%tip_exist_strategy_choice%" /t 10 /d n
+            IF !ERRORLEVEL! EQU 1 (
+                SET exist_strategy=remove
+            ) ELSE IF !ERRORLEVEL! EQU 2 (
+                SET exist_strategy=replace
+            ) ELSE IF !ERRORLEVEL! EQU 3 (
+                SET exist_strategy=none
+            )
+            GOTO:loop_check_variable
+        ) ELSE ( 
+            ECHO %tip_exist_strategy_miss%
+            EXIT /B 1
+        )
+    )
 )
 
 
@@ -172,29 +172,29 @@ ECHO __________%current_script_name%__________
 
 ::remove exist
 IF "%exist_type%"=="link" (
-	IF "!exist_strategy!"=="remove" (
-		ECHO %tip_exist_symbolic_remove%
-		RD /S /Q %link_path%
-		SET link_type=none
-	) ELSE IF "!exist_strategy!"=="replace" (
-		ECHO %tip_exist_symbolic_remove%
-		RD /S /Q %link_path%
-	) ELSE IF "!exist_strategy!"=="none" (
-		ECHO %tip_exist_none%
-		SET link_type=none
-	)
+    IF "!exist_strategy!"=="remove" (
+        ECHO %tip_exist_symbolic_remove%
+        RD /S /Q %link_path%
+        SET link_type=none
+    ) ELSE IF "!exist_strategy!"=="replace" (
+        ECHO %tip_exist_symbolic_remove%
+        RD /S /Q %link_path%
+    ) ELSE IF "!exist_strategy!"=="none" (
+        ECHO %tip_exist_none%
+        SET link_type=none
+    )
 ) ELSE IF "%exist_type%"=="normal" (
-	IF "!exist_strategy!"=="remove" (
-		ECHO %tip_exist_normal_remove%
-		RD /S /Q %link_path%
-		SET link_type=none
-	) ELSE IF "!exist_strategy!"=="replace" (
-		ECHO %tip_exist_normal_remove%
-		RD /S /Q %link_path%
-	) ELSE IF "!exist_strategy!"=="none" (
-		ECHO %tip_exist_none%
-		SET link_type=none
-	)
+    IF "!exist_strategy!"=="remove" (
+        ECHO %tip_exist_normal_remove%
+        RD /S /Q %link_path%
+        SET link_type=none
+    ) ELSE IF "!exist_strategy!"=="replace" (
+        ECHO %tip_exist_normal_remove%
+        RD /S /Q %link_path%
+    ) ELSE IF "!exist_strategy!"=="none" (
+        ECHO %tip_exist_none%
+        SET link_type=none
+    )
 )
 
 SET _result_code=0
@@ -202,26 +202,26 @@ SET _result_code=0
 ::run command
 ECHO --------------------
 IF "%link_type%"=="symbolic" (
-	MKLINK /D "%link_path%" "%target_path%"
-	IF !ERRORLEVEL! NEQ 0 SET _result_code=1
+    MKLINK /D "%link_path%" "%target_path%"
+    IF !ERRORLEVEL! NEQ 0 SET _result_code=1
 ) ELSE IF "%link_type%"=="junction" (
-	MKLINK /J "%link_path%" "%target_path%"
-	IF !ERRORLEVEL! NEQ 0 SET _result_code=1
+    MKLINK /J "%link_path%" "%target_path%"
+    IF !ERRORLEVEL! NEQ 0 SET _result_code=1
 ) ELSE IF "%link_type%"=="copy_link" (
-	MD "%link_path%"
-	XCOPY /T /E "%target_path%" "%link_path%"
-	FOR /F "usebackq tokens=*" %%F IN (`WHERE /R "%target_path%" *`) DO (
-		SET _target_file_path=%%~F
-		CALL SET "_link_file_path=!!_target_file_path:%target_path%=%link_path%!!"
-		MKLINK "!_link_file_path!" "!_target_file_path!" >NUL
-		IF !ERRORLEVEL! NEQ 0 (
-			SET _result_code=1
-		) ELSE (
-			IF %interactive% EQU 1 ( ECHO | SET /P dummy=. )
-		)
-	)
+    MD "%link_path%"
+    XCOPY /T /E "%target_path%" "%link_path%"
+    FOR /F "usebackq tokens=*" %%F IN (`WHERE /R "%target_path%" *`) DO (
+        SET _target_file_path=%%~F
+        CALL SET "_link_file_path=!!_target_file_path:%target_path%=%link_path%!!"
+        MKLINK "!_link_file_path!" "!_target_file_path!" >NUL
+        IF !ERRORLEVEL! NEQ 0 (
+            SET _result_code=1
+        ) ELSE (
+            IF %interactive% EQU 1 ( ECHO | SET /P dummy=. )
+        )
+    )
 ) ELSE IF "%link_type%"=="none" (
-	ECHO %tip_none%
+    ECHO %tip_none%
 )
 
 ::done command

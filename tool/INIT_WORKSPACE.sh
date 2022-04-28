@@ -48,7 +48,7 @@ default_link_path_list="tool;shell;default"
 while [[ -z "$kpt_workspace_path" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
-	else 
+    else 
         echo "$tip_kpt_workspace_path_miss"
         exit 1
     fi
@@ -57,7 +57,7 @@ done
 while [[ -z "$pdi_engine_path" ]]; do
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
-	else 
+    else 
         echo "$tip_pdi_engine_path_miss"
         exit 1
     fi
@@ -75,9 +75,9 @@ done
 while [[ -z $kpt_repository_path ]]; do
     # auto discover kpt
     if [[ -d "$parent_folder_dir/.git" ]]; then
-		kpt_repository_path="$parent_folder_dir"
+        kpt_repository_path="$parent_folder_dir"
         continue
-	fi
+    fi
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_repository_path_input" kpt_repository_path
     else
@@ -106,8 +106,8 @@ echo "----------$current_script_name----------"
 
 # create workspace
 if [[ ! -d "$kpt_workspace_path" ]]; then
-	echo "create directory for not exist $kpt_workspace_path"
-	mkdir "$kpt_workspace_path"
+    echo "create directory for not exist $kpt_workspace_path"
+    mkdir "$kpt_workspace_path"
 fi
 
 # create param
@@ -122,13 +122,13 @@ _result_code=0
 
 # link kpt source path
 for link_name in "${default_link_path_list[@]}"; do
-	_step="Step: link '$link_name'"
-	echo
-	echo
-	echo "==========$_step=========="
+    _step="Step: link '$link_name'"
+    echo
+    echo
+    echo "==========$_step=========="
     bash "$current_script_dir/LINK_FOLDER.sh" "$kpt_workspace_path/$link_name" "$kpt_repository_path/$link_name" "symbolic" "$exist_strategy"
     [[ $? -ne 0 ]] && _result_code=1
-	echo "##########$_step##########"
+    echo "##########$_step##########"
 done
 
 # link pdi engine path

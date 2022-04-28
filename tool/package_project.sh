@@ -54,7 +54,7 @@ while [[ -z "$kpt_workspace_path" ]]; do
     fi
     if [[ $interactive -eq 1 ]]; then 
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
-	else 
+    else 
         echo "$tip_kpt_workspace_path_miss"
         exit 1
     fi
@@ -72,7 +72,7 @@ done
 while [[ -z "$kpt_project_name" ]]; do
     if [[ $interactive -eq 1 ]]; then 
         read -p "$tip_kpt_project_name_input" kpt_project_name
-	else 
+    else 
         echo "$tip_kpt_project_name_miss"
         exit 1
     fi
@@ -95,7 +95,7 @@ while [[ -z "$pdi_engine_path" ]]; do
     fi
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
-	else 
+    else 
         echo "$tip_pdi_engine_path_miss"
         exit 1
     fi

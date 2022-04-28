@@ -16,11 +16,11 @@ SET ver=1.0
 ::interactive
 ::same as caller
 IF "%interactive%"=="" (
-	::double-clicking with no caller will true:1
-	ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
-	IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
-	IF NOT "!JENKINS_HOME!"=="" SET interactive=0
-	IF NOT "!DEBUG!"=="" SET interactive=0
+    ::double-clicking with no caller will true:1
+    ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
+    IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
+    IF NOT "!JENKINS_HOME!"=="" SET interactive=0
+    IF NOT "!DEBUG!"=="" SET interactive=0
 )
 
 ::script info
@@ -60,9 +60,9 @@ IF "%kpt_workspace_path%"=="" (
         GOTO:loop_check_variable
     )
     IF %interactive% EQU 1 (
-		SET /P kpt_workspace_path=%tip_kpt_workspace_path_input%
-		GOTO:loop_check_variable
-	) ELSE ( 
+        SET /P kpt_workspace_path=%tip_kpt_workspace_path_input%
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_kpt_workspace_path_miss%
         EXIT /B 1
     )
@@ -71,8 +71,8 @@ IF NOT EXIST "%kpt_workspace_path%" (
     IF %interactive% EQU 1 (
         ECHO not exist %kpt_workspace_path%
         SET kpt_workspace_path=
-		GOTO:loop_check_variable
-	) ELSE ( 
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_kpt_workspace_path_wrong%
         EXIT /B 1
     )
@@ -80,9 +80,9 @@ IF NOT EXIST "%kpt_workspace_path%" (
 
 IF "%source_path%"=="" (
     IF %interactive% EQU 1 (
-		SET /P source_path=%tip_source_path_input%
-		GOTO:loop_check_variable
-	) ELSE ( 
+        SET /P source_path=%tip_source_path_input%
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_source_path_miss%
         EXIT /B 1
     )
@@ -91,8 +91,8 @@ IF EXIST "%source_path%" (
     IF %interactive% EQU 1 (
         ECHO exist %source_path%
         SET source_path=
-		GOTO:loop_check_variable
-	) ELSE ( 
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_source_path_wrong%
         EXIT /B 1
     )
@@ -105,9 +105,9 @@ IF "%pdi_engine_path%"=="" (
         GOTO:loop_check_variable
     )
     IF %interactive% EQU 1 (
-		SET /P pdi_engine_path=%tip_pdi_engine_path_input%
-		GOTO:loop_check_variable
-	) ELSE ( 
+        SET /P pdi_engine_path=%tip_pdi_engine_path_input%
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_pdi_engine_path_miss%
         EXIT /B 1
     )
@@ -116,8 +116,8 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
     IF %interactive% EQU 1 (
         ECHO wrong path %pdi_engine_path%
         SET pdi_engine_path=
-		GOTO:loop_check_variable
-	) ELSE ( 
+        GOTO:loop_check_variable
+    ) ELSE ( 
         ECHO %tip_pdi_engine_path_wrong%
         EXIT /B 1
     )

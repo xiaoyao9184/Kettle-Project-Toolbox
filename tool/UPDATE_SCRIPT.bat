@@ -21,11 +21,11 @@ REM two empty line required
 ::interactive
 ::same as caller
 IF "%interactive%"=="" (
-	::double-clicking with no caller will true:1
-	ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
-	IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
-	IF NOT "!JENKINS_HOME!"=="" SET interactive=0
-	IF NOT "!DEBUG!"=="" SET interactive=0
+    ::double-clicking with no caller will true:1
+    ECHO %CMDCMDLINE% | FIND /I "%~0" >NUL
+    IF %ERRORLEVEL% EQU 0 ( SET interactive=1 ) ELSE ( SET interactive=0 )
+    IF NOT "!JENKINS_HOME!"=="" SET interactive=0
+    IF NOT "!DEBUG!"=="" SET interactive=0
 )
 
 ::script info
