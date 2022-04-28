@@ -1,14 +1,10 @@
+@ECHO OFF
+SETLOCAL EnableDelayedExpansion
+::CODER BY xiaoyao9184 1.0
 
-docker volume create --driver local test-jenkins-kpt_plugins_vol
+SET current_script_dir=%~dp0
 
-docker run -d --rm --name dummy ^
-  --mount "type=volume,source=test-jenkins-kpt_plugins_vol,target=/root" ^
-  alpine tail -f /dev/null
-
-docker exec dummy chmod 777 /root/
-
-docker cp ./plugins/. dummy:/root/
-
-docker stop dummy
+CALL %current_script_dir%plugins-volume.bat
+CALL %current_script_dir%home-volume.bat
 
 docker-compose -p test-jenkins-kpt up

@@ -10,7 +10,7 @@ services:
       JENKINS_UC_DOWNLOAD: https://mirrors.tuna.tsinghua.edu.cn/jenkins
     volumes:
       - jenkins_vol:/var/jenkins_home
-      - home_vol:/home/jenkins
+      - test-jenkins-kpt_home_vol:/home/jenkins
       - test-jenkins-kpt_plugins_vol:/usr/share/jenkins/ref/plugins
       - ./../../:/home/jenkins/kettle/kettle-project-toolbox
       - ./jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
@@ -25,6 +25,7 @@ services:
 
 volumes:
   jenkins_vol:
-  home_vol:
+  test-jenkins-kpt_home_vol:
+    external: true
   test-jenkins-kpt_plugins_vol:
     external: true

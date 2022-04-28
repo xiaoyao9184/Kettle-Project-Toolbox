@@ -1,14 +1,9 @@
-# copy to external volume
-docker volume create --driver local test-jenkins-kpt_plugins_vol
+#!/bin/bash
+# CODER BY xiaoyao9184 1.0
 
-docker run -d --rm --name dummy \
-  --mount "type=volume,source=test-jenkins-kpt_plugins_vol,target=/root" \
-  alpine tail -f /dev/null
+current_script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-docker exec dummy chmod 777 /root/
-
-docker cp ./plugins/. dummy:/root/
-
-docker stop dummy
+bash $current_script_path/plugins-volume.sh
+bash $current_script_path/home-volume.sh
 
 docker-compose -p test-jenkins-kpt up
