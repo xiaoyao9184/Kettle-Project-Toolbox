@@ -192,7 +192,7 @@ echo ""
 echo ""
 echo "==========$_step=========="
 bash "$kpt_workspace_path/tool/create_project.sh $kpt_project_name"
-[[ $? -ne 0 ]] || _result_code=1
+[[ $? -ne 0 ]] && _result_code=1
 echo "##########$_step##########"
 
 # create link_strategy
@@ -214,7 +214,7 @@ for link_name in "${link_item_name_list[@]}"; do
 	echo
 	echo "==========$_step=========="
 	bash "$current_script_dir/$LINK_FOLDER.sh" "$link_path" "$target_path" "symbolic" "$link_strategy"
-	[[ $? -ne 0 ]] || _result_code=1
+	[[ $? -ne 0 ]] && _result_code=1
 	echo "##########$_step##########"
 done
 
@@ -228,7 +228,7 @@ for copy_name in "${copy_item_name_list[@]}"; do
 	echo
 	echo "==========$_step=========="
     cp -a "$copy_strategy" "$target_path" "$copy_path"
-	[[ $? -ne 0 ]] || _result_code=1
+	[[ $? -ne 0 ]] && _result_code=1
 	echo "##########$_step##########"
 done
 

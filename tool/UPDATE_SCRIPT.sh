@@ -123,7 +123,7 @@ for target_path in "${target_path_list[@]}"; do
             if [[ -f "$source_file_path" ]]; then
                 echo "$target_file_path <- $source_file_path"
                 cp -f $source_file_path $target_file_path
-                [[ $? -ne 0 ]] || _result_code=1
+                [[ $? -ne 0 ]] && _result_code=1
             fi
         done
     done
@@ -140,7 +140,7 @@ for target_path in "${target_path_list[@]}"; do
             if [[ -f "$source_file_path" ]]; then
                 echo "$target_file_path <- $source_file_path"
                 cp -f $source_file_path $target_file_path
-                [[ $? -ne 0 ]] || _result_code=1
+                [[ $? -ne 0 ]] && _result_code=1
             fi
         done
     done

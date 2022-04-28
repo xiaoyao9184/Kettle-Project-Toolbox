@@ -172,19 +172,18 @@ _result_code=0
 echo "--------------------"
 if [[ "$link_type" = "symbolic" ]]; then
 	ln -s -T $target_path $link_path
-    [[ $? -ne 0 ]] || _result_code=1
+    [[ $? -ne 0 ]] && _result_code=1
 elif [[ "$link_type" = "hard" ]]; then
 	ln -d -T $target_path $link_path
-    [[ $? -ne 0 ]] || _result_code=1
+    [[ $? -ne 0 ]] && _result_code=1
 elif [[ "$link_type" = "copy_link" ]]; then
 	cp -al $target_path $link_path
-    [[ $? -ne 0 ]] || _result_code=1
+    [[ $? -ne 0 ]] && _result_code=1
 elif [[ "$link_type" = "none" ]]; then
 	echo "$tip_none"
 fi
 
 # done command
-_result_code=$?
 if [ "$_result_code" -eq "0" ]
 then
     echo "Ok, run done!"

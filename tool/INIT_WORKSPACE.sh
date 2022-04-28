@@ -127,7 +127,7 @@ for link_name in "${default_link_path_list[@]}"; do
 	echo
 	echo "==========$_step=========="
     bash "$current_script_dir/LINK_FOLDER.sh" "$kpt_workspace_path/$link_name" "$kpt_repository_path/$link_name" "symbolic" "$exist_strategy"
-    [[ $? -ne 0 ]] || _result_code=1
+    [[ $? -ne 0 ]] && _result_code=1
 	echo "##########$_step##########"
 done
 
@@ -137,7 +137,7 @@ echo
 echo
 echo "==========$_step=========="
 bash "$current_script_dir/LINK_FOLDER.sh" "$kpt_workspace_path/data-integration" "$pdi_engine_path" "copy_link" "$exist_strategy"
-[[ $? -ne 0 ]] || _result_code=1
+[[ $? -ne 0 ]] && _result_code=1
 echo "##########$_step##########"
 
 # done command
