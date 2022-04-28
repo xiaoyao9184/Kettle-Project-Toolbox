@@ -24,7 +24,7 @@ parent_folder_dir="$(dirname $current_script_dir)"
 # tip info
 tip_kpt_project_name_input="Need input 'kpt_project_name' or drag path in:"
 tip_kpt_project_name_miss="Missing param 'kpt_project_name' at position 1."
-tip_kpt_project_name_exist="keep this name[y], or input new one[n]?"
+tip_kpt_project_name_exist="keep this name, or input new one?[input number]"
 tip_kpt_workspace_path_input="Need input 'kpt_workspace_path' or drag path in:"
 tip_kpt_workspace_path_miss="Missing param 'kpt_workspace_path' at position 2."
 tip_kpt_workspace_path_wrong="Wrong param 'kpt_workspace_path' at position 2."
@@ -80,21 +80,21 @@ done
 while [[ -f "$kpt_workspace_path/$kpt_project_name" ]]; do
     echo "exist $kpt_workspace_path/$kpt_project_name"
     if [[ $interactive -eq 1 ]]; then 
-        select opt in "y" "n"; do
+        echo "$tip_kpt_project_name_exist"
+        select opt in "Keep" "New"; do
             case $opt in
-                "y")
+                "Keep")
+                    break
                     ;;
-                "n")
+                "New")
                     read -p "$tip_kpt_project_name_input" kpt_project_name
+                    break
                     ;;
                 *)
                     echo "$tip_kpt_project_name_exist"
                     ;;
             esac
         done
-    else
-        echo "$tip_kpt_project_name_exist"
-        exit 1
     fi
 done
 

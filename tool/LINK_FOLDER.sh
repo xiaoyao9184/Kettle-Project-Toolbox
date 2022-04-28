@@ -30,7 +30,7 @@ tip_target_path_miss="Missing param 'target_path' at position 2."
 tip_target_path_wrong="Wrong param 'target_path' at position 2."
 tip_exist_symbolic_link="Already exists symbolic link of link_path!"
 tip_exist_normal_path="Already exists normal path of link_path!"
-tip_exist_strategy_choice="[D]ele, [R]eplace or [N]othing to do?(default after 10 seconds)"
+tip_exist_strategy_choice="Dele, Replace or Nothing to do[input number]?"
 tip_exist_strategy_miss="Missing param 'exist_strategy' at position 3."
 tip_exist_symbolic_remove="Remove exist symbolic link"
 tip_exist_normal_remove="Remove exist directory"
@@ -84,19 +84,30 @@ if [[ -z "$link_type" ]]; then
 fi
 
 if [[ -d $link_path ]]; then
+	if [[ -L $link_path ]]; then
+        exist_type="link"
+        echo "$tip_exist_symbolic_link"
+	else
+        exist_type="normal"
+		echo "$tip_exist_normal_path"
+	fi
 	# link_path exist with no exist_strategy
     if [[ -z "$exist_strategy" ]]; then
         if [[ $interactive -eq 1 ]]; then 
+            echo "$tip_exist_strategy_choice"
             select opt in "Dele" "Replace" "None"; do
                 case $opt in
                     "Dele")
                         exist_strategy="remove"
+                        break
                         ;;
                     "Replace")
                         exist_strategy="replace"
+                        break
                         ;;
                     "None")
                         exist_strategy="none"
+                        break
                         ;;
                     *)
                         echo "$tip_exist_strategy_choice"
@@ -108,13 +119,6 @@ if [[ -d $link_path ]]; then
 			exit 1
 		fi
     fi
-	if [[ -L $link_path ]]; then
-        exist_type="link"
-        echo "$tip_exist_symbolic_link"
-	else
-        exist_type="normal"
-		echo "$tip_exist_normal_path"
-	fi
 fi
 
 

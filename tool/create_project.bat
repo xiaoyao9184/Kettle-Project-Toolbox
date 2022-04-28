@@ -31,7 +31,7 @@ FOR %%F IN (%current_script_dir%.) DO SET parent_folder_dir=%%~dpF
 ::tip info
 SET tip_kpt_project_name_input=Need input 'kpt_project_name' or drag path in:
 SET tip_kpt_project_name_miss=Missing param 'kpt_project_name' at position 1.
-SET tip_kpt_project_name_exist=keep this name[y], or input new one[n]?
+SET tip_kpt_project_name_exist=keep this name[Y], or input new one[N]?(default N after 10 seconds)
 SET tip_kpt_workspace_path_input=Need input 'kpt_workspace_path' or drag path in:
 SET tip_kpt_workspace_path_miss=Missing param 'kpt_workspace_path' at position 2.
 SET tip_kpt_workspace_path_wrong=Wrong param 'kpt_workspace_path' at position 2.
@@ -98,6 +98,7 @@ IF "%skip_kpt_project_name_exist%"=="" IF EXIST "%kpt_workspace_path%\%kpt_proje
         SET skip_kpt_project_name_exist=true
     )
 )
+
 IF "%pdi_engine_path%"=="" (
     @REM ::auto discover pdi
     IF EXIST "%parent_folder_dir%data-integration\Spoon.bat" (

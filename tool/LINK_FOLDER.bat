@@ -55,7 +55,7 @@ SET tip_target_path_miss=Missing param 'target_path' at position 2.
 SET tip_target_path_wrong=Wrong param 'target_path' at position 2.
 SET tip_exist_symbolic_link=Already exists symbolic link of link_path!
 SET tip_exist_normal_path=Already exists normal path of link_path!
-SET tip_exist_strategy_choice=[D]ele, [R]eplace or [N]othing to do?(default after 10 seconds)
+SET tip_exist_strategy_choice=[D]ele, [R]eplace or [N]othing to do?(default N after 10 seconds)
 SET tip_exist_strategy_miss=Missing param 'exist_strategy' at position 3.
 SET tip_exist_symbolic_remove=Remove exist symbolic link
 SET tip_exist_normal_remove=Remove exist directory
@@ -124,6 +124,14 @@ IF NOT "%link_type%"=="junction" (
 ::exist_strategy
 ::exist_type
 IF EXIST "%link_path%" (
+	FOR %%F IN ("%link_path%") DO SET attributes=%%~aF
+	IF "!attributes:l=!" NEQ "!attributes!" (
+		SET exist_type=link
+		ECHO %tip_exist_symbolic_link%
+	) ELSE (
+		SET exist_type=normal
+		ECHO %tip_exist_normal_path%
+	)
 	::link_path exist with no exist_strategy
 	IF "%exist_strategy%"=="" (
 		IF %interactive% EQU 1 (
@@ -140,14 +148,6 @@ IF EXIST "%link_path%" (
 			ECHO %tip_exist_strategy_miss%
 			EXIT /B 1
 		)
-	)
-	FOR %%F IN ("%link_path%") DO SET attributes=%%~aF
-	IF "!attributes:l=!" NEQ "!attributes!" (
-		SET exist_type=link
-		ECHO %tip_exist_symbolic_link%
-	) ELSE (
-		SET exist_type=normal
-		ECHO %tip_exist_normal_path%
 	)
 )
 
