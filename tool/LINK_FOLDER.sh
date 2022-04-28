@@ -13,8 +13,8 @@
 tip="Kettle-Project-Toolbox: Link directory"
 ver="1.0"
 
-# here interactive mean user input can be obtained, 
-# determined by checking is connected to a terminal 
+# here interactive mean user input can be obtained,
+# determined by checking is connected to a terminal
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 
 # script info
@@ -53,7 +53,7 @@ exist_type=not
 #####check_variable
 
 while [[ -z "$link_path" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_link_path_input" link_path
     else
         echo "$tip_link_path_miss"
@@ -62,7 +62,7 @@ while [[ -z "$link_path" ]]; do
 done
 
 while [[ -z "$target_path" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_target_path_input" target_path
     else
         echo "$tip_target_path_miss"
@@ -70,7 +70,7 @@ while [[ -z "$target_path" ]]; do
     fi
 done
 while [[ ! -d "$target_path" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "not exist $target_path"
         read -p "$tip_target_path_input" target_path
     else
@@ -93,7 +93,7 @@ if [[ -d $link_path ]]; then
     fi
     # link_path exist with no exist_strategy
     if [[ -z "$exist_strategy" ]]; then
-        if [[ $interactive -eq 1 ]]; then 
+        if [[ $interactive -eq 1 ]]; then
             echo "$tip_exist_strategy_choice"
             select opt in "Dele" "Replace" "None"; do
                 case $opt in

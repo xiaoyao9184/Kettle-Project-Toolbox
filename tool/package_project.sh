@@ -11,8 +11,8 @@
 tip="Kettle-Project-Toolbox: package home"
 ver="1.0"
 
-# here interactive mean user input can be obtained, 
-# determined by checking is connected to a terminal 
+# here interactive mean user input can be obtained,
+# determined by checking is connected to a terminal
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 
 # script info
@@ -52,15 +52,15 @@ while [[ -z "$kpt_workspace_path" ]]; do
         kpt_workspace_path="$parent_folder_dir"
         continue
     fi
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
-    else 
+    else
         echo "$tip_kpt_workspace_path_miss"
         exit 1
     fi
 done
 while [[ ! -d "$kpt_workspace_path" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "not exist $kpt_workspace_path"
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
     else
@@ -70,15 +70,15 @@ while [[ ! -d "$kpt_workspace_path" ]]; do
 done
 
 while [[ -z "$kpt_project_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_project_name_input" kpt_project_name
-    else 
+    else
         echo "$tip_kpt_project_name_miss"
         exit 1
     fi
 done
 while [[ -f "$kpt_workspace_path/$kpt_project_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "exist $kpt_workspace_path/$kpt_project_name"
         read -p "$tip_kpt_project_name_input" kpt_project_name
     else
@@ -95,13 +95,13 @@ while [[ -z "$pdi_engine_path" ]]; do
     fi
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
-    else 
+    else
         echo "$tip_pdi_engine_path_miss"
         exit 1
     fi
 done
 while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "wrong path $pdi_engine_path"
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
     else
@@ -110,7 +110,7 @@ while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
     fi
 done
 
-if [[ $interactive -eq 1 ]]; then 
+if [[ $interactive -eq 1 ]]; then
     open_project_path="xdg-open"
 else
     open_project_path=""

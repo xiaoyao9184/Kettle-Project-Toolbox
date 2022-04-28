@@ -82,7 +82,7 @@ IF "%link_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P link_path=%tip_link_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_link_path_miss%
         EXIT /B 1
     )
@@ -92,7 +92,7 @@ IF "%target_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P target_path=%tip_target_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_target_path_miss%
         EXIT /B 1
     )
@@ -102,7 +102,7 @@ IF NOT EXIST "%target_path%" (
         ECHO not exist %target_path%
         SET target_path=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_target_path_wrong%
         EXIT /B 1
     )
@@ -116,7 +116,7 @@ IF NOT "%link_type%"=="junction" (
     ECHO %tip_request_superuser%
     WHOAMI /GROUPS | FIND "12288" >NUL
     IF ERRORLEVEL 1 (
-        CALL :function_uac %link_path% %target_path% %link_type% 
+        CALL :function_uac %link_path% %target_path% %link_type%
         GOTO:EOF
     )
 )
@@ -144,7 +144,7 @@ IF EXIST "%link_path%" (
                 SET exist_strategy=none
             )
             GOTO:loop_check_variable
-        ) ELSE ( 
+        ) ELSE (
             ECHO %tip_exist_strategy_miss%
             EXIT /B 1
         )
@@ -163,7 +163,7 @@ ECHO Exist type is: %exist_type%
 ECHO Exist strategy is: %exist_strategy%
 ECHO Link type is: %link_type%
 ECHO -----------------NOTE--------------------
-ECHO windows not support hard link directory, 
+ECHO windows not support hard link directory,
 ECHO windows hard link file cant across hard drives;
 ECHO use 'symbolic' link, not recommended.
 ECHO use 'junction' link, it can link across hard drives.

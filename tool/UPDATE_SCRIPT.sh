@@ -13,8 +13,8 @@
 tip="Kettle-Project-Toolbox: update script"
 ver="1.0"
 
-# here interactive mean user input can be obtained, 
-# determined by checking is connected to a terminal 
+# here interactive mean user input can be obtained,
+# determined by checking is connected to a terminal
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 
 # script info
@@ -63,7 +63,7 @@ while [[ -z $target_path_list ]]; do
             input_list="$input_list$delimiter$input_item"
             tip_target_path_input_first=$tip_target_path_input_again
         fi
-    else 
+    else
         echo $tip_target_path_miss
         exit 1
     fi
@@ -89,7 +89,7 @@ while [[ -z $source_path_list ]]; do
             input_list="$input_list$delimiter$input_item"
             tip_source_path_input_first=$tip_source_path_input_again
         fi
-    else 
+    else
         echo $tip_source_path_miss
         exit 1
     fi

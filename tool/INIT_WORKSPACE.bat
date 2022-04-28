@@ -60,7 +60,7 @@ IF "%kpt_workspace_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P kpt_workspace_path=%tip_kpt_workspace_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_workspace_path_miss%
         EXIT /B 1
     )
@@ -70,7 +70,7 @@ IF "%pdi_engine_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P pdi_engine_path=%tip_pdi_engine_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_pdi_engine_path_miss%
         EXIT /B 1
     )
@@ -80,7 +80,7 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
         ECHO wrong path %pdi_engine_path%
         SET pdi_engine_path=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_pdi_engine_path_wrong%
         EXIT /B 1
     )
@@ -95,7 +95,7 @@ IF "%kpt_repository_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P kpt_repository_path=%tip_kpt_repository_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_repository_path_miss%
         EXIT /B 1
     )

@@ -62,7 +62,7 @@ IF "%kpt_workspace_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P kpt_workspace_path=%tip_kpt_workspace_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_workspace_path_miss%
         EXIT /B 1
     )
@@ -72,7 +72,7 @@ IF NOT EXIST "%kpt_workspace_path%" (
         ECHO not exist %kpt_workspace_path%
         SET kpt_workspace_path=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_workspace_path_wrong%
         EXIT /B 1
     )
@@ -82,7 +82,7 @@ IF "%kpt_project_name%"=="" (
     IF %interactive% EQU 1 (
         SET /P kpt_project_name=%tip_kpt_project_name_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_project_name_miss%
         EXIT /B 1
     )
@@ -108,7 +108,7 @@ IF "%pdi_engine_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P pdi_engine_path=%tip_pdi_engine_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_pdi_engine_path_miss%
         EXIT /B 1
     )
@@ -118,7 +118,7 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
         ECHO wrong path %pdi_engine_path%
         SET pdi_engine_path=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_pdi_engine_path_wrong%
         EXIT /B 1
     )
@@ -126,7 +126,7 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
 
 IF %interactive% EQU 1 (
     SET open_project_path=start
-) ELSE ( 
+) ELSE (
     SET open_project_path=
 )
 

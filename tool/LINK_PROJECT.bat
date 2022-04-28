@@ -82,7 +82,7 @@ IF "%kpt_workspace_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P kpt_workspace_path=%tip_kpt_workspace_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_workspace_path_miss%
         EXIT /B 1
     )
@@ -92,7 +92,7 @@ IF NOT EXIST "%kpt_workspace_path%" (
         ECHO not exist %kpt_workspace_path%
         SET kpt_workspace_path=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_workspace_path_wrong%
         EXIT /B 1
     )
@@ -102,7 +102,7 @@ IF "%kpt_project_name%"=="" (
     IF %interactive% EQU 1 (
         SET /P kpt_project_name=%tip_kpt_project_name_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_project_name_miss%
         EXIT /B 1
     )
@@ -112,7 +112,7 @@ IF EXIST "%kpt_workspace_path%\%kpt_project_name%" (
         ECHO exist %kpt_workspace_path%\%kpt_project_name%
         SET kpt_project_name=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_project_name_wrong%
         EXIT /B 1
     )
@@ -127,7 +127,7 @@ IF "%pdi_engine_path%"=="" (
     IF %interactive% EQU 1 (
         SET /P pdi_engine_path=%tip_pdi_engine_path_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_pdi_engine_path_miss%
         EXIT /B 1
     )
@@ -137,7 +137,7 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
         ECHO wrong path %pdi_engine_path%
         SET pdi_engine_path=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_pdi_engine_path_wrong%
         EXIT /B 1
     )
@@ -148,7 +148,7 @@ IF "%kpt_folder_name%"=="" (
         DIR /B /A:D %parent_folder_dir%
         SET /P kpt_folder_name=%tip_kpt_folder_name_input%
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_folder_name_miss%
         EXIT /B 1
     )
@@ -158,7 +158,7 @@ IF NOT EXIST "%parent_folder_dir%%kpt_folder_name%" (
         ECHO not exist %parent_folder_dir%%kpt_folder_name%
         SET kpt_folder_name=
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_kpt_folder_name_wrong%
         EXIT /B 1
     )
@@ -186,7 +186,7 @@ IF "!link_item_name_list!"=="" (
             SET tip_link_item_name_input_first=%tip_link_item_name_input_again%
         )
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_link_item_name_miss%
         EXIT /B 1
     )
@@ -220,7 +220,7 @@ IF "!copy_item_name_list!"=="" (
             SET tip_link_item_name_first=%tip_link_item_name_again%
         )
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_copy_item_name_miss%
         EXIT /B 1
     )
@@ -274,7 +274,7 @@ FOR /F "delims=" %%S IN ("!link_item_name_list!") DO (
     SET link_name=%%S
     SET link_path=%kpt_workspace_path%\%kpt_project_name%\!link_name!
     SET target_path=%parent_folder_dir%%kpt_folder_name%\!link_name!
-    
+   
     SET _step=Step: link folder item '!link_name!'
     ECHO:
     ECHO:
@@ -289,7 +289,7 @@ FOR /F "delims=" %%S IN ("!copy_item_name_list!") DO (
     SET copy_name=%%S
     SET copy_path=%kpt_workspace_path%\%kpt_project_name%\!copy_name!
     SET target_path=%parent_folder_dir%%kpt_folder_name%\!copy_name!
-    
+   
     SET _step=Step: copy folder item '!copy_name!'
     ECHO:
     ECHO:

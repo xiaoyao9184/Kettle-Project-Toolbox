@@ -14,8 +14,8 @@
 tip="Kettle-Project-Toolbox: Link directory"
 ver="1.0"
 
-# here interactive mean user input can be obtained, 
-# determined by checking is connected to a terminal 
+# here interactive mean user input can be obtained,
+# determined by checking is connected to a terminal
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 
 # script info
@@ -68,7 +68,7 @@ input_list=
 #####check_variable
 
 while [[ -z "$kpt_workspace_path" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
     else
         echo "$tip_kpt_workspace_path_miss"
@@ -76,7 +76,7 @@ while [[ -z "$kpt_workspace_path" ]]; do
     fi
 done
 while [[ ! -d "$kpt_workspace_path" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "not exist $kpt_workspace_path"
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
     else
@@ -86,7 +86,7 @@ while [[ ! -d "$kpt_workspace_path" ]]; do
 done
 
 while [[ -z "$kpt_project_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_project_name_input" kpt_project_name
     else
         echo "$tip_kpt_project_name_miss"
@@ -94,7 +94,7 @@ while [[ -z "$kpt_project_name" ]]; do
     fi
 done
 while [[ -d "$kpt_workspace_path/$kpt_project_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "exist $kpt_workspace_path/$kpt_project_name"
         read -p "$tip_kpt_project_name_input" kpt_project_name
     else
@@ -111,13 +111,13 @@ while [[ -z "$pdi_engine_path" ]]; do
     fi
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
-    else 
+    else
         echo "$tip_pdi_engine_path_miss"
         exit 1
     fi
 done
 while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "wrong path $pdi_engine_path"
         read -p "$tip_pdi_engine_path_input" pdi_engine_path
     else
@@ -127,7 +127,7 @@ while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
 done
 
 while [[ -z "$kpt_folder_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_folder_name_input" kpt_folder_name
     else
         echo "$tip_kpt_folder_name_miss"
@@ -135,7 +135,7 @@ while [[ -z "$kpt_folder_name" ]]; do
     fi
 done
 while [[ ! -d "$parent_folder_dir/$kpt_folder_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then 
+    if [[ $interactive -eq 1 ]]; then
         echo "not exist $parent_folder_dir/$kpt_folder_name"
         read -p "$tip_kpt_folder_name_input" kpt_folder_name
     else
@@ -163,7 +163,7 @@ while [[ -z $link_item_name_list ]]; do
             input_list="$input_list$delimiter$input_item"
             tip_link_item_name_input_first=$tip_link_item_name_input_again
         fi
-    else 
+    else
         echo $tip_link_item_name_miss
         exit 1
     fi
@@ -189,7 +189,7 @@ while [[ -z $copy_item_name_list ]]; do
             input_list="$input_list$delimiter$input_item"
             tip_copy_item_name_input_first=$tip_copy_item_name_input_again
         fi
-    else 
+    else
         echo $tip_copy_item_name_miss
         exit 1
     fi
@@ -236,7 +236,7 @@ for link_name in "${link_item_name_list[@]}"; do
     link_name="${link_name%/}"
     link_path="$kpt_workspace_path/$kpt_project_name/$link_name"
     target_path="$parent_folder_dir/$kpt_folder_name/$link_name"
-    
+   
     _step="Step: link folder item '$link_name'"
     echo
     echo
@@ -250,7 +250,7 @@ done
 for copy_name in "${copy_item_name_list[@]}"; do
     copy_path="$kpt_workspace_path/$kpt_project_name/$copy_name"
     target_path="$parent_folder_dir/$kpt_folder_name/$copy_name"
-    
+   
     _step="Step: copy folder item '$copy_name'"
     echo
     echo

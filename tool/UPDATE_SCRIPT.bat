@@ -74,7 +74,7 @@ IF "!target_path_list!"=="" (
             SET tip_target_path_input_first=%tip_target_path_input_again%
         )
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_target_path_miss%
         EXIT /B 1
     )
@@ -99,7 +99,7 @@ IF "!target_path_list!"=="" (
 SET delimiter=;
 SET input_item=
 IF "!source_path_list!"=="" (
-    IF %interactive% EQU 1 ( 
+    IF %interactive% EQU 1 (
         SET /P input_item=!tip_source_path_input_first!
         IF "!input_item!"=="" (
             IF "!input_list!"=="" (
@@ -116,7 +116,7 @@ IF "!source_path_list!"=="" (
             SET tip_source_path_input_first=%tip_source_path_input_again%
         )
         GOTO:loop_check_variable
-    ) ELSE ( 
+    ) ELSE (
         ECHO %tip_source_path_miss%
         EXIT /B 1
     )
