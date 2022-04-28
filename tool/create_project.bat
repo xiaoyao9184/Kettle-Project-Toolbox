@@ -125,9 +125,9 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
 )
 
 IF %interactive% EQU 1 (
-    SET open_project_path=true
+    SET open_project_path=start
 ) ELSE ( 
-    SET open_project_path=false
+    SET open_project_path=
 )
 
 
@@ -137,7 +137,7 @@ SET KPT_COMMAND=kitchen
 SET KPT_ENGINE_PATH=%pdi_engine_path%
 SET KPT_KETTLE_FILE=%current_script_dir%Project\CreateProject.kjb
 SET KPT_KETTLE_PARAM_rName=%kpt_project_name%
-SET KPT_KETTLE_PARAM_isOpenShell=%open_project_path%
+SET KPT_KETTLE_PARAM_oCommand=%open_project_path%
 
 CALL %parent_folder_dir%shell\KPT_RUN_COMMAND.bat
 IF !ERRORLEVEL! NEQ 0 SET _result_code=1
@@ -146,7 +146,7 @@ SET KPT_COMMAND=
 SET KPT_ENGINE_PATH=
 SET KPT_KETTLE_FILE=
 SET KPT_KETTLE_PARAM_rName=
-SET KPT_KETTLE_PARAM_isOpenShell=
+SET KPT_KETTLE_PARAM_oCommand=
 
 
 :end

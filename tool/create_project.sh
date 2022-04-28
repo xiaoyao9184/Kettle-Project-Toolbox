@@ -122,9 +122,9 @@ while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
 done
 
 if [[ $interactive -eq 1 ]]; then 
-    open_project_path="true"
+    open_project_path="xdg-open"
 else
-    open_project_path="false"
+    open_project_path=""
 fi
 
 
@@ -134,7 +134,7 @@ export KPT_COMMAND="kitchen"
 export KPT_ENGINE_PATH="$pdi_engine_path"
 export KPT_KETTLE_FILE="$current_script_dir/Project/CreateProject.kjb"
 export KPT_KETTLE_PARAM_rName="$kpt_project_name"
-export KPT_KETTLE_PARAM_isOpenShell="$open_project_path"
+export KPT_KETTLE_PARAM_oCommand="$open_project_path"
 
 bash "$parent_folder_dir/shell/KPT_RUN_COMMAND.sh"
 _result_code=$?
@@ -143,7 +143,7 @@ export KPT_COMMAND=""
 export KPT_ENGINE_PATH=""
 export KPT_KETTLE_FILE=""
 export KPT_KETTLE_PARAM_rName=""
-export KPT_KETTLE_PARAM_isOpenShell=""
+export KPT_KETTLE_PARAM_oCommand=""
 
 
 #####end

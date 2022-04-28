@@ -22,9 +22,9 @@
       <description>file include regex for path</description>
     </parameter>
     <parameter>
-      <name>isOpenShell</name>
-      <default_value>false</default_value>
-      <description>is open when package done</description>
+      <name>oCommand</name>
+      <default_value>?</default_value>
+      <description>command for open</description>
     </parameter>
     <parameter>
       <name>srcPath</name>
@@ -648,13 +648,13 @@
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
       <fieldname />
-      <variablename>${isOpenShell}</variablename>
-      <fieldtype>boolean</fieldtype>
+      <variablename>${oCommand}</variablename>
+      <fieldtype>string</fieldtype>
       <mask />
-      <comparevalue />
+      <comparevalue>?</comparevalue>
       <minvalue />
       <maxvalue />
-      <successcondition>equal</successcondition>
+      <successcondition>notstatwith</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
       <successwhenvarset>N</successwhenvarset>
@@ -929,7 +929,7 @@ srcPath                    Must
 tarPath                    Optional
 fExcludeRegex         Optional
 fIncludeRegex         Optional
-isOpenShell	     Optional
+oCommand	     Optional
 
 ====================
 output variable
