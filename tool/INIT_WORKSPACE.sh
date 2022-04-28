@@ -74,7 +74,7 @@ done
 
 while [[ -z $kpt_repository_path ]]; do
     # auto discover kpt
-    if [[ -d "$parent_folder_dir/.git" ]]; then
+    if [[ -d "$parent_folder_dir/.github" ]]; then
         kpt_repository_path="$parent_folder_dir"
         continue
     fi

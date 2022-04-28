@@ -88,7 +88,7 @@ IF NOT EXIST "%pdi_engine_path%\Spoon.bat" (
 
 IF "%kpt_repository_path%"=="" (
     @REM ::auto discover kpt
-    IF EXIST "%parent_folder_dir%.git" (
+    IF EXIST "%parent_folder_dir%.github" (
         SET kpt_repository_path=%parent_folder_dir%
         GOTO:loop_check_variable
     )
