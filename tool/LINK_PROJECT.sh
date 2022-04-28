@@ -62,7 +62,7 @@ input_list=
 
 #####tip_version
 
-[ $interactive -eq 1 ] && echo -e '\033]2;'$tip $ver'\007' || echo "$tip"
+[[ $interactive -eq 1 ]] && echo -e '\033]2;'$tip $ver'\007' || echo "$tip"
 
 
 #####check_variable
@@ -266,8 +266,7 @@ done
 
 
 # done command
-if [ "$_result_code" -eq "0" ]
-then
+if [[ "$_result_code" -eq "0" ]]; then
     echo "Ok, run done!"
 else
     echo "Sorry, some error '$_result_code' make failure!"
@@ -277,8 +276,7 @@ echo "##########$current_script_name##########"
 
 #####end
 
-if [[ $interactive -eq 1 ]]
-then
+if [[ $interactive -eq 1 ]]; then
     read -p "Press enter to continue"
     exit $_result_code
 else

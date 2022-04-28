@@ -41,7 +41,7 @@ open_project_path=
 
 #####tip_version
 
-[ $interactive -eq 1 ] && echo -e '\033]2;'$tip $ver'\007' || echo "$tip"
+[[ $interactive -eq 1 ]] && echo -e '\033]2;'$tip $ver'\007' || echo "$tip"
 
 
 #####check_variable
