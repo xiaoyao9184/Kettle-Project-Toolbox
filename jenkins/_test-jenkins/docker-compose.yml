@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+
+  jenkins-kpt:
+    image: jenkins/jenkins:2.277.4
+    entrypoint: "jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt --verbose --latest false && /sbin/tini -- /usr/local/bin/jenkins.sh"
+    environment:
+      CASC_JENKINS_CONFIG: /var/jenkins_home/casc_configs/jenkins.yaml
+      JENKINS_UC: https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates
+      JENKINS_UC_DOWNLOAD: https://mirrors.tuna.tsinghua.edu.cn/jenkins
+    volumes:
+      - jenkins_vol:/var/jenkins_home
+      - test-jenkins-kpt_home_vol:/home/jenkins
+      - test-jenkins-kpt_plugins_vol:/usr/share/jenkins/ref/plugins
+      - ./../../:/home/jenkins/kettle/kettle-project-toolbox
+      - ./jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
+      - ./plugins.txt:/usr/share/jenkins/ref/plugins.txt
+      - ./jenkins.install.UpgradeWizard.state:/usr/share/jenkins/ref/jenkins.install.UpgradeWizard.state
+    ports:
+      - target: 8080
+        published: 8080
+      - target: 50000
+        published: 50000
+
+
+volumes:
+  jenkins_vol:
+  test-jenkins-kpt_home_vol:
+    external: true
+  test-jenkins-kpt_plugins_vol:
+    external: true
