@@ -134,7 +134,7 @@ export KPT_KETTLE_FILE="$current_script_dir/Project/CreateProject.kjb"
 export KPT_KETTLE_PARAM_rName="$kpt_project_name"
 export KPT_KETTLE_PARAM_oCommand="$open_project_path"
 
-bash "$parent_folder_dir/shell/KPT_RUN_COMMAND.sh"
+bash "$kpt_workspace_path/shell/KPT_RUN_COMMAND.sh"
 _result_code=$?
 
 export KPT_COMMAND=""

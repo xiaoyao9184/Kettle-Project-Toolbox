@@ -137,7 +137,7 @@ SET KPT_KETTLE_FILE=%current_script_dir%Project\CreateProject.kjb
 SET KPT_KETTLE_PARAM_rName=%kpt_project_name%
 SET KPT_KETTLE_PARAM_oCommand=%open_project_path%
 
-CALL %parent_folder_dir%shell\KPT_RUN_COMMAND.bat
+CALL %kpt_workspace_path%shell\KPT_RUN_COMMAND.bat
 IF !ERRORLEVEL! NEQ 0 SET _result_code=1
 
 SET KPT_COMMAND=

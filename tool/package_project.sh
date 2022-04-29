@@ -125,7 +125,7 @@ export KPT_KETTLE_PARAM_oCommand="$open_project_path"
 export KPT_KETTLE_PARAM_fExcludeRegex=".*\.backup$|.*\.log$|.*\.git\\\\.*|.*\.git\/.*|.*db\.cache.*|.*data-integration.*"
 export KPT_KETTLE_PARAM_fIncludeRegex=".*"
 
-bash "$parent_folder_dir/shell/KPT_RUN_COMMAND.sh"
+bash "$kpt_workspace_path/shell/KPT_RUN_COMMAND.sh"
 _result_code=$?
 
 export KPT_COMMAND=""
