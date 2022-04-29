@@ -1,17 +1,17 @@
 #!/bin/bash
 # CODER BY xiaoyao9184 1.0
 # TIME 2022-04-25
-# FILE LINK_PROJECT
+# FILE link_project
 # DESC create a project and link to KPT source code
-# SYNTAX LINK_PROJECT [kpt_project_name [kpt_workspace_path [pdi_engine_path [kpt_folder_name [link_item_name_list [copy_item_name_list]]]]]]
+# SYNTAX link_project [kpt_project_name [kpt_workspace_path [pdi_engine_path [target_project_path [link_item_name_list [copy_item_name_list]]]]]]
+# SYNTAX_DESC target_project_path: project path for link to
 # SYNTAX link_item_name_list: name[;name]...
 # SYNTAX copy_item_name_list: name[;name]...
-# SYNTAX_DESC kpt_folder_name: folder in kpt
 
 
 #####init_variable
 
-tip="Kettle-Project-Toolbox: Link directory"
+tip="Kettle-Project-Toolbox: link project"
 ver="1.0"
 
 # here interactive mean user input can be obtained,
@@ -25,21 +25,21 @@ current_script_name="${current_script_name%.*}"
 parent_folder_dir="$(dirname $current_script_dir)"
 
 # tip info
-tip_kpt_workspace_path_input="Need input 'kpt_workspace_path' or drag path in:"
-tip_kpt_workspace_path_miss="Missing param 'kpt_workspace_path' at position 1."
-tip_kpt_workspace_path_wrong="Wrong param 'kpt_workspace_path' at position 1."
 tip_kpt_project_name_input="Need input 'kpt_project_name' or drag path in:"
-tip_kpt_project_name_miss="Missing param 'kpt_project_name' at position 2."
-tip_kpt_project_name_wrong="Wrong param 'kpt_project_name' at position 2."
+tip_kpt_project_name_miss="Missing param 'kpt_project_name' at position 1."
+tip_kpt_project_name_wrong="Wrong param 'kpt_project_name' at position 1."
+tip_kpt_workspace_path_input="Need input 'kpt_workspace_path' or drag path in:"
+tip_kpt_workspace_path_miss="Missing param 'kpt_workspace_path' at position 2."
+tip_kpt_workspace_path_wrong="Wrong param 'kpt_workspace_path' at position 2."
 tip_pdi_engine_path_input="Need input 'pdi_engine_path' or drag path in:"
 tip_pdi_engine_path_miss="Missing param 'pdi_engine_path' at position 3."
 tip_pdi_engine_path_wrong="Wrong param 'pdi_engine_path' at position 3."
-tip_kpt_folder_name_input="Need input 'kpt_folder_name' or drag path in:"
-tip_kpt_folder_name_miss="Missing param 'kpt_folder_name' at position 4."
-tip_kpt_folder_name_wrong="Wrong param 'kpt_folder_name' at position 4."
+tip_target_project_path_input="Need input 'target_project_path' or drag path in:"
+tip_target_project_path_miss="Missing param 'target_project_path' at position 4."
+tip_target_project_path_wrong="Wrong param 'target_project_path' at position 4."
 tip_link_item_name_input_first="Please input 'link_item_name' or use default[all folder] with empty input:"
 tip_link_item_name_input_again="Again input 'link_item_name' or end with empty input:"
-tip_link_item_name_miss="Missing param 'kpt_folder_name' at position 5."
+tip_link_item_name_miss="Missing param 'link_item_name' at position 5."
 tip_copy_item_name_input_first="Please input 'copy_item_name' or use default[all file] with empty input:"
 tip_copy_item_name_input_again="Again input 'copy_item_name' or end with empty input:"
 tip_copy_item_name_miss="Missing param 'copy_item_name' at position 6."
@@ -48,13 +48,13 @@ tip_copy_item_name_miss="Missing param 'copy_item_name' at position 6."
 kpt_project_name=$kpt_project_name
 kpt_workspace_path=$kpt_workspace_path
 pdi_engine_path=$pdi_engine_path
-kpt_folder_name=$kpt_folder_name
+target_project_path=$target_project_path
 link_item_name_list=$link_item_name_list
 copy_item_name_list=$copy_item_name_list
 [[ ! -z "$1" ]] && kpt_project_name=$1
 [[ ! -z "$2" ]] && kpt_workspace_path=$2
 [[ ! -z "$3" ]] && pdi_engine_path=$3
-[[ ! -z "$4" ]] && kpt_folder_name=$4
+[[ ! -z "$4" ]] && target_project_path=$4
 [[ ! -z "$5" ]] && link_item_name_list=$5
 [[ ! -z "$6" ]] && copy_item_name_list=$6
 input_list=
@@ -68,6 +68,11 @@ input_list=
 #####check_variable
 
 while [[ -z "$kpt_workspace_path" ]]; do
+    # auto discover pdi
+    if [[ -f "$parent_folder_dir/data-integration/spoon.sh" ]]; then
+        kpt_workspace_path="$parent_folder_dir"
+        continue
+    fi
     if [[ $interactive -eq 1 ]]; then
         read -p "$tip_kpt_workspace_path_input" kpt_workspace_path
     else
@@ -90,15 +95,6 @@ while [[ -z "$kpt_project_name" ]]; do
         read -p "$tip_kpt_project_name_input" kpt_project_name
     else
         echo "$tip_kpt_project_name_miss"
-        exit 1
-    fi
-done
-while [[ -d "$kpt_workspace_path/$kpt_project_name" ]]; do
-    if [[ $interactive -eq 1 ]]; then
-        echo "exist $kpt_workspace_path/$kpt_project_name"
-        read -p "$tip_kpt_project_name_input" kpt_project_name
-    else
-        echo "$tip_kpt_project_name_wrong"
         exit 1
     fi
 done
@@ -126,20 +122,20 @@ while [[ ! -f "$pdi_engine_path/spoon.sh" ]]; do
     fi
 done
 
-while [[ -z "$kpt_folder_name" ]]; do
+while [[ -z "$target_project_path" ]]; do
     if [[ $interactive -eq 1 ]]; then
-        read -p "$tip_kpt_folder_name_input" kpt_folder_name
+        read -p "$tip_target_project_path_input" target_project_path
     else
-        echo "$tip_kpt_folder_name_miss"
+        echo "$tip_target_project_path_miss"
         exit 1
     fi
 done
-while [[ ! -d "$parent_folder_dir/$kpt_folder_name" ]]; do
+while [[ ! -d "$target_project_path" ]]; do
     if [[ $interactive -eq 1 ]]; then
-        echo "not exist $parent_folder_dir/$kpt_folder_name"
-        read -p "$tip_kpt_folder_name_input" kpt_folder_name
+        echo "not exist $target_project_path"
+        read -p "$tip_target_project_path_input" target_project_path
     else
-        echo "$tip_kpt_folder_name_wrong"
+        echo "$tip_target_project_path_wrong"
         exit 1
     fi
 done
@@ -148,11 +144,13 @@ delimiter=";"
 input_list=
 while [[ -z $link_item_name_list ]]; do
     if [[ $interactive -eq 1 ]]; then
+        # tip item name for input
+        ls -p $target_project_path
         read -p "$tip_link_item_name_input_first" input_item
         if [[ -z "$input_item" ]]; then
             if [[ -z "$input_list" ]]; then
                 # default use all folder
-                folder_list=( $( ls -p $parent_folder_dir/$kpt_folder_name | grep / ) )
+                folder_list=( $( ls -p $target_project_path | grep / ) )
                 link_item_name_list=$(IFS=';' ; echo "${folder_list[*]}")
             else
                 # input param end
@@ -168,17 +166,18 @@ while [[ -z $link_item_name_list ]]; do
         exit 1
     fi
 done
-IFS=';' read -r -a link_item_name_list <<< "$link_item_name_list"; unset IFS;
 
 delimiter=";"
 input_list=
 while [[ -z $copy_item_name_list ]]; do
     if [[ $interactive -eq 1 ]]; then
+        # tip item name for input
+        ls -p $target_project_path
         read -p "$tip_copy_item_name_input_first" input_item
         if [[ -z $input_item ]]; then
             if [[ -z $input_list ]]; then
                 # default use all file
-                file_list=( $( ls -p $parent_folder_dir/$kpt_folder_name | grep -v / ) )
+                file_list=( $( ls -p $target_project_path | grep -v / ) )
                 copy_item_name_list=$(IFS=';' ; echo "${file_list[*]}")
             else
                 # input param end
@@ -194,7 +193,6 @@ while [[ -z $copy_item_name_list ]]; do
         exit 1
     fi
 done
-IFS=';' read -r -a copy_item_name_list <<< "$copy_item_name_list"; unset IFS;
 
 
 #####begin
@@ -202,68 +200,37 @@ IFS=';' read -r -a copy_item_name_list <<< "$copy_item_name_list"; unset IFS;
 # print info
 echo "==========$current_script_name=========="
 echo "Script directory is: $current_script_dir"
+echo "Kettle engine path is: $pdi_engine_path"
 echo "KPT workspace path is: $kpt_workspace_path"
-echo "Project name is: $kpt_project_name"
-echo "KPT folder name is: $kpt_folder_name"
-echo "KPT folder sub item link list is: ${link_item_name_list[@]}"
-echo "KPT folder sub item copy list is: ${copy_item_name_list[@]}"
-echo "-----------------NOTE--------------------"
-echo "use 'symbolic' for all folder."
+echo "KPT project name is: $kpt_project_name"
+echo "Target project name is: $target_project_path"
+echo "Target project sub item link list is: ${link_item_name_list[@]}"
+echo "Target project sub item copy list is: ${copy_item_name_list[@]}"
 echo "__________$current_script_name__________"
-
 
 _result_code=0
 
 # create project
-_step="Step: create kpt project '$kpt_project_name'"
+_step="Step: create project '$kpt_project_name'"
 echo ""
 echo ""
 echo "==========$_step=========="
-bash "$kpt_workspace_path/tool/create_project.sh" "$kpt_project_name"
+bash "$kpt_workspace_path/tool/create_project.sh" "$kpt_project_name" "$kpt_workspace_path" "$pdi_engine_path"
 [[ $? -ne 0 ]] && _result_code=1
 echo "##########$_step##########"
 
-# create link_strategy
-if [[ $interactive -eq 1 ]]; then
-    echo
-else
-    echo "$tip_kpt_workspace_link_strategy"
-    link_strategy="replace"
-fi
-
-# link item
-for link_name in "${link_item_name_list[@]}"; do
-    link_name="${link_name%/}"
-    link_path="$kpt_workspace_path/$kpt_project_name/$link_name"
-    target_path="$parent_folder_dir/$kpt_folder_name/$link_name"
-   
-    _step="Step: link folder item '$link_name'"
-    echo
-    echo
-    echo "==========$_step=========="
-    bash "$current_script_dir/LINK_FOLDER.sh" "$link_path" "$target_path" "symbolic" "$link_strategy"
-    [[ $? -ne 0 ]] && _result_code=1
-    echo "##########$_step##########"
-done
-
-# copy item
-for copy_name in "${copy_item_name_list[@]}"; do
-    copy_path="$kpt_workspace_path/$kpt_project_name/$copy_name"
-    target_path="$parent_folder_dir/$kpt_folder_name/$copy_name"
-   
-    _step="Step: copy folder item '$copy_name'"
-    echo
-    echo
-    echo "==========$_step=========="
-    if [[ -d "$target_path" ]]; then
-        cp -a "$target_path" "$copy_path"
-    else
-        cp "$target_path" "$copy_path"
-    fi
-    [[ $? -ne 0 ]] && _result_code=1
-    echo "##########$_step##########"
-done
-
+# link project
+_step="Step: link project '$kpt_project_name'"
+echo ""
+echo ""
+echo "==========$_step=========="
+export link_project_path="$kpt_workspace_path/$kpt_project_name"
+export target_project_path="$target_project_path"
+export link_item_name_list="$link_item_name_list"
+export copy_item_name_list="$copy_item_name_list"
+bash "$kpt_workspace_path/shell/LINK_PROJECT.sh"
+[[ $? -ne 0 ]] && _result_code=1
+echo "##########$_step##########"
 
 # done command
 if [[ "$_result_code" -eq "0" ]]; then

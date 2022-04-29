@@ -304,11 +304,11 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh """
-                        bash "${info.KPTPath}/tool/INIT_WORKSPACE.sh" "\$(pwd)" "${info.PDIPath}" <&-
+                        bash "${info.KPTPath}/shell/INIT_WORKSPACE.sh" "\$(pwd)" "${info.PDIPath}" <&-
                         """
                     } else {
                         bat """
-                        call "${info.KPTPath}\\tool\\INIT_WORKSPACE.bat" "%cd%" "${info.PDIPath}"
+                        call "${info.KPTPath}\\shell\\INIT_WORKSPACE.bat" "%cd%" "${info.PDIPath}"
                         """
                     }
                 }
