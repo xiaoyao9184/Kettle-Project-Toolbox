@@ -11,7 +11,7 @@
     <parameters>
       <parameter>
         <name>Parameters.Path.File.Exclude.Regex</name>
-        <default_value>.*\.backup$|.*\.log$|.*\.git\\.*|.*db\.cache.*|.*data-integration.*</default_value>
+        <default_value>.*\.backup$|.*\.log$|.*\.git\\.*|.*\.git\/.*|.*db\.cache.*|.*data-integration.*</default_value>
         <description>file path exclude regex</description>
       </parameter>
       <parameter>

@@ -528,9 +528,9 @@ pipeline {
                 echo 'Link PDI and KPT...'
                 script {
                     if (isUnix()) {
-                        sh "bash ${info.KPTPath}/tool/INIT_KPT.sh ${target.workPath} ${info.PDIPath} <&-" 
+                        sh "bash ${info.KPTPath}/shell/INIT_WORKSPACE.sh ${target.workPath} ${info.PDIPath} <&-" 
                     } else {
-                        bat "call ${info.KPTPath}\\tool\\INIT_KPT.bat ${target.workPath} ${info.PDIPath}"
+                        bat "call ${info.KPTPath}\\shell\\INIT_WORKSPACE.bat ${target.workPath} ${info.PDIPath}"
                     }
                 }
             }

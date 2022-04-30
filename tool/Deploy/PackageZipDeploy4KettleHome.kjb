@@ -22,9 +22,9 @@
       <description>file include regex for kettle home</description>
     </parameter>
     <parameter>
-      <name>isOpenShell</name>
-      <default_value>false</default_value>
-      <description>is open when package done</description>
+      <name>oCommand</name>
+      <default_value>?</default_value>
+      <description>command for open</description>
     </parameter>
     <parameter>
       <name>rNameRegex</name>
@@ -549,7 +549,7 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>start ${srcPath}</script>
+      <script>${oCommand} ${srcPath}</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -563,13 +563,13 @@
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
       <fieldname />
-      <variablename>${isOpenShell}</variablename>
-      <fieldtype>boolean</fieldtype>
+      <variablename>${oCommand}</variablename>
+      <fieldtype>string</fieldtype>
       <mask />
-      <comparevalue />
+      <comparevalue>?</comparevalue>
       <minvalue />
       <maxvalue />
-      <successcondition>equal</successcondition>
+      <successcondition>notstatwith</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
       <successwhenvarset>N</successwhenvarset>
@@ -1064,7 +1064,7 @@ tempPath                Optional
 rNameRegex           Optional
 fExcludeRegex         Optional
 fIncludeRegex         Optional
-isOpenShell            Optional
+oCommand            Optional
 
 ====================
 output variable

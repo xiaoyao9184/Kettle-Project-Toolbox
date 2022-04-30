@@ -12,9 +12,9 @@
   <modified_date>2015/06/11 09:52:23.081</modified_date>
   <parameters>
     <parameter>
-      <name>Parameters.Create.Open.Path</name>
-      <default_value>false</default_value>
-      <description>open project path when create done</description>
+      <name>Parameters.Create.Shell.Open</name>
+      <default_value>?</default_value>
+      <description>command for open</description>
     </parameter>
     <parameter>
       <name>Parameters.Create.Project.Name</name>
@@ -469,7 +469,7 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>start ${Internal.Project.Directory}</script>
+      <script>${Parameters.Create.Shell.Open} ${Internal.Project.Directory}</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
@@ -851,18 +851,18 @@
       <yloc>2144</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: Open.Path</name>
+      <name>SIMPLE_EVAL: ProjectShell</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
       <fieldname />
-      <variablename>${Parameters.Create.Open.Path}</variablename>
-      <fieldtype>boolean</fieldtype>
+      <variablename>${Parameters.Create.Shell.Open}</variablename>
+      <fieldtype>string</fieldtype>
       <mask />
-      <comparevalue>-</comparevalue>
+      <comparevalue>?</comparevalue>
       <minvalue />
       <maxvalue />
-      <successcondition>equal</successcondition>
+      <successcondition>notstatwith</successcondition>
       <successnumbercondition>equal</successnumbercondition>
       <successbooleancondition>true</successbooleancondition>
       <successwhenvarset>N</successwhenvarset>
@@ -1209,7 +1209,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: Open.Path</from>
+      <from>SIMPLE_EVAL: ProjectShell</from>
       <to>Shell: open path</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1218,7 +1218,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: Open.Path</from>
+      <from>SIMPLE_EVAL: ProjectShell</from>
       <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1246,7 +1246,7 @@
     </hop>
     <hop>
       <from>TRANS: RelativePath2AbsolutePath</from>
-      <to>SIMPLE_EVAL: Open.Path</to>
+      <to>SIMPLE_EVAL: ProjectShell</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1279,7 +1279,7 @@
     <notepad>
       <note>params
 
-Parameters.Create.Open.Path           Optional
+Parameters.Create.Shell.Open           Optional
 Parameters.Create.Project.Name       Must
 Parameters.Create.Project.Path          Must
 Parameters.Create.Use.KettleHome    Optional

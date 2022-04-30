@@ -10,8 +10,8 @@ Function Get-SourceFile($source_name,$source_folder) {
 }
 
 Function Get-SourceName($target_file) {
-    $source_file_name = Get-Content $target_file | Where-Object { 
-        $_ -match "::FILE (.*)|# FILE (.*)" 
+    $source_file_name = Get-Content $target_file | Where-Object {
+        $_ -match "::FILE (.*)|# FILE (.*)"
     } | ForEach-Object {
         $a = $_ | Select-String -Pattern "::FILE (.*)|# FILE (.*)"
         return ($a.matches.groups[1].value) ?
@@ -19,15 +19,15 @@ Function Get-SourceName($target_file) {
             $a.matches.groups[2].value
     }
     # check null
-    return ($source_file_name) ? 
+    return ($source_file_name) ?
         $source_file_name + $target_file.extension :
         $source_file_name
 }
 
 Function Get-TargetSource($target_folder_path_list,$source_folder_path_list,$target_include_list) {
-    $target_folder_path_list = $target_folder_path_list | Where-Object {$_} 
-    $source_folder_path_list = $source_folder_path_list | Where-Object {$_} 
-    
+    $target_folder_path_list = $target_folder_path_list | Where-Object {$_}
+    $source_folder_path_list = $source_folder_path_list | Where-Object {$_}
+   
     # target folder to file
     $target_file_list = $target_folder_path_list | ForEach-Object {
         Get-ChildItem $_ -Include $target_include_list -File -Recurse
@@ -67,16 +67,16 @@ Function Update-Script($target_path,$source_path,$target_include) {
         Write-Host "Need input target path(empty will use '../default'):"
         $target_path = $non_interactive ? $null : (Read-Host)
         if(! $target_path) {
-            $target_path = $script_dir + "/../default;" 
+            $target_path = $script_dir + "/../default;"
             Write-Host "param target_path is" $target_path
         }
     }
     if(! $source_path){
         Write-Host ""
-        Write-Host "Need input source path(empty will use '../Linux;../Windows;../shell;'):"
+        Write-Host "Need input source path(empty will use '../shell;'):"
         $source_path = $non_interactive ? $null : (Read-Host)
         if(! $source_path) {
-            $source_path = $script_dir + "/../Linux;" + $script_dir + "/../Windows;" + $script_dir + "/../shell;"
+            $source_path = $script_dir + "/../shell;"
             Write-Host "param source_path is" $source_path
         }
     }
@@ -132,7 +132,7 @@ $script_dir = Split-Path -parent $MyInvocation.MyCommand.Definition
 #Run alone by default
 $CallStack = Get-PSCallStack | Where-Object  {$_.Command -ne "<ScriptBlock>"}
 if($CallStack.Count -eq 1){
-    Update-Script 
+    Update-Script
     Write-Host ""
     Write-Host "any key exit..."
     Read-Host | Out-Null

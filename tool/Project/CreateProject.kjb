@@ -12,9 +12,9 @@
   <modified_date>2015/06/11 09:52:23.081</modified_date>
   <parameters>
     <parameter>
-      <name>isOpenShell</name>
-      <default_value>false</default_value>
-      <description>is open target path</description>
+      <name>oCommand</name>
+      <default_value>?</default_value>
+      <description>command for open</description>
     </parameter>
     <parameter>
       <name>rName</name>
@@ -432,9 +432,9 @@
       <parameters>
         <pass_all_parameters>Y</pass_all_parameters>
         <parameter>
-          <name>Parameters.Create.Open.Path</name>
+          <name>Parameters.Create.Shell.Open</name>
           <stream_name />
-          <value>${isOpenShell}</value>
+          <value>${oCommand}</value>
         </parameter>
         <parameter>
           <name>Parameters.Create.Project.Name</name>
