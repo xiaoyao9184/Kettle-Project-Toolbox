@@ -138,7 +138,7 @@ SET KPT_KETTLE_PARAM_oCommand=%open_project_path%
 SET KPT_KETTLE_PARAM_fExcludeRegex=".*\.backup$|.*\.log$|.*\.git\\.*|.*\.git\/.*|.*db\.cache.*|.*data-integration.*"
 SET KPT_KETTLE_PARAM_fIncludeRegex=".*"
 
-CALL %kpt_workspace_path%shell\KPT_RUN_COMMAND.bat
+CALL "%kpt_workspace_path%\shell\KPT_RUN_COMMAND.bat"
 IF !ERRORLEVEL! NEQ 0 SET _result_code=1
 
 SET KPT_COMMAND=
