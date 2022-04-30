@@ -78,23 +78,12 @@ IF "!target_path_list!"=="" (
         ECHO %tip_target_path_miss%
         EXIT /B 1
     )
-) ELSE (
-    :: to list for run FOR command
-    SET target_path_list=!target_path_list:;=^
-
-    !
-    REM newline symbol two empty line required
-    :: to absolute path
-    SET path_list=!target_path_list!
-    SET target_path_list=
-    FOR /F %%L IN ("!path_list!") DO (
-        SET path_item=%%L
-        ::remove "
-        SET path_item=!path_item:"=!
-        FOR %%F IN (!path_item!.) DO SET path_item=%%~dpnF
-        SET target_path_list=!target_path_list!!NL!!path_item!
-    )
 )
+:: to list for run FOR command
+SET target_path_list=!target_path_list:;=^
+
+!
+REM newline symbol two empty line required
 
 SET delimiter=;
 SET input_item=
@@ -120,23 +109,12 @@ IF "!source_path_list!"=="" (
         ECHO %tip_source_path_miss%
         EXIT /B 1
     )
-) ELSE (
-    :: to list for run FOR command
-    SET source_path_list=!source_path_list:;=^
-
-    !
-    REM newline symbol two empty line required
-    :: to absolute path
-    SET path_list=!source_path_list!
-    SET source_path_list=
-    FOR /F %%L IN ("!path_list!") DO (
-        SET path_item=%%L
-        ::remove "
-        SET path_item=!path_item:"=!
-        FOR %%F IN (!path_item!.) DO SET path_item=%%~dpnF
-        SET source_path_list=!source_path_list!!NL!!path_item!
-    )
 )
+:: to list for run FOR command
+SET source_path_list=!source_path_list:;=^
+
+!
+REM newline symbol two empty line required
 
 
 :begin
