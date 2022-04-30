@@ -101,8 +101,8 @@ IF "%skip_kpt_project_name_exist%"=="" IF EXIST "%kpt_workspace_path%\%kpt_proje
 
 IF "%pdi_engine_path%"=="" (
     @REM ::auto discover pdi
-    IF EXIST "%parent_folder_dir%data-integration\Spoon.bat" (
-        SET pdi_engine_path=%parent_folder_dir%data-integration
+    IF EXIST "%kpt_workspace_path%\data-integration\Spoon.bat" (
+        SET pdi_engine_path=%kpt_workspace_path%\data-integration
         GOTO:loop_check_variable
     )
     IF %interactive% EQU 1 (

@@ -100,8 +100,8 @@ done
 
 while [[ -z "$pdi_engine_path" ]]; do
     # auto discover pdi
-    if [[ -f "$parent_folder_dir/data-integration/spoon.sh" ]]; then
-        pdi_engine_path="$parent_folder_dir/data-integration"
+    if [[ -f "$kpt_workspace_path/data-integration/spoon.sh" ]]; then
+        pdi_engine_path="$kpt_workspace_path/data-integration"
         continue
     fi
     if [[ $interactive -eq 1 ]]; then
