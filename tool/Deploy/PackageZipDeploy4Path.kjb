@@ -634,7 +634,7 @@
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>start ${Result.Deploy.Target.Path}</script>
+      <script>${oCommand} ${Result.Deploy.Target.Path}</script>
       <loglevel>Basic</loglevel>
       <parallel>N</parallel>
       <draw>Y</draw>
