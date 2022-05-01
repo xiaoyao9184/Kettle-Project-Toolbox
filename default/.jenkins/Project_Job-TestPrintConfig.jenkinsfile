@@ -1,0 +1,23 @@
+pipeline {
+    agent { 
+        label 'master'
+    }
+    options {
+        disableConcurrentBuilds()
+        disableResume()
+    }
+    triggers {
+        cron('H * * * *')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                build job: 'Project_Run-Profile', parameters: [
+                    [$class: 'StringParameterValue', 
+                    name: 'Profile', 
+                    value: 'TestPrintConfig']
+                ]
+            }
+        }
+    }
+}

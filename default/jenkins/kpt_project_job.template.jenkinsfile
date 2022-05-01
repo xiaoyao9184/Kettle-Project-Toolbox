@@ -1,0 +1,60 @@
+pipeline {
+    parameters {
+        string(
+            name: 'NodeLabel', 
+            defaultValue: "${Jenkins.Runner.NodeLabel}",
+            description: 'WILL AUTOMATIC REPLACE')
+        string(
+            name: 'ProjectPath_On_Unix', 
+            defaultValue: "${Jenkins.Runner.ProjectPath_On_Unix}", 
+            description: 'WILL AUTOMATIC REPLACE')
+        string(
+            name: 'ProjectPath_On_Windows', 
+            defaultValue: "${Jenkins.Runner.ProjectPath_On_Unix}", 
+            description: 'WILL AUTOMATIC REPLACE')
+        string(
+            name: 'EnvironmentFile', 
+            defaultValue: "${Jenkins.Runner.EnvironmentFile}", 
+            description: 'WILL AUTOMATIC REPLACE')
+    }
+    agent { 
+        node {
+            label "${params.NodeLabel}"
+        } 
+    }
+    options {
+        disableConcurrentBuilds()
+        disableResume()
+    }
+    triggers {
+        cron("${Jenkins.Runner.Cron}")
+    }
+    stages {
+        stage('RUN') {
+            steps {
+                script {
+                    def projectPath = isUnix() ? "${params.ProjectPath_On_Unix}" : "${params.ProjectPath_On_Windows}" 
+                    dir("${projectPath}") {
+                        profileEnvironment = readProperties file: "${params.EnvFile}"
+                        def listEnvironment = profileEnvironment
+                            .inject([]) { list, k, v ->
+                                list << "${k}=${v}"
+                            }
+                        withEnv(listEnvironment) {
+                            if (isUnix()) {
+                                sh """
+                                bash flow.UseProfileConfigRun.sh <&-
+                                """
+                            } else {
+                                bat """
+                                @ECHO OFF
+                                CALL flow.UseProfileConfigRun.bat
+                                """
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
