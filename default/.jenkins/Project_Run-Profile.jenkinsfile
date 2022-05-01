@@ -26,18 +26,22 @@ pipeline {
     }
     stages {
         stage('Build') {
+            environment {
+                KPT_KETTLE_LEVEL = "${params.LogLevel}"
+                KPT_KETTLE_PARAM_ProfileName = "${params.Profile}"
+            }
             steps {
                 script {
                     def projectPath = isUnix() ? "${params.ProjectPath_On_Unix}" : "${params.ProjectPath_On_Windows}" 
                     dir("${projectPath}") {
                         if (isUnix()) {
                             sh """
-                            bash "flow.UseProfileConfigRun.sh" "${params.LogLevel}" "${params.Profile}" <&-
+                            bash "flow.UseProfileConfigRun.sh" <&-
                             """
                         } else {
                             bat """
                             @echo off
-                            call flow.UseProfileConfigRun.bat "${params.LogLevel}" "${params.Profile}"
+                            call "flow.UseProfileConfigRun.bat"
                             """
                         }
                     }

@@ -17,24 +17,34 @@ pipeline {
             name: 'ProjectPath_On_Windows', 
             defaultValue: "${KPT.ProjectPath_On_Windows}", 
             description: 'The Project directory!(WILL REPLACE BY kpt_project_deploy_jenkinsfile)')
+    
+        choice(
+            name: 'LogLevel', 
+            choices: ['Basic', 'Detailed', 'Debug', 'Rowlevel', 'Error', 'Nothing'],
+            description: 'Kettle logging level')
     }
     options {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Build') {
+        stage('Run') {
+            environment {
+                KPT_KETTLE_LEVEL = "${params.LogLevel}"
+            }
             steps {
                 script {
-                    if (isUnix()) {
-                        sh """
-                        cd ${params.ProjectPath_On_Unix} 
-                        bash patch.PatchPDI.sh Basic <&-
-                        """ 
-                    } else {
-                        bat """
-                        cd /d ${params.ProjectPath_On_Windows}
-                        call patch.PatchPDI.bat Basic
-                        """
+                    def projectPath = isUnix() ? "${params.ProjectPath_On_Unix}" : "${params.ProjectPath_On_Windows}" 
+                    dir("${projectPath}") {
+                        if (isUnix()) {
+                            sh """
+                            bash "patch.PatchPDI.sh" <&-
+                            """
+                        } else {
+                            bat """
+                            @echo off
+                            call "patch.PatchPDI.bat"
+                            """
+                        }
                     }
                 }
             }
