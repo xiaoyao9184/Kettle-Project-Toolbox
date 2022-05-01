@@ -81,7 +81,7 @@ IF %interactive% EQU 1 ( TITLE %tip% %ver% ) ELSE ( ECHO %tip% )
 IF "%kpt_workspace_path%"=="" (
     @REM ::auto discover pdi
     IF EXIST "%parent_folder_dir%data-integration\Spoon.bat" (
-        SET kpt_workspace_path=%parent_folder_dir%
+        FOR %%F IN (%parent_folder_dir%.) DO SET kpt_workspace_path=%%~dpnxF
         GOTO:loop_check_variable
     )
     IF %interactive% EQU 1 (

@@ -53,7 +53,7 @@ IF "!caller_script_path!"=="" (
 ::parent_folder_dir
 ::parent_folder_name
 FOR %%F IN (%caller_script_dir%.) DO SET parent_folder_dir=%%~dpF
-FOR %%F IN (%caller_script_dir%.) DO SET parent_folder_name=%%~nF
+FOR %%F IN (%caller_script_dir%.) DO SET parent_folder_name=%%~nxF
 
 ::looking_file_name
 ::looking_file_ext
