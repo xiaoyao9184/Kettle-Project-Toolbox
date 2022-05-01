@@ -6,7 +6,7 @@ SETLOCAL EnableDelayedExpansion
 
 SET current_script_dir=%~dp0
 FOR %%F IN (%current_script_dir%.) DO SET parent_folder_dir=%%~dpF
-FOR %%F IN (%current_script_dir%.) DO SET parent_folder_name=%%~nF
+FOR %%F IN (%current_script_dir%.) DO SET parent_folder_name=%%~nxF
 
 ENDLOCAL & (
     SET kpt_project_name=%parent_folder_name%
