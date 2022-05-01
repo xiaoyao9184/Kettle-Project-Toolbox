@@ -21,6 +21,11 @@
       <default_value />
       <description>Git repository path</description>
     </parameter>
+    <parameter>
+      <name>Results.Git.Variable</name>
+      <default_value>Result.Git.Version</default_value>
+      <description>Git result variable</description>
+    </parameter>
   </parameters>
   <slaveservers>
     </slaveservers>
@@ -446,7 +451,7 @@
         <parameter>
           <name>ResultVariableNameList</name>
           <stream_name />
-          <value>Result.Git.Version</value>
+          <value>${Results.Git.Variable}</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
@@ -547,7 +552,7 @@
         <parameter>
           <name>ResultVariableNameList</name>
           <stream_name />
-          <value>Result.Git.Version</value>
+          <value>${Results.Git.Variable}</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
