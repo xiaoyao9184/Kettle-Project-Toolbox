@@ -128,11 +128,19 @@ fi
 
 #####begin
 
+# get link target of kpt_workspace_path/tool kpt_repository_path
+kpt_repository_path=""
+parent_folder_name="$(basename $current_script_dir)"
+real_current_script_path="$(readlink "$kpt_workspace_path/$parent_folder_name")"
+kpt_repository_path="$(dirname $real_current_script_path)"
+
 export KPT_COMMAND="kitchen"
 export KPT_ENGINE_PATH="$pdi_engine_path"
 export KPT_KETTLE_FILE="$current_script_dir/Project/CreateProject.kjb"
-export KPT_KETTLE_PARAM_rName="$kpt_project_name"
+export KPT_KETTLE_PARAM_pName="$kpt_project_name"
+export KPT_KETTLE_PARAM_workspacePath="$kpt_workspace_path"
 export KPT_KETTLE_PARAM_oCommand="$open_project_path"
+export KPT_KETTLE_PARAM_kptPath="$kpt_repository_path"
 
 bash "$kpt_workspace_path/shell/KPT_RUN_COMMAND.sh"
 _result_code=$?
@@ -140,8 +148,10 @@ _result_code=$?
 export KPT_COMMAND=""
 export KPT_ENGINE_PATH=""
 export KPT_KETTLE_FILE=""
-export KPT_KETTLE_PARAM_rName=""
+export KPT_KETTLE_PARAM_pName=""
+export KPT_KETTLE_PARAM_workspacePath=""
 export KPT_KETTLE_PARAM_oCommand=""
+export KPT_KETTLE_PARAM_kptPath=""
 
 
 #####end

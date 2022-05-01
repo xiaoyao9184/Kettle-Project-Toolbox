@@ -131,11 +131,22 @@ IF %interactive% EQU 1 (
 
 :begin
 
+::get link target of kpt_workspace_path/tool kpt_repository_path
+SET kpt_repository_path=
+SET find_dir=%kpt_workspace_path%
+FOR %%F IN (%current_script_dir%.) DO SET find_name=%%~nF
+FOR /F "usebackq tokens=2 delims=[]" %%H IN (`DIR /A:L %find_dir% ^| FINDSTR /C:"%find_name%"`) DO (
+    SET real_current_script_path=%%H
+    FOR %%F IN (!real_current_script_path!\..) DO SET kpt_repository_path=%%~dpnF 
+)
+
 SET KPT_COMMAND=kitchen
 SET KPT_ENGINE_PATH=%pdi_engine_path%
 SET KPT_KETTLE_FILE=%current_script_dir%Project\CreateProject.kjb
-SET KPT_KETTLE_PARAM_rName=%kpt_project_name%
+SET KPT_KETTLE_PARAM_pName=%kpt_project_name%
+SET KPT_KETTLE_PARAM_workspacePath=%kpt_workspace_path%
 SET KPT_KETTLE_PARAM_oCommand=%open_project_path%
+SET KPT_KETTLE_PARAM_kptPath=%kpt_repository_path%
 
 CALL "%kpt_workspace_path%\shell\KPT_RUN_COMMAND.bat"
 IF !ERRORLEVEL! NEQ 0 SET _result_code=1
@@ -143,8 +154,10 @@ IF !ERRORLEVEL! NEQ 0 SET _result_code=1
 SET KPT_COMMAND=
 SET KPT_ENGINE_PATH=
 SET KPT_KETTLE_FILE=
-SET KPT_KETTLE_PARAM_rName=
+SET KPT_KETTLE_PARAM_pName=
+SET KPT_KETTLE_PARAM_workspacePath=
 SET KPT_KETTLE_PARAM_oCommand=
+SET KPT_KETTLE_PARAM_kptPath=
 
 
 :end
