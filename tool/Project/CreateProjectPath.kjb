@@ -12,11 +12,6 @@
   <modified_date>2015/06/11 09:52:23.081</modified_date>
   <parameters>
     <parameter>
-      <name>Parameters.Create.Shell.Open</name>
-      <default_value>?</default_value>
-      <description>command for open</description>
-    </parameter>
-    <parameter>
       <name>Parameters.Create.Project.Name</name>
       <default_value>?</default_value>
       <description>paroject name</description>
@@ -27,14 +22,19 @@
       <description>project path</description>
     </parameter>
     <parameter>
+      <name>Parameters.Create.Shell.Open</name>
+      <default_value>-</default_value>
+      <description>command for open</description>
+    </parameter>
+    <parameter>
       <name>Parameters.Create.Use.KettleHome</name>
       <default_value>true</default_value>
-      <description>is create KETTLE_HOME</description>
+      <description>is create .kettle(KETTLE_HOME)</description>
     </parameter>
     <parameter>
       <name>Parameters.Create.Use.Log</name>
       <default_value>true</default_value>
-      <description>is create Log</description>
+      <description>is create log</description>
     </parameter>
     <parameter>
       <name>Parameters.Create.Use.Patch</name>
@@ -339,7 +339,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
+      <xloc>240</xloc>
       <yloc>16</yloc>
     </entry>
     <entry>
@@ -349,11 +349,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>2608</yloc>
+      <xloc>240</xloc>
+      <yloc>3248</yloc>
     </entry>
     <entry>
-      <name>CREATE_FOLDER: project directory</name>
+      <name>CREATE_FOLDER: ${Internal.Project.Directory}</name>
       <description />
       <type>CREATE_FOLDER</type>
       <foldername>${Internal.Project.Directory}</foldername>
@@ -361,11 +361,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>576</yloc>
+      <xloc>240</xloc>
+      <yloc>848</yloc>
     </entry>
     <entry>
-      <name>CREATE_FOLDER: KETTLE_HOME directory</name>
+      <name>CREATE_FOLDER: .kettle</name>
       <description />
       <type>CREATE_FOLDER</type>
       <foldername>${Internal.Project.Directory}/.kettle</foldername>
@@ -373,8 +373,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>928</yloc>
+      <xloc>640</xloc>
+      <yloc>1136</yloc>
     </entry>
     <entry>
       <name>DUMMY:Profile</name>
@@ -393,11 +393,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>1728</yloc>
+      <xloc>240</xloc>
+      <yloc>1808</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: .profile directory</name>
+      <name>SIMPLE_EVAL: ${Parameters.Create.Use.Profile}</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -415,11 +415,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>1504</yloc>
+      <xloc>240</xloc>
+      <yloc>1296</yloc>
     </entry>
     <entry>
-      <name>CREATE_FOLDER: .profile/</name>
+      <name>CREATE_FOLDER: .profile</name>
       <description />
       <type>CREATE_FOLDER</type>
       <foldername>${Internal.Project.Directory}/.profile</foldername>
@@ -427,11 +427,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
-      <yloc>1504</yloc>
+      <xloc>640</xloc>
+      <yloc>1424</yloc>
     </entry>
     <entry>
-      <name>CREATE_FOLDER: log directory</name>
+      <name>CREATE_FOLDER: log</name>
       <description />
       <type>CREATE_FOLDER</type>
       <foldername>${Internal.Project.Directory}/log</foldername>
@@ -439,8 +439,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>1216</yloc>
+      <xloc>640</xloc>
+      <yloc>2800</yloc>
     </entry>
     <entry>
       <name>CREATE_FOLDER: .profile/prod</name>
@@ -451,8 +451,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
-      <yloc>1728</yloc>
+      <xloc>640</xloc>
+      <yloc>1680</yloc>
     </entry>
     <entry>
       <name>Shell: open path</name>
@@ -474,8 +474,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>2464</yloc>
+      <xloc>640</xloc>
+      <yloc>3088</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: Internal.Project.Directory</name>
@@ -494,11 +494,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>576</yloc>
+      <xloc>240</xloc>
+      <yloc>720</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: ProjectPath</name>
+      <name>SIMPLE_EVAL: ${Parameters.Create.Project.Path}</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -506,7 +506,7 @@
       <variablename>${Parameters.Create.Project.Path}</variablename>
       <fieldtype>string</fieldtype>
       <mask />
-      <comparevalue>-</comparevalue>
+      <comparevalue>?</comparevalue>
       <minvalue />
       <maxvalue />
       <successcondition>equal</successcondition>
@@ -516,11 +516,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>432</yloc>
+      <xloc>240</xloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: KETTLE_HOME directory</name>
+      <name>SIMPLE_EVAL: ${Parameters.Create.Use.KettleHome}</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -538,8 +538,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>800</yloc>
+      <xloc>240</xloc>
+      <yloc>1008</yloc>
     </entry>
     <entry>
       <name>DUMMY:KETTLE_HOME</name>
@@ -558,11 +558,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>928</yloc>
+      <xloc>240</xloc>
+      <yloc>1136</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: log directory</name>
+      <name>SIMPLE_EVAL: ${Parameters.Create.Use.Log}</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -580,8 +580,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>1088</yloc>
+      <xloc>240</xloc>
+      <yloc>2672</yloc>
     </entry>
     <entry>
       <name>DUMMY:Log</name>
@@ -600,8 +600,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>1344</yloc>
+      <xloc>240</xloc>
+      <yloc>2928</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: Internal.Project.UseKettleHome</name>
@@ -620,8 +620,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>800</yloc>
+      <xloc>640</xloc>
+      <yloc>1008</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: Internal.Project.UseLog</name>
@@ -640,8 +640,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>1088</yloc>
+      <xloc>640</xloc>
+      <yloc>2672</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: Internal.Project.UseProfile</name>
@@ -660,8 +660,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>1504</yloc>
+      <xloc>640</xloc>
+      <yloc>1296</yloc>
     </entry>
     <entry>
       <name>CREATE_FOLDER: .profile/dev</name>
@@ -672,8 +672,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
-      <yloc>1616</yloc>
+      <xloc>640</xloc>
+      <yloc>1552</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: Internal.Project.Name</name>
@@ -692,11 +692,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>288</yloc>
+      <xloc>240</xloc>
+      <yloc>304</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: ProjectName</name>
+      <name>SIMPLE_EVAL: ${Parameters.Create.Project.Name}</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -704,7 +704,7 @@
       <variablename>${Parameters.Create.Project.Name}</variablename>
       <fieldtype>string</fieldtype>
       <mask />
-      <comparevalue>-</comparevalue>
+      <comparevalue>?</comparevalue>
       <minvalue />
       <maxvalue />
       <successcondition>equal</successcondition>
@@ -714,28 +714,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>144</yloc>
-    </entry>
-    <entry>
-      <name>DUMMY:Name</name>
-      <description />
-      <type>SPECIAL</type>
-      <start>N</start>
-      <dummy>Y</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>288</yloc>
+      <xloc>240</xloc>
+      <yloc>176</yloc>
     </entry>
     <entry>
       <name>CREATE_FILE: .profile/.profile</name>
@@ -747,8 +727,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>1728</yloc>
+      <xloc>640</xloc>
+      <yloc>1808</yloc>
     </entry>
     <entry>
       <name>CREATE_FILE: log/.gitkeep</name>
@@ -760,11 +740,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>1344</yloc>
+      <xloc>640</xloc>
+      <yloc>2928</yloc>
     </entry>
     <entry>
-      <name>CREATE_FOLDER: .pdi/</name>
+      <name>CREATE_FOLDER: .pdi</name>
       <description />
       <type>CREATE_FOLDER</type>
       <foldername>${Internal.Project.Directory}/.pdi</foldername>
@@ -772,11 +752,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>2016</yloc>
+      <xloc>640</xloc>
+      <yloc>2096</yloc>
     </entry>
     <entry>
-      <name>SIMPLE_EVAL: patch directory</name>
+      <name>SIMPLE_EVAL: ${Parameters.Create.Use.Patch}</name>
       <description />
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
@@ -794,8 +774,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>1888</yloc>
+      <xloc>240</xloc>
+      <yloc>1968</yloc>
     </entry>
     <entry>
       <name>DUMMY:Patch</name>
@@ -814,8 +794,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>2144</yloc>
+      <xloc>240</xloc>
+      <yloc>2224</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: Internal.Project.UsePatch</name>
@@ -834,8 +814,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>1888</yloc>
+      <xloc>640</xloc>
+      <yloc>1968</yloc>
     </entry>
     <entry>
       <name>CREATE_FILE: .pdi/.gitkeep</name>
@@ -847,8 +827,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>2144</yloc>
+      <xloc>640</xloc>
+      <yloc>2224</yloc>
     </entry>
     <entry>
       <name>SIMPLE_EVAL: ProjectShell</name>
@@ -859,7 +839,7 @@
       <variablename>${Parameters.Create.Shell.Open}</variablename>
       <fieldtype>string</fieldtype>
       <mask />
-      <comparevalue>?</comparevalue>
+      <comparevalue>-</comparevalue>
       <minvalue />
       <maxvalue />
       <successcondition>notstatwith</successcondition>
@@ -869,11 +849,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>2464</yloc>
+      <xloc>240</xloc>
+      <yloc>3088</yloc>
     </entry>
     <entry>
-      <name>TRANS: RelativePath2AbsolutePath</name>
+      <name>TRANS: RelativePath2AbsolutePath: Parameters.Create.Project.Path</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
@@ -904,51 +884,120 @@
         <parameter>
           <name>RelativePath</name>
           <stream_name />
-          <value>${Internal.Project.Directory}</value>
+          <value>${Parameters.Create.Project.Path}</value>
         </parameter>
         <parameter>
           <name>ResultVariableName</name>
           <stream_name />
-          <value>Internal.Project.Directory</value>
+          <value>Parameters.Create.Project.Path</value>
         </parameter>
       </parameters>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>336</xloc>
-      <yloc>2304</yloc>
+      <xloc>240</xloc>
+      <yloc>592</yloc>
+    </entry>
+    <entry>
+      <name>FILE_EXISTS: pdi-git-plugin</name>
+      <description />
+      <type>FILE_EXISTS</type>
+      <filename>./plugins/pdi-git-plugin</filename>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>240</xloc>
+      <yloc>2384</yloc>
+    </entry>
+    <entry>
+      <name>SET_VARIABLES: Internal.Project.UseGit</name>
+      <description />
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename />
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>Internal.Project.UseGit</variable_name>
+          <variable_value>true</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>640</xloc>
+      <yloc>2384</yloc>
+    </entry>
+    <entry>
+      <name>Shell: git init</name>
+      <description />
+      <type>SHELL</type>
+      <filename />
+      <work_directory />
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <set_append_logfile>N</set_append_logfile>
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>Y</insertScript>
+      <script>git -C ${Internal.Project.Directory} init</script>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>640</xloc>
+      <yloc>2512</yloc>
+    </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description />
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>240</xloc>
+      <yloc>2512</yloc>
+    </entry>
+    <entry>
+      <name>ABORT: ${Parameters.Create.Project.Name}</name>
+      <description />
+      <type>ABORT</type>
+      <message>miss param Parameters.Create.Project.Name</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>640</xloc>
+      <yloc>176</yloc>
+    </entry>
+    <entry>
+      <name>ABORT: ${Parameters.Create.Project.Path}</name>
+      <description />
+      <type>ABORT</type>
+      <message>miss param Parameters.Create.Project.Path</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>640</xloc>
+      <yloc>464</yloc>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>SET_VARIABLES: Internal.Project.Directory</from>
-      <to>CREATE_FOLDER: project directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SIMPLE_EVAL: ProjectPath</from>
-      <to>CREATE_FOLDER: project directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SIMPLE_EVAL: ProjectPath</from>
-      <to>SET_VARIABLES: Internal.Project.Directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SIMPLE_EVAL: KETTLE_HOME directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.KettleHome}</from>
       <to>SET_VARIABLES: Internal.Project.UseKettleHome</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -958,15 +1007,15 @@
     </hop>
     <hop>
       <from>SET_VARIABLES: Internal.Project.UseKettleHome</from>
-      <to>CREATE_FOLDER: KETTLE_HOME directory</to>
+      <to>CREATE_FOLDER: .kettle</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: log directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.Log}</from>
       <to>SET_VARIABLES: Internal.Project.UseLog</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -976,15 +1025,15 @@
     </hop>
     <hop>
       <from>SET_VARIABLES: Internal.Project.UseLog</from>
-      <to>CREATE_FOLDER: log directory</to>
+      <to>CREATE_FOLDER: log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: .profile directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.Profile}</from>
       <to>SET_VARIABLES: Internal.Project.UseProfile</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -994,7 +1043,7 @@
     </hop>
     <hop>
       <from>SET_VARIABLES: Internal.Project.UseProfile</from>
-      <to>CREATE_FOLDER: .profile/</to>
+      <to>CREATE_FOLDER: .profile</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1002,7 +1051,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: KETTLE_HOME directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.KettleHome}</from>
       <to>DUMMY:KETTLE_HOME</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1011,16 +1060,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:KETTLE_HOME</from>
-      <to>SIMPLE_EVAL: log directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>SIMPLE_EVAL: log directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.Log}</from>
       <to>DUMMY:Log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1029,16 +1069,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Log</from>
-      <to>SIMPLE_EVAL: .profile directory</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>SIMPLE_EVAL: .profile directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.Profile}</from>
       <to>DUMMY:Profile</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1047,16 +1078,16 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CREATE_FOLDER: KETTLE_HOME directory</from>
+      <from>CREATE_FOLDER: .kettle</from>
       <to>DUMMY:KETTLE_HOME</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>CREATE_FOLDER: .profile/</from>
+      <from>CREATE_FOLDER: .profile</from>
       <to>CREATE_FOLDER: .profile/dev</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1074,7 +1105,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: ProjectName</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Project.Name}</from>
       <to>SET_VARIABLES: Internal.Project.Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1084,30 +1115,12 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>SIMPLE_EVAL: ProjectName</to>
+      <to>SIMPLE_EVAL: ${Parameters.Create.Project.Name}</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>SIMPLE_EVAL: ProjectName</from>
-      <to>DUMMY:Name</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SET_VARIABLES: Internal.Project.Name</from>
-      <to>DUMMY:Name</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>CREATE_FOLDER: .profile/prod</from>
@@ -1128,16 +1141,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Name</from>
-      <to>SIMPLE_EVAL: ProjectPath</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>CREATE_FOLDER: log directory</from>
+      <from>CREATE_FOLDER: log</from>
       <to>CREATE_FILE: log/.gitkeep</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1156,7 +1160,7 @@
     </hop>
     <hop>
       <from>DUMMY:Profile</from>
-      <to>SIMPLE_EVAL: patch directory</to>
+      <to>SIMPLE_EVAL: ${Parameters.Create.Use.Patch}</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1164,7 +1168,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: patch directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.Patch}</from>
       <to>SET_VARIABLES: Internal.Project.UsePatch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1174,7 +1178,7 @@
     </hop>
     <hop>
       <from>SET_VARIABLES: Internal.Project.UsePatch</from>
-      <to>CREATE_FOLDER: .pdi/</to>
+      <to>CREATE_FOLDER: .pdi</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1182,7 +1186,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>CREATE_FOLDER: .pdi/</from>
+      <from>CREATE_FOLDER: .pdi</from>
       <to>CREATE_FILE: .pdi/.gitkeep</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1200,7 +1204,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: patch directory</from>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Use.Patch}</from>
       <to>DUMMY:Patch</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1224,11 +1228,20 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>CREATE_FOLDER: project directory</from>
-      <to>SIMPLE_EVAL: KETTLE_HOME directory</to>
+      <from>CREATE_FOLDER: ${Internal.Project.Directory}</from>
+      <to>SIMPLE_EVAL: ${Parameters.Create.Use.KettleHome}</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>FILE_EXISTS: pdi-git-plugin</from>
+      <to>SET_VARIABLES: Internal.Project.UseGit</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1236,8 +1249,89 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>DUMMY:Patch</from>
-      <to>TRANS: RelativePath2AbsolutePath</to>
+      <from>SET_VARIABLES: Internal.Project.UseGit</from>
+      <to>Shell: git init</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>FILE_EXISTS: pdi-git-plugin</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Shell: git init</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Project.Name}</from>
+      <to>ABORT: ${Parameters.Create.Project.Name}</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Name</from>
+      <to>SIMPLE_EVAL: ${Parameters.Create.Project.Path}</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Project.Path}</from>
+      <to>ABORT: ${Parameters.Create.Project.Path}</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SIMPLE_EVAL: ${Parameters.Create.Project.Path}</from>
+      <to>TRANS: RelativePath2AbsolutePath: Parameters.Create.Project.Path</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>TRANS: RelativePath2AbsolutePath: Parameters.Create.Project.Path</from>
+      <to>SET_VARIABLES: Internal.Project.Directory</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: Internal.Project.Directory</from>
+      <to>CREATE_FOLDER: ${Internal.Project.Directory}</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY:KETTLE_HOME</from>
+      <to>SIMPLE_EVAL: ${Parameters.Create.Use.Profile}</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1245,13 +1339,31 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>TRANS: RelativePath2AbsolutePath</from>
+      <from>DUMMY:Patch</from>
+      <to>FILE_EXISTS: pdi-git-plugin</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY</from>
+      <to>SIMPLE_EVAL: ${Parameters.Create.Use.Log}</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY:Log</from>
       <to>SIMPLE_EVAL: ProjectShell</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
@@ -1259,8 +1371,8 @@
       <note>create project path</note>
       <xloc>0</xloc>
       <yloc>0</yloc>
-      <width>119</width>
-      <heigth>26</heigth>
+      <width>146</width>
+      <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -1283,22 +1395,23 @@ Parameters.Create.Shell.Open           Optional
 Parameters.Create.Project.Name       Must
 Parameters.Create.Project.Path          Must
 Parameters.Create.Use.KettleHome    Optional
-Parameters.Create.Use.Log	                 Optional
 Parameters.Create.Use.Patch              Optional
 Parameters.Create.Use.Profile             Optional
+Parameters.Create.Use.Log	                 Optional
 ====================
 output variable
 
 Internal.Project.Name
 Internal.Project.Directory
 Internal.Project.UseKettleHome
-Internal.Project.UseLog
 Internal.Project.UseProfile
-Internal.Project.UseParch</note>
-      <xloc>576</xloc>
+Internal.Project.UsePatch
+Internal.Project.UseGit
+Internal.Project.UseLog</note>
+      <xloc>832</xloc>
       <yloc>0</yloc>
-      <width>312</width>
-      <heigth>289</heigth>
+      <width>373</width>
+      <heigth>381</heigth>
       <fontname>Microsoft YaHei UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
