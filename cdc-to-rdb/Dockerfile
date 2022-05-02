@@ -9,8 +9,7 @@ ARG KPT_URL="https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git"
 ENV PDI_RELEASE=9.1 \
     PDI_VERSION=9.1.0.0-324 \
     PENTAHO_HOME=/home/pentaho \
-    PDI_PATH=/home/pentaho/data-integration \
-    JENKINS_HOME=/home/jenkins
+    PDI_PATH=/home/pentaho/data-integration
 
 # Create user
 RUN mkdir ${PENTAHO_HOME} \
@@ -29,10 +28,11 @@ RUN /usr/bin/wget \
     && /usr/bin/unzip -q /tmp/pdi-ce-${PDI_VERSION}.zip -d $PENTAHO_HOME \
     && rm /tmp/pdi-ce-${PDI_VERSION}.zip
 
-# Init KPT project
+# Init KPT workspace and project
+COPY --chmod=755 --chown=pentaho:pentaho ./shell $PENTAHO_HOME/shell
 COPY --chmod=755 --chown=pentaho:pentaho ./tool $PENTAHO_HOME/tool
 COPY --chmod=755 --chown=pentaho:pentaho ./default $PENTAHO_HOME/default
-RUN $PENTAHO_HOME/tool/INIT_PROJECT.sh kpt-cdc-to-rdb \
+RUN $PENTAHO_HOME/tool/create_project.sh kpt-cdc-to-rdb \
     && cp $PENTAHO_HOME/kpt-cdc-to-rdb/.profile/.profile $PENTAHO_HOME/kpt-cdc-to-rdb/.profile/default.profile \
     && chmod -R 775 $PENTAHO_HOME/kpt-cdc-to-rdb
 
@@ -51,14 +51,11 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/db_kpt_cdc_event_pgsql_wri
     $PENTAHO_HOME/kpt-cdc-to-rdb/
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
     $PENTAHO_HOME/kpt-cdc-to-rdb/
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/kettle.properties \
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/.kettle/kettle.properties \
     $PENTAHO_HOME/kpt-cdc-to-rdb/.kettle/kettle.properties
 
 
 # Goto kpt project path
 WORKDIR $PENTAHO_HOME/kpt-cdc-to-rdb
 
-# BUG of kettle
-# Only use Basic log level, 
-# more detailed level of logs will make the results wrong
-ENTRYPOINT bash ./flow.UseProfileConfigRun.sh "Basic" "$PROFILE" <&-
+ENTRYPOINT bash ./flow.UseProfileConfigRun.sh <&-

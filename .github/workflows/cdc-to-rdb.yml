@@ -3,7 +3,7 @@ name: cdc-to-rdb-docker
 on:
   push:
     branches:
-      - 'cdc'
+      - 'dev'
 
 jobs:
   docker:
