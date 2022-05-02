@@ -4,6 +4,11 @@
 # FILE KPT_EXPORT_ENVIRONMENT
 
 
+function function_is_docker() {
+    local cgroup=/proc/1/cgroup
+    test -f $cgroup && [[ "$(<$cgroup)" = *:cpuset:/docker/* ]]
+}
+
 function function_looking() {
     _looking_dir=$1
     _looking_file_name=$2
@@ -132,7 +137,7 @@ if [[ -z "$KPT_COMMAND" ]]; then
 fi
 
 # KPT_LOG_PATH
-if [[ -z "$KPT_LOG_PATH" && -z "$JENKINS_HOME" && -z "$KPT_KETTLE_LOGFILE" ]]; then
+if [[ ! function_is_docker && -z "$KPT_LOG_PATH" && -z "$JENKINS_HOME" && -z "$KPT_KETTLE_LOGFILE" ]]; then
     _datetime=$(date +%Y_%m_%d-%H_%M_%S)
     if [[ -d "$caller_script_dir/log" ]]; then
         _log_path="$caller_script_dir/log"
