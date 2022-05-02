@@ -31,6 +31,7 @@ tip_kpt_workspace_path_wrong="Wrong param 'kpt_workspace_path' at position 2."
 tip_pdi_engine_path_input="Need input 'pdi_engine_path' or drag path in:"
 tip_pdi_engine_path_miss="Missing param 'pdi_engine_path' at position 3."
 tip_pdi_engine_path_wrong="Wrong param 'pdi_engine_path' at position 3."
+# tip_kpt_repository_path_miss="Missing param 'kpt_repository_path' use 'kpt_workspace_path' mock."
 
 # defult param
 kpt_project_name=$1
@@ -128,11 +129,15 @@ fi
 
 #####begin
 
-# get link target of kpt_workspace_path/tool kpt_repository_path
+# get kpt_repository_path from link target of kpt_workspace_path/tool 
 kpt_repository_path=""
 parent_folder_name="$(basename $current_script_dir)"
 real_current_script_path="$(readlink "$kpt_workspace_path/$parent_folder_name")"
-kpt_repository_path="$(dirname $real_current_script_path)"
+[[ ! -z "$real_current_script_path" ]] && kpt_repository_path="$(dirname $real_current_script_path)"
+# if [[ -z "$kpt_repository_path" ]]; then
+#     echo "$tip_kpt_repository_path_miss"
+#     kpt_repository_path="$kpt_workspace_path"
+# fi
 
 export KPT_COMMAND="kitchen"
 export KPT_ENGINE_PATH="$pdi_engine_path"

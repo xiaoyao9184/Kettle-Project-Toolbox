@@ -38,6 +38,7 @@ SET tip_kpt_workspace_path_wrong=Wrong param 'kpt_workspace_path' at position 2.
 SET tip_pdi_engine_path_input=Need input 'pdi_engine_path' or drag path in:
 SET tip_pdi_engine_path_miss=Missing param 'pdi_engine_path' at position 3.
 SET tip_pdi_engine_path_wrong=Wrong param 'pdi_engine_path' at position 3.
+@REM SET tip_kpt_repository_path_miss=Missing param 'kpt_repository_path' use 'kpt_workspace_path' mock.
 
 ::defult param
 SET kpt_project_name=%~1
@@ -131,7 +132,7 @@ IF %interactive% EQU 1 (
 
 :begin
 
-::get link target of kpt_workspace_path/tool kpt_repository_path
+::get kpt_repository_path from link target of kpt_workspace_path/tool 
 SET kpt_repository_path=
 SET find_dir=%kpt_workspace_path%
 FOR %%F IN (%current_script_dir%.) DO SET find_name=%%~nF
@@ -139,6 +140,10 @@ FOR /F "usebackq tokens=2 delims=[]" %%H IN (`DIR /A:L %find_dir% ^| FINDSTR /C:
     SET real_current_script_path=%%H
     FOR %%F IN (!real_current_script_path!\..) DO SET kpt_repository_path=%%~dpnF 
 )
+@REM IF "%kpt_repository_path%"=="" (
+@REM     ECHO %tip_kpt_repository_path_miss%
+@REM     SET kpt_repository_path=%kpt_workspace_path%
+@REM )
 
 SET KPT_COMMAND=kitchen
 SET KPT_ENGINE_PATH=%pdi_engine_path%

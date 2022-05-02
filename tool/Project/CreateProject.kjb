@@ -414,7 +414,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>752</yloc>
+      <yloc>464</yloc>
     </entry>
     <entry>
       <name>JOB: CreateProjectPath</name>
@@ -653,7 +653,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>624</yloc>
+      <yloc>336</yloc>
     </entry>
     <entry>
       <name>SET_VARIABLES: workspacePath</name>
@@ -673,7 +673,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>512</xloc>
-      <yloc>624</yloc>
+      <yloc>336</yloc>
     </entry>
     <entry>
       <name>TRANS: JavaPathToPath: kptPath</name>
@@ -719,7 +719,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>464</yloc>
+      <yloc>752</yloc>
     </entry>
     <entry>
       <name>SIMPLE_EVAL: has kptPath param</name>
@@ -741,18 +741,27 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>240</xloc>
-      <yloc>336</yloc>
+      <yloc>624</yloc>
     </entry>
     <entry>
-      <name>ABORT: ${kptPath}</name>
+      <name>SET_VARIABLES: kptPath</name>
       <description />
-      <type>ABORT</type>
-      <message>miss param kptPath</message>
+      <type>SET_VARIABLES</type>
+      <replacevars>Y</replacevars>
+      <filename />
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>kptPath</variable_name>
+          <variable_value>${workspacePath}</variable_value>
+          <variable_type>CURRENT_JOB</variable_type>
+        </field>
+      </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>512</xloc>
-      <yloc>336</yloc>
+      <yloc>752</yloc>
     </entry>
   </entries>
   <hops>
@@ -847,25 +856,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>SIMPLE_EVAL: has kptPath param</from>
-      <to>ABORT: ${kptPath}</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>SIMPLE_EVAL: has pName param </from>
-      <to>SIMPLE_EVAL: has kptPath param</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>TRANS: JavaPathToPath: kptPath</from>
       <to>SIMPLE_EVAL: has workspacePath param</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -875,6 +866,33 @@
     </hop>
     <hop>
       <from>TRANS: JavaPathToPath: projectPath</from>
+      <to>SIMPLE_EVAL: has kptPath param</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>TRANS: JavaPathToPath: kptPath</from>
+      <to>JOB: CreateProjectPath</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SIMPLE_EVAL: has kptPath param</from>
+      <to>SET_VARIABLES: kptPath</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>SET_VARIABLES: kptPath</from>
       <to>JOB: CreateProjectPath</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
