@@ -3,7 +3,9 @@ name: cdc-to-rdb
 on:
   push:
     branches:
-      - 'dev'
+      - '*'
+    paths:
+      - 'cdc-to-rdb/**'
 
 jobs:
   docker:

@@ -1,5 +1,12 @@
 name: pdi-engine
 
+on:
+  push:
+    branches:
+      - "*"
+    paths:
+      - 'data-integration/**'
+
 jobs:
   docker:
     runs-on: ubuntu-latest
