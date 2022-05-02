@@ -115,6 +115,7 @@ SET ver=1.0
 SET interactive=1
 IF NOT "!JENKINS_HOME!"=="" SET interactive=0
 IF NOT "!DEBUG!"=="" SET interactive=0
+IF NOT "!KPT_QUIET!"=="" SET interactive=0
 
 ::script info
 SET current_script_dir=%~dp0

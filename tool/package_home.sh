@@ -14,6 +14,9 @@ ver="1.0"
 # here interactive mean user input can be obtained,
 # determined by checking is connected to a terminal
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
+[[ -n "$JENKINS_HOME" ]] && interactive=0
+[[ -n "$DEBUG" ]] && interactive=0
+[[ -n "$KPT_QUIET" ]] && interactive=0
 
 # script info
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

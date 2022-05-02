@@ -92,6 +92,7 @@ ver="1.0"
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 [[ -n "$JENKINS_HOME" ]] && interactive=0
 [[ -n "$DEBUG" ]] && interactive=0
+[[ -n "$KPT_QUIET" ]] && interactive=0
 
 # script info
 current_script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"

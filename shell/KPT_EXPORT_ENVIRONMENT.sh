@@ -31,6 +31,9 @@ function function_looking() {
 [[ -t 0 || -p /dev/stdin ]] && interactive=1 || interactive=0
 [[ -n "$JENKINS_HOME" ]] && interactive=0
 [[ -n "$DEBUG" ]] && interactive=0
+[[ -n "$KPT_QUIET" ]] && interactive=0
+# docker build not interactive
+[[ ! function_is_docker ]] && interactive=0
 
 # current info
 source_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -133,11 +136,11 @@ if [[ -z "$KPT_COMMAND" ]]; then
     elif [[ "$looking_file_ext" = "ktr" ]]; then
         KPT_COMMAND="pan"
     fi
-    [[ $interactive -eq 1 ]] && echo "set 'KPT_COMMAND' to $KPT_COMMAND"
+    echo "set 'KPT_COMMAND' to $KPT_COMMAND"
 fi
 
 # KPT_LOG_PATH
-if [[ ! function_is_docker && -z "$KPT_LOG_PATH" && -z "$JENKINS_HOME" && -z "$KPT_KETTLE_LOGFILE" ]]; then
+if [[ $interactive -eq 1 && -z "$KPT_LOG_PATH" ]]; then
     _datetime=$(date +%Y_%m_%d-%H_%M_%S)
     if [[ -d "$caller_script_dir/log" ]]; then
         _log_path="$caller_script_dir/log"
@@ -146,7 +149,7 @@ if [[ ! function_is_docker && -z "$KPT_LOG_PATH" && -z "$JENKINS_HOME" && -z "$K
     fi
     [[ ! -d "$_log_path" ]] && mkdir -p "$_log_path"
     KPT_LOG_PATH="$_log_path/$caller_script_name.$_datetime.log"
-    [[ $interactive -eq 1 ]] && echo "set 'KPT_LOG_PATH' to $KPT_LOG_PATH"
+    echo "set 'KPT_LOG_PATH' to $KPT_LOG_PATH"
 fi
 
 if [[ "$in_kpt_project" = "true" ]]; then
@@ -154,40 +157,40 @@ if [[ "$in_kpt_project" = "true" ]]; then
     if [[ -z "$KPT_ENGINE_PATH" ]]; then
         parent_folder_dir="$(dirname $caller_script_dir)"
         KPT_ENGINE_PATH="$parent_folder_dir/data-integration"
-        [[ $interactive -eq 1 ]] && echo "set 'KPT_ENGINE_PATH' to $KPT_ENGINE_PATH"
+        echo "set 'KPT_ENGINE_PATH' to $KPT_ENGINE_PATH"
     fi
     # KPT_KETTLE_JOB
     if [[ -z "$KPT_KETTLE_JOB" && -n "$looking_file_name" && "$KPT_COMMAND" = "kitchen" ]]; then
         KPT_KETTLE_JOB="${looking_file_name//\\//}"
-        [[ $interactive -eq 1 ]] && echo "set 'KPT_KETTLE_JOB' to $KPT_KETTLE_JOB"
+        echo "set 'KPT_KETTLE_JOB' to $KPT_KETTLE_JOB"
     fi
     # KPT_KETTLE_TRANS
     if [[ -z "$KPT_KETTLE_TRANS" && -n "$looking_file_name" && "$KPT_COMMAND" = "pan" ]]; then
         KPT_KETTLE_TRANS="${looking_file_name//\\//}"
-        [[ $interactive -eq 1 ]] && echo "set 'KPT_KETTLE_TRANS' to $KPT_KETTLE_TRANS"
+        echo "set 'KPT_KETTLE_TRANS' to $KPT_KETTLE_TRANS"
     fi
     # KPT_PROJECT_PATH
     if [[ -z "$KPT_PROJECT_PATH" ]]; then
         KPT_PROJECT_PATH="$parent_folder_dir/$parent_folder_name"
-        [[ $interactive -eq 1 ]] && echo "set 'KPT_PROJECT_PATH' to $KPT_PROJECT_PATH"
+        echo "set 'KPT_PROJECT_PATH' to $KPT_PROJECT_PATH"
     fi
     # KETTLE_REPOSITORY
     if [[ -z "$KETTLE_REPOSITORY" ]]; then
         KETTLE_REPOSITORY="$parent_folder_name"
-        [[ $interactive -eq 1 ]] && echo "set 'KETTLE_REPOSITORY' to $KETTLE_REPOSITORY"
+        echo "set 'KETTLE_REPOSITORY' to $KETTLE_REPOSITORY"
     fi
 elif [[ -n "$looking_file_name" ]]; then
     # KPT_KETTLE_FILE
     if [[ -z "$KPT_KETTLE_FILE" ]]; then
         KPT_KETTLE_FILE="$caller_script_dir/$looking_file_name.$looking_file_ext"
-        [[ $interactive -eq 1 ]] && echo "set 'KPT_KETTLE_FILE' to $KPT_KETTLE_FILE"
+        echo "set 'KPT_KETTLE_FILE' to $KPT_KETTLE_FILE"
     fi
 fi
 
 # KETTLE_HOME
 if [[ -z "$KETTLE_HOME" && -d $caller_script_dir/.kettle ]]; then
     KETTLE_HOME="${caller_script_dir//\\//}"
-    [[ $interactive -eq 1 ]] && echo "set 'KETTLE_HOME' to $KETTLE_HOME"
+    echo "set 'KETTLE_HOME' to $KETTLE_HOME"
 fi
 
 echo "##########$source_script_name##########"

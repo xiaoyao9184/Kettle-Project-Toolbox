@@ -32,6 +32,7 @@ SET ver=1.0
 SET interactive=1
 IF NOT "!JENKINS_HOME!"=="" SET interactive=0
 IF NOT "!DEBUG!"=="" SET interactive=0
+IF NOT "!KPT_QUIET!"=="" SET interactive=0
 
 ::default param
 SET caller_script_path=%1
@@ -120,11 +121,11 @@ IF "%KPT_COMMAND%"=="" (
     ) ELSE IF "%looking_file_ext%"=="ktr" (
         SET KPT_COMMAND=pan
     )
-    IF %interactive% EQU 1 ( ECHO set 'KPT_COMMAND' to: %KPT_COMMAND% )
+    ECHO set 'KPT_COMMAND' to: %KPT_COMMAND%
 )
 
 ::KPT_LOG_PATH
-IF "!KPT_LOG_PATH!"=="" IF "!JENKINS_HOME!"=="" IF "!KPT_KETTLE_LOGFILE!"=="" (
+IF %interactive% EQU 1 IF "!KPT_LOG_PATH!"=="" (
     SET _date=%date:~0,10%
     SET _time=%time:~0,8%
     IF EXIST %caller_script_dir%log (
@@ -134,7 +135,7 @@ IF "!KPT_LOG_PATH!"=="" IF "!JENKINS_HOME!"=="" IF "!KPT_KETTLE_LOGFILE!"=="" (
     )
     IF NOT EXIST "!_log_path!" MKDIR "!_log_path!"
     SET KPT_LOG_PATH=!_log_path!\%caller_script_name%.!_date:/=_!-!_time::=_!.log
-    IF %interactive% EQU 1 ( ECHO set 'KPT_LOG_PATH' to: !KPT_LOG_PATH! )
+    ECHO set 'KPT_LOG_PATH' to: !KPT_LOG_PATH!
 )
 
 IF "%in_kpt_project%"=="true" (
@@ -142,40 +143,40 @@ IF "%in_kpt_project%"=="true" (
     IF "!KPT_ENGINE_PATH!"=="" (
         FOR %%F IN (%caller_script_dir%.) DO SET parent_folder_dir=%%~dpF
         SET KPT_ENGINE_PATH=!parent_folder_dir!data-integration
-        IF %interactive% EQU 1 ( ECHO set 'KPT_ENGINE_PATH' to: !KPT_ENGINE_PATH! )
+        ECHO set 'KPT_ENGINE_PATH' to: !KPT_ENGINE_PATH!
     )
     @REM ::KPT_KETTLE_JOB
     IF "!KPT_KETTLE_JOB!"=="" IF NOT "%looking_file_name%"=="" IF "%KPT_COMMAND%"=="kitchen" (
         SET "KPT_KETTLE_JOB=%looking_file_name:\=/%"
-        IF %interactive% EQU 1 ( ECHO set 'KPT_KETTLE_JOB' to: !KPT_KETTLE_JOB! )
+        ECHO set 'KPT_KETTLE_JOB' to: !KPT_KETTLE_JOB!
     )
     @REM ::KPT_KETTLE_TRANS
     IF "!KPT_KETTLE_TRANS!"=="" IF NOT "%looking_file_name%"=="" IF "%KPT_COMMAND%"=="pan" (
         SET "KPT_KETTLE_TRANS=%looking_file_name:\=/%"
-        IF %interactive% EQU 1 ( ECHO set 'KPT_KETTLE_TRANS' to: %KPT_KETTLE_TRANS% )
+        ECHO set 'KPT_KETTLE_TRANS' to: %KPT_KETTLE_TRANS%
     )
     @REM ::KPT_PROJECT_PATH
     IF "!KPT_PROJECT_PATH!"=="" (
         SET KPT_PROJECT_PATH=%parent_folder_dir%%parent_folder_name%
-        IF %interactive% EQU 1 ( ECHO set 'KPT_PROJECT_PATH' to: !KPT_PROJECT_PATH! )
+        ECHO set 'KPT_PROJECT_PATH' to: !KPT_PROJECT_PATH!
     )
     @REM ::KETTLE_REPOSITORY
     IF "%KETTLE_REPOSITORY%"=="" (
         SET KETTLE_REPOSITORY=%parent_folder_name%
-        IF %interactive% EQU 1 ( ECHO set 'KETTLE_REPOSITORY' to: !KETTLE_REPOSITORY! )
+        ECHO set 'KETTLE_REPOSITORY' to: !KETTLE_REPOSITORY!
     )
 ) ELSE IF NOT "%looking_file_name%"=="" (
     @REM ::KPT_KETTLE_FILE
     IF "!KPT_KETTLE_FILE!"=="" (
         SET KPT_KETTLE_FILE=%caller_script_dir%%looking_file_name%.%looking_file_ext%
-        IF %interactive% EQU 1 ( ECHO set 'KPT_KETTLE_FILE' to: !KPT_KETTLE_FILE! )
+        ECHO set 'KPT_KETTLE_FILE' to: !KPT_KETTLE_FILE!
     )
 )
 
 ::KETTLE_HOME
 IF "!KETTLE_HOME!"=="" IF EXIST %caller_script_dir%.kettle (
     SET KETTLE_HOME=%caller_script_dir:\=/%
-    IF %interactive% EQU 1 ( ECHO set 'KETTLE_HOME' to: !KETTLE_HOME! )
+    ECHO set 'KETTLE_HOME' to: !KETTLE_HOME!
 )
 
 ECHO ##########%~n0##########
