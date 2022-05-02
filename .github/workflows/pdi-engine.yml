@@ -1,9 +1,4 @@
-name: pdi-docker
-
-on:
-  push:
-    branches:
-      - 'dev'
+name: pdi-engine
 
 jobs:
   docker:
@@ -36,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./.pdi-docker/Dockerfile
+          file: ./data-integration/Dockerfile
           push: true
           build-args: |
             PDI_RELEASE=7.1
@@ -49,7 +44,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./.pdi-docker/Dockerfile
+          file: ./data-integration/Dockerfile
           push: true
           build-args: |
             PDI_RELEASE=9.1
@@ -62,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./.pdi-docker/Dockerfile
+          file: ./data-integration/Dockerfile
           push: true
           build-args: |
             PDI_RELEASE=9.2
@@ -75,7 +70,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./.pdi-docker/Dockerfile
+          file: ./data-integration/Dockerfile
           push: true
           build-args: |
             PDI_RELEASE=8.2

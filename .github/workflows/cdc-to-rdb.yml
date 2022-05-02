@@ -1,4 +1,4 @@
-name: cdc-to-rdb-docker
+name: cdc-to-rdb
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: cdc
+          ref: dev
       - 
         name: Set git sha short
         id: vars
