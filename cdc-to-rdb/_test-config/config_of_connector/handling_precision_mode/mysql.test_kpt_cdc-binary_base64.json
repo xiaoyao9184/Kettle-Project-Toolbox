@@ -1,0 +1,33 @@
+{
+	"name": "test_debezium_mysql-test_kpt_cdc-binary_base64",
+	"config": {
+		"connector.class": "io.debezium.connector.mysql.MySqlConnector",
+		"tasks.max": "1",
+        "snapshot.delay.ms": "0",
+        "include.schema.changes": "true",
+        "include.query": "true",
+        "binlog.buffer.size": "0",
+		"heartbeat.interval.ms": 0,
+		"event.processing.failure.handling.mode": "ignore",
+		"event.deserialization.failure.handling.mode": "ignore",
+		"inconsistent.schema.handling.mode": "ignore",
+		"database.hostname": "mysql",
+		"database.port": "3306",
+		"database.user": "kpt",
+		"database.password": "kpt.123",
+		"database.include.list": "test_kpt_cdc",
+		"database.server.id": "23336",
+		"database.server.name": "test_debezium_mysql-test_kpt_cdc",
+		"database.history.kafka.bootstrap.servers": "kafka:9092",
+		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.schema-changes.binary_base64",
+		"converters": "boolean",
+		"boolean.type": "io.debezium.connector.mysql.converters.TinyIntOneToBooleanConverter",
+		"boolean.selector": "test_kpt_cdc.debezium_types.*, .*",
+		"transforms": "Reroute",
+		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
+		"transforms.Reroute.topic.regex": ".*",
+		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc.data-changes.binary_base64",
+		"binary.handling.mode": "base64",
+		"datatype.propagate.source.type": ".*BINARY,.*BLOB"
+	}
+}

@@ -1,0 +1,156 @@
+# example config file
+---
+# global settings
+pid_dir: '~/.pg_chameleon/pid/'
+log_dir: '~/.pg_chameleon/logs/'
+log_dest: stdout # <- important to run pg_chameleon in foreground
+log_level: info
+log_days_keep: 10
+rollbar_key: ''
+rollbar_env: ''
+
+# type_override allows the user to override the default type conversion
+# into a different one.
+
+type_override:
+  # mysql not have boolean
+  "tinyint(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+
+  # kpt not support
+  # GIS type not support 
+  "geometry":
+    override_to: text
+    override_tables:
+      - "*"
+  "linestring":
+    override_to: text
+    override_tables:
+      - "*"
+  "polygon":
+    override_to: text
+    override_tables:
+      - "*"
+  "multipoint":
+    override_to: text
+    override_tables:
+      - "*"
+  "multilinestring":
+    override_to: text
+    override_tables:
+      - "*"
+  "multipolygon":
+    override_to: text
+    override_tables:
+      - "*"
+  "geometrycollection":
+    override_to: text
+    override_tables:
+      - "*"
+  # json type not support
+  "json":
+    override_to: text
+    override_tables:
+      - "*"
+  # enum type not support
+  # special case
+  "enum('E1')":
+    override_to: character varying(10)
+    override_tables:
+      - "*"
+      
+  # pg_chameleon mistake
+  # mysql tinyint,smallint must to pgsql smallint(2 bytes)
+  "tinyint(4)":
+    override_to: smallint
+    override_tables:
+      - "*"
+  "smallint(6)":
+    override_to: smallint
+    override_tables:
+      - "*"
+  # mysql mediumint,int must to pgsql integer(4 bytes)
+  "mediumint(9)":
+    override_to: integer
+    override_tables:
+      - "*"
+  "int(11)":
+    override_to: integer
+    override_tables:
+      - "*"
+  # mysql bigint must to pgsql bigint(8 bytes)
+  "bigint(20)":
+    override_to: bigint
+    override_tables:
+      - "*"
+  # mysql float must to pgsql real(4 bytes)
+  "float":
+    override_to: real
+    override_tables:
+      - "*"
+  # mysql double/real must to pgsql double(8 bytes)
+  "double":
+    override_to: double precision
+    override_tables:
+      - "*"
+  # fix pg_chameleon
+  "bit(1)":
+    override_to: boolean
+    override_tables:
+      - "*"
+  # special case fix pg_chameleon
+  "bit(2)":
+    override_to: bytea
+    override_tables:
+      - "*"
+
+
+
+# postgres  destination connection
+pg_conn:
+  host: "pgsql"
+  port: "5432"
+  user: "kpt"
+  password: "kpt.123"
+  database: "test_kpt"
+  charset: "utf8"
+
+
+sources:
+
+  mysql:
+    db_conn:
+      host: "mysql"
+      port: "3306"
+      user: "root"
+      password: "P@ssw0rd"
+      charset: 'utf8'
+      connect_timeout: 10
+    schema_mappings:
+      test_kpt_cdc: mysql_chameleon_generation__test_kpt_cdc
+    limit_tables:
+      - test_kpt_cdc.for_chameleon__debezium_types
+    skip_tables:
+    grant_select_to:
+      - usr_readonly
+    lock_timeout: "36000s"
+    my_server_id: 2333
+    replica_batch_size: 6000
+    replay_max_rows: 10000
+    batch_retention: '2 day'
+    copy_max_memory: "600M"
+    copy_mode: 'file'
+    out_dir: /tmp
+    sleep_loop: 600
+    on_error_replay: continue
+    on_error_read: continue
+    auto_maintenance: "disabled"
+    gtid_enable: false
+    type: mysql
+    skip_events:
+      insert:
+      delete:
+      update:
+    keep_existing_schema: No

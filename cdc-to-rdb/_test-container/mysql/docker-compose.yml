@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:5.7
+    # command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: >
+          bash -c "
+          chmod 644 /etc/mysql/my.cnf
+          && /entrypoint.sh mysqld
+          "
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd
+    volumes:
+       - ./my.cnf:/etc/mysql/my.cnf
+    ports:
+      - 53306:3306
+    networks:
+      - test-kpt
+
+  flyway:
+    image: boxfuse/flyway:5.2.4
+    command: -url=jdbc:mysql://mysql -schemas=flyway -user=root -password=P@ssw0rd -connectRetries=60 migrate
+    environment:
+      - FLYWAY_EDITION=community
+    volumes:
+      - ./sql:/flyway/sql
+    depends_on:
+      - mysql
+    networks:
+      - test-kpt
+
+
+networks:
+  test-kpt:
+    external: true

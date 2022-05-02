@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  mysql-time_connect.manual:
+    image: xiaoyao9184/kpt-cdc-to-rdb
+    environment:
+      PROFILE: test_kpt,debezium-mysql-pgsql.manual
+    volumes:
+       - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
+    networks:
+      - test-kpt
+  # TODO waiting rdb_table and rdb_cloumn mapping support
+  # mysql-time_connect-chameleon:
+  #   image: xiaoyao9184/kpt-cdc-to-rdb
+  #   environment:
+  #     PROFILE: test_kpt,debezium-mysql-pgsql.chameleon
+  #   volumes:
+  #      - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
+  #   networks:
+  #     - test-kpt
+
+
+networks:
+  test-kpt:
+    external: true
