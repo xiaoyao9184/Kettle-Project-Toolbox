@@ -4,18 +4,20 @@ services:
     # build:  
     #   context: ./../../../../
     #   dockerfile: ./cdc-to-rdb/Dockerfile
-    image: xiaoyao9184/kpt-cdc-to-rdb
+    image: xiaoyao9184/kpt-cdc-to-rdb:dev
     environment:
-      PROFILE: test_kpt,debezium-mysql-pgsql.manual
+      KPT_KETTLE_LEVEL: Rowlevel
+      KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.manual
     volumes:
        - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
     networks:
       - test-kpt
   # TODO waiting rdb_table and rdb_cloumn mapping support
   # mysql-binary_bytes-chameleon:
-  #   image: xiaoyao9184/kpt-cdc-to-rdb
+  #   image: xiaoyao9184/kpt-cdc-to-rdb:dev
   #   environment:
-  #     PROFILE: test_kpt,debezium-mysql-pgsql.chameleon
+  #     KPT_KETTLE_LEVEL: Rowlevel
+  #     KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.chameleon
   #   volumes:
   #      - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
   #   networks:

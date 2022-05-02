@@ -1,38 +1,15 @@
-FROM openjdk:8-jre
+FROM xiaoyao9184/kpt-pdi-engine:9.1.0.0-324
 
 LABEL org.opencontainers.image.authors="xiaoyao9184@gmail.com"
 
-ARG PDI_URL="https://downloads.sourceforge.net/project"
 ARG KPT_URL="https://github.com/xiaoyao9184/Kettle-Project-Toolbox.git"
 
-# Set required environment vars
-ENV PDI_RELEASE=9.1 \
-    PDI_VERSION=9.1.0.0-324 \
-    PENTAHO_HOME=/home/pentaho \
-    PDI_PATH=/home/pentaho/data-integration
-
-# Create user
-RUN mkdir ${PENTAHO_HOME} \
-    && groupadd -r pentaho \
-    && useradd -s /bin/bash -d ${PENTAHO_HOME} -r -g pentaho pentaho \
-    && chown pentaho:pentaho ${PENTAHO_HOME}
-
-# Switch to the pentaho user
-USER pentaho
-
-# Download PDI
-RUN /usr/bin/wget \
-    --progress=dot:giga \
-    ${PDI_URL}/pentaho/Pentaho%20${PDI_RELEASE}/client-tools/pdi-ce-${PDI_VERSION}.zip \
-    -O /tmp/pdi-ce-${PDI_VERSION}.zip \
-    && /usr/bin/unzip -q /tmp/pdi-ce-${PDI_VERSION}.zip -d $PENTAHO_HOME \
-    && rm /tmp/pdi-ce-${PDI_VERSION}.zip
 
 # Init KPT workspace and project
 COPY --chmod=755 --chown=pentaho:pentaho ./shell $PENTAHO_HOME/shell
 COPY --chmod=755 --chown=pentaho:pentaho ./tool $PENTAHO_HOME/tool
 COPY --chmod=755 --chown=pentaho:pentaho ./default $PENTAHO_HOME/default
-RUN $PENTAHO_HOME/tool/create_project.sh kpt-cdc-to-rdb \
+RUN $PENTAHO_HOME/tool/create_project.sh kpt-cdc-to-rdb <&- \
     && cp $PENTAHO_HOME/kpt-cdc-to-rdb/.profile/.profile $PENTAHO_HOME/kpt-cdc-to-rdb/.profile/default.profile \
     && chmod -R 775 $PENTAHO_HOME/kpt-cdc-to-rdb
 

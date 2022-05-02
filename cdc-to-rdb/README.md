@@ -12,13 +12,7 @@ RDB is any relational-data model compatible with kettle JDBC database.
 ## Build
 
 ```sh
-DOCKER_BUILDKIT=1 docker build -t kpt-cdc-to-rdb:20210831 -f ./cdc-to-rdb/Dockerfile . 
-```
-
-or use PDI_URL mirror like `http://nexus/repository/image-hosted`
-
-```sh
-DOCKER_BUILDKIT=1 docker build -t kpt-cdc-to-rdb:20210831 -f ./cdc-to-rdb/Dockerfile . --build-arg PDI_URL=http://nexus/repository/image-hosted
+DOCKER_BUILDKIT=1 docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
 ```
 
 
@@ -89,7 +83,7 @@ docker run \
  -e TZ=Asia/Hong_Kong \
  -v /etc/localtime:/etc/localtime:ro \
  --entrypoint="/bin/bash" \
- kpt-cdc-to-rdb:20210831
+ xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
 ```bat
 :: windows batch for Docker Desktop
@@ -99,7 +93,7 @@ docker run ^
  -e TZ=Asia/Hong_Kong ^
  -v /etc/localtime:/etc/localtime:ro ^
  --entrypoint="/bin/bash" ^
- kpt-cdc-to-rdb:20210831
+ xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
 
 then you can run any KPT script like this
@@ -120,21 +114,19 @@ docker run \
  -e PROFILE=test,canal-mysql-pgsql \
  -e TZ=Asia/Hong_Kong \
  -v /etc/localtime:/etc/localtime:ro \
- kpt-cdc-to-rdb:20210831
+ xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
 
 compose run
 
 ```sh
-docker tag kpt-cdc-to-rdb:20210831 xiaoyao9184/kpt-cdc-to-rdb
-docker compose -f ./cdc-to-rdb/docker-compose.yml up
+docker compose -f ./cdc-to-rdb/_test-container/this/mysql-reroute/docker-compose.yml up
 ```
 
 run as stack in swarm
 
 ```sh
-docker tag kpt-cdc-to-rdb:20210831 xiaoyao9184/kpt-cdc-to-rdb
-docker stack deploy -c ./cdc-to-rdb/docker-compose-swarm.yml kpt-canal_kafka_to_pgsql
+docker stack deploy -c ./cdc-to-rdb/_test-container/this/mysql-reroute/docker-compose.yml kpt-cdc-to-pgsql
 ```
 
 
@@ -247,7 +239,7 @@ the last step will define the `profile` activated list when docker is running.
 version: 3.7
 services:
   test:
-    image: xiaoyao9184/kpt-cdc-to-rdb:20210831
+    image: xiaoyao9184/kpt-cdc-to-rdb:dev
     # Activate the profile list in the configuration file, this time use 'prod' and 'debezium-mysql-pgsql'
     environment:
       - PROFILE: prod,debezium-mysql-pgsql
