@@ -40,6 +40,7 @@ tip_copy_item_name_input_first="Please input 'copy_item_name' or use default[all
 tip_copy_item_name_input_again="Again input 'copy_item_name' or end with empty input:"
 tip_copy_item_name_miss="Missing param 'copy_item_name' at position 4."
 tip_link_strategy="If target item exist will force replace"
+tip_copy_item_exist_skip="Skip copy item because exists"
 
 # defult param
 link_project_path=$link_project_path
@@ -200,10 +201,14 @@ for copy_name in "${copy_item_name_list[@]}"; do
     echo
     echo
     echo "==========$_step=========="
-    if [[ -d "$target_path" ]]; then
-        cp -a "$target_path" "$copy_path"
+    if [[ -d "$copy_path" || -f "$copy_path" ]]; then
+        echo "$tip_copy_item_exist_skip"
     else
-        cp "$target_path" "$copy_path"
+        if [[ -d "$target_path" ]]; then
+            cp -a "$target_path" "$copy_path"
+        else
+            cp "$target_path" "$copy_path"
+        fi
     fi
     [[ $? -ne 0 ]] && _result_code=1
     echo "##########$_step##########"

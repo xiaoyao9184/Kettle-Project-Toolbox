@@ -49,6 +49,7 @@ SET tip_copy_item_name_input_first=Please input 'copy_item_name' or use default[
 SET tip_copy_item_name_input_again=Again input 'copy_item_name' or end with empty input:
 SET tip_copy_item_name_miss=Missing param 'copy_item_name' at position 4.
 SET tip_link_strategy=If target item exist will force replace
+SET tip_copy_item_exist_skip=Skip copy item because exists
 
 ::defult param
 SET link_project_path=%link_project_path%
@@ -235,11 +236,16 @@ FOR /F "delims=" %%S IN ("!copy_item_name_list!") DO (
     ECHO:
     ECHO:
     ECHO ==========!_step!==========
-    IF EXIST !target_path!\NUL (
-        XCOPY /E %copy_strategy% "!target_path!" "!copy_path!\"
+    IF EXIST "!copy_path!" (
+        ECHO %tip_copy_item_exist_skip%
     ) ELSE (
-        COPY %copy_strategy% "!target_path!" "!copy_path!"
+        IF EXIST !target_path!\NUL (
+            XCOPY /E %copy_strategy% "!target_path!" "!copy_path!\"
+        ) ELSE (
+            COPY %copy_strategy% "!target_path!" "!copy_path!"
+        )
     )
+    
     IF !ERRORLEVEL! NEQ 0 SET _result_code=1
     ECHO ##########!_step!##########
 )
