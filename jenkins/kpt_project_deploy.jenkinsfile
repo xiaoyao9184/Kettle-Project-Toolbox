@@ -456,14 +456,14 @@ pipeline {
                     def patchFileExists = false
                     if (flow.useSharedLibrary && isUnix()) {
                         patchFileExists = 
-                            deploy.check_file_exists("${target.projectPath}/patch.PatchPDI.sh")
+                            deploy.check_file_exists("${target.projectPath}/kpt.patch.PatchPDI.sh")
                     } else if (flow.useSharedLibrary && !isUnix()) {
                         patchFileExists = 
-                            deploy.check_file_exists("${target.projectPath}/patch.PatchPDI.bat")
+                            deploy.check_file_exists("${target.projectPath}/kpt.patch.PatchPDI.bat")
                     } else if (isUnix()) {
                         patchFileExists = sh(
                                 script: """
-                                [ -f "${target.projectPath}/patch.PatchPDI.sh" ] && echo "true" || echo "false"
+                                [ -f "${target.projectPath}/kpt.patch.PatchPDI.sh" ] && echo "true" || echo "false"
                                 """, 
                                 returnStdout: true)
                             .trim()
@@ -472,7 +472,7 @@ pipeline {
                         patchFileExists = bat(
                                 script: """
                                 @echo off
-                                if exist "${target.projectPath}\\patch.PatchPDI.bat" (
+                                if exist "${target.projectPath}\\kpt.patch.PatchPDI.bat" (
                                     echo true
                                 ) else (
                                     echo false
@@ -545,9 +545,9 @@ pipeline {
                     echo 'Apply PDI patch...'
                     script {
                         if (isUnix()) {
-                            sh 'bash patch.PatchPDI.sh <&-' 
+                            sh 'bash kpt.patch.PatchPDI.sh <&-' 
                         } else {
-                            bat 'call patch.PatchPDI.bat'
+                            bat 'call kpt.patch.PatchPDI.bat'
                         }
                     }
                 }

@@ -37,12 +37,12 @@ pipeline {
                     dir("${projectPath}") {
                         if (isUnix()) {
                             sh """
-                            bash "patch.PatchPDI.sh" <&-
+                            bash "kpt.patch.PatchPDI.sh" <&-
                             """
                         } else {
                             bat """
                             @echo off
-                            call "patch.PatchPDI.bat"
+                            call "kpt.patch.PatchPDI.bat"
                             """
                         }
                     }

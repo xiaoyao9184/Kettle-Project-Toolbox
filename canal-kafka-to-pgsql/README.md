@@ -64,7 +64,7 @@ docker run ^
 then you can run any KPT script like this
 
 ```sh
-bash flow.UseProfileConfigRun.sh Basic test,stream_all-bin_log.mysql
+bash kpt.flow.UseProfileConfigRun.sh Basic test,stream_all-bin_log.mysql
 ```
 
 

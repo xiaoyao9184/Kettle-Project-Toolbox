@@ -35,7 +35,7 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/.kettle/kettle.properties 
 # Goto kpt project path
 WORKDIR $PENTAHO_HOME/kpt-cdc-to-rdb
 
-ENTRYPOINT bash ./flow.UseProfileConfigRun.sh <&-
+ENTRYPOINT bash ./kpt.flow.UseProfileConfigRun.sh <&-
 
 VOLUME /home/pentaho/kpt-cdc-to-rdb/log
 VOLUME /home/pentaho/kpt-cdc-to-rdb/to_rdb/message_convert_to_rdb_rud.injection

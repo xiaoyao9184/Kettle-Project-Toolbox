@@ -36,12 +36,12 @@ pipeline {
                     dir("${projectPath}") {
                         if (isUnix()) {
                             sh """
-                            bash "flow.UseProfileConfigRun.sh" <&-
+                            bash "kpt.flow.UseProfileConfigRun.sh" <&-
                             """
                         } else {
                             bat """
                             @echo off
-                            call "flow.UseProfileConfigRun.bat"
+                            call "kpt.flow.UseProfileConfigRun.bat"
                             """
                         }
                     }
