@@ -16,5 +16,11 @@
 			<cfg key="Version">1.0.beta</cfg>
 			<cfg key="Description">from_xml_content</cfg>
 		</profile>
+
+		<profile name="env">
+			<cfg namespace="Config.Main.Job" key="Path">/_test-env-plugin</cfg>
+			<cfg namespace="Config.Main.Job" key="Name">-</cfg>
+			<cfg namespace="Config.Main.Transformation" key="Name">print-env-variable</cfg>
+		</profile>
 	</project>
 </config>
