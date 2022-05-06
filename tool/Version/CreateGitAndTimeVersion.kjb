@@ -392,12 +392,12 @@
       <yloc>272</yloc>
     </entry>
     <entry>
-      <name>TRANS: GetDefaultValue: Result.GitTime.Version is Result.Version</name>
+      <name>TRANS: MappingVariableStreamFindFirst: Result.GitTime.Version is Result.Version</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/../../default/kpt/variable/GetDefaultValue.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/../Mapping/MappingVariableStreamFindFirst.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -506,7 +506,7 @@
   </entries>
   <hops>
     <hop>
-      <from>TRANS: GetDefaultValue: Result.GitTime.Version is Result.Version</from>
+      <from>TRANS: MappingVariableStreamFindFirst: Result.GitTime.Version is Result.Version</from>
       <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -543,7 +543,7 @@
     </hop>
     <hop>
       <from>TRANS: MergeGitAndTimeVersion</from>
-      <to>TRANS: GetDefaultValue: Result.GitTime.Version is Result.Version</to>
+      <to>TRANS: MappingVariableStreamFindFirst: Result.GitTime.Version is Result.Version</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
