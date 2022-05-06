@@ -9,6 +9,17 @@ GOTO:init_variable
 
 
 @REM ::
+:function_dequote
+    FOR /F "delims=" %%A IN ('ECHO %%%1%%') DO IF "%2"=="" (SET %1=%%~A) ELSE (SET %2=%%~A)
+GOTO:EOF
+
+
+@REM ::
+:function_get_by_name
+    SET %2=!%1!
+GOTO:EOF
+
+
 @REM ::https://www.robvanderwoude.com/battech_convertcase.php
 :function_lower
     SETLOCAL EnableDelayedExpansion
@@ -20,6 +31,20 @@ GOTO:init_variable
     )
 GOTO:EOF
 
+
+@REM ::
+:function_replace
+    SETLOCAL EnableDelayedExpansion
+    SET _str=!%1!
+    SET _str=!_str:___=_!
+    SET _str=!_str:__=-!
+    SET _str=!_str:_=.!
+
+    ENDLOCAL & (
+        SET %2=%_str%
+    )
+GOTO:EOF
+ 
 
 @REM :: parse environment variable to kettle command param name and value
 @REM ::KPT_KETTLE_PARAM_ prefix will extract prefix for the value, set param name to 'param'
@@ -33,37 +58,55 @@ GOTO:EOF
 @REM ::1. Remove prefix KPT_KETTLE_
 @REM ::2. Upper case
 @REM ::
-:function_param_parse
+:function_env_parse_option
     SETLOCAL EnableDelayedExpansion
-    SET kettle_param_name=%~1
-    SET kettle_param_value=%~2
+    CALL :function_dequote %1 command_name
+    CALL :function_dequote %2 env_name
+    CALL :function_dequote %3 env_value
+
+    @REM ::default use kettle windows options
+    SET option_type=/
+
+    @REM ::default use long options
+    IF "%command_name%"=="maitre" SET option_type=long
 
     @REM ::remove prefix
-    SET kettle_param_name=!kettle_param_name:KPT_KETTLE_=!
-    IF /I "!kettle_param_name:~0,6!"=="PARAM_" (
-        @REM ::remove prefix
-        SET kettle_param_name=!kettle_param_name:PARAM_=!
+    SET option_name=!env_name:KPT_KETTLE_=!
 
-        @REM ::replace
-        SET kettle_param_name=!kettle_param_name:___=_!
-        SET kettle_param_name=!kettle_param_name:__=-!
-        SET kettle_param_name=!kettle_param_name:_=.!
-
-        @REM ::recreate value
-        SET kettle_param_value=!kettle_param_name!=!kettle_param_value!
-        SET kettle_param_name=param
-    ) ELSE IF "!kettle_param_name:_=!"=="!kettle_param_name!" (
-        @REM ::lower case
-        CALL :function_lower kettle_param_name kettle_param_name
+    IF /I "!option_name:~0,6!"=="PARAM_" (
+        @REM ::need append value for 'param' option
+        SET option_value_prefix=!option_name:~6!
+        SET option_name=param
+    ) ELSE IF /I "!option_name:~0,31!"=="ADD__VARIABLE__TO__ENVIRONMENT_" (
+        @REM ::need append value for 'add-variable-to-environment' option
+        SET option_value_prefix=!option_name:~31!
+        SET option_name=add-variable-to-environment
+    ) ELSE IF /I "!option_name:~0,3!"=="_V_" (
+        @REM ::need append value for 'V' option
+        SET option_value_prefix=!option_name:~3!
+        SET option_name=V
+        SET option_type=short
+    ) ELSE IF /I "!option_name:~0,1!"=="_" (
+        @REM ::remove _ prefix
+        SET option_name=!option_name:~1!
+        SET option_type=short
     ) ELSE (
-        ::ignore underlined variable
-        SET kettle_param_name=
-        SET kettle_param_value=
+        CALL :function_lower option_name option_name
+        CALL :function_replace option_name option_name
+    )
+
+    @REM ::recreate option value
+    IF NOT "%option_value_prefix%"=="" (
+        CALL :function_replace option_value_prefix option_value_prefix
+        SET option_value=%option_value_prefix%=%env_value%
+    ) ELSE (
+        SET option_value=%env_value%
     )
 
     ENDLOCAL & (
-        SET %3=%kettle_param_name%
-        SET %4=%kettle_param_value%
+        SET %4=%option_type%
+        SET %5=%option_name%
+        SET %6=%option_value%
     )
 GOTO:EOF
 
@@ -71,37 +114,49 @@ GOTO:EOF
 @REM :: generation kettle command positional parameters 
 @REM ::1. Empty value not need append to result
 @REM ::2. Contain spaces need add quotation
-:function_param_generation
+:function_option_parameter_generation
     SETLOCAL EnableDelayedExpansion
-    SET kettle_param_name=%~1
-    :: remove quotation
-    SET kettle_param_value=%~2
+    SET option_type=!%1!
+    SET option_name=!%2!
+    SET option_value=!%3!
 
-    @REM ::check value is empty
-    IF "!kettle_param_value!"=="" SET empty_value=true
-    IF "!kettle_param_value!"==" " SET empty_value=true
-    IF "!kettle_param_value::=!"=="" SET empty_value=true
-
-    @REM ::start with name
-    SET command_param=/%kettle_param_name%
-
-    @REM ::append value if need
-    IF NOT "%empty_value%"=="true" (
-        SET command_param=%command_param%:%kettle_param_value%
+    @REM ::option format
+    IF "%option_type%"=="long" (
+        SET option_delimiter==
+        SET option_prefix=--
+    ) ELSE IF "%option_type%"=="short" (
+        SET option_delimiter==
+        SET option_prefix=-
+    ) ELSE (
+        SET option_delimiter=:
+        SET option_prefix=%option_type%
     )
 
-    @REM ::add quotation marks if spaces in param
-    IF NOT "%command_param: =%"=="%command_param%" (
-        SET command_param="%command_param%"
+    @REM ::check value is empty
+    IF "!option_value!"=="" SET empty_value=true
+    IF "!option_value!"==" " SET empty_value=true
+    IF "!option_value!"=="-" SET empty_value=true
+    IF "!option_value!"==":" SET empty_value=true
+
+    @REM ::append value if not empty
+    IF "%empty_value%"=="true" (
+        SET option_parameter=%option_prefix%%option_name%
+    ) ELSE (
+        SET option_parameter=%option_prefix%%option_name%%option_delimiter%%option_value%
+    )
+
+    @REM ::add quotation marks if spaces or '=' in param
+    IF NOT "%option_parameter: =%"=="%option_parameter%" (
+        SET option_parameter="%option_parameter%"
     ) ELSE (
         @REM ::https://stackoverflow.com/questions/3777110/remove-an-equals-symbol-from-text-string
-        FOR /F "usebackq delims== tokens=1-2" %%A IN (`ECHO !command_param!`) DO (
-            IF NOT "%%B"=="" SET command_param="%command_param%"
+        FOR /F "usebackq delims== tokens=1-2" %%A IN (`ECHO !option_parameter!`) DO (
+            IF NOT "%%B"=="" SET option_parameter="%option_parameter%"
         )
     )
 
     ENDLOCAL & (
-        SET %3=%command_param%
+        SET %4=%option_parameter%
     )
 GOTO:EOF
 
@@ -211,15 +266,18 @@ ECHO __________%~n0__________
 ::create command
 SET _command_opt=
 FOR /F "delims== tokens=1,2" %%A IN ('SET ^| FINDSTR /I /R "^KPT_KETTLE_"') DO (
-    SET _result_param_name=
-    SET _result_param_value=
-    SET _result_param=
-    CALL :function_param_parse "%%A" "%%B" _result_param_name _result_param_value
-    CALL :function_param_generation "!_result_param_name!" "!_result_param_value!" _result_param
+    SET _env_name=%%A
+    SET _env_value=!%%A!
+    SET _option_type=
+    SET _option_name=
+    SET _option_value=
+    SET _option_param=
+    CALL :function_env_parse_option _command_name _env_name _env_value _option_type _option_name _option_value
+    CALL :function_option_parameter_generation _option_type _option_name _option_value _option_param
     IF NOT DEFINED _command_opt (
-        SET _command_opt=!_result_param!
+        SET _command_opt=!_option_param!
     ) ELSE (
-        SET _command_opt=!_command_opt! !_result_param!
+        SET _command_opt=!_command_opt! !_option_param!
     )
 )
 SET _command=%_engine_dir%%_command_name% !_command_opt!

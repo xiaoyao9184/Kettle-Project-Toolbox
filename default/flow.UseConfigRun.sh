@@ -4,6 +4,15 @@
 # FILE KPT_RUN_COMMAND
 
 
+function function_replace() {
+    local -n str=$1
+    
+    str="${str//___/_}"
+    str="${str//__/-}"
+    str="${str//_/.}"
+}
+
+
 #  parse environment variable to kettle command param name and value
 # KPT_KETTLE_PARAM_ prefix will extract prefix for the value, set param name to 'param'
 # 1. Remove prefix KPT_KETTLE_PARAM_
@@ -16,70 +25,100 @@
 # 1. Remove prefix KPT_KETTLE_
 # 2. Upper case
 # 
-function function_param_parse() {
-    
-    kettle_param_name=$1
-    kettle_param_value=$2
+function function_env_parse_option() {
+    command_name=$1
+    env_name=$2
+    env_value=$3
+    local -n option_type=$4
+    local -n option_name=$5
+    local -n option_value=$6
+
+    # default use kettle linux options
+    option_type="-"
+
+    # default use long options
+    [[ "$command_name" = "maitre" ]] && option_type="long"
 
     # remove prefix
-    kettle_param_name=${kettle_param_name//KPT_KETTLE_/}
-    if [[ "${kettle_param_name:0:6}" = "PARAM_" ]]; then
-        # remove prefix
-        kettle_param_name=${kettle_param_name:6}
-
-        # replace
-        kettle_param_name="${kettle_param_name//___/_}"
-        kettle_param_name="${kettle_param_name//__/-}"
-        kettle_param_name="${kettle_param_name//_/.}"
-
-        # recreate value
-        kettle_param_value="$kettle_param_name=$kettle_param_value"
-        kettle_param_name="param"
-    elif [[ "${kettle_param_name//_/}" = "$kettle_param_name" ]]; then
-        # upper case
-        kettle_param_name="$( echo "$kettle_param_name" | tr '[:upper:]' '[:lower:]' )"
+    option_name=${env_name//KPT_KETTLE_/}
+    
+    if [[ "${option_name:0:6}" = "PARAM_" ]]; then
+        # need append value for 'param' option
+        option_value_prefix="${option_name:6}"
+        option_name="param"
+    elif [[ "${option_name:0:31}" = "ADD__VARIABLE__TO__ENVIRONMENT_" ]]; then
+        # need append value for 'add-variable-to-environment' option
+        option_value_prefix="${option_name:31}"
+        option_name="add-variable-to-environment"
+    elif [[ "${option_name:0:3}" = "_V_" ]]; then
+        # need append value for 'V' option
+        option_value_prefix="${option_name:3}"
+        option_name="V"
+        option_type="short"
+    elif [[ "${option_name:0:1}" = "_" ]]; then
+        # remove _ prefix
+        option_name="${option_name:1}"
+        option_type="short"
     else
-        # ignore underlined variable
-        kettle_param_name=
-        kettle_param_value=
+        # upper case
+        option_name="$( echo "$option_name" | tr '[:upper:]' '[:lower:]' )"
+        # replace
+        function_replace option_name
     fi
 
-    _result_param_name="$kettle_param_name"
-    _result_param_value="$kettle_param_value"
+    # recreate option value
+    if [[ -n "$option_value_prefix" ]]; then
+        function_replace option_value_prefix
+        option_value="$option_value_prefix=$env_value"
+    else
+        option_value="$env_value"
+    fi
 }
 
 
 #  generation kettle command positional parameters 
 # 1. Empty value not need append to result
 # 2. Contain spaces need add quotation
-function function_param_generation() {
+function function_option_parameter_generation() {
+    option_type=$1
+    option_name=$2
+    option_value=$3
+    local -n option_parameter=$4
     
-    kettle_param_name=$1
-    kettle_param_value=$2
+
+    # option format
+    if [[ "$option_type" = "long" ]]; then
+        option_delimiter="="
+        option_prefix="--"
+    elif [[ "$option_type" = "short" ]]; then
+        option_delimiter="="
+        option_prefix=-""
+    else
+        option_delimiter=":"
+        option_prefix="$option_type"
+    fi
 
     # check value is empty
-    [[ "${kettle_param_value/ /}" = "" ]] && empty_value="true"
-    [[ "${kettle_param_value/:/}" = "" ]] && empty_value="true"
+    [[ "$env_value" = "" ]] && empty_value="true"
+    [[ "$env_value" = " " ]] && empty_value="true"
+    [[ "$env_value" = "-" ]] && empty_value="true"
+    [[ "$env_value" = ":" ]] && empty_value="true"
 
-    # start with name
-    if [[ -z "$kettle_param_name" ]]; then
-        command_param=""
+    # append value if not empty
+    if [[ "$empty_value" = "true" ]]; then
+        option_parameter="$option_prefix$option_name"
     else
-        command_param="-$kettle_param_name"
+        option_parameter="$option_prefix$option_name$option_delimiter$option_value"
     fi
 
-    # append value if need
-    if [[ "$empty_value" != "true" ]]; then
-        command_param="$command_param:$kettle_param_value"
+    # add quotation marks if spaces or '=' in param
+    if [[ "${option_parameter/ /}" != "$option_parameter" ]]; then
+        option_parameter="'$option_parameter'"
+    elif [[ "${option_parameter/=/}" != "$option_parameter" ]]; then
+        option_parameter="'$option_parameter'"
     fi
-
-    # add quotation marks if spaces in param
-    if [[ "${command_param/ /}" != "$command_param" ]]; then
-        command_param="'$command_param'"
-    fi
-
-    _result_param="$command_param"
 }
+
 
 #####init_variable
 
@@ -192,14 +231,16 @@ echo "----------$current_script_name----------"
 _command_opt=
 read -r -a _env_array <<< "$( echo "${!KPT_KETTLE_*}" )"
 for _env in "${_env_array[@]}"; do
-    function_param_parse "$_env" "${!_env}"
-    # if [[ -n "$_result_param_name" ]]; then
-        function_param_generation "$_result_param_name" "$_result_param_value"
-    # fi
+    _option_type=""
+    _option_name=""
+    _option_value=""
+    _option_param=""
+    function_env_parse_option "$_command_name" "$_env" "${!_env}" _option_type _option_name _option_value
+    function_option_parameter_generation "$_option_type" "$_option_name" "$_option_value" _option_param
     if [[ -z "$_command_opt" ]]; then
-        _command_opt="$_result_param"
+        _command_opt="$_option_param"
     else
-        _command_opt="$_command_opt $_result_param"
+        _command_opt="$_command_opt $_option_param"
     fi
 done
 _command="$_engine_dir$_command_name.sh $_command_opt"
