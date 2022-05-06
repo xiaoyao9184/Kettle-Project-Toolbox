@@ -1,9 +1,12 @@
 
-#KETTLE_HOME
-.kettle/*
-!.kettle/repositories.xml
-!.kettle/kettle.properties
+# KETTLE_HOME
+.kettle/db.cache-*
+.kettle/.spoonrc
+.kettle/.languageChoice
+.kettle/*.backup
 
+# metastore
+metastore/
 
 # log
 *.log
