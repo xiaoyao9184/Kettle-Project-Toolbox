@@ -41,7 +41,7 @@ source_script_name="$(basename "$(test -L "${BASH_SOURCE[0]}" && readlink "${BAS
 source_script_name="${source_script_name%.*}"
 
 # default param
-caller_script_path=$1
+caller_script_path="$KPT_CALLER_SCRIPT_PATH"
 in_kpt_project=false
 
 #####check_variable

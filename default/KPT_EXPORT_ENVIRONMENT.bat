@@ -35,7 +35,7 @@ IF NOT "!DEBUG!"=="" SET interactive=0
 IF NOT "!KPT_QUIET!"=="" SET interactive=0
 
 ::default param
-SET caller_script_path=%1
+SET caller_script_path=%KPT_CALLER_SCRIPT_PATH%
 SET in_kpt_project=false
 
 
