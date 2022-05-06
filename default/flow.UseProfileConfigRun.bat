@@ -35,8 +35,8 @@ GOTO:EOF
 @REM ::
 :function_param_parse
     SETLOCAL EnableDelayedExpansion
-    SET kettle_param_name=%1
-    SET kettle_param_value=%2
+    SET kettle_param_name=%~1
+    SET kettle_param_value=%~2
 
     @REM ::remove prefix
     SET kettle_param_name=!kettle_param_name:KPT_KETTLE_=!
@@ -78,7 +78,8 @@ GOTO:EOF
     SET kettle_param_value=%~2
 
     @REM ::check value is empty
-    IF "!kettle_param_value: =!"=="" SET empty_value=true
+    IF "!kettle_param_value!"=="" SET empty_value=true
+    IF "!kettle_param_value!"==" " SET empty_value=true
     IF "!kettle_param_value::=!"=="" SET empty_value=true
 
     @REM ::start with name
@@ -94,7 +95,7 @@ GOTO:EOF
         SET command_param="%command_param%"
     ) ELSE (
         @REM ::https://stackoverflow.com/questions/3777110/remove-an-equals-symbol-from-text-string
-        FOR /F "delims== tokens=1-2" %%A IN ('ECHO !command_param!') DO (
+        FOR /F "usebackq delims== tokens=1-2" %%A IN (`ECHO !command_param!`) DO (
             IF NOT "%%B"=="" SET command_param="%command_param%"
         )
     )
@@ -209,7 +210,7 @@ FOR /F "delims== tokens=1,2" %%A IN ('SET ^| FINDSTR /I /R "^KPT_KETTLE_"') DO (
     SET _result_param_name=
     SET _result_param_value=
     SET _result_param=
-    CALL :function_param_parse %%A %%B _result_param_name _result_param_value
+    CALL :function_param_parse "%%A" "%%B" _result_param_name _result_param_value
     CALL :function_param_generation "!_result_param_name!" "!_result_param_value!" _result_param
     IF NOT DEFINED _command_opt (
         SET _command_opt=!_result_param!
