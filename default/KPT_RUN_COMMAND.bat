@@ -174,12 +174,15 @@ IF %interactive% EQU 1 (
         )
         GOTO:loop_check_variable
     )
-    WHERE /Q !_command_name!
-    IF !ERRORLEVEL! EQU 0 SET _engine_dir=
-    IF "%_engine_dir%"=="\" (
-        SET /P _engine_dir=%tip_set_engine_dir%
-        FOR %%F IN (!_engine_dir!.) DO SET _engine_dir=%%~dpnF\
-        GOTO:loop_check_variable
+    IF NOT EXIST "%_engine_dir%!_command_name!.bat" (
+        WHERE /Q !_command_name!
+        IF !ERRORLEVEL! EQU 0 (
+            SET _engine_dir=
+        ) ELSE (
+            SET /P _engine_dir=%tip_set_engine_dir%
+            FOR %%F IN (!_engine_dir!.) DO SET _engine_dir=%%~dpnF\
+            GOTO:loop_check_variable
+        )
     )
 ) ELSE ( 
     IF "%_engine_dir%"=="\" (

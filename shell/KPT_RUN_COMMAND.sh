@@ -154,13 +154,14 @@ if [[ $interactive -eq 1 ]]; then
             KPT_KETTLE_TRANS="${_item_path::-4}"
         fi
     done
-    while [[ "$_engine_dir" = "/" ]]; do
-        if ! command -v $_command_name &> /dev/null
+    while [[ ! -f "$_engine_dir$_command_name.sh" ]]; do
+        if command -v $_command_name &> /dev/null
         then
+            _engine_dir=""
+            break
+        else
             read -p "$tip_set_engine_dir" _engine_dir
             _engine_dir="$( realpath $_engine_dir )/"
-        else
-            _engine_dir=""
         fi
     done
 else
