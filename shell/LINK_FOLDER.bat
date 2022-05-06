@@ -17,12 +17,12 @@ GOTO:init_variable
     @REM https://stackoverflow.com/questions/6811372/how-to-code-a-bat-file-to-always-run-as-admin-mode
     SET _vbsFile=%temp%\%~n0.vbs
     SET _batchFile=%~f0
-       SET _Args=%*
-       SET _batchFile=""%_batchFile:"=%""
-       SET _Args=%_Args:"=""%
-       ECHO Set UAC = CreateObject^("Shell.Application"^) > "%_vbsFile%"
+    SET _Args=%*
+    SET _batchFile=""%_batchFile:"=%""
+    SET _Args=%_Args:"=""%
+    ECHO Set UAC = CreateObject^("Shell.Application"^) > "%_vbsFile%"
     ECHO UAC.ShellExecute "cmd", "/c ""%_batchFile% %_Args%""", "", "runas", 1 >> "%_vbsFile%"
-       CSCRIPT "%_vbsFile%"
+    CSCRIPT "%_vbsFile%"
     DEL "%_vbsFile%"
 GOTO:EOF
 
