@@ -135,8 +135,12 @@ fi
 # get kpt_repository_path from link target of kpt_workspace_path/tool 
 kpt_repository_path=""
 parent_folder_name="$(basename $current_script_dir)"
-real_current_script_path="$(readlink "$kpt_workspace_path/$parent_folder_name")"
-[[ ! -z "$real_current_script_path" ]] && kpt_repository_path="$(dirname $real_current_script_path)"
+kpt_repository_tool_path="$(readlink "$kpt_workspace_path/$parent_folder_name")"
+if [[ ! -z "$kpt_repository_tool_path" ]]; then
+    kpt_repository_path="$(dirname $kpt_repository_tool_path)"
+elif [[ -d "$parent_folder_dir/.git" ]]; then
+    kpt_repository_path="$parent_folder_dir"
+fi
 # if [[ -z "$kpt_repository_path" ]]; then
 #     echo "$tip_kpt_repository_path_miss"
 #     kpt_repository_path="$kpt_workspace_path"

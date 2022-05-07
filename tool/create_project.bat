@@ -7,6 +7,30 @@ SETLOCAL EnableDelayedExpansion
 ::SYNTAX create_project [kpt_project_name [kpt_workspace_path [pdi_engine_path]]]
 
 
+GOTO:skip_function
+
+@REM ::
+:function_readlink
+    SETLOCAL EnableDelayedExpansion
+    SET read_path=!%1!
+    SET real_path=
+
+    FOR %%F IN (%read_path%.) DO SET find_dir=%%~dpF
+    FOR %%F IN (%read_path%.) DO SET find_name=%%~nF
+    FOR /F "usebackq tokens=2 delims=[]" %%H IN (`DIR /A:L %find_dir% ^| FINDSTR /C:"%find_name% "`) DO (
+        SET real_path=%%H
+    )
+    
+    ENDLOCAL & (
+        IF NOT "%real_path%"=="" (
+            IF "%2"=="" (SET %1=%real_path%) ELSE (SET %2=%real_path%)
+        )
+    )
+GOTO:EOF
+
+:skip_function
+
+
 :init_variable
 
 ::version
@@ -133,13 +157,14 @@ IF %interactive% EQU 1 (
 
 :begin
 
-::get kpt_repository_path from link target of kpt_workspace_path/tool 
-SET kpt_repository_path=
-SET find_dir=%kpt_workspace_path%
-FOR %%F IN (%current_script_dir%.) DO SET find_name=%%~nF
-FOR /F "usebackq tokens=2 delims=[]" %%H IN (`DIR /A:L %find_dir% ^| FINDSTR /C:"%find_name%"`) DO (
-    SET real_current_script_path=%%H
-    FOR %%F IN (!real_current_script_path!\..) DO SET kpt_repository_path=%%~dpnF 
+::get kpt_repository_path from link target of kpt_workspace_path/tool
+FOR %%F IN (%current_script_dir%.) DO SET parent_folder_name=%%~nxF
+SET kpt_workspace_tool_path=%kpt_workspace_path%\%parent_folder_name%
+CALL :function_readlink kpt_workspace_tool_path kpt_repository_tool_path
+IF NOT "%kpt_repository_tool_path%"=="" (
+    FOR %%F IN (!kpt_repository_tool_path!\..) DO SET kpt_repository_path=%%~dpnF
+) ELSE IF EXIST "%parent_folder_dir%.git" (
+    SET kpt_repository_path=%parent_folder_dir%
 )
 @REM IF "%kpt_repository_path%"=="" (
 @REM     ECHO %tip_kpt_repository_path_miss%
