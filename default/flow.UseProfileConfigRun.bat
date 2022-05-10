@@ -131,8 +131,9 @@ SET tip_choice_command_name=Please choice kettle command: [J]ob or [T]ransformat
 SET tip_miss_command_name=Missing param '_command_name' at environment variable 'KPT_COMMAND'.
 
 ::default param
+IF "!KPT_CALLER_SCRIPT_PATH!"=="" SET KPT_CALLER_SCRIPT_PATH=%~0
 IF EXIST "%current_script_dir%KPT_EXPORT_ENVIRONMENT.bat" (
-    CALL %current_script_dir%KPT_EXPORT_ENVIRONMENT.bat %0
+    CALL %current_script_dir%KPT_EXPORT_ENVIRONMENT.bat
 )
 SET _engine_dir=%KPT_ENGINE_PATH%\
 SET _command_name=%KPT_COMMAND%
@@ -174,12 +175,15 @@ IF %interactive% EQU 1 (
         )
         GOTO:loop_check_variable
     )
-    WHERE /Q !_command_name!
-    IF !ERRORLEVEL! EQU 0 SET _engine_dir=
-    IF "%_engine_dir%"=="\" (
-        SET /P _engine_dir=%tip_set_engine_dir%
-        FOR %%F IN (!_engine_dir!.) DO SET _engine_dir=%%~dpnF\
-        GOTO:loop_check_variable
+    IF NOT EXIST "%_engine_dir%!_command_name!.bat" (
+        WHERE /Q !_command_name!
+        IF !ERRORLEVEL! EQU 0 (
+            SET _engine_dir=
+        ) ELSE (
+            SET /P _engine_dir=%tip_set_engine_dir%
+            FOR %%F IN (!_engine_dir!.) DO SET _engine_dir=%%~dpnF\
+            GOTO:loop_check_variable
+        )
     )
 ) ELSE ( 
     IF "%_engine_dir%"=="\" (

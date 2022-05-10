@@ -108,8 +108,9 @@ tip_choice_command_name="Please choice kettle command: [J]ob or [T]ransformation
 tip_miss_command_name="Missing param '_command_name' at environment variable 'KPT_COMMAND'."
 
 # default param
+[[ -z "$KPT_CALLER_SCRIPT_PATH" ]] && KPT_CALLER_SCRIPT_PATH=$(realpath "${BASH_SOURCE[0]}")
 if [[ -f "$current_script_path/KPT_EXPORT_ENVIRONMENT.sh" ]]; then
-    source $current_script_path/KPT_EXPORT_ENVIRONMENT.sh $0
+    source $current_script_path/KPT_EXPORT_ENVIRONMENT.sh
 fi
 _engine_dir="$KPT_ENGINE_PATH/"
 _command_name="$KPT_COMMAND"
@@ -154,13 +155,14 @@ if [[ $interactive -eq 1 ]]; then
             KPT_KETTLE_TRANS="${_item_path::-4}"
         fi
     done
-    while [[ "$_engine_dir" = "/" ]]; do
-        if ! command -v $_command_name &> /dev/null
+    while [[ ! -f "$_engine_dir$_command_name.sh" ]]; do
+        if command -v $_command_name &> /dev/null
         then
+            _engine_dir=""
+            break
+        else
             read -p "$tip_set_engine_dir" _engine_dir
             _engine_dir="$( realpath $_engine_dir )/"
-        else
-            _engine_dir=""
         fi
     done
 else
