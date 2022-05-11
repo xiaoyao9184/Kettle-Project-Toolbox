@@ -127,14 +127,18 @@ IF "%KPT_COMMAND%"=="" (
 ::KPT_LOG_PATH
 IF %interactive% EQU 1 IF "!KPT_LOG_PATH!"=="" (
     SET _date=%date:~0,10%
+    SET _date=!_date:/=_!
     SET _time=%time:~0,8%
+    SET _time=!_time::=_!
+    set _time=!_time: =0!
+    SET _datetime=!_date!-!_time!
     IF EXIST %caller_script_dir%log (
         SET _log_path=%caller_script_dir%log
     ) ELSE (
         SET _log_path=%USERPROFILE%\.kettle\log
     )
     IF NOT EXIST "!_log_path!" MKDIR "!_log_path!"
-    SET KPT_LOG_PATH=!_log_path!\%caller_script_name%.!_date:/=_!-!_time::=_!.log
+    SET KPT_LOG_PATH=!_log_path!\%caller_script_name%.!_datetime!.log
     ECHO set 'KPT_LOG_PATH' to: !KPT_LOG_PATH!
 )
 
