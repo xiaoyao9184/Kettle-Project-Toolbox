@@ -464,15 +464,15 @@
     <created_user>-</created_user>
     <created_date>2017/08/29 15:35:13.640</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/06/03 11:21:27.252</modified_date>
+    <modified_date>2022/05/10 17:35:03.577</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
       <note>profile_file_location</note>
-      <xloc>416</xloc>
-      <yloc>1760</yloc>
+      <xloc>480</xloc>
+      <yloc>1728</yloc>
       <width>149</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -492,8 +492,8 @@
     </notepad>
     <notepad>
       <note>profile_path</note>
-      <xloc>416</xloc>
-      <yloc>1024</yloc>
+      <xloc>496</xloc>
+      <yloc>992</yloc>
       <width>96</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -513,8 +513,8 @@
     </notepad>
     <notepad>
       <note>last profile_file</note>
-      <xloc>416</xloc>
-      <yloc>2384</yloc>
+      <xloc>496</xloc>
+      <yloc>2352</yloc>
       <width>114</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -534,8 +534,8 @@
     </notepad>
     <notepad>
       <note>home_path</note>
-      <xloc>288</xloc>
-      <yloc>2880</yloc>
+      <xloc>336</xloc>
+      <yloc>2848</yloc>
       <width>91</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -555,8 +555,8 @@
     </notepad>
     <notepad>
       <note>exist hash</note>
-      <xloc>288</xloc>
-      <yloc>3280</yloc>
+      <xloc>336</xloc>
+      <yloc>3248</yloc>
       <width>81</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -576,8 +576,8 @@
     </notepad>
     <notepad>
       <note>handle</note>
-      <xloc>288</xloc>
-      <yloc>4016</yloc>
+      <xloc>336</xloc>
+      <yloc>3984</yloc>
       <width>59</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -597,8 +597,8 @@
     </notepad>
     <notepad>
       <note>default profile_file</note>
-      <xloc>160</xloc>
-      <yloc>272</yloc>
+      <xloc>176</xloc>
+      <yloc>240</yloc>
       <width>139</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -618,8 +618,8 @@
     </notepad>
     <notepad>
       <note>customize profile_file</note>
-      <xloc>416</xloc>
-      <yloc>272</yloc>
+      <xloc>496</xloc>
+      <yloc>240</yloc>
       <width>162</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -639,8 +639,8 @@
     </notepad>
     <notepad>
       <note>profile_name</note>
-      <xloc>416</xloc>
-      <yloc>400</yloc>
+      <xloc>496</xloc>
+      <yloc>368</yloc>
       <width>103</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -691,7 +691,7 @@ Parameters.Profile.Home.Path         Must
 The Profile file will be extracted from the Profile folder according to the ProfileName,
 Combined with the list of Profile files in ProfileMeta, for the project folder,
 Do create, replace, and delete operations</note>
-      <xloc>384</xloc>
+      <xloc>432</xloc>
       <yloc>0</yloc>
       <width>616</width>
       <heigth>225</heigth>
@@ -712,8 +712,8 @@ Do create, replace, and delete operations</note>
     </notepad>
     <notepad>
       <note>profile_file</note>
-      <xloc>416</xloc>
-      <yloc>2128</yloc>
+      <xloc>496</xloc>
+      <yloc>2096</yloc>
       <width>85</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -733,8 +733,8 @@ Do create, replace, and delete operations</note>
     </notepad>
     <notepad>
       <note>source&amp;target</note>
-      <xloc>288</xloc>
-      <yloc>3024</yloc>
+      <xloc>336</xloc>
+      <yloc>2992</yloc>
       <width>114</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -754,8 +754,8 @@ Do create, replace, and delete operations</note>
     </notepad>
     <notepad>
       <note>name</note>
-      <xloc>416</xloc>
-      <yloc>768</yloc>
+      <xloc>496</xloc>
+      <yloc>736</yloc>
       <width>51</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -775,8 +775,8 @@ Do create, replace, and delete operations</note>
     </notepad>
     <notepad>
       <note>PathUniformSeparator</note>
-      <xloc>416</xloc>
-      <yloc>1472</yloc>
+      <xloc>480</xloc>
+      <yloc>1440</yloc>
       <width>170</width>
       <heigth>30</heigth>
       <fontname>Microsoft YaHei UI</fontname>
@@ -932,11 +932,6 @@ Do create, replace, and delete operations</note>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: profile_meta_location</from>
-      <to>TextFileInput:  profile_file: default</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>TextFileInput:  profile_file: default</from>
       <to>SelectValues: profile_meta_location: remove</to>
       <enabled>Y</enabled>
@@ -1056,6 +1051,26 @@ Do create, replace, and delete operations</note>
       <to>Constant: profile_file_regex</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>GetVariable: profile_meta_location</from>
+      <to>FileExists: profile_meta_location_exits</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FileExists: profile_meta_location_exits</from>
+      <to>FilterRows: profile_meta_location_exits</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: profile_meta_location_exits</from>
+      <to>Dummy: for TextFileInput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: for TextFileInput</from>
+      <to>TextFileInput:  profile_file: default</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Abort: never</name>
@@ -1080,8 +1095,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4608</yloc>
+      <xloc>304</xloc>
+      <yloc>4576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1119,8 +1134,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>480</yloc>
+      <xloc>464</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1158,8 +1173,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1216</yloc>
+      <xloc>464</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1197,8 +1212,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>3824</yloc>
+      <xloc>464</xloc>
+      <yloc>3792</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1251,8 +1266,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3216</yloc>
+      <xloc>304</xloc>
+      <yloc>3184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1290,8 +1305,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>3584</yloc>
+      <xloc>464</xloc>
+      <yloc>3552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1328,8 +1343,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3104</yloc>
+      <xloc>304</xloc>
+      <yloc>3072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1366,8 +1381,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1840</yloc>
+      <xloc>464</xloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1404,8 +1419,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>1104</yloc>
+      <xloc>144</xloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1442,8 +1457,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1104</yloc>
+      <xloc>464</xloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1480,8 +1495,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>3824</yloc>
+      <xloc>144</xloc>
+      <yloc>3792</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1518,8 +1533,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>3584</yloc>
+      <xloc>144</xloc>
+      <yloc>3552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1542,8 +1557,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4096</yloc>
+      <xloc>464</xloc>
+      <yloc>4064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1566,8 +1581,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>2688</yloc>
+      <xloc>144</xloc>
+      <yloc>2656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1590,8 +1605,32 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>640</xloc>
-      <yloc>592</yloc>
+      <xloc>704</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: for TextFileInput</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1614,8 +1653,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3952</yloc>
+      <xloc>304</xloc>
+      <yloc>3920</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1638,8 +1677,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3712</yloc>
+      <xloc>304</xloc>
+      <yloc>3680</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1667,8 +1706,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3360</yloc>
+      <xloc>304</xloc>
+      <yloc>3328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1696,8 +1735,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3472</yloc>
+      <xloc>304</xloc>
+      <yloc>3440</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1760,8 +1799,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4352</yloc>
+      <xloc>304</xloc>
+      <yloc>4320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1824,8 +1863,51 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4480</yloc>
+      <xloc>304</xloc>
+      <yloc>4448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: profile_meta_location_exits</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Dummy: for TextFileInput</send_true_to>
+    <send_false_to>Dummy: profile_name_list: not set 2</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>profile_meta_location_exits</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Boolean</type>
+          <text>Y</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask>#;-#</mask>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1867,8 +1949,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>592</yloc>
+      <xloc>464</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1931,8 +2013,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4224</yloc>
+      <xloc>304</xloc>
+      <yloc>4192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2046,8 +2128,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>4096</yloc>
+      <xloc>304</xloc>
+      <yloc>4064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2089,8 +2171,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3824</yloc>
+      <xloc>304</xloc>
+      <yloc>3792</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2132,8 +2214,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>3584</yloc>
+      <xloc>304</xloc>
+      <yloc>3552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2176,8 +2258,46 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1952</yloc>
+      <xloc>464</xloc>
+      <yloc>1920</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: home_path</name>
+    <type>GetVariable</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>home_path</name>
+        <variable>${Parameters.Profile.Home.Path}</variable>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>2928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2214,8 +2334,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>336</yloc>
+      <xloc>144</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2264,46 +2384,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GetVariable: home_path</name>
-    <type>GetVariable</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>home_path</name>
-        <variable>${Parameters.Profile.Home.Path}</variable>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>2960</yloc>
+      <xloc>464</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2337,8 +2419,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>2816</yloc>
+      <xloc>304</xloc>
+      <yloc>2784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2368,8 +2450,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4352</yloc>
+      <xloc>464</xloc>
+      <yloc>4320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2399,8 +2481,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4480</yloc>
+      <xloc>464</xloc>
+      <yloc>4448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2430,8 +2512,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>4224</yloc>
+      <xloc>464</xloc>
+      <yloc>4192</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2463,8 +2545,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2688</yloc>
+      <xloc>464</xloc>
+      <yloc>2656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2493,8 +2575,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2320</yloc>
+      <xloc>464</xloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2533,8 +2615,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2064</yloc>
+      <xloc>464</xloc>
+      <yloc>2032</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2563,8 +2645,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>128</xloc>
-      <yloc>592</yloc>
+      <xloc>144</xloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2593,8 +2675,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>960</yloc>
+      <xloc>464</xloc>
+      <yloc>928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2623,8 +2705,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>704</yloc>
+      <xloc>464</xloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2656,8 +2738,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1328</yloc>
+      <xloc>464</xloc>
+      <yloc>1296</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2720,362 +2802,8 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>2208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SortRows: file: order</name>
-    <type>SortRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>profile_order</name>
-        <ascending>N</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SplitFieldToRows3: profile_name</name>
-    <type>SplitFieldToRows3</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <splitfield>profile_name_list</splitfield>
-    <delimiter>,</delimiter>
-    <newfield>profile_name</newfield>
-    <rownum>Y</rownum>
-    <rownum_field>profile_order</rownum_field>
-    <resetrownumber>Y</resetrownumber>
-    <delimiter_is_regex>N</delimiter_is_regex>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>848</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TextFileInput:  profile_file: default</name>
-    <type>TextFileInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <accept_filenames>Y</accept_filenames>
-    <passing_through_fields>Y</passing_through_fields>
-    <accept_field>profile_meta_location</accept_field>
-    <accept_stepname>GetVariable: profile_meta_location</accept_stepname>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar />
-    <header>N</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field />
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field />
-    <format>DOS</format>
-    <encoding />
-    <length />
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name />
-      <filemask />
-      <exclude_filemask />
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>Fixed</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <type>String</type>
-        <format />
-        <currency />
-        <decimal />
-        <group />
-        <nullif />
-        <ifnull />
-        <position>0</position>
-        <length>200</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field />
-    <file_error_message_field />
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field />
-    <error_fields_field />
-    <error_text_field />
-    <bad_line_files_destination_directory />
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory />
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory />
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>zh_CN</date_format_locale>
-    <shortFileFieldName />
-    <pathFieldName />
-    <hiddenFieldName />
-    <lastModificationTimeFieldName />
-    <uriNameFieldName />
-    <rootUriNameFieldName />
-    <extensionFieldName />
-    <sizeFieldName />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unique: last profile file</name>
-    <type>Unique</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <count_rows>Y</count_rows>
-    <count_field>file_number</count_field>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description />
-    <fields>
-      <field>
-        <name>profile_file</name>
-        <case_insensitive>N</case_insensitive>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>2576</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: target: create</name>
-    <type>WriteToLog</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>created</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: target: delete </name>
-    <type>WriteToLog</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>deleted</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: target: nothing</name>
-    <type>WriteToLog</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>nothing</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4096</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: target: replace</name>
-    <type>WriteToLog</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>replaced</logmessage>
-    <fields>
-      <field>
-        <name>profile_file</name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>576</xloc>
-      <yloc>4224</yloc>
+      <xloc>464</xloc>
+      <yloc>2176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3130,8 +2858,391 @@ Do create, replace, and delete operations</note>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>1520</yloc>
+      <xloc>464</xloc>
+      <yloc>1488</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SortRows: file: order</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>profile_file</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>profile_order</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>2432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SplitFieldToRows3: profile_name</name>
+    <type>SplitFieldToRows3</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <splitfield>profile_name_list</splitfield>
+    <delimiter>,</delimiter>
+    <newfield>profile_name</newfield>
+    <rownum>Y</rownum>
+    <rownum_field>profile_order</rownum_field>
+    <resetrownumber>Y</resetrownumber>
+    <delimiter_is_regex>N</delimiter_is_regex>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>816</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>TextFileInput:  profile_file: default</name>
+    <type>TextFileInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <accept_filenames>Y</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field>profile_meta_location</accept_field>
+    <accept_stepname>Dummy: for TextFileInput</accept_stepname>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar />
+    <header>N</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field />
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field />
+    <format>mixed</format>
+    <encoding />
+    <length>Characters</length>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <file>
+      <name />
+      <filemask />
+      <exclude_filemask />
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+      <type>Fixed</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+      <field>
+        <name>profile_file</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <ifnull />
+        <position>0</position>
+        <length>200</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>Y</error_ignored>
+    <skip_bad_files>N</skip_bad_files>
+    <file_error_field />
+    <file_error_message_field />
+    <error_line_skipped>Y</error_line_skipped>
+    <error_count_field />
+    <error_fields_field />
+    <error_text_field />
+    <bad_line_files_destination_directory />
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory />
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory />
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>zh_CN</date_format_locale>
+    <shortFileFieldName />
+    <pathFieldName />
+    <hiddenFieldName />
+    <lastModificationTimeFieldName />
+    <uriNameFieldName />
+    <rootUriNameFieldName />
+    <extensionFieldName />
+    <sizeFieldName />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique: last profile file</name>
+    <type>Unique</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <count_rows>Y</count_rows>
+    <count_field>file_number</count_field>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description />
+    <fields>
+      <field>
+        <name>profile_file</name>
+        <case_insensitive>N</case_insensitive>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>2544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target: create</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>created</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>4320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target: delete </name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>deleted</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>4448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target: nothing</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>nothing</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>4064</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target: replace</name>
+    <type>WriteToLog</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage>replaced</logmessage>
+    <fields>
+      <field>
+        <name>profile_file</name>
+      </field>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>4192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FileExists: profile_meta_location_exits</name>
+    <type>FileExists</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filenamefield>profile_meta_location</filenamefield>
+    <resultfieldname>profile_meta_location_exits</resultfieldname>
+    <includefiletype>N</includefiletype>
+    <filetypefieldname />
+    <addresultfilenames>N</addresultfilenames>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
