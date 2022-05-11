@@ -48,4 +48,4 @@ COPY --chmod=755 --chown=pentaho:pentaho ./canal-kafka-to-pgsql/config.xml \
 # Goto kpt project path
 WORKDIR $PENTAHO_HOME/canal-kafka-to-pgsql
 
-ENTRYPOINT bash ./flow.UseProfileConfigRun.sh "Basic" "$PROFILE" <&-
+ENTRYPOINT bash ./kpt.flow.UseProfileConfigRun.sh "Basic" "$PROFILE" <&-

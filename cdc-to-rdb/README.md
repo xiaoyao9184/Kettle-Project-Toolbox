@@ -99,7 +99,7 @@ docker run ^
 then you can run any KPT script like this
 
 ```sh
-bash flow.UseProfileConfigRun.sh Basic test,canal-mysql-pgsql
+bash kpt.flow.UseProfileConfigRun.sh Basic test,canal-mysql-pgsql
 ```
 
 

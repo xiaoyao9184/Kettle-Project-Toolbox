@@ -346,12 +346,12 @@
       <yloc>144</yloc>
     </entry>
     <entry>
-      <name>TRANS: GetDefaultValue: pdi.version</name>
+      <name>TRANS: MappingVariableStreamFindFirst: pdi.version</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/../../default/variable/GetDefaultValue.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/../Mapping/MappingVariableStreamFindFirst.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -453,12 +453,12 @@
       <yloc>528</yloc>
     </entry>
     <entry>
-      <name>TRANS: GetDefaultValue: project.name</name>
+      <name>TRANS: MappingVariableStreamFindFirst: project.name</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/../../default/variable/GetDefaultValue.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/../Mapping/MappingVariableStreamFindFirst.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -502,7 +502,7 @@
   <hops>
     <hop>
       <from>JOB: CreateGitVersion: kpt.version</from>
-      <to>TRANS: GetDefaultValue: pdi.version</to>
+      <to>TRANS: MappingVariableStreamFindFirst: pdi.version</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -519,8 +519,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>TRANS: GetDefaultValue: pdi.version</from>
-      <to>TRANS: GetDefaultValue: project.name</to>
+      <from>TRANS: MappingVariableStreamFindFirst: pdi.version</from>
+      <to>TRANS: MappingVariableStreamFindFirst: project.name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -528,7 +528,7 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>TRANS: GetDefaultValue: project.name</from>
+      <from>TRANS: MappingVariableStreamFindFirst: project.name</from>
       <to>TRANS: OutputVariableProperties: ${Results.Output.Path}</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>

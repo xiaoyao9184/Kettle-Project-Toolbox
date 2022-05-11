@@ -83,8 +83,8 @@ If you run a file in a deeper directory, when you don't want to move the script 
 Add the sub-directory name to script name and use `.` instead of path separators.
 
 > E.g 
-> [config.ReadConfig.bat](../default/config.ReadConfig.bat) is name changed by [KPT_RUN_COMMAND]()
-> and it will run [/config/ReadConfig.kjb](../default/config/ReadConfig.kjb)
+> [kpt.patch.PatchPDI.bat](../default/kpt.patch.PatchPDI.bat) is name changed by [KPT_RUN_COMMAND]()
+> and it will run [/kpt/patch/PatchPDI.kjb](../default/kpt/patch/PatchPDI.kjb)
 
 
 #### KPT_ENGINE_PATH 

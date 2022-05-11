@@ -3,7 +3,7 @@
 #  like this
 # KETTLE_HOME=/mnt/e/Kettle/workspace9.1/default
 # KETTLE_REPOSITORY=default
-# pan /job:patch/ApplyPatch /listparam
+# pan /job:kpt/patch/ApplyPatch /listparam
 
 
 current_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -12,7 +12,7 @@ parent_folder_dir="$(dirname $current_script_dir)"
 
 export KPT_COMMAND="pan"
 export KPT_KETTLE_LISTPARAM=" "
-export KPT_KETTLE_JOB="patch/ApplyPatch"
+export KPT_KETTLE_JOB="kpt/patch/ApplyPatch"
 
 bash $parent_folder_dir/KPT_RUN_COMMAND.sh
 

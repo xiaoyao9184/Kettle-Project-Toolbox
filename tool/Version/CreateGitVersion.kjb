@@ -415,12 +415,12 @@
       <yloc>528</yloc>
     </entry>
     <entry>
-      <name>TRANS: GetDefaultValue : Result.Git.ShortHash</name>
+      <name>TRANS: MappingVariableStreamFindFirst : Result.Git.ShortHash</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/../../default/variable/GetDefaultValue.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/../Mapping/MappingVariableStreamFindFirst.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -516,12 +516,12 @@
       <yloc>272</yloc>
     </entry>
     <entry>
-      <name>TRANS: GetDefaultValue : Result.Git.Tag</name>
+      <name>TRANS: MappingVariableStreamFindFirst : Result.Git.Tag</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Job.Filename.Directory}/../../default/variable/GetDefaultValue.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}/../Mapping/MappingVariableStreamFindFirst.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -583,7 +583,7 @@
     </hop>
     <hop>
       <from>SIMPLE_EVAL: Result.Git.ShortHash</from>
-      <to>TRANS: GetDefaultValue : Result.Git.ShortHash</to>
+      <to>TRANS: MappingVariableStreamFindFirst : Result.Git.ShortHash</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -609,7 +609,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>TRANS: GetDefaultValue : Result.Git.ShortHash</from>
+      <from>TRANS: MappingVariableStreamFindFirst : Result.Git.ShortHash</from>
       <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -628,7 +628,7 @@
     </hop>
     <hop>
       <from>SIMPLE_EVAL: Result.Git.Tag</from>
-      <to>TRANS: GetDefaultValue : Result.Git.Tag</to>
+      <to>TRANS: MappingVariableStreamFindFirst : Result.Git.Tag</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -636,7 +636,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>TRANS: GetDefaultValue : Result.Git.Tag</from>
+      <from>TRANS: MappingVariableStreamFindFirst : Result.Git.Tag</from>
       <to>SUCCESS</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
