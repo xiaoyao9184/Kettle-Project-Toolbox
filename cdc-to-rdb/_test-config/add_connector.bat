@@ -13,7 +13,7 @@ if exist %connector_config%\NUL (
         set connector_file=%%~nxf
         echo "Run of !connector_file!"
 
-        curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @!connector_file! localhost:58083/connectors/ 
+        curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" -d @!connector_file! localhost:58083/connectors/
     )
 ) else (
     for %%F in ("!connector_config!") do set connector_path=%%~dpF

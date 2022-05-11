@@ -13,7 +13,7 @@ GOTO:init_variable
     SET _looking_dir=!%1!
     SET _looking_file_name=!%2!
     SET _looking_file_ext=!%3!
-    
+
     IF EXIST "%_looking_dir%%_looking_file_name%.%_looking_file_ext%" (
         ENDLOCAL & SET %4=true
     ) ELSE (

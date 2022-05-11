@@ -68,7 +68,7 @@ GOTO:EOF
 GOTO:EOF
 
 
-@REM :: generation kettle command positional parameters 
+@REM :: generation kettle command positional parameters
 @REM ::1. Empty value not need append to result
 @REM ::2. Contain spaces need add quotation
 :function_param_generation
@@ -185,7 +185,7 @@ IF %interactive% EQU 1 (
             GOTO:loop_check_variable
         )
     )
-) ELSE ( 
+) ELSE (
     IF "%_engine_dir%"=="\" (
         ECHO %tip_miss_engine_dir%
         EXIT /B 1
