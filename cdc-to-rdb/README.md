@@ -220,7 +220,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
 			<!-- see to_pgsql/target_column.mapping -->
 			<!-- no change for now -->
-			<cfg namespace="Config.Log.Target.Column" key="Mapping">target_column_case_sensitive</cfg>
+			<cfg namespace="Config.Log.Target.Column" key="Mapping">same_source</cfg>
 			<!-- true case sensitive or pgsql will automatically convert to lowercase -->
 			<cfg namespace="Config.Log.Target.Case" key="Name">true</cfg>
 			<!-- define output destination schema and table prefix by 'config_prefix_lookup' -->

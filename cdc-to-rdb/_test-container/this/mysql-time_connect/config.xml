@@ -42,7 +42,7 @@
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
-            <cfg namespace="Config.Log.Target.Column" key="Mapping">target_column_case_sensitive</cfg>
+            <cfg namespace="Config.Log.Target.Column" key="Mapping">same_source</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
 
@@ -74,7 +74,7 @@ Config.Log.Source.Key.Mapping	debezium_key_to_key_meta
 Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
 Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Table.Mapping	config_prefix_lookup
-Config.Log.Target.Column.Mapping	target_column_case_sensitive	
+Config.Log.Target.Column.Mapping	same_source	
 Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
 Config.Log.Target.Table.Prefix		
 
@@ -94,7 +94,7 @@ Config.Log.Target.Table.Prefix
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
-            <cfg namespace="Config.Log.Target.Column" key="Mapping">target_column_case_sensitive</cfg>
+            <cfg namespace="Config.Log.Target.Column" key="Mapping">same_source</cfg>
             <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_chameleon_generation__</cfg>
             <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
 
@@ -126,7 +126,7 @@ Config.Log.Source.Key.Mapping	debezium_key_to_key_meta
 Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
 Config.Log.Target.Transformation.Path	to_pgsql	
 Config.Log.Target.Table.Mapping	config_prefix_lookup
-Config.Log.Target.Column.Mapping	target_column_case_sensitive	
+Config.Log.Target.Column.Mapping	same_source	
 Config.Log.Target.Schema.Prefix	mysql_chameleon_generation__	
 Config.Log.Target.Table.Prefix		
 

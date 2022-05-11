@@ -85,7 +85,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Target.Column.Mapping</name>
-        <default_value>target_column_case_sensitive</default_value>
+        <default_value>same_source</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -5842,7 +5842,7 @@
     <trans_object_id/>
     <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
     <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}/target_column.mapping</directory_path>
+    <directory_path>/to_rdb/target_column.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -5852,16 +5852,24 @@
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
-            <parent>target_schema</parent>
-            <child>schema</child>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
           </connector>
           <connector>
-            <parent>target_table</parent>
-            <child>table</child>
+            <parent>source_table</parent>
+            <child>source_table</child>
           </connector>
           <connector>
             <parent>source_column</parent>
             <child>source_column</child>
+          </connector>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
           </connector>
         </mapping>
       </input>
@@ -5879,10 +5887,6 @@
         </mapping>
       </output>
       <parameters>
-        <variablemapping>
-          <variable>Param.Case.Sensitive</variable>
-          <input>${Config.Log.Target.Case.Sensitive}</input>
-        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>
@@ -5956,22 +5960,6 @@
         </mapping>
       </output>
       <parameters>
-        <variablemapping>
-          <variable>Param.Case.Sensitive</variable>
-          <input>${Config.Log.Target.Case.Sensitive}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.Schema.Prefix</variable>
-          <input>${Config.Log.Target.Schema.Prefix}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.Table.Prefix</variable>
-          <input>${Config.Log.Target.Table.Prefix}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.Source.Name</variable>
-          <input>${Config.Log.Target.Mapping.Name}</input>
-        </variablemapping>
         <inherit_all_vars>Y</inherit_all_vars>
       </parameters>
     </mappings>

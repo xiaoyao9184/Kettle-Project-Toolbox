@@ -1,17 +1,17 @@
 <transformation>
   <info>
-    <name>target_table_case_sensitive.mapping</name>
+    <name>same_source_lookup</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_pgsql</directory>
+    <directory>/to_rdb/target_table.mapping</directory>
     <parameters>
       <parameter>
-        <name>Param.Case.Sensitive</name>
-        <default_value>true</default_value>
-        <description>case sensitive</description>
+        <name>Config.Log.Target.Transformation.Path</name>
+        <default_value>to_pgsql</default_value>
+        <description/>
       </parameter>
     </parameters>
     <log>
@@ -412,7 +412,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>10000</size_rowset>
+    <size_rowset>100000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/28 11:11:13.744</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/28 16:19:55.483</modified_date>
+    <modified_date>2022/05/18 11:28:22.635</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -442,68 +442,33 @@
   </notepads>
   <order>
     <hop>
-      <from>Constant: QUOTATION</from>
-      <to>Calculator: case_schema,case_table</to>
+      <from>SimpleMapping: target_table_lookup_exist.mapping</from>
+      <to>SimpleMapping: target_table_modifier.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: is_case_name</from>
-      <to>Calculator: lower_schema,lower_table</to>
+      <from>SimpleMapping: target_table_modifier.mapping</from>
+      <to>MappingOutput: target_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: is_case_name</from>
-      <to>Constant: QUOTATION</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>GetVariable: is_case_name</from>
-      <to>FilterRows: is_case_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SetValueField: target use case</from>
-      <to>SelectValues: remove case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SetValueField: target use lower</from>
-      <to>SelectValues: remove lower</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: target_table_case_sensitive.mapping</from>
-      <to>GetVariable: is_case_name</to>
+      <from>MappingInput: target_table.mapping</from>
+      <to>Calculator: target</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>GetVariable: is_case_name</to>
+      <to>Calculator: target</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>Calculator: lower_schema,lower_table</from>
-      <to>SetValueField: target use lower</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: case_schema,case_table</from>
-      <to>SetValueField: target use case</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove lower</from>
-      <to>MappingOutput: target_table_case_sensitive.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove case</from>
-      <to>MappingOutput: target_table_case_sensitive.mapping</to>
+      <from>Calculator: target</from>
+      <to>SimpleMapping: target_table_lookup_exist.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: case_schema,case_table</name>
+    <name>Calculator: target</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -515,65 +480,9 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>case_schema</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>QUOTATION</field_a>
-      <field_b>target_schema</field_b>
-      <field_c>QUOTATION</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>case_table</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>QUOTATION</field_a>
-      <field_b>target_table</field_b>
-      <field_c>QUOTATION</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: lower_schema,lower_table</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>lower_schema</field_name>
-      <calc_type>LOWER_CASE</calc_type>
-      <field_a>target_schema</field_a>
+      <field_name>target_schema</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>source_schema</field_a>
       <field_b/>
       <field_c/>
       <value_type>String</value_type>
@@ -586,9 +495,9 @@
       <currency_symbol/>
     </calculation>
     <calculation>
-      <field_name>lower_table</field_name>
-      <calc_type>LOWER_CASE</calc_type>
-      <field_a>target_table</field_a>
+      <field_name>target_table</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>source_table</field_a>
       <field_b/>
       <field_c/>
       <value_type>String</value_type>
@@ -610,46 +519,7 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: QUOTATION</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>QUOTATION</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>"</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>352</yloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -666,7 +536,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>target_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -678,7 +548,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>target_table</name>
+        <name>source_table</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -692,12 +562,12 @@
     </fields>
     <data>
       <line>
-        <item>MYSQL_MANUAL_GENERATION__test_kpt_cdc</item>
+        <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>debezium_types</item>
       </line>
       <line>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
+        <item>not_exist</item>
+        <item>not_exist</item>
       </line>
     </data>
     <attributes/>
@@ -715,90 +585,7 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: is_case_name</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>Constant: QUOTATION</send_true_to>
-    <send_false_to>Calculator: lower_schema,lower_table</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>is_case_name</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Boolean</type>
-          <text>Y</text>
-          <length>-1</length>
-          <precision>-1</precision>
-          <isnull>N</isnull>
-          <mask/>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GetVariable: is_case_name</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>is_case_name</name>
-        <variable>${Param.Case.Sensitive}</variable>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: target_table_case_sensitive.mapping</name>
+    <name>MappingInput: target_table.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -810,13 +597,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>target_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_table</name>
+        <name>source_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -838,7 +625,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: target_table_case_sensitive.mapping</name>
+    <name>MappingOutput: target_table.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -858,13 +645,13 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>928</yloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove case</name>
-    <type>SelectValues</type>
+    <name>SimpleMapping: target_table_lookup_exist.mapping</name>
+    <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -873,58 +660,46 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>is_case_name</name>
-      </remove>
-      <remove>
-        <name>QUOTATION</name>
-      </remove>
-      <remove>
-        <name>case_schema</name>
-      </remove>
-      <remove>
-        <name>case_table</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>target_table_lookup_exist.mapping</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <mappings>
       <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+        </mapping>
       </input>
       <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_ignore</parent>
+            <child>target_ignore</child>
+          </connector>
+        </mapping>
       </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove lower</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>is_case_name</name>
-      </remove>
-      <remove>
-        <name>lower_schema</name>
-      </remove>
-      <remove>
-        <name>lower_table</name>
-      </remove>
-    </fields>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -935,13 +710,13 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>768</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SetValueField: target use case</name>
-    <type>SetValueField</type>
+    <name>SimpleMapping: target_table_modifier.mapping</name>
+    <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -950,51 +725,42 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>target_schema</name>
-        <replaceby>case_schema</replaceby>
-      </field>
-      <field>
-        <name>target_table</name>
-        <replaceby>case_table</replaceby>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>target_table_modifier.mapping</trans_name>
+    <filename/>
+    <directory_path>/${Config.Log.Target.Transformation.Path}</directory_path>
+    <mappings>
       <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+        </mapping>
       </input>
       <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
       </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SetValueField: target use lower</name>
-    <type>SetValueField</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>target_schema</name>
-        <replaceby>lower_schema</replaceby>
-      </field>
-      <field>
-        <name>target_table</name>
-        <replaceby>lower_table</replaceby>
-      </field>
-    </fields>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1005,7 +771,7 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>624</yloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
