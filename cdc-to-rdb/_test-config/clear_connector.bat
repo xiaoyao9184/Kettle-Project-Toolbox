@@ -14,7 +14,7 @@ if exist %connector_config%\NUL (
         echo "Run of !connector_file!"
 
         for /f "delims=" %%l in ('jq -r .name ^< !connector_file!') do set name=%%l
-        
+
         curl -i -X DELETE -H "Accept:application/json" localhost:58083/connectors/!name!
     )
 ) else (

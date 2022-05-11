@@ -20,7 +20,7 @@ GOTO:skip_function
     FOR /F "usebackq tokens=2 delims=[]" %%H IN (`DIR /A:L %find_dir% ^| FINDSTR /C:"%find_name% "`) DO (
         SET real_path=%%H
     )
-    
+
     ENDLOCAL & (
         IF NOT "%real_path%"=="" (
             IF "%2"=="" (SET %1=%real_path%) ELSE (SET %2=%real_path%)

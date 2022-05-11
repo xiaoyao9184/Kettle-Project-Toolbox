@@ -138,7 +138,7 @@ if "%tempOm%"=="one" (
 )
 
 if "%rPathTarget%"=="" (
-	echo "Kettle will modify the meta path to be in the same path as the old meta, and have configured the name to name the path" 
+	echo "Kettle will modify the meta path to be in the same path as the old meta, and have configured the name to name the path"
 )else (
 	echo "Kettle will modify the meta(parent) path to:" %rPathTarget%
 	if "%rPathType%"=="1" (

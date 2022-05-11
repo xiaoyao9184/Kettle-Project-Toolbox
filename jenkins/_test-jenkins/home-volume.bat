@@ -1,7 +1,7 @@
 @ECHO OFF
 SETLOCAL EnableDelayedExpansion
 ::CODER BY xiaoyao9184 1.0
-::copy path to external volume 
+::copy path to external volume
 
 
 SET volume_name=test-jenkins-kpt_home_vol

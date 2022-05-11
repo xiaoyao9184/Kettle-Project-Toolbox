@@ -211,7 +211,7 @@ FOR /F "delims=" %%S IN ("!link_item_name_list!") DO (
     SET link_name=%%S
     SET link_path=%link_project_path%\!link_name!
     SET target_path=%target_project_path%\!link_name!
-   
+
     SET _step=Step: link item '!link_name!'
     ECHO:
     ECHO:
@@ -230,7 +230,7 @@ FOR /F "delims=" %%S IN ("!copy_item_name_list!") DO (
     SET copy_name=%%S
     SET copy_path=%link_project_path%\!copy_name!
     SET target_path=%target_project_path%\!copy_name!
-   
+
     SET _step=Step: copy item '!copy_name!'
     ECHO:
     ECHO:

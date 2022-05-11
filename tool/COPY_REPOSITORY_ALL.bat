@@ -33,10 +33,10 @@ set esetrName="Please input name for copy:"
 set echorNameRegex=Need input match regex of repository name, default: dev.*
 set esetrNameRegex="Please input match regex of repository name:"
 
-set echorNameRemove=Need input string for seach, default: 
+set echorNameRemove=Need input string for seach, default:
 set esetrNameRemove="Please input string for seach:"
 
-set echorNameReplace=Need input string for reaplce, default: 
+set echorNameReplace=Need input string for reaplce, default:
 set esetrNameReplace="Please input string for reaplce:"
 
 set echorNameNew=Need input name of new repository
@@ -216,7 +216,7 @@ if "%tempName%"=="new" (
 )
 
 if "%rPathTarget%"=="" (
-	echo "Kettle will modify the meta path to be in the same path as the old meta, and have configured the name to name the path" 
+	echo "Kettle will modify the meta path to be in the same path as the old meta, and have configured the name to name the path"
 )else (
 	echo "Kettle will modify the meta(parent) path to:" %rPathTarget%
 	if "%rPathType%"=="1" (
