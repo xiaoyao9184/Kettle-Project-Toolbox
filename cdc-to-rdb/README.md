@@ -151,7 +151,7 @@ then you can combine all cfgs by referring the `profile` name later.
 		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
 		<cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
 		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
-		<cfg namespace="Config.Main.Transformation" key="Name">kafka_to_stream</cfg>
+		<cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
 		<!-- delay for debug reduce rate -->
         <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
         <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
