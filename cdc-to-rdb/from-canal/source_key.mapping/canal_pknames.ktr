@@ -1,11 +1,11 @@
 <transformation>
   <info>
-    <name>target_key_to_key_meta</name>
+    <name>canal_pknames</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>/from-debezium/source_key.mapping</directory>
+    <directory>/from-canal/source_key.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -426,9 +426,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/03/04 12:23:36.981</created_date>
+    <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/04 14:06:05.625</modified_date>
+    <modified_date>2021/09/23 16:37:14.393</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -436,18 +436,175 @@
   </notepads>
   <order>
     <hop>
-      <from>MappingInput: source_key.mapping</from>
-      <to>SimpleMapping: source_key.mapping</to>
+      <from>SelectValues: remove</from>
+      <to>MappingOutput: canal_pk_to_key_meta</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: source_key.mapping</from>
-      <to>MappingOutput: source_key.mapping</to>
+      <from>MappingInput: canal_pk_to_key_meta</from>
+      <to>ScriptValueMod: from pk</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: canal_manager</from>
+      <to>ScriptValueMod: from pk</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Constant: FIELD_PREFIX</from>
+      <to>Calculator: kettle_field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: from pk</from>
+      <to>Constant: FIELD_PREFIX</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: kettle_field</from>
+      <to>SelectValues: remove</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>MappingInput: source_key.mapping</name>
+    <name>Calculator: kettle_field</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>kettle_field</field_name>
+      <calc_type>ADD</calc_type>
+      <field_a>FIELD_PREFIX</field_a>
+      <field_b>pk</field_b>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: FIELD_PREFIX</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>FIELD_PREFIX</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>kettle_field_</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: canal_manager</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kafka_key</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item/>
+        <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingInput: canal_pk_to_key_meta</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -499,7 +656,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: source_key.mapping</name>
+    <name>MappingOutput: canal_pk_to_key_meta</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -519,13 +676,13 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>400</yloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: source_key.mapping</name>
-    <type>SimpleMapping</type>
+    <name>ScriptValueMod: from pk</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -534,58 +691,43 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>source_key.mapping</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_key</parent>
-            <child>kafka_key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>kafka_message</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>key_name</parent>
-            <child>key_name</child>
-          </connector>
-          <connector>
-            <parent>key_kettle_field</parent>
-            <child>key_kettle_field</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var index_pk = getOutputRowMeta().indexOfValue("pk");
+
+var message_index = getInputRowMeta().indexOfValue("kafka_message");
+var message_col = row[message_index];
+var message_obj = message_col == null ? null : JSON.parse(message_col);
+if (message_obj != null) {
+  var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
+
+  for (index = 0; index &lt; keys.length; index++) {
+    var key = keys[index];
+
+    var row = createRowCopy(getOutputRowMeta().size());  
+    row[index_pk] = key; 
+    putRow(row);
+  }
+}
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>pk</name>
+        <rename>pk</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -597,6 +739,71 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>Y</select_unspecified>
+      <remove>
+        <name>FIELD_PREFIX</name>
+      </remove>
+      <meta>
+        <name>pk</name>
+        <rename>key_name</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field</name>
+        <rename>key_kettle_field</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

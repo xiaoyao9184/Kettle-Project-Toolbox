@@ -133,7 +133,7 @@ Config.Log.Target.Table.Prefix
             <cfg namespace="Config.Log.Source.Transformation" key="Path">from-canal</cfg>
             <cfg namespace="Config.Log.Source.Table" key="Mapping">canal_log_to_table_name.mapping</cfg>
             <cfg namespace="Config.Log.Source.Column" key="Mapping">canal_sqltype</cfg>
-            <cfg namespace="Config.Log.Source.Key" key="Mapping">canal_pk_to_key_meta.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Key" key="Mapping">canal_pknames</cfg>
             <cfg namespace="Config.Log.Target.Operate" key="Mapping">same_source</cfg>
             
             <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
@@ -164,7 +164,7 @@ Config.Log.Kafka.Batch.Max	10000
 Config.Log.Source.Transformation.Path	from-canal
 Config.Log.Source.Table.Mapping	canal_log_to_table_name.mapping
 Config.Log.Source.Column.Mapping	canal_sqltype
-Config.Log.Source.Key.Mapping	canal_pk_to_key_meta.mapping
+Config.Log.Source.Key.Mapping	canal_pknames
 Config.Log.Target.Operate.Mapping	same_source
 Config.Log.Target.Transformation.Path	to_pgsql
 Config.Log.Target.Table.Mapping	config_prefix_lookup

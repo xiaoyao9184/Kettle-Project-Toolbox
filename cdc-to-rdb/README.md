@@ -206,7 +206,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
 			<cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
 			<!-- see from-debezium/source_key.mapping -->
-			<!-- use 'target_key_to_key_meta' if source table no primary key but target have -->
+			<!-- use 'target_table' if source table no primary key but target have -->
 			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
 			<!-- no change -->
 			<cfg namespace="Config.Log.Target.Operate" key="Mapping">update_only_flash_point</cfg>
