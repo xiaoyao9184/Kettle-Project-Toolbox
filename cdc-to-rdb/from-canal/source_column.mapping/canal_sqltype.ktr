@@ -1,16 +1,16 @@
 <transformation>
   <info>
-    <name>canal_log_to_column_meta.mapping</name>
+    <name>canal_sqltype</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-canal</directory>
+    <directory>/from-canal/source_column.mapping</directory>
     <parameters>
       <parameter>
         <name>Config.Log.Source.Key.Mapping</name>
-        <default_value>canal_pk_to_key_meta.mapping</default_value>
+        <default_value>canal_pknames</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -462,7 +462,7 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput: canal_log_to_column_meta</from>
+      <from>MappingInput: source_column.mapping</from>
       <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
@@ -488,7 +488,7 @@
     </hop>
     <hop>
       <from>SelectValues: select sort</from>
-      <to>MappingOutput: canal_log_to_column_meta</to>
+      <to>MappingOutput: source_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1138,7 +1138,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: canal_log_to_column_meta</name>
+    <name>MappingInput: source_column.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1196,7 +1196,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: canal_log_to_column_meta</name>
+    <name>MappingOutput: source_column.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

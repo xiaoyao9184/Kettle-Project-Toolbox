@@ -36,7 +36,7 @@
             
             <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
             <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_schema_to_column_meta.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_schema</cfg>
             <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
             <cfg namespace="Config.Log.Target.Operate" key="Mapping">update_only_flash_point</cfg>
             
@@ -67,7 +67,7 @@ Config.Log.Kafka.Batch.Duration	60000
 Config.Log.Kafka.Batch.Max	10000
 Config.Log.Source.Transformation.Path	from-debezium
 Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping
-Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping
+Config.Log.Source.Column.Mapping	mysql_schema
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta
 Config.Log.Target.Operate.Mapping	update_only_flash_point
 Config.Log.Target.Transformation.Path	to_pgsql
@@ -84,7 +84,7 @@ Config.Log.Target.Table.Prefix
             
             <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
             <cfg namespace="Config.Log.Source.Table" key="Mapping">mssql_playload_to_table_name.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Column" key="Mapping">mssql_schema_to_column_meta.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Column" key="Mapping">mssql_schema</cfg>
             <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
             <cfg namespace="Config.Log.Target.Operate" key="Mapping">update_only_flash_point</cfg>
             
@@ -115,7 +115,7 @@ Config.Log.Kafka.Batch.Duration	60000
 Config.Log.Kafka.Batch.Max	10000
 Config.Log.Source.Transformation.Path	from-debezium
 Config.Log.Source.Table.Mapping	mssql_playload_to_table_name.mapping
-Config.Log.Source.Column.Mapping	mssql_schema_to_column_meta.mapping
+Config.Log.Source.Column.Mapping	mssql_schema
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta
 Config.Log.Target.Operate.Mapping	update_only_flash_point
 Config.Log.Target.Transformation.Path	to_pgsql
@@ -132,7 +132,7 @@ Config.Log.Target.Table.Prefix
             
             <cfg namespace="Config.Log.Source.Transformation" key="Path">from-canal</cfg>
             <cfg namespace="Config.Log.Source.Table" key="Mapping">canal_log_to_table_name.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Column" key="Mapping">canal_log_to_column_meta.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Column" key="Mapping">canal_sqltype</cfg>
             <cfg namespace="Config.Log.Source.Key" key="Mapping">canal_pk_to_key_meta.mapping</cfg>
             <cfg namespace="Config.Log.Target.Operate" key="Mapping">same_source</cfg>
             
@@ -163,7 +163,7 @@ Config.Log.Kafka.Batch.Duration	60000
 Config.Log.Kafka.Batch.Max	10000
 Config.Log.Source.Transformation.Path	from-canal
 Config.Log.Source.Table.Mapping	canal_log_to_table_name.mapping
-Config.Log.Source.Column.Mapping	canal_log_to_column_meta.mapping
+Config.Log.Source.Column.Mapping	canal_sqltype
 Config.Log.Source.Key.Mapping	canal_pk_to_key_meta.mapping
 Config.Log.Target.Operate.Mapping	same_source
 Config.Log.Target.Transformation.Path	to_pgsql

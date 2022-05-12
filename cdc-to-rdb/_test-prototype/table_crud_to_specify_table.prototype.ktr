@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>table_crud_to_specify_table.prototype[debezium_mssql]</name>
+    <name>table_crud_to_specify_table.prototype</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -45,12 +45,12 @@
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Consumer.Group</name>
-        <default_value>kpt.mssql.20210831</default_value>
+        <default_value>test_kpt.test_kpt_cdc.202109023</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Data.Topic</name>
-        <default_value>kpt_debezium-mssql</default_value>
+        <default_value>test_canal-test_kpt_cdc</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -60,17 +60,17 @@
       </parameter>
       <parameter>
         <name>Config.Log.Source.Column.Mapping</name>
-        <default_value>mssql_schema</default_value>
+        <default_value>canal_log_to_column_meta.mapping</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Key.Mapping</name>
-        <default_value>debezium_key_to_key_meta</default_value>
+        <default_value>canal_pk_to_key_meta.mapping</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
-        <default_value>from-debezium</default_value>
+        <default_value>from-canal</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -85,7 +85,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Target.Operate.Mapping</name>
-        <default_value>update_only_flash_point</default_value>
+        <default_value>same_source</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -130,7 +130,7 @@
       </parameter>
       <parameter>
         <name>Param.Schema.Name</name>
-        <default_value>mssql_manual_generation__test_kpt_cdc</default_value>
+        <default_value>mysql_manual_generation__test_kpt_cdc</default_value>
         <description>change for protptype</description>
       </parameter>
       <parameter>
@@ -545,8 +545,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>Y</capture_step_performance>
-    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -557,9 +557,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/04/20 21:37:30.651</created_date>
+    <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/12 14:13:28.117</modified_date>
+    <modified_date>2022/05/12 11:11:56.440</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -922,6 +922,16 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>SimpleMapping: ${Config.Log.Source.Column.Mapping}</from>
+      <to>Calculator: source_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: source_column</from>
+      <to>SimpleMapping: target_column.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>StepsMetrics</from>
       <to>GetVariable: full table name</to>
       <enabled>Y</enabled>
@@ -1092,18 +1102,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: source_column.mapping</from>
-      <to>Calculator: source_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: source_column</from>
-      <to>SimpleMapping: target_column.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Delay: debug for field injection</from>
-      <to>SimpleMapping: source_column.mapping</to>
+      <to>SimpleMapping: ${Config.Log.Source.Column.Mapping}</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1138,11 +1138,6 @@
     </hop>
     <hop>
       <from>SampleRows: for target_column</from>
-      <to>WriteToLog: target_operate</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for target_column</from>
       <to>Delay: debug for field injection</to>
       <enabled>Y</enabled>
     </hop>
@@ -1167,7 +1162,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: source_operate.mapping</from>
+      <from>SimpleMapping: target_operate.mapping</from>
       <to>SampleRows: for target_column</to>
       <enabled>Y</enabled>
     </hop>
@@ -1194,8 +1189,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1760</yloc>
+      <xloc>544</xloc>
+      <yloc>2352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1221,8 +1216,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2576</yloc>
+      <xloc>544</xloc>
+      <yloc>2928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1248,8 +1243,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2720</yloc>
+      <xloc>544</xloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1275,8 +1270,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2304</yloc>
+      <xloc>544</xloc>
+      <yloc>2800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1302,8 +1297,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1616</yloc>
+      <xloc>544</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1329,8 +1324,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1184</yloc>
+      <xloc>544</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1356,8 +1351,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1328</yloc>
+      <xloc>544</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1383,8 +1378,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1472</yloc>
+      <xloc>544</xloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1478,8 +1473,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>1008</yloc>
+      <xloc>352</xloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1519,8 +1514,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1584</yloc>
+      <xloc>1376</xloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1558,8 +1553,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2960</yloc>
+      <xloc>928</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1609,8 +1604,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1760</yloc>
+      <xloc>1120</xloc>
+      <yloc>2352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1648,7 +1643,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
+      <xloc>736</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1783,8 +1778,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>1008</yloc>
+      <xloc>1120</xloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1822,8 +1817,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1872</yloc>
+      <xloc>1120</xloc>
+      <yloc>2416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1861,8 +1856,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2576</yloc>
+      <xloc>1120</xloc>
+      <yloc>2928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1900,8 +1895,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2720</yloc>
+      <xloc>1120</xloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1939,8 +1934,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2064</yloc>
+      <xloc>1120</xloc>
+      <yloc>2544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1978,8 +1973,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1968</yloc>
+      <xloc>1120</xloc>
+      <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2017,8 +2012,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2160</yloc>
+      <xloc>1120</xloc>
+      <yloc>2608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2080,8 +2075,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2432</yloc>
+      <xloc>1120</xloc>
+      <yloc>2672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2119,8 +2114,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1616</yloc>
+      <xloc>1120</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2158,8 +2153,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1184</yloc>
+      <xloc>1120</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2197,8 +2192,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1328</yloc>
+      <xloc>1120</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2236,8 +2231,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1472</yloc>
+      <xloc>1120</xloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2306,8 +2301,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1680</yloc>
+      <xloc>864</xloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2376,8 +2371,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2496</yloc>
+      <xloc>864</xloc>
+      <yloc>2864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2446,8 +2441,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2640</yloc>
+      <xloc>864</xloc>
+      <yloc>2992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2516,8 +2511,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2224</yloc>
+      <xloc>864</xloc>
+      <yloc>2736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2534,54 +2529,6 @@
     </partitioning>
     <fields>
       <field>
-        <name>group_table_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
         <name>batch_id</name>
         <type>String</type>
         <format/>
@@ -2597,6 +2544,30 @@
         <name>batch_time</name>
         <type>Date</type>
         <format>yyyy-MM-dd</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>group_table_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>group_table_name</name>
+        <type>String</type>
+        <format/>
         <currency/>
         <decimal/>
         <group/>
@@ -2677,21 +2648,45 @@
         <set_empty_string>N</set_empty_string>
         <field_null_if/>
       </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
     </fields>
     <data>
       <line>
         <item>0</item>
-        <item>mssql_manual_generation__test_kpt_cdc.debezium_types</item>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-        <item>0</item>
         <item>2020-01-28</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"1","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"1","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>test_debezium_mssql-test_kpt_cdc.data-changes</item>
+        <item>0</item>
+        <item>mysql_manual_generation__test_kpt_cdc.change_pk__debezium_types</item>
+        <item/>
+        <item>{"data":[{"_id":"0","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":12,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>test_canal-test_kpt_cdc</item>
         <item>0</item>
         <item>1</item>
         <item>0</item>
+        <item>test_kpt_cdc</item>
+        <item>debezium_types</item>
       </line>
     </data>
     <attributes/>
@@ -2703,7 +2698,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>96</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2760,8 +2755,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1536</yloc>
+      <xloc>864</xloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2817,8 +2812,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1104</yloc>
+      <xloc>864</xloc>
+      <yloc>1776</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2874,8 +2869,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1248</yloc>
+      <xloc>864</xloc>
+      <yloc>1904</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2931,8 +2926,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1392</yloc>
+      <xloc>864</xloc>
+      <yloc>2032</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2958,8 +2953,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>1299</yloc>
+      <xloc>352</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2985,8 +2980,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1296</yloc>
+      <xloc>992</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3010,8 +3005,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1872</yloc>
+      <xloc>1376</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3035,8 +3030,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>2960</yloc>
+      <xloc>1120</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3060,8 +3055,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>784</yloc>
+      <xloc>352</xloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3110,8 +3105,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>2864</yloc>
+      <xloc>1120</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3603,8 +3598,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>1872</yloc>
+      <xloc>96</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4096,8 +4091,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1616</xloc>
-      <yloc>1872</yloc>
+      <xloc>352</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4140,8 +4135,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2960</yloc>
+      <xloc>736</xloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4228,7 +4223,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4334,7 +4329,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>544</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4424,7 +4419,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>928</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4518,8 +4513,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2304</yloc>
+      <xloc>1120</xloc>
+      <yloc>2800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4642,7 +4637,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4651,7 +4646,7 @@
     <name>SampleRows: for target_column</name>
     <type>SampleRows</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -4669,8 +4664,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1008</yloc>
+      <xloc>672</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4696,7 +4691,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>672</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4723,8 +4718,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2864</yloc>
+      <xloc>736</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4763,8 +4758,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1760</yloc>
+      <xloc>864</xloc>
+      <yloc>2352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4835,8 +4830,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1008</yloc>
+      <xloc>544</xloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4875,8 +4870,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1872</yloc>
+      <xloc>544</xloc>
+      <yloc>2416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4915,8 +4910,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>3056</yloc>
+      <xloc>544</xloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4955,8 +4950,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2576</yloc>
+      <xloc>864</xloc>
+      <yloc>2928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4995,8 +4990,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2720</yloc>
+      <xloc>864</xloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5035,8 +5030,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2960</yloc>
+      <xloc>544</xloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5075,8 +5070,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2064</yloc>
+      <xloc>544</xloc>
+      <yloc>2544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5115,8 +5110,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1968</yloc>
+      <xloc>544</xloc>
+      <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5155,8 +5150,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2160</yloc>
+      <xloc>544</xloc>
+      <yloc>2608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5219,7 +5214,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>672</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5259,8 +5254,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2304</yloc>
+      <xloc>864</xloc>
+      <yloc>2800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5303,8 +5298,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2432</yloc>
+      <xloc>544</xloc>
+      <yloc>2672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5379,7 +5374,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5415,8 +5410,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2864</yloc>
+      <xloc>544</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5451,8 +5446,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1616</yloc>
+      <xloc>864</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5487,8 +5482,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1184</yloc>
+      <xloc>864</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5523,8 +5518,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1328</yloc>
+      <xloc>864</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5559,13 +5554,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1472</yloc>
+      <xloc>864</xloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: source_column.mapping</name>
+    <name>SimpleMapping: ${Config.Log.Source.Column.Mapping}</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -5579,7 +5574,7 @@
     <trans_object_id/>
     <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
     <filename/>
-    <directory_path>/${Config.Log.Source.Transformation.Path}/source_column.mapping</directory_path>
+    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -5597,16 +5592,16 @@
             <child>kafka_message</child>
           </connector>
           <connector>
+            <parent>target_operate</parent>
+            <child>target_operate</child>
+          </connector>
+          <connector>
             <parent>target_schema</parent>
             <child>target_schema</child>
           </connector>
           <connector>
             <parent>target_table</parent>
             <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5668,8 +5663,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1456</yloc>
+      <xloc>1376</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5746,7 +5741,7 @@
     <name>SimpleMapping: source_operate.mapping</name>
     <type>SimpleMapping</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -5879,8 +5874,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1712</yloc>
+      <xloc>1376</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5940,8 +5935,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>784</yloc>
+      <xloc>352</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6013,7 +6008,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>672</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6059,7 +6054,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6141,8 +6136,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>1872</yloc>
+      <xloc>1376</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6184,7 +6179,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>992</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6219,7 +6214,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6274,7 +6269,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>992</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6312,8 +6307,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>3056</yloc>
+      <xloc>736</xloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6380,8 +6375,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>1872</yloc>
+      <xloc>1120</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6433,61 +6428,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>992</xloc>
       <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: target_operate</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>Y</limitRows>
-    <limitRowsNumber>1</limitRowsNumber>
-    <logmessage/>
-    <fields>
-      <field>
-        <name>group_table_id</name>
-      </field>
-      <field>
-        <name>group_table_name</name>
-      </field>
-      <field>
-        <name>source_schema</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
-        <name>source_operate</name>
-      </field>
-      <field>
-        <name>target_schema</name>
-      </field>
-      <field>
-        <name>target_table</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

@@ -60,7 +60,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Source.Column.Mapping</name>
-        <default_value>canal_log_to_column_meta.mapping</default_value>
+        <default_value>canal_sqltype</default_value>
         <description>for protptype</description>
       </parameter>
       <parameter>
@@ -922,7 +922,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: ${Config.Log.Source.Column.Mapping}</from>
+      <from>SimpleMapping: source_column.mapping</from>
       <to>Calculator: source_column</to>
       <enabled>Y</enabled>
     </hop>
@@ -1103,7 +1103,7 @@
     </hop>
     <hop>
       <from>Delay: debug for field injection</from>
-      <to>SimpleMapping: ${Config.Log.Source.Column.Mapping}</to>
+      <to>SimpleMapping: source_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -5565,7 +5565,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: ${Config.Log.Source.Column.Mapping}</name>
+    <name>SimpleMapping: source_column.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -5579,7 +5579,7 @@
     <trans_object_id/>
     <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
     <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <directory_path>/${Config.Log.Source.Transformation.Path}/source_column.mapping</directory_path>
     <mappings>
       <input>
         <mapping>

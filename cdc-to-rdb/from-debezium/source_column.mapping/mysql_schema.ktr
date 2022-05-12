@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>mysql_schema_to_column_meta.mapping</name>
+    <name>mysql_schema</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-debezium</directory>
+    <directory>/from-debezium/source_column.mapping</directory>
     <parameters>
       <parameter>
         <name>Config.Log.Source.Key.Mapping</name>
@@ -488,7 +488,7 @@
     </hop>
     <hop>
       <from>SelectValues: select sort</from>
-      <to>MappingOutput: mysql_schema_to_column_meta</to>
+      <to>MappingOutput: mysql_schema</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -522,7 +522,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: mysql_schema_to_column_meta</from>
+      <from>MappingInput: mysql_schema</from>
       <to>Dummy: for column</to>
       <enabled>Y</enabled>
     </hop>
@@ -1797,7 +1797,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: mysql_schema_to_column_meta</name>
+    <name>MappingInput: mysql_schema</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1855,7 +1855,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: mysql_schema_to_column_meta</name>
+    <name>MappingOutput: mysql_schema</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
