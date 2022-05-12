@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>group_table_key.mapping</name>
+    <name>redirect_table_row.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -448,7 +448,7 @@
     </hop>
     <hop>
       <from>SelectValues: remove&amp;rename</from>
-      <to>MappingOutput: group_table_key.mapping</to>
+      <to>MappingOutput: redirect_table_row.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -457,7 +457,7 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput: group_table_key.mapping</from>
+      <from>MappingInput: redirect_table_row.mapping</from>
       <to>SortRows: param_* + kafka_offset desc</to>
       <enabled>Y</enabled>
     </hop>
@@ -912,7 +912,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: group_table_key.mapping</name>
+    <name>MappingInput: redirect_table_row.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -988,7 +988,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: group_table_key.mapping</name>
+    <name>MappingOutput: redirect_table_row.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

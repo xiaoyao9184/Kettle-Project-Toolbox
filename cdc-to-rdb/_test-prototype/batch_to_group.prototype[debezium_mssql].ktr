@@ -768,13 +768,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: group_table_key.mapping</from>
+      <from>SimpleMapping: redirect_table_row.mapping</from>
       <to>FilterRows: is redirect</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>FilterRows: is table-log</from>
-      <to>SimpleMapping: group_table_key.mapping</to>
+      <to>SimpleMapping: redirect_table_row.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1358,7 +1358,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>SimpleMapping: group_table_key.mapping</send_true_to>
+    <send_true_to>SimpleMapping: redirect_table_row.mapping</send_true_to>
     <send_false_to>Group by: batch_id</send_false_to>
     <compare>
       <condition>
@@ -2462,7 +2462,7 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: group_table_key.mapping</name>
+    <name>SimpleMapping: redirect_table_row.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2474,7 +2474,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>group_table_key.mapping</trans_name>
+    <trans_name>redirect_table_row.mapping</trans_name>
     <filename/>
     <directory_path>/to_rdb</directory_path>
     <mappings>
