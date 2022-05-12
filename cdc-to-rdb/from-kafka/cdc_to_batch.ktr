@@ -9,17 +9,17 @@
     <directory>/from-kafka</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Kafka.Batch.Duration</name>
+        <name>Config.CDC.Kafka.Batch.Duration</name>
         <default_value>60000</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Batch.Max</name>
+        <name>Config.CDC.Kafka.Batch.Max</name>
         <default_value>10000</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Batch.Size</name>
+        <name>Config.CDC.Kafka.Batch.Size</name>
         <default_value>10000</default_value>
         <description/>
       </parameter>
@@ -560,16 +560,16 @@
       <schema_name/>
     </partitioning>
     <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}</topic>
-    <consumerGroup>${Config.Log.Kafka.Consumer.Group}</consumerGroup>
+    <topic>${Config.CDC.Kafka.Data.Topic}</topic>
+    <consumerGroup>${Config.CDC.Kafka.Consumer.Group}</consumerGroup>
     <transformationPath>/from-kafka/batch_to_group.stream</transformationPath>
     <SUB_STEP>Dummy: return to kafka</SUB_STEP>
-    <batchSize>${Config.Log.Kafka.Batch.Size}</batchSize>
-    <batchDuration>${Config.Log.Kafka.Batch.Duration}</batchDuration>
+    <batchSize>${Config.CDC.Kafka.Batch.Size}</batchSize>
+    <batchDuration>${Config.CDC.Kafka.Batch.Duration}</batchDuration>
     <PARALLELISM>1</PARALLELISM>
-    <prefetchMessageCount>${Config.Log.Kafka.Batch.Max}</prefetchMessageCount>
+    <prefetchMessageCount>${Config.CDC.Kafka.Batch.Max}</prefetchMessageCount>
     <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
+    <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
     <AUTO_COMMIT>N</AUTO_COMMIT>
     <OutputField kafkaName="key" type="String">kafka_key</OutputField>
     <OutputField kafkaName="message" type="String">kafka_message</OutputField>

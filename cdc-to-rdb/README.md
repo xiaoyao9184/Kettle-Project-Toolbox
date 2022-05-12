@@ -163,9 +163,9 @@ then you can combine all cfgs by referring the `profile` name later.
         <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
 		<!-- kafka streaming to batch window settings -->
 		<!-- bigger mean more memory, more faster and more loss ratio if it fails -->
-        <cfg namespace="Config.Log.Kafka.Batch" key="Size">10000</cfg>
-        <cfg namespace="Config.Log.Kafka.Batch" key="Duration">60000</cfg>
-        <cfg namespace="Config.Log.Kafka.Batch" key="Max">10000</cfg>
+        <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
+        <cfg namespace="Config.CDC.Kafka.Batch" key="Duration">60000</cfg>
+        <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
 
     <!-- defines database related information -->
     <!-- You can define multiple databases, like 'dev' 'test' 'prod' -->
@@ -195,9 +195,9 @@ then you can combine all cfgs by referring the `profile` name later.
 	
 		<profile name="debezium-mysql-pgsql">
 		<!-- kafka consumer -->
-			<cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-			<cfg namespace="Config.Log.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
-			<cfg namespace="Config.Log.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
+			<cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
+			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
 
 		<!-- source of cdc -->
 			<!-- can be 'from-debezium' of 'from-canal' -->

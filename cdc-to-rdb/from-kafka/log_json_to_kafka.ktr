@@ -645,10 +645,10 @@
       <schema_name/>
     </partitioning>
     <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.Log.Kafka.Server.Bootstrap}</directBootstrapServers>
+    <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
     <clusterName/>
-    <topic>${Config.Log.Kafka.Data.Topic}-${Config.Log.Kafka.Consumer.Group}-logger</topic>
-    <clientId>${Config.Log.Kafka.Consumer.Group}</clientId>
+    <topic>${Config.CDC.Kafka.Data.Topic}-${Config.CDC.Kafka.Consumer.Group}-logger</topic>
+    <clientId>${Config.CDC.Kafka.Consumer.Group}</clientId>
     <keyField>log_key</keyField>
     <messageField>log_message</messageField>
     <advancedConfig>

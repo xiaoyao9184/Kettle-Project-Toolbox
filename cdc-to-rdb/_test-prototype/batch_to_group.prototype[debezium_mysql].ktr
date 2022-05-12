@@ -44,17 +44,17 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Consumer.Group</name>
+        <name>Config.CDC.Kafka.Consumer.Group</name>
         <default_value>kpt.mysql.20220310</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Data.Topic</name>
+        <name>Config.CDC.Kafka.Data.Topic</name>
         <default_value>kpt_debezium-mysql</default_value>
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <name>Config.CDC.Kafka.Server.Bootstrap</name>
         <default_value>kafka:59094</default_value>
         <description>only for protptype</description>
       </parameter>
