@@ -1,152 +1,112 @@
 <transformation>
   <info>
-    <name>table_crud_to_specify_table.prototype</name>
+    <name>group_to_table.result</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype</directory>
+    <directory>/from-kafka</directory>
     <parameters>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
-        <default_value>test_kpt</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
-        <default_value>kpt.123</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
-        <default_value>55432</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
-        <default_value>pgsql</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
-        <default_value>kpt</default_value>
-        <description>only for protptype</description>
-      </parameter>
       <parameter>
         <name>Config.Delay.Injection.Crud.Time</name>
         <default_value>0</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Delay.Injection.Field.Time</name>
         <default_value>0</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Consumer.Group</name>
-        <default_value>test_kpt.test_kpt_cdc.202109023</default_value>
-        <description>for protptype</description>
+        <default_value>kpt.mssql.20210831</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Data.Topic</name>
-        <default_value>test_canal-test_kpt_cdc</default_value>
-        <description>for protptype</description>
+        <default_value>kpt_debezium-mssql</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Kafka.Server.Bootstrap</name>
         <default_value>kafka:9092</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Column.Mapping</name>
-        <default_value>canal_sqltype</default_value>
-        <description>for protptype</description>
+        <default_value>mssql_schema</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Key.Mapping</name>
-        <default_value>canal_pknames</default_value>
-        <description>for protptype</description>
+        <default_value>debezium_key_to_key_meta</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
-        <default_value>from-canal</default_value>
-        <description>for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Case.Sensitive</name>
-        <default_value>true</default_value>
-        <description>only for protptype</description>
+        <default_value>from-debezium</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Column.Mapping</name>
         <default_value>same_source</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Operate.Mapping</name>
-        <default_value>same_source</default_value>
-        <description>for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Schema.Prefix</name>
-        <default_value>mysql_manual_generation__</default_value>
-        <description>only for protptype</description>
+        <default_value>update_only_flash_point</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Table.Mapping</name>
         <default_value>config_prefix_lookup</default_value>
-        <description>for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Table.Prefix</name>
-        <default_value/>
-        <description>only for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
         <default_value>86400</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.UpdateOnly.FlashPoint.Include</name>
         <default_value>INSERT,SNAPSHOT</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
         <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description>for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Time</name>
-        <default_value>2022-03-07T14:56:32.402+08:00</default_value>
-        <description>only for protptype</description>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Param.Schema.Name</name>
-        <default_value>mysql_manual_generation__test_kpt_cdc</default_value>
-        <description>change for protptype</description>
+        <default_value>-</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Param.Table.Name</name>
-        <default_value>change_pk__debezium_types</default_value>
-        <description>change for protptype</description>
+        <default_value>-</default_value>
+        <description/>
       </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <size_limit_lines/>
-        <interval/>
-        <timeout_days/>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
+        <schema>kpt_cdc_log</schema>
+        <table>${Internal.Transformation.Name}__trans</table>
+        <size_limit_lines>10000</size_limit_lines>
+        <interval>60</interval>
+        <timeout_days>300</timeout_days>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -240,26 +200,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>N</enabled>
+          <enabled>Y</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>N</enabled>
+          <enabled>Y</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>N</enabled>
+          <enabled>Y</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <interval/>
-        <timeout_days/>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
+        <schema>kpt_cdc_log</schema>
+        <table>${Internal.Transformation.Name}__seq</table>
+        <interval>60</interval>
+        <timeout_days>300</timeout_days>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -337,10 +297,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
+        <schema>kpt_cdc_log</schema>
+        <table>${Internal.Transformation.Name}__channel</table>
+        <timeout_days>300</timeout_days>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -403,10 +363,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
+        <schema>kpt_cdc_log</schema>
+        <table>${Internal.Transformation.Name}__step</table>
+        <timeout_days>300</timeout_days>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -474,15 +434,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>N</enabled>
+          <enabled>Y</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection/>
-        <schema/>
-        <table/>
-        <timeout_days/>
+        <connection>db_kpt_cdc_event_pgsql_writer</connection>
+        <schema>kpt_cdc_log</schema>
+        <table>${Internal.Transformation.Name}__metrics</table>
+        <timeout_days>300</timeout_days>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -545,8 +505,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
-    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <capture_step_performance>Y</capture_step_performance>
+    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -557,78 +517,139 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/21 14:24:17.424</created_date>
+    <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/12 11:11:56.440</modified_date>
+    <modified_date>2022/05/12 14:14:28.672</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
+  <connection>
+    <name>db_kpt_cdc_event_pgsql_writer</name>
+    <server>${Config.DB.db_kpt_cdc_event_pgsql_writer.server}</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>${Config.DB.db_kpt_cdc_event_pgsql_writer.database}</database>
+    <port>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</port>
+    <username>${Config.DB.db_kpt_cdc_event_pgsql_writer.username}</username>
+    <password>${Config.DB.db_kpt_cdc_event_pgsql_writer.password}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
+    <hop>
+      <from>SelectValues: sort field</from>
+      <to>RowsToResult</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>RowsFromResult: kafka with table info</from>
+      <to>Dummy: stream logs</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: stream logs</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JoinRows</from>
+      <to>FilterRows: target_ignore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StepsMetrics</from>
+      <to>GetVariable: full table name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: full table name</from>
+      <to>SystemInfo: batch_id&amp;batch_time</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch_id&amp;batch_time</from>
+      <to>SelectValues: sort field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: stream logs</from>
+      <to>SampleRows: for target_table</to>
+      <enabled>Y</enabled>
+    </hop>
     <hop>
       <from>Append: GMT_to_Timestamp</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Append: format_to_Date</from>
-      <to>ETL metadata injection</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Append: format_to_Timestamp</from>
-      <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: scale_to_BigNumber.step1</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_BigNumber</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_Boolean</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_Integer</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_Number</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>BlockUntilStepsFinish</from>
-      <to>Delay: debug for crud injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR</from>
-      <to>FilterRows: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR</from>
-      <to>ValueMapper: FLAG</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Constant: GMT_to_Timestamp</from>
       <to>SelectValues: GMT_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: IGNORE</from>
-      <to>JSON output: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -639,16 +660,6 @@
     <hop>
       <from>Constant: days_to_Date</from>
       <to>SelectValues: days_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: format_to_Date</from>
-      <to>SelectValues: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: format_to_Timestamp</from>
-      <to>SelectValues: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -702,16 +713,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: format_to_Date</from>
-      <to>Append: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: format_to_Timestamp</from>
-      <to>Append: format_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>DataGrid: scale_to_BigNumber.step1</from>
       <to>Append: scale_to_BigNumber.step1</to>
       <enabled>Y</enabled>
@@ -737,18 +738,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Delay: debug for crud injection</from>
-      <to>ETL metadata injection</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
       <from>Dummy: column meta</from>
       <to>Constant: JsonInput</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>Dummy: field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -767,53 +758,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: field</from>
-      <to>Constant: COMPARATOR</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: stream logs</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: stream logs</from>
-      <to>SampleRows: for target_table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Dummy: target</from>
       <to>SampleRows: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>SelectValues: key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: target_ignore</from>
-      <to>Group by: IGNORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>GetVariable: full table name</from>
-      <to>SystemInfo: batch_id&amp;batch_time</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by: IGNORE</from>
-      <to>Constant: IGNORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: IGNORE</from>
-      <to>SimpleMapping: logger IGNORE</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>JoinRows</from>
-      <to>FilterRows: target_ignore</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -822,9 +768,9 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>RowsFromResult: kafka with table info</from>
-      <to>Dummy: stream logs</to>
-      <enabled>N</enabled>
+      <from>SampleRows: for target_column</from>
+      <to>WriteToLog: target_operate</to>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SampleRows: target</from>
@@ -839,47 +785,37 @@
     <hop>
       <from>SelectValues: column</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: days_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: field</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: format_to_Date</from>
-      <to>Append: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: format_to_Timestamp</from>
-      <to>Append: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: key</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: microseconds_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: milliseconds_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: nanoseconds_to_Date</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: scale_to_BigNumber.step1</from>
@@ -889,17 +825,12 @@
     <hop>
       <from>SelectValues: scale_to_BigNumber.step2</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: sort field</from>
-      <to>RowsToResult</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: target</from>
       <to>ETL metadata injection</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: to_BigNumber</from>
@@ -932,11 +863,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StepsMetrics</from>
-      <to>GetVariable: full table name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Switch / case: kettle_converter</from>
       <to>Constant: GMT_to_Timestamp</to>
       <enabled>Y</enabled>
@@ -944,16 +870,6 @@
     <hop>
       <from>Switch / case: kettle_converter</from>
       <to>Constant: days_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -997,8 +913,63 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id&amp;batch_time</from>
-      <to>SelectValues: sort field</to>
+      <from>SampleRows: for target_column</from>
+      <to>Delay: debug for field injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: format_to_Date</from>
+      <to>SelectValues: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: format_to_Timestamp</from>
+      <to>SelectValues: format_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: format_to_Date</from>
+      <to>Append: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: format_to_Timestamp</from>
+      <to>Append: format_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: format_to_Date</from>
+      <to>Append: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: format_to_Timestamp</from>
+      <to>Append: format_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: format_to_Date</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: format_to_Timestamp</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: format_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: field</from>
+      <to>Constant: COMPARATOR</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1007,98 +978,53 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test_kpt_cdc</from>
-      <to>Dummy: stream logs</to>
+      <from>FilterRows: column</from>
+      <to>SelectValues: key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>FilterRows: column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>ValueMapper: FLAG</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Dummy: field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>BlockUntilStepsFinish</from>
+      <to>Delay: debug for crud injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Delay: debug for crud injection</from>
-      <to>ETL metadata injection: for prototype</to>
+      <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: column</from>
-      <to>ETL metadata injection: for prototype</to>
+      <from>Constant: IGNORE</from>
+      <to>JSON output: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append: to_Boolean</from>
-      <to>ETL metadata injection: for prototype</to>
+      <from>JSON output: IGNORE</from>
+      <to>SimpleMapping: logger IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append: to_Integer</from>
-      <to>ETL metadata injection: for prototype</to>
+      <from>FilterRows: target_ignore</from>
+      <to>Group by: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Append: to_Number</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: to_BigNumber</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: GMT_to_Timestamp</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: days_to_Date</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: milliseconds_to_Date</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: microseconds_to_Date</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: nanoseconds_to_Date</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: scale_to_BigNumber.step1</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: scale_to_BigNumber.step2</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: format_to_Date</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: format_to_Timestamp</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: target</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: key</from>
-      <to>ETL metadata injection: for prototype</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: field</from>
-      <to>ETL metadata injection: for prototype</to>
+      <from>Group by: IGNORE</from>
+      <to>Constant: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1114,6 +1040,56 @@
     <hop>
       <from>Dummy: process logs</from>
       <to>BlockUntilStepsFinish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: target_ignore</from>
+      <to>SimpleMapping: source_operate.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: source_operate.mapping</from>
+      <to>SampleRows: for target_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: Byte_to_Binary</from>
+      <to>ReplaceString: template 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: Byte_to_Binary</from>
+      <to>SelectValues: Byte_to_Binary.step2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: Byte_to_Binary.step1</from>
+      <to>Append: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ReplaceString: template 2</from>
+      <to>SelectValues: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: Byte_to_Binary.step1</from>
+      <to>Append: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: kettle_converter</from>
+      <to>Constant: Byte_to_Binary</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: Byte_to_Binary.step2</from>
+      <to>ETL metadata injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: Byte_to_Binary.step1</from>
+      <to>ETL metadata injection</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1137,14 +1113,9 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SampleRows: for target_column</from>
-      <to>Delay: debug for field injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SystemInfo: batch info</from>
       <to>Transformation executor: log_environment_to_logtable</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SimpleMapping: source_operate.mapping</from>
@@ -1152,21 +1123,38 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: target_ignore</from>
-      <to>SimpleMapping: source_operate.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SimpleMapping: target_operate.mapping</from>
       <to>Dummy: process logs</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>SimpleMapping: target_operate.mapping</from>
-      <to>SampleRows: for target_column</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
+  <step>
+    <name>Append: Byte_to_Binary.step1</name>
+    <type>Append</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <head_name>DataGrid: Byte_to_Binary.step1</head_name>
+    <tail_name>SelectValues: Byte_to_Binary.step1</tail_name>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>2576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Append: GMT_to_Timestamp</name>
     <type>Append</type>
@@ -1189,8 +1177,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2352</yloc>
+      <xloc>1184</xloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1216,8 +1204,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2928</yloc>
+      <xloc>1184</xloc>
+      <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1243,8 +1231,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>3056</yloc>
+      <xloc>1184</xloc>
+      <yloc>2992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1270,8 +1258,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2800</yloc>
+      <xloc>1184</xloc>
+      <yloc>2304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1297,8 +1285,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2224</yloc>
+      <xloc>1184</xloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1324,8 +1312,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1840</yloc>
+      <xloc>1184</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1351,8 +1339,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1968</yloc>
+      <xloc>1184</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1378,8 +1366,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2096</yloc>
+      <xloc>1184</xloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1473,8 +1461,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1200</yloc>
+      <xloc>1392</xloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1514,8 +1502,71 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>1040</yloc>
+      <xloc>352</xloc>
+      <yloc>1584</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: Byte_to_Binary</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>REPLACE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Y</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>TEMPLATE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ALWAY_STRING</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>String</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1553,8 +1604,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>1520</yloc>
+      <xloc>768</xloc>
+      <yloc>3232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1604,8 +1655,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2352</yloc>
+      <xloc>768</xloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1643,7 +1694,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
+      <xloc>768</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1778,8 +1829,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>1712</yloc>
+      <xloc>560</xloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1817,8 +1868,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2416</yloc>
+      <xloc>768</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1856,8 +1907,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2928</yloc>
+      <xloc>768</xloc>
+      <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1895,8 +1946,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>3056</yloc>
+      <xloc>768</xloc>
+      <yloc>2992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1934,8 +1985,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2544</yloc>
+      <xloc>768</xloc>
+      <yloc>2064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1973,8 +2024,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2480</yloc>
+      <xloc>768</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2012,8 +2063,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2608</yloc>
+      <xloc>768</xloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2075,8 +2126,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2672</yloc>
+      <xloc>768</xloc>
+      <yloc>2432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2114,8 +2165,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2224</yloc>
+      <xloc>768</xloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2153,8 +2204,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>1840</yloc>
+      <xloc>768</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2192,8 +2243,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>1968</yloc>
+      <xloc>768</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2231,8 +2282,78 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2096</yloc>
+      <xloc>768</xloc>
+      <yloc>1472</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: Byte_to_Binary.step1</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>field_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>field_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>field_conversion_mask</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>kafka_message</item>
+        <item>String</item>
+        <item/>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1072</xloc>
+      <yloc>2496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2301,8 +2422,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2288</yloc>
+      <xloc>1072</xloc>
+      <yloc>1680</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2371,8 +2492,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2864</yloc>
+      <xloc>1072</xloc>
+      <yloc>2768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2441,8 +2562,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2992</yloc>
+      <xloc>1072</xloc>
+      <yloc>2912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2511,195 +2632,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: test_kpt_cdc</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>batch_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>group_table_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_key</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>0</item>
-        <item>2020-01-28</item>
-        <item>0</item>
-        <item>mysql_manual_generation__test_kpt_cdc.change_pk__debezium_types</item>
-        <item/>
-        <item>{"data":[{"_id":"0","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":12,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
-        <item>test_canal-test_kpt_cdc</item>
-        <item>0</item>
-        <item>1</item>
-        <item>0</item>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>64</yloc>
+      <xloc>1072</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2755,8 +2689,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2160</yloc>
+      <xloc>1072</xloc>
+      <yloc>1536</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2812,8 +2746,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>1776</yloc>
+      <xloc>1072</xloc>
+      <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2869,8 +2803,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>1904</yloc>
+      <xloc>1072</xloc>
+      <yloc>1248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2926,8 +2860,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2032</yloc>
+      <xloc>1072</xloc>
+      <yloc>1392</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2953,8 +2887,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1328</yloc>
+      <xloc>1392</xloc>
+      <yloc>1299</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2980,8 +2914,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>912</yloc>
+      <xloc>352</xloc>
+      <yloc>1296</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3005,8 +2939,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>1520</yloc>
+      <xloc>352</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3030,8 +2964,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>1520</yloc>
+      <xloc>560</xloc>
+      <yloc>3232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3055,8 +2989,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1072</yloc>
+      <xloc>1392</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3105,8 +3039,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>1328</yloc>
+      <xloc>560</xloc>
+      <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3155,6 +3089,13 @@
         <source_field>key_comparator</source_field>
       </mapping>
       <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
         <target_step_name>InsertUpdate: update</target_step_name>
         <target_attribute_key>KEY_STREAM</target_attribute_key>
         <target_detail>Y</target_detail>
@@ -3167,6 +3108,13 @@
         <target_detail>Y</target_detail>
         <source_step>SelectValues: milliseconds_to_Date</source_step>
         <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step1</target_step_name>
+        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: Byte_to_Binary.step1</source_step>
+        <source_field>field_conversion_mask</source_field>
       </mapping>
       <mapping>
         <target_step_name>InsertUpdate: update</target_step_name>
@@ -3188,6 +3136,13 @@
         <target_detail>Y</target_detail>
         <source_step>SelectValues: nanoseconds_to_Date</source_step>
         <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_PRECISION</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_precision</source_field>
       </mapping>
       <mapping>
         <target_step_name>InsertUpdate: update</target_step_name>
@@ -3279,6 +3234,13 @@
         <target_detail>Y</target_detail>
         <source_step>Append: scale_to_BigNumber.step1</source_step>
         <source_field>field_type</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_name</source_field>
       </mapping>
       <mapping>
         <target_step_name>InsertUpdate: insert</target_step_name>
@@ -3403,8 +3365,8 @@
         <target_step_name>Delete</target_step_name>
         <target_attribute_key>STREAM_FIELDNAME_2</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_stream</source_field>
+        <source_step/>
+        <source_field> </source_field>
       </mapping>
       <mapping>
         <target_step_name>to_Number</target_step_name>
@@ -3440,6 +3402,13 @@
         <target_detail>Y</target_detail>
         <source_step>SelectValues: days_to_Date</source_step>
         <source_field>field_name</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step1</target_step_name>
+        <target_attribute_key>META_TYPE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: Byte_to_Binary.step1</source_step>
+        <source_field>field_type</source_field>
       </mapping>
       <mapping>
         <target_step_name>Delete</target_step_name>
@@ -3503,6 +3472,20 @@
         <target_detail>N</target_detail>
         <source_step>SelectValues: target</source_step>
         <source_field>target_schema</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step2</target_step_name>
+        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>SelectValues: Byte_to_Binary.step2</source_step>
+        <source_field>field_replace</source_field>
+      </mapping>
+      <mapping>
+        <target_step_name>Byte_to_Binary.step1</target_step_name>
+        <target_attribute_key>META_NAME</target_attribute_key>
+        <target_detail>Y</target_detail>
+        <source_step>Append: Byte_to_Binary.step1</source_step>
+        <source_field>field_name</source_field>
       </mapping>
       <mapping>
         <target_step_name>JSON input: column</target_step_name>
@@ -3598,501 +3581,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>96</xloc>
-      <yloc>1840</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ETL metadata injection: for prototype</name>
-    <type>MetaInject</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>message_convert_to_rdb_rud.template</trans_name>
-    <filename/>
-    <directory_path>to_rdb</directory_path>
-    <source_step/>
-    <source_output_fields>    </source_output_fields>
-    <target_file>_test-prototype/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
-    <no_execution>Y</no_execution>
-    <stream_source_step>Delay: debug for crud injection</stream_source_step>
-    <stream_target_step>Dummy: start</stream_target_step>
-    <mappings>
-      <mapping>
-        <target_step_name>to_Integer</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_Integer</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>SCHEMA_NAME</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_schema</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>KEY_CONDITION</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_comparator</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>KEY_STREAM</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>milliseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: milliseconds_to_Date</source_step>
-        <source_field>field_replace</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>UPDATE_LOOKUP</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>format_to_Date</target_step_name>
-        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: format_to_Date</source_step>
-        <source_field>field_conversion_mask</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>nanoseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: nanoseconds_to_Date</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>TABLE_NAME</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>KEY_LOOKUP</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step1</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: scale_to_BigNumber.step1</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>format_to_Timestamp</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: format_to_Timestamp</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step2</target_step_name>
-        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
-        <source_field>field_replace</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>days_to_Date</target_step_name>
-        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: days_to_Date</source_step>
-        <source_field>field_replace</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>SCHEMA_NAME</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_schema</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>GMT_to_Timestamp</target_step_name>
-        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: GMT_to_Timestamp</source_step>
-        <source_field>field_conversion_mask</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>KEY_CONDITION</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_comparator</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>microseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: microseconds_to_Date</source_step>
-        <source_field>field_replace</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>KEY_STREAM</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>format_to_Timestamp</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: format_to_Timestamp</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step1</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: scale_to_BigNumber.step1</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>UPDATE_LOOKUP</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_Integer</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_Integer</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>TABLE_NAME</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>KEY_LOOKUP</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>nanoseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: nanoseconds_to_Date</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>TableOutput</target_step_name>
-        <target_attribute_key>DATABASE_FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>UPDATE_STREAM</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>format_to_Date</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: format_to_Date</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>JSON input: column</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: column</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>GMT_to_Timestamp</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: GMT_to_Timestamp</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>Delete</target_step_name>
-        <target_attribute_key>COMPARATOR</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_comparator</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>microseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: microseconds_to_Date</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_Boolean</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_Boolean</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>format_to_Timestamp</target_step_name>
-        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: format_to_Timestamp</source_step>
-        <source_field>field_conversion_mask</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>milliseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: milliseconds_to_Date</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: update</target_step_name>
-        <target_attribute_key>UPDATE_FLAG</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_flag</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>Delete</target_step_name>
-        <target_attribute_key>STREAM_FIELDNAME_1</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>Delete</target_step_name>
-        <target_attribute_key>STREAM_FIELDNAME_2</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_Number</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_Number</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>nanoseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_REPLACE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: nanoseconds_to_Date</source_step>
-        <source_field>field_replace</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_BigNumber</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_BigNumber</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step2</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>days_to_Date</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: days_to_Date</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>Delete</target_step_name>
-        <target_attribute_key>TABLE_NAME_FIELD</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: key</source_step>
-        <source_field>key_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>UPDATE_STREAM</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>microseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: microseconds_to_Date</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>milliseconds_to_Date</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: milliseconds_to_Date</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_Number</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_Number</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step2</target_step_name>
-        <target_attribute_key>FIELD_PRECISION</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
-        <source_field>field_precision</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_BigNumber</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_BigNumber</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>TableOutput</target_step_name>
-        <target_attribute_key>TARGET_TABLE</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>TableOutput</target_step_name>
-        <target_attribute_key>TARGET_SCHEMA</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_schema</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>JSON input: column</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: column</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>InsertUpdate: insert</target_step_name>
-        <target_attribute_key>UPDATE_FLAG</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_flag</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>days_to_Date</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: days_to_Date</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step2</target_step_name>
-        <target_attribute_key>FIELD_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: scale_to_BigNumber.step2</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>Delete</target_step_name>
-        <target_attribute_key>TARGET_TABLE</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_table</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>format_to_Date</target_step_name>
-        <target_attribute_key>META_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: format_to_Date</source_step>
-        <source_field>field_name</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>GMT_to_Timestamp</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: GMT_to_Timestamp</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>to_Boolean</target_step_name>
-        <target_attribute_key>META_TYPE</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: to_Boolean</source_step>
-        <source_field>field_type</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>TableOutput</target_step_name>
-        <target_attribute_key>DATABASE_STREAM_NAME</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: field</source_step>
-        <source_field>field_stream</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>JSON input: column</target_step_name>
-        <target_attribute_key>FIELD_PATH</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>SelectValues: column</source_step>
-        <source_field>field_path</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>scale_to_BigNumber.step1</target_step_name>
-        <target_attribute_key>META_CONVERSION_MASK</target_attribute_key>
-        <target_detail>Y</target_detail>
-        <source_step>Append: scale_to_BigNumber.step1</source_step>
-        <source_field>field_conversion_mask</source_field>
-      </mapping>
-      <mapping>
-        <target_step_name>Delete</target_step_name>
-        <target_attribute_key>TARGET_SCHEMA</target_attribute_key>
-        <target_detail>N</target_detail>
-        <source_step>SelectValues: target</source_step>
-        <source_field>target_schema</source_field>
-      </mapping>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1840</yloc>
+      <xloc>1392</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4135,8 +3625,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>1456</yloc>
+      <xloc>976</xloc>
+      <yloc>3232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4223,7 +3713,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
+      <xloc>1392</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4329,7 +3819,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
+      <xloc>560</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4419,7 +3909,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>976</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4513,8 +4003,59 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>2800</yloc>
+      <xloc>768</xloc>
+      <yloc>2304</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ReplaceString: template 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{precision}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>column_precision</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{scale}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>column_scale</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4637,7 +4178,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
+      <xloc>1392</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4646,7 +4187,7 @@
     <name>SampleRows: for target_column</name>
     <type>SampleRows</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -4664,8 +4205,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>912</yloc>
+      <xloc>352</xloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4691,7 +4232,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>560</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4718,8 +4259,92 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>1328</yloc>
+      <xloc>976</xloc>
+      <yloc>3136</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: Byte_to_Binary.step1</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kettle_field</name>
+        <rename>field_name</rename>
+      </field>
+      <field>
+        <name>ALWAY_STRING</name>
+        <rename>field_type</rename>
+      </field>
+      <field>
+        <name>TEMPLATE</name>
+        <rename>field_conversion_mask</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>2576</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: Byte_to_Binary.step2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kettle_field</name>
+        <rename>field_name</rename>
+      </field>
+      <field>
+        <name>kettle_type</name>
+        <rename>field_type</rename>
+      </field>
+      <field>
+        <name>REPLACE</name>
+        <rename>field_replace</rename>
+      </field>
+      <field>
+        <name>column_precision</name>
+        <rename>field_precision</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>2704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4758,8 +4383,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2352</yloc>
+      <xloc>976</xloc>
+      <yloc>1760</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4830,8 +4455,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1712</yloc>
+      <xloc>1184</xloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4870,8 +4495,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2416</yloc>
+      <xloc>1184</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4910,8 +4535,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1584</yloc>
+      <xloc>1184</xloc>
+      <yloc>3328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4950,8 +4575,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2928</yloc>
+      <xloc>976</xloc>
+      <yloc>2848</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4990,8 +4615,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>3056</yloc>
+      <xloc>976</xloc>
+      <yloc>2992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5030,8 +4655,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1456</yloc>
+      <xloc>1184</xloc>
+      <yloc>3232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5070,8 +4695,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2544</yloc>
+      <xloc>1184</xloc>
+      <yloc>2064</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5110,8 +4735,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2480</yloc>
+      <xloc>1184</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5150,8 +4775,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2608</yloc>
+      <xloc>1184</xloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5214,7 +4839,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>560</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5254,8 +4879,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2800</yloc>
+      <xloc>976</xloc>
+      <yloc>2304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5298,8 +4923,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>2672</yloc>
+      <xloc>1184</xloc>
+      <yloc>2432</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5374,7 +4999,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
+      <xloc>1392</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5410,8 +5035,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>1328</yloc>
+      <xloc>1184</xloc>
+      <yloc>3136</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5446,8 +5071,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2224</yloc>
+      <xloc>976</xloc>
+      <yloc>1616</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5482,8 +5107,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>1840</yloc>
+      <xloc>976</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5518,8 +5143,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>1968</yloc>
+      <xloc>976</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5554,8 +5179,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>864</xloc>
-      <yloc>2096</yloc>
+      <xloc>976</xloc>
+      <yloc>1472</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5592,16 +5217,16 @@
             <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>target_operate</parent>
-            <child>target_operate</child>
-          </connector>
-          <connector>
             <parent>target_schema</parent>
             <child>target_schema</child>
           </connector>
           <connector>
             <parent>target_table</parent>
             <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5663,8 +5288,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>912</yloc>
+      <xloc>352</xloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5741,7 +5366,7 @@
     <name>SimpleMapping: source_operate.mapping</name>
     <type>SimpleMapping</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -5874,8 +5499,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>1168</yloc>
+      <xloc>352</xloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5883,7 +5508,7 @@
     <name>SimpleMapping: target_operate.mapping</name>
     <type>SimpleMapping</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -5935,8 +5560,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>912</yloc>
+      <xloc>768</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6008,7 +5633,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>560</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6054,7 +5679,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
+      <xloc>1392</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6126,6 +5751,10 @@
         <value>format_to_Timestamp</value>
         <target_step>Constant: format_to_Timestamp</target_step>
       </case>
+      <case>
+        <value>Byte_to_Binary</value>
+        <target_step>Constant: Byte_to_Binary</target_step>
+      </case>
     </cases>
     <attributes/>
     <cluster_schema/>
@@ -6136,8 +5765,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
-      <yloc>1840</yloc>
+      <xloc>560</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6179,7 +5808,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>976</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6214,7 +5843,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1376</xloc>
+      <xloc>1392</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6269,7 +5898,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>976</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -6307,8 +5936,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>1584</yloc>
+      <xloc>976</xloc>
+      <yloc>3328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6375,8 +6004,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>1168</yloc>
+      <xloc>112</xloc>
+      <yloc>1872</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6428,8 +6057,61 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
+      <xloc>976</xloc>
       <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: target_operate</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>Y</limitRows>
+    <limitRowsNumber>1</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
+      </field>
+      <field>
+        <name>source_operate</name>
+      </field>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>1008</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
