@@ -1530,7 +1530,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>target_switch_flag</name>
+        <name>source_operate</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1766,7 +1766,7 @@
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>target_switch_flag</leftvalue>
+            <leftvalue>source_operate</leftvalue>
             <function>=</function>
             <rightvalue/>
             <value>
@@ -1809,7 +1809,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>target_switch_flag</name>
+        <name>source_operate</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>

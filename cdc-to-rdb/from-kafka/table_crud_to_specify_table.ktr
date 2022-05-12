@@ -44,11 +44,6 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Switch.Mapping</name>
-        <default_value>debezium_operate_to_kettle_switch_flag.mapping</default_value>
-        <description/>
-      </parameter>
-      <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
         <default_value>from-debezium</default_value>
         <description/>
@@ -56,6 +51,11 @@
       <parameter>
         <name>Config.Log.Target.Column.Mapping</name>
         <default_value>same_source</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Operate.Mapping</name>
+        <default_value>update_only_flash_point</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -519,7 +519,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/11 16:24:48.960</modified_date>
+    <modified_date>2022/05/12 14:14:28.672</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -769,7 +769,7 @@
     </hop>
     <hop>
       <from>SampleRows: for target_column</from>
-      <to>WriteToLog: target_switch_flag</to>
+      <to>WriteToLog: target_operate</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1038,22 +1038,17 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</from>
-      <to>Dummy: process logs</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Dummy: process logs</from>
       <to>BlockUntilStepsFinish</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>FilterRows: target_ignore</from>
-      <to>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</to>
+      <to>SimpleMapping: source_operate.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</from>
+      <from>SimpleMapping: source_operate.mapping</from>
       <to>SampleRows: for target_column</to>
       <enabled>Y</enabled>
     </hop>
@@ -1120,6 +1115,16 @@
     <hop>
       <from>SystemInfo: batch info</from>
       <to>Transformation executor: log_environment_to_logtable</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: source_operate.mapping</from>
+      <to>SimpleMapping: target_operate.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_operate.mapping</from>
+      <to>Dummy: process logs</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -3637,7 +3642,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Group by: IGNORE</send_true_to>
-    <send_false_to>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</send_false_to>
+    <send_false_to>SimpleMapping: source_operate.mapping</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -5212,16 +5217,16 @@
             <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>target_switch_flag</parent>
-            <child>target_switch_flag</child>
-          </connector>
-          <connector>
             <parent>target_schema</parent>
             <child>target_schema</child>
           </connector>
           <connector>
             <parent>target_table</parent>
             <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5285,91 +5290,6 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>1456</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: ${Config.Log.Source.Switch.Mapping}</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Source.Switch.Mapping}</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_key</parent>
-            <child>kafka_key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>kafka_message</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_switch_flag</parent>
-            <child>source_switch_flag</child>
-          </connector>
-          <connector>
-            <parent>target_switch_flag</parent>
-            <child>target_switch_flag</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <variablemapping>
-          <variable>Param.Root.Job.Timestamp</variable>
-          <input>${Config.Time}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.UpdateOnly.FlashPoint.Include</variable>
-          <input>${Config.Log.UpdateOnly.FlashPoint.Include}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.UpdateOnly.FlashPoint.Delay</variable>
-          <input>${Config.Log.UpdateOnly.FlashPoint.Delay}</input>
-        </variablemapping>
-        <variablemapping>
-          <variable>Param.UpdateOnly.FlashPoint.Timestamp</variable>
-          <input>${Config.Log.UpdateOnly.FlashPoint.Timestamp}</input>
-        </variablemapping>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5443,6 +5363,71 @@
     </GUI>
   </step>
   <step>
+    <name>SimpleMapping: source_operate.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>source_operate.mapping</trans_name>
+    <filename/>
+    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SimpleMapping: target_column.mapping</name>
     <type>SimpleMapping</type>
     <description/>
@@ -5460,7 +5445,6 @@
     <directory_path>/to_rdb/target_column.mapping</directory_path>
     <mappings>
       <input>
-        
         <mapping>
           <input_step/>
           <output_step/>
@@ -5517,6 +5501,67 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>1712</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: target_operate.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Target.Operate.Mapping}</trans_name>
+    <filename/>
+    <directory_path>/to_rdb/target_operate.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_operate</parent>
+            <child>target_operate</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -6018,7 +6063,7 @@
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: target_switch_flag</name>
+    <name>WriteToLog: target_operate</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -6047,16 +6092,13 @@
         <name>source_table</name>
       </field>
       <field>
-        <name>source_switch_flag</name>
+        <name>source_operate</name>
       </field>
       <field>
         <name>target_schema</name>
       </field>
       <field>
         <name>target_table</name>
-      </field>
-      <field>
-        <name>target_switch_flag</name>
       </field>
     </fields>
     <attributes/>

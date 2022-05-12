@@ -497,22 +497,22 @@ these should be BUG of Debezium https://issues.redhat.com/browse/DBZ-4607
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_switch_flag</from>
+      <from>Switch / case: target_operate</from>
       <to>Delete</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_switch_flag</from>
+      <from>Switch / case: target_operate</from>
       <to>InsertUpdate: insert</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_switch_flag</from>
+      <from>Switch / case: target_operate</from>
       <to>InsertUpdate: update</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_switch_flag</from>
+      <from>Switch / case: target_operate</from>
       <to>TableOutput</to>
       <enabled>N</enabled>
     </hop>
@@ -528,7 +528,7 @@ these should be BUG of Debezium https://issues.redhat.com/browse/DBZ-4607
     </hop>
     <hop>
       <from>format_to_Timestamp</from>
-      <to>Switch / case: target_switch_flag</to>
+      <to>Switch / case: target_operate</to>
       <enabled>N</enabled>
     </hop>
     <hop>
@@ -3700,7 +3700,7 @@ putRow(row);
     </GUI>
   </step>
   <step>
-    <name>Switch / case: target_switch_flag</name>
+    <name>Switch / case: target_operate</name>
     <type>SwitchCase</type>
     <description/>
     <distribute>Y</distribute>
@@ -3710,7 +3710,7 @@ putRow(row);
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fieldname>target_switch_flag</fieldname>
+    <fieldname>target_operate</fieldname>
     <use_contains>N</use_contains>
     <case_value_type>String</case_value_type>
     <case_value_format/>

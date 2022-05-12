@@ -209,7 +209,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- use 'target_key_to_key_meta' if source table no primary key but target have -->
 			<cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
 			<!-- no change -->
-			<cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
+			<cfg namespace="Config.Log.Target.Operate" key="Mapping">update_only_flash_point</cfg>
 			
 		<!-- target of rdb -->
 			<!-- target of event write on only support 'to_pgsql' -->

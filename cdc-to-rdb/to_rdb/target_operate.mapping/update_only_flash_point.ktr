@@ -1,13 +1,33 @@
 <transformation>
   <info>
-    <name>message_convert_to_rdb_rud.template</name>
+    <name>update_only_flash_point</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_rdb</directory>
+    <directory>/to_rdb/target_operate.mapping</directory>
     <parameters>
+      <parameter>
+        <name>Config.Time</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description>timestamp point for root job run</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
+        <default_value>86400</default_value>
+        <description>seconds for now delay enable replace to update</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Include</name>
+        <default_value>INSERT,SNAPSHOT</default_value>
+        <description>flag list for replace to update</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description>timestamp point for all to replace to update</description>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -407,7 +427,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>10000</size_rowset>
+    <size_rowset>100000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -427,180 +447,129 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/21 14:24:17.424</created_date>
+    <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/25 11:14:04.864</modified_date>
+    <modified_date>2022/05/11 17:19:41.888</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_cdc_event_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_cdc_event_pgsql_writer.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.DB.db_kpt_cdc_event_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_cdc_event_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_cdc_event_pgsql_writer.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
-      <from>to_Boolean</from>
-      <to>to_Integer</to>
+      <from>SelectValues: remove flashpoint_include&amp;flashpoint_flag</from>
+      <to>MappingOutput: target_operate.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>to_Integer</from>
-      <to>to_Number</to>
+      <from>Dummy: flashpoint_flag</from>
+      <to>SelectValues: remove flashpoint_include&amp;flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>to_Number</from>
-      <to>to_BigNumber</to>
+      <from>FilterRows: config_flashpoint_timestamp in future</from>
+      <to>Calculator: use delay from root job</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>to_BigNumber</from>
-      <to>GMT_to_Timestamp</to>
+      <from>FilterRows: config_flashpoint_timestamp in future</from>
+      <to>Calculator: use time from config</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input: column</from>
-      <to>to_Boolean</to>
+      <from>FilterRows: is after flashpoint</from>
+      <to>Constant: UPDATE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>milliseconds_to_Date</from>
-      <to>microseconds_to_Date</to>
+      <from>FilterRows: is after flashpoint</from>
+      <to>Constant: INSERT_BLUK</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>microseconds_to_Date</from>
-      <to>nanoseconds_to_Date</to>
+      <from>Constant: UPDATE</from>
+      <to>SelectValues: flashpoint_include&amp;flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GMT_to_Timestamp</from>
-      <to>days_to_Date</to>
+      <from>Constant: INSERT_BLUK</from>
+      <to>SelectValues: flashpoint_include&amp;flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>days_to_Date</from>
-      <to>milliseconds_to_Date</to>
+      <from>JoinRows: flashpoint_include&amp;flashpoint_flag</from>
+      <to>FilterRows: flashpoint_include</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>scale_to_BigNumber.step1</from>
-      <to>scale_to_BigNumber.step2</to>
+      <from>SetValueField: flashpoint_flag</from>
+      <to>Dummy: flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_operate</from>
-      <to>Delete</to>
+      <from>SelectValues: flashpoint_include&amp;flashpoint_flag</from>
+      <to>JoinRows: flashpoint_include&amp;flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_operate</from>
-      <to>InsertUpdate: insert</to>
+      <from>GetVariable: flashpoint config</from>
+      <to>FilterRows: config_flashpoint_timestamp in future</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_operate</from>
-      <to>InsertUpdate: update</to>
+      <from>Dummy: flashpoint_timestamp</from>
+      <to>SystemInfo: now_timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: target_operate</from>
-      <to>TableOutput</to>
+      <from>Calculator: use time from config</from>
+      <to>Dummy: flashpoint_timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>nanoseconds_to_Date</from>
-      <to>scale_to_BigNumber.step1</to>
+      <from>Calculator: use delay from root job</from>
+      <to>Dummy: flashpoint_timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>format_to_Date</from>
-      <to>format_to_Timestamp</to>
+      <from>SystemInfo: now_timestamp</from>
+      <to>FilterRows: is after flashpoint</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>format_to_Timestamp</from>
-      <to>Switch / case: target_operate</to>
+      <from>SystemInfo: now_timestamp</from>
+      <to>WriteToLog: flashpoint_timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ReplaceString</from>
-      <to>JSON input: column</to>
+      <from>Calculator: target</from>
+      <to>JoinRows: flashpoint_include&amp;flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: start</from>
-      <to>ReplaceString</to>
+      <from>MappingInput: target_operate.mapping</from>
+      <to>Calculator: target</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Byte_to_Binary.step1</from>
-      <to>Byte_to_Binary.step2</to>
+      <from>DataGrid: test_kpt_cdc</from>
+      <to>Calculator: target</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: flashpoint_include</from>
+      <to>SetValueField: flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>scale_to_BigNumber.step2</from>
-      <to>Byte_to_Binary.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Byte_to_Binary.step2</from>
-      <to>format_to_Date</to>
+      <from>FilterRows: flashpoint_include</from>
+      <to>Dummy: flashpoint_flag</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Delete</name>
-    <type>Delete</type>
+    <name>Calculator: use delay from root job</name>
+    <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -609,12 +578,22 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <commit>1000</commit>
-    <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
-    </lookup>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>flashpoint_timestamp</field_name>
+      <calc_type>ADD_SECONDS</calc_type>
+      <field_a>config_root_job_timestamp</field_a>
+      <field_b>config_flashpoint_delay</field_b>
+      <field_c/>
+      <value_type>Date</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -624,13 +603,203 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>592</xloc>
-      <yloc>2704</yloc>
+      <xloc>864</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dummy: start</name>
+    <name>Calculator: use time from config</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>flashpoint_timestamp</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>config_flashpoint_timestamp</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Date</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: INSERT_BLUK</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>FLASHPOINT</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>INSERT_BLUK</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>832</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: UPDATE</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>FLASHPOINT</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>UPDATE</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>832</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: test_kpt_cdc</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>NONE</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+      <line>
+        <item>SNAPSHOT</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: flashpoint_flag</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -649,25 +818,22 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>80</yloc>
+      <xloc>368</xloc>
+      <yloc>1360</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>GMT_to_Timestamp</name>
-    <type>SelectValues</type>
+    <name>Dummy: flashpoint_timestamp</name>
+    <type>Dummy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -677,14 +843,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1072</yloc>
+      <xloc>736</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>InsertUpdate: insert</name>
-    <type>InsertUpdate</type>
+    <name>FilterRows: config_flashpoint_timestamp in future</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -693,13 +859,21 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <commit>1000</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
-    </lookup>
+    <send_true_to>Calculator: use time from config</send_true_to>
+    <send_false_to>Calculator: use delay from root job</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>config_flashpoint_timestamp</leftvalue>
+            <function>&gt;</function>
+            <rightvalue>config_root_job_timestamp</rightvalue>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -709,14 +883,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>2704</yloc>
+      <xloc>736</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>InsertUpdate: update</name>
-    <type>InsertUpdate</type>
+    <name>FilterRows: flashpoint_include</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -725,13 +899,22 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <commit>1000</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
-    </lookup>
+    <send_true_to>SetValueField: flashpoint_flag</send_true_to>
+    <send_false_to>Dummy: flashpoint_flag</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>flashpoint_include</leftvalue>
+            <function>CONTAINS</function>
+            <rightvalue>source_operate</rightvalue>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -741,14 +924,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>432</xloc>
-      <yloc>2704</yloc>
+      <xloc>368</xloc>
+      <yloc>1104</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>JSON input: column</name>
-    <type>JsonInput</type>
+    <name>FilterRows: is after flashpoint</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -757,38 +940,21 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>kafka_message</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
+    <send_true_to>Constant: UPDATE</send_true_to>
+    <send_false_to>Constant: INSERT_BLUK</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>now_timestamp</leftvalue>
+            <function>&gt;</function>
+            <rightvalue>flashpoint_timestamp</rightvalue>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -798,14 +964,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>400</yloc>
+      <xloc>736</xloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ReplaceString</name>
-    <type>ReplaceString</type>
+    <name>GetVariable: flashpoint config</name>
+    <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -816,16 +982,52 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>kafka_message</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>\\u0000</replace_string>
-        <replace_by_string>\\u0020</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
+        <name>config_flashpoint_include</name>
+        <variable>${Config.Log.UpdateOnly.FlashPoint.Include}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>config_flashpoint_timestamp</name>
+        <variable>${Config.Log.UpdateOnly.FlashPoint.Timestamp}</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>config_flashpoint_delay</name>
+        <variable>${Config.Log.UpdateOnly.FlashPoint.Delay}</variable>
+        <type>Integer</type>
+        <format>#.#</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>config_root_job_timestamp</name>
+        <variable>${Config.Time}</variable>
+        <type>Date</type>
+        <format>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
       </field>
     </fields>
     <attributes/>
@@ -837,14 +1039,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>240</yloc>
+      <xloc>736</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Switch / case: target_operate</name>
-    <type>SwitchCase</type>
+    <name>JoinRows: flashpoint_include&amp;flashpoint_flag</name>
+    <type>JoinRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -853,31 +1055,18 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fieldname>target_operate</fieldname>
-    <use_contains>N</use_contains>
-    <case_value_type>String</case_value_type>
-    <case_value_format/>
-    <case_value_decimal/>
-    <case_value_group/>
-    <default_target_step>Dummy: ignore not-dml-change</default_target_step>
-    <cases>
-      <case>
-        <value>INSERT</value>
-        <target_step>InsertUpdate: insert</target_step>
-      </case>
-      <case>
-        <value>DELETE</value>
-        <target_step>Delete</target_step>
-      </case>
-      <case>
-        <value>UPDATE</value>
-        <target_step>InsertUpdate: update</target_step>
-      </case>
-      <case>
-        <value>INSERT_BLUK</value>
-        <target_step>TableOutput</target_step>
-      </case>
-    </cases>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <cache_size>500</cache_size>
+    <main/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue/>
+        <function>TRUE</function>
+        <rightvalue/>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -887,461 +1076,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>2544</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>TableOutput</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <schema>"${Param.Schema.Name}"</schema>
-    <table>"${Param.Table.Name}"</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>2704</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>days_to_Date</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var info = "";
-var row = createRowCopy(getOutputRowMeta().size());
-var field_names = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
-    
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value);
-			value = dateAdd(epoch, "d", value);
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1200</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>format_to_Date</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>2256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>format_to_Timestamp</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>2384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>microseconds_to_Date</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var info = "";
-var row = createRowCopy(getOutputRowMeta().size());
-var field_names = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
-    
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value) / 1000;
-			value = new java.util.Date(value)
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1456</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>milliseconds_to_Date</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var info = "";
-var row = createRowCopy(getOutputRowMeta().size());
-var field_names = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
-    
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value);
-			value = new java.util.Date(value)
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1328</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>nanoseconds_to_Date</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var info = "";
-var row = createRowCopy(getOutputRowMeta().size());
-var field_names = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
-    
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value) / 1000 / 1000;
-			value = new java.util.Date(value)
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1584</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>scale_to_BigNumber.step1</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1712</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>scale_to_BigNumber.step2</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var row = createRowCopy(getOutputRowMeta().size());
-var fieldNames = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; fieldNames.length; index++) {
-	var inMeta = getInputRowMeta().getValueMeta(index);
-	var outMate = getOutputRowMeta().getValueMeta(index);
-	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'BigNumber'){
-		var value = row[index];
-		outMate.setConversionMask(null);
-		if(value != null &amp;&amp; value.length() != 0) {
-			var format = inMeta.getConversionMask().split(',');
-			var scale = str2num(format[1]);
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64( value.getBytes() );
-			var bi = new Packages.java.math.BigInteger(bytes);
-			var bd = new java.math.BigDecimal(bi,scale);
-			value = bd;
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1840</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>to_BigNumber</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
+      <xloc>368</xloc>
       <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>to_Boolean</name>
-    <type>SelectValues</type>
+    <name>MappingInput: target_operate.mapping</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1351,6 +1093,12 @@ putRow(row);
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -1362,13 +1110,38 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>560</yloc>
+      <xloc>368</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>to_Integer</name>
+    <name>MappingOutput: target_operate.mapping</name>
+    <type>MappingOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>1664</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: flashpoint_include&amp;flashpoint_flag</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1379,6 +1152,14 @@ putRow(row);
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>config_flashpoint_include</name>
+        <rename>flashpoint_include</rename>
+      </field>
+      <field>
+        <name>FLASHPOINT</name>
+        <rename>flashpoint_flag</rename>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -1390,13 +1171,13 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>688</yloc>
+      <xloc>736</xloc>
+      <yloc>944</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>to_Number</name>
+    <name>SelectValues: remove flashpoint_include&amp;flashpoint_flag</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1407,7 +1188,13 @@ putRow(row);
       <schema_name/>
     </partitioning>
     <fields>
-      <select_unspecified>N</select_unspecified>
+      <select_unspecified>Y</select_unspecified>
+      <remove>
+        <name>flashpoint_include</name>
+      </remove>
+      <remove>
+        <name>flashpoint_flag</name>
+      </remove>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1418,14 +1205,14 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>816</yloc>
+      <xloc>368</xloc>
+      <yloc>1488</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Byte_to_Binary.step1</name>
-    <type>SelectValues</type>
+    <name>SetValueField: flashpoint_flag</name>
+    <type>SetValueField</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1435,7 +1222,10 @@ putRow(row);
       <schema_name/>
     </partitioning>
     <fields>
-      <select_unspecified>N</select_unspecified>
+      <field>
+        <name>target_operate</name>
+        <replaceby>flashpoint_flag</replaceby>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1446,53 +1236,28 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1984</yloc>
+      <xloc>544</xloc>
+      <yloc>1232</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Byte_to_Binary.step2</name>
-    <type>ScriptValueMod</type>
+    <name>SystemInfo: now_timestamp</name>
+    <type>SystemInfo</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var row = createRowCopy(getOutputRowMeta().size());
-var fieldNames = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; fieldNames.length; index++) {
-	var inMeta = getInputRowMeta().getValueMeta(index);
-	var outMate = getOutputRowMeta().getValueMeta(index);
-    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
-		var value = row[index];
-		outMate.setConversionMask(null);
-		if(value != null &amp;&amp; value.length() != 0) {
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
-
-			value = bytes;
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
+    <fields>
+      <field>
+        <name>now_timestamp</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1502,8 +1267,99 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>2112</yloc>
+      <xloc>736</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: flashpoint_timestamp</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>config_flashpoint_include</name>
+      </field>
+      <field>
+        <name>config_flashpoint_delay</name>
+      </field>
+      <field>
+        <name>config_flashpoint_timestamp</name>
+      </field>
+      <field>
+        <name>config_root_job_timestamp</name>
+      </field>
+      <field>
+        <name>flashpoint_timestamp</name>
+      </field>
+      <field>
+        <name>now_timestamp</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>992</xloc>
+      <yloc>592</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: target</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>target_operate</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>source_operate</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>240</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
