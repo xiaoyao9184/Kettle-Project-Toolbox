@@ -1247,7 +1247,7 @@ var index_mysql_precision = getOutputRowMeta().indexOfValue("mysql_precision");
 
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
-var message_obj = JSON.parse(message_col);
+var message_obj = message_col == null ? null : JSON.parse(message_col);
 var sqlType = Object.keys(message_obj.sqlType);
 
 for (index = 0; index &lt; sqlType.length; index++) {

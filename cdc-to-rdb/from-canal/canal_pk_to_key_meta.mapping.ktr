@@ -703,7 +703,7 @@ var index_pk = getOutputRowMeta().indexOfValue("pk");
 
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
-var message_obj = JSON.parse(message_col);
+var message_obj = message_col == null ? null : JSON.parse(message_col);
 if (message_obj != null) {
   var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
 
