@@ -1,22 +1,132 @@
 <transformation>
   <info>
-    <name>stream_parse_to_each_table</name>
+    <name>batch_to_group.prototype[canal]</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka</directory>
+    <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
+        <default_value>test_kpt</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
+        <default_value>kpt.123</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
+        <default_value>55432</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
+        <default_value>pgsql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
+        <default_value>kpt</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Delay.Injection.Crud.Time</name>
+        <default_value>0</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Delay.Injection.Field.Time</name>
+        <default_value>0</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Consumer.Group</name>
+        <default_value>kpt.mysql.20220310</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Data.Topic</name>
+        <default_value>kpt_canal-mysql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Kafka.Server.Bootstrap</name>
+        <default_value>kafka:59094</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Column.Mapping</name>
+        <default_value>canal_sqltype</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Source.Key.Mapping</name>
+        <default_value>canal_pknames</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.Log.Source.Table.Mapping</name>
-        <default_value>mysql_playload</default_value>
-        <description/>
+        <default_value>canal_message</default_value>
+        <description>just for prototype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
-        <default_value>from-debezium</default_value>
-        <description/>
+        <default_value>from-canal</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Case.Sensitive</name>
+        <default_value>true</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Column.Mapping</name>
+        <default_value>same_source</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Operate.Mapping</name>
+        <default_value>same_source</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Schema.Prefix</name>
+        <default_value>mysql_manual_generation__</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Table.Mapping</name>
+        <default_value>config_prefix_lookup</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Table.Prefix</name>
+        <default_value/>
+        <description>just for prototype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.Target.Transformation.Path</name>
+        <default_value>to_pgsql</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
+        <default_value>86400</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
+        <default_value>2000-01-01T00:00:00.000Z</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
+        <name>Config.Time</name>
+        <default_value>2022-03-07T14:56:32.402+08:00</default_value>
+        <description>only for protptype</description>
       </parameter>
       <parameter>
         <name>CursorLastExecutorResultBatchId</name>
@@ -31,12 +141,12 @@
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__trans</table>
-        <size_limit_lines>10000</size_limit_lines>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -130,26 +240,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__seq</table>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -227,10 +337,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__channel</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -293,10 +403,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__step</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -364,15 +474,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__metrics</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -449,7 +559,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/12 14:25:06.741</modified_date>
+    <modified_date>2022/05/12 15:35:08.843</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -508,43 +618,8 @@
   </connection>
   <order>
     <hop>
-      <from>Transformation executor</from>
-      <to>Dummy: exec result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transformation executor</from>
-      <to>Dummy: exec statistics</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transformation executor</from>
-      <to>Dummy: exec stream</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: executor param</from>
-      <to>Transformation executor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exec statistics</from>
-      <to>Sequence: execution_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exec result</from>
-      <to>ScriptValueMod: result_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sequence: execution_id</from>
-      <to>StreamLookup: execution</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: ERROR</from>
-      <to>SimpleMapping: logger ERROR</to>
+      <from>Calculator: length of schema and table</from>
+      <to>FilterRows: is table-log</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -553,38 +628,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup: execution</from>
-      <to>StreamLookup: result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: source_table.mapping</from>
-      <to>Calculator: length of schema and table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exec stream</from>
-      <to>Group by: group_table_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by: group_table_id</from>
-      <to>StreamLookup: execution</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>StreamLookup: result</from>
-      <to>FilterRows: execution no error</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: GOOD</from>
       <to>JSON output: good</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: good</from>
-      <to>SimpleMapping: logger GOOD</to>
+      <from>Dummy: exec result</from>
+      <to>ScriptValueMod: result_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: exec statistics</from>
+      <to>Sequence: execution_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: exec stream</from>
+      <to>Group by: group_table_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -603,13 +663,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove execution_log_text</from>
-      <to>Dummy: return to kafka</to>
+      <from>FilterRows: is table-log</from>
+      <to>Group by: batch_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: is table-log</from>
-      <to>Group by: batch_id</to>
+      <from>Get records from stream</from>
+      <to>SystemInfo: batch_id</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Group by: group_table_id</from>
+      <to>StreamLookup: execution</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: ERROR</from>
+      <to>SimpleMapping: logger ERROR</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: good</from>
+      <to>SimpleMapping: logger GOOD</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -618,23 +693,58 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get records from stream</from>
-      <to>SystemInfo: batch_id, batch_time</to>
+      <from>SelectValues: executor param</from>
+      <to>Transformation executor</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id, batch_time</from>
+      <from>SelectValues: remove execution_log_text</from>
+      <to>Dummy: return to kafka</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence: execution_id</from>
+      <to>StreamLookup: execution</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: source_table.mapping</from>
+      <to>Calculator: length of schema and table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: execution</from>
+      <to>StreamLookup: result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: result</from>
+      <to>FilterRows: execution no error</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Transformation executor</from>
+      <to>Dummy: exec result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Transformation executor</from>
+      <to>Dummy: exec statistics</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Transformation executor</from>
+      <to>Dummy: exec stream</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch_id</from>
       <to>SimpleMapping: source_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: length of schema and table</from>
-      <to>FilterRows: is table-log</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch info</from>
-      <to>Transformation executor: log_environment_to_logtable</to>
+      <from>DataGrid: canal canal_manager&amp;test_kpt_cdc</from>
+      <to>SystemInfo: batch_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -668,16 +778,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: batch_id</from>
-      <to>Constant: DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: DDL</from>
-      <to>SimpleMapping: logger DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: MERGE</from>
       <to>JSON output: MERGE</to>
       <enabled>Y</enabled>
@@ -688,6 +788,21 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Group by: batch_id</from>
+      <to>Constant: DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: redirect_key</from>
+      <to>Constant: MERGE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: DDL</from>
+      <to>SimpleMapping: logger DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>SetValueConstant: group</from>
       <to>SystemInfo: batch</to>
       <enabled>Y</enabled>
@@ -695,11 +810,6 @@
     <hop>
       <from>SystemInfo: batch</from>
       <to>SimpleMapping: logger MERGE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by: redirect_key</from>
-      <to>Constant: MERGE</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -936,6 +1046,195 @@
     <GUI>
       <xloc>592</xloc>
       <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: canal canal_manager&amp;test_kpt_cdc</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kafka_key</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_topic</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_partition</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_offset</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_timestamp</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item/>
+        <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
+        <item>edata_canal-mysql</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper1:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
+        <item>edata_canal-mysql</item>
+        <item>0</item>
+        <item>2</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
+        <item>edata_canal-mysql</item>
+        <item>0</item>
+        <item>3</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper1:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
+        <item>edata_canal-mysql</item>
+        <item>0</item>
+        <item>4</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>fail_because_canal_boolean_use_with_tinyint1</item>
+        <item>{"data":[{"_id":"0","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":12,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>ddl</item>
+        <item>99</item>
+        <item>99</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item>{}</item>
+        <item>{}</item>
+        <item>ddl</item>
+        <item>99</item>
+        <item>100</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"_id":"2","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":2,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>redirect</item>
+        <item>999</item>
+        <item>1</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"_id":"2","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":2,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>redirect</item>
+        <item>999</item>
+        <item>2</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"_id":"3","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":3,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>redirect</item>
+        <item>999</item>
+        <item>3</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"_id":"3","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":3,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>redirect</item>
+        <item>999</item>
+        <item>4</item>
+        <item>1630002794</item>
+      </line>
+      <line>
+        <item/>
+        <item>{"data":[{"_id":"3","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":3,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
+        <item>redirect</item>
+        <item>999</item>
+        <item>5</item>
+        <item>1630002794</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>192</xloc>
+      <yloc>0</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1339,7 +1638,7 @@
     <prefix>grp</prefix>
     <add_linenr>N</add_linenr>
     <linenr_fieldname/>
-    <give_back_row>N</give_back_row>
+    <give_back_row>Y</give_back_row>
     <group>
       <field>
         <name>group_table_id</name>
@@ -2285,83 +2584,6 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: source_table.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.Log.Source.Table.Mapping}</trans_name>
-    <filename/>
-    <directory_path>/${Config.Log.Source.Transformation.Path}/source_table.mapping</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_key</parent>
-            <child>kafka_key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>kafka_message</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-          <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>source_row</parent>
-            <child>source_row</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SimpleMapping: group_table_key.mapping</name>
     <type>SimpleMapping</type>
     <description/>
@@ -2586,6 +2808,10 @@ result_id = i;</jsScript_script>
           <connector>
             <parent>code</parent>
             <child>code</child>
+          </connector>
+          <connector>
+            <parent>group</parent>
+            <child>group</child>
           </connector>
           <connector>
             <parent>json</parent>
@@ -2824,6 +3050,83 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>976</xloc>
       <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: source_table.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Source.Table.Mapping}</trans_name>
+    <filename/>
+    <directory_path>/${Config.Log.Source.Transformation.Path}/source_table.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>source_row</parent>
+            <child>source_row</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3099,50 +3402,7 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>process_id</name>
-        <type>Current PID</type>
-      </field>
-      <field>
-        <name>transname</name>
-        <type>transformation name</type>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <type>batch ID</type>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>system date (fixed)</type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SystemInfo: batch_id, batch_time</name>
+    <name>SystemInfo: batch_id</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -3310,61 +3570,6 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>352</xloc>
       <yloc>1312</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Transformation executor: log_environment_to_logtable</name>
-    <type>TransExecutor</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>log_environment_to_logtable</trans_name>
-    <filename/>
-    <directory_path>/from-kafka</directory_path>
-    <group_size>1</group_size>
-    <group_field/>
-    <group_time/>
-    <parameters>
-      <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step/>
-    <execution_time_field>ExecutionTime</execution_time_field>
-    <execution_result_field>ExecutionResult</execution_result_field>
-    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
-    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
-    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
-    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
-    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
-    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
-    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
-    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
-    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
-    <result_rows_target_step/>
-    <result_files_target_step/>
-    <result_files_file_name_field>FileName</result_files_file_name_field>
-    <executors_output_step/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
