@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>canal_log_to_table_name.mapping</name>
+    <name>canal_message</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-canal</directory>
+    <directory>/from-canal/source_table.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -438,11 +438,11 @@
   <order>
     <hop>
       <from>SelectValues: rename source_*</from>
-      <to>MappingOutput: canal_log_to_table_name</to>
+      <to>MappingOutput: source_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: canal_log_to_table_name</from>
+      <from>MappingInput: source_table.mapping</from>
       <to>JSON input: message info</to>
       <enabled>Y</enabled>
     </hop>
@@ -628,7 +628,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: canal_log_to_table_name</name>
+    <name>MappingInput: source_table.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -668,7 +668,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: canal_log_to_table_name</name>
+    <name>MappingOutput: source_table.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

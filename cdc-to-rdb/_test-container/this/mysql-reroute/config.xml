@@ -35,7 +35,7 @@
             <cfg namespace="Config.Log.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.reroute</cfg>
             
             <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
-            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_schema_to_column_meta.mapping</cfg>
             <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
             <cfg namespace="Config.Log.Target.Operate" key="Mapping">update_only_flash_point</cfg>
@@ -68,7 +68,7 @@ Config.Log.Kafka.Server.Bootstrap	kafka:59094
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.manual.20220128	
 Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.reroute		
 Config.Log.Source.Transformation.Path	from-debezium	
-Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
+Config.Log.Source.Table.Mapping	mysql_playload	
 Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta	
 Config.Log.Target.Operate.Mapping	update_only_flash_point	
@@ -87,7 +87,7 @@ Config.Log.Target.Table.Prefix
             <cfg namespace="Config.Log.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.reroute</cfg>
             
             <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
-            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
+            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_schema_to_column_meta.mapping</cfg>
             <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
             <cfg namespace="Config.Log.Target.Operate" key="Mapping">update_only_flash_point</cfg>
@@ -120,7 +120,7 @@ Config.Log.Kafka.Server.Bootstrap	kafka:59094
 Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.chameleon.20220128	
 Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.reroute		
 Config.Log.Source.Transformation.Path	from-debezium	
-Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
+Config.Log.Source.Table.Mapping	mysql_playload	
 Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
 Config.Log.Source.Key.Mapping	debezium_key_to_key_meta	
 Config.Log.Target.Operate.Mapping	update_only_flash_point	

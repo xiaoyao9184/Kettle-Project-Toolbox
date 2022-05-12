@@ -10,7 +10,7 @@
     <parameters>
       <parameter>
         <name>Config.Log.Source.Table.Mapping</name>
-        <default_value>mysql_playload_to_table_name.mapping</default_value>
+        <default_value>mysql_playload</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -558,7 +558,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: ${Config.Log.Source.Table.Mapping}</from>
+      <from>SimpleMapping: source_table.mapping</from>
       <to>Calculator: length of schema and table</to>
       <enabled>Y</enabled>
     </hop>
@@ -624,7 +624,7 @@
     </hop>
     <hop>
       <from>SystemInfo: batch_id, batch_time</from>
-      <to>SimpleMapping: ${Config.Log.Source.Table.Mapping}</to>
+      <to>SimpleMapping: source_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -2285,7 +2285,7 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: ${Config.Log.Source.Table.Mapping}</name>
+    <name>SimpleMapping: source_table.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2299,7 +2299,7 @@ result_id = i;</jsScript_script>
     <trans_object_id/>
     <trans_name>${Config.Log.Source.Table.Mapping}</trans_name>
     <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
+    <directory_path>/${Config.Log.Source.Transformation.Path}/source_table.mapping</directory_path>
     <mappings>
       <input>
         <mapping>

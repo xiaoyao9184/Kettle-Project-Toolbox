@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>mssql_playload_to_table_name.mapping</name>
+    <name>mssql_playload</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-debezium</directory>
+    <directory>/from-debezium/source_table.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -458,7 +458,7 @@
     </hop>
     <hop>
       <from>SelectValues: rename source_*</from>
-      <to>MappingOutput: mssql_playload_to_table_name</to>
+      <to>MappingOutput: source_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -507,7 +507,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: mssql_playload_to_table_name</from>
+      <from>MappingInput: source_table.mapping</from>
       <to>JSON input: message_schema_name</to>
       <enabled>Y</enabled>
     </hop>
@@ -1054,7 +1054,7 @@
     </file>
     <fields>
       <field>
-        <name>payload_op</name>
+        <name>message_payload_op</name>
         <path>$.payload.op</path>
         <type>String</type>
         <format/>
@@ -1067,7 +1067,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>payload_ts_ms</name>
+        <name>message_payload_ts_ms</name>
         <path>$.payload.ts_ms</path>
         <type>String</type>
         <format/>
@@ -1080,7 +1080,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>payload_transaction</name>
+        <name>message_payload_transaction</name>
         <path>$.payload.transaction</path>
         <type>String</type>
         <format/>
@@ -1159,7 +1159,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: mssql_playload_to_table_name</name>
+    <name>MappingInput: source_table.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1199,7 +1199,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: mssql_playload_to_table_name</name>
+    <name>MappingOutput: source_table.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1309,7 +1309,7 @@
       </remove>
       <meta>
         <name>EMPTY</name>
-        <rename>payload_op</rename>
+        <rename>message_payload_op</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1353,10 +1353,10 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>payload_ts_ms</name>
+        <name>message_payload_ts_ms</name>
       </remove>
       <remove>
-        <name>payload_transaction</name>
+        <name>message_payload_transaction</name>
       </remove>
     </fields>
     <attributes/>
@@ -1392,6 +1392,23 @@
       <remove>
         <name>message_payload_source_schema</name>
       </remove>
+      <meta>
+        <name>message_payload_op</name>
+        <rename>source_operate</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
       <meta>
         <name>message_payload_source_db</name>
         <rename>source_schema</rename>
@@ -1429,23 +1446,6 @@
       <meta>
         <name>key_payload</name>
         <rename>source_key</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>payload_op</name>
-        <rename>source_operate</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
