@@ -1808,8 +1808,8 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>source_key</aggregate>
-        <subject>source_key</subject>
+        <aggregate>source_row</aggregate>
+        <subject>source_row</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
@@ -2449,8 +2449,8 @@ result_id = i;</jsScript_script>
             <child>source_table</child>
           </connector>
           <connector>
-            <parent>source_key</parent>
-            <child>source_key</child>
+            <parent>source_row</parent>
+            <child>source_row</child>
           </connector>
         </mapping>
       </output>
@@ -2525,7 +2525,7 @@ result_id = i;</jsScript_script>
             <child>param_table</child>
           </connector>
           <connector>
-            <parent>source_key</parent>
+            <parent>source_row</parent>
             <child>param_key</child>
           </connector>
         </mapping>
@@ -3521,8 +3521,8 @@ result_id = i;</jsScript_script>
         <element>source_table</element>
       </field>
       <field>
-        <name>source_key</name>
-        <element>source_key</element>
+        <name>source_row</name>
+        <element>source_row</element>
       </field>
     </fields>
     <attributes/>
