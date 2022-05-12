@@ -759,7 +759,7 @@
     </hop>
     <hop>
       <from>FilterRows: is redirect</from>
-      <to>Group by: redirect_key</to>
+      <to>Group by: redirect_row</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -808,7 +808,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: redirect_key</from>
+      <from>Group by: redirect_row</from>
       <to>Constant: MERGE</to>
       <enabled>Y</enabled>
     </hop>
@@ -1319,7 +1319,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>SimpleMapping: group_table_operate.mapping</send_true_to>
-    <send_false_to>Group by: redirect_key</send_false_to>
+    <send_false_to>Group by: redirect_row</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -1646,7 +1646,7 @@
     </GUI>
   </step>
   <step>
-    <name>Group by: redirect_key</name>
+    <name>Group by: redirect_row</name>
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1666,7 +1666,7 @@
     <give_back_row>N</give_back_row>
     <group>
       <field>
-        <name>redirect_key</name>
+        <name>redirect_row</name>
       </field>
     </group>
     <fields>
@@ -2507,15 +2507,15 @@ result_id = i;</jsScript_script>
           </connector>
           <connector>
             <parent>source_schema</parent>
-            <child>param_schema</child>
+            <child>source_schema</child>
           </connector>
           <connector>
             <parent>source_table</parent>
-            <child>param_table</child>
+            <child>source_table</child>
           </connector>
           <connector>
             <parent>source_row</parent>
-            <child>param_key</child>
+            <child>source_row</child>
           </connector>
         </mapping>
       </input>
@@ -2528,7 +2528,7 @@ result_id = i;</jsScript_script>
           <description/>
           <connector>
             <parent>group_name</parent>
-            <child>redirect_key</child>
+            <child>redirect_row</child>
           </connector>
           <connector>
             <parent>group_id</parent>
@@ -2604,11 +2604,11 @@ result_id = i;</jsScript_script>
           </connector>
           <connector>
             <parent>source_schema</parent>
-            <child>param_schema</child>
+            <child>source_schema</child>
           </connector>
           <connector>
             <parent>source_table</parent>
-            <child>param_table</child>
+            <child>source_table</child>
           </connector>
           <connector>
             <parent>source_operate</parent>
@@ -3381,8 +3381,8 @@ result_id = i;</jsScript_script>
         <element>redirect_operate</element>
       </field>
       <field>
-        <name>redirect_key</name>
-        <element>redirect_key</element>
+        <name>redirect_row</name>
+        <element>redirect_row</element>
       </field>
       <field>
         <name>source_schema</name>

@@ -497,9 +497,9 @@
     <calculation>
       <field_name>schema_table</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>param_schema</field_a>
+      <field_a>source_schema</field_a>
       <field_b>POINT</field_b>
-      <field_c>param_table</field_c>
+      <field_c>source_table</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -650,7 +650,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>param_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -662,7 +662,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>param_table</name>
+        <name>source_table</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -915,13 +915,13 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>param_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>param_table</name>
+        <name>source_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1114,7 +1114,7 @@ group_index = i;</jsScript_script>
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>param_schema</name>
+        <name>source_schema</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1122,7 +1122,7 @@ group_index = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>param_table</name>
+        <name>source_table</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
