@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/25 11:14:04.864</modified_date>
+    <modified_date>2022/05/13 16:27:52.856</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -523,11 +523,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GMT_to_Timestamp</from>
-      <to>days_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>days_to_Date</from>
       <to>milliseconds_to_Date</to>
       <enabled>Y</enabled>
@@ -568,11 +563,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>format_to_Timestamp</from>
-      <to>Switch / case: target_operate</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>ReplaceString</from>
       <to>JSON input: column</to>
       <enabled>Y</enabled>
@@ -594,10 +584,104 @@
     </hop>
     <hop>
       <from>Byte_to_Binary.step2</from>
+      <to>Switch / case: target_operate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GMT_to_Timestamp</from>
       <to>format_to_Date</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>format_to_Timestamp</from>
+      <to>days_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Byte_to_Binary.step1</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>2240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary.step2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var row = createRowCopy(getOutputRowMeta().size());
+var fieldNames = getOutputRowMeta().getFieldNames();
+for (index = 0; index &lt; fieldNames.length; index++) {
+	var inMeta = getInputRowMeta().getValueMeta(index);
+	var outMate = getOutputRowMeta().getValueMeta(index);
+    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+		var value = row[index];
+		outMate.setConversionMask(null);
+		if(value != null &amp;&amp; value.length() != 0) {
+			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
+
+			value = bytes;
+		} else {
+			value = null;
+		}
+		row[index] = value;
+	}
+}
+putRow(row);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>2368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Delete</name>
     <type>Delete</type>
@@ -612,8 +696,8 @@
     <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <commit>1000</commit>
     <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
+      <schema/>
+      <table/>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -697,8 +781,8 @@
     <commit>1000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
+      <schema/>
+      <table/>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -729,8 +813,8 @@
     <commit>1000</commit>
     <update_bypassed>N</update_bypassed>
     <lookup>
-      <schema>"${Param.Schema.Name}"</schema>
-      <table>"${Param.Table.Name}"</table>
+      <schema/>
+      <table/>
     </lookup>
     <attributes/>
     <cluster_schema/>
@@ -904,8 +988,8 @@
       <schema_name/>
     </partitioning>
     <connection>db_kpt_cdc_event_pgsql_writer</connection>
-    <schema>"${Param.Schema.Name}"</schema>
-    <table>"${Param.Table.Name}"</table>
+    <schema/>
+    <table/>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -990,7 +1074,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1200</yloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1018,7 +1102,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2256</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1046,7 +1130,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2384</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1104,7 +1188,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1456</yloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1162,7 +1246,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1328</yloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1220,7 +1304,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1584</yloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1248,7 +1332,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1712</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1307,7 +1391,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1840</yloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1420,90 +1504,6 @@ putRow(row);
     <GUI>
       <xloc>352</xloc>
       <yloc>816</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Byte_to_Binary.step1</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1984</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Byte_to_Binary.step2</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var row = createRowCopy(getOutputRowMeta().size());
-var fieldNames = getOutputRowMeta().getFieldNames();
-for (index = 0; index &lt; fieldNames.length; index++) {
-	var inMeta = getInputRowMeta().getValueMeta(index);
-	var outMate = getOutputRowMeta().getValueMeta(index);
-    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
-		var value = row[index];
-		outMate.setConversionMask(null);
-		if(value != null &amp;&amp; value.length() != 0) {
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
-
-			value = bytes;
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
-}
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>2112</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
