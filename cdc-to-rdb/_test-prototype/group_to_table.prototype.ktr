@@ -509,7 +509,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 16:35:30.800</modified_date>
+    <modified_date>2022/05/17 09:38:24.529</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -727,9 +727,9 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>RowsFromResult: kafka with table info</from>
+      <from>RowsFromResult: batch+group+kafka+source info</from>
       <to>Dummy: stream logs</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SampleRows: target</from>
@@ -864,11 +864,6 @@
     <hop>
       <from>ValueMapper: FLAG</from>
       <to>SelectValues: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: test_kpt_cdc</from>
-      <to>Dummy: stream logs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1061,7 +1056,39 @@
       <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>SampleRows: for target_column</from>
+      <to>WriteToLog: operate info</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Append: Byte_to_Binary.step1</name>
+    <type>Append</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <head_name>DataGrid: Byte_to_Binary.step1</head_name>
+    <tail_name>SelectValues: Byte_to_Binary.step1</tail_name>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>3248</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Append: GMT_to_Timestamp</name>
     <type>Append</type>
@@ -1411,6 +1438,69 @@
     <GUI>
       <xloc>1376</xloc>
       <yloc>1040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Constant: Byte_to_Binary</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>REPLACE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>Y</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>TEMPLATE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>ALWAY_STRING</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>String</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2132,6 +2222,76 @@
     </GUI>
   </step>
   <step>
+    <name>DataGrid: Byte_to_Binary.step1</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>field_name</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>field_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>field_conversion_mask</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>kafka_message</item>
+        <item>String</item>
+        <item/>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>3184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>DataGrid: GMT_to_Timestamp</name>
     <type>DataGrid</type>
     <description/>
@@ -2408,219 +2568,6 @@
     <GUI>
       <xloc>864</xloc>
       <yloc>2992</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: test_kpt_cdc</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>batch_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>group_table_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_key</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_row</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>0</item>
-        <item>2020-01-28</item>
-        <item>0</item>
-        <item>mysql_manual_generation__test_kpt_cdc.change_pk__debezium_types</item>
-        <item/>
-        <item>{"data":[{"_id":"0","BOOLEAN":"0","BOOL":"1","BIT_1":"1","BIT_not_1":"2","TINYINT":"5","SMALLINT":"6","MEDIUMINT":"7","INT":"8","INTEGER":"9","BIGINT":"10","REAL":"11.1","FLOAT":"12.23","DOUBLE":"13.34","CHAR":"14","VARCHAR":"15","BINARY":"\u0016","VARBINARY":"\u0017","TINYBLOB":"\u0018","TINYTEXT":"\u0019","BLOB":" ","TEXT":"!","MEDIUMBLOB":"\"","MEDIUMTEXT":"#","LONGBLOB":"$","LONGTEXT":"%","JSON":"{}","ENUM":"1","SET":"3","YEAR":"2021","TIMESTAMP":"2021-09-11 11:59:00","DATE":"2021-09-11","TIME":"11:51:00","DATETIME_3":"2021-09-11 00:00:00.000","DATETIME_6":"2021-09-11 00:00:00.000000","NUMERIC":"12.2","DECIMAL":"13.46","GEOMETRY":"\u0000\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?","LINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000\u0018@\u0000\u0000\u0000\u0000\u0000\u0000\u0018@","POLYGON":"\u0000\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u0014@\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u001C@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0014@","MULTIPOINT":"\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0001\u0001\u0000\u0000\u0000ÍÌÌÌÌÌ\u0000@ÍÌÌÌÌÌ\u0000@","MULTILINESTRING":"\u0000\u0000\u0000\u0000\u0001\u0005\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0089@\u0000\u0000\u0000\u0000\u0000À\u0082@\u0000\u0000\u0000\u0000\u0000\u0000i@\u0000\u0000\u0000\u0000\u0000\u0000y@","MULTIPOLYGON":"\u0000\u0000\u0000\u0000\u0001\u0006\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0007\u0000\u0000\u0000s\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^ÀÄHºLûÂF@\u0001\u0080\u001BÀ¯¨^À¸ÌE\u0097*ÃF@\u0000\u0080\u001BÀð£^ÀRê1\u0006¡ÅF@\u0001\u0080\u001B\u0080å£^ÀÏß-7\u0099ÇF@\u0001\u0080\u001B\u0000\u009F¦^ÀX\bn¼÷ÇF@\u0001\u0080\u001BÀ½©^Às\u001D\u009Eä¬ÆF@\u0001\u0080\u001B\u0080\fª^À","GEOMETRYCOLLECTION":"\u0000\u0000\u0000\u0000\u0001\u0007\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0001\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0002\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0080\u0096@\u0000\u0000\u0000\u0000\u0000 \u008C@\u0001\u0003\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0090@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}],"database":"test_kpt_cdc","es":1631334480000,"id":9,"isDdl":false,"mysqlType":{"_id":"varchar(255)","BOOLEAN":"tinyint(1)","BOOL":"tinyint(1)","BIT_1":"bit(1)","BIT_not_1":"bit(2)","TINYINT":"tinyint(4)","SMALLINT":"smallint(6)","MEDIUMINT":"mediumint(9)","INT":"int(11)","INTEGER":"int(11)","BIGINT":"bigint(20)","REAL":"double","FLOAT":"float","DOUBLE":"double","CHAR":"char(20)","VARCHAR":"varchar(255)","BINARY":"binary(20)","VARBINARY":"varbinary(255)","TINYBLOB":"tinyblob","TINYTEXT":"tinytext","BLOB":"blob","TEXT":"text","MEDIUMBLOB":"mediumblob","MEDIUMTEXT":"mediumtext","LONGBLOB":"longblob","LONGTEXT":"longtext","JSON":"json","ENUM":"enum('E1')","SET":"set('S1','S2')","YEAR":"year(4)","TIMESTAMP":"timestamp","DATE":"date","TIME":"time","DATETIME_3":"datetime(3)","DATETIME_6":"datetime(6)","NUMERIC":"decimal(10,1)","DECIMAL":"decimal(10,2)","GEOMETRY":"geometry","LINESTRING":"linestring","POLYGON":"polygon","MULTIPOINT":"multipoint","MULTILINESTRING":"multilinestring","MULTIPOLYGON":"multipolygon","GEOMETRYCOLLECTION":"geometrycollection"},"old":null,"pkNames":["_id"],"sql":"","sqlType":{"_id":12,"BOOLEAN":-6,"BOOL":-6,"BIT_1":-7,"BIT_not_1":-7,"TINYINT":-6,"SMALLINT":5,"MEDIUMINT":4,"INT":4,"INTEGER":4,"BIGINT":-5,"REAL":8,"FLOAT":7,"DOUBLE":8,"CHAR":1,"VARCHAR":12,"BINARY":2004,"VARBINARY":2004,"TINYBLOB":2004,"TINYTEXT":2005,"BLOB":2004,"TEXT":2005,"MEDIUMBLOB":2004,"MEDIUMTEXT":2005,"LONGBLOB":2004,"LONGTEXT":2005,"JSON":12,"ENUM":4,"SET":-7,"YEAR":12,"TIMESTAMP":93,"DATE":91,"TIME":92,"DATETIME_3":93,"DATETIME_6":93,"NUMERIC":3,"DECIMAL":3,"GEOMETRY":2004,"LINESTRING":2004,"POLYGON":2004,"MULTIPOINT":2004,"MULTILINESTRING":2004,"MULTIPOLYGON":2004,"GEOMETRYCOLLECTION":2004},"table":"debezium_types","ts":1631334480404,"type":"INSERT"}</item>
-        <item>test_canal-test_kpt_cdc</item>
-        <item>0</item>
-        <item>1</item>
-        <item>0</item>
-        <item>INSERT</item>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-        <item/>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>96</xloc>
-      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4020,7 +3967,58 @@
     </GUI>
   </step>
   <step>
-    <name>RowsFromResult: kafka with table info</name>
+    <name>ReplaceString: template 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{precision}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>column_precision</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{scale}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>column_scale</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1120</xloc>
+      <yloc>3248</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>RowsFromResult: batch+group+kafka+source info</name>
     <type>RowsFromResult</type>
     <description/>
     <distribute>Y</distribute>
@@ -4159,7 +4157,7 @@
     <name>SampleRows: for target_column</name>
     <type>SampleRows</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -4233,6 +4231,90 @@
     <GUI>
       <xloc>736</xloc>
       <yloc>1328</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: Byte_to_Binary.step1</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kettle_field</name>
+        <rename>field_name</rename>
+      </field>
+      <field>
+        <name>ALWAY_STRING</name>
+        <rename>field_type</rename>
+      </field>
+      <field>
+        <name>TEMPLATE</name>
+        <rename>field_conversion_mask</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>864</xloc>
+      <yloc>3248</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: Byte_to_Binary.step2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kettle_field</name>
+        <rename>field_name</rename>
+      </field>
+      <field>
+        <name>kettle_type</name>
+        <rename>field_type</rename>
+      </field>
+      <field>
+        <name>REPLACE</name>
+        <rename>field_replace</rename>
+      </field>
+      <field>
+        <name>column_precision</name>
+        <rename>field_precision</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4669,46 +4751,6 @@
     </GUI>
   </step>
   <step>
-    <name>SelectValues: select target_table</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>target_schema</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_table</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_ignore</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>SelectValues: scale_to_BigNumber.step1</name>
     <type>SelectValues</type>
     <description/>
@@ -4789,6 +4831,43 @@
     <GUI>
       <xloc>544</xloc>
       <yloc>2928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select target_table</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_ignore</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5879,8 +5958,8 @@
     </GUI>
   </step>
   <step>
-    <name>Append: Byte_to_Binary.step1</name>
-    <type>Append</type>
+    <name>WriteToLog: operate info</name>
+    <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -5889,69 +5968,47 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <head_name>DataGrid: Byte_to_Binary.step1</head_name>
-    <tail_name>SelectValues: Byte_to_Binary.step1</tail_name>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>3248</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: Byte_to_Binary</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
     <fields>
       <field>
-        <name>REPLACE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Y</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>batch_id</name>
       </field>
       <field>
-        <name>TEMPLATE</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>batch_time</name>
       </field>
       <field>
-        <name>ALWAY_STRING</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>String</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
+      </field>
+      <field>
+        <name>source_operate</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
+      </field>
+      <field>
+        <name>source_row</name>
+      </field>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_ignore</name>
+      </field>
+      <field>
+        <name>target_operate</name>
       </field>
     </fields>
     <attributes/>
@@ -5963,213 +6020,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>3120</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: Byte_to_Binary.step1</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>field_name</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>field_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>field_conversion_mask</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>kafka_message</item>
-        <item>String</item>
-        <item/>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>864</xloc>
-      <yloc>3184</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ReplaceString: template 2</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>TEMPLATE</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>{precision}</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_precision</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-      <field>
-        <in_stream_name>TEMPLATE</in_stream_name>
-        <out_stream_name/>
-        <use_regex>no</use_regex>
-        <replace_string>{scale}</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_scale</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1120</xloc>
-      <yloc>3248</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: Byte_to_Binary.step1</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>kettle_field</name>
-        <rename>field_name</rename>
-      </field>
-      <field>
-        <name>ALWAY_STRING</name>
-        <rename>field_type</rename>
-      </field>
-      <field>
-        <name>TEMPLATE</name>
-        <rename>field_conversion_mask</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>864</xloc>
-      <yloc>3248</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: Byte_to_Binary.step2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>kettle_field</name>
-        <rename>field_name</rename>
-      </field>
-      <field>
-        <name>kettle_type</name>
-        <rename>field_type</rename>
-      </field>
-      <field>
-        <name>REPLACE</name>
-        <rename>field_replace</rename>
-      </field>
-      <field>
-        <name>column_precision</name>
-        <rename>field_precision</rename>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>544</xloc>
-      <yloc>3120</yloc>
+      <xloc>672</xloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
