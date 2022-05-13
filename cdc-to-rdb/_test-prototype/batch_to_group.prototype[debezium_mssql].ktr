@@ -74,6 +74,11 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
+        <name>Config.Log.Redirect.Row.Mapping</name>
+        <default_value>sort_by_row_last</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.Log.Target.Operate.Mapping</name>
         <default_value>update_only_flash_point</default_value>
         <description>only for protptype</description>
@@ -773,13 +778,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: redirect_table_row.mapping</from>
+      <from>SimpleMapping: redirect_row.mapping</from>
       <to>FilterRows: is redirect</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>FilterRows: is table-log</from>
-      <to>SimpleMapping: redirect_table_row.mapping</to>
+      <to>SimpleMapping: redirect_row.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1363,7 +1368,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>SimpleMapping: redirect_table_row.mapping</send_true_to>
+    <send_true_to>SimpleMapping: redirect_row.mapping</send_true_to>
     <send_false_to>Group by: batch_id</send_false_to>
     <compare>
       <condition>
@@ -2467,7 +2472,7 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: redirect_table_row.mapping</name>
+    <name>SimpleMapping: redirect_row.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2479,9 +2484,10 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>redirect_table_row.mapping</trans_name>
+    <trans_name>${Config.Log.Redirect.Row.Mapping}</trans_name>
     <filename/>
-    <directory_path>/to_rdb</directory_path>
+    <directory_path>/to_rdb/redirect_row.mapping</directory_path>
+    
     <mappings>
       <input>
         <mapping>

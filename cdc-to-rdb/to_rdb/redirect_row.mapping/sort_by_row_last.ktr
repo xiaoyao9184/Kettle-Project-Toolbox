@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>redirect_table_row.mapping</name>
+    <name>sort_by_row_last</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_rdb</directory>
+    <directory>/to_rdb/redirect_row.mapping</directory>
     <parameters>
       <parameter>
         <name>CursorLastGroupOffset</name>
@@ -448,7 +448,7 @@
     </hop>
     <hop>
       <from>SelectValues: remove&amp;rename</from>
-      <to>MappingOutput: redirect_table_row.mapping</to>
+      <to>MappingOutput: redirect_row.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -457,7 +457,7 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>MappingInput: redirect_table_row.mapping</from>
+      <from>MappingInput: redirect_row.mapping</from>
       <to>SortRows: param_* + kafka_offset desc</to>
       <enabled>Y</enabled>
     </hop>
@@ -912,7 +912,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: redirect_table_row.mapping</name>
+    <name>MappingInput: redirect_row.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -988,7 +988,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: redirect_table_row.mapping</name>
+    <name>MappingOutput: redirect_row.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
