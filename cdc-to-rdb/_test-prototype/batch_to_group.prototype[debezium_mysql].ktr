@@ -544,7 +544,7 @@
     </hop>
     <hop>
       <from>Constant: GOOD</from>
-      <to>JSON output: good</to>
+      <to>JSON output: GOOD</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -598,7 +598,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: good</from>
+      <from>JSON output: GOOD</from>
       <to>SimpleMapping: logger GOOD</to>
       <enabled>Y</enabled>
     </hop>
@@ -2197,7 +2197,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON output: good</name>
+    <name>JSON output: GOOD</name>
     <type>JsonOutput</type>
     <description/>
     <distribute>Y</distribute>
