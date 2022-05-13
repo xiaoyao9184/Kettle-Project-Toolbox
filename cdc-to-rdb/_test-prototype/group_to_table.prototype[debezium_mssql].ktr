@@ -143,6 +143,11 @@
         <default_value>change_pk__debezium_types</default_value>
         <description>change for protptype</description>
       </parameter>
+      <parameter>
+        <name>ParamMarkTransformation</name>
+        <default_value>no_marker</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -1153,7 +1158,7 @@
     </hop>
     <hop>
       <from>SystemInfo: batch info</from>
-      <to>Transformation executor: log_environment_to_logtable</to>
+      <to>Transformation executor: batch_group_marker.result</to>
       <enabled>N</enabled>
     </hop>
     <hop>
@@ -6230,7 +6235,7 @@
     </GUI>
   </step>
   <step>
-    <name>Transformation executor: log_environment_to_logtable</name>
+    <name>Transformation executor: batch_group_marker.result</name>
     <type>TransExecutor</type>
     <description/>
     <distribute>Y</distribute>
@@ -6242,9 +6247,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>log_environment_to_logtable</trans_name>
+    <trans_name>${ParamMarkTransformation}</trans_name>
     <filename/>
-    <directory_path>/from-kafka</directory_path>
+    <directory_path>/from-kafka/batch_group_marker.result</directory_path>
     <group_size>1</group_size>
     <group_field/>
     <group_time/>

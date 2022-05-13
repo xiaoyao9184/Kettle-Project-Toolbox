@@ -1,22 +1,22 @@
 <transformation>
   <info>
-    <name>log_environment_to_logtable</name>
+    <name>no_marker</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka</directory>
+    <directory>/from-kafka/batch_group_marker.result</directory>
     <parameters>
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__trans</table>
-        <size_limit_lines>100</size_limit_lines>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -110,26 +110,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__seq</table>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -207,10 +207,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__channel</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -273,10 +273,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__step</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -344,15 +344,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__metrics</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2022/03/01 09:05:54.502</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/03 16:46:02.052</modified_date>
+    <modified_date>2022/05/13 11:34:41.310</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -488,55 +488,11 @@
   </connection>
   <order>
     <hop>
-      <from>GetVariable: config_profile</from>
-      <to>WriteToLog: ${Config.Profile}</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>RowsFromResult: process_id&amp;transname&amp;batch_id&amp;batch_time</from>
-      <to>GetVariable: config_profile</to>
+      <to>Dummy: no marker</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>GetVariable: config_profile</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>config_profile</name>
-        <variable>${Config.Profile}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>RowsFromResult: process_id&amp;transname&amp;batch_id&amp;batch_time</name>
     <type>RowsFromResult</type>
@@ -589,8 +545,8 @@
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: ${Config.Profile}</name>
-    <type>WriteToLog</type>
+    <name>Dummy: no marker</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -599,28 +555,6 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>N</limitRows>
-    <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>Config.Profile ##${Config.Profile}##</logmessage>
-    <fields>
-      <field>
-        <name>process_id</name>
-      </field>
-      <field>
-        <name>transname</name>
-      </field>
-      <field>
-        <name>batch_id</name>
-      </field>
-      <field>
-        <name>batch_time</name>
-      </field>
-      <field>
-        <name>config_profile</name>
-      </field>
-    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -631,7 +565,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>352</yloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
