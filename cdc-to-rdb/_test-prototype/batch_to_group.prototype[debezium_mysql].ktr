@@ -69,14 +69,14 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Group.Table.Mapping</name>
+        <name>Config.Batch.Group.Table.Mapping</name>
         <default_value>sort_by_table_operate</default_value>
-        <description>only for protptype</description>
+        <description>just for protptype</description>
       </parameter>
       <parameter>
-        <name>Config.Log.Redirect.Row.Mapping</name>
+        <name>Config.Batch.Redirect.Row.Mapping</name>
         <default_value>sort_by_row_last</default_value>
-        <description>only for protptype</description>
+        <description>just for protptype</description>
       </parameter>
       <parameter>
         <name>Config.Log.Target.Operate.Mapping</name>
@@ -2495,7 +2495,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Redirect.Row.Mapping}</trans_name>
+    <trans_name>${Config.Batch.Redirect.Row.Mapping}</trans_name>
     <filename/>
     <directory_path>/to_rdb/redirect_row.mapping</directory_path>
     
@@ -2593,7 +2593,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Group.Table.Mapping}</trans_name>
+    <trans_name>${Config.Batch.Group.Table.Mapping}</trans_name>
     <filename/>
     <directory_path>/to_rdb/group_table.mapping</directory_path>
     <mappings>
