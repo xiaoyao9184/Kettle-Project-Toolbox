@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>group_to_table.none</name>
+    <name>group_to_none.result</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 09:41:01.519</modified_date>
+    <modified_date>2022/05/13 10:13:39.185</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -476,7 +476,42 @@
       <to>Dummy: process logs</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Dummy: process logs</from>
+      <to>FilterRows: mock fail</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: mock fail</from>
+      <to>SelectValues: mock error</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Dummy: process logs</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>320</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Dummy: stream logs</name>
     <type>Dummy</type>
@@ -499,6 +534,50 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: mock fail</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>SelectValues: mock error</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>kafka_key</leftvalue>
+        <function>CONTAINS</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>fail</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -823,16 +902,23 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy: process logs</name>
-    <type>Dummy</type>
+    <name>SelectValues: mock error</name>
+    <type>SelectValues</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <fields>
+      <field>
+        <name>no</name>
+        <rename>nono</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -843,7 +929,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>320</yloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

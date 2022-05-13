@@ -153,6 +153,11 @@
         <default_value>-1</default_value>
         <description>last index of executor result</description>
       </parameter>
+      <parameter>
+        <name>ParamExecutorTransformation</name>
+        <default_value>group_to_none.result</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -574,7 +579,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 10:02:02.248</modified_date>
+    <modified_date>2022/05/13 10:21:40.217</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -715,7 +720,7 @@
     <hop>
       <from>SelectValues: executor param</from>
       <to>Transformation executor</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: remove execution_log_text</from>
@@ -745,17 +750,17 @@
     <hop>
       <from>Transformation executor</from>
       <to>Dummy: exec result</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Transformation executor</from>
       <to>Dummy: exec statistics</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Transformation executor</from>
       <to>Dummy: exec stream</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Group by: batch_id</from>
@@ -825,26 +830,6 @@
     <hop>
       <from>Group by: redirect_row</from>
       <to>Constant: MERGE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: executor param</from>
-      <to>Transformation executor: group_to_table.none</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transformation executor: group_to_table.none</from>
-      <to>Dummy: exec stream</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transformation executor: group_to_table.none</from>
-      <to>Dummy: exec result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transformation executor: group_to_table.none</from>
-      <to>Dummy: exec statistics</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -3472,144 +3457,7 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>group_to_table.result</trans_name>
-    <filename/>
-    <directory_path>/from-kafka</directory_path>
-    <group_size/>
-    <group_field>group_table_name</group_field>
-    <group_time/>
-    <parameters>
-      <variablemapping>
-        <variable>Param.Schema.Name</variable>
-        <field>p_schema</field>
-        <input/>
-      </variablemapping>
-      <variablemapping>
-        <variable>Param.Table.Name</variable>
-        <field>p_table</field>
-        <input/>
-      </variablemapping>
-      <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step>Dummy: exec statistics</execution_result_target_step>
-    <execution_time_field>execution_time</execution_time_field>
-    <execution_result_field>execution_result</execution_result_field>
-    <execution_errors_field>execution_nr_errors</execution_errors_field>
-    <execution_lines_read_field>execution_lines_read</execution_lines_read_field>
-    <execution_lines_written_field>execution_lines_written</execution_lines_written_field>
-    <execution_lines_input_field>execution_lines_input</execution_lines_input_field>
-    <execution_lines_output_field>execution_lines_output</execution_lines_output_field>
-    <execution_lines_rejected_field>execution_lines_rejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>execution_lines_updated</execution_lines_updated_field>
-    <execution_lines_deleted_field>execution_lines_deleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>execution_files_retrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>execution_exit_status</execution_exit_status_field>
-    <execution_log_text_field>execution_log_text</execution_log_text_field>
-    <execution_log_channelid_field>execution_log_channel_id</execution_log_channelid_field>
-    <result_rows_target_step>Dummy: exec result</result_rows_target_step>
-    <result_rows_field>
-      <name>result_batch_id</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_batch_time</name>
-      <type>Date</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_full_table_name</name>
-      <type>String</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_step_name</name>
-      <type>String</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_step_id</name>
-      <type>String</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_input_row</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_output_row</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_read_row</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_update_row</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_write_row</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_throw_row</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_rows_field>
-      <name>result_continue_time</name>
-      <type>Integer</type>
-      <length>-1</length>
-      <precision>-1</precision>
-    </result_rows_field>
-    <result_files_target_step/>
-    <result_files_file_name_field>FileName</result_files_file_name_field>
-    <executors_output_step>Dummy: exec stream</executors_output_step>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1312</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Transformation executor: group_to_table.none</name>
-    <type>TransExecutor</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>group_to_table.none</trans_name>
+    <trans_name>${ParamExecutorTransformation}</trans_name>
     <filename/>
     <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <group_size/>
@@ -3729,7 +3577,7 @@ result_id = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1248</yloc>
+      <yloc>1312</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
