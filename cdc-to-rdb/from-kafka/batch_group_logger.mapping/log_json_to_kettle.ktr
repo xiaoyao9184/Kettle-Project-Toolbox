@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 10:48:00.250</modified_date>
+    <modified_date>2022/05/13 11:14:36.286</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -438,11 +438,11 @@
   <order>
     <hop>
       <from>MappingInput: batch_group_logger.mapping</from>
-      <to>WriteToLog: ${Config.Profile}</to>
+      <to>WriteToLog: batch_group_logger</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>WriteToLog: ${Config.Profile}</from>
+      <from>WriteToLog: batch_group_logger</from>
       <to>MappingOutput: batch_group_logger.mapping</to>
       <enabled>Y</enabled>
     </hop>
@@ -525,7 +525,7 @@
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: ${Config.Profile}</name>
+    <name>WriteToLog: batch_group_logger</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -539,22 +539,19 @@
     <displayHeader>Y</displayHeader>
     <limitRows>N</limitRows>
     <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>Config.Profile ##${Config.Profile}##</logmessage>
+    <logmessage/>
     <fields>
       <field>
-        <name>process_id</name>
+        <name>batch</name>
       </field>
       <field>
-        <name>transname</name>
+        <name>group</name>
       </field>
       <field>
-        <name>batch_id</name>
+        <name>code</name>
       </field>
       <field>
-        <name>batch_time</name>
-      </field>
-      <field>
-        <name>config_profile</name>
+        <name>json</name>
       </field>
     </fields>
     <attributes/>
