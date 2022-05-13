@@ -2689,6 +2689,18 @@ result_id = i;</jsScript_script>
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
+          </connector>
+          <connector>
+            <parent>kafka_topic</parent>
+            <child>kafka_topic</child>
+          </connector>
+          <connector>
             <parent>kafka_partition</parent>
             <child>kafka_partition</child>
           </connector>
@@ -2707,6 +2719,10 @@ result_id = i;</jsScript_script>
           <connector>
             <parent>batch_time</parent>
             <child>batch_time</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
           <connector>
             <parent>source_schema</parent>
