@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>group_table_operate.mapping</name>
+    <name>sort_by_table_operate</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_rdb</directory>
+    <directory>/to_rdb/group_table.mapping</directory>
     <parameters>
       <parameter>
         <name>CursorLastGroupIndex</name>
@@ -453,7 +453,7 @@
     </hop>
     <hop>
       <from>SelectValues: remove&amp;rename</from>
-      <to>MappingOutput: group_table_operate.mapping</to>
+      <to>MappingOutput: group_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -472,7 +472,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: group_table_operate.mapping</from>
+      <from>MappingInput: group_table.mapping</from>
       <to>SortRows: param_* + kafka_offset asc</to>
       <enabled>Y</enabled>
     </hop>
@@ -873,7 +873,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: group_table_operate.mapping</name>
+    <name>MappingInput: group_table.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -949,7 +949,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: group_table_operate.mapping</name>
+    <name>MappingOutput: group_table.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

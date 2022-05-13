@@ -69,6 +69,11 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
+        <name>Config.Log.Group.Table.Mapping</name>
+        <default_value>sort_by_table_operate</default_value>
+        <description>only for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.Log.Target.Operate.Mapping</name>
         <default_value>update_only_flash_point</default_value>
         <description>only for protptype</description>
@@ -764,7 +769,7 @@
     </hop>
     <hop>
       <from>FilterRows: is redirect</from>
-      <to>SimpleMapping: group_table_operate.mapping</to>
+      <to>SimpleMapping: group_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -778,7 +783,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: group_table_operate.mapping</from>
+      <from>SimpleMapping: group_table.mapping</from>
       <to>SelectValues: executor param</to>
       <enabled>Y</enabled>
     </hop>
@@ -1318,7 +1323,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>SimpleMapping: group_table_operate.mapping</send_true_to>
+    <send_true_to>SimpleMapping: group_table.mapping</send_true_to>
     <send_false_to>Group by: redirect_row</send_false_to>
     <compare>
       <condition>
@@ -2559,7 +2564,7 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: group_table_operate.mapping</name>
+    <name>SimpleMapping: group_table.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2571,9 +2576,9 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>group_table_operate.mapping</trans_name>
+    <trans_name>${Config.Log.Group.Table.Mapping}</trans_name>
     <filename/>
-    <directory_path>/to_rdb</directory_path>
+    <directory_path>/to_rdb/group_table.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
