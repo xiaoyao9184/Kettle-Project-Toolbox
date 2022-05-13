@@ -134,14 +134,14 @@
         <description>only for protptype</description>
       </parameter>
       <parameter>
-        <name>Param.Schema.Name</name>
-        <default_value>mssql_manual_generation__test_kpt_cdc</default_value>
-        <description>change for protptype</description>
+        <name>Param.Group.ID</name>
+        <default_value>-</default_value>
+        <description/>
       </parameter>
       <parameter>
-        <name>Param.Table.Name</name>
-        <default_value>change_pk__debezium_types</default_value>
-        <description>change for protptype</description>
+        <name>Param.Group.Name</name>
+        <default_value>-</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>ParamMarkTransformation</name>
@@ -807,7 +807,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>GetVariable: full table name</from>
+      <from>GetVariable: injection_file_name</from>
       <to>SystemInfo: batch_id&amp;batch_time</to>
       <enabled>Y</enabled>
     </hop>
@@ -933,7 +933,7 @@
     </hop>
     <hop>
       <from>StepsMetrics</from>
-      <to>GetVariable: full table name</to>
+      <to>GetVariable: injection_file_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -3143,7 +3143,7 @@
     <directory_path>to_rdb</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>to_rdb/message_convert_to_rdb_rud.injection/${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
+    <target_file>to_rdb/message_convert_to_rdb_rud.injection/${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
     <no_execution>N</no_execution>
     <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
@@ -3636,7 +3636,7 @@
     <directory_path>to_rdb</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>_test-prototype/message_convert_to_rdb_rud.injection/${Internal.Transformation.Name}.${Param.Schema.Name}.${Param.Table.Name}.ktr</target_file>
+    <target_file>_test-prototype/message_convert_to_rdb_rud.injection/${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
     <no_execution>Y</no_execution>
     <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
@@ -4205,7 +4205,7 @@
     </GUI>
   </step>
   <step>
-    <name>GetVariable: full table name</name>
+    <name>GetVariable: injection_file_name</name>
     <type>GetVariable</type>
     <description/>
     <distribute>Y</distribute>
@@ -4217,8 +4217,32 @@
     </partitioning>
     <fields>
       <field>
-        <name>full_table_name</name>
-        <variable>${Param.Schema.Name}.${Param.Table.Name}</variable>
+        <name>group_id</name>
+        <variable>${Param.Group.ID}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>group_name</name>
+        <variable>${Param.Group.Name}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>injection_file_name</name>
+        <variable>${Param.Group.ID}-${Param.Group.Name}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -5339,8 +5363,16 @@
         <rename>result_batch_time</rename>
       </field>
       <field>
-        <name>full_table_name</name>
-        <rename>result_full_table_name</rename>
+        <name>group_id</name>
+        <rename>result_group_id</rename>
+      </field>
+      <field>
+        <name>group_name</name>
+        <rename>result_group_name</rename>
+      </field>
+      <field>
+        <name>injection_file_name</name>
+        <rename>result_injection_file_name</rename>
       </field>
       <field>
         <name>step_name</name>

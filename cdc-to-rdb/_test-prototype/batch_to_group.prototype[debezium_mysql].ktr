@@ -2044,14 +2044,6 @@
         <element>execution_id</element>
       </field>
       <field>
-        <name>result_batch_id</name>
-        <element>result_batch_id</element>
-      </field>
-      <field>
-        <name>result_full_table_name</name>
-        <element>result_full_table_name</element>
-      </field>
-      <field>
         <name>result_step_name</name>
         <element>result_step_name</element>
       </field>
@@ -2320,14 +2312,6 @@
         <element>execution_id</element>
       </field>
       <field>
-        <name>result_batch_id</name>
-        <element>result_batch_id</element>
-      </field>
-      <field>
-        <name>result_full_table_name</name>
-        <element>result_full_table_name</element>
-      </field>
-      <field>
         <name>result_step_name</name>
         <element>result_step_name</element>
       </field>
@@ -2448,12 +2432,12 @@ result_id = i;</jsScript_script>
     </partitioning>
     <fields>
       <field>
-        <name>source_schema</name>
-        <rename>p_schema</rename>
+        <name>group_table_id</name>
+        <rename>p_group_id</rename>
       </field>
       <field>
-        <name>source_table</name>
-        <rename>p_table</rename>
+        <name>group_table_name</name>
+        <rename>p_group_name</rename>
       </field>
       <field>
         <name>batch_id</name>
@@ -3326,8 +3310,20 @@ result_id = i;</jsScript_script>
         <type>Date</type>
       </value>
       <value>
-        <name>result_full_table_name</name>
-        <rename>result_full_table_name</rename>
+        <name>result_group_id</name>
+        <rename>result_group_id</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>result_group_name</name>
+        <rename>result_group_name</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>result_injection_file_name</name>
+        <rename>result_injection_file_name</rename>
         <default/>
         <type>String</type>
       </value>
@@ -3493,13 +3489,13 @@ result_id = i;</jsScript_script>
     <group_time/>
     <parameters>
       <variablemapping>
-        <variable>Param.Schema.Name</variable>
-        <field>p_schema</field>
+        <variable>Param.Group.ID</variable>
+        <field>p_group_id</field>
         <input/>
       </variablemapping>
       <variablemapping>
-        <variable>Param.Table.Name</variable>
-        <field>p_table</field>
+        <variable>Param.Group.Name</variable>
+        <field>p_group_name</field>
         <input/>
       </variablemapping>
       <inherit_all_vars>Y</inherit_all_vars>
@@ -3533,7 +3529,19 @@ result_id = i;</jsScript_script>
       <precision>-1</precision>
     </result_rows_field>
     <result_rows_field>
-      <name>result_full_table_name</name>
+      <name>result_group_id</name>
+      <type>String</type>
+      <length>-1</length>
+      <precision>-1</precision>
+    </result_rows_field>
+    <result_rows_field>
+      <name>result_group_name</name>
+      <type>String</type>
+      <length>-1</length>
+      <precision>-1</precision>
+    </result_rows_field>
+    <result_rows_field>
+      <name>result_injection_file_name</name>
       <type>String</type>
       <length>-1</length>
       <precision>-1</precision>
