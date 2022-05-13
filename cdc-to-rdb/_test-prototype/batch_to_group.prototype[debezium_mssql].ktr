@@ -9,139 +9,29 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
-        <name>Config.Batch.Group.Table.Mapping</name>
-        <default_value>sort_by_table_operate</default_value>
-        <description>just for protptype</description>
-      </parameter>
-      <parameter>
         <name>Config.Batch.Group.Logger.Mapping</name>
         <default_value>log_json_to_kettle</default_value>
-        <description>just for protptype</description>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.Batch.Group.Table.Mapping</name>
+        <default_value>sort_by_table_operate</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Batch.Redirect.Row.Mapping</name>
         <default_value>sort_by_row_last</default_value>
-        <description>just for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Consumer.Group</name>
-        <default_value>kpt.mssql.20220310</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Data.Topic</name>
-        <default_value>kpt_debezium-mssql</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Server.Bootstrap</name>
-        <default_value>kafka:59094</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
-        <default_value>test_kpt</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
-        <default_value>kpt.123</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
-        <default_value>55432</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
-        <default_value>pgsql</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
-        <default_value>kpt</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Delay.Injection.Crud.Time</name>
-        <default_value>0</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Delay.Injection.Field.Time</name>
-        <default_value>0</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Source.Column.Mapping</name>
-        <default_value>mssql_schema</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Source.Key.Mapping</name>
-        <default_value>debezium_key_to_key_meta</default_value>
-        <description>only for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Table.Mapping</name>
         <default_value>mssql_playload</default_value>
-        <description>just for prototype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
         <default_value>from-debezium</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Case.Sensitive</name>
-        <default_value>true</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Column.Mapping</name>
-        <default_value>same_source</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Operate.Mapping</name>
-        <default_value>update_only_flash_point</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Schema.Prefix</name>
-        <default_value>mssql_manual_generation__</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Table.Mapping</name>
-        <default_value>config_prefix_lookup</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Table.Prefix</name>
-        <default_value/>
-        <description>just for prototype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Target.Transformation.Path</name>
-        <default_value>to_pgsql</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
-        <default_value>86400</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
-        <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description>only for protptype</description>
-      </parameter>
-      <parameter>
-        <name>Config.Time</name>
-        <default_value>2022-03-07T14:56:32.402+08:00</default_value>
-        <description>only for protptype</description>
+        <description/>
       </parameter>
       <parameter>
         <name>CursorLastExecutorResultBatchId</name>
@@ -579,7 +469,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 10:21:40.217</modified_date>
+    <modified_date>2022/05/13 11:22:42.791</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -705,12 +595,12 @@
     <hop>
       <from>JSON output: ERROR</from>
       <to>SimpleMapping: logger ERROR</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>JSON output: good</from>
       <to>SimpleMapping: logger GOOD</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>ScriptValueMod: result_id</from>
@@ -805,7 +695,7 @@
     <hop>
       <from>JSON output: DDL</from>
       <to>SimpleMapping: logger DDL</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Constant: MERGE</from>
@@ -814,18 +704,18 @@
     </hop>
     <hop>
       <from>JSON output: MERGE</from>
-      <to>SetValueConstant: group</to>
+      <to>SetValueConstant: code</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SetValueConstant: group</from>
+      <from>SetValueConstant: code</from>
       <to>SystemInfo: batch</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SystemInfo: batch</from>
       <to>SimpleMapping: logger MERGE</to>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Group by: redirect_row</from>
@@ -2546,7 +2436,7 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SetValueConstant: group</name>
+    <name>SetValueConstant: code</name>
     <type>SetValueConstant</type>
     <description/>
     <distribute>Y</distribute>
@@ -2559,7 +2449,7 @@ result_id = i;</jsScript_script>
     <usevar>N</usevar>
     <fields>
       <field>
-        <name>group</name>
+        <name>code</name>
         <value>MERGE</value>
         <mask/>
         <set_empty_string>N</set_empty_string>
