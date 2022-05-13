@@ -14,6 +14,11 @@
         <description>just for protptype</description>
       </parameter>
       <parameter>
+        <name>Config.Batch.Group.Logger.Mapping</name>
+        <default_value>log_json_to_kettle</default_value>
+        <description>just for protptype</description>
+      </parameter>
+      <parameter>
         <name>Config.Batch.Redirect.Row.Mapping</name>
         <default_value>sort_by_row_last</default_value>
         <description>just for protptype</description>
@@ -2699,9 +2704,9 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>log_json_to_kafka</trans_name>
+    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
     <filename/>
-    <directory_path>/from-kafka</directory_path>
+    <directory_path>/from-kafka/batch_group_logger.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -2764,9 +2769,9 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>log_json_to_kafka</trans_name>
+    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
     <filename/>
-    <directory_path>/from-kafka</directory_path>
+    <directory_path>/from-kafka/batch_group_logger.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -2833,9 +2838,9 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>log_json_to_kafka</trans_name>
+    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
     <filename/>
-    <directory_path>/from-kafka</directory_path>
+    <directory_path>/from-kafka/batch_group_logger.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -2902,9 +2907,9 @@ result_id = i;</jsScript_script>
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>log_json_to_kafka</trans_name>
+    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
     <filename/>
-    <directory_path>/from-kafka</directory_path>
+    <directory_path>/from-kafka/batch_group_logger.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
