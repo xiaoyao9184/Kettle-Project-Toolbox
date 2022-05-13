@@ -512,7 +512,7 @@
     <calculation>
       <field_name>operate_schema_table</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>param_operate</field_a>
+      <field_a>source_operate</field_a>
       <field_b>POINT</field_b>
       <field_c>schema_table</field_c>
       <value_type>String</value_type>
@@ -674,7 +674,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>param_operate</name>
+        <name>source_operate</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -927,7 +927,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>param_operate</name>
+        <name>source_operate</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1130,7 +1130,7 @@ group_index = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>param_operate</name>
+        <name>source_operate</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
