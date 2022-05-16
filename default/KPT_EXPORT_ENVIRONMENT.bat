@@ -8,6 +8,56 @@ SETLOCAL EnableDelayedExpansion
 GOTO:init_variable
 
 
+@REM ::
+:function_dequote
+    FOR /F "delims=" %%A IN ('ECHO %%%1%%') DO IF "%2"=="" (SET %1=%%~A) ELSE (SET %2=%%~A)
+GOTO:EOF
+
+
+@REM ::
+:function_replace
+    SETLOCAL EnableDelayedExpansion
+    SET _str=!%1!
+    SET _str=!_str:___=_!
+    SET _str=!_str:__=-!
+    SET _str=!_str:_=.!
+
+    ENDLOCAL & (
+        SET %2=%_str%
+    )
+GOTO:EOF
+
+
+@REM :: parse environment variable to kettle command param name
+@REM ::1. Remove prefix KPT_KETTLE_PARAM_
+@REM ::2. Replace a period (.) with a single underscore (_).
+@REM ::3. Replace a dash (-) with double underscores (__).
+@REM ::4. Replace an underscore (_) with triple underscores (___).
+@REM ::5. Replace value concatenate equal-sign(=) with value
+@REM ::
+:function_env_parse_param
+    SETLOCAL EnableDelayedExpansion
+    CALL :function_dequote %1 env_name
+
+    @REM ::remove prefix
+    SET env_name=!env_name:KPT_KETTLE_=!
+    IF /I "!env_name:~0,6!"=="PARAM_" (
+        @REM ::remove prefix
+        SET kettle_param_name=!env_name:~6!
+        
+        @REM ::replace
+        CALL :function_replace kettle_param_name kettle_param_name
+    ) ELSE (
+        ::ignore underlined variable
+        SET kettle_param_name=
+    )
+
+    ENDLOCAL & (
+        SET %2=%kettle_param_name%
+    )
+GOTO:EOF
+
+
 :function_looking
     SETLOCAL EnableDelayedExpansion
     SET _looking_dir=!%1!
@@ -183,6 +233,31 @@ IF "!KETTLE_HOME!"=="" IF EXIST %caller_script_dir%.kettle (
     ECHO set 'KETTLE_HOME' to: !KETTLE_HOME!
 )
 
+::Upgraded parameters to JAVA environment variables
+@REM ::https://stackoverflow.com/a/55146593/5344877
+IF "!KPT_PARAM_AS_ENV!"=="true" (
+    ::create java option
+    SET _java_opt=
+    FOR /F "delims== tokens=1,2" %%A IN ('SET ^| FINDSTR /I /R "^KPT_KETTLE_"') DO (
+        SET _env_name=%%A
+        SET _param_opt=
+        CALL :function_env_parse_param _env_name _param_name
+        IF NOT "!_param_name!"=="" (
+            SET _param_value=!%%A!
+            SET _param_opt=-D!_param_name!=!_param_value!
+            ECHO set '!_env_name!' as java system environment: !_param_name!
+        )
+        IF NOT DEFINED _java_opt (
+            SET _java_opt=!_param_opt!
+        ) ELSE (
+            SET _java_opt=!_java_opt! !_param_opt!
+        )
+    )
+    IF NOT "!_java_opt!"=="" (
+        SET PENTAHO_DI_JAVA_OPTIONS=%PENTAHO_DI_JAVA_OPTIONS% !_java_opt!
+    )
+)
+
 ECHO ##########%~n0##########
 
 
@@ -199,4 +274,5 @@ ENDLOCAL & (
     SET KPT_KETTLE_FILE=%KPT_KETTLE_FILE%
     SET KETTLE_HOME=%KETTLE_HOME%
     SET KETTLE_REPOSITORY=%KETTLE_REPOSITORY%
+    SET PENTAHO_DI_JAVA_OPTIONS=%PENTAHO_DI_JAVA_OPTIONS%
 )
