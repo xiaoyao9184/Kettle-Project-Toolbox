@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>batch_to_group.prototype[debezium_mssql]</name>
+    <name>batch_to_group.prototype</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -25,12 +25,12 @@
       </parameter>
       <parameter>
         <name>Config.Log.Source.Table.Mapping</name>
-        <default_value>mssql_playload</default_value>
+        <default_value>canal_table</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.Log.Source.Transformation.Path</name>
-        <default_value>from-debezium</default_value>
+        <default_value>from-canal</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -474,11 +474,33 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 12:44:34.643</modified_date>
+    <modified_date>2022/05/17 12:51:00.647</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>BUG
+result_batch_id always 0 when not use log table</note>
+      <xloc>688</xloc>
+      <yloc>1664</yloc>
+      <width>351</width>
+      <heigth>49</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>db_kpt_cdc_event_pgsql_writer</name>
@@ -535,11 +557,6 @@
     <hop>
       <from>Calculator: length of schema and table</from>
       <to>FilterRows: is table-log</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: DDL</from>
-      <to>JSON output: DDL</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -658,18 +675,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: batch_id</from>
-      <to>Constant: DDL</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SystemInfo: batch_id</from>
       <to>SimpleMapping: source_table.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: debezium mssql test_kpt_cdc</from>
-      <to>SystemInfo: batch_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -698,8 +705,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: DDL</from>
-      <to>SimpleMapping: logger DDL</to>
+      <from>Constant: DDL</from>
+      <to>JSON output: DDL</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -713,6 +720,21 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Group by: batch_id</from>
+      <to>Constant: DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: redirect_row</from>
+      <to>Constant: MERGE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: DDL</from>
+      <to>SimpleMapping: logger DDL</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>SetValueConstant: code</from>
       <to>SystemInfo: batch</to>
       <enabled>Y</enabled>
@@ -723,13 +745,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: redirect_row</from>
-      <to>Constant: MERGE</to>
+      <from>SystemInfo: batch info</from>
+      <to>Transformation executor: batch_group_marker.result</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch info</from>
-      <to>Transformation executor: batch_group_marker.result</to>
+      <from>RowsFromResult: kafka info</from>
+      <to>SystemInfo: batch_id</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -970,175 +992,10 @@
     </GUI>
   </step>
   <step>
-    <name>DataGrid: debezium mssql test_kpt_cdc</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>kafka_key</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"1","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"1","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>test_debezium_mssql-test_kpt_cdc.data-changes</item>
-        <item>0</item>
-        <item>1</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item/>
-        <item/>
-        <item>ddl</item>
-        <item>99</item>
-        <item>99</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{}</item>
-        <item>{}</item>
-        <item>ddl</item>
-        <item>99</item>
-        <item>100</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"2","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"2","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>redirect</item>
-        <item>999</item>
-        <item>1</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"2","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"2","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>redirect</item>
-        <item>999</item>
-        <item>2</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"3","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"3","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>redirect</item>
-        <item>999</item>
-        <item>3</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"3","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"3","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>redirect</item>
-        <item>999</item>
-        <item>4</item>
-        <item>1630002794</item>
-      </line>
-      <line>
-        <item>{"schema":{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"string","optional":false,"field":"__dbz__physicalTableIdentifier"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Key"},"payload":{"_id":"3","__dbz__physicalTableIdentifier":"test_debezium_mssql-test_kpt_cdc.dbo.debezium_types"}}</item>
-        <item>{"schema":{"type":"struct","fields":[{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"before"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"_id"},{"type":"boolean","optional":true,"field":"BIT"},{"type":"int16","optional":true,"field":"TINYINT"},{"type":"int16","optional":true,"field":"SMALLINT"},{"type":"int32","optional":true,"field":"INT"},{"type":"int64","optional":true,"field":"BIGINT"},{"type":"float","optional":true,"field":"REAL"},{"type":"double","optional":true,"field":"FLOAT"},{"type":"string","optional":true,"field":"CHAR"},{"type":"string","optional":true,"field":"VARCHAR"},{"type":"string","optional":true,"field":"TEXT"},{"type":"string","optional":true,"field":"NCHAR"},{"type":"string","optional":true,"field":"NVARCHAR"},{"type":"string","optional":true,"field":"NTEXT"},{"type":"string","optional":true,"field":"XML"},{"type":"string","optional":true,"name":"io.debezium.time.ZonedTimestamp","version":1,"field":"DATETIMEOFFSET"},{"type":"int32","optional":true,"name":"io.debezium.time.Date","version":1,"field":"DATE"},{"type":"int32","optional":true,"name":"io.debezium.time.Time","version":1,"field":"TIME_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTime","version":1,"field":"TIME_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTime","version":1,"field":"TIME_7"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"SMALLDATETIME"},{"type":"int64","optional":true,"name":"io.debezium.time.Timestamp","version":1,"field":"DATETIME2_3"},{"type":"int64","optional":true,"name":"io.debezium.time.MicroTimestamp","version":1,"field":"DATETIME2_6"},{"type":"int64","optional":true,"name":"io.debezium.time.NanoTimestamp","version":1,"field":"DATETIME2_7"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"1","connect.decimal.precision":"18"},"field":"NUMERIC"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"2","connect.decimal.precision":"18"},"field":"DECIMAL"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"10"},"field":"SMALLMONEY"},{"type":"bytes","optional":true,"name":"org.apache.kafka.connect.data.Decimal","version":1,"parameters":{"scale":"4","connect.decimal.precision":"19"},"field":"MONEY"}],"optional":true,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Value","field":"after"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"version"},{"type":"string","optional":false,"field":"connector"},{"type":"string","optional":false,"field":"name"},{"type":"int64","optional":false,"field":"ts_ms"},{"type":"string","optional":true,"name":"io.debezium.data.Enum","version":1,"parameters":{"allowed":"true,last,false"},"default":"false","field":"snapshot"},{"type":"string","optional":false,"field":"db"},{"type":"string","optional":true,"field":"sequence"},{"type":"string","optional":false,"field":"schema"},{"type":"string","optional":false,"field":"table"},{"type":"string","optional":true,"field":"change_lsn"},{"type":"string","optional":true,"field":"commit_lsn"},{"type":"int64","optional":true,"field":"event_serial_no"}],"optional":false,"name":"io.debezium.connector.sqlserver.Source","field":"source"},{"type":"string","optional":false,"field":"op"},{"type":"int64","optional":true,"field":"ts_ms"},{"type":"struct","fields":[{"type":"string","optional":false,"field":"id"},{"type":"int64","optional":false,"field":"total_order"},{"type":"int64","optional":false,"field":"data_collection_order"}],"optional":true,"field":"transaction"}],"optional":false,"name":"test_debezium_mssql_test_kpt_cdc.data_changes.Envelope"},"payload":{"before":null,"after":{"_id":"3","BIT":false,"TINYINT":1,"SMALLINT":2,"INT":3,"BIGINT":4,"REAL":5.5,"FLOAT":6.6,"CHAR":"7         ","VARCHAR":"8","TEXT":"9","NCHAR":"10        ","NVARCHAR":"11","NTEXT":"12","XML":"&lt;!--This is a test XML file-->&lt;filemeta filetype=\"Audio\">&lt;Comments/>&lt;AlbumTitle/>&lt;TrackNumber/>&lt;ArtistName/>&lt;Year/>&lt;Genre/>&lt;TrackTitle/>&lt;/filemeta>","DATETIMEOFFSET":"2021-09-07T06:26:20.622+08:00","DATE":18877,"TIME_3":23180622,"TIME_6":23180622000,"TIME_7":23180622000000,"DATETIME":1630995980623,"SMALLDATETIME":1630995960000,"DATETIME2_3":1630995980622,"DATETIME2_6":1630995980622000,"DATETIME2_7":1630995980622000000,"NUMERIC":"APE=","DECIMAL":"CdA=","SMALLMONEY":"A/xy","MONEY":"BCOC"},"source":{"version":"1.6.2.Final","connector":"sqlserver","name":"test_debezium_mssql-test_kpt_cdc","ts_ms":1631330069397,"snapshot":"true","db":"test_kpt_cdc","sequence":null,"schema":"dbo","table":"debezium_types","change_lsn":null,"commit_lsn":"00000026:00000420:0006","event_serial_no":null},"op":"r","ts_ms":1631330069398,"transaction":null}}</item>
-        <item>redirect</item>
-        <item>999</item>
-        <item>5</item>
-        <item>1630002794</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>192</xloc>
-      <yloc>0</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Dummy: exec result</name>
     <type>Dummy</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1971,96 +1828,6 @@
     </GUI>
   </step>
   <step>
-    <name>JSON output: MERGE</name>
-    <type>JsonOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <outputValue>json</outputValue>
-    <jsonBloc>merge</jsonBloc>
-    <nrRowsInBloc>0</nrRowsInBloc>
-    <operation_type>outputvalue</operation_type>
-    <compatibility_mode>N</compatibility_mode>
-    <encoding>UTF-8</encoding>
-    <addtoresult>N</addtoresult>
-    <file>
-      <name/>
-      <extention>js</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <create_parent_folder>N</create_parent_folder>
-      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
-      <servlet_output>N</servlet_output>
-    </file>
-    <fields>
-      <field>
-        <name>code</name>
-        <element>code</element>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <element>batch_time</element>
-      </field>
-      <field>
-        <name>offset_range</name>
-        <element>offset_range</element>
-      </field>
-      <field>
-        <name>offset_count</name>
-        <element>offset_count</element>
-      </field>
-      <field>
-        <name>redirect_offset</name>
-        <element>redirect_offset</element>
-      </field>
-      <field>
-        <name>redirect_operate</name>
-        <element>redirect_operate</element>
-      </field>
-      <field>
-        <name>redirect_row</name>
-        <element>redirect_row</element>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <element>source_schema</element>
-      </field>
-      <field>
-        <name>source_table</name>
-        <element>source_table</element>
-      </field>
-      <field>
-        <name>source_row</name>
-        <element>source_row</element>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>1056</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>JSON output: GOOD</name>
     <type>JsonOutput</type>
     <description/>
@@ -2235,6 +2002,159 @@
     <GUI>
       <xloc>768</xloc>
       <yloc>2432</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JSON output: MERGE</name>
+    <type>JsonOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <outputValue>json</outputValue>
+    <jsonBloc>merge</jsonBloc>
+    <nrRowsInBloc>0</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name/>
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
+    <fields>
+      <field>
+        <name>code</name>
+        <element>code</element>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
+      </field>
+      <field>
+        <name>offset_range</name>
+        <element>offset_range</element>
+      </field>
+      <field>
+        <name>offset_count</name>
+        <element>offset_count</element>
+      </field>
+      <field>
+        <name>redirect_offset</name>
+        <element>redirect_offset</element>
+      </field>
+      <field>
+        <name>redirect_operate</name>
+        <element>redirect_operate</element>
+      </field>
+      <field>
+        <name>redirect_row</name>
+        <element>redirect_row</element>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <element>source_schema</element>
+      </field>
+      <field>
+        <name>source_table</name>
+        <element>source_table</element>
+      </field>
+      <field>
+        <name>source_row</name>
+        <element>source_row</element>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>RowsFromResult: kafka info</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>kafka_key</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_message</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_topic</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_partition</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_offset</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_timestamp</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2599,6 +2519,10 @@ result_id = i;</jsScript_script>
             <child>code</child>
           </connector>
           <connector>
+            <parent>group</parent>
+            <child>group</child>
+          </connector>
+          <connector>
             <parent>json</parent>
             <child>json</child>
           </connector>
@@ -2895,12 +2819,12 @@ result_id = i;</jsScript_script>
             <child>batch_time</child>
           </connector>
           <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-          <connector>
             <parent>source_schema</parent>
             <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
           <connector>
             <parent>source_table</parent>
@@ -3312,6 +3236,49 @@ result_id = i;</jsScript_script>
     </GUI>
   </step>
   <step>
+    <name>SystemInfo: batch info</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>process_id</name>
+        <type>Current PID</type>
+      </field>
+      <field>
+        <name>transname</name>
+        <type>transformation name</type>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <type>batch ID</type>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SystemInfo: batch_id</name>
     <type>SystemInfo</type>
     <description/>
@@ -3492,49 +3459,6 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>352</xloc>
       <yloc>1312</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SystemInfo: batch info</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>process_id</name>
-        <type>Current PID</type>
-      </field>
-      <field>
-        <name>transname</name>
-        <type>transformation name</type>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <type>batch ID</type>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>system date (fixed)</type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>976</xloc>
-      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
