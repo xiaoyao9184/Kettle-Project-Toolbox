@@ -42,7 +42,7 @@ GOTO:EOF
     SET kettle_param_name=!kettle_param_name:KPT_KETTLE_=!
     IF /I "!kettle_param_name:~0,6!"=="PARAM_" (
         @REM ::remove prefix
-        SET kettle_param_name=!kettle_param_name:PARAM_=!
+        SET kettle_param_name=!kettle_param_name:~6!
 
         @REM ::replace
         SET kettle_param_name=!kettle_param_name:___=_!
