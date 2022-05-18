@@ -9,6 +9,43 @@ function function_is_docker() {
     test -f $cgroup && [[ "$(<$cgroup)" = *:cpuset:/docker/* ]]
 }
 
+
+function function_replace() {
+    local -n str=$1
+    
+    str="${str//___/_}"
+    str="${str//__/-}"
+    str="${str//_/.}"
+}
+
+
+#  parse environment variable to kettle command param name
+# 1. Remove prefix KPT_KETTLE_PARAM_
+# 2. Replace a period (.) with a single underscore (_).
+# 3. Replace a dash (-) with double underscores (__).
+# 4. Replace an underscore (_) with triple underscores (___).
+# 5. Replace value concatenate equal-sign(=) with value
+# 
+function function_env_parse_param() {
+    env_name=$1
+    local -n kettle_param_name=$2
+
+    # remove prefix
+    env_name=${env_name//KPT_KETTLE_/}
+    
+    if [[ "${env_name:0:6}" = "PARAM_" ]]; then
+        # remove prefix
+        kettle_param_name="${env_name:6}"
+        
+        # replace
+        function_replace kettle_param_name
+    else
+        # ignore underlined variable
+        kettle_param_name=
+    fi
+}
+
+
 function function_looking() {
     _looking_dir=$1
     _looking_file_name=$2
@@ -193,6 +230,31 @@ if [[ -z "$KETTLE_HOME" && -d $caller_script_dir/.kettle ]]; then
     echo "set 'KETTLE_HOME' to $KETTLE_HOME"
 fi
 
+# Upgraded parameters to JAVA environment variables
+# https://stackoverflow.com/a/55146593/5344877
+if [[ "$KPT_PARAM_AS_ENV" = "true" ]]; then
+    # create java option
+    _java_opt=
+    read -r -a _env_array <<< "$( echo "${!KPT_KETTLE_*}" )"
+    for _env_name in "${_env_array[@]}"; do
+        _param_opt=
+        function_env_parse_param "$_env_name" _param_name
+        if [[ -n "$_param_name" ]]; then
+            _param_value="${!_env_name}"
+            _param_opt="-D$_param_name=$_param_value"
+            echo "set '$_env_name' as java system environment: $_param_name"
+        fi
+        if [[ -z "$_java_opt" ]]; then
+            _java_opt="$_param_opt"
+        else
+            _java_opt="$_java_opt $_param_opt"
+        fi
+    done
+    if [[ -n "$_java_opt" ]]; then
+        PENTAHO_DI_JAVA_OPTIONS="$PENTAHO_DI_JAVA_OPTIONS $_java_opt"
+    fi
+fi
+
 echo "##########$source_script_name##########"
 
 
@@ -208,3 +270,4 @@ echo "##########$source_script_name##########"
 [[ -n "$KPT_KETTLE_FILE" ]] && export KPT_KETTLE_FILE=$KPT_KETTLE_FILE
 [[ -n "$KETTLE_HOME" ]] && export KETTLE_HOME=$KETTLE_HOME
 [[ -n "$KETTLE_REPOSITORY" ]] && export KETTLE_REPOSITORY=$KETTLE_REPOSITORY
+[[ -n "$PENTAHO_DI_JAVA_OPTIONS" ]] && export PENTAHO_DI_JAVA_OPTIONS=$PENTAHO_DI_JAVA_OPTIONS

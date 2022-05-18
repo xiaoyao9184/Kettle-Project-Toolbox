@@ -13,6 +13,7 @@ ENDLOCAL & (
     SET KPT_KETTLE_FILE=%kpt_folder_dir%samples\default_boolean_param\default_boolean_param-test.ktr
     SET KPT_KETTLE_PARAM_parameter_exist_boolean=false
     SET KPT_KETTLE_PARAM_parameter_exist_string=string1
+    SET KPT_PARAM_AS_ENV=true
 
     CALL %parent_folder_dir%KPT_RUN_COMMAND.bat
 )

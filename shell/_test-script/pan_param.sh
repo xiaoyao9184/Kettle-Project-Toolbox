@@ -13,6 +13,7 @@ export KPT_COMMAND="pan"
 export KPT_KETTLE_FILE="$kpt_folder_dir/samples/default_boolean_param/default_boolean_param-test.ktr"
 export KPT_KETTLE_PARAM_parameter_exist_boolean="false"
 export KPT_KETTLE_PARAM_parameter_exist_string="string1"
+export KPT_PARAM_AS_ENV="true"
 
 bash "$parent_folder_dir/KPT_RUN_COMMAND.sh"
 
