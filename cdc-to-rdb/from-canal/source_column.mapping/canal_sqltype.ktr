@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/12 17:49:57.453</modified_date>
+    <modified_date>2022/05/18 16:51:47.821</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -453,7 +453,7 @@
     </hop>
     <hop>
       <from>SimpleMapping: source_key</from>
-      <to>StreamLookup: key</to>
+      <to>StreamLookup: source_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -473,11 +473,11 @@
     </hop>
     <hop>
       <from>ScriptValueMod: from column,sqlType,mysqlType</from>
-      <to>StreamLookup: key</to>
+      <to>StreamLookup: source_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup: key</from>
+      <from>StreamLookup: source_key</from>
       <to>ValueMapper: column_key</to>
       <enabled>Y</enabled>
     </hop>
@@ -493,7 +493,7 @@
     </hop>
     <hop>
       <from>ValueMapper: column_key</from>
-      <to>StreamLookup</to>
+      <to>StreamLookup: converter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -508,11 +508,11 @@
     </hop>
     <hop>
       <from>Dummy: kettle_type</from>
-      <to>StreamLookup</to>
+      <to>StreamLookup: converter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup</from>
+      <from>StreamLookup: converter</from>
       <to>ValueMapper: column_format</to>
       <enabled>Y</enabled>
     </hop>
@@ -972,7 +972,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>target_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -984,7 +984,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>target_table</name>
+        <name>source_table</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1156,13 +1156,13 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_table</name>
+        <name>source_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1179,7 +1179,7 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
-      <select_unspecified>N</select_unspecified>
+      <select_unspecified>Y</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1349,7 +1349,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>key_name</name>
+        <name>source_key</name>
       </remove>
       <remove>
         <name>sql_type_number</name>
@@ -1568,12 +1568,12 @@ for (index = 0; index &lt; sqlType.length; index++) {
             <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
           </connector>
           <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
+            <parent>source_table</parent>
+            <child>source_table</child>
           </connector>
         </mapping>
       </input>
@@ -1585,20 +1585,8 @@ for (index = 0; index &lt; sqlType.length; index++) {
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>target_schema</parent>
-            <child>lookup_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>lookup_table</child>
-          </connector>
-          <connector>
-            <parent>key_name</parent>
-            <child>key_name</child>
-          </connector>
-          <connector>
-            <parent>key_kettle_field</parent>
-            <child>key_kettle_field</child>
+            <parent>source_key</parent>
+            <child>source_key</child>
           </connector>
         </mapping>
       </output>
@@ -1621,7 +1609,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>StreamLookup</name>
+    <name>StreamLookup: converter</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1669,7 +1657,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>StreamLookup: key</name>
+    <name>StreamLookup: source_key</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -1686,20 +1674,20 @@ for (index = 0; index &lt; sqlType.length; index++) {
     <integer_pair>N</integer_pair>
     <lookup>
       <key>
-        <name>target_schema</name>
-        <field>lookup_schema</field>
+        <name>source_schema</name>
+        <field>source_schema</field>
       </key>
       <key>
-        <name>target_table</name>
-        <field>lookup_table</field>
+        <name>source_table</name>
+        <field>source_table</field>
       </key>
       <key>
         <name>column</name>
-        <field>key_name</field>
+        <field>source_key</field>
       </key>
       <value>
-        <name>key_name</name>
-        <rename>key_name</rename>
+        <name>source_key</name>
+        <rename>source_key</rename>
         <default>-</default>
         <type>String</type>
       </value>
@@ -1803,7 +1791,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>key_name</field_to_use>
+    <field_to_use>source_key</field_to_use>
     <target_field>column_key</target_field>
     <non_match_default>true</non_match_default>
     <fields>

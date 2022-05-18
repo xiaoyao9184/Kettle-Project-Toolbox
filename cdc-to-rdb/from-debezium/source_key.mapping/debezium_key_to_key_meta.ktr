@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/04 14:05:46.049</modified_date>
+    <modified_date>2022/05/18 16:41:19.834</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -452,101 +452,11 @@
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>Constant: FIELD_PREFIX</from>
-      <to>Calculator: kettle_field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>ScriptValueMod: from key.schema</from>
-      <to>Constant: FIELD_PREFIX</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: kettle_field</from>
       <to>SelectValues: remove</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Calculator: kettle_field</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>kettle_field</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>FIELD_PREFIX</field_a>
-      <field_b>schema_field</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: FIELD_PREFIX</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>FIELD_PREFIX</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>kettle_field_</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>DataGrid: test_kpt_cdc</name>
     <type>DataGrid</type>
@@ -645,13 +555,13 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_schema</name>
+        <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>target_table</name>
+        <name>source_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -693,7 +603,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -798,29 +708,9 @@ if (key_col != null){
       <remove>
         <name>schema_type</name>
       </remove>
-      <remove>
-        <name>FIELD_PREFIX</name>
-      </remove>
       <meta>
         <name>schema_field</name>
-        <rename>key_name</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>kettle_field</name>
-        <rename>key_kettle_field</rename>
+        <rename>source_key</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -846,7 +736,7 @@ if (key_col != null){
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>608</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
