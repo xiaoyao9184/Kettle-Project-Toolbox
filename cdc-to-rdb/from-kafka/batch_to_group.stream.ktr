@@ -46,23 +46,13 @@
         <description/>
       </parameter>
       <parameter>
-        <name>CursorLastExecutorResultBatchId</name>
-        <default_value>-</default_value>
-        <description>last batch_id of executor result</description>
-      </parameter>
-      <parameter>
-        <name>CursorLastExecutorResultIndex</name>
-        <default_value>-1</default_value>
-        <description>last index of executor result</description>
+        <name>ParamExecutorTransformation</name>
+        <default_value>group_to_table.result</default_value>
+        <description/>
       </parameter>
       <parameter>
         <name>ParamMarkTransformation</name>
         <default_value>log_environment_to_logtable</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>ParamExecutorTransformation</name>
-        <default_value>group_to_table.result</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -486,7 +476,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 11:18:10.164</modified_date>
+    <modified_date>2022/05/18 09:24:14.207</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -545,43 +535,13 @@
   </connection>
   <order>
     <hop>
-      <from>Transformation executor</from>
-      <to>Dummy: exec result</to>
+      <from>Calculator: length of schema and table</from>
+      <to>FilterRows: is table-log</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Transformation executor</from>
-      <to>Dummy: exec statistics</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transformation executor</from>
-      <to>Dummy: exec stream</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: executor param</from>
-      <to>Transformation executor</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exec statistics</from>
-      <to>Sequence: execution_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exec result</from>
-      <to>ScriptValueMod: result_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Sequence: execution_id</from>
-      <to>StreamLookup: execution</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: ERROR</from>
-      <to>SimpleMapping: logger ERROR</to>
+      <from>Constant: DDL</from>
+      <to>JSON output: DDL</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -590,38 +550,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup: execution</from>
-      <to>StreamLookup: result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: source_table.mapping</from>
-      <to>Calculator: length of schema and table</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: exec stream</from>
-      <to>Group by: group_table_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by: group_table_id</from>
-      <to>StreamLookup: execution</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>StreamLookup: result</from>
-      <to>FilterRows: execution no error</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Constant: GOOD</from>
       <to>JSON output: GOOD</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: GOOD</from>
-      <to>SimpleMapping: logger GOOD</to>
+      <from>Constant: MERGE</from>
+      <to>JSON output: MERGE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: exec result</from>
+      <to>Calculator: result_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: exec statistics</from>
+      <to>Sequence: execution_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: exec stream</from>
+      <to>Group by: group_table_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -640,41 +590,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove execution_log_text</from>
-      <to>Dummy: return to kafka</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: is table-log</from>
-      <to>Group by: batch_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: result_id</from>
-      <to>StreamLookup: result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get records from stream</from>
-      <to>SystemInfo: batch_id, batch_time</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch_id, batch_time</from>
-      <to>SimpleMapping: source_table.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: length of schema and table</from>
-      <to>FilterRows: is table-log</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch info</from>
-      <to>Transformation executor: batch_group_marker.result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>FilterRows: is redirect</from>
       <to>Group by: redirect_row</to>
       <enabled>Y</enabled>
@@ -685,8 +600,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: redirect_row.mapping</from>
-      <to>FilterRows: is redirect</to>
+      <from>FilterRows: is table-log</from>
+      <to>Group by: batch_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -695,13 +610,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: group_table.mapping</from>
-      <to>SelectValues: executor param</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: DDL</from>
-      <to>JSON output: DDL</to>
+      <from>Get records from stream</from>
+      <to>SystemInfo: batch_id, batch_time</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -710,13 +620,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Group by: group_table_id</from>
+      <to>StreamLookup: execution</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: redirect_row</from>
+      <to>Constant: MERGE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>JSON output: DDL</from>
       <to>SimpleMapping: logger DDL</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: MERGE</from>
-      <to>JSON output: MERGE</to>
+      <from>JSON output: ERROR</from>
+      <to>SimpleMapping: logger ERROR</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: GOOD</from>
+      <to>SimpleMapping: logger GOOD</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -725,8 +650,48 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>SelectValues: executor param</from>
+      <to>Transformation executor</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove execution_log_text</from>
+      <to>Dummy: return to kafka</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sequence: execution_id</from>
+      <to>StreamLookup: execution</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>SetValueConstant: code</from>
       <to>SystemInfo: batch</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: group_table.mapping</from>
+      <to>SelectValues: executor param</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: redirect_row.mapping</from>
+      <to>FilterRows: is redirect</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: source_table.mapping</from>
+      <to>Calculator: length of schema and table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: execution</from>
+      <to>StreamLookup: result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: result</from>
+      <to>FilterRows: execution no error</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -735,8 +700,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: redirect_row</from>
-      <to>Constant: MERGE</to>
+      <from>SystemInfo: batch info</from>
+      <to>Transformation executor: batch_group_marker.result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch_id, batch_time</from>
+      <to>SimpleMapping: source_table.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Transformation executor</from>
+      <to>Dummy: exec result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Transformation executor</from>
+      <to>Dummy: exec statistics</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Transformation executor</from>
+      <to>Dummy: exec stream</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: result_id</from>
+      <to>StreamLookup: result</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1376,7 +1366,7 @@
     <prefix>grp</prefix>
     <add_linenr>N</add_linenr>
     <linenr_fieldname/>
-    <give_back_row>N</give_back_row>
+    <give_back_row>Y</give_back_row>
     <group>
       <field>
         <name>group_table_id</name>
@@ -1813,96 +1803,6 @@
     </GUI>
   </step>
   <step>
-    <name>JSON output: MERGE</name>
-    <type>JsonOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <outputValue>json</outputValue>
-    <jsonBloc>merge</jsonBloc>
-    <nrRowsInBloc>0</nrRowsInBloc>
-    <operation_type>outputvalue</operation_type>
-    <compatibility_mode>N</compatibility_mode>
-    <encoding>UTF-8</encoding>
-    <addtoresult>N</addtoresult>
-    <file>
-      <name/>
-      <extention>js</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <create_parent_folder>N</create_parent_folder>
-      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
-      <servlet_output>N</servlet_output>
-    </file>
-    <fields>
-      <field>
-        <name>code</name>
-        <element>code</element>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <element>batch_time</element>
-      </field>
-      <field>
-        <name>offset_range</name>
-        <element>offset_range</element>
-      </field>
-      <field>
-        <name>offset_count</name>
-        <element>offset_count</element>
-      </field>
-      <field>
-        <name>redirect_offset</name>
-        <element>redirect_offset</element>
-      </field>
-      <field>
-        <name>redirect_operate</name>
-        <element>redirect_operate</element>
-      </field>
-      <field>
-        <name>redirect_row</name>
-        <element>redirect_row</element>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <element>source_schema</element>
-      </field>
-      <field>
-        <name>source_table</name>
-        <element>source_table</element>
-      </field>
-      <field>
-        <name>source_row</name>
-        <element>source_row</element>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>1056</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>JSON output: GOOD</name>
     <type>JsonOutput</type>
     <description/>
@@ -2081,8 +1981,8 @@
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: result_id</name>
-    <type>ScriptValueMod</type>
+    <name>JSON output: MERGE</name>
+    <type>JsonOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -2091,32 +1991,69 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var i = parseInt(getVariable("CursorLastExecutorResultIndex",'-1'),0);
-var r = getVariable("CursorLastExecutorResultBatchId",'-');
-if(result_batch_id != r) {
-  // new result
-  i = i + 1;
-  r = result_batch_id;
-  setVariable("CursorLastExecutorResultIndex",i,'p');
-  setVariable("CursorLastExecutorResultBatchId",r,'p');
-}
-result_id = i;</jsScript_script>
-      </jsScript>
-    </jsScripts>
+    <outputValue>json</outputValue>
+    <jsonBloc>merge</jsonBloc>
+    <nrRowsInBloc>0</nrRowsInBloc>
+    <operation_type>outputvalue</operation_type>
+    <compatibility_mode>N</compatibility_mode>
+    <encoding>UTF-8</encoding>
+    <addtoresult>N</addtoresult>
+    <file>
+      <name/>
+      <extention>js</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <create_parent_folder>N</create_parent_folder>
+      <DoNotOpenNewFileInit>N</DoNotOpenNewFileInit>
+      <servlet_output>N</servlet_output>
+    </file>
     <fields>
       <field>
-        <name>result_id</name>
-        <rename>result_id</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+        <name>code</name>
+        <element>code</element>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
+      </field>
+      <field>
+        <name>offset_range</name>
+        <element>offset_range</element>
+      </field>
+      <field>
+        <name>offset_count</name>
+        <element>offset_count</element>
+      </field>
+      <field>
+        <name>redirect_offset</name>
+        <element>redirect_offset</element>
+      </field>
+      <field>
+        <name>redirect_operate</name>
+        <element>redirect_operate</element>
+      </field>
+      <field>
+        <name>redirect_row</name>
+        <element>redirect_row</element>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <element>source_schema</element>
+      </field>
+      <field>
+        <name>source_table</name>
+        <element>source_table</element>
+      </field>
+      <field>
+        <name>source_row</name>
+        <element>source_row</element>
       </field>
     </fields>
     <attributes/>
@@ -2128,8 +2065,8 @@ result_id = i;</jsScript_script>
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>1664</yloc>
+      <xloc>768</xloc>
+      <yloc>1056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2441,6 +2378,10 @@ result_id = i;</jsScript_script>
             <child>code</child>
           </connector>
           <connector>
+            <parent>group</parent>
+            <child>group</child>
+          </connector>
+          <connector>
             <parent>json</parent>
             <child>json</child>
           </connector>
@@ -2737,12 +2678,12 @@ result_id = i;</jsScript_script>
             <child>batch_time</child>
           </connector>
           <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-          <connector>
             <parent>source_schema</parent>
             <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
           <connector>
             <parent>source_table</parent>
@@ -3007,7 +2948,7 @@ result_id = i;</jsScript_script>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <from>ScriptValueMod: result_id</from>
+    <from>Calculator: result_id</from>
     <input_sorted>N</input_sorted>
     <preserve_memory>Y</preserve_memory>
     <sorted_list>N</sorted_list>
@@ -3293,7 +3234,7 @@ result_id = i;</jsScript_script>
     </result_rows_field>
     <result_rows_field>
       <name>result_group_id</name>
-      <type>String</type>
+      <type>Integer</type>
       <length>-1</length>
       <precision>-1</precision>
     </result_rows_field>
@@ -3432,6 +3373,47 @@ result_id = i;</jsScript_script>
     <GUI>
       <xloc>976</xloc>
       <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: result_id</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>result_id</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>result_group_id</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
