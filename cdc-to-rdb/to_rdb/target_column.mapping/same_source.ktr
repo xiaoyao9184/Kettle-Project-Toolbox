@@ -9,8 +9,8 @@
     <directory>/to_rdb/target_column.mapping</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Target.Transformation.Path</name>
-        <default_value>to_pgsql</default_value>
+        <name>Config.Log.Target.Key.Mapping</name>
+        <default_value>same_source</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/28 11:11:13.744</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 10:18:13.604</modified_date>
+    <modified_date>2022/05/18 15:57:08.064</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -443,13 +443,8 @@
   <order>
     <hop>
       <from>MappingInput: target_column.mapping</from>
-      <to>Calculator: target</to>
+      <to>Calculator: target_column</to>
       <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: test</from>
-      <to>Calculator: target</to>
-      <enabled>N</enabled>
     </hop>
     <hop>
       <from>SimpleMapping: target_column_modifier.mapping</from>
@@ -457,13 +452,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: target</from>
+      <from>DataGrid: test</from>
+      <to>Calculator: target_column</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: target_column</from>
+      <to>SimpleMapping: target_key.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_key.mapping</from>
       <to>SimpleMapping: target_column_modifier.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: target</name>
+    <name>Calculator: target_column</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -516,6 +521,18 @@
     </partitioning>
     <fields>
       <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
         <name>source_schema</name>
         <type>String</type>
         <format/>
@@ -540,8 +557,32 @@
         <field_null_if/>
       </field>
       <field>
+        <name>source_row</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
         <name>source_column</name>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_key</name>
+        <type>Boolean</type>
         <format/>
         <currency/>
         <decimal/>
@@ -575,14 +616,52 @@
         <set_empty_string>N</set_empty_string>
         <field_null_if/>
       </field>
+      <field>
+        <name>target_ignore</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
     </fields>
     <data>
       <line>
+        <item/>
         <item>test_kpt_cdc</item>
         <item>debezium_types</item>
+        <item>1</item>
         <item>_id</item>
+        <item>Y</item>
         <item>mysql_manual_generation__test_kpt_cdc</item>
+        <item>change_pk__debezium_types</item>
+        <item/>
+      </line>
+      <line>
+        <item/>
+        <item>test_kpt_cdc</item>
         <item>debezium_types</item>
+        <item>1</item>
+        <item>VARCHAR</item>
+        <item>N</item>
+        <item>mysql_manual_generation__test_kpt_cdc</item>
+        <item>change_pk__debezium_types</item>
+        <item/>
+      </line>
+      <line>
+        <item/>
+        <item>test_kpt_cdc</item>
+        <item>debezium_types</item>
+        <item>1</item>
+        <item>TIMESTAMP</item>
+        <item>N</item>
+        <item>mysql_manual_generation__test_kpt_cdc</item>
+        <item>change_pk__debezium_types</item>
+        <item/>
       </line>
     </data>
     <attributes/>
@@ -612,6 +691,12 @@
     </partitioning>
     <fields>
       <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
@@ -624,8 +709,20 @@
         <precision>-1</precision>
       </field>
       <field>
+        <name>source_row</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>source_column</name>
         <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_key</name>
+        <type>Boolean</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -637,6 +734,18 @@
       </field>
       <field>
         <name>target_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>target_ignore</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>target_column</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -678,7 +787,7 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>560</yloc>
+      <yloc>720</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -727,6 +836,103 @@
           <main_path>Y</main_path>
           <rename_on_output>N</rename_on_output>
           <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: target_key.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.Log.Target.Key.Mapping}</trans_name>
+    <filename/>
+    <directory_path>/to_rdb/target_key.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>source_row</parent>
+            <child>source_row</child>
+          </connector>
+          <connector>
+            <parent>source_column</parent>
+            <child>source_column</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>source_key</child>
+          </connector>
+          <connector>
+            <parent>target_schema</parent>
+            <child>target_schema</child>
+          </connector>
+          <connector>
+            <parent>target_table</parent>
+            <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>target_ignore</parent>
+            <child>target_ignore</child>
+          </connector>
+          <connector>
+            <parent>target_column</parent>
+            <child>target_column</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>target_key</parent>
+            <child>target_key</child>
+          </connector>
         </mapping>
       </output>
       <parameters>
