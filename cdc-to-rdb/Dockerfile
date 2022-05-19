@@ -38,4 +38,4 @@ WORKDIR $PENTAHO_HOME/kpt-cdc-to-rdb
 ENTRYPOINT bash ./kpt.flow.UseProfileConfigRun.sh <&-
 
 VOLUME /home/pentaho/kpt-cdc-to-rdb/log
-VOLUME /home/pentaho/kpt-cdc-to-rdb/to_rdb/message_convert_to_rdb_rud.injection
+VOLUME /home/pentaho/kpt-cdc-to-rdb/to_rdb/group_to_table.injection
