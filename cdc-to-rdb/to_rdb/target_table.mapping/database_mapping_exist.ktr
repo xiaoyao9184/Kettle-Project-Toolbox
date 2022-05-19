@@ -34,7 +34,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Target.Table.Source</name>
+        <name>Config.CDC.Target.Table.Mapping.SourceName</name>
         <default_value>default</default_value>
         <description/>
       </parameter>
@@ -648,7 +648,7 @@
     <fields>
       <field>
         <name>source_name</name>
-        <variable>${Config.CDC.Target.Table.Source}</variable>
+        <variable>${Config.CDC.Target.Table.Mapping.SourceName}</variable>
         <type>String</type>
         <format/>
         <currency/>
