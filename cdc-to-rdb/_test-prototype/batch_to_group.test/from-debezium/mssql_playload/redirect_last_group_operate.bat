@@ -33,6 +33,7 @@ SET KPT_KETTLE_PARAM_ParamExecutorTransformation=group_to_none.result
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
 
 
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.%KPT_KETTLE_PARAM_Config_Log_Source_Transformation_Path%.%KPT_KETTLE_PARAM_Config_Log_Source_Table_Mapping%.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 0
 
