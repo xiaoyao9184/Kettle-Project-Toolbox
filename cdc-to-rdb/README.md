@@ -152,15 +152,11 @@ then you can combine all cfgs by referring the `profile` name later.
 		<cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
 		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
 		<cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
+		
 		<!-- delay for debug reduce rate -->
         <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
         <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
-		<!-- flashpoint, before make the INSERT (SNAPSHOT) event change into UPDATE operation for compatibility -->
-		<!-- even if the data INSERT event is lost, it will not affect subsequent events -->
-		<!-- can define a future timestamp, or a delay seconds for root job run time with past timestamp -->
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
+
 		<!-- kafka streaming to batch window settings -->
 		<!-- bigger mean more memory, more faster and more loss ratio if it fails -->
         <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
@@ -168,6 +164,7 @@ then you can combine all cfgs by referring the `profile` name later.
         <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
 
     <!-- defines database related information -->
+	<!-- this database is used to restore cdc stream log to table, also output the kettle log, and query some parameters -->
     <!-- You can define multiple databases, like 'dev' 'test' 'prod' -->
 		<profile name="dev">
 			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
@@ -202,30 +199,54 @@ then you can combine all cfgs by referring the `profile` name later.
 		<!-- source of cdc -->
 			<!-- can be 'from-debezium' of 'from-canal' -->
 			<cfg namespace="Config.CDC.Source.Transformation" key="Path">from-debezium</cfg>
+			<!-- see from-debezium/source_table.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
-			<cfg namespace="Config.CDC.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
-			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_column_type_to_kettle.mapping</cfg>
+			<cfg namespace="Config.CDC.Source.Table" key="Mapping">mysql_playload</cfg>
+			<!-- see from-debezium/source_column.mapping -->
+			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
+			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
 			<!-- see from-debezium/source_key.mapping -->
-			<!-- use 'target_table' if source table no primary key but target have -->
 			<cfg namespace="Config.CDC.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
-			<!-- no change -->
-			<cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
 			
 		<!-- target of rdb -->
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
 			<!-- see to_rdb/target_table.mapping -->
+			<!-- same_source_lookup use source table name of target table -->
 			<!-- config_prefix_lookup use xml config mapping target table -->
 			<!-- database_mapping_exist use table 'kpt_cdc_data.mapping_table' mapping target table -->
 			<cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+			<!-- see to_rdb/target_operate.mapping -->
+			<!-- same_source use source operate name of target operate -->
+			<!-- update_only_flash_point replace source operate with 'update' operate -->
+			<cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
 			<!-- see to_pgsql/target_column.mapping -->
 			<!-- no change for now -->
 			<cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-			<!-- true case sensitive or pgsql will automatically convert to lowercase -->
-			<cfg namespace="Config.CDC.Target.Case" key="Name">true</cfg>
+			<!-- see to_pgsql/target_key.mapping -->
+			<!-- same_source use source key for target key -->
+			<!-- target_key_lookup use target table key -->
+			<!-- use 'target_key_lookup' if source table no primary key but target have -->
+			<cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+
+		<!-- config_prefix_lookup -->
 			<!-- define output destination schema and table prefix by 'config_prefix_lookup' -->
-			<cfg namespace="Config.CDC.Target.Schema" key="Prefix">kpt_sync__</cfg>
-			<cfg namespace="Config.CDC.Target.Table" key="Prefix"></cfg>
+			<cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">kpt_sync__</cfg>
+			<cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
+
+		<!-- update_only_flash_point -->
+			<!-- flashpoint, before make the INSERT (SNAPSHOT) event change into UPDATE operation for compatibility -->
+			<!-- even if the data INSERT event is lost, it will not affect subsequent events -->
+			<!-- can define a future timestamp, or a delay seconds for root job run time with past timestamp -->
+			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
+			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
+			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
+
+		<!-- target of pgsql -->
+			<!-- use 'true' will add quotation marks to field names -->
+			<!-- use 'false' will automatically convert to lowercase -->
+			<cfg namespace="Config.CDC.Target.PgSql.Case" key="Sensitive">true</cfg>
+		
 		</profile>
 
 	</project>

@@ -38,13 +38,14 @@
             <cfg namespace="Config.CDC.Source.Table" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
             <cfg namespace="Config.CDC.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
-            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
             <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mysql_manual_generation__</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
 
             <!-- Copy it and quickly set system variables -->
             <!-- Differences: external port, delay used, add Config.Profile -->
@@ -71,11 +72,12 @@ Config.CDC.Source.Transformation.Path	from-debezium
 Config.CDC.Source.Table.Mapping	mysql_playload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
 Config.CDC.Source.Key.Mapping	debezium_key_to_key_meta	
-Config.CDC.Target.Operate.Mapping	update_only_flash_point	
 Config.CDC.Target.Transformation.Path	to_pgsql	
+Config.CDC.Target.Operate.Mapping	update_only_flash_point	
 Config.CDC.Target.Table.Mapping	config_prefix_lookup
 Config.CDC.Target.Column.Mapping	same_source	
-Config.CDC.Target.Table.Prefix.Table.Schema	mysql_manual_generation__	
+Config.CDC.Target.Key.Mapping	same_source
+Config.CDC.Target.Table.Prefix.Schema	mysql_manual_generation__	
 Config.CDC.Target.Table.Prefix.Table		
 
             -->
@@ -90,13 +92,14 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Source.Table" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
             <cfg namespace="Config.CDC.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
-            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
             <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
             <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Schema" key="Prefix">mysql_chameleon_generation__</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mysql_chameleon_generation__</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
 
             <!-- Copy it and quickly set system variables -->
             <!-- Differences: external port, delay used, add Config.Profile -->
@@ -123,11 +126,12 @@ Config.CDC.Source.Transformation.Path	from-debezium
 Config.CDC.Source.Table.Mapping	mysql_playload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
 Config.CDC.Source.Key.Mapping	debezium_key_to_key_meta	
-Config.CDC.Target.Operate.Mapping	update_only_flash_point	
 Config.CDC.Target.Transformation.Path	to_pgsql	
+Config.CDC.Target.Operate.Mapping	update_only_flash_point	
 Config.CDC.Target.Table.Mapping	config_prefix_lookup
 Config.CDC.Target.Column.Mapping	same_source	
-Config.CDC.Target.Table.Prefix.Table.Schema	mysql_chameleon_generation__	
+Config.CDC.Target.Key.Mapping	same_source
+Config.CDC.Target.Table.Prefix.Schema	mysql_chameleon_generation__	
 Config.CDC.Target.Table.Prefix.Table		
 
             -->
