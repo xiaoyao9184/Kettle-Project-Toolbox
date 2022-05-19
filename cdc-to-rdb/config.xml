@@ -136,7 +136,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_canal-test_kpt_cdc</cfg>
             
-            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from-canal</cfg>
+            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_canal</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">canal_table</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">canal_sqltype</cfg>
             <cfg namespace="Config.CDC.Source.Key" key="Mapping">canal_pknames</cfg>
@@ -169,7 +169,7 @@ Config.CDC.Kafka.Data.Topic	test_canal-test_kpt_cdc
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000
-Config.CDC.Source.Transformation.Path	from-canal
+Config.CDC.Source.Transformation.Path	from_canal
 Config.CDC.Source.Row.Mapping	canal_table
 Config.CDC.Source.Column.Mapping	canal_sqltype
 Config.CDC.Source.Key.Mapping	canal_pknames

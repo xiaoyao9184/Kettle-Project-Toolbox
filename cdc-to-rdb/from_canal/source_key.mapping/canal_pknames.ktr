@@ -1,12 +1,11 @@
 <transformation>
   <info>
-    <name>canal_table</name>
+    <name>canal_pknames</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
-    <directory>/from-canal/source_row.mapping</directory>
+    <directory>/from_canal/source_key.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -427,9 +426,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/04/20 21:37:30.651</created_date>
+    <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/11/25 15:30:37.387</modified_date>
+    <modified_date>2022/05/18 16:20:24.665</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -437,28 +436,23 @@
   </notepads>
   <order>
     <hop>
-      <from>SelectValues: rename source_*</from>
-      <to>MappingOutput: source_row.mapping</to>
+      <from>SelectValues: rename</from>
+      <to>MappingOutput: source_key.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: source_row.mapping</from>
-      <to>JSON input: message info</to>
+      <from>MappingInput: source_key.mapping</from>
+      <to>ScriptValueMod: from pk</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: canal_manager</from>
-      <to>JSON input: message info</to>
+      <to>ScriptValueMod: from pk</to>
       <enabled>N</enabled>
     </hop>
     <hop>
-      <from>JSON input: message info</from>
-      <to>ScriptValueMod: message_pk_list</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: message_pk_list</from>
-      <to>SelectValues: rename source_*</to>
+      <from>ScriptValueMod: from pk</from>
+      <to>SelectValues: rename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -504,18 +498,6 @@
         <item/>
         <item>{"data":[{"id":"6","username":"admin1","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
       </line>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper1:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
-      </line>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"6","username":"admin2","password":"6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9","name":"Canal Manager","roles":"admin","introduction":null,"avatar":null,"creation_date":"2019-07-14 00:05:28"}],"database":"canal_manager","es":1629339929000,"id":125,"isDdl":false,"mysqlType":{"id":"bigint(20)","username":"varchar(31)","password":"varchar(128)","name":"varchar(31)","roles":"varchar(31)","introduction":"varchar(255)","avatar":"varchar(255)","creation_date":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"username":12,"password":12,"name":12,"roles":12,"introduction":12,"avatar":12,"creation_date":93},"table":"canal_user","ts":1629339929740,"type":"INSERT"}</item>
-      </line>
-      <line>
-        <item/>
-        <item>{"data":[{"id":"2","name":"default","zk_hosts":"zookeeper2:2181","modified_time":"2021-07-05 11:16:59"}],"database":"canal_manager","es":1629357073000,"id":133,"isDdl":false,"mysqlType":{"id":"bigint(20)","name":"varchar(63)","zk_hosts":"varchar(255)","modified_time":"timestamp"},"old":null,"pkNames":["id"],"sql":"","sqlType":{"id":-5,"name":12,"zk_hosts":12,"modified_time":93},"table":"canal_cluster","ts":1629357073660,"type":"INSERT"}</item>
-      </line>
     </data>
     <attributes/>
     <cluster_schema/>
@@ -532,103 +514,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input: message info</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>message_type</name>
-        <path>$.type</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_database</name>
-        <path>$.database</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_table</name>
-        <path>$.table</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>kafka_message</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: source_row.mapping</name>
+    <name>MappingInput: source_key.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -651,6 +537,18 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -668,7 +566,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: source_row.mapping</name>
+    <name>MappingOutput: source_key.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -688,108 +586,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>672</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: rename source_*</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>Y</select_unspecified>
-      <meta>
-        <name>message_database</name>
-        <rename>source_schema</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>message_table</name>
-        <rename>source_table</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>message_pk_list</name>
-        <rename>source_row</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>message_type</name>
-        <rename>source_operate</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
       <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: message_pk_list</name>
+    <name>ScriptValueMod: from pk</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -807,42 +609,79 @@
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
-var index_message_pk_list = getOutputRowMeta().indexOfValue("message_pk_list");
-var key_values = [];
+var index_pk = getOutputRowMeta().indexOfValue("pk");
 
 var message_index = getInputRowMeta().indexOfValue("kafka_message");
 var message_col = row[message_index];
 var message_obj = message_col == null ? null : JSON.parse(message_col);
 if (message_obj != null) {
   var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
-  var datas = message_obj.data == null ? [] : message_obj.data;
-  for (i = 0; i &lt; datas.length; i++) {
-    var data = datas[i];
-    var data_key_values = [];
-    for (j = 0; j &lt; keys.length; j++) {
-      var key_name = keys[j];
-      var key_value = data[key_name];
-      data_key_values.push(key_value);
-    }
-    key_values.push(data_key_values.join('&amp;'));
+
+  for (index = 0; index &lt; keys.length; index++) {
+    var key = keys[index];
+
+    var row = createRowCopy(getOutputRowMeta().size());  
+    row[index_pk] = key; 
+    putRow(row);
   }
 }
-
-var row = createRowCopy(getOutputRowMeta().size());  
-row[index_message_pk_list] = key_values.join(','); 
-putRow(row);
 </jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>message_pk_list</name>
-        <rename>message_pk_list</rename>
+        <name>pk</name>
+        <rename>pk</rename>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>N</replace>
       </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: rename</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>Y</select_unspecified>
+      <meta>
+        <name>pk</name>
+        <rename>source_key</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
