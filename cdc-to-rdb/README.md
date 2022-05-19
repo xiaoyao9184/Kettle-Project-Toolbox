@@ -197,15 +197,15 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
 
 		<!-- source of cdc -->
-			<!-- can be 'from-debezium' of 'from_canal' -->
-			<cfg namespace="Config.CDC.Source.Transformation" key="Path">from-debezium</cfg>
-			<!-- see from-debezium/source_row.mapping -->
+			<!-- can be 'from_debezium' of 'from_canal' -->
+			<cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
+			<!-- see from_debezium/source_row.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
-			<!-- see from-debezium/source_column.mapping -->
+			<!-- see from_debezium/source_column.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
-			<!-- see from-debezium/source_key.mapping -->
+			<!-- see from_debezium/source_key.mapping -->
 			<cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
 			
 		<!-- target of rdb -->

@@ -16,8 +16,8 @@ RUN $PENTAHO_HOME/tool/create_project.sh kpt-cdc-to-rdb <&- \
 # Copy core ktr
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_canal \
     $PENTAHO_HOME/kpt-cdc-to-rdb/from_canal
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-debezium \
-    $PENTAHO_HOME/kpt-cdc-to-rdb/from-debezium
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_debezium \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/from_debezium
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_kafka \
     $PENTAHO_HOME/kpt-cdc-to-rdb/from_kafka
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_pgsql \

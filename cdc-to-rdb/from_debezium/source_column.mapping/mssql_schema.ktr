@@ -6,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-debezium/source_column.mapping</directory>
+    <directory>/from_debezium/source_column.mapping</directory>
     <parameters>
       <parameter>
         <name>Config.CDC.Source.Key.Mapping</name>
@@ -15,7 +15,7 @@
       </parameter>
       <parameter>
         <name>Config.CDC.Source.Transformation.Path</name>
-        <default_value>from-debezium</default_value>
+        <default_value>from_debezium</default_value>
         <description/>
       </parameter>
     </parameters>
