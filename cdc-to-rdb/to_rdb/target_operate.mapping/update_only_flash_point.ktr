@@ -14,17 +14,17 @@
         <description>timestamp point for root job run</description>
       </parameter>
       <parameter>
-        <name>Config.CDC.UpdateOnly.FlashPoint.Delay</name>
+        <name>Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay</name>
         <default_value>86400</default_value>
         <description>seconds for now delay enable replace to update</description>
       </parameter>
       <parameter>
-        <name>Config.CDC.UpdateOnly.FlashPoint.Include</name>
+        <name>Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include</name>
         <default_value>INSERT,SNAPSHOT</default_value>
         <description>flag list for replace to update</description>
       </parameter>
       <parameter>
-        <name>Config.CDC.UpdateOnly.FlashPoint.Timestamp</name>
+        <name>Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp</name>
         <default_value>2000-01-01T00:00:00.000Z</default_value>
         <description>timestamp point for all to replace to update</description>
       </parameter>
@@ -983,7 +983,7 @@
     <fields>
       <field>
         <name>config_flashpoint_include</name>
-        <variable>${Config.CDC.UpdateOnly.FlashPoint.Include}</variable>
+        <variable>${Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -995,7 +995,7 @@
       </field>
       <field>
         <name>config_flashpoint_timestamp</name>
-        <variable>${Config.CDC.UpdateOnly.FlashPoint.Timestamp}</variable>
+        <variable>${Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp}</variable>
         <type>Date</type>
         <format>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</format>
         <currency/>
@@ -1007,7 +1007,7 @@
       </field>
       <field>
         <name>config_flashpoint_delay</name>
-        <variable>${Config.CDC.UpdateOnly.FlashPoint.Delay}</variable>
+        <variable>${Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay}</variable>
         <type>Integer</type>
         <format>#.#</format>
         <currency/>

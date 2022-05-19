@@ -14,9 +14,9 @@
         <cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
         <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
         <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
-        <cfg namespace="Config.CDC.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
-        <cfg namespace="Config.CDC.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
-        <cfg namespace="Config.CDC.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
         <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
         <cfg namespace="Config.CDC.Kafka.Batch" key="Duration">60000</cfg>
         <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
@@ -56,9 +56,9 @@ Config.CDC.RDB.pgsql.username	TODO_CHANGE_USERNAME
 Config.CDC.RDB.pgsql.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000
 Config.Delay.Injection.Field.Time	10000
-Config.CDC.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
-Config.CDC.UpdateOnly.FlashPoint.Delay	86400
-Config.CDC.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
 Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes
@@ -104,9 +104,9 @@ Config.CDC.RDB.pgsql.username	TODO_CHANGE_USERNAME
 Config.CDC.RDB.pgsql.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000
 Config.Delay.Injection.Field.Time	10000
-Config.CDC.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
-Config.CDC.UpdateOnly.FlashPoint.Delay	86400
-Config.CDC.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
 Config.CDC.Kafka.Data.Topic	test_debezium_mssql-test_kpt_cdc.data-changes
@@ -152,9 +152,9 @@ Config.CDC.RDB.pgsql.username	TODO_CHANGE_USERNAME
 Config.CDC.RDB.pgsql.password	TODO_CHANGE_PASSWROD
 Config.Delay.Injection.Crud.Time	1000
 Config.Delay.Injection.Field.Time	10000
-Config.CDC.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
-Config.CDC.UpdateOnly.FlashPoint.Delay	86400
-Config.CDC.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
 Config.CDC.Kafka.Data.Topic	test_canal-test_kpt_cdc

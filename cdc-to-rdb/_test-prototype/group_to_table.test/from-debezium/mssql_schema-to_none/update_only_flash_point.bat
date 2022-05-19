@@ -43,8 +43,8 @@ SET KPT_KETTLE_PARAM_ParamTemplatePath=to_rdb
 SET KPT_KETTLE_PARAM_ParamTemplateTransformation=group_to_table.template
 
 @REM for protptype
-SET KPT_KETTLE_PARAM_Config_CDC_UpdateOnly_FlashPoint_Include=INSERT,SNAPSHOT
-SET KPT_KETTLE_PARAM_Config_CDC_UpdateOnly_FlashPoint_Delay=86400
+SET KPT_KETTLE_PARAM_Config_CDC_Target_Operate_UpdateOnly_FlashPoint_Include=INSERT,SNAPSHOT
+SET KPT_KETTLE_PARAM_Config_CDC_Target_Operate_UpdateOnly_FlashPoint_Delay=86400
 SET KPT_KETTLE_PARAM_Config_Time=2022-01-01T00:00:00.000Z
 
 
