@@ -6,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-debezium/source_table.mapping</directory>
+    <directory>/from-debezium/source_row.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -448,7 +448,7 @@
     </hop>
     <hop>
       <from>SelectValues: rename source_*</from>
-      <to>MappingOutput: source_table.mapping</to>
+      <to>MappingOutput: source_row.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -507,7 +507,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: source_table.mapping</from>
+      <from>MappingInput: source_row.mapping</from>
       <to>JSON input: message_schema_name</to>
       <enabled>Y</enabled>
     </hop>
@@ -1149,7 +1149,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: source_table.mapping</name>
+    <name>MappingInput: source_row.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1189,7 +1189,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: source_table.mapping</name>
+    <name>MappingOutput: source_row.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

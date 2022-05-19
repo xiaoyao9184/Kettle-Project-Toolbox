@@ -199,9 +199,9 @@ then you can combine all cfgs by referring the `profile` name later.
 		<!-- source of cdc -->
 			<!-- can be 'from-debezium' of 'from-canal' -->
 			<cfg namespace="Config.CDC.Source.Transformation" key="Path">from-debezium</cfg>
-			<!-- see from-debezium/source_table.mapping -->
+			<!-- see from-debezium/source_row.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
-			<cfg namespace="Config.CDC.Source.Table" key="Mapping">mysql_playload</cfg>
+			<cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
 			<!-- see from-debezium/source_column.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>

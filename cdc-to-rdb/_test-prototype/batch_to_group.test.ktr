@@ -9,7 +9,7 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Source.Table.Mapping</name>
+        <name>Config.CDC.Source.Row.Mapping</name>
         <default_value>canal_table</default_value>
         <description/>
       </parameter>
@@ -490,7 +490,7 @@
     <defaultPathLeafToNull>Y</defaultPathLeafToNull>
     <rownum_field/>
     <file>
-      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/batch_to_group.test/${Config.CDC.Source.Transformation.Path}/${Config.CDC.Source.Table.Mapping}.json</name>
+      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/batch_to_group.test/${Config.CDC.Source.Transformation.Path}/${Config.CDC.Source.Row.Mapping}.json</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
