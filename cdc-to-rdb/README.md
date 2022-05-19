@@ -153,8 +153,8 @@ then you can combine all cfgs by referring the `profile` name later.
 		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
 		<cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
 		<!-- delay for debug reduce rate -->
-        <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
-        <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
+        <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
+        <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
 		<!-- flashpoint, before make the INSERT (SNAPSHOT) event change into UPDATE operation for compatibility -->
 		<!-- even if the data INSERT event is lost, it will not affect subsequent events -->
 		<!-- can define a future timestamp, or a delay seconds for root job run time with past timestamp -->

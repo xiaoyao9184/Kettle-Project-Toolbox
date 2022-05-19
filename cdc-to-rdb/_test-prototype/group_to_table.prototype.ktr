@@ -14,12 +14,12 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Delay.Injection.Crud.Time</name>
+        <name>Config.CDC.Debug.Delay.Injection.Crud.Time</name>
         <default_value>0</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Delay.Injection.Field.Time</name>
+        <name>Config.CDC.Debug.Delay.Injection.Field.Time</name>
         <default_value>0</default_value>
         <description/>
       </parameter>
@@ -2769,7 +2769,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <timeout>${Config.Delay.Injection.Crud.Time}</timeout>
+    <timeout>${Config.CDC.Debug.Delay.Injection.Crud.Time}</timeout>
     <scaletime>milliseconds</scaletime>
     <attributes/>
     <cluster_schema/>
@@ -2796,7 +2796,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <timeout>${Config.Delay.Injection.Field.Time}</timeout>
+    <timeout>${Config.CDC.Debug.Delay.Injection.Field.Time}</timeout>
     <scaletime>milliseconds</scaletime>
     <attributes/>
     <cluster_schema/>

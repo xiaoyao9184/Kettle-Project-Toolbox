@@ -12,8 +12,8 @@
         <cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
         <cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
         <cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
-        <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
-        <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
+        <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
+        <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
         <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
         <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
         <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
@@ -56,8 +56,8 @@ Config.CDC.RDB.pgsql.server	pgsql
 Config.CDC.RDB.pgsql.port	55432
 Config.CDC.RDB.pgsql.username	kpt
 Config.CDC.RDB.pgsql.password	kpt.123
-Config.Delay.Injection.Crud.Time	1000		
-Config.Delay.Injection.Field.Time	10000	
+Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
+Config.CDC.Debug.Delay.Injection.Field.Time	10000	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
@@ -108,8 +108,8 @@ Config.CDC.RDB.pgsql.server	pgsql
 Config.CDC.RDB.pgsql.port	55432
 Config.CDC.RDB.pgsql.username	kpt
 Config.CDC.RDB.pgsql.password	kpt.123
-Config.Delay.Injection.Crud.Time	1000		
-Config.Delay.Injection.Field.Time	10000	
+Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
+Config.CDC.Debug.Delay.Injection.Field.Time	10000	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
