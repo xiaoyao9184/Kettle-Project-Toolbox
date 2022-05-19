@@ -509,7 +509,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 16:50:56.116</modified_date>
+    <modified_date>2022/05/19 10:31:57.349</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -663,7 +663,7 @@
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>Switch / case: kettle_converter</to>
+      <to>Switch / case: source_kettle_converter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -703,7 +703,7 @@
     </hop>
     <hop>
       <from>GetVariable: injection_file_name</from>
-      <to>SystemInfo: batch_id&amp;batch_time</to>
+      <to>SystemInfo: batch_id+batch_time</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -782,82 +782,72 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: source_column.mapping</from>
-      <to>Calculator: source_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: source_column</from>
-      <to>SimpleMapping: target_column.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>StepsMetrics</from>
       <to>GetVariable: injection_file_name</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: GMT_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: days_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: format_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: microseconds_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: milliseconds_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: nanoseconds_to_Date</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: scale_to_BigNumber</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: to_BigNumber</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: to_Boolean</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: to_Integer</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: to_Number</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch_id&amp;batch_time</from>
+      <from>SystemInfo: batch_id+batch_time</from>
       <to>SelectValues: sort field</to>
       <enabled>Y</enabled>
     </hop>
@@ -997,7 +987,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SystemInfo: batch info</from>
+      <from>SystemInfo: for marker</from>
       <to>Transformation executor: batch_group_marker.result</to>
       <enabled>Y</enabled>
     </hop>
@@ -1009,11 +999,6 @@
     <hop>
       <from>SimpleMapping: target_operate.mapping</from>
       <to>SampleRows: for target_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: target_ignore</from>
-      <to>SimpleMapping: target_operate.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1042,7 +1027,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Switch / case: kettle_converter</from>
+      <from>Switch / case: source_kettle_converter</from>
       <to>Constant: Byte_to_Binary</to>
       <enabled>Y</enabled>
     </hop>
@@ -1059,6 +1044,21 @@
     <hop>
       <from>SampleRows: for target_column</from>
       <to>WriteToLog: operate info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: source_column.mapping</from>
+      <to>SimpleMapping: target_column.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: target_ignore</from>
+      <to>SelectValues: remove target_ignore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove target_ignore</from>
+      <to>SimpleMapping: target_operate.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1397,47 +1397,6 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>1200</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: source_column</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>source_column</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>column_name</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1376</xloc>
-      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3536,7 +3495,7 @@
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>column_key</leftvalue>
+        <leftvalue>target_key</leftvalue>
         <function>=</function>
         <rightvalue/>
         <value>
@@ -3576,7 +3535,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Group by: IGNORE</send_true_to>
-    <send_false_to>SimpleMapping: target_operate.mapping</send_false_to>
+    <send_false_to>SelectValues: remove target_ignore</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3628,7 +3587,7 @@
       <field>
         <name>group_id</name>
         <variable>${Param.Group.ID}</variable>
-        <type>Integer</type>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -3934,7 +3893,7 @@
         <replace_string>{precision}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_precision</replace_field_by_string>
+        <replace_field_by_string>source_column_precision</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -3946,7 +3905,7 @@
         <replace_string>{scale}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_scale</replace_field_by_string>
+        <replace_field_by_string>source_column_scale</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -3985,7 +3944,7 @@
         <replace_string>{precision}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_precision</replace_field_by_string>
+        <replace_field_by_string>source_column_precision</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -3997,7 +3956,7 @@
         <replace_string>{scale}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_scale</replace_field_by_string>
+        <replace_field_by_string>source_column_scale</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -4090,12 +4049,6 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
@@ -4108,7 +4061,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_row</name>
+        <name>source_operate</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -4247,7 +4200,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
@@ -4287,11 +4240,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4299,7 +4252,7 @@
         <rename>field_replace</rename>
       </field>
       <field>
-        <name>column_precision</name>
+        <name>source_column_precision</name>
         <rename>field_precision</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4331,11 +4284,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4371,11 +4324,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_json_path</name>
+        <name>source_kettle_json_path</name>
         <rename>field_path</rename>
       </field>
       <field>
@@ -4443,11 +4396,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4487,7 +4440,7 @@
         <rename>field_table</rename>
       </field>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_stream</rename>
       </field>
       <field>
@@ -4523,15 +4476,15 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
-        <name>column_format</name>
+        <name>source_column_format</name>
         <rename>field_conversion_mask</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4563,15 +4516,15 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
-        <name>column_format</name>
+        <name>source_column_format</name>
         <rename>field_conversion_mask</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4607,7 +4560,7 @@
         <rename>key_table</rename>
       </field>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>key_stream</rename>
       </field>
       <field>
@@ -4643,11 +4596,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4683,11 +4636,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4723,11 +4676,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4751,6 +4704,37 @@
     </GUI>
   </step>
   <step>
+    <name>SelectValues: remove target_ignore</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>target_ignore</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>SelectValues: scale_to_BigNumber.step1</name>
     <type>SelectValues</type>
     <description/>
@@ -4763,7 +4747,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
@@ -4803,11 +4787,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4815,7 +4799,7 @@
         <rename>field_replace</rename>
       </field>
       <field>
-        <name>column_precision</name>
+        <name>source_column_precision</name>
         <rename>field_precision</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5004,11 +4988,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5040,11 +5024,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5076,11 +5060,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5112,11 +5096,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5237,10 +5221,6 @@
             <child>kafka_message</child>
           </connector>
           <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-          <connector>
             <parent>source_schema</parent>
             <child>source_schema</child>
           </connector>
@@ -5249,8 +5229,8 @@
             <child>source_table</child>
           </connector>
           <connector>
-            <parent>target_operate</parent>
-            <child>target_operate</child>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
           </connector>
           <connector>
             <parent>target_schema</parent>
@@ -5259,6 +5239,10 @@
           <connector>
             <parent>target_table</parent>
             <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>target_operate</parent>
+            <child>target_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5270,40 +5254,44 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kettle_converter</parent>
-            <child>kettle_converter</child>
+            <parent>source_key</parent>
+            <child>source_key</child>
           </connector>
           <connector>
-            <parent>kettle_type</parent>
-            <child>kettle_type</child>
+            <parent>source_column</parent>
+            <child>source_column</child>
           </connector>
           <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
+            <parent>source_column_type</parent>
+            <child>source_column_type</child>
           </connector>
           <connector>
-            <parent>column_name</parent>
-            <child>column_name</child>
+            <parent>source_column_precision</parent>
+            <child>source_column_precision</child>
           </connector>
           <connector>
-            <parent>column_type</parent>
-            <child>column_type</child>
+            <parent>source_column_scale</parent>
+            <child>source_column_scale</child>
           </connector>
           <connector>
-            <parent>column_key</parent>
-            <child>column_key</child>
+            <parent>source_column_format</parent>
+            <child>source_column_format</child>
           </connector>
           <connector>
-            <parent>column_format</parent>
-            <child>column_format</child>
+            <parent>source_kettle_json_path</parent>
+            <child>source_kettle_json_path</child>
           </connector>
           <connector>
-            <parent>column_precision</parent>
-            <child>column_precision</child>
+            <parent>source_kettle_field</parent>
+            <child>source_kettle_field</child>
           </connector>
           <connector>
-            <parent>column_scale</parent>
-            <child>column_scale</child>
+            <parent>source_kettle_converter</parent>
+            <child>source_kettle_converter</child>
+          </connector>
+          <connector>
+            <parent>source_kettle_type</parent>
+            <child>source_kettle_type</child>
           </connector>
         </mapping>
       </output>
@@ -5358,8 +5346,16 @@
             <child>source_table</child>
           </connector>
           <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
             <parent>source_column</parent>
             <child>source_column</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>source_key</child>
           </connector>
           <connector>
             <parent>target_schema</parent>
@@ -5368,6 +5364,10 @@
           <connector>
             <parent>target_table</parent>
             <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>target_operate</parent>
+            <child>target_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5381,6 +5381,10 @@
           <connector>
             <parent>target_column</parent>
             <child>target_column</child>
+          </connector>
+          <connector>
+            <parent>target_key</parent>
+            <child>target_key</child>
           </connector>
         </mapping>
       </output>
@@ -5583,7 +5587,7 @@
     </GUI>
   </step>
   <step>
-    <name>Switch / case: kettle_converter</name>
+    <name>Switch / case: source_kettle_converter</name>
     <type>SwitchCase</type>
     <description/>
     <distribute>Y</distribute>
@@ -5593,7 +5597,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fieldname>kettle_converter</fieldname>
+    <fieldname>source_kettle_converter</fieldname>
     <use_contains>N</use_contains>
     <case_value_type>None</case_value_type>
     <case_value_format/>
@@ -5669,7 +5673,42 @@
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch info</name>
+    <name>SystemInfo: batch_id+batch_time</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>batch_id</name>
+        <type>batch ID</type>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1376</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SystemInfo: for marker</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -5708,41 +5747,6 @@
     <GUI>
       <xloc>992</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SystemInfo: batch_id&amp;batch_time</name>
-    <type>SystemInfo</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>batch_id</name>
-        <type>batch ID</type>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>system date (fixed)</type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1376</xloc>
-      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5812,7 +5816,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>column_key</field_to_use>
+    <field_to_use>target_key</field_to_use>
     <target_field>FLAG</target_field>
     <non_match_default>Y</non_match_default>
     <fields>
@@ -5857,40 +5861,70 @@
     <logmessage/>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>batch_id</name>
       </field>
       <field>
-        <name>kettle_json_path</name>
+        <name>batch_time</name>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>group_table_id</name>
       </field>
       <field>
-        <name>kettle_converter</name>
+        <name>group_table_name</name>
       </field>
       <field>
-        <name>column_name</name>
+        <name>source_schema</name>
       </field>
       <field>
-        <name>column_type</name>
+        <name>source_table</name>
       </field>
       <field>
-        <name>column_key</name>
-      </field>
-      <field>
-        <name>column_format</name>
-      </field>
-      <field>
-        <name>column_precision</name>
-      </field>
-      <field>
-        <name>column_scale</name>
+        <name>source_operate</name>
       </field>
       <field>
         <name>source_column</name>
       </field>
       <field>
+        <name>source_key</name>
+      </field>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_operate</name>
+      </field>
+      <field>
         <name>target_column</name>
+      </field>
+      <field>
+        <name>target_key</name>
+      </field>
+      <field>
+        <name>source_column_format</name>
+      </field>
+      <field>
+        <name>source_column_precision</name>
+      </field>
+      <field>
+        <name>source_column_scale</name>
+      </field>
+      <field>
+        <name>source_column_type</name>
+      </field>
+      <field>
+        <name>source_kettle_converter</name>
+      </field>
+      <field>
+        <name>source_kettle_field</name>
+      </field>
+      <field>
+        <name>source_kettle_json_path</name>
+      </field>
+      <field>
+        <name>source_kettle_type</name>
       </field>
     </fields>
     <attributes/>
@@ -5937,25 +5971,19 @@
         <name>group_table_name</name>
       </field>
       <field>
-        <name>source_operate</name>
-      </field>
-      <field>
         <name>source_schema</name>
       </field>
       <field>
         <name>source_table</name>
       </field>
       <field>
-        <name>source_row</name>
+        <name>source_operate</name>
       </field>
       <field>
         <name>target_schema</name>
       </field>
       <field>
         <name>target_table</name>
-      </field>
-      <field>
-        <name>target_ignore</name>
       </field>
       <field>
         <name>target_operate</name>
@@ -6005,13 +6033,13 @@
         <name>group_table_name</name>
       </field>
       <field>
-        <name>source_operate</name>
-      </field>
-      <field>
         <name>source_schema</name>
       </field>
       <field>
         <name>source_table</name>
+      </field>
+      <field>
+        <name>source_operate</name>
       </field>
       <field>
         <name>target_schema</name>

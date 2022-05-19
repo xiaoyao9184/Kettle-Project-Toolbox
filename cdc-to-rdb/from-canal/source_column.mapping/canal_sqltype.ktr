@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 16:51:47.821</modified_date>
+    <modified_date>2022/05/18 17:38:44.097</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -453,7 +453,7 @@
     </hop>
     <hop>
       <from>SimpleMapping: source_key</from>
-      <to>StreamLookup: source_key</to>
+      <to>StreamLookup: column_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -473,12 +473,12 @@
     </hop>
     <hop>
       <from>ScriptValueMod: from column,sqlType,mysqlType</from>
-      <to>StreamLookup: source_key</to>
+      <to>StreamLookup: column_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup: source_key</from>
-      <to>ValueMapper: column_key</to>
+      <from>StreamLookup: column_key</from>
+      <to>ValueMapper: source_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -492,7 +492,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ValueMapper: column_key</from>
+      <from>ValueMapper: source_key</from>
       <to>StreamLookup: converter</to>
       <enabled>Y</enabled>
     </hop>
@@ -522,7 +522,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove</from>
+      <from>SelectValues: remove+rename</from>
       <to>SelectValues: select sort</to>
       <enabled>Y</enabled>
     </hop>
@@ -538,7 +538,7 @@
     </hop>
     <hop>
       <from>Calculator: kettle_json_path</from>
-      <to>SelectValues: remove</to>
+      <to>SelectValues: remove+rename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1336,7 +1336,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove</name>
+    <name>SelectValues: remove+rename</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1349,7 +1349,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>source_key</name>
+        <name>column_key</name>
       </remove>
       <remove>
         <name>sql_type_number</name>
@@ -1361,9 +1361,9 @@ for (index = 0; index &lt; sqlType.length; index++) {
         <name>JSON_PATH_PREFIX</name>
       </remove>
       <meta>
-        <name>converter</name>
-        <rename>kettle_converter</rename>
-        <type>String</type>
+        <name>source_key</name>
+        <rename>source_key</rename>
+        <type>Boolean</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1379,7 +1379,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       </meta>
       <meta>
         <name>column</name>
-        <rename>column_name</rename>
+        <rename>source_column</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1396,7 +1396,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
       </meta>
       <meta>
         <name>mysql_type</name>
-        <rename>column_type</rename>
+        <rename>source_column_type</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1412,25 +1412,8 @@ for (index = 0; index &lt; sqlType.length; index++) {
         <storage_type/>
       </meta>
       <meta>
-        <name>column_key</name>
-        <rename>column_key</rename>
-        <type>Boolean</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
         <name>mysql_precision</name>
-        <rename>column_precision</rename>
+        <rename>source_column_precision</rename>
         <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1447,8 +1430,93 @@ for (index = 0; index &lt; sqlType.length; index++) {
       </meta>
       <meta>
         <name>mysql_scale</name>
-        <rename>column_scale</rename>
+        <rename>source_column_scale</rename>
         <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>column_format</name>
+        <rename>source_column_format</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>converter</name>
+        <rename>source_kettle_converter</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_type</name>
+        <rename>source_kettle_type</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field</name>
+        <rename>source_kettle_field</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_json_path</name>
+        <rename>source_kettle_json_path</rename>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -1490,34 +1558,34 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_key</name>
       </field>
       <field>
-        <name>kettle_json_path</name>
+        <name>source_column</name>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_column_type</name>
       </field>
       <field>
-        <name>kettle_converter</name>
+        <name>source_column_precision</name>
       </field>
       <field>
-        <name>column_name</name>
+        <name>source_column_scale</name>
       </field>
       <field>
-        <name>column_type</name>
+        <name>source_column_format</name>
       </field>
       <field>
-        <name>column_key</name>
+        <name>source_kettle_json_path</name>
       </field>
       <field>
-        <name>column_format</name>
+        <name>source_kettle_field</name>
       </field>
       <field>
-        <name>column_precision</name>
+        <name>source_kettle_converter</name>
       </field>
       <field>
-        <name>column_scale</name>
+        <name>source_kettle_type</name>
       </field>
       <select_unspecified>Y</select_unspecified>
     </fields>
@@ -1609,6 +1677,56 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
+    <name>StreamLookup: column_key</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>SimpleMapping: source_key</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>source_schema</name>
+        <field>source_schema</field>
+      </key>
+      <key>
+        <name>source_table</name>
+        <field>source_table</field>
+      </key>
+      <key>
+        <name>column</name>
+        <field>source_key</field>
+      </key>
+      <value>
+        <name>source_key</name>
+        <rename>column_key</rename>
+        <default>-</default>
+        <type>String</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>StreamLookup: converter</name>
     <type>StreamLookup</type>
     <description/>
@@ -1653,56 +1771,6 @@ for (index = 0; index &lt; sqlType.length; index++) {
     <GUI>
       <xloc>352</xloc>
       <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>StreamLookup: source_key</name>
-    <type>StreamLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <from>SimpleMapping: source_key</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>source_schema</name>
-        <field>source_schema</field>
-      </key>
-      <key>
-        <name>source_table</name>
-        <field>source_table</field>
-      </key>
-      <key>
-        <name>column</name>
-        <field>source_key</field>
-      </key>
-      <value>
-        <name>source_key</name>
-        <rename>source_key</rename>
-        <default>-</default>
-        <type>String</type>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1781,7 +1849,7 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>ValueMapper: column_key</name>
+    <name>ValueMapper: source_key</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -1791,8 +1859,8 @@ for (index = 0; index &lt; sqlType.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>source_key</field_to_use>
-    <target_field>column_key</target_field>
+    <field_to_use>column_key</field_to_use>
+    <target_field>source_key</target_field>
     <non_match_default>true</non_match_default>
     <fields>
       <field>

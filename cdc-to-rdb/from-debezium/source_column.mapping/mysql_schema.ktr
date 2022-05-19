@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 16:51:55.572</modified_date>
+    <modified_date>2022/05/18 17:42:35.584</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -448,7 +448,7 @@
   <order>
     <hop>
       <from>Calculator: literal_schema_type</from>
-      <to>StreamLookup</to>
+      <to>StreamLookup: converter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -463,26 +463,26 @@
     </hop>
     <hop>
       <from>ScriptValueMod: from message.schema</from>
-      <to>StreamLookup: key</to>
+      <to>StreamLookup: column_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SimpleMapping: source_key.mapping</from>
-      <to>StreamLookup: key</to>
+      <to>StreamLookup: column_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup: key</from>
-      <to>ValueMapper: column_key</to>
+      <from>StreamLookup: column_key</from>
+      <to>ValueMapper: source_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ValueMapper: column_key</from>
-      <to>StreamLookup</to>
+      <from>ValueMapper: source_key</from>
+      <to>StreamLookup: converter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove</from>
+      <from>SelectValues: remove+rename</from>
       <to>SelectValues: select sort</to>
       <enabled>Y</enabled>
     </hop>
@@ -498,11 +498,11 @@
     </hop>
     <hop>
       <from>Calculator: kettle_json_path</from>
-      <to>SelectValues: remove</to>
+      <to>SelectValues: remove+rename</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup</from>
+      <from>StreamLookup: converter</from>
       <to>ValueMapper: column_format</to>
       <enabled>Y</enabled>
     </hop>
@@ -2046,7 +2046,7 @@ for (index = 0; index &lt; fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove</name>
+    <name>SelectValues: remove+rename</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2059,13 +2059,13 @@ for (index = 0; index &lt; fields.length; index++) {
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
+        <name>column_key</name>
+      </remove>
+      <remove>
         <name>schema_type</name>
       </remove>
       <remove>
         <name>schema_name</name>
-      </remove>
-      <remove>
-        <name>source_key</name>
       </remove>
       <remove>
         <name>FIELD_PREFIX</name>
@@ -2080,8 +2080,25 @@ for (index = 0; index &lt; fields.length; index++) {
         <name>JSON_PATH_PREFIX_BEFORE</name>
       </remove>
       <meta>
+        <name>source_key</name>
+        <rename>source_key</rename>
+        <type>Boolean</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
         <name>schema_field</name>
-        <rename>column_name</rename>
+        <rename>source_column</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -2098,7 +2115,7 @@ for (index = 0; index &lt; fields.length; index++) {
       </meta>
       <meta>
         <name>db_type</name>
-        <rename>column_type</rename>
+        <rename>source_column_type</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -2114,25 +2131,8 @@ for (index = 0; index &lt; fields.length; index++) {
         <storage_type/>
       </meta>
       <meta>
-        <name>schema_parameters_scale</name>
-        <rename>column_scale</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
         <name>schema_parameters_precision</name>
-        <rename>column_precision</rename>
+        <rename>source_column_precision</rename>
         <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -2148,9 +2148,26 @@ for (index = 0; index &lt; fields.length; index++) {
         <storage_type/>
       </meta>
       <meta>
-        <name>schema_key</name>
-        <rename>column_key</rename>
-        <type>Boolean</type>
+        <name>schema_parameters_scale</name>
+        <rename>source_column_scale</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>column_format</name>
+        <rename>source_column_format</rename>
+        <type>None</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -2166,7 +2183,58 @@ for (index = 0; index &lt; fields.length; index++) {
       </meta>
       <meta>
         <name>converter</name>
-        <rename>kettle_converter</rename>
+        <rename>source_kettle_converter</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_type</name>
+        <rename>source_kettle_type</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_field</name>
+        <rename>source_kettle_field</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>kettle_json_path</name>
+        <rename>source_kettle_json_path</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -2209,34 +2277,44 @@ for (index = 0; index &lt; fields.length; index++) {
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_key</name>
+        <rename/>
       </field>
       <field>
-        <name>kettle_json_path</name>
+        <name>source_column</name>
+        <rename/>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_column_type</name>
+        <rename/>
       </field>
       <field>
-        <name>kettle_converter</name>
+        <name>source_column_precision</name>
+        <rename/>
       </field>
       <field>
-        <name>column_name</name>
+        <name>source_column_scale</name>
+        <rename/>
       </field>
       <field>
-        <name>column_type</name>
+        <name>source_column_format</name>
+        <rename/>
       </field>
       <field>
-        <name>column_key</name>
+        <name>source_kettle_json_path</name>
+        <rename/>
       </field>
       <field>
-        <name>column_format</name>
+        <name>source_kettle_field</name>
+        <rename/>
       </field>
       <field>
-        <name>column_precision</name>
+        <name>source_kettle_converter</name>
+        <rename/>
       </field>
       <field>
-        <name>column_scale</name>
+        <name>source_kettle_type</name>
+        <rename/>
       </field>
       <select_unspecified>Y</select_unspecified>
     </fields>
@@ -2390,7 +2468,7 @@ for (index = 0; index &lt; fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>StreamLookup</name>
+    <name>StreamLookup: converter</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2448,7 +2526,7 @@ for (index = 0; index &lt; fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>StreamLookup: key</name>
+    <name>StreamLookup: column_key</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -2478,7 +2556,7 @@ for (index = 0; index &lt; fields.length; index++) {
       </key>
       <value>
         <name>source_key</name>
-        <rename>source_key</rename>
+        <rename>column_key</rename>
         <default>-</default>
         <type>String</type>
       </value>
@@ -2532,7 +2610,7 @@ for (index = 0; index &lt; fields.length; index++) {
     </GUI>
   </step>
   <step>
-    <name>ValueMapper: column_key</name>
+    <name>ValueMapper: source_key</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -2542,8 +2620,8 @@ for (index = 0; index &lt; fields.length; index++) {
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>source_key</field_to_use>
-    <target_field>schema_key</target_field>
+    <field_to_use>column_key</field_to_use>
+    <target_field>source_key</target_field>
     <non_match_default>true</non_match_default>
     <fields>
       <field>

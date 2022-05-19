@@ -14,21 +14,6 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Kafka.Consumer.Group</name>
-        <default_value>kpt.mssql.20210831</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Data.Topic</name>
-        <default_value>kpt_debezium-mssql</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Server.Bootstrap</name>
-        <default_value>kafka:9092</default_value>
-        <description/>
-      </parameter>
-      <parameter>
         <name>Config.Delay.Injection.Crud.Time</name>
         <default_value>0</default_value>
         <description/>
@@ -40,7 +25,7 @@
       </parameter>
       <parameter>
         <name>Config.Log.Source.Column.Mapping</name>
-        <default_value>mssql_schema</default_value>
+        <default_value>mysql_schema</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -69,31 +54,6 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Transformation.Path</name>
-        <default_value>to_pgsql</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Delay</name>
-        <default_value>86400</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Include</name>
-        <default_value>INSERT,SNAPSHOT</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Log.UpdateOnly.FlashPoint.Timestamp</name>
-        <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Time</name>
-        <default_value>2000-01-01T00:00:00.000Z</default_value>
-        <description/>
-      </parameter>
-      <parameter>
         <name>Param.Group.ID</name>
         <default_value>-</default_value>
         <description/>
@@ -104,8 +64,23 @@
         <description/>
       </parameter>
       <parameter>
+        <name>ParamInjectionPath</name>
+        <default_value>to_rdb/message_convert_to_rdb_rud.injection</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>ParamMarkTransformation</name>
         <default_value>log_environment_to_logtable</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>ParamTemplatePath</name>
+        <default_value>to_rdb</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>ParamTemplateTransformation</name>
+        <default_value>message_convert_to_rdb_rud.template</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -529,7 +504,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 09:15:55.546</modified_date>
+    <modified_date>2022/05/19 10:28:25.913</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -588,78 +563,83 @@
   </connection>
   <order>
     <hop>
-      <from>SelectValues: sort field</from>
-      <to>RowsToResult</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>RowsFromResult: kafka with table info</from>
-      <to>Dummy: stream logs</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: stream logs</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JoinRows</from>
-      <to>FilterRows: target_ignore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>StepsMetrics</from>
-      <to>GetVariable: injection_file_name</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>GetVariable: injection_file_name</from>
-      <to>SystemInfo: batch_id&amp;batch_time</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch_id&amp;batch_time</from>
-      <to>SelectValues: sort field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: stream logs</from>
-      <to>SampleRows: for target_table</to>
+      <from>Append: Byte_to_Binary.step1</from>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: GMT_to_Timestamp</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: format_to_Date</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Append: format_to_Timestamp</from>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: scale_to_BigNumber.step1</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_BigNumber</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_Boolean</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_Integer</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Append: to_Number</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>BlockUntilStepsFinish</from>
+      <to>Delay: debug for crud injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: Byte_to_Binary</from>
+      <to>ReplaceString: template 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: Byte_to_Binary</from>
+      <to>SelectValues: Byte_to_Binary.step2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>FilterRows: column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: COMPARATOR</from>
+      <to>ValueMapper: FLAG</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Constant: GMT_to_Timestamp</from>
       <to>SelectValues: GMT_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: IGNORE</from>
+      <to>JSON output: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -670,6 +650,16 @@
     <hop>
       <from>Constant: days_to_Date</from>
       <to>SelectValues: days_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: format_to_Date</from>
+      <to>SelectValues: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constant: format_to_Timestamp</from>
+      <to>SelectValues: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -718,8 +708,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>DataGrid: Byte_to_Binary.step1</from>
+      <to>Append: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>DataGrid: GMT_to_Timestamp</from>
       <to>Append: GMT_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: format_to_Date</from>
+      <to>Append: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: format_to_Timestamp</from>
+      <to>Append: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -748,8 +753,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Delay: debug for crud injection</from>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Delay: debug for field injection</from>
+      <to>SimpleMapping: source_column.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Dummy: column meta</from>
       <to>Constant: JsonInput</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: column meta</from>
+      <to>Dummy: field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -759,12 +779,32 @@
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>Switch / case: kettle_converter</to>
+      <to>Switch / case: source_kettle_converter</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>WriteToLog: column meta</to>
+      <to>WriteToLog: column info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: field</from>
+      <to>Constant: COMPARATOR</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: process logs</from>
+      <to>BlockUntilStepsFinish</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: stream logs</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: stream logs</from>
+      <to>SampleRows: for target_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -773,18 +813,83 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>FilterRows: column</from>
+      <to>SelectValues: key</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: target_ignore</from>
+      <to>Group by: IGNORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: target_ignore</from>
+      <to>SelectValues: remove target_ignore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GetVariable: injection_file_name</from>
+      <to>SystemInfo: batch_id+batch_time</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by: IGNORE</from>
+      <to>Constant: IGNORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: IGNORE</from>
+      <to>SimpleMapping: logger IGNORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JoinRows</from>
+      <to>FilterRows: target_ignore</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>ReplaceString: template</from>
       <to>SelectValues: scale_to_BigNumber.step1</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>ReplaceString: template 2</from>
+      <to>SelectValues: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>RowsFromResult: batch+group+kafka+source info</from>
+      <to>Dummy: stream logs</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>SampleRows: for target_column</from>
-      <to>WriteToLog: target_operate</to>
+      <to>Delay: debug for field injection</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: for target_column</from>
+      <to>WriteToLog: operate info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SampleRows: for target_table</from>
+      <to>SimpleMapping: target_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SampleRows: target</from>
       <to>SelectValues: target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: Byte_to_Binary.step1</from>
+      <to>Append: Byte_to_Binary.step1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: Byte_to_Binary.step2</from>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -794,37 +899,52 @@
     </hop>
     <hop>
       <from>SelectValues: column</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: days_to_Date</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: field</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: format_to_Date</from>
+      <to>Append: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: format_to_Timestamp</from>
+      <to>Append: format_to_Timestamp</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: key</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: microseconds_to_Date</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: milliseconds_to_Date</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: nanoseconds_to_Date</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove target_ignore</from>
+      <to>SimpleMapping: target_operate.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -834,12 +954,22 @@
     </hop>
     <hop>
       <from>SelectValues: scale_to_BigNumber.step2</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: select target_table</from>
+      <to>JoinRows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: sort field</from>
+      <to>RowsToResult</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: target</from>
-      <to>ETL metadata injection</to>
+      <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -864,182 +994,7 @@
     </hop>
     <hop>
       <from>SimpleMapping: source_column.mapping</from>
-      <to>Calculator: source_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: source_column</from>
       <to>SimpleMapping: target_column.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: GMT_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: days_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: microseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: milliseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: nanoseconds_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: scale_to_BigNumber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_BigNumber</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_Boolean</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_Integer</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: to_Number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for target_column</from>
-      <to>Delay: debug for field injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: format_to_Date</from>
-      <to>SelectValues: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: format_to_Timestamp</from>
-      <to>SelectValues: format_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: format_to_Date</from>
-      <to>Append: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: format_to_Timestamp</from>
-      <to>Append: format_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: format_to_Date</from>
-      <to>Append: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: format_to_Timestamp</from>
-      <to>Append: format_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: format_to_Date</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: format_to_Timestamp</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: format_to_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: format_to_Timestamp</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: field</from>
-      <to>Constant: COMPARATOR</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ValueMapper: FLAG</from>
-      <to>SelectValues: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: column</from>
-      <to>SelectValues: key</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR</from>
-      <to>FilterRows: column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: COMPARATOR</from>
-      <to>ValueMapper: FLAG</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: column meta</from>
-      <to>Dummy: field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>BlockUntilStepsFinish</from>
-      <to>Delay: debug for crud injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Delay: debug for crud injection</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: IGNORE</from>
-      <to>JSON output: IGNORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON output: IGNORE</from>
-      <to>SimpleMapping: logger IGNORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: target_ignore</from>
-      <to>Group by: IGNORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Group by: IGNORE</from>
-      <to>Constant: IGNORE</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Delay: debug for field injection</from>
-      <to>SimpleMapping: source_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1048,93 +1003,108 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: process logs</from>
-      <to>BlockUntilStepsFinish</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: target_ignore</from>
-      <to>SimpleMapping: source_operate.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: source_operate.mapping</from>
-      <to>SampleRows: for target_column</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: Byte_to_Binary</from>
-      <to>ReplaceString: template 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: Byte_to_Binary</from>
-      <to>SelectValues: Byte_to_Binary.step2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: Byte_to_Binary.step1</from>
-      <to>Append: Byte_to_Binary.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ReplaceString: template 2</from>
-      <to>SelectValues: Byte_to_Binary.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: Byte_to_Binary.step1</from>
-      <to>Append: Byte_to_Binary.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Switch / case: kettle_converter</from>
-      <to>Constant: Byte_to_Binary</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: Byte_to_Binary.step2</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Append: Byte_to_Binary.step1</from>
-      <to>ETL metadata injection</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: target_table.mapping</from>
-      <to>SelectValues: remove repeat</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: target_table.mapping</from>
-      <to>WriteToLog: target_ignore</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SampleRows: for target_table</from>
-      <to>SimpleMapping: target_table.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove repeat</from>
-      <to>JoinRows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch info</from>
-      <to>Transformation executor: batch_group_marker.result</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: source_operate.mapping</from>
-      <to>SimpleMapping: target_operate.mapping</to>
+      <from>SimpleMapping: target_operate.mapping</from>
+      <to>Dummy: process logs</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SimpleMapping: target_operate.mapping</from>
-      <to>Dummy: process logs</to>
+      <to>SampleRows: for target_column</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_table.mapping</from>
+      <to>SelectValues: select target_table</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_table.mapping</from>
+      <to>WriteToLog: table info</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StepsMetrics</from>
+      <to>GetVariable: injection_file_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: Byte_to_Binary</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: GMT_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: days_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: format_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: format_to_Timestamp</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: microseconds_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: milliseconds_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: nanoseconds_to_Date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: scale_to_BigNumber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: to_BigNumber</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: to_Boolean</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: to_Integer</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: source_kettle_converter</from>
+      <to>Constant: to_Number</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: for marker</from>
+      <to>Transformation executor: batch_group_marker.result</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: batch_id+batch_time</from>
+      <to>SelectValues: sort field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ValueMapper: FLAG</from>
+      <to>SelectValues: field</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1160,8 +1130,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2576</yloc>
+      <xloc>544</xloc>
+      <yloc>3248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1187,8 +1157,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1760</yloc>
+      <xloc>544</xloc>
+      <yloc>2352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1214,8 +1184,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2848</yloc>
+      <xloc>544</xloc>
+      <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1241,8 +1211,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2992</yloc>
+      <xloc>544</xloc>
+      <yloc>2608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1268,8 +1238,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2304</yloc>
+      <xloc>544</xloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1295,8 +1265,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1616</yloc>
+      <xloc>544</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1322,8 +1292,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1184</yloc>
+      <xloc>544</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1349,8 +1319,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1328</yloc>
+      <xloc>544</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1376,8 +1346,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1472</yloc>
+      <xloc>544</xloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1471,49 +1441,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>1008</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: source_column</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>source_column</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>column_name</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
       <xloc>352</xloc>
-      <yloc>1584</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1575,8 +1504,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2704</yloc>
+      <xloc>1120</xloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1614,8 +1543,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>3232</yloc>
+      <xloc>928</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1665,8 +1594,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1760</yloc>
+      <xloc>1120</xloc>
+      <yloc>2352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1704,7 +1633,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
+      <xloc>736</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1839,8 +1768,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>1008</yloc>
+      <xloc>1120</xloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1878,8 +1807,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1872</yloc>
+      <xloc>1120</xloc>
+      <yloc>2672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1917,8 +1846,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2848</yloc>
+      <xloc>1120</xloc>
+      <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1956,8 +1885,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2992</yloc>
+      <xloc>1120</xloc>
+      <yloc>2608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1995,8 +1924,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2064</yloc>
+      <xloc>1120</xloc>
+      <yloc>2800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2034,8 +1963,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1968</yloc>
+      <xloc>1120</xloc>
+      <yloc>2736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2073,8 +2002,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2160</yloc>
+      <xloc>1120</xloc>
+      <yloc>2864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2136,8 +2065,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2432</yloc>
+      <xloc>1120</xloc>
+      <yloc>2928</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2175,8 +2104,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1616</yloc>
+      <xloc>1120</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2214,8 +2143,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1184</yloc>
+      <xloc>1120</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2253,8 +2182,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1328</yloc>
+      <xloc>1120</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2292,8 +2221,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>1472</yloc>
+      <xloc>1120</xloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2362,8 +2291,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2496</yloc>
+      <xloc>864</xloc>
+      <yloc>3184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2432,8 +2361,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1680</yloc>
+      <xloc>864</xloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2502,8 +2431,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2768</yloc>
+      <xloc>864</xloc>
+      <yloc>2416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2572,8 +2501,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2912</yloc>
+      <xloc>864</xloc>
+      <yloc>2544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2642,8 +2571,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>2224</yloc>
+      <xloc>864</xloc>
+      <yloc>2992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2699,8 +2628,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1536</yloc>
+      <xloc>864</xloc>
+      <yloc>2160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2756,8 +2685,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1104</yloc>
+      <xloc>864</xloc>
+      <yloc>1776</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2813,8 +2742,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1248</yloc>
+      <xloc>864</xloc>
+      <yloc>1904</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2870,8 +2799,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>1392</yloc>
+      <xloc>864</xloc>
+      <yloc>2032</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2897,8 +2826,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>1299</yloc>
+      <xloc>352</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2924,8 +2853,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1296</yloc>
+      <xloc>992</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2949,8 +2878,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1872</yloc>
+      <xloc>1376</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2974,8 +2903,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>3232</yloc>
+      <xloc>1120</xloc>
+      <yloc>1520</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2999,8 +2928,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>784</yloc>
+      <xloc>352</xloc>
+      <yloc>1072</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3049,13 +2978,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>3136</yloc>
+      <xloc>1120</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ETL metadata injection</name>
+    <name>ETL metadata injection: for prototype</name>
     <type>MetaInject</type>
     <description/>
     <distribute>Y</distribute>
@@ -3067,12 +2996,12 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>message_convert_to_rdb_rud.template</trans_name>
+    <trans_name>${ParamTemplateTransformation}</trans_name>
     <filename/>
-    <directory_path>to_rdb</directory_path>
+    <directory_path>/${ParamTemplatePath}</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>to_rdb/message_convert_to_rdb_rud.injection/${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
+    <target_file>${ParamInjectionPath}/${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
     <no_execution>N</no_execution>
     <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
@@ -3375,8 +3304,8 @@
         <target_step_name>Delete</target_step_name>
         <target_attribute_key>STREAM_FIELDNAME_2</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step/>
-        <source_field> </source_field>
+        <source_step>SelectValues: key</source_step>
+        <source_field>key_stream</source_field>
       </mapping>
       <mapping>
         <target_step_name>to_Number</target_step_name>
@@ -3591,8 +3520,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
-      <yloc>1872</yloc>
+      <xloc>352</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3612,7 +3541,7 @@
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>column_key</leftvalue>
+        <leftvalue>target_key</leftvalue>
         <function>=</function>
         <rightvalue/>
         <value>
@@ -3635,8 +3564,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>3232</yloc>
+      <xloc>736</xloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3652,7 +3581,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Group by: IGNORE</send_true_to>
-    <send_false_to>SimpleMapping: source_operate.mapping</send_false_to>
+    <send_false_to>SelectValues: remove target_ignore</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -3704,7 +3633,7 @@
       <field>
         <name>group_id</name>
         <variable>${Param.Group.ID}</variable>
-        <type>Integer</type>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -3747,7 +3676,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3853,7 +3782,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>544</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3943,7 +3872,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>928</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4010,7 +3939,7 @@
         <replace_string>{precision}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_precision</replace_field_by_string>
+        <replace_field_by_string>source_column_precision</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -4022,7 +3951,7 @@
         <replace_string>{scale}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_scale</replace_field_by_string>
+        <replace_field_by_string>source_column_scale</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -4037,8 +3966,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2304</yloc>
+      <xloc>1120</xloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4061,7 +3990,7 @@
         <replace_string>{precision}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_precision</replace_field_by_string>
+        <replace_field_by_string>source_column_precision</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -4073,7 +4002,7 @@
         <replace_string>{scale}</replace_string>
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>column_scale</replace_field_by_string>
+        <replace_field_by_string>source_column_scale</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -4088,13 +4017,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>2576</yloc>
+      <xloc>1120</xloc>
+      <yloc>3248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>RowsFromResult: kafka with table info</name>
+    <name>RowsFromResult: batch+group+kafka+source info</name>
     <type>RowsFromResult</type>
     <description/>
     <distribute>Y</distribute>
@@ -4166,12 +4095,6 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
@@ -4184,7 +4107,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_row</name>
+        <name>source_operate</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -4224,7 +4147,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4251,8 +4174,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1008</yloc>
+      <xloc>672</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4278,7 +4201,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>672</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4305,8 +4228,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>3136</yloc>
+      <xloc>736</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4323,7 +4246,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
@@ -4345,8 +4268,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2576</yloc>
+      <xloc>864</xloc>
+      <yloc>3248</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4363,11 +4286,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4375,7 +4298,7 @@
         <rename>field_replace</rename>
       </field>
       <field>
-        <name>column_precision</name>
+        <name>source_column_precision</name>
         <rename>field_precision</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4389,8 +4312,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2704</yloc>
+      <xloc>544</xloc>
+      <yloc>3120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4407,11 +4330,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4429,8 +4352,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1760</yloc>
+      <xloc>864</xloc>
+      <yloc>2352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4447,11 +4370,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_json_path</name>
+        <name>source_kettle_json_path</name>
         <rename>field_path</rename>
       </field>
       <field>
@@ -4501,8 +4424,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1008</yloc>
+      <xloc>544</xloc>
+      <yloc>1712</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4519,11 +4442,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4541,8 +4464,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1872</yloc>
+      <xloc>544</xloc>
+      <yloc>2672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4563,7 +4486,7 @@
         <rename>field_table</rename>
       </field>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_stream</rename>
       </field>
       <field>
@@ -4581,8 +4504,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>3328</yloc>
+      <xloc>544</xloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4599,15 +4522,15 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
-        <name>column_format</name>
+        <name>source_column_format</name>
         <rename>field_conversion_mask</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4621,8 +4544,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2848</yloc>
+      <xloc>864</xloc>
+      <yloc>2480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4639,15 +4562,15 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
-        <name>column_format</name>
+        <name>source_column_format</name>
         <rename>field_conversion_mask</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4661,8 +4584,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2992</yloc>
+      <xloc>864</xloc>
+      <yloc>2608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4683,7 +4606,7 @@
         <rename>key_table</rename>
       </field>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>key_stream</rename>
       </field>
       <field>
@@ -4701,8 +4624,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>3232</yloc>
+      <xloc>544</xloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4719,11 +4642,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4741,8 +4664,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2064</yloc>
+      <xloc>544</xloc>
+      <yloc>2800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4759,11 +4682,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4781,8 +4704,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>1968</yloc>
+      <xloc>544</xloc>
+      <yloc>2736</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4799,11 +4722,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4821,13 +4744,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2160</yloc>
+      <xloc>544</xloc>
+      <yloc>2864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove repeat</name>
+    <name>SelectValues: remove target_ignore</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -4840,40 +4763,7 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>group_table_id</name>
-      </remove>
-      <remove>
-        <name>group_table_name</name>
-      </remove>
-      <remove>
-        <name>source_schema</name>
-      </remove>
-      <remove>
-        <name>source_table</name>
-      </remove>
-      <remove>
-        <name>batch_id</name>
-      </remove>
-      <remove>
-        <name>batch_time</name>
-      </remove>
-      <remove>
-        <name>kafka_key</name>
-      </remove>
-      <remove>
-        <name>kafka_message</name>
-      </remove>
-      <remove>
-        <name>kafka_topic</name>
-      </remove>
-      <remove>
-        <name>kafka_partition</name>
-      </remove>
-      <remove>
-        <name>kafka_offset</name>
-      </remove>
-      <remove>
-        <name>kafka_timestamp</name>
+        <name>target_ignore</name>
       </remove>
     </fields>
     <attributes/>
@@ -4885,8 +4775,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>464</yloc>
+      <xloc>352</xloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4903,7 +4793,7 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
@@ -4925,8 +4815,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>2304</yloc>
+      <xloc>864</xloc>
+      <yloc>3056</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -4943,11 +4833,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <field>
@@ -4955,7 +4845,7 @@
         <rename>field_replace</rename>
       </field>
       <field>
-        <name>column_precision</name>
+        <name>source_column_precision</name>
         <rename>field_precision</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -4969,8 +4859,45 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>2432</yloc>
+      <xloc>544</xloc>
+      <yloc>2928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select target_table</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_ignore</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5053,7 +4980,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5089,8 +5016,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1184</xloc>
-      <yloc>3136</yloc>
+      <xloc>544</xloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5107,11 +5034,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5125,8 +5052,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1616</yloc>
+      <xloc>864</xloc>
+      <yloc>2224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5143,11 +5070,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5161,8 +5088,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1184</yloc>
+      <xloc>864</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5179,11 +5106,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5197,8 +5124,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1328</yloc>
+      <xloc>864</xloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5215,11 +5142,11 @@
     </partitioning>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>source_kettle_field</name>
         <rename>field_name</rename>
       </field>
       <field>
-        <name>kettle_type</name>
+        <name>source_kettle_type</name>
         <rename>field_type</rename>
       </field>
       <select_unspecified>N</select_unspecified>
@@ -5233,8 +5160,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>1472</yloc>
+      <xloc>864</xloc>
+      <yloc>2096</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5340,6 +5267,18 @@
             <child>kafka_message</child>
           </connector>
           <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
+          </connector>
+          <connector>
+            <parent>source_table</parent>
+            <child>source_table</child>
+          </connector>
+          <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
             <parent>target_schema</parent>
             <child>target_schema</child>
           </connector>
@@ -5348,8 +5287,8 @@
             <child>target_table</child>
           </connector>
           <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
+            <parent>target_operate</parent>
+            <child>target_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5361,40 +5300,44 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>kettle_converter</parent>
-            <child>kettle_converter</child>
+            <parent>source_key</parent>
+            <child>source_key</child>
           </connector>
           <connector>
-            <parent>kettle_type</parent>
-            <child>kettle_type</child>
+            <parent>source_column</parent>
+            <child>source_column</child>
           </connector>
           <connector>
-            <parent>kettle_field</parent>
-            <child>kettle_field</child>
+            <parent>source_column_type</parent>
+            <child>source_column_type</child>
           </connector>
           <connector>
-            <parent>column_name</parent>
-            <child>column_name</child>
+            <parent>source_column_precision</parent>
+            <child>source_column_precision</child>
           </connector>
           <connector>
-            <parent>column_type</parent>
-            <child>column_type</child>
+            <parent>source_column_scale</parent>
+            <child>source_column_scale</child>
           </connector>
           <connector>
-            <parent>column_key</parent>
-            <child>column_key</child>
+            <parent>source_column_format</parent>
+            <child>source_column_format</child>
           </connector>
           <connector>
-            <parent>column_format</parent>
-            <child>column_format</child>
+            <parent>source_kettle_json_path</parent>
+            <child>source_kettle_json_path</child>
           </connector>
           <connector>
-            <parent>column_precision</parent>
-            <child>column_precision</child>
+            <parent>source_kettle_field</parent>
+            <child>source_kettle_field</child>
           </connector>
           <connector>
-            <parent>column_scale</parent>
-            <child>column_scale</child>
+            <parent>source_kettle_converter</parent>
+            <child>source_kettle_converter</child>
+          </connector>
+          <connector>
+            <parent>source_kettle_type</parent>
+            <child>source_kettle_type</child>
           </connector>
         </mapping>
       </output>
@@ -5411,73 +5354,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1456</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: source_operate.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>source_operate.mapping</trans_name>
-    <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>kafka_key</parent>
-            <child>kafka_key</child>
-          </connector>
-          <connector>
-            <parent>kafka_message</parent>
-            <child>kafka_message</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>784</yloc>
+      <xloc>1376</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5514,8 +5392,16 @@
             <child>source_table</child>
           </connector>
           <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
             <parent>source_column</parent>
             <child>source_column</child>
+          </connector>
+          <connector>
+            <parent>source_key</parent>
+            <child>source_key</child>
           </connector>
           <connector>
             <parent>target_schema</parent>
@@ -5524,6 +5410,10 @@
           <connector>
             <parent>target_table</parent>
             <child>target_table</child>
+          </connector>
+          <connector>
+            <parent>target_operate</parent>
+            <child>target_operate</child>
           </connector>
         </mapping>
       </input>
@@ -5537,6 +5427,10 @@
           <connector>
             <parent>target_column</parent>
             <child>target_column</child>
+          </connector>
+          <connector>
+            <parent>target_key</parent>
+            <child>target_key</child>
           </connector>
         </mapping>
       </output>
@@ -5553,8 +5447,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1712</yloc>
+      <xloc>1376</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5562,7 +5456,7 @@
     <name>SimpleMapping: target_operate.mapping</name>
     <type>SimpleMapping</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -5614,8 +5508,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>784</yloc>
+      <xloc>352</xloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -5687,7 +5581,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
+      <xloc>672</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5733,13 +5627,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Switch / case: kettle_converter</name>
+    <name>Switch / case: source_kettle_converter</name>
     <type>SwitchCase</type>
     <description/>
     <distribute>Y</distribute>
@@ -5749,7 +5643,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fieldname>kettle_converter</fieldname>
+    <fieldname>source_kettle_converter</fieldname>
     <use_contains>N</use_contains>
     <case_value_type>None</case_value_type>
     <case_value_format/>
@@ -5778,6 +5672,14 @@
         <target_step>Constant: GMT_to_Timestamp</target_step>
       </case>
       <case>
+        <value>format_to_Date</value>
+        <target_step>Constant: format_to_Date</target_step>
+      </case>
+      <case>
+        <value>format_to_Timestamp</value>
+        <target_step>Constant: format_to_Timestamp</target_step>
+      </case>
+      <case>
         <value>days_to_Date</value>
         <target_step>Constant: days_to_Date</target_step>
       </case>
@@ -5798,14 +5700,6 @@
         <target_step>Constant: scale_to_BigNumber</target_step>
       </case>
       <case>
-        <value>format_to_Date</value>
-        <target_step>Constant: format_to_Date</target_step>
-      </case>
-      <case>
-        <value>format_to_Timestamp</value>
-        <target_step>Constant: format_to_Timestamp</target_step>
-      </case>
-      <case>
         <value>Byte_to_Binary</value>
         <target_step>Constant: Byte_to_Binary</target_step>
       </case>
@@ -5819,13 +5713,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>1872</yloc>
+      <xloc>1376</xloc>
+      <yloc>1840</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch info</name>
+    <name>SystemInfo: for marker</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -5862,13 +5756,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>992</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch_id&amp;batch_time</name>
+    <name>SystemInfo: batch_id+batch_time</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -5897,7 +5791,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1376</xloc>
       <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5952,7 +5846,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
+      <xloc>992</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
@@ -5968,7 +5862,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <field_to_use>column_key</field_to_use>
+    <field_to_use>target_key</field_to_use>
     <target_field>FLAG</target_field>
     <non_match_default>Y</non_match_default>
     <fields>
@@ -5990,13 +5884,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>3328</yloc>
+      <xloc>736</xloc>
+      <yloc>1584</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: column meta</name>
+    <name>WriteToLog: column info</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -6013,73 +5907,11 @@
     <logmessage/>
     <fields>
       <field>
-        <name>kettle_field</name>
+        <name>batch_id</name>
       </field>
       <field>
-        <name>kettle_json_path</name>
+        <name>batch_time</name>
       </field>
-      <field>
-        <name>kettle_type</name>
-      </field>
-      <field>
-        <name>kettle_converter</name>
-      </field>
-      <field>
-        <name>column_name</name>
-      </field>
-      <field>
-        <name>column_type</name>
-      </field>
-      <field>
-        <name>column_key</name>
-      </field>
-      <field>
-        <name>column_format</name>
-      </field>
-      <field>
-        <name>column_precision</name>
-      </field>
-      <field>
-        <name>column_scale</name>
-      </field>
-      <field>
-        <name>source_column</name>
-      </field>
-      <field>
-        <name>target_column</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>1872</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>WriteToLog: target_ignore</name>
-    <type>WriteToLog</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <loglevel>log_level_basic</loglevel>
-    <displayHeader>Y</displayHeader>
-    <limitRows>Y</limitRows>
-    <limitRowsNumber>1</limitRowsNumber>
-    <logmessage/>
-    <fields>
       <field>
         <name>group_table_id</name>
       </field>
@@ -6093,13 +5925,52 @@
         <name>source_table</name>
       </field>
       <field>
+        <name>source_operate</name>
+      </field>
+      <field>
+        <name>source_column</name>
+      </field>
+      <field>
+        <name>source_key</name>
+      </field>
+      <field>
         <name>target_schema</name>
       </field>
       <field>
         <name>target_table</name>
       </field>
       <field>
-        <name>target_ignore</name>
+        <name>target_operate</name>
+      </field>
+      <field>
+        <name>target_column</name>
+      </field>
+      <field>
+        <name>target_key</name>
+      </field>
+      <field>
+        <name>source_column_format</name>
+      </field>
+      <field>
+        <name>source_column_precision</name>
+      </field>
+      <field>
+        <name>source_column_scale</name>
+      </field>
+      <field>
+        <name>source_column_type</name>
+      </field>
+      <field>
+        <name>source_kettle_converter</name>
+      </field>
+      <field>
+        <name>source_kettle_field</name>
+      </field>
+      <field>
+        <name>source_kettle_json_path</name>
+      </field>
+      <field>
+        <name>source_kettle_type</name>
       </field>
     </fields>
     <attributes/>
@@ -6111,13 +5982,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>976</xloc>
-      <yloc>336</yloc>
+      <xloc>1120</xloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: target_operate</name>
+    <name>WriteToLog: operate info</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -6129,10 +6000,16 @@
     </partitioning>
     <loglevel>log_level_basic</loglevel>
     <displayHeader>Y</displayHeader>
-    <limitRows>Y</limitRows>
-    <limitRowsNumber>1</limitRowsNumber>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
     <logmessage/>
     <fields>
+      <field>
+        <name>batch_id</name>
+      </field>
+      <field>
+        <name>batch_time</name>
+      </field>
       <field>
         <name>group_table_id</name>
       </field>
@@ -6154,6 +6031,9 @@
       <field>
         <name>target_table</name>
       </field>
+      <field>
+        <name>target_operate</name>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -6164,8 +6044,70 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>1008</yloc>
+      <xloc>672</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: table info</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>Y</limitRows>
+    <limitRowsNumber>1</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>batch_id</name>
+      </field>
+      <field>
+        <name>batch_time</name>
+      </field>
+      <field>
+        <name>group_table_id</name>
+      </field>
+      <field>
+        <name>group_table_name</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
+      </field>
+      <field>
+        <name>source_operate</name>
+      </field>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_ignore</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>992</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

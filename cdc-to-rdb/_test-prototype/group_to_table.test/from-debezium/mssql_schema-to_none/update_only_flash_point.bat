@@ -31,11 +31,12 @@ SET KPT_KETTLE_PARAM_Config_Log_Source_Column_Mapping=mssql_schema
 SET KPT_KETTLE_PARAM_Config_Log_Source_Key_Mapping=debezium_key_to_key_meta
 SET KPT_KETTLE_PARAM_Config_Log_Source_Transformation_Path=from-debezium
 SET KPT_KETTLE_PARAM_Config_Log_Target_Column_Mapping=same_source
+SET KPT_KETTLE_PARAM_Config_Log_Target_Key_Mapping=same_source
 SET KPT_KETTLE_PARAM_Config_Log_Target_Operate_Mapping=update_only_flash_point
 SET KPT_KETTLE_PARAM_Config_Log_Target_Table_Mapping=same_source_lookup
 SET KPT_KETTLE_PARAM_Config_Log_Target_Transformation_Path=to_none
 SET KPT_KETTLE_PARAM_Param_Group_ID=test
-SET KPT_KETTLE_PARAM_Param_Group_Name=debezium-mssql-operate-update
+SET KPT_KETTLE_PARAM_Param_Group_Name=from_debezium.mssql_schema.to_none.update_only_flash_point
 SET KPT_KETTLE_PARAM_ParamInjectionPath=_test-prototype/message_convert_to_rdb_rud.injection
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
 SET KPT_KETTLE_PARAM_ParamTemplatePath=to_rdb
@@ -47,7 +48,9 @@ SET KPT_KETTLE_PARAM_Config_Log_UpdateOnly_FlashPoint_Delay=86400
 SET KPT_KETTLE_PARAM_Config_Time=2022-01-01T00:00:00.000Z
 
 
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%%KPT_KETTLE_PARAM_Param_Group_ID%.%KPT_KETTLE_PARAM_Param_Group_Name%.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
+
 ECHO exit code will be 0
 
 
