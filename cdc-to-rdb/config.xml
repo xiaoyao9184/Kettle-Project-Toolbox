@@ -37,7 +37,7 @@
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from-debezium</cfg>
             <cfg namespace="Config.CDC.Source.Table" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
-            <cfg namespace="Config.CDC.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
+            <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
@@ -70,7 +70,7 @@ Config.CDC.Kafka.Batch.Max	10000
 Config.CDC.Source.Transformation.Path	from-debezium
 Config.CDC.Source.Table.Mapping	mysql_playload
 Config.CDC.Source.Column.Mapping	mysql_schema
-Config.CDC.Source.Key.Mapping	debezium_key_to_key_meta
+Config.CDC.Source.Key.Mapping	key_schema
 Config.CDC.Target.Transformation.Path	to_pgsql
 Config.CDC.Target.Operate.Mapping	update_only_flash_point
 Config.CDC.Target.Table.Mapping	config_prefix_lookup
@@ -88,7 +88,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from-debezium</cfg>
             <cfg namespace="Config.CDC.Source.Table" key="Mapping">mssql_playload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mssql_schema</cfg>
-            <cfg namespace="Config.CDC.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
+            <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
@@ -121,7 +121,7 @@ Config.CDC.Kafka.Batch.Max	10000
 Config.CDC.Source.Transformation.Path	from-debezium
 Config.CDC.Source.Table.Mapping	mssql_playload
 Config.CDC.Source.Column.Mapping	mssql_schema
-Config.CDC.Source.Key.Mapping	debezium_key_to_key_meta
+Config.CDC.Source.Key.Mapping	key_schema
 Config.CDC.Target.Transformation.Path	to_pgsql
 Config.CDC.Target.Operate.Mapping	update_only_flash_point
 Config.CDC.Target.Table.Mapping	config_prefix_lookup

@@ -206,7 +206,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
 			<!-- see from-debezium/source_key.mapping -->
-			<cfg namespace="Config.CDC.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
+			<cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
 			
 		<!-- target of rdb -->
 			<!-- target of event write on only support 'to_pgsql' -->
