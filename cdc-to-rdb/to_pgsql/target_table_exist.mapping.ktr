@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>target_table_lookup_exist.mapping</name>
+    <name>target_table_exist.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -454,7 +454,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/28 11:11:13.744</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 11:24:17.577</modified_date>
+    <modified_date>2022/05/19 17:01:29.497</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -519,17 +519,7 @@
     </hop>
     <hop>
       <from>Dummy: lookup</from>
-      <to>Sequence: source_number</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove lookup</from>
-      <to>MappingOutput: target_table_lookup_exist.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove number</from>
-      <to>ValueMapper: target_ignore</to>
+      <to>Sequence: target_number</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -539,17 +529,17 @@
     </hop>
     <hop>
       <from>Sequence: lookup_number</from>
-      <to>StreamLookup</to>
+      <to>StreamLookup: target_table_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Sequence: source_number</from>
-      <to>StreamLookup</to>
+      <from>Sequence: target_number</from>
+      <to>StreamLookup: target_table_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>StreamLookup</from>
-      <to>SelectValues: remove number</to>
+      <from>StreamLookup: target_table_exist</from>
+      <to>SelectValues: remove target_number</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -558,12 +548,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ValueMapper: target_ignore</from>
-      <to>SelectValues: remove lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: target_table_lookup_exist.mapping</from>
+      <from>MappingInput: target_table_exist.mapping</from>
       <to>Dummy: lookup</to>
       <enabled>Y</enabled>
     </hop>
@@ -571,6 +556,11 @@
       <from>DataGrid: test</from>
       <to>Dummy: lookup</to>
       <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove target_number</from>
+      <to>MappingOutput: target_table_exist.mapping</to>
+      <enabled>Y</enabled>
     </hop>
   </order>
   <step>
@@ -660,7 +650,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: target_table_lookup_exist.mapping</name>
+    <name>MappingInput: target_table_exist.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -700,7 +690,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: target_table_lookup_exist.mapping</name>
+    <name>MappingOutput: target_table_exist.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -720,12 +710,12 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>1040</yloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: remove lookup</name>
+    <name>SelectValues: remove target_number</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -738,41 +728,7 @@
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>lookup_exist</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>880</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove number</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>lookup_number</name>
-      </remove>
-      <remove>
-        <name>source_number</name>
+        <name>target_number</name>
       </remove>
     </fields>
     <attributes/>
@@ -803,11 +759,9 @@
     <fields>
       <field>
         <name>target_schema</name>
-        <rename/>
       </field>
       <field>
         <name>target_table</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -861,7 +815,7 @@
     </GUI>
   </step>
   <step>
-    <name>Sequence: source_number</name>
+    <name>Sequence: target_number</name>
     <type>Sequence</type>
     <description/>
     <distribute>Y</distribute>
@@ -871,7 +825,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <valuename>source_number</valuename>
+    <valuename>target_number</valuename>
     <use_database>N</use_database>
     <connection>db_kpt_cdc_event_pgsql_writer</connection>
     <schema/>
@@ -896,7 +850,7 @@
     </GUI>
   </step>
   <step>
-    <name>StreamLookup</name>
+    <name>StreamLookup: target_table_exist</name>
     <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -913,20 +867,14 @@
     <integer_pair>N</integer_pair>
     <lookup>
       <key>
-        <name>source_number</name>
+        <name>target_number</name>
         <field>lookup_number</field>
       </key>
       <value>
         <name>lookup_exist</name>
-        <rename>lookup_exist</rename>
+        <rename>target_table_exist</rename>
         <default/>
         <type>Boolean</type>
-      </value>
-      <value>
-        <name>lookup_number</name>
-        <rename>lookup_number</rename>
-        <default/>
-        <type>Integer</type>
       </value>
     </lookup>
     <attributes/>
@@ -1002,40 +950,6 @@ WHERE table_schema = ? AND table_name = ?
     <GUI>
       <xloc>672</xloc>
       <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ValueMapper: target_ignore</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <field_to_use>lookup_exist</field_to_use>
-    <target_field>target_ignore</target_field>
-    <non_match_default>Y</non_match_default>
-    <fields>
-      <field>
-        <source_value>Y</source_value>
-        <target_value>N</target_value>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

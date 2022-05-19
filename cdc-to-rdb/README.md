@@ -212,10 +212,10 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
 			<!-- see to_rdb/target_table.mapping -->
-			<!-- same_source_lookup use source table name of target table -->
-			<!-- config_prefix_lookup use xml config mapping target table -->
+			<!-- same_source_exist use source table name of target table -->
+			<!-- config_prefix_exist use xml config mapping target table -->
 			<!-- database_mapping_exist use table 'kpt_cdc_data.mapping_table' mapping target table -->
-			<cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+			<cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
 			<!-- see to_rdb/target_operate.mapping -->
 			<!-- same_source use source operate name of target operate -->
 			<!-- update_only_flash_point replace source operate with 'update' operate -->
@@ -229,8 +229,8 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- use 'target_key_lookup' if source table no primary key but target have -->
 			<cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
 
-		<!-- config_prefix_lookup -->
-			<!-- define output destination schema and table prefix by 'config_prefix_lookup' -->
+		<!-- config_prefix_exist -->
+			<!-- define output destination schema and table prefix by 'config_prefix_exist' -->
 			<cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">kpt_sync__</cfg>
 			<cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
 

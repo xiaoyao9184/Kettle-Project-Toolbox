@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>same_source_lookup</name>
+    <name>config_prefix_exist</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -8,6 +8,16 @@
     <trans_status>0</trans_status>
     <directory>/to_rdb/target_table.mapping</directory>
     <parameters>
+      <parameter>
+        <name>Config.CDC.Target.Table.Prefix.Schema</name>
+        <default_value>mysql_manual_generation__</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Target.Table.Prefix.Table</name>
+        <default_value/>
+        <description/>
+      </parameter>
       <parameter>
         <name>Config.CDC.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
@@ -434,7 +444,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/28 11:11:13.744</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 11:28:22.635</modified_date>
+    <modified_date>2022/05/19 16:51:04.469</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -442,8 +452,33 @@
   </notepads>
   <order>
     <hop>
-      <from>SimpleMapping: target_table_lookup_exist.mapping</from>
-      <to>SimpleMapping: target_table_modifier.mapping</to>
+      <from>GetVariable: prefix</from>
+      <to>IfNull: prefix</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>IfNull: prefix</from>
+      <to>Calculator: target</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: target_table.mapping</from>
+      <to>GetVariable: prefix</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test</from>
+      <to>GetVariable: prefix</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: target</from>
+      <to>SelectValues: remove prefix</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove prefix</from>
+      <to>SimpleMapping: target_table_exist.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -452,18 +487,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: target_table.mapping</from>
-      <to>Calculator: target</to>
+      <from>ValueMapper: target_ignore</from>
+      <to>SelectValues: remove target_table_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test</from>
-      <to>Calculator: target</to>
-      <enabled>N</enabled>
+      <from>SimpleMapping: target_table_exist.mapping</from>
+      <to>ValueMapper: target_ignore</to>
+      <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: target</from>
-      <to>SimpleMapping: target_table_lookup_exist.mapping</to>
+      <from>SelectValues: remove target_table_exist</from>
+      <to>SimpleMapping: target_table_modifier.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -481,9 +516,9 @@
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
       <field_name>target_schema</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>source_schema</field_a>
-      <field_b/>
+      <calc_type>ADD</calc_type>
+      <field_a>prefix_schema</field_a>
+      <field_b>source_schema</field_b>
       <field_c/>
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -496,9 +531,9 @@
     </calculation>
     <calculation>
       <field_name>target_table</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>source_table</field_a>
-      <field_b/>
+      <calc_type>ADD</calc_type>
+      <field_a>prefix_table</field_a>
+      <field_b>source_table</field_b>
       <field_c/>
       <value_type>String</value_type>
       <value_length>-1</value_length>
@@ -519,7 +554,7 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>240</yloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -562,7 +597,7 @@
     </fields>
     <data>
       <line>
-        <item>mysql_manual_generation__test_kpt_cdc</item>
+        <item>test_kpt_cdc</item>
         <item>debezium_types</item>
       </line>
       <line>
@@ -581,6 +616,103 @@
     <GUI>
       <xloc>144</xloc>
       <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GetVariable: prefix</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>prefix_schema</name>
+        <variable>${Config.CDC.Target.Table.Prefix.Schema}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>prefix_table</name>
+        <variable>${Config.CDC.Target.Table.Prefix.Table}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>IfNull: prefix</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <replaceAllByValue/>
+    <replaceAllMask/>
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>prefix_schema</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+      <field>
+        <name>prefix_table</name>
+        <value/>
+        <mask/>
+        <set_empty_string>Y</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -645,12 +777,46 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>704</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: target_table_lookup_exist.mapping</name>
+    <name>SelectValues: remove prefix</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>prefix_schema</name>
+      </remove>
+      <remove>
+        <name>prefix_table</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: target_table_exist.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -662,7 +828,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>target_table_lookup_exist.mapping</trans_name>
+    <trans_name>target_table_exist.mapping</trans_name>
     <filename/>
     <directory_path>${Config.CDC.Target.Transformation.Path}</directory_path>
     <mappings>
@@ -691,8 +857,8 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>target_ignore</parent>
-            <child>target_ignore</child>
+            <parent>target_table_exist</parent>
+            <child>target_table_exist</child>
           </connector>
         </mapping>
       </output>
@@ -710,7 +876,7 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>400</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -771,7 +937,72 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>544</yloc>
+      <yloc>1168</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove target_table_exist</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>target_table_exist</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>1008</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ValueMapper: target_ignore</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>target_table_exist</field_to_use>
+    <target_field>target_ignore</target_field>
+    <non_match_default>Y</non_match_default>
+    <fields>
+      <field>
+        <source_value>Y</source_value>
+        <target_value>N</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>880</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

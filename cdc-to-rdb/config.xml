@@ -41,7 +41,7 @@
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
             <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
             <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
 
@@ -73,7 +73,7 @@ Config.CDC.Source.Column.Mapping	mysql_schema
 Config.CDC.Source.Key.Mapping	key_schema
 Config.CDC.Target.Transformation.Path	to_pgsql
 Config.CDC.Target.Operate.Mapping	update_only_flash_point
-Config.CDC.Target.Table.Mapping	config_prefix_lookup
+Config.CDC.Target.Table.Mapping	config_prefix_exist
 Config.CDC.Target.Column.Mapping	same_source
 Config.CDC.Target.Key.Mapping	same_source
 Config.CDC.Target.Table.Prefix.Schema	mysql_manual_generation__
@@ -92,7 +92,7 @@ Config.CDC.Target.Table.Prefix.Table
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
             <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
             <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
 
@@ -124,7 +124,7 @@ Config.CDC.Source.Column.Mapping	mssql_schema
 Config.CDC.Source.Key.Mapping	key_schema
 Config.CDC.Target.Transformation.Path	to_pgsql
 Config.CDC.Target.Operate.Mapping	update_only_flash_point
-Config.CDC.Target.Table.Mapping	config_prefix_lookup
+Config.CDC.Target.Table.Mapping	config_prefix_exist
 Config.CDC.Target.Column.Mapping	same_source
 Config.CDC.Target.Key.Mapping	same_source
 Config.CDC.Target.Table.Prefix.Schema	mssql_manual_generation__
@@ -143,7 +143,7 @@ Config.CDC.Target.Table.Prefix.Table
             
             <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
             <cfg namespace="Config.CDC.Target.Operate" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_lookup</cfg>
+            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
             <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
             <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
 
@@ -175,7 +175,7 @@ Config.CDC.Source.Column.Mapping	canal_sqltype
 Config.CDC.Source.Key.Mapping	canal_pknames
 Config.CDC.Target.Transformation.Path	to_pgsql
 Config.CDC.Target.Operate.Mapping	same_source
-Config.CDC.Target.Table.Mapping	config_prefix_lookup
+Config.CDC.Target.Table.Mapping	config_prefix_exist
 Config.CDC.Target.Column.Mapping	same_source
 Config.CDC.Target.Key.Mapping	same_source
 Config.CDC.Target.Table.Prefix.Schema	mysql_manual_generation__

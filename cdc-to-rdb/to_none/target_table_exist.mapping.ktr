@@ -1,27 +1,17 @@
 <transformation>
   <info>
-    <name>config_prefix_lookup</name>
+    <name>target_table_exist.mapping</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_rdb/target_table.mapping</directory>
+    <directory>/to_none</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Target.Table.Prefix.Schema</name>
-        <default_value>mysql_manual_generation__</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Target.Table.Prefix.Table</name>
-        <default_value/>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Target.Transformation.Path</name>
-        <default_value>to_pgsql</default_value>
-        <description/>
+        <name>Param.Case.Sensitive</name>
+        <default_value>true</default_value>
+        <description>case sensitive</description>
       </parameter>
     </parameters>
     <log>
@@ -422,7 +412,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>100000</size_rowset>
+    <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -444,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/28 11:11:13.744</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 11:27:53.076</modified_date>
+    <modified_date>2022/05/19 16:54:33.153</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -452,105 +442,19 @@
   </notepads>
   <order>
     <hop>
-      <from>GetVariable: prefix</from>
-      <to>IfNull: prefix</to>
+      <from>MappingInput: target_table_exist.mapping</from>
+      <to>Constant: target_table_exist</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>IfNull: prefix</from>
-      <to>Calculator: target</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: target_table.mapping</from>
-      <to>GetVariable: prefix</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: test</from>
-      <to>GetVariable: prefix</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: target</from>
-      <to>SelectValues: remove prefix</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: remove prefix</from>
-      <to>SimpleMapping: target_table_lookup_exist.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: target_table_lookup_exist.mapping</from>
-      <to>SimpleMapping: target_table_modifier.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SimpleMapping: target_table_modifier.mapping</from>
-      <to>MappingOutput: target_table.mapping</to>
+      <from>Constant: target_table_exist</from>
+      <to>MappingOutput: target_table_exist.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: target</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>target_schema</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>prefix_schema</field_a>
-      <field_b>source_schema</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>target_table</field_name>
-      <calc_type>ADD</calc_type>
-      <field_a>prefix_table</field_a>
-      <field_b>source_table</field_b>
-      <field_c/>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: test</name>
-    <type>DataGrid</type>
+    <name>Constant: target_table_exist</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -561,89 +465,16 @@
     </partitioning>
     <fields>
       <field>
-        <name>source_schema</name>
-        <type>String</type>
+        <name>target_table_exist</name>
+        <type>Boolean</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
+        <nullif>Y</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-      </line>
-      <line>
-        <item>not_exist</item>
-        <item>not_exist</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>GetVariable: prefix</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>prefix_schema</name>
-        <variable>${Config.CDC.Target.Table.Prefix.Schema}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>prefix_table</name>
-        <variable>${Config.CDC.Target.Table.Prefix.Table}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
       </field>
     </fields>
     <attributes/>
@@ -661,53 +492,7 @@
     </GUI>
   </step>
   <step>
-    <name>IfNull: prefix</name>
-    <type>IfNull</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <replaceAllByValue/>
-    <replaceAllMask/>
-    <selectFields>Y</selectFields>
-    <selectValuesType>N</selectValuesType>
-    <setEmptyStringAll>N</setEmptyStringAll>
-    <valuetypes>
-      </valuetypes>
-    <fields>
-      <field>
-        <name>prefix_schema</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-      <field>
-        <name>prefix_table</name>
-        <value/>
-        <mask/>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>368</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: target_table.mapping</name>
+    <name>MappingInput: target_table_exist.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -719,13 +504,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>source_schema</name>
+        <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_table</name>
+        <name>target_table</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -747,7 +532,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: target_table.mapping</name>
+    <name>MappingOutput: target_table_exist.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -767,167 +552,7 @@
     </remotesteps>
     <GUI>
       <xloc>368</xloc>
-      <yloc>1056</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove prefix</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>prefix_schema</name>
-      </remove>
-      <remove>
-        <name>prefix_table</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: target_table_lookup_exist.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>target_table_lookup_exist.mapping</trans_name>
-    <filename/>
-    <directory_path>${Config.CDC.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_ignore</parent>
-            <child>target_ignore</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>752</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: target_table_modifier.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>target_table_modifier.mapping</trans_name>
-    <filename/>
-    <directory_path>/${Config.CDC.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>896</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
