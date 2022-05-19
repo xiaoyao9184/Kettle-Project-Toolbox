@@ -29,18 +29,6 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Batch.Group.Logger.Mapping</name>
-        <default_value>log_json_to_kafka</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Log.Source.Table.Mapping</name>
-        <default_value>mysql_playload</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.Batch.Redirect.Row.Mapping</name>
-        <default_value>sort_by_row_last</default_value>
         <name>Config.Log.Source.Transformation.Path</name>
         <default_value>from-debezium</default_value>
         <description/>
