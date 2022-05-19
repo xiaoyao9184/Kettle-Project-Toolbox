@@ -9,7 +9,7 @@
     <directory>/to_pgsql</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Target.Case.Sensitive</name>
+        <name>Config.CDC.Target.PgSql.Case.Sensitive</name>
         <default_value>true</default_value>
         <description>case sensitive</description>
       </parameter>
@@ -637,7 +637,7 @@
     <fields>
       <field>
         <name>case_sensitive</name>
-        <variable>${Config.CDC.Target.Case.Sensitive}</variable>
+        <variable>${Config.CDC.Target.PgSql.Case.Sensitive}</variable>
         <type>Boolean</type>
         <format/>
         <currency/>
