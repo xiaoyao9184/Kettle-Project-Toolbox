@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2022/05/18 12:32:01.612</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 15:46:00.127</modified_date>
+    <modified_date>2022/05/19 09:14:26.010</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -536,18 +536,6 @@
         <field_null_if/>
       </field>
       <field>
-        <name>source_row</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
         <name>source_column</name>
         <type>String</type>
         <format/>
@@ -562,6 +550,18 @@
       <field>
         <name>source_key</name>
         <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>target_operate</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -596,18 +596,6 @@
         <field_null_if/>
       </field>
       <field>
-        <name>target_ignore</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
         <name>target_column</name>
         <type>String</type>
         <format/>
@@ -625,36 +613,33 @@
         <item/>
         <item>test_kpt_cdc</item>
         <item>test_kpt_cdc</item>
-        <item>1</item>
         <item>_id</item>
         <item>Y</item>
+        <item/>
         <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>change_pk__debezium_types</item>
-        <item/>
         <item>_id</item>
       </line>
       <line>
         <item/>
         <item>test_kpt_cdc</item>
         <item>test_kpt_cdc</item>
-        <item>1</item>
         <item>VARCHAR</item>
         <item>N</item>
+        <item/>
         <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>change_pk__debezium_types</item>
-        <item/>
         <item>VARCHAR</item>
       </line>
       <line>
         <item/>
         <item>test_kpt_cdc</item>
         <item>test_kpt_cdc</item>
-        <item>1</item>
         <item>TIMESTAMP</item>
         <item>N</item>
+        <item/>
         <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>change_pk__debezium_types</item>
-        <item/>
         <item>TIMESTAMP</item>
       </line>
     </data>
@@ -728,12 +713,6 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_row</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>source_column</name>
         <type>String</type>
         <length>-1</length>
@@ -746,6 +725,12 @@
         <precision>-1</precision>
       </field>
       <field>
+        <name>target_operate</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>target_schema</name>
         <type>String</type>
         <length>-1</length>
@@ -753,12 +738,6 @@
       </field>
       <field>
         <name>target_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_ignore</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
