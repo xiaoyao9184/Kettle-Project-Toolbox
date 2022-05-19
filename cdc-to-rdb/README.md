@@ -170,25 +170,25 @@ then you can combine all cfgs by referring the `profile` name later.
     <!-- defines database related information -->
     <!-- You can define multiple databases, like 'dev' 'test' 'prod' -->
 		<profile name="dev">
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt@123</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="server">kpt_sync</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt@123</cfg>
 		</profile>
 		<profile name="test">
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt@123</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="server">kpt_sync</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt@123</cfg>
 		</profile>
 		<profile name="prod">
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-			<cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt@123</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="server">kpt_sync</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
+			<cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt@123</cfg>
 		</profile>
 
     <!-- defines the run way -->

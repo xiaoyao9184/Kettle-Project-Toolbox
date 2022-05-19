@@ -9,27 +9,27 @@
     <directory>/to_pgsql</directory>
     <parameters>
       <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.database</name>
+        <name>Config.CDC.RDB.pgsql.database</name>
         <default_value>test_kpt</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.password</name>
+        <name>Config.CDC.RDB.pgsql.password</name>
         <default_value>kpt.123</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.port</name>
+        <name>Config.CDC.RDB.pgsql.port</name>
         <default_value>55432</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.server</name>
+        <name>Config.CDC.RDB.pgsql.server</name>
         <default_value>pgsql</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.DB.db_kpt_cdc_event_pgsql_writer.username</name>
+        <name>Config.CDC.RDB.pgsql.username</name>
         <default_value>kpt</default_value>
         <description/>
       </parameter>
@@ -462,13 +462,13 @@
   </notepads>
   <connection>
     <name>db_kpt_cdc_event_pgsql_writer</name>
-    <server>${Config.DB.db_kpt_cdc_event_pgsql_writer.server}</server>
+    <server>${Config.CDC.RDB.pgsql.server}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${Config.DB.db_kpt_cdc_event_pgsql_writer.database}</database>
-    <port>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</port>
-    <username>${Config.DB.db_kpt_cdc_event_pgsql_writer.username}</username>
-    <password>${Config.DB.db_kpt_cdc_event_pgsql_writer.password}</password>
+    <database>${Config.CDC.RDB.pgsql.database}</database>
+    <port>${Config.CDC.RDB.pgsql.port}</port>
+    <username>${Config.CDC.RDB.pgsql.username}</username>
+    <password>${Config.CDC.RDB.pgsql.password}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -487,7 +487,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${Config.DB.db_kpt_cdc_event_pgsql_writer.port}</attribute>
+        <attribute>${Config.CDC.RDB.pgsql.port}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>

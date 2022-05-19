@@ -22,11 +22,11 @@
         <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
         
         <profile name="test_kpt">
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">test_kpt</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">pgsql</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
+            <cfg namespace="Config.CDC.RDB.pgsql" key="database">test_kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.pgsql" key="server">pgsql</cfg>
+            <cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
+            <cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt.123</cfg>
         </profile>
 
         <profile name="debezium-mysql-pgsql.manual">
@@ -51,11 +51,11 @@
             <!--
 name	value
 Config.Profile	test_kpt,debezium-mysql-pgsql.manual
-Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.server	pgsql
-Config.DB.db_kpt_cdc_event_pgsql_writer.port	55432
-Config.DB.db_kpt_cdc_event_pgsql_writer.username	kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.password	kpt.123	
+Config.CDC.RDB.pgsql.database	test_kpt
+Config.CDC.RDB.pgsql.server	pgsql
+Config.CDC.RDB.pgsql.port	55432
+Config.CDC.RDB.pgsql.username	kpt
+Config.CDC.RDB.pgsql.password	kpt.123	
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
@@ -103,11 +103,11 @@ Config.Log.Target.Table.Prefix
             <!--
 name	value
 Config.Profile	test_kpt,debezium-mysql-pgsql.chameleon
-Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.server	pgsql
-Config.DB.db_kpt_cdc_event_pgsql_writer.port	55432
-Config.DB.db_kpt_cdc_event_pgsql_writer.username	kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.password	kpt.123
+Config.CDC.RDB.pgsql.database	test_kpt
+Config.CDC.RDB.pgsql.server	pgsql
+Config.CDC.RDB.pgsql.port	55432
+Config.CDC.RDB.pgsql.username	kpt
+Config.CDC.RDB.pgsql.password	kpt.123
 Config.Delay.Injection.Crud.Time	1000		
 Config.Delay.Injection.Field.Time	10000	
 Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
