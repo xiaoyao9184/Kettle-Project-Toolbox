@@ -149,7 +149,7 @@ then you can combine all cfgs by referring the `profile` name later.
 		<cfg key="UseStatus">false</cfg>
 		<cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
 		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
-		<cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
+		<cfg namespace="Config.Main.Job" key="Path">/from_kafka</cfg>
 		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
 		<cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
 		

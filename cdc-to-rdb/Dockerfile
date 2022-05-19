@@ -18,8 +18,8 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-canal \
     $PENTAHO_HOME/kpt-cdc-to-rdb/from-canal
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-debezium \
     $PENTAHO_HOME/kpt-cdc-to-rdb/from-debezium
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-kafka \
-    $PENTAHO_HOME/kpt-cdc-to-rdb/from-kafka
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_kafka \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/from_kafka
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_pgsql \
     $PENTAHO_HOME/kpt-cdc-to-rdb/to_pgsql
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_rdb \

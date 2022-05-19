@@ -1,23 +1,13 @@
 <transformation>
   <info>
-    <name>sort_by_table_operate</name>
+    <name>log_json_to_kafka</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka/group_table.mapping</directory>
+    <directory>/from_kafka/batch_group_logger.mapping</directory>
     <parameters>
-      <parameter>
-        <name>CursorLastGroupIndex</name>
-        <default_value>-1</default_value>
-        <description>last index of group</description>
-      </parameter>
-      <parameter>
-        <name>CursorLastGroupName</name>
-        <default_value>-</default_value>
-        <description>last name of group</description>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -437,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2018/04/20 21:37:30.651</created_date>
+    <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/07 16:47:24.176</modified_date>
+    <modified_date>2022/05/13 10:49:38.539</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -447,43 +437,48 @@
   </notepads>
   <order>
     <hop>
+      <from>Kafka producer: logger</from>
+      <to>MappingOutput: batch_group_logger.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Constant: POINT</from>
-      <to>Calculator: schema_table operate_schema_table</to>
+      <to>SelectValues: rename</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: remove&amp;rename</from>
-      <to>MappingOutput: group_table.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: schema_table operate_schema_table</from>
-      <to>ScriptValueMod: group_index</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SortRows: param_* + kafka_offset asc</from>
+      <from>MappingInput: batch_group_logger.mapping</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: group_index</from>
-      <to>SelectValues: remove&amp;rename</to>
+      <from>Calculator: log_key use group</from>
+      <to>Kafka producer: logger</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: group_table.mapping</from>
-      <to>SortRows: param_* + kafka_offset asc</to>
+      <from>SelectValues: rename</from>
+      <to>FilterRows: have group</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test</from>
-      <to>SortRows: param_* + kafka_offset asc</to>
-      <enabled>N</enabled>
+      <from>FilterRows: have group</from>
+      <to>Calculator: log_key use group</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: have group</from>
+      <to>Calculator: log_key use code</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: log_key use code</from>
+      <to>Kafka producer: logger</to>
+      <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: schema_table operate_schema_table</name>
+    <name>Calculator: log_key use code</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -495,26 +490,11 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>schema_table</field_name>
+      <field_name>log_key</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>source_schema</field_a>
+      <field_a>log_batch</field_a>
       <field_b>POINT</field_b>
-      <field_c>source_table</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <calculation>
-      <field_name>operate_schema_table</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>source_operate</field_a>
-      <field_b>POINT</field_b>
-      <field_c>schema_table</field_c>
+      <field_c>log_code</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -533,8 +513,49 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>512</yloc>
+      <xloc>496</xloc>
+      <yloc>624</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: log_key use group</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>log_key</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>log_batch</field_a>
+      <field_b>POINT</field_b>
+      <field_c>log_group</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>208</xloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -573,13 +594,13 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>384</yloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>DataGrid: test</name>
-    <type>DataGrid</type>
+    <name>FilterRows: have group</name>
+    <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -588,276 +609,16 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>Date</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item/>
-        <item>0</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t1</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>2</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t2</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>3</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t2</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>4</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t2</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>5</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>6</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>7</item>
-        <item>1</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>8</item>
-        <item>2</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t2</item>
-        <item>DELETE</item>
-      </line>
-      <line>
-        <item/>
-        <item>9</item>
-        <item>2</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t2</item>
-        <item>UPDATE</item>
-      </line>
-      <line>
-        <item/>
-        <item>10</item>
-        <item>2</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t2</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>11</item>
-        <item>2</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>DELETE</item>
-      </line>
-      <line>
-        <item/>
-        <item>12</item>
-        <item>2</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>UPDATE</item>
-      </line>
-      <line>
-        <item/>
-        <item>13</item>
-        <item>2</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>UPDATE</item>
-      </line>
-      <line>
-        <item/>
-        <item>14</item>
-        <item>3</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>INSERT</item>
-      </line>
-      <line>
-        <item/>
-        <item>15</item>
-        <item>3</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>UPDATE</item>
-      </line>
-      <line>
-        <item/>
-        <item>16</item>
-        <item>3</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t3</item>
-        <item>UPDATE</item>
-      </line>
-      <line>
-        <item/>
-        <item>17</item>
-        <item>4</item>
-        <item/>
-        <item/>
-        <item>s</item>
-        <item>t1</item>
-        <item>INSERT</item>
-      </line>
-    </data>
+    <send_true_to>Calculator: log_key use code</send_true_to>
+    <send_false_to>Calculator: log_key use group</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>log_group</leftvalue>
+        <function>IS NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -867,13 +628,53 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>64</yloc>
+      <xloc>352</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingInput: group_table.mapping</name>
+    <name>Kafka producer: logger</name>
+    <type>KafkaProducerOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connectionType>DIRECT</connectionType>
+    <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
+    <clusterName/>
+    <topic>${Config.CDC.Kafka.Data.Topic}-${Config.CDC.Kafka.Consumer.Group}-logger</topic>
+    <clientId>${Config.CDC.Kafka.Consumer.Group}</clientId>
+    <keyField>log_key</keyField>
+    <messageField>log_message</messageField>
+    <advancedConfig>
+      <option property="compression.type" value="none"/>
+      <option property="ssl.key.password" value=""/>
+      <option property="ssl.keystore.location" value=""/>
+      <option property="ssl.keystore.password" value=""/>
+      <option property="ssl.truststore.location" value=""/>
+      <option property="ssl.truststore.password" value=""/>
+    </advancedConfig>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingInput: batch_group_logger.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -885,49 +686,25 @@
     </partitioning>
     <fields>
       <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>batch_id</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>batch_time</name>
-        <type>Date</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_schema</name>
+        <name>batch</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_table</name>
+        <name>group</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_operate</name>
+        <name>code</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>json</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -949,7 +726,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: group_table.mapping</name>
+    <name>MappingOutput: batch_group_logger.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -969,65 +746,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>960</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: group_index</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var i = parseInt(getVariable("CursorLastGroupIndex",'-1'),0);
-var n = getVariable("CursorLastGroupName",'-');
-if(operate_schema_table != n) {
-  // new group
-  i = i + 1;
-  n = operate_schema_table;
-  setVariable("CursorLastGroupIndex",i,'p');
-  setVariable("CursorLastGroupName",n,'p');
-}
-group_index = i;</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>group_index</name>
-        <rename>group_index</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove&amp;rename</name>
+    <name>SelectValues: rename</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1039,19 +763,13 @@ group_index = i;</jsScript_script>
     </partitioning>
     <fields>
       <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>POINT</name>
-      </remove>
-      <remove>
-        <name>schema_table</name>
-      </remove>
       <meta>
-        <name>group_index</name>
-        <rename>group_id</rename>
-        <type>Integer</type>
+        <name>batch</name>
+        <rename>log_batch</rename>
+        <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask/>
+        <conversion_mask>#.#</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1063,8 +781,25 @@ group_index = i;</jsScript_script>
         <storage_type/>
       </meta>
       <meta>
-        <name>operate_schema_table</name>
-        <rename>group_name</rename>
+        <name>group</name>
+        <rename>log_group</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>#.#</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>code</name>
+        <rename>log_code</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1079,6 +814,23 @@ group_index = i;</jsScript_script>
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>json</name>
+        <rename>log_message</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask>#.#</conversion_mask>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1090,73 +842,7 @@ group_index = i;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>800</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SortRows: param_* + kafka_offset asc</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>source_schema</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>source_table</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>source_operate</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

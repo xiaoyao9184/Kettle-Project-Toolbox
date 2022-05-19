@@ -1,52 +1,22 @@
 <transformation>
   <info>
-    <name>cdc_to_batch</name>
+    <name>log_json_to_kettle</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka</directory>
+    <directory>/from_kafka/batch_group_logger.mapping</directory>
     <parameters>
-      <parameter>
-        <name>Config.CDC.Kafka.Batch.Duration</name>
-        <default_value>60000</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Batch.Max</name>
-        <default_value>10000</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Batch.Size</name>
-        <default_value>10000</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Consumer.Group</name>
-        <default_value/>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Data.Topic</name>
-        <default_value/>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Kafka.Server.Bootstrap</name>
-        <default_value/>
-        <description/>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__trans</table>
-        <size_limit_lines>10000</size_limit_lines>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -140,26 +110,26 @@
         </field>
         <field>
           <id>EXECUTING_SERVER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_SERVER</name>
         </field>
         <field>
           <id>EXECUTING_USER</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>EXECUTING_USER</name>
         </field>
         <field>
           <id>CLIENT</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>CLIENT</name>
         </field>
       </trans-log-table>
       <perf-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__seq</table>
-        <interval>60</interval>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <interval/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -237,10 +207,10 @@
         </field>
       </perf-log-table>
       <channel-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__channel</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -303,10 +273,10 @@
         </field>
       </channel-log-table>
       <step-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__step</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -374,15 +344,15 @@
         </field>
         <field>
           <id>LOG_FIELD</id>
-          <enabled>Y</enabled>
+          <enabled>N</enabled>
           <name>LOG_FIELD</name>
         </field>
       </step-log-table>
       <metrics-log-table>
-        <connection>db_kpt_cdc_event_pgsql_writer</connection>
-        <schema>kpt_cdc_log</schema>
-        <table>${Internal.Transformation.Name}__metrics</table>
-        <timeout_days>300</timeout_days>
+        <connection/>
+        <schema/>
+        <table/>
+        <timeout_days/>
         <field>
           <id>ID_BATCH</id>
           <enabled>Y</enabled>
@@ -437,7 +407,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>100000</size_rowset>
+    <size_rowset>10000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -445,8 +415,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>Y</capture_step_performance>
-    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -457,75 +427,29 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/07/07 11:03:26.007</created_date>
+    <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/12 17:27:53.693</modified_date>
+    <modified_date>2022/05/13 11:14:36.286</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>db_kpt_cdc_event_pgsql_writer</name>
-    <server>${Config.CDC.RDB.pgsql.server}</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>${Config.CDC.RDB.pgsql.database}</database>
-    <port>${Config.CDC.RDB.pgsql.port}</port>
-    <username>${Config.CDC.RDB.pgsql.username}</username>
-    <password>${Config.CDC.RDB.pgsql.password}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>${Config.CDC.RDB.pgsql.port}</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
     <hop>
-      <from>Kafka consumer</from>
-      <to>Dummy</to>
+      <from>MappingInput: batch_group_logger.mapping</from>
+      <to>WriteToLog: batch_group_logger</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>WriteToLog: batch_group_logger</from>
+      <to>MappingOutput: batch_group_logger.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Dummy</name>
-    <type>Dummy</type>
+    <name>MappingInput: batch_group_logger.mapping</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -534,56 +458,33 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Kafka consumer</name>
-    <type>KafkaConsumerInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <clusterName/>
-    <topic>${Config.CDC.Kafka.Data.Topic}</topic>
-    <consumerGroup>${Config.CDC.Kafka.Consumer.Group}</consumerGroup>
-    <transformationPath>/from-kafka/batch_to_group.stream</transformationPath>
-    <SUB_STEP>Dummy: return to kafka</SUB_STEP>
-    <batchSize>${Config.CDC.Kafka.Batch.Size}</batchSize>
-    <batchDuration>${Config.CDC.Kafka.Batch.Duration}</batchDuration>
-    <PARALLELISM>1</PARALLELISM>
-    <prefetchMessageCount>${Config.CDC.Kafka.Batch.Max}</prefetchMessageCount>
-    <connectionType>DIRECT</connectionType>
-    <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <AUTO_COMMIT>N</AUTO_COMMIT>
-    <OutputField kafkaName="key" type="String">kafka_key</OutputField>
-    <OutputField kafkaName="message" type="String">kafka_message</OutputField>
-    <OutputField kafkaName="topic" type="String">kafka_topic</OutputField>
-    <OutputField kafkaName="partition" type="Integer">kafka_partition</OutputField>
-    <OutputField kafkaName="offset" type="Integer">kafka_offset</OutputField>
-    <OutputField kafkaName="timestamp" type="Integer">kafka_timestamp</OutputField>
-    <advancedConfig>
-      <option property="auto.offset.reset" value="earliest"/>
-      <option property="request.timeout.ms" value="605000"/>
-      <option property="session.timeout.ms" value="600000"/>
-      <option property="heartbeat.interval.ms" value="60000"/>
-      <option property="max.poll.interval.ms" value="1800000"/>
-    </advancedConfig>
+    <fields>
+      <field>
+        <name>batch</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>group</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>code</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>json</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -595,6 +496,75 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingOutput: batch_group_logger.mapping</name>
+    <type>MappingOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>WriteToLog: batch_group_logger</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      <field>
+        <name>batch</name>
+      </field>
+      <field>
+        <name>group</name>
+      </field>
+      <field>
+        <name>code</name>
+      </field>
+      <field>
+        <name>json</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

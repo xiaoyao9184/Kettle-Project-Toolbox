@@ -1,17 +1,22 @@
 <transformation>
   <info>
-    <name>sort_by_row_last</name>
+    <name>sort_by_table_operate</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from-kafka/redirect_row.mapping</directory>
+    <directory>/from_kafka/group_table.mapping</directory>
     <parameters>
       <parameter>
-        <name>CursorLastGroupOffset</name>
+        <name>CursorLastGroupIndex</name>
         <default_value>-1</default_value>
-        <description>last offset of group</description>
+        <description>last index of group</description>
+      </parameter>
+      <parameter>
+        <name>CursorLastGroupName</name>
+        <default_value>-</default_value>
+        <description>last name of group</description>
       </parameter>
     </parameters>
     <log>
@@ -434,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/12 17:40:44.776</modified_date>
+    <modified_date>2022/03/07 16:47:24.176</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -443,47 +448,42 @@
   <order>
     <hop>
       <from>Constant: POINT</from>
-      <to>Calculator: schema_table schema_table_row</to>
+      <to>Calculator: schema_table operate_schema_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: remove&amp;rename</from>
-      <to>MappingOutput: redirect_row.mapping</to>
+      <to>MappingOutput: group_table.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test</from>
-      <to>SortRows: param_* + kafka_offset desc</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: redirect_row.mapping</from>
-      <to>SortRows: param_* + kafka_offset desc</to>
+      <from>Calculator: schema_table operate_schema_table</from>
+      <to>ScriptValueMod: group_index</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: param_* + kafka_offset desc</from>
-      <to>FieldsChangeSequence: param_* desc_order</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FieldsChangeSequence: param_* desc_order</from>
+      <from>SortRows: param_* + kafka_offset asc</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator: schema_table schema_table_row</from>
-      <to>ScriptValueMod: redirect_offset</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: redirect_offset</from>
+      <from>ScriptValueMod: group_index</from>
       <to>SelectValues: remove&amp;rename</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>MappingInput: group_table.mapping</from>
+      <to>SortRows: param_* + kafka_offset asc</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test</from>
+      <to>SortRows: param_* + kafka_offset asc</to>
+      <enabled>N</enabled>
+    </hop>
   </order>
   <step>
-    <name>Calculator: schema_table schema_table_row</name>
+    <name>Calculator: schema_table operate_schema_table</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -510,11 +510,11 @@
       <currency_symbol/>
     </calculation>
     <calculation>
-      <field_name>schema_table_row</field_name>
+      <field_name>operate_schema_table</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>schema_table</field_a>
+      <field_a>source_operate</field_a>
       <field_b>POINT</field_b>
-      <field_c>source_row</field_c>
+      <field_c>schema_table</field_c>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -534,7 +534,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>640</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -573,7 +573,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>512</yloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -674,7 +674,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>source_row</name>
+        <name>source_operate</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -695,7 +695,7 @@
         <item/>
         <item>s</item>
         <item>t1</item>
-        <item>row1</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -705,7 +705,7 @@
         <item/>
         <item>s</item>
         <item>t2</item>
-        <item>row1</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -715,7 +715,7 @@
         <item/>
         <item>s</item>
         <item>t2</item>
-        <item>row2</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -725,7 +725,7 @@
         <item/>
         <item>s</item>
         <item>t2</item>
-        <item>row3</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -735,7 +735,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row1</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -745,7 +745,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row2</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -755,7 +755,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row3</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -765,7 +765,7 @@
         <item/>
         <item>s</item>
         <item>t2</item>
-        <item>row1</item>
+        <item>DELETE</item>
       </line>
       <line>
         <item/>
@@ -775,7 +775,7 @@
         <item/>
         <item>s</item>
         <item>t2</item>
-        <item>row2</item>
+        <item>UPDATE</item>
       </line>
       <line>
         <item/>
@@ -785,7 +785,7 @@
         <item/>
         <item>s</item>
         <item>t2</item>
-        <item>row3</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -795,7 +795,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row1</item>
+        <item>DELETE</item>
       </line>
       <line>
         <item/>
@@ -805,7 +805,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row2</item>
+        <item>UPDATE</item>
       </line>
       <line>
         <item/>
@@ -815,7 +815,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row3</item>
+        <item>UPDATE</item>
       </line>
       <line>
         <item/>
@@ -825,7 +825,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row1</item>
+        <item>INSERT</item>
       </line>
       <line>
         <item/>
@@ -835,7 +835,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row2</item>
+        <item>UPDATE</item>
       </line>
       <line>
         <item/>
@@ -845,7 +845,7 @@
         <item/>
         <item>s</item>
         <item>t3</item>
-        <item>row3</item>
+        <item>UPDATE</item>
       </line>
       <line>
         <item/>
@@ -855,7 +855,7 @@
         <item/>
         <item>s</item>
         <item>t1</item>
-        <item>row2</item>
+        <item>INSERT</item>
       </line>
     </data>
     <attributes/>
@@ -873,46 +873,7 @@
     </GUI>
   </step>
   <step>
-    <name>FieldsChangeSequence: param_* desc_order</name>
-    <type>FieldsChangeSequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <start>1</start>
-    <increment>1</increment>
-    <resultfieldName>desc_order</resultfieldName>
-    <fields>
-      <field>
-        <name>source_schema</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
-        <name>source_row</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: redirect_row.mapping</name>
+    <name>MappingInput: group_table.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -923,24 +884,6 @@
       <schema_name/>
     </partitioning>
     <fields>
-      <field>
-        <name>kafka_key</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
       <field>
         <name>kafka_partition</name>
         <type>Integer</type>
@@ -972,12 +915,6 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
         <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
@@ -990,7 +927,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_row</name>
+        <name>source_operate</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1012,7 +949,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: redirect_row.mapping</name>
+    <name>MappingOutput: group_table.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1032,12 +969,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1088</yloc>
+      <yloc>960</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: redirect_offset</name>
+    <name>ScriptValueMod: group_index</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -1053,19 +990,22 @@
       <jsScript>
         <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var o = parseInt(getVariable("CursorLastGroupOffset",'-1'),0);
-if(desc_order == 1) {
+        <jsScript_script>var i = parseInt(getVariable("CursorLastGroupIndex",'-1'),0);
+var n = getVariable("CursorLastGroupName",'-');
+if(operate_schema_table != n) {
   // new group
-  o = kafka_offset;
-  setVariable("CursorLastGroupOffset",o,'p');
+  i = i + 1;
+  n = operate_schema_table;
+  setVariable("CursorLastGroupIndex",i,'p');
+  setVariable("CursorLastGroupName",n,'p');
 }
-redirect_offset = o;</jsScript_script>
+group_index = i;</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
-        <name>redirect_offset</name>
-        <rename>redirect_offset</rename>
+        <name>group_index</name>
+        <rename>group_index</rename>
         <type>Integer</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1082,7 +1022,7 @@ redirect_offset = o;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1100,17 +1040,31 @@ redirect_offset = o;</jsScript_script>
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>desc_order</name>
-      </remove>
-      <remove>
         <name>POINT</name>
       </remove>
       <remove>
         <name>schema_table</name>
       </remove>
       <meta>
-        <name>schema_table_row</name>
-        <rename>redirect_row</rename>
+        <name>group_index</name>
+        <rename>group_id</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>operate_schema_table</name>
+        <rename>group_name</rename>
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1136,12 +1090,12 @@ redirect_offset = o;</jsScript_script>
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>928</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SortRows: param_* + kafka_offset desc</name>
+    <name>SortRows: param_* + kafka_offset asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1176,7 +1130,7 @@ redirect_offset = o;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>source_row</name>
+        <name>source_operate</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1185,7 +1139,7 @@ redirect_offset = o;</jsScript_script>
       </field>
       <field>
         <name>kafka_offset</name>
-        <ascending>N</ascending>
+        <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
         <collator_strength>0</collator_strength>
