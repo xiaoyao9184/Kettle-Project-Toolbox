@@ -34,12 +34,12 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Table.Source</name>
+        <name>Config.CDC.Target.Table.Source</name>
         <default_value>default</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Transformation.Path</name>
+        <name>Config.CDC.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
         <description/>
       </parameter>
@@ -648,7 +648,7 @@
     <fields>
       <field>
         <name>source_name</name>
-        <variable>${Config.Log.Target.Table.Source}</variable>
+        <variable>${Config.CDC.Target.Table.Source}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -1044,7 +1044,7 @@ WHERE source_name = ? AND source_schema = ? AND source_table = ?</sql>
     <trans_object_id/>
     <trans_name>target_table_modifier.mapping</trans_name>
     <filename/>
-    <directory_path>/${Config.Log.Target.Transformation.Path}</directory_path>
+    <directory_path>/${Config.CDC.Target.Transformation.Path}</directory_path>
     <mappings>
       <input>
         <mapping>

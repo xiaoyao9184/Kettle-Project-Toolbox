@@ -24,32 +24,32 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Column.Mapping</name>
+        <name>Config.CDC.Source.Column.Mapping</name>
         <default_value>mysql_schema</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Key.Mapping</name>
+        <name>Config.CDC.Source.Key.Mapping</name>
         <default_value>debezium_key_to_key_meta</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Transformation.Path</name>
+        <name>Config.CDC.Source.Transformation.Path</name>
         <default_value>from-debezium</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Column.Mapping</name>
+        <name>Config.CDC.Target.Column.Mapping</name>
         <default_value>same_source</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Operate.Mapping</name>
+        <name>Config.CDC.Target.Operate.Mapping</name>
         <default_value>update_only_flash_point</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Target.Table.Mapping</name>
+        <name>Config.CDC.Target.Table.Mapping</name>
         <default_value>config_prefix_lookup</default_value>
         <description/>
       </parameter>
@@ -5247,9 +5247,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Source.Column.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Source.Column.Mapping}</trans_name>
     <filename/>
-    <directory_path>/${Config.Log.Source.Transformation.Path}/source_column.mapping</directory_path>
+    <directory_path>/${Config.CDC.Source.Transformation.Path}/source_column.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -5372,7 +5372,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Target.Column.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Target.Column.Mapping}</trans_name>
     <filename/>
     <directory_path>/to_rdb/target_column.mapping</directory_path>
     <mappings>
@@ -5465,7 +5465,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Target.Operate.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Target.Operate.Mapping}</trans_name>
     <filename/>
     <directory_path>/to_rdb/target_operate.mapping</directory_path>
     <mappings>
@@ -5526,7 +5526,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Target.Table.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Target.Table.Mapping}</trans_name>
     <filename/>
     <directory_path>/to_rdb/target_table.mapping</directory_path>
     <mappings>

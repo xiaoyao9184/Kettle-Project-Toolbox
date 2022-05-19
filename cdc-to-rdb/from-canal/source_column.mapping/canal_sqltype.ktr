@@ -9,12 +9,12 @@
     <directory>/from-canal/source_column.mapping</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Source.Key.Mapping</name>
+        <name>Config.CDC.Source.Key.Mapping</name>
         <default_value>canal_pknames</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Log.Source.Transformation.Path</name>
+        <name>Config.CDC.Source.Transformation.Path</name>
         <default_value>from-canal</default_value>
         <description/>
       </parameter>
@@ -1616,9 +1616,9 @@ for (index = 0; index &lt; sqlType.length; index++) {
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Log.Source.Key.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Source.Key.Mapping}</trans_name>
     <filename/>
-    <directory_path>${Config.Log.Source.Transformation.Path}/source_key.mapping</directory_path>
+    <directory_path>${Config.CDC.Source.Transformation.Path}/source_key.mapping</directory_path>
     <mappings>
       <input>
         <mapping>

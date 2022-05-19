@@ -9,7 +9,7 @@
     <directory>/to_rdb/target_key.mapping</directory>
     <parameters>
       <parameter>
-        <name>Config.Log.Target.Transformation.Path</name>
+        <name>Config.CDC.Target.Transformation.Path</name>
         <default_value>to_pgsql</default_value>
         <description/>
       </parameter>
@@ -879,7 +879,7 @@
     <trans_object_id/>
     <trans_name>target_key_lookup.mapping</trans_name>
     <filename/>
-    <directory_path>${Config.Log.Target.Transformation.Path}</directory_path>
+    <directory_path>${Config.CDC.Target.Transformation.Path}</directory_path>
     <mappings>
       <input>
         <mapping>
