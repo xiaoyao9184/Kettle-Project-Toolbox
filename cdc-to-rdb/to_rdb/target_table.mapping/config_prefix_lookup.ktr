@@ -9,12 +9,12 @@
     <directory>/to_rdb/target_table.mapping</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Target.Schema.Prefix</name>
+        <name>Config.CDC.Target.Table.Prefix.Schema</name>
         <default_value>mysql_manual_generation__</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Target.Table.Prefix</name>
+        <name>Config.CDC.Target.Table.Prefix.Table</name>
         <default_value/>
         <description/>
       </parameter>
@@ -623,7 +623,7 @@
     <fields>
       <field>
         <name>prefix_schema</name>
-        <variable>${Config.CDC.Target.Schema.Prefix}</variable>
+        <variable>${Config.CDC.Target.Table.Prefix.Schema}</variable>
         <type>String</type>
         <format/>
         <currency/>
@@ -635,7 +635,7 @@
       </field>
       <field>
         <name>prefix_table</name>
-        <variable>${Config.CDC.Target.Table.Prefix}</variable>
+        <variable>${Config.CDC.Target.Table.Prefix.Table}</variable>
         <type>String</type>
         <format/>
         <currency/>

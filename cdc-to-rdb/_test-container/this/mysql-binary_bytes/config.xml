@@ -75,8 +75,8 @@ Config.CDC.Target.Operate.Mapping	update_only_flash_point
 Config.CDC.Target.Transformation.Path	to_pgsql	
 Config.CDC.Target.Table.Mapping	config_prefix_lookup
 Config.CDC.Target.Column.Mapping	same_source	
-Config.CDC.Target.Schema.Prefix	mysql_manual_generation__	
-Config.CDC.Target.Table.Prefix		
+Config.CDC.Target.Table.Prefix.Table.Schema	mysql_manual_generation__	
+Config.CDC.Target.Table.Prefix.Table		
 
             -->
         </profile>
@@ -127,8 +127,8 @@ Config.CDC.Target.Operate.Mapping	update_only_flash_point
 Config.CDC.Target.Transformation.Path	to_pgsql	
 Config.CDC.Target.Table.Mapping	config_prefix_lookup
 Config.CDC.Target.Column.Mapping	same_source	
-Config.CDC.Target.Schema.Prefix	mysql_chameleon_generation__	
-Config.CDC.Target.Table.Prefix	for_chameleon__	
+Config.CDC.Target.Table.Prefix.Table.Schema	mysql_chameleon_generation__	
+Config.CDC.Target.Table.Prefix.Table	for_chameleon__	
 
             -->
         </profile>
