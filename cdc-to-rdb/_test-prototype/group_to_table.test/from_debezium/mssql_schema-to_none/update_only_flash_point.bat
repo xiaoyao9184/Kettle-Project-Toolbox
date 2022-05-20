@@ -11,7 +11,7 @@ SET current_script_dir=%~dp0
 
 FOR %%F IN (%current_script_dir%.) DO SET project_folder_path=%%~dpF%%~nF
 :find_project_path_loop
-IF NOT EXIST "%project_folder_path%\db_kpt_cdc_event_pgsql_writer.kdb" (
+IF NOT EXIST "%project_folder_path%\db_kpt_cdc_rdb_writer.kdb" (
     FOR %%F IN (%project_folder_path%.) DO SET project_folder_path=%%~dpF%
     ECHO go up !project_folder_path!
     GOTO:find_project_path_loop

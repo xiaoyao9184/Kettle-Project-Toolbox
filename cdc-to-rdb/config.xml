@@ -22,11 +22,11 @@
         <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
         
         <profile name="test_kpt">
-            <cfg namespace="Config.CDC.RDB.pgsql" key="database">test_kpt</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="server">TODO_CHANGE_IP</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="username">TODO_CHANGE_USERNAME</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="password">TODO_CHANGE_PASSWROD</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Database">test_kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Server">TODO_CHANGE_IP</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Username">TODO_CHANGE_USERNAME</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Password">TODO_CHANGE_PASSWROD</cfg>
         </profile>
 
         <profile name="debezium-mysql-pgsql">
@@ -51,11 +51,11 @@
             <!-- Copy it and quickly set system variables -->
             <!--
 name	value
-Config.CDC.RDB.pgsql.database	test_kpt
-Config.CDC.RDB.pgsql.server	TODO_CHANGE_IP
-Config.CDC.RDB.pgsql.port	5432
-Config.CDC.RDB.pgsql.username	TODO_CHANGE_USERNAME
-Config.CDC.RDB.pgsql.password	TODO_CHANGE_PASSWROD
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	TODO_CHANGE_IP
+Config.CDC.RDB.Writer.Port	5432
+Config.CDC.RDB.Writer.Username	TODO_CHANGE_USERNAME
+Config.CDC.RDB.Writer.Password	TODO_CHANGE_PASSWROD
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000
 Config.CDC.Debug.Delay.Injection.Field.Time	10000
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
@@ -102,11 +102,11 @@ Config.CDC.Target.Table.Prefix.Table
             <!-- Copy it and quickly set system variables -->
             <!--
 name	value
-Config.CDC.RDB.pgsql.database	test_kpt
-Config.CDC.RDB.pgsql.server	TODO_CHANGE_IP
-Config.CDC.RDB.pgsql.port	5432
-Config.CDC.RDB.pgsql.username	TODO_CHANGE_USERNAME
-Config.CDC.RDB.pgsql.password	TODO_CHANGE_PASSWROD
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	TODO_CHANGE_IP
+Config.CDC.RDB.Writer.Port	5432
+Config.CDC.RDB.Writer.Username	TODO_CHANGE_USERNAME
+Config.CDC.RDB.Writer.Password	TODO_CHANGE_PASSWROD
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000
 Config.CDC.Debug.Delay.Injection.Field.Time	10000
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT
@@ -153,11 +153,11 @@ Config.CDC.Target.Table.Prefix.Table
             <!-- Copy it and quickly set system variables -->
             <!--
 name	value
-Config.CDC.RDB.pgsql.database	test_kpt
-Config.CDC.RDB.pgsql.server	TODO_CHANGE_IP
-Config.CDC.RDB.pgsql.port	5432
-Config.CDC.RDB.pgsql.username	TODO_CHANGE_USERNAME
-Config.CDC.RDB.pgsql.password	TODO_CHANGE_PASSWROD
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	TODO_CHANGE_IP
+Config.CDC.RDB.Writer.Port	5432
+Config.CDC.RDB.Writer.Username	TODO_CHANGE_USERNAME
+Config.CDC.RDB.Writer.Password	TODO_CHANGE_PASSWROD
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000
 Config.CDC.Debug.Delay.Injection.Field.Time	10000
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT

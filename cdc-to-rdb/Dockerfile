@@ -24,7 +24,7 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_pgsql \
     $PENTAHO_HOME/kpt-cdc-to-rdb/to_pgsql
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_rdb \
     $PENTAHO_HOME/kpt-cdc-to-rdb/to_rdb
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/db_kpt_cdc_event_pgsql_writer.kdb \
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/db_kpt_cdc_rdb_writer.kdb \
     $PENTAHO_HOME/kpt-cdc-to-rdb/
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
     $PENTAHO_HOME/kpt-cdc-to-rdb/

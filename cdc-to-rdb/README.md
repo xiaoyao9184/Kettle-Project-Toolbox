@@ -167,25 +167,25 @@ then you can combine all cfgs by referring the `profile` name later.
 	<!-- this database is used to restore cdc stream log to table, also output the kettle log, and query some parameters -->
     <!-- You can define multiple databases, like 'dev' 'test' 'prod' -->
 		<profile name="dev">
-			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt@123</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Database">KPT_SYNC</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Server">kpt_sync</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt@123</cfg>
 		</profile>
 		<profile name="test">
-			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt@123</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Database">KPT_SYNC</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Server">kpt_sync</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt@123</cfg>
 		</profile>
 		<profile name="prod">
-			<cfg namespace="Config.CDC.RDB.pgsql" key="database">KPT_SYNC</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="server">kpt_sync</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
-			<cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt@123</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Database">KPT_SYNC</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Server">kpt_sync</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
+			<cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt@123</cfg>
 		</profile>
 
     <!-- defines the run way -->

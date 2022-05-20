@@ -22,16 +22,16 @@
         <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
         
         <profile name="test_kpt">
-            <cfg namespace="Config.CDC.RDB.pgsql" key="database">test_kpt</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="server">pgsql</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="port">5432</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="username">kpt</cfg>
-            <cfg namespace="Config.CDC.RDB.pgsql" key="password">kpt.123</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Database">test_kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Server">pgsql</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt.123</cfg>
         </profile>
 
         <profile name="debezium-mysql-pgsql.manual">
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220128</cfg>
+            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220520-3</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.reroute</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
@@ -52,11 +52,11 @@
             <!--
 name	value
 Config.Profile	test_kpt,debezium-mysql-pgsql.manual
-Config.CDC.RDB.pgsql.database	test_kpt
-Config.CDC.RDB.pgsql.server	pgsql
-Config.CDC.RDB.pgsql.port	55432
-Config.CDC.RDB.pgsql.username	kpt
-Config.CDC.RDB.pgsql.password	kpt.123	
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	pgsql
+Config.CDC.RDB.Writer.Port	55432
+Config.CDC.RDB.Writer.Username	kpt
+Config.CDC.RDB.Writer.Password	kpt.123	
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
 Config.CDC.Debug.Delay.Injection.Field.Time	10000	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
@@ -106,11 +106,11 @@ Config.CDC.Target.Table.Prefix.Table
             <!--
 name	value
 Config.Profile	test_kpt,debezium-mysql-pgsql.chameleon
-Config.CDC.RDB.pgsql.database	test_kpt
-Config.CDC.RDB.pgsql.server	pgsql
-Config.CDC.RDB.pgsql.port	55432
-Config.CDC.RDB.pgsql.username	kpt
-Config.CDC.RDB.pgsql.password	kpt.123
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	pgsql
+Config.CDC.RDB.Writer.Port	55432
+Config.CDC.RDB.Writer.Username	kpt
+Config.CDC.RDB.Writer.Password	kpt.123
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
 Config.CDC.Debug.Delay.Injection.Field.Time	10000	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	

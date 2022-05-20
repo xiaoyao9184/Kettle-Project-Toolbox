@@ -3,7 +3,7 @@ services:
   mysql-time_connect.manual:
     image: xiaoyao9184/kpt-cdc-to-rdb:dev
     environment:
-      KPT_KETTLE_LEVEL: Rowlevel
+      # KPT_KETTLE_LEVEL: Rowlevel
       KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.manual
     volumes:
        - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml

@@ -436,14 +436,14 @@
   <notepads>
   </notepads>
   <connection>
-    <name>db_kpt_cdc_event_pgsql_writer</name>
-    <server>${Config.CDC.RDB.pgsql.server}</server>
+    <name>db_kpt_cdc_rdb_writer</name>
+    <server>${Config.CDC.RDB.Writer.Server}</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${Config.CDC.RDB.pgsql.database}</database>
-    <port>${Config.CDC.RDB.pgsql.port}</port>
-    <username>${Config.CDC.RDB.pgsql.username}</username>
-    <password>${Config.CDC.RDB.pgsql.password}</password>
+    <database>${Config.CDC.RDB.Writer.Database}</database>
+    <port>${Config.CDC.RDB.Writer.Port}</port>
+    <username>${Config.CDC.RDB.Writer.Username}</username>
+    <password>${Config.CDC.RDB.Writer.Password}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -462,7 +462,7 @@
       </attribute>
       <attribute>
         <code>PORT_NUMBER</code>
-        <attribute>${Config.CDC.RDB.pgsql.port}</attribute>
+        <attribute>${Config.CDC.RDB.Writer.Port}</attribute>
       </attribute>
       <attribute>
         <code>PRESERVE_RESERVED_WORD_CASE</code>

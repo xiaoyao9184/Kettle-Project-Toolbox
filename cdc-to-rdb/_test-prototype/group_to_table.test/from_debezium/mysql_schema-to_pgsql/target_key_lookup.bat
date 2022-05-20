@@ -11,7 +11,7 @@ SET current_script_dir=%~dp0
 
 FOR %%F IN (%current_script_dir%.) DO SET project_folder_path=%%~dpF%%~nF
 :find_project_path_loop
-IF NOT EXIST "%project_folder_path%\db_kpt_cdc_event_pgsql_writer.kdb" (
+IF NOT EXIST "%project_folder_path%\db_kpt_cdc_rdb_writer.kdb" (
     FOR %%F IN (%project_folder_path%.) DO SET project_folder_path=%%~dpF%
     ECHO go up !project_folder_path!
     GOTO:find_project_path_loop
@@ -45,11 +45,11 @@ SET KPT_KETTLE_PARAM_ParamTemplateTransformation=group_to_table.template
 @REM for protptype
 SET KPT_KETTLE_PARAM_Config_CDC_Target_Table_Prefix_Table_Schema=mysql_manual_generation__
 SET KPT_KETTLE_PARAM_Config_CDC_Target_Table_Prefix_Table=change_pk__
-SET KPT_KETTLE_PARAM_Config_CDC_RDB_pgsql_database=test_kpt
-SET KPT_KETTLE_PARAM_Config_CDC_RDB_pgsql_password=kpt.123
-SET KPT_KETTLE_PARAM_Config_CDC_RDB_pgsql_port=55432
-SET KPT_KETTLE_PARAM_Config_CDC_RDB_pgsql_server=pgsql
-SET KPT_KETTLE_PARAM_Config_CDC_RDB_pgsql_username=kpt
+SET KPT_KETTLE_PARAM_Config_CDC_RDB_Writer_database=test_kpt
+SET KPT_KETTLE_PARAM_Config_CDC_RDB_Writer_password=kpt.123
+SET KPT_KETTLE_PARAM_Config_CDC_RDB_Writer_port=55432
+SET KPT_KETTLE_PARAM_Config_CDC_RDB_Writer_server=pgsql
+SET KPT_KETTLE_PARAM_Config_CDC_RDB_Writer_username=kpt
 SET KPT_KETTLE_PARAM_Config_CDC_Target_PgSql_Case_Sensitive=true
 
 
