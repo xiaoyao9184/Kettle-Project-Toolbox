@@ -523,7 +523,7 @@
     </hop>
     <hop>
       <from>Constant: COMPARATOR</from>
-      <to>FilterRows: column</to>
+      <to>FilterRows: target_key</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -542,8 +542,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: JsonInput</from>
-      <to>SelectValues: column</to>
+      <from>Constant: JSON_to_field</from>
+      <to>SelectValues: JSON_to_field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -648,17 +648,17 @@
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>Constant: JsonInput</to>
+      <to>Constant: JSON_to_field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>Dummy: field</to>
+      <to>Dummy: for target_column</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Dummy: column meta</from>
-      <to>Dummy: target</to>
+      <to>Dummy: for target_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -672,7 +672,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: field</from>
+      <from>Dummy: for target_column</from>
       <to>Constant: COMPARATOR</to>
       <enabled>Y</enabled>
     </hop>
@@ -687,12 +687,12 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dummy: target</from>
-      <to>SampleRows: target</to>
+      <from>Dummy: for target_table</from>
+      <to>SampleRows: target_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: column</from>
+      <from>FilterRows: target_key</from>
       <to>SelectValues: key</to>
       <enabled>Y</enabled>
     </hop>
@@ -732,7 +732,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SampleRows: target</from>
+      <from>SampleRows: target_table</from>
       <to>SelectValues: target</to>
       <enabled>Y</enabled>
     </hop>
@@ -862,7 +862,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: column</from>
+      <from>SelectValues: JSON_to_field</from>
       <to>ETL metadata injection: for prototype</to>
       <enabled>Y</enabled>
     </hop>
@@ -1318,7 +1318,7 @@
     </partitioning>
     <steps>
       <step>
-        <name>SelectValues: column</name>
+        <name>SelectValues: JSON_to_field</name>
         <CopyNr>0</CopyNr>
       </step>
       <step>
@@ -1374,7 +1374,7 @@
         <CopyNr>0</CopyNr>
       </step>
       <step>
-        <name>SampleRows: target</name>
+        <name>SampleRows: target_table</name>
         <CopyNr>0</CopyNr>
       </step>
       <step>
@@ -1593,7 +1593,7 @@
     </GUI>
   </step>
   <step>
-    <name>Constant: JsonInput</name>
+    <name>Constant: JSON_to_field</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -2838,7 +2838,7 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy: field</name>
+    <name>Dummy: for target_column</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -2913,7 +2913,7 @@
     </GUI>
   </step>
   <step>
-    <name>Dummy: target</name>
+    <name>Dummy: for target_table</name>
     <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
@@ -3192,10 +3192,10 @@
         <source_field>field_type</source_field>
       </mapping>
       <mapping>
-        <target_step_name>JSON input: column</target_step_name>
+        <target_step_name>JSON_to_field</target_step_name>
         <target_attribute_key>FIELD_NAME</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>SelectValues: column</source_step>
+        <source_step>SelectValues: JSON_to_field</source_step>
         <source_field>field_name</source_field>
       </mapping>
       <mapping>
@@ -3381,10 +3381,10 @@
         <source_field>field_name</source_field>
       </mapping>
       <mapping>
-        <target_step_name>JSON input: column</target_step_name>
+        <target_step_name>JSON_to_field</target_step_name>
         <target_attribute_key>FIELD_TYPE</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>SelectValues: column</source_step>
+        <source_step>SelectValues: JSON_to_field</source_step>
         <source_field>field_type</source_field>
       </mapping>
       <mapping>
@@ -3444,10 +3444,10 @@
         <source_field>field_stream</source_field>
       </mapping>
       <mapping>
-        <target_step_name>JSON input: column</target_step_name>
+        <target_step_name>JSON_to_field</target_step_name>
         <target_attribute_key>FIELD_PATH</target_attribute_key>
         <target_detail>Y</target_detail>
-        <source_step>SelectValues: column</source_step>
+        <source_step>SelectValues: JSON_to_field</source_step>
         <source_field>field_path</source_field>
       </mapping>
       <mapping>
@@ -3480,7 +3480,7 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: column</name>
+    <name>FilterRows: target_key</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -4161,7 +4161,7 @@
     </GUI>
   </step>
   <step>
-    <name>SampleRows: target</name>
+    <name>SampleRows: target_table</name>
     <type>SampleRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -4312,7 +4312,7 @@
     </GUI>
   </step>
   <step>
-    <name>SelectValues: column</name>
+    <name>SelectValues: JSON_to_field</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>

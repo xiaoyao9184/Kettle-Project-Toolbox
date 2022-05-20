@@ -492,7 +492,7 @@ these should be BUG of Debezium https://issues.redhat.com/browse/DBZ-4607
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input: column</from>
+      <from>JSON_to_field</from>
       <to>to_Boolean</to>
       <enabled>Y</enabled>
     </hop>
@@ -573,7 +573,7 @@ these should be BUG of Debezium https://issues.redhat.com/browse/DBZ-4607
     </hop>
     <hop>
       <from>DataGrid: test_kpt_cdc</from>
-      <to>JSON input: column</to>
+      <to>JSON_to_field</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -3025,7 +3025,7 @@ putRow(row);
     </GUI>
   </step>
   <step>
-    <name>JSON input: column</name>
+    <name>JSON_to_field</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
