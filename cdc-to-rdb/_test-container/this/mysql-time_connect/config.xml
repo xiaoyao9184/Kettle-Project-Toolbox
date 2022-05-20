@@ -9,126 +9,130 @@
         <cfg key="UseStatus">false</cfg>
         <cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
         <cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
-        <cfg namespace="Config.Main.Job" key="Path">/from-kafka</cfg>
+        <cfg namespace="Config.Main.Job" key="Path">/from_kafka</cfg>
         <cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
-        <cfg namespace="Config.Main.Transformation" key="Name">kafka_to_stream</cfg>
-        <cfg namespace="Config.Delay.Injection.Crud" key="Time">0</cfg>
-        <cfg namespace="Config.Delay.Injection.Field" key="Time">0</cfg>
-        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
-        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
-        <cfg namespace="Config.Log.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
-        <cfg namespace="Config.Log.Kafka.Batch" key="Size">10000</cfg>
-        <cfg namespace="Config.Log.Kafka.Batch" key="Duration">60000</cfg>
-        <cfg namespace="Config.Log.Kafka.Batch" key="Max">10000</cfg>
+        <cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
+        <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
+        <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
+        <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
+        <cfg namespace="Config.CDC.Kafka.Batch" key="Duration">60000</cfg>
+        <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
         
         <profile name="test_kpt">
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="database">test_kpt</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="server">pgsql</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="port">5432</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="username">kpt</cfg>
-            <cfg namespace="Config.DB.db_kpt_cdc_event_pgsql_writer" key="password">kpt.123</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Database">test_kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Server">pgsql</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
+            <cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt.123</cfg>
         </profile>
 
         <profile name="debezium-mysql-pgsql.manual">
-            <cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-            <cfg namespace="Config.Log.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220128</cfg>
-            <cfg namespace="Config.Log.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.time_connect</cfg>
+            <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220128</cfg>
+            <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.time_connect</cfg>
             
-            <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
-            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_schema_to_column_meta.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
-            <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
+            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
+            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
+            <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
+            <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
             
-            <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
-            <cfg namespace="Config.Log.Target.Column" key="Mapping">target_column_case_sensitive</cfg>
-            <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_manual_generation__</cfg>
-            <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
+            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
+            <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
+            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mysql_manual_generation__</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
 
             <!-- Copy it and quickly set system variables -->
             <!-- Differences: external port, delay used, add Config.Profile -->
             <!--
 name	value
 Config.Profile	test_kpt,debezium-mysql-pgsql.manual
-Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.server	pgsql
-Config.DB.db_kpt_cdc_event_pgsql_writer.port	55432
-Config.DB.db_kpt_cdc_event_pgsql_writer.username	kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.password	kpt.123
-Config.Delay.Injection.Crud.Time	1000		
-Config.Delay.Injection.Field.Time	10000	
-Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
-Config.Log.UpdateOnly.FlashPoint.Delay	86400	
-Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
-Config.Log.Kafka.Batch.Size	10000
-Config.Log.Kafka.Batch.Duration	60000	
-Config.Log.Kafka.Batch.Max	10000	
-Config.Log.Kafka.Server.Bootstrap	kafka:59094	
-Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.manual.20220128	
-Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.time_connect		
-Config.Log.Source.Transformation.Path	from-debezium	
-Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
-Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
-Config.Log.Source.Key.Mapping	debezium_key_to_key_meta	
-Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
-Config.Log.Target.Transformation.Path	to_pgsql	
-Config.Log.Target.Table.Mapping	config_prefix_lookup
-Config.Log.Target.Column.Mapping	target_column_case_sensitive	
-Config.Log.Target.Schema.Prefix	mysql_manual_generation__	
-Config.Log.Target.Table.Prefix		
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	pgsql
+Config.CDC.RDB.Writer.Port	55432
+Config.CDC.RDB.Writer.Username	kpt
+Config.CDC.RDB.Writer.Password	kpt.123
+Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
+Config.CDC.Debug.Delay.Injection.Field.Time	10000	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.CDC.Kafka.Batch.Size	10000
+Config.CDC.Kafka.Batch.Duration	60000	
+Config.CDC.Kafka.Batch.Max	10000	
+Config.CDC.Kafka.Server.Bootstrap	kafka:59094	
+Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.manual.20220128	
+Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.time_connect		
+Config.CDC.Source.Transformation.Path	from_debezium	
+Config.CDC.Source.Row.Mapping	mysql_playload	
+Config.CDC.Source.Column.Mapping	mysql_schema	
+Config.CDC.Source.Key.Mapping	key_schema	
+Config.CDC.Target.Transformation.Path	to_pgsql	
+Config.CDC.Target.Operate.Mapping	update_only_flash_point	
+Config.CDC.Target.Table.Mapping	config_prefix_exist
+Config.CDC.Target.Column.Mapping	same_source	
+Config.CDC.Target.Key.Mapping	same_source
+Config.CDC.Target.Table.Prefix.Schema	mysql_manual_generation__	
+Config.CDC.Target.Table.Prefix.Table		
 
             -->
         </profile>
 
         <profile name="debezium-mysql-pgsql.chameleon">
-            <cfg namespace="Config.Log.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-            <cfg namespace="Config.Log.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.chameleon.20220128</cfg>
-            <cfg namespace="Config.Log.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.time_connect</cfg>
+            <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
+            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.chameleon.20220128</cfg>
+            <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes.time_connect</cfg>
             
-            <cfg namespace="Config.Log.Source.Transformation" key="Path">from-debezium</cfg>
-            <cfg namespace="Config.Log.Source.Table" key="Mapping">mysql_playload_to_table_name.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Column" key="Mapping">mysql_schema_to_column_meta.mapping</cfg>
-            <cfg namespace="Config.Log.Source.Key" key="Mapping">debezium_key_to_key_meta</cfg>
-            <cfg namespace="Config.Log.Source.Switch" key="Mapping">debezium_operate_to_kettle_switch_flag.mapping</cfg>
+            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
+            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
+            <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
+            <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
             
-            <cfg namespace="Config.Log.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.Log.Target.Table" key="Mapping">config_prefix_lookup</cfg>
-            <cfg namespace="Config.Log.Target.Column" key="Mapping">target_column_case_sensitive</cfg>
-            <cfg namespace="Config.Log.Target.Schema" key="Prefix">mysql_chameleon_generation__</cfg>
-            <cfg namespace="Config.Log.Target.Table" key="Prefix"></cfg>
+            <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
+            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
+            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
+            <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
+            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mysql_chameleon_generation__</cfg>
+            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
 
             <!-- Copy it and quickly set system variables -->
             <!-- Differences: external port, delay used, add Config.Profile -->
             <!--
 name	value
 Config.Profile	test_kpt,debezium-mysql-pgsql.chameleon
-Config.DB.db_kpt_cdc_event_pgsql_writer.database	test_kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.server	pgsql
-Config.DB.db_kpt_cdc_event_pgsql_writer.port	55432
-Config.DB.db_kpt_cdc_event_pgsql_writer.username	kpt
-Config.DB.db_kpt_cdc_event_pgsql_writer.password	kpt.123
-Config.Delay.Injection.Crud.Time	1000		
-Config.Delay.Injection.Field.Time	10000	
-Config.Log.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
-Config.Log.UpdateOnly.FlashPoint.Delay	86400	
-Config.Log.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
-Config.Log.Kafka.Batch.Size	10000
-Config.Log.Kafka.Batch.Duration	60000	
-Config.Log.Kafka.Batch.Max	10000	
-Config.Log.Kafka.Server.Bootstrap	kafka:59094	
-Config.Log.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.chameleon.20220128	
-Config.Log.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.time_connect		
-Config.Log.Source.Transformation.Path	from-debezium	
-Config.Log.Source.Table.Mapping	mysql_playload_to_table_name.mapping	
-Config.Log.Source.Column.Mapping	mysql_schema_to_column_meta.mapping	
-Config.Log.Source.Key.Mapping	debezium_key_to_key_meta	
-Config.Log.Source.Switch.Mapping	debezium_operate_to_kettle_switch_flag.mapping	
-Config.Log.Target.Transformation.Path	to_pgsql	
-Config.Log.Target.Table.Mapping	config_prefix_lookup
-Config.Log.Target.Column.Mapping	target_column_case_sensitive	
-Config.Log.Target.Schema.Prefix	mysql_chameleon_generation__	
-Config.Log.Target.Table.Prefix		
+Config.CDC.RDB.Writer.Database	test_kpt
+Config.CDC.RDB.Writer.Server	pgsql
+Config.CDC.RDB.Writer.Port	55432
+Config.CDC.RDB.Writer.Username	kpt
+Config.CDC.RDB.Writer.Password	kpt.123
+Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
+Config.CDC.Debug.Delay.Injection.Field.Time	10000	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
+Config.CDC.Kafka.Batch.Size	10000
+Config.CDC.Kafka.Batch.Duration	60000	
+Config.CDC.Kafka.Batch.Max	10000	
+Config.CDC.Kafka.Server.Bootstrap	kafka:59094	
+Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.chameleon.20220128	
+Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes.time_connect		
+Config.CDC.Source.Transformation.Path	from_debezium	
+Config.CDC.Source.Row.Mapping	mysql_playload	
+Config.CDC.Source.Column.Mapping	mysql_schema	
+Config.CDC.Source.Key.Mapping	key_schema	
+Config.CDC.Target.Transformation.Path	to_pgsql	
+Config.CDC.Target.Operate.Mapping	update_only_flash_point	
+Config.CDC.Target.Table.Mapping	config_prefix_exist
+Config.CDC.Target.Column.Mapping	same_source	
+Config.CDC.Target.Key.Mapping	same_source
+Config.CDC.Target.Table.Prefix.Schema	mysql_chameleon_generation__	
+Config.CDC.Target.Table.Prefix.Table		
 
             -->
         </profile>

@@ -14,17 +14,17 @@ RUN $PENTAHO_HOME/tool/create_project.sh kpt-cdc-to-rdb <&- \
     && chmod -R 775 $PENTAHO_HOME/kpt-cdc-to-rdb
 
 # Copy core ktr
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-canal \
-    $PENTAHO_HOME/kpt-cdc-to-rdb/from-canal
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-debezium \
-    $PENTAHO_HOME/kpt-cdc-to-rdb/from-debezium
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from-kafka \
-    $PENTAHO_HOME/kpt-cdc-to-rdb/from-kafka
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_canal \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/from_canal
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_debezium \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/from_debezium
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/from_kafka \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/from_kafka
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_pgsql \
     $PENTAHO_HOME/kpt-cdc-to-rdb/to_pgsql
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/to_rdb \
     $PENTAHO_HOME/kpt-cdc-to-rdb/to_rdb
-COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/db_kpt_cdc_event_pgsql_writer.kdb \
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/db_kpt_cdc_rdb_writer.kdb \
     $PENTAHO_HOME/kpt-cdc-to-rdb/
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
     $PENTAHO_HOME/kpt-cdc-to-rdb/
@@ -38,4 +38,4 @@ WORKDIR $PENTAHO_HOME/kpt-cdc-to-rdb
 ENTRYPOINT bash ./kpt.flow.UseProfileConfigRun.sh <&-
 
 VOLUME /home/pentaho/kpt-cdc-to-rdb/log
-VOLUME /home/pentaho/kpt-cdc-to-rdb/to_rdb/message_convert_to_rdb_rud.injection
+VOLUME /home/pentaho/kpt-cdc-to-rdb/to_rdb/group_to_table.injection

@@ -37,10 +37,10 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: kafka_to_stream__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: cdc_to_batch__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.kafka_to_stream__channel (
+CREATE TABLE kpt_cdc_log.cdc_to_batch__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -56,13 +56,13 @@ CREATE TABLE kpt_cdc_log.kafka_to_stream__channel (
 );
 
 
-ALTER TABLE kpt_cdc_log.kafka_to_stream__channel OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.cdc_to_batch__channel OWNER TO postgres;
 
 --
--- Name: kafka_to_stream__metrics; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: cdc_to_batch__metrics; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.kafka_to_stream__metrics (
+CREATE TABLE kpt_cdc_log.cdc_to_batch__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -75,13 +75,13 @@ CREATE TABLE kpt_cdc_log.kafka_to_stream__metrics (
 );
 
 
-ALTER TABLE kpt_cdc_log.kafka_to_stream__metrics OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.cdc_to_batch__metrics OWNER TO postgres;
 
 --
--- Name: kafka_to_stream__seq; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: cdc_to_batch__seq; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.kafka_to_stream__seq (
+CREATE TABLE kpt_cdc_log.cdc_to_batch__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -100,13 +100,13 @@ CREATE TABLE kpt_cdc_log.kafka_to_stream__seq (
 );
 
 
-ALTER TABLE kpt_cdc_log.kafka_to_stream__seq OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.cdc_to_batch__seq OWNER TO postgres;
 
 --
--- Name: kafka_to_stream__step; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: cdc_to_batch__step; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.kafka_to_stream__step (
+CREATE TABLE kpt_cdc_log.cdc_to_batch__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -124,13 +124,13 @@ CREATE TABLE kpt_cdc_log.kafka_to_stream__step (
 );
 
 
-ALTER TABLE kpt_cdc_log.kafka_to_stream__step OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.cdc_to_batch__step OWNER TO postgres;
 
 --
--- Name: kafka_to_stream__trans; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: cdc_to_batch__trans; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.kafka_to_stream__trans (
+CREATE TABLE kpt_cdc_log.cdc_to_batch__trans (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -154,7 +154,7 @@ CREATE TABLE kpt_cdc_log.kafka_to_stream__trans (
 );
 
 
-ALTER TABLE kpt_cdc_log.kafka_to_stream__trans OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.cdc_to_batch__trans OWNER TO postgres;
 
 --
 -- Name: log_environment_to_logtable__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
@@ -277,10 +277,10 @@ CREATE TABLE kpt_cdc_log.log_environment_to_logtable__trans (
 ALTER TABLE kpt_cdc_log.log_environment_to_logtable__trans OWNER TO postgres;
 
 --
--- Name: stream_parse_to_each_table__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: batch_to_group__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__channel (
+CREATE TABLE kpt_cdc_log.batch_to_group__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -296,13 +296,13 @@ CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__channel (
 );
 
 
-ALTER TABLE kpt_cdc_log.stream_parse_to_each_table__channel OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.batch_to_group__channel OWNER TO postgres;
 
 --
--- Name: stream_parse_to_each_table__metrics; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: batch_to_group__metrics; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__metrics (
+CREATE TABLE kpt_cdc_log.batch_to_group__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -315,13 +315,13 @@ CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__metrics (
 );
 
 
-ALTER TABLE kpt_cdc_log.stream_parse_to_each_table__metrics OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.batch_to_group__metrics OWNER TO postgres;
 
 --
--- Name: stream_parse_to_each_table__seq; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: batch_to_group__seq; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__seq (
+CREATE TABLE kpt_cdc_log.batch_to_group__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -340,13 +340,13 @@ CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__seq (
 );
 
 
-ALTER TABLE kpt_cdc_log.stream_parse_to_each_table__seq OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.batch_to_group__seq OWNER TO postgres;
 
 --
--- Name: stream_parse_to_each_table__step; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: batch_to_group__step; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__step (
+CREATE TABLE kpt_cdc_log.batch_to_group__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -364,13 +364,13 @@ CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__step (
 );
 
 
-ALTER TABLE kpt_cdc_log.stream_parse_to_each_table__step OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.batch_to_group__step OWNER TO postgres;
 
 --
--- Name: stream_parse_to_each_table__trans; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: batch_to_group__trans; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__trans (
+CREATE TABLE kpt_cdc_log.batch_to_group__trans (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -394,13 +394,13 @@ CREATE TABLE kpt_cdc_log.stream_parse_to_each_table__trans (
 );
 
 
-ALTER TABLE kpt_cdc_log.stream_parse_to_each_table__trans OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.batch_to_group__trans OWNER TO postgres;
 
 --
--- Name: table_crud_to_specify_table__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: group_to_table__channel; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__channel (
+CREATE TABLE kpt_cdc_log.group_to_table__channel (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -416,13 +416,13 @@ CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__channel (
 );
 
 
-ALTER TABLE kpt_cdc_log.table_crud_to_specify_table__channel OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.group_to_table__channel OWNER TO postgres;
 
 --
--- Name: table_crud_to_specify_table__metrics; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: group_to_table__metrics; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__metrics (
+CREATE TABLE kpt_cdc_log.group_to_table__metrics (
     id_batch integer,
     channel_id character varying(255),
     log_date timestamp without time zone,
@@ -435,13 +435,13 @@ CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__metrics (
 );
 
 
-ALTER TABLE kpt_cdc_log.table_crud_to_specify_table__metrics OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.group_to_table__metrics OWNER TO postgres;
 
 --
--- Name: table_crud_to_specify_table__seq; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: group_to_table__seq; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__seq (
+CREATE TABLE kpt_cdc_log.group_to_table__seq (
     id_batch integer,
     seq_nr integer,
     logdate timestamp without time zone,
@@ -460,13 +460,13 @@ CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__seq (
 );
 
 
-ALTER TABLE kpt_cdc_log.table_crud_to_specify_table__seq OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.group_to_table__seq OWNER TO postgres;
 
 --
--- Name: table_crud_to_specify_table__step; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: group_to_table__step; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__step (
+CREATE TABLE kpt_cdc_log.group_to_table__step (
     id_batch integer,
     transname character varying(255),
     stepname character varying(255),
@@ -484,13 +484,13 @@ CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__step (
 );
 
 
-ALTER TABLE kpt_cdc_log.table_crud_to_specify_table__step OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.group_to_table__step OWNER TO postgres;
 
 --
--- Name: table_crud_to_specify_table__trans; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
+-- Name: group_to_table__trans; Type: TABLE; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__trans (
+CREATE TABLE kpt_cdc_log.group_to_table__trans (
     id_batch integer,
     channel_id character varying(255),
     transname character varying(255),
@@ -514,7 +514,7 @@ CREATE TABLE kpt_cdc_log.table_crud_to_specify_table__trans (
 );
 
 
-ALTER TABLE kpt_cdc_log.table_crud_to_specify_table__trans OWNER TO postgres;
+ALTER TABLE kpt_cdc_log.group_to_table__trans OWNER TO postgres;
 
 --
 -- Name: idx_kpt_cdc_log__log_environment_to_logtable__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
@@ -566,150 +566,150 @@ CREATE INDEX idx_kpt_cdc_log__log_environment_to_logtable__trans_2 ON kpt_cdc_lo
 
 
 --
--- Name: idx_kpt_cdc_log_kafka_to_stream__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__channel_0 ON kpt_cdc_log.kafka_to_stream__channel USING btree (channel_id);
-
-
---
--- Name: idx_kpt_cdc_log_kafka_to_stream__step_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__step_0 ON kpt_cdc_log.kafka_to_stream__step USING btree (channel_id);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__channel_0 ON kpt_cdc_log.cdc_to_batch__channel USING btree (channel_id);
 
 
 --
--- Name: idx_kpt_cdc_log_kafka_to_stream__step_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__step_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__step_1 ON kpt_cdc_log.kafka_to_stream__step USING btree (id_batch);
-
-
---
--- Name: idx_kpt_cdc_log_kafka_to_stream__step_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__step_2 ON kpt_cdc_log.kafka_to_stream__step USING btree (transname);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__step_0 ON kpt_cdc_log.cdc_to_batch__step USING btree (channel_id);
 
 
 --
--- Name: idx_kpt_cdc_log_kafka_to_stream__trans_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__step_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__trans_0 ON kpt_cdc_log.kafka_to_stream__trans USING btree (channel_id);
-
-
---
--- Name: idx_kpt_cdc_log_kafka_to_stream__trans_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__trans_1 ON kpt_cdc_log.kafka_to_stream__trans USING btree (id_batch);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__step_1 ON kpt_cdc_log.cdc_to_batch__step USING btree (id_batch);
 
 
 --
--- Name: idx_kpt_cdc_log_kafka_to_stream__trans_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__step_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_kafka_to_stream__trans_2 ON kpt_cdc_log.kafka_to_stream__trans USING btree (errors, status, transname);
-
-
---
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__channel_0 ON kpt_cdc_log.stream_parse_to_each_table__channel USING btree (channel_id);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__step_2 ON kpt_cdc_log.cdc_to_batch__step USING btree (transname);
 
 
 --
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__step_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__trans_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__step_0 ON kpt_cdc_log.stream_parse_to_each_table__step USING btree (channel_id);
-
-
---
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__step_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__step_1 ON kpt_cdc_log.stream_parse_to_each_table__step USING btree (id_batch);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__trans_0 ON kpt_cdc_log.cdc_to_batch__trans USING btree (channel_id);
 
 
 --
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__step_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__trans_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__step_2 ON kpt_cdc_log.stream_parse_to_each_table__step USING btree (transname);
-
-
---
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__trans_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__trans_0 ON kpt_cdc_log.stream_parse_to_each_table__trans USING btree (channel_id);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__trans_1 ON kpt_cdc_log.cdc_to_batch__trans USING btree (id_batch);
 
 
 --
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__trans_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_cdc_to_batch__trans_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__trans_1 ON kpt_cdc_log.stream_parse_to_each_table__trans USING btree (id_batch);
-
-
---
--- Name: idx_kpt_cdc_log_stream_parse_to_each_table__trans_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_stream_parse_to_each_table__trans_2 ON kpt_cdc_log.stream_parse_to_each_table__trans USING btree (errors, status, transname);
+CREATE INDEX idx_kpt_cdc_log_cdc_to_batch__trans_2 ON kpt_cdc_log.cdc_to_batch__trans USING btree (errors, status, transname);
 
 
 --
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_batch_to_group__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__channel_0 ON kpt_cdc_log.table_crud_to_specify_table__channel USING btree (channel_id);
-
-
---
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__step_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__step_0 ON kpt_cdc_log.table_crud_to_specify_table__step USING btree (channel_id);
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__channel_0 ON kpt_cdc_log.batch_to_group__channel USING btree (channel_id);
 
 
 --
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__step_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_batch_to_group__step_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__step_1 ON kpt_cdc_log.table_crud_to_specify_table__step USING btree (id_batch);
-
-
---
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__step_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__step_2 ON kpt_cdc_log.table_crud_to_specify_table__step USING btree (transname);
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__step_0 ON kpt_cdc_log.batch_to_group__step USING btree (channel_id);
 
 
 --
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__trans_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_batch_to_group__step_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__trans_0 ON kpt_cdc_log.table_crud_to_specify_table__trans USING btree (channel_id);
-
-
---
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__trans_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
---
-
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__trans_1 ON kpt_cdc_log.table_crud_to_specify_table__trans USING btree (id_batch);
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__step_1 ON kpt_cdc_log.batch_to_group__step USING btree (id_batch);
 
 
 --
--- Name: idx_kpt_cdc_log_table_crud_to_specify_table__trans_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+-- Name: idx_kpt_cdc_log_batch_to_group__step_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
 --
 
-CREATE INDEX idx_kpt_cdc_log_table_crud_to_specify_table__trans_2 ON kpt_cdc_log.table_crud_to_specify_table__trans USING btree (errors, status, transname);
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__step_2 ON kpt_cdc_log.batch_to_group__step USING btree (transname);
+
+
+--
+-- Name: idx_kpt_cdc_log_batch_to_group__trans_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__trans_0 ON kpt_cdc_log.batch_to_group__trans USING btree (channel_id);
+
+
+--
+-- Name: idx_kpt_cdc_log_batch_to_group__trans_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__trans_1 ON kpt_cdc_log.batch_to_group__trans USING btree (id_batch);
+
+
+--
+-- Name: idx_kpt_cdc_log_batch_to_group__trans_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_batch_to_group__trans_2 ON kpt_cdc_log.batch_to_group__trans USING btree (errors, status, transname);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__channel_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__channel_0 ON kpt_cdc_log.group_to_table__channel USING btree (channel_id);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__step_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__step_0 ON kpt_cdc_log.group_to_table__step USING btree (channel_id);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__step_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__step_1 ON kpt_cdc_log.group_to_table__step USING btree (id_batch);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__step_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__step_2 ON kpt_cdc_log.group_to_table__step USING btree (transname);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__trans_0; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__trans_0 ON kpt_cdc_log.group_to_table__trans USING btree (channel_id);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__trans_1; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__trans_1 ON kpt_cdc_log.group_to_table__trans USING btree (id_batch);
+
+
+--
+-- Name: idx_kpt_cdc_log_group_to_table__trans_2; Type: INDEX; Schema: kpt_cdc_log; Owner: postgres
+--
+
+CREATE INDEX idx_kpt_cdc_log_group_to_table__trans_2 ON kpt_cdc_log.group_to_table__trans USING btree (errors, status, transname);
 
 
 --
@@ -720,38 +720,38 @@ GRANT ALL ON SCHEMA kpt_cdc_log TO kpt;
 
 
 --
--- Name: TABLE kafka_to_stream__channel; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE cdc_to_batch__channel; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.kafka_to_stream__channel TO kpt;
-
-
---
--- Name: TABLE kafka_to_stream__metrics; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
---
-
-GRANT ALL ON TABLE kpt_cdc_log.kafka_to_stream__metrics TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.cdc_to_batch__channel TO kpt;
 
 
 --
--- Name: TABLE kafka_to_stream__seq; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE cdc_to_batch__metrics; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.kafka_to_stream__seq TO kpt;
-
-
---
--- Name: TABLE kafka_to_stream__step; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
---
-
-GRANT ALL ON TABLE kpt_cdc_log.kafka_to_stream__step TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.cdc_to_batch__metrics TO kpt;
 
 
 --
--- Name: TABLE kafka_to_stream__trans; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE cdc_to_batch__seq; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.kafka_to_stream__trans TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.cdc_to_batch__seq TO kpt;
+
+
+--
+-- Name: TABLE cdc_to_batch__step; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+--
+
+GRANT ALL ON TABLE kpt_cdc_log.cdc_to_batch__step TO kpt;
+
+
+--
+-- Name: TABLE cdc_to_batch__trans; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+--
+
+GRANT ALL ON TABLE kpt_cdc_log.cdc_to_batch__trans TO kpt;
 
 
 --
@@ -790,73 +790,73 @@ GRANT ALL ON TABLE kpt_cdc_log.log_environment_to_logtable__trans TO kpt;
 
 
 --
--- Name: TABLE stream_parse_to_each_table__channel; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE batch_to_group__channel; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.stream_parse_to_each_table__channel TO kpt;
-
-
---
--- Name: TABLE stream_parse_to_each_table__metrics; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
---
-
-GRANT ALL ON TABLE kpt_cdc_log.stream_parse_to_each_table__metrics TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.batch_to_group__channel TO kpt;
 
 
 --
--- Name: TABLE stream_parse_to_each_table__seq; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE batch_to_group__metrics; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.stream_parse_to_each_table__seq TO kpt;
-
-
---
--- Name: TABLE stream_parse_to_each_table__step; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
---
-
-GRANT ALL ON TABLE kpt_cdc_log.stream_parse_to_each_table__step TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.batch_to_group__metrics TO kpt;
 
 
 --
--- Name: TABLE stream_parse_to_each_table__trans; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE batch_to_group__seq; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.stream_parse_to_each_table__trans TO kpt;
-
-
---
--- Name: TABLE table_crud_to_specify_table__channel; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
---
-
-GRANT ALL ON TABLE kpt_cdc_log.table_crud_to_specify_table__channel TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.batch_to_group__seq TO kpt;
 
 
 --
--- Name: TABLE table_crud_to_specify_table__metrics; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE batch_to_group__step; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.table_crud_to_specify_table__metrics TO kpt;
-
-
---
--- Name: TABLE table_crud_to_specify_table__seq; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
---
-
-GRANT ALL ON TABLE kpt_cdc_log.table_crud_to_specify_table__seq TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.batch_to_group__step TO kpt;
 
 
 --
--- Name: TABLE table_crud_to_specify_table__step; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE batch_to_group__trans; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.table_crud_to_specify_table__step TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.batch_to_group__trans TO kpt;
 
 
 --
--- Name: TABLE table_crud_to_specify_table__trans; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+-- Name: TABLE group_to_table__channel; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
 --
 
-GRANT ALL ON TABLE kpt_cdc_log.table_crud_to_specify_table__trans TO kpt;
+GRANT ALL ON TABLE kpt_cdc_log.group_to_table__channel TO kpt;
+
+
+--
+-- Name: TABLE group_to_table__metrics; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+--
+
+GRANT ALL ON TABLE kpt_cdc_log.group_to_table__metrics TO kpt;
+
+
+--
+-- Name: TABLE group_to_table__seq; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+--
+
+GRANT ALL ON TABLE kpt_cdc_log.group_to_table__seq TO kpt;
+
+
+--
+-- Name: TABLE group_to_table__step; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+--
+
+GRANT ALL ON TABLE kpt_cdc_log.group_to_table__step TO kpt;
+
+
+--
+-- Name: TABLE group_to_table__trans; Type: ACL; Schema: kpt_cdc_log; Owner: postgres
+--
+
+GRANT ALL ON TABLE kpt_cdc_log.group_to_table__trans TO kpt;
 
 
 --
