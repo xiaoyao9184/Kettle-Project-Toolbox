@@ -488,13 +488,13 @@
   </connection>
   <order>
     <hop>
-      <from>RowsFromResult: process_id&amp;transname&amp;batch_id&amp;batch_time</from>
+      <from>RowsFromResult: process_id+transname+batch_id+batch_time</from>
       <to>Dummy: no marker</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>RowsFromResult: process_id&amp;transname&amp;batch_id&amp;batch_time</name>
+    <name>RowsFromResult: process_id+transname+batch_id+batch_time</name>
     <type>RowsFromResult</type>
     <description/>
     <distribute>Y</distribute>

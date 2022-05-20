@@ -489,11 +489,11 @@
   <order>
     <hop>
       <from>GetVariable: config_profile</from>
-      <to>WriteToLog: ${Config.Profile}</to>
+      <to>WriteToLog: logger_marker</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>RowsFromResult: process_id&amp;transname&amp;batch_id&amp;batch_time</from>
+      <from>RowsFromResult: process_id+transname+batch_id+batch_time</from>
       <to>GetVariable: config_profile</to>
       <enabled>Y</enabled>
     </hop>
@@ -538,7 +538,7 @@
     </GUI>
   </step>
   <step>
-    <name>RowsFromResult: process_id&amp;transname&amp;batch_id&amp;batch_time</name>
+    <name>RowsFromResult: process_id+transname+batch_id+batch_time</name>
     <type>RowsFromResult</type>
     <description/>
     <distribute>Y</distribute>
@@ -589,7 +589,7 @@
     </GUI>
   </step>
   <step>
-    <name>WriteToLog: ${Config.Profile}</name>
+    <name>WriteToLog: logger_marker</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
