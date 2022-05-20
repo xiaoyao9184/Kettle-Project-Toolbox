@@ -52,7 +52,6 @@ function Clear-Service {
         docker run -it --rm --name $_name `
             $_network `
             --mount "type=bind,source=$Workspace/clear.sql,destination=/pgconf/clear-data.sql" `
-            --mount "type=bind,source=$Workspace/../kpt_cdc_log/clear.sql,destination=/pgconf/clear-log.sql" `
             --env MODE=sqlrunner `
             --env PG_USER=$_pg_user `
             --env PG_PASSWORD=$_pg_password `

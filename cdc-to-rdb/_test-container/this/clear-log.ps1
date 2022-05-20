@@ -21,6 +21,43 @@ function Clear-Service {
 
         $_profile = $ComposeYaml.services["$Service"].environment["KPT_KETTLE_PARAM_ProfileName"]
         
+        $_bootstrap = $_profile -split "," | ForEach-Object {
+            Write-Host "process profile $_ for _bootstrap"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Server' and @key='Bootstrap']"
+            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
+            return $_node ? $_node.node.InnerXML : $null
+        } | Where-Object { $_ } | Select-Object -First 1
+
+        $_topic = $_profile -split "," | ForEach-Object {
+            Write-Host "process profile $_ for _topic"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Data' and @key='Topic']"
+            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
+            return $_node ? $_node.node.InnerXML : $null
+        } | Where-Object { $_ } | Select-Object -First 1
+    
+        $_group = $_profile -split "," | ForEach-Object {
+            Write-Host "process profile $_ for _group"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Consumer' and @key='Group']"
+            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
+            return $_node ? $_node.node.InnerXML : $null
+        } | Where-Object { $_ } | Select-Object -First 1
+
+        $_topic="$_topic-$_group-logger"
+    
+        Write-Host "${_group}@${_bootstrap}/${_topic}"
+
+        $_name = ($Name + "group") -join "__"
+        docker run -it --rm --name $_name `
+            $_network `
+            wurstmeister/kafka:2.13-2.7.0 bash -c `
+            "kafka-consumer-groups.sh --bootstrap-server $_bootstrap --group $_group --delete"
+    
+        $_name = ($Name + "topic") -join "__"
+        docker run -it --rm --name $_name `
+            $_network `
+            wurstmeister/kafka:2.13-2.7.0 bash -c `
+            "kafka-topics.sh --bootstrap-server $_bootstrap --topic $_topic --delete"
+        
         $_pg_host = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _pg_host"
             $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.RDB.Writer' and @key='Server']"
@@ -51,7 +88,6 @@ function Clear-Service {
 
         docker run -it --rm --name $_name `
             $_network `
-            --mount "type=bind,source=$Workspace/clear.sql,destination=/pgconf/clear-data.sql" `
             --mount "type=bind,source=$Workspace/../kpt_cdc_log/clear.sql,destination=/pgconf/clear-log.sql" `
             --env MODE=sqlrunner `
             --env PG_USER=$_pg_user `
@@ -108,9 +144,6 @@ if($CallStack.Count -eq 1){
         foreach ($sub_path in $sub_paths){
             $workspace = $sub_path
             if (-not(Test-Path -Path "$workspace/docker-compose.yml" -PathType Leaf)) {
-                continue
-            }
-            if (-not(Test-Path -Path "$workspace/clear.sql" -PathType Leaf)) {
                 continue
             }
             Write-Host "process workspace $workspace"

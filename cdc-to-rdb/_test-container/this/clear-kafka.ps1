@@ -20,21 +20,21 @@ function Clear-Service {
         
         $_bootstrap = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _bootstrap"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.Log.Kafka.Server' and @key='Bootstrap']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Server' and @key='Bootstrap']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
 
         $_topic = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _topic"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.Log.Kafka.Data' and @key='Topic']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Data' and @key='Topic']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
     
         $_group = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _group"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.Log.Kafka.Consumer' and @key='Group']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Consumer' and @key='Group']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
@@ -101,8 +101,11 @@ if($CallStack.Count -eq 1){
         Write-Host "Run all"
         $sub_paths = Get-ChildItem -Path $parent_path -Attributes d
         foreach ($sub_path in $sub_paths){
-            Write-Host "process workspace $_"
             $workspace = $sub_path
+            if (-not(Test-Path -Path "$workspace/docker-compose.yml" -PathType Leaf)) {
+                continue
+            }
+            Write-Host "process workspace $workspace"
             Clear-Workspace ($name + $script_name) $workspace
         }
     }

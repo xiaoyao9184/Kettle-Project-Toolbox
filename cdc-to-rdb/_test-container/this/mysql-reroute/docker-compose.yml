@@ -20,7 +20,7 @@ services:
   # mysql-chameleon:
   #   image: xiaoyao9184/kpt-cdc-to-rdb:dev
   #   environment:
-  #    KPT_KETTLE_LEVEL: Rowlevel
+  #    KPT_KETTLE_LEVEL: Detailed
   #    KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.chameleon
   #   volumes:
   #      - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml

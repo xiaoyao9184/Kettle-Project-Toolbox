@@ -16,14 +16,14 @@
 		"database.user": "kpt",
 		"database.password": "kpt.123",
 		"database.dbname": "test_kpt_cdc",
-		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
+		"database.server.name": "test_debezium_mssql-test_kpt_cdc-decimal_double",
 		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes.decimal_double",
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc-decimal_double.schema-changes",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes.decimal_double",
+		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc-decimal_double.data-changes",
 		"decimal.handling.mode": "double"
 	}
 }

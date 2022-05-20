@@ -16,14 +16,14 @@
 		"database.user": "kpt",
 		"database.password": "kpt.123",
 		"database.dbname": "test_kpt_cdc",
-		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
+		"database.server.name": "test_debezium_mssql-test_kpt_cdc-time_connect",
 		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes.time_connect",
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc-time_connect.schema-changes",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes.time_connect",
+		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc-time_connect.data-changes",
 		"time.precision.mode": "connect"
 	}
 }
