@@ -6,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype</directory>
+    <directory>/_test-prototype/group_to_table.template</directory>
     <parameters>
     </parameters>
     <log>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/09 13:21:26.234</modified_date>
+    <modified_date>2022/05/20 10:05:41.832</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -675,6 +675,11 @@ these should be BUG of Debezium https://issues.redhat.com/browse/DBZ-4607
       <from>Byte_to_Binary.step1</from>
       <to>Byte_to_Binary.two</to>
       <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case: target_operate</from>
+      <to>Dummy: ignore target_operate</to>
+      <enabled>N</enabled>
     </hop>
   </order>
   <step>
@@ -2263,6 +2268,31 @@ putRow(row);
     </GUI>
   </step>
   <step>
+    <name>Dummy: ignore target_operate</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>355</xloc>
+      <yloc>2374</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>GMT_to_Timestamp</name>
     <type>SelectValues</type>
     <description/>
@@ -3716,7 +3746,7 @@ putRow(row);
     <case_value_format/>
     <case_value_decimal/>
     <case_value_group/>
-    <default_target_step>Dummy: ignore not-dml-change</default_target_step>
+    <default_target_step>Dummy: ignore target_operate</default_target_step>
     <cases>
       <case>
         <value>INSERT</value>
