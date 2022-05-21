@@ -16,9 +16,9 @@
 		"database.user": "kpt",
 		"database.password": "kpt.123",
 		"database.dbname": "test_kpt_cdc",
-		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
+		"database.server.name": "test_debezium_mssql-test_kpt_cdc-default",
 		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc._history"
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc-default._history"
 	}
 }

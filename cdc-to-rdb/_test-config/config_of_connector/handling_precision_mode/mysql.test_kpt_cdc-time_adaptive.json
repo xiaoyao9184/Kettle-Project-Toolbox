@@ -17,16 +17,16 @@
 		"database.password": "kpt.123",
 		"database.include.list": "test_kpt_cdc",
 		"database.server.id": "23331",
-		"database.server.name": "test_debezium_mysql-test_kpt_cdc",
+		"database.server.name": "test_debezium_mysql-test_kpt_cdc-time_adaptive",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc.schema-changes.time_adaptive",
+		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc-time_adaptive.schema-changes",
 		"converters": "boolean",
 		"boolean.type": "io.debezium.connector.mysql.converters.TinyIntOneToBooleanConverter",
 		"boolean.selector": "test_kpt_cdc.debezium_types.*, .*",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc.data-changes.time_adaptive",
+		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc-time_adaptive.data-changes",
 		"time.precision.mode": "adaptive_time_microseconds"
 	}
 }

@@ -19,10 +19,10 @@
 		"database.server.name": "test_debezium_mssql-test_kpt_cdc",
 		"schema.include.list": "dbo",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc.schema-changes.reroute",
+		"database.history.kafka.topic": "test_debezium_mssql-test_kpt_cdc-reroute.schema-changes",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc.data-changes.reroute"
+		"transforms.Reroute.topic.replacement": "test_debezium_mssql-test_kpt_cdc-reroute.data-changes"
 	}
 }
