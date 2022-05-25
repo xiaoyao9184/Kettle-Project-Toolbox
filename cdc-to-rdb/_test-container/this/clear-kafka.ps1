@@ -43,6 +43,12 @@ function Clear-Service {
     
         Write-Host "${_group}@${_bootstrap}/${_topic}"
 
+        $_name = ($Name + "offset") -join "__"
+        docker run -it --rm --name $_name `
+            $_network `
+            wurstmeister/kafka:2.13-2.7.0 bash -c `
+            "kafka-consumer-groups.sh --bootstrap-server $_bootstrap --group $_group  --topic $_topic --reset-offsets --to-offset 0 --execute"
+    
         $_name = ($Name + "group") -join "__"
         docker run -it --rm --name $_name `
             $_network `
