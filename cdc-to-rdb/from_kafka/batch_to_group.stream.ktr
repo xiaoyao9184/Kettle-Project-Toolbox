@@ -464,7 +464,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/18 09:24:14.207</modified_date>
+    <modified_date>2022/05/25 15:36:04.180</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -525,6 +525,11 @@
     <hop>
       <from>Calculator: length of schema and table</from>
       <to>FilterRows: is table-log</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: result_id</from>
+      <to>StreamLookup: result</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -712,11 +717,6 @@
       <to>Dummy: exec stream</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>Calculator: result_id</from>
-      <to>StreamLookup: result</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <step>
     <name>Calculator: length of schema and table</name>
@@ -771,6 +771,47 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>480</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: result_id</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>result_id</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>result_group_id</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>560</xloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1298,14 +1339,14 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>kafka_partition</aggregate>
-        <subject>kafka_partition</subject>
+        <aggregate>kafka_topic</aggregate>
+        <subject>kafka_topic</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>kafka_offset</aggregate>
-        <subject>kafka_offset</subject>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
@@ -1404,12 +1445,6 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>kafka_offset</aggregate>
-        <subject>kafka_offset</subject>
-        <type>FIRST_INCL_NULL</type>
-        <valuefield/>
-      </field>
-      <field>
         <aggregate>offset_range</aggregate>
         <subject>kafka_offset</subject>
         <type>CONCAT_COMMA</type>
@@ -1474,14 +1509,14 @@
         <valuefield/>
       </field>
       <field>
-        <aggregate>kafka_partition</aggregate>
-        <subject>kafka_partition</subject>
+        <aggregate>kafka_topic</aggregate>
+        <subject>kafka_topic</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>kafka_offset</aggregate>
-        <subject>kafka_offset</subject>
+        <aggregate>kafka_partition</aggregate>
+        <subject>kafka_partition</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
@@ -1586,6 +1621,14 @@
         <element>batch_time</element>
       </field>
       <field>
+        <name>kafka_topic</name>
+        <element>kafka_topic</element>
+      </field>
+      <field>
+        <name>kafka_partition</name>
+        <element>kafka_partition</element>
+      </field>
+      <field>
         <name>offset_range</name>
         <element>offset_range</element>
       </field>
@@ -1644,6 +1687,14 @@
         <element>code</element>
       </field>
       <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
+      </field>
+      <field>
         <name>group_table_id</name>
         <element>group_table_id</element>
       </field>
@@ -1660,12 +1711,12 @@
         <element>source_table</element>
       </field>
       <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
+        <name>kafka_topic</name>
+        <element>kafka_topic</element>
       </field>
       <field>
-        <name>batch_time</name>
-        <element>batch_time</element>
+        <name>kafka_partition</name>
+        <element>kafka_partition</element>
       </field>
       <field>
         <name>offset_range</name>
@@ -1734,6 +1785,18 @@
       <field>
         <name>execution_id</name>
         <element>execution_id</element>
+      </field>
+      <field>
+        <name>result_batch_id</name>
+        <element>result_batch_id</element>
+      </field>
+      <field>
+        <name>result_batch_time</name>
+        <element>result_batch_time</element>
+      </field>
+      <field>
+        <name>result_injection_file_name</name>
+        <element>result_injection_file_name</element>
       </field>
       <field>
         <name>result_step_name</name>
@@ -1826,6 +1889,14 @@
         <element>code</element>
       </field>
       <field>
+        <name>batch_id</name>
+        <element>batch_id</element>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <element>batch_time</element>
+      </field>
+      <field>
         <name>group_table_id</name>
         <element>group_table_id</element>
       </field>
@@ -1842,12 +1913,12 @@
         <element>source_table</element>
       </field>
       <field>
-        <name>batch_id</name>
-        <element>batch_id</element>
+        <name>kafka_topic</name>
+        <element>kafka_topic</element>
       </field>
       <field>
-        <name>batch_time</name>
-        <element>batch_time</element>
+        <name>kafka_partition</name>
+        <element>kafka_partition</element>
       </field>
       <field>
         <name>offset_range</name>
@@ -1912,6 +1983,18 @@
       <field>
         <name>execution_id</name>
         <element>execution_id</element>
+      </field>
+      <field>
+        <name>result_batch_id</name>
+        <element>result_batch_id</element>
+      </field>
+      <field>
+        <name>result_batch_time</name>
+        <element>result_batch_time</element>
+      </field>
+      <field>
+        <name>result_injection_file_name</name>
+        <element>result_injection_file_name</element>
       </field>
       <field>
         <name>result_step_name</name>
@@ -2012,6 +2095,14 @@
         <element>batch_time</element>
       </field>
       <field>
+        <name>kafka_topic</name>
+        <element>kafka_topic</element>
+      </field>
+      <field>
+        <name>kafka_partition</name>
+        <element>kafka_partition</element>
+      </field>
+      <field>
         <name>offset_range</name>
         <element>offset_range</element>
       </field>
@@ -2070,6 +2161,10 @@
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>batch_id</name>
+        <rename>p_batch_id</rename>
+      </field>
       <field>
         <name>group_table_id</name>
         <rename>p_group_id</rename>
@@ -3175,11 +3270,16 @@
     <trans_object_id/>
     <trans_name>${ParamExecutorTransformation}</trans_name>
     <filename/>
-    <directory_path>/to_rdb</directory_path>
+    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
     <group_size/>
     <group_field>group_table_name</group_field>
     <group_time/>
     <parameters>
+      <variablemapping>
+        <variable>Param.Batch.ID</variable>
+        <field>p_batch_id</field>
+        <input/>
+      </variablemapping>
       <variablemapping>
         <variable>Param.Group.ID</variable>
         <field>p_group_id</field>
@@ -3361,47 +3461,6 @@
     <GUI>
       <xloc>976</xloc>
       <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: result_id</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>result_id</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>result_group_id</field_a>
-      <field_b/>
-      <field_c/>
-      <value_type>Integer</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
