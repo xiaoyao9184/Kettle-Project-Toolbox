@@ -2139,6 +2139,10 @@
     </partitioning>
     <fields>
       <field>
+        <name>batch_id</name>
+        <rename>p_batch_id</rename>
+      </field>
+      <field>
         <name>group_table_id</name>
         <rename>p_group_id</rename>
       </field>
@@ -3248,6 +3252,11 @@
     <group_field>group_table_name</group_field>
     <group_time/>
     <parameters>
+      <variablemapping>
+        <variable>Param.Batch.ID</variable>
+        <field>p_batch_id</field>
+        <input/>
+      </variablemapping>
       <variablemapping>
         <variable>Param.Group.ID</variable>
         <field>p_group_id</field>

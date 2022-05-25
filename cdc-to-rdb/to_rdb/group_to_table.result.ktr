@@ -54,6 +54,11 @@
         <description/>
       </parameter>
       <parameter>
+        <name>Param.Batch.ID</name>
+        <default_value>-</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>Param.Group.ID</name>
         <default_value>-</default_value>
         <description/>
@@ -3001,7 +3006,7 @@
     <directory_path>/${ParamTemplatePath}</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>${ParamInjectionPath}/${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
+    <target_file>${ParamInjectionPath}/${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
     <no_execution>N</no_execution>
     <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
@@ -3656,7 +3661,7 @@
       </field>
       <field>
         <name>injection_file_name</name>
-        <variable>${Param.Group.ID}-${Param.Group.Name}</variable>
+        <variable>${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}</variable>
         <type>String</type>
         <format/>
         <currency/>

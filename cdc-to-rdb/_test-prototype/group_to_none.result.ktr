@@ -9,6 +9,11 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
+        <name>Param.Batch.ID</name>
+        <default_value>-</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>Param.Group.ID</name>
         <default_value>-</default_value>
         <description/>
@@ -619,7 +624,7 @@
       </field>
       <field>
         <name>injection_file_name</name>
-        <variable>${Param.Group.ID}-${Param.Group.Name}</variable>
+        <variable>${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}</variable>
         <type>String</type>
         <format/>
         <currency/>
