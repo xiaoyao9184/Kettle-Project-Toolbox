@@ -1487,6 +1487,18 @@
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
+      <field>
+        <name>EMPTY</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif></nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>Y</set_empty_string>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -3259,7 +3271,7 @@
         <target_attribute_key>STREAM_FIELDNAME_2</target_attribute_key>
         <target_detail>Y</target_detail>
         <source_step>SelectValues: key</source_step>
-        <source_field>key_stream</source_field>
+        <source_field>key_stream_for_delete</source_field>
       </mapping>
       <mapping>
         <target_step_name>to_Number</target_step_name>
@@ -4566,6 +4578,10 @@
       <field>
         <name>COMPARATOR</name>
         <rename>key_comparator</rename>
+      </field>
+      <field>
+        <name>EMPTY</name>
+        <rename>key_stream_for_delete</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
