@@ -429,18 +429,13 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/09 22:52:56.919</modified_date>
+    <modified_date>2022/05/27 17:36:03.625</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <order>
-    <hop>
-      <from>JSON input: payload info</from>
-      <to>SelectValues: remove Envelope</to>
-      <enabled>Y</enabled>
-    </hop>
     <hop>
       <from>FilterRows: is io.debezium.connector.sqlserver.SchemaChangeValue</from>
       <to>JSON input: payload info</to>
@@ -529,6 +524,36 @@
     <hop>
       <from>Dummy: key_payload</from>
       <to>SelectValues: rename source_*</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Concat fields: op_with_snapshot</from>
+      <to>SetValueField: message_payload_op</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is incremental snapshot</from>
+      <to>Concat fields: op_with_snapshot</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueField: message_payload_op</from>
+      <to>SelectValues: remove message_payload_op_with_snapshot</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON input: payload info</from>
+      <to>FilterRows: is incremental snapshot</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FilterRows: is incremental snapshot</from>
+      <to>SelectValues: remove Envelope</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: remove message_payload_op_with_snapshot</from>
+      <to>SelectValues: remove Envelope</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -665,7 +690,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1280</yloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -744,7 +769,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1152</yloc>
+      <yloc>1536</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -949,7 +974,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>896</yloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1131,6 +1156,19 @@
         <trim_type>none</trim_type>
         <repeat>N</repeat>
       </field>
+      <field>
+        <name>message_payload_source_snapshot</name>
+        <path>$.payload.source.snapshot</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
     </fields>
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
@@ -1154,7 +1192,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>608</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1219,7 +1257,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1568</yloc>
+      <yloc>1952</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1250,7 +1288,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1024</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1281,7 +1319,44 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>1152</yloc>
+      <yloc>1536</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove Envelope</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>message_payload_ts_ms</name>
+      </remove>
+      <remove>
+        <name>message_payload_transaction</name>
+      </remove>
+      <remove>
+        <name>message_payload_source_snapshot</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>1120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1335,40 +1410,6 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: remove Envelope</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>message_payload_ts_ms</name>
-      </remove>
-      <remove>
-        <name>message_payload_transaction</name>
-      </remove>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
       <yloc>736</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1471,7 +1512,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1440</yloc>
+      <yloc>1824</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1519,7 +1560,7 @@
     </remotesteps>
     <GUI>
       <xloc>736</xloc>
-      <yloc>1280</yloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1555,6 +1596,198 @@
     <GUI>
       <xloc>736</xloc>
       <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Concat fields: op_with_snapshot</name>
+    <type>ConcatFields</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>-</separator>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name/>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>message_payload_op</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>message_payload_source_snapshot</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <ConcatFields>
+      <targetFieldName>message_payload_op_with_snapshot</targetFieldName>
+      <targetFieldLength>0</targetFieldLength>
+      <removeSelectedFields>N</removeSelectedFields>
+    </ConcatFields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>736</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>FilterRows: is incremental snapshot</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Concat fields: op_with_snapshot</send_true_to>
+    <send_false_to>SelectValues: remove Envelope</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>message_payload_source_snapshot</leftvalue>
+        <function>=</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>incremental</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueField: message_payload_op</name>
+    <type>SetValueField</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>message_payload_op</name>
+        <replaceby>message_payload_op_with_snapshot</replaceby>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>864</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove message_payload_op_with_snapshot</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>message_payload_op_with_snapshot</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
+      <yloc>992</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

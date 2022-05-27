@@ -14,7 +14,7 @@
         <cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
         <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
         <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
+        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,INSERT_BLUK</cfg>
         <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
         <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
         <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
@@ -59,7 +59,7 @@ Config.CDC.RDB.Writer.Username	kpt
 Config.CDC.RDB.Writer.Password	kpt.123	
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
 Config.CDC.Debug.Delay.Injection.Field.Time	10000	
-Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,INSERT_BLUK	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.CDC.Kafka.Batch.Size	10000
@@ -113,7 +113,7 @@ Config.CDC.RDB.Writer.Username	kpt
 Config.CDC.RDB.Writer.Password	kpt.123
 Config.CDC.Debug.Delay.Injection.Crud.Time	1000		
 Config.CDC.Debug.Delay.Injection.Field.Time	10000	
-Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,SNAPSHOT	
+Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,INSERT_BLUK	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400	
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
 Config.CDC.Kafka.Batch.Size	10000

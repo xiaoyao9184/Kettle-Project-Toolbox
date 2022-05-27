@@ -238,7 +238,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- flashpoint, before make the INSERT (SNAPSHOT) event change into UPDATE operation for compatibility -->
 			<!-- even if the data INSERT event is lost, it will not affect subsequent events -->
 			<!-- can define a future timestamp, or a delay seconds for root job run time with past timestamp -->
-			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,SNAPSHOT</cfg>
+			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,INSERT_BLUK</cfg>
 			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
 			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
 
