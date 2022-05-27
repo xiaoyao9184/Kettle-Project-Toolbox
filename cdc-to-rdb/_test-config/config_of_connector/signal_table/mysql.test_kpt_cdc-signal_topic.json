@@ -1,5 +1,5 @@
 {
-	"name": "test_debezium_mysql-test_kpt_cdc-signal",
+	"name": "test_debezium_mysql-test_kpt_cdc-signal_topic",
 	"config": {
 		"connector.class": "io.debezium.connector.mysql.MySqlConnector",
 		"tasks.max": "1",
@@ -16,17 +16,20 @@
 		"database.user": "kpt",
 		"database.password": "kpt.123",
 		"database.include.list": "test_kpt_cdc",
-		"database.server.id": "23339",
-		"database.server.name": "test_debezium_mysql-test_kpt_cdc",
+		"database.server.id": "23341",
+		"database.server.name": "test_debezium_mysql-test_kpt_cdc-signal_topic",
 		"database.history.kafka.bootstrap.servers": "kafka:9092",
-		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc-signal.schema-changes",
+		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc-signal_topic.schema-changes",
 		"converters": "boolean",
 		"boolean.type": "io.debezium.connector.mysql.converters.TinyIntOneToBooleanConverter",
 		"boolean.selector": "test_kpt_cdc.debezium_types.*, .*",
-		"signal.data.collection": "test_kpt_cdc.debezium_signal",
+		"read.only": true,
+		"signal.kafka.topic": "test_debezium_mysql-test_kpt_cdc-signal_topic.signal-topic",
+		"signal.kafka.bootstrap.servers": "kafka:9092",
+		"table.exclude.list": "test_kpt_cdc.debezium_signal",
 		"transforms": "Reroute",
 		"transforms.Reroute.type": "io.debezium.transforms.ByLogicalTableRouter",
 		"transforms.Reroute.topic.regex": ".*",
-		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc-signal.data-changes"
+		"transforms.Reroute.topic.replacement": "test_debezium_mysql-test_kpt_cdc-signal_topic.data-changes"
 	}
 }
