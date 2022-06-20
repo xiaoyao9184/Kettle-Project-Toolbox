@@ -8,6 +8,21 @@
     <trans_status>0</trans_status>
     <directory>/from_kafka/batch_group_logger.mapping</directory>
     <parameters>
+      <parameter>
+        <name>Config.CDC.Kafka.Consumer.Group</name>
+        <default_value/>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Kafka.Log.Topic</name>
+        <default_value/>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Kafka.Server.Bootstrap</name>
+        <default_value/>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -407,7 +422,7 @@
       <offset>0.0</offset>
       <maxdiff>0.0</maxdiff>
     </maxdate>
-    <size_rowset>10000</size_rowset>
+    <size_rowset>100000</size_rowset>
     <sleep_time_empty>50</sleep_time_empty>
     <sleep_time_full>50</sleep_time_full>
     <unique_connections>N</unique_connections>
@@ -429,7 +444,7 @@
     <created_user>-</created_user>
     <created_date>2021/11/18 17:04:10.666</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/13 10:49:38.539</modified_date>
+    <modified_date>2022/06/20 14:05:10.262</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -647,7 +662,7 @@
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
     <clusterName/>
-    <topic>${Config.CDC.Kafka.Data.Topic}-${Config.CDC.Kafka.Consumer.Group}-logger</topic>
+    <topic>${Config.CDC.Kafka.Log.Topic}</topic>
     <clientId>${Config.CDC.Kafka.Consumer.Group}</clientId>
     <keyField>log_key</keyField>
     <messageField>log_message</messageField>
