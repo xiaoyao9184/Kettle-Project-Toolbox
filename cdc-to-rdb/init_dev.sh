@@ -12,7 +12,7 @@ parent_folder_name="$(basename $current_script_dir)"
 
 export kpt_project_name=$parent_folder_name
 export target_project_path=$current_script_dir
-export copy_item_name_list="config.xml;db_kpt_cdc_rdb_writer.kdb;.kettle\kettle.properties"
+export copy_item_name_list="config.xml;db_kpt_cdc_rdb_writer.kdb;.kettle\kettle.properties;;.kettle\kettle.properties;.pdi\system\karaf\deploy\pentaho-big-data-kettle-plugins-kafka-9.2.0.0-290.jar"
 export link_item_name_list="from_canal;from_debezium;from_kafka;to_none;to_pgsql;to_rdb;_test-config;_test-container;_test-prototype"
 
 bash "$parent_folder_dir/tool/link_project.sh"

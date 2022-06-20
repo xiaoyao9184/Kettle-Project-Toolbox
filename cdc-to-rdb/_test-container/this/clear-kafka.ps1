@@ -27,7 +27,7 @@ function Clear-Service {
 
         $_topic = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _topic"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Data' and @key='Topic']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Log' and @key='Topic']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
@@ -38,8 +38,6 @@ function Clear-Service {
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
-
-        $_topic="$_topic-$_group-logger"
     
         Write-Host "${_group}@${_bootstrap}/${_topic}"
 

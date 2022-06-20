@@ -33,6 +33,7 @@
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">TODO_CHANGE_KAFKA</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes</cfg>
+            <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
@@ -64,6 +65,7 @@ Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.00
 Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
 Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes
+Config.CDC.Kafka.Log.Topic	test_debezium_mysql-test_kpt_cdc.kpt-cdc-log
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000
@@ -84,6 +86,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">TODO_CHANGE_KAFKA</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mssql-test_kpt_cdc.data-changes</cfg>
+            <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mssql_playload</cfg>
@@ -115,6 +118,7 @@ Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.00
 Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
 Config.CDC.Kafka.Data.Topic	test_debezium_mssql-test_kpt_cdc.data-changes
+Config.CDC.Kafka.Log.Topic	test_debezium_mysql-test_kpt_cdc.kpt-cdc-log
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000
@@ -135,6 +139,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">TODO_CHANGE_KAFKA</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_canal-test_kpt_cdc</cfg>
+            <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_canal-test_kpt_cdc.kpt-cdc-log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_canal</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">canal_table</cfg>
@@ -166,6 +171,7 @@ Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.00
 Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
 Config.CDC.Kafka.Data.Topic	test_canal-test_kpt_cdc
+Config.CDC.Kafka.Log.Topic	test_canal-test_kpt_cdc.kpt-cdc-log
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000

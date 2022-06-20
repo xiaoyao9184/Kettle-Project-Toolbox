@@ -195,6 +195,8 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
 			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
 			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
+			<cfg namespace="Config.CDC.Kafka.Log" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
+            
 
 		<!-- source of cdc -->
 			<!-- can be 'from_debezium' of 'from_canal' -->

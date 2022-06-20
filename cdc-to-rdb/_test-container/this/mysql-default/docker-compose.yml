@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  mysql-manual:
+    build:  
+      context: ./../../../../
+      dockerfile: ./cdc-to-rdb/Dockerfile
+    # image: xiaoyao9184/kpt-cdc-to-rdb:dev
+    environment:
+      KPT_LOG_PATH: /home/pentaho/kpt-cdc-to-rdb/log/mysql-manual.kpt.log
+      KPT_KETTLE_LEVEL: Detailed
+      KPT_KETTLE_LOGFILE: /home/pentaho/kpt-cdc-to-rdb/log/mysql-manual.kettle.log
+      KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.manual
+    volumes:
+       - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
+       - ./log:/home/pentaho/kpt-cdc-to-rdb/log
+       - ./injection:/home/pentaho/kpt-cdc-to-rdb/to_rdb/group_to_table.injection
+    networks:
+      - test-kpt
+  # TODO waiting rdb_table and rdb_cloumn mapping support
+  # mysql-chameleon:
+  #   image: xiaoyao9184/kpt-cdc-to-rdb:dev
+  #   environment:
+  #    KPT_KETTLE_LEVEL: Detailed
+  #    KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.chameleon
+  #   volumes:
+  #      - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
+  #   networks:
+  #     - test-kpt
+
+
+networks:
+  test-kpt:
+    external: true

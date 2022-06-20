@@ -1,26 +1,51 @@
 <transformation>
   <info>
-    <name>log_json_to_kafka</name>
+    <name>test_kafka_consumer</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/from_kafka/batch_group_logger.mapping</directory>
+    <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Kafka.Consumer.Group</name>
-        <default_value/>
+        <name>Config.CDC.Kafka.Batch.Duration</name>
+        <default_value>10000</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Kafka.Log.Topic</name>
-        <default_value/>
+        <name>Config.CDC.Kafka.Batch.Max</name>
+        <default_value>100</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Kafka.Batch.Size</name>
+        <default_value>100</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Kafka.Consumer.Group</name>
+        <default_value>test_kpt.test_kpt_cdc.manual.20220520</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Kafka.Data.Topic</name>
+        <default_value>test_debezium_mysql-test_kpt_cdc-default\.[^_].*</default_value>
         <description/>
       </parameter>
       <parameter>
         <name>Config.CDC.Kafka.Server.Bootstrap</name>
-        <default_value/>
+        <default_value>kafka:59094</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>ParamBatchPath</name>
+        <default_value>/_test-prototype</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>ParamBatchTransformation</name>
+        <default_value>batch_to_none.stream</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -442,9 +467,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/11/18 17:04:10.666</created_date>
+    <created_date>2022/05/31 09:23:31.738</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/20 14:05:10.262</modified_date>
+    <modified_date>2022/06/20 16:36:26.428</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -452,49 +477,14 @@
   </notepads>
   <order>
     <hop>
-      <from>Kafka producer: logger</from>
-      <to>MappingOutput: batch_group_logger.mapping</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: POINT</from>
-      <to>SelectValues: rename</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: batch_group_logger.mapping</from>
-      <to>Constant: POINT</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: log_key use group</from>
-      <to>Kafka producer: logger</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: rename</from>
-      <to>FilterRows: have group</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: have group</from>
-      <to>Calculator: log_key use group</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: have group</from>
-      <to>Calculator: log_key use code</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: log_key use code</from>
-      <to>Kafka producer: logger</to>
+      <from>Kafka consumer</from>
+      <to>Dummy</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: log_key use code</name>
-    <type>Calculator</type>
+    <name>Dummy</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -503,102 +493,6 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>log_key</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>log_batch</field_a>
-      <field_b>POINT</field_b>
-      <field_c>log_code</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>496</xloc>
-      <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator: log_key use group</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>log_key</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>log_batch</field_a>
-      <field_b>POINT</field_b>
-      <field_c>log_group</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>208</xloc>
-      <yloc>624</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: POINT</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>POINT</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>.</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -614,8 +508,8 @@
     </GUI>
   </step>
   <step>
-    <name>FilterRows: have group</name>
-    <type>FilterRows</type>
+    <name>Kafka consumer</name>
+    <type>KafkaConsumerInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -624,55 +518,32 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Calculator: log_key use code</send_true_to>
-    <send_false_to>Calculator: log_key use group</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>log_group</leftvalue>
-        <function>IS NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Kafka producer: logger</name>
-    <type>KafkaProducerOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
+    <clusterName/>
+    <topicType>PATTERN</topicType>
+    <patternTopic>${Config.CDC.Kafka.Data.Topic}</patternTopic>
+    <topic>${Config.CDC.Kafka.Data.Topic}</topic>
+    <consumerGroup>${Config.CDC.Kafka.Consumer.Group}</consumerGroup>
+    <transformationPath>${ParamBatchPath}/${ParamBatchTransformation}</transformationPath>
+    <SUB_STEP>Dummy: return to kafka</SUB_STEP>
+    <batchSize>${Config.CDC.Kafka.Batch.Size}</batchSize>
+    <batchDuration>${Config.CDC.Kafka.Batch.Duration}</batchDuration>
+    <PARALLELISM>1</PARALLELISM>
+    <prefetchMessageCount>${Config.CDC.Kafka.Batch.Max}</prefetchMessageCount>
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
-    <clusterName/>
-    <topic>${Config.CDC.Kafka.Log.Topic}</topic>
-    <clientId>${Config.CDC.Kafka.Consumer.Group}</clientId>
-    <keyField>log_key</keyField>
-    <messageField>log_message</messageField>
+    <AUTO_COMMIT>N</AUTO_COMMIT>
+    <OutputField kafkaName="key" type="Binary">kafka_key</OutputField>
+    <OutputField kafkaName="message" type="Binary">kafka_message</OutputField>
+    <OutputField kafkaName="topic" type="String">kafka_topic</OutputField>
+    <OutputField kafkaName="partition" type="Integer">kafka_partition</OutputField>
+    <OutputField kafkaName="offset" type="Integer">kafka_offset</OutputField>
+    <OutputField kafkaName="timestamp" type="Integer">kafka_timestamp</OutputField>
     <advancedConfig>
-      <option property="compression.type" value="none"/>
-      <option property="ssl.key.password" value=""/>
-      <option property="ssl.keystore.location" value=""/>
-      <option property="ssl.keystore.password" value=""/>
-      <option property="ssl.truststore.location" value=""/>
-      <option property="ssl.truststore.password" value=""/>
+      <option property="auto.offset.reset" value="earliest"/>
+      <option property="request.timeout.ms" value="605000"/>
+      <option property="session.timeout.ms" value="600000"/>
+      <option property="heartbeat.interval.ms" value="60000"/>
+      <option property="max.poll.interval.ms" value="1800000"/>
     </advancedConfig>
     <attributes/>
     <cluster_schema/>
@@ -684,180 +555,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: batch_group_logger.mapping</name>
-    <type>MappingInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>batch</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>group</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>code</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>json</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingOutput: batch_group_logger.mapping</name>
-    <type>MappingOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>912</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: rename</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>batch</name>
-        <rename>log_batch</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>#.#</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>group</name>
-        <rename>log_group</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>#.#</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>code</name>
-        <rename>log_code</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>json</name>
-        <rename>log_message</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask>#.#</conversion_mask>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
