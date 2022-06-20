@@ -1,4 +1,4 @@
-FROM xiaoyao9184/kpt-pdi-engine:9.1.0.0-324
+FROM xiaoyao9184/kpt-pdi-engine:9.2.0.0-290
 
 LABEL org.opencontainers.image.authors="xiaoyao9184@gmail.com"
 
@@ -30,6 +30,8 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
     $PENTAHO_HOME/kpt-cdc-to-rdb/
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/.kettle/kettle.properties \
     $PENTAHO_HOME/kpt-cdc-to-rdb/.kettle/kettle.properties
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/.pdi/system/karaf/deploy/pentaho-big-data-kettle-plugins-kafka-9.2.0.0-290.jar \
+    $PENTAHO_HOME/data-integration/system/karaf/deploy/pentaho-big-data-kettle-plugins-kafka-9.2.0.0-290.jar
 
 
 # Goto kpt project path
