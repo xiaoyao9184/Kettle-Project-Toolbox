@@ -25,7 +25,7 @@
       </parameter>
       <parameter>
         <name>Config.CDC.Kafka.Consumer.Group</name>
-        <default_value/>
+        <default_value>cdc_to_file</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -469,7 +469,7 @@
     <created_user>-</created_user>
     <created_date>2022/05/31 09:23:31.738</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/02 11:15:01.232</modified_date>
+    <modified_date>2022/06/27 09:36:40.271</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -488,11 +488,6 @@
     </hop>
     <hop>
       <from>Binary_to_Hex</from>
-      <to>JSON output</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Binary_to_Hex</from>
       <to>Text file output</to>
       <enabled>Y</enabled>
     </hop>
@@ -501,7 +496,7 @@
     <name>Binary_to_Hex</name>
     <type>ScriptValueMod</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -596,76 +591,6 @@ putRow(row);
     </GUI>
   </step>
   <step>
-    <name>JSON output</name>
-    <type>JsonOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <outputValue>outputValue</outputValue>
-    <jsonBloc>data</jsonBloc>
-    <nrRowsInBloc>0</nrRowsInBloc>
-    <operation_type>writetofile</operation_type>
-    <compatibility_mode>N</compatibility_mode>
-    <encoding>UTF-8</encoding>
-    <addtoresult>N</addtoresult>
-    <file>
-      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/${Internal.Transformation.Name}/${Config.CDC.Kafka.Data.Topic}</name>
-      <extention>json</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <create_parent_folder>Y</create_parent_folder>
-      <DoNotOpenNewFileInit>Y</DoNotOpenNewFileInit>
-      <servlet_output>N</servlet_output>
-    </file>
-    <fields>
-      <field>
-        <name>kafka_key</name>
-        <element>kafka_key</element>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <element>kafka_message</element>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <element>kafka_topic</element>
-      </field>
-      <field>
-        <name>kafka_partition</name>
-        <element>kafka_partition</element>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <element>kafka_offset</element>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <element>kafka_timestamp</element>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>448</xloc>
-      <yloc>480</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Kafka consumer</name>
     <type>KafkaConsumerInput</type>
     <description/>
@@ -677,6 +602,8 @@ putRow(row);
       <schema_name/>
     </partitioning>
     <clusterName/>
+    <topicType>STATIC</topicType>
+    <patternTopic/>
     <topic>${Config.CDC.Kafka.Data.Topic}</topic>
     <consumerGroup>${Config.CDC.Kafka.Consumer.Group}</consumerGroup>
     <transformationPath>${ParamBatchPath}/${ParamBatchTransformation}</transformationPath>
@@ -740,7 +667,7 @@ putRow(row);
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/${Internal.Transformation.Name}/${Config.CDC.Kafka.Data.Topic}</name>
+      <name>${KETTLE_HOME}/_test-prototype/cdc_to_file/${Config.CDC.Kafka.Data.Topic}</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>csv</extention>
@@ -839,7 +766,7 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
+      <xloc>352</xloc>
       <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
