@@ -143,6 +143,16 @@ services:
     depends_on:
       - kafka-rest
 
+  apicurio-registry:
+    image: apicurio/apicurio-registry-kafkasql:2.0.0.Final
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    ports:
+      - "8281:8080"
+    networks:
+      - test-kpt
+    depends_on:
+      - kafka
 
 
 networks:
