@@ -1,4 +1,13 @@
-FROM xiaoyao9184/kpt-pdi-engine:9.1.0.0-324
+FROM maven:3-openjdk-8 AS kpt-schema-package
+
+COPY --chmod=755 ./cdc-to-rdb/kpt-schema-package $PENTAHO_HOME/kpt-schema-package
+
+WORKDIR /kpt-schema-package
+
+RUN mvn clean package -Dmaven.test.skip=true
+
+
+FROM xiaoyao9184/kpt-pdi-engine:9.2.0.0-290
 
 LABEL org.opencontainers.image.authors="xiaoyao9184@gmail.com"
 
@@ -31,11 +40,31 @@ COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/config.xml \
 COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/.kettle/kettle.properties \
     $PENTAHO_HOME/kpt-cdc-to-rdb/.kettle/kettle.properties
 
+# Copy schema registry package
+COPY --from=kpt-schema-package /kpt-schema-package/registry-schema-package/target/kpt-registry-schema-package-${PDI_VERSION}-package \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/.pdi/lib/kpt-registry-schema-package-${PDI_VERSION}-package
+
+# COPY --from=schema-registry-package /schema-registry/package-kafka-serde-tools/target/kafka-serde-tools-package-${SCHEMA_REGISTRY_VERSION}-package \
+#     $PENTAHO_HOME/kpt-cdc-to-rdb/.pdi/lib/kafka-serde-tools-package-${SCHEMA_REGISTRY_VERSION}-package
+
+# # Copy build script
+# COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/build-schema-registry.sh \
+#     $PENTAHO_HOME/kpt-cdc-to-rdb/build-schema-registry.sh
+
+
+# ENV SCHEMA_REGISTRY_VERSION=7.0.0
+# USER root
+# RUN $PENTAHO_HOME/kpt-cdc-to-rdb/build-schema-registry.sh
+# USER pentaho
+
+# Copy endpoint script
+COPY --chmod=755 --chown=pentaho:pentaho ./cdc-to-rdb/docker-entrypoint.sh \
+    $PENTAHO_HOME/kpt-cdc-to-rdb/docker-entrypoint.sh
 
 # Goto kpt project path
 WORKDIR $PENTAHO_HOME/kpt-cdc-to-rdb
 
-ENTRYPOINT bash ./kpt.flow.UseProfileConfigRun.sh <&-
+ENTRYPOINT ./docker-entrypoint.sh
 
 VOLUME /home/pentaho/kpt-cdc-to-rdb/log
 VOLUME /home/pentaho/kpt-cdc-to-rdb/to_rdb/group_to_table.injection

@@ -11,8 +11,14 @@ RDB is any relational-data model compatible with kettle JDBC database.
 
 ## Build
 
+in root of this project
+
 ```sh
 DOCKER_BUILDKIT=1 docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
+```
+
+```bat
+SET DOCKER_BUILDKIT=1&& docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
 ```
 
 
@@ -86,7 +92,7 @@ docker run \
  xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
 ```bat
-:: windows batch for Docker Desktop
+:: windows batch for Docker Desktop Linux containers mode
 docker run ^
  --rm ^
  -it ^
