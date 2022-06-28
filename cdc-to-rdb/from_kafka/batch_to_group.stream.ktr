@@ -24,6 +24,11 @@
         <description/>
       </parameter>
       <parameter>
+        <name>Config.CDC.Kafka.Data.Format</name>
+        <default_value>connect_json</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>Config.CDC.Source.Row.Mapping</name>
         <default_value>mysql_playload</default_value>
         <description/>
@@ -469,7 +474,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/25 17:36:32.340</modified_date>
+    <modified_date>2022/06/28 16:24:18.548</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -608,11 +613,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get records from stream</from>
-      <to>SystemInfo: batch_id, batch_time</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Group by: batch_id</from>
       <to>Constant: DDL</to>
       <enabled>Y</enabled>
@@ -722,6 +722,16 @@
       <to>Dummy: exec stream</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>SimpleMapping: batch_formatter.mapping</from>
+      <to>SystemInfo: batch_id, batch_time</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Get records from stream</from>
+      <to>SimpleMapping: batch_formatter.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Calculator: length of schema and table</name>
@@ -775,7 +785,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>480</yloc>
+      <yloc>624</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -816,7 +826,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1664</yloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -867,7 +877,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>768</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -906,7 +916,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2144</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -945,7 +955,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2432</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -996,7 +1006,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>1056</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1021,7 +1031,7 @@
     </remotesteps>
     <GUI>
       <xloc>560</xloc>
-      <yloc>1504</yloc>
+      <yloc>1648</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1046,7 +1056,7 @@
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>1504</yloc>
+      <yloc>1648</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1071,7 +1081,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1504</yloc>
+      <yloc>1648</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1096,7 +1106,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2432</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1140,7 +1150,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2144</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1180,7 +1190,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>896</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1245,7 +1255,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>608</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1263,13 +1273,13 @@
     <fields>
       <field>
         <name>kafka_key</name>
-        <type>String</type>
+        <type>Binary</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>kafka_message</name>
-        <type>String</type>
+        <type>Binary</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -1378,7 +1388,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>608</yloc>
+      <yloc>752</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1472,7 +1482,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1664</yloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1578,7 +1588,7 @@
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>896</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1652,7 +1662,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>768</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1854,7 +1864,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2144</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2052,7 +2062,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>2432</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2150,7 +2160,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>1056</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2232,7 +2242,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1184</yloc>
+      <yloc>1328</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2263,7 +2273,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2304</yloc>
+      <yloc>2448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2298,7 +2308,7 @@
     </remotesteps>
     <GUI>
       <xloc>144</xloc>
-      <yloc>1664</yloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2332,7 +2342,7 @@
     </remotesteps>
     <GUI>
       <xloc>768</xloc>
-      <yloc>896</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2429,7 +2439,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1056</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2498,7 +2508,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>768</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2567,7 +2577,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2144</yloc>
+      <yloc>2288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2636,7 +2646,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>2432</yloc>
+      <yloc>2576</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2705,7 +2715,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>1056</yloc>
+      <yloc>1200</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2818,7 +2828,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2895,7 +2905,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>352</yloc>
+      <yloc>496</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3021,7 +3031,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1824</yloc>
+      <yloc>1968</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3147,7 +3157,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1984</yloc>
+      <yloc>2128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3178,7 +3188,7 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
-      <yloc>896</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3256,7 +3266,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>208</yloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3410,7 +3420,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1312</yloc>
+      <yloc>1456</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3465,6 +3475,107 @@
     </remotesteps>
     <GUI>
       <xloc>976</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: batch_formatter.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>${Config.CDC.Kafka.Data.Format}</trans_name>
+    <filename/>
+    <directory_path>/from_kafka/batch_formatter.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
+          </connector>
+          <connector>
+            <parent>kafka_topic</parent>
+            <child>kafka_topic</child>
+          </connector>
+          <connector>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
+          </connector>
+          <connector>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
+          </connector>
+          <connector>
+            <parent>kafka_timestamp</parent>
+            <child>kafka_timestamp</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
+          </connector>
+          <connector>
+            <parent>kafka_topic</parent>
+            <child>kafka_topic</child>
+          </connector>
+          <connector>
+            <parent>kafka_partition</parent>
+            <child>kafka_partition</child>
+          </connector>
+          <connector>
+            <parent>kafka_offset</parent>
+            <child>kafka_offset</child>
+          </connector>
+          <connector>
+            <parent>kafka_timestamp</parent>
+            <child>kafka_timestamp</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
       <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
