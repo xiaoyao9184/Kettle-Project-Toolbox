@@ -1355,7 +1355,7 @@ putRow(row);
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${KETTLE_HOME}/_test-prototype/cdc_to_file/${Config.CDC.Kafka.Data.Topic}.csv</name>
+      <name>${KETTLE_HOME}/_test-prototype/cdc_to_batch.test/${Config.CDC.Kafka.Data.Topic}.csv</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>

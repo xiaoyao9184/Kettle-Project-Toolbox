@@ -1,18 +1,13 @@
 <transformation>
   <info>
-    <name>connect_json.prototype</name>
+    <name>batch_to_file.stream</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype/batch_formatter.prototype</directory>
+    <directory>/_test-prototype</directory>
     <parameters>
-      <parameter>
-        <name>Config.CDC.Kafka.Data.Topic</name>
-        <default_value>test_debezium_mysql-test_kpt_cdc-reroute.data-changes</default_value>
-        <description/>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -420,8 +415,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>N</capture_step_performance>
-    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <capture_step_performance>Y</capture_step_performance>
+    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -432,9 +427,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/06/24 14:00:35.312</created_date>
+    <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/24 15:41:57.046</modified_date>
+    <modified_date>2022/06/29 11:04:06.709</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -442,54 +437,34 @@
   </notepads>
   <order>
     <hop>
-      <from>TextFileInput: topic file</from>
-      <to>ScriptValueMod: Hex_to_Binary</to>
+      <from>Get records from stream</from>
+      <to>Dummy: return to kafka</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: Hex_to_Binary</from>
-      <to>SelectValues: to string</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: batch_formatter.mapping</from>
-      <to>SelectValues: to string</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: to string</from>
-      <to>MappingOutput: batch_formatter.mapping</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Add constants</from>
-      <to>Calculator</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Calculator</from>
+      <from>Binary_to_Hex</from>
       <to>Text file output</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Memory group by</from>
-      <to>Add constants</to>
+      <from>Dummy: return to kafka</from>
+      <to>Binary_to_Hex</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: json_of_row</from>
-      <to>Memory group by</to>
+      <from>BlockUntilStepsFinish</from>
+      <to>Abort</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: to string</from>
-      <to>ScriptValueMod: json_of_row</to>
+      <from>Text file output</from>
+      <to>BlockUntilStepsFinish</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>MappingInput: batch_formatter.mapping</name>
-    <type>MappingInput</type>
+    <name>Abort</name>
+    <type>Abort</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -498,45 +473,10 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>kafka_key</name>
-        <type>Binary</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <type>Binary</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_partition</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
+    <row_threshold>0</row_threshold>
+    <message>batch run done</message>
+    <always_log_rows>Y</always_log_rows>
+    <abort_option>ABORT_WITH_ERROR</abort_option>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -547,37 +487,12 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>64</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: batch_formatter.mapping</name>
-    <type>MappingOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ScriptValueMod: Hex_to_Binary</name>
+    <name>Binary_to_Hex</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -595,31 +510,18 @@
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
-//debug
-var info = "";
-
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
 	var inMeta = getInputRowMeta().getValueMeta(index);
 	var outMate = getOutputRowMeta().getValueMeta(index);
-    //debug
-	info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
-	
-    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+
+	if(inMeta.getTypeDesc() == 'Binary' &amp;&amp; outMate.getTypeDesc() == 'String'){
 		var value = row[index];
-		outMate.setConversionMask(null);
-		if(value != null &amp;&amp; value.length() != 0) {
+		if(value != null) {
 			var hex = new Packages.org.apache.commons.codec.binary.Hex();
-            var bytes = hex.decode(value.getBytes());
-			//debug
-            var length = inMeta.getConversionMask();
-	        var content = "";
-            content = content + 'source:' + value + "\n";
-            content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
-            content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
-			//Alert(content);
-			value = bytes;
+			var str = new Packages.java.lang.String(hex.encode(value));
+			value = str;
 		} else {
 			value = null;
 		}
@@ -627,15 +529,14 @@ for (index = 0; index &lt; fieldNames.length; index++) {
 	}
 }
 putRow(row);
-//debug
-//Alert(info);</jsScript_script>
+</jsScript_script>
       </jsScript>
     </jsScripts>
     <fields>
       <field>
         <name>kafka_key</name>
         <rename>kafka_key</rename>
-        <type>Binary</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>Y</replace>
@@ -643,7 +544,7 @@ putRow(row);
       <field>
         <name>kafka_message</name>
         <rename>kafka_message</rename>
-        <type>Binary</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <replace>Y</replace>
@@ -658,14 +559,14 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>192</yloc>
+      <xloc>352</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SelectValues: to string</name>
-    <type>SelectValues</type>
+    <name>BlockUntilStepsFinish</name>
+    <type>BlockUntilStepsFinish</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -674,43 +575,37 @@ putRow(row);
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>kafka_key</name>
-        <rename>kafka_key</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>kafka_message</name>
-        <rename>kafka_message</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
+    <steps>
+      <step>
+        <name>Text file output</name>
+        <CopyNr>0</CopyNr>
+      </step>
+    </steps>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: return to kafka</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -726,8 +621,8 @@ putRow(row);
     </GUI>
   </step>
   <step>
-    <name>TextFileInput: topic file</name>
-    <type>TextFileInput</type>
+    <name>Get records from stream</name>
+    <type>RecordsFromStream</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -736,161 +631,44 @@ putRow(row);
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <accept_filenames>N</accept_filenames>
-    <passing_through_fields>N</passing_through_fields>
-    <accept_field/>
-    <accept_stepname/>
-    <separator>;</separator>
-    <enclosure>"</enclosure>
-    <enclosure_breaks>N</enclosure_breaks>
-    <escapechar/>
-    <header>Y</header>
-    <nr_headerlines>1</nr_headerlines>
-    <footer>N</footer>
-    <nr_footerlines>1</nr_footerlines>
-    <line_wrapped>N</line_wrapped>
-    <nr_wraps>1</nr_wraps>
-    <layout_paged>N</layout_paged>
-    <nr_lines_per_page>80</nr_lines_per_page>
-    <nr_lines_doc_header>0</nr_lines_doc_header>
-    <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <rownumByFile>N</rownumByFile>
-    <rownum_field/>
-    <format>DOS</format>
-    <encoding/>
-    <length>Characters</length>
-    <add_to_result_filenames>Y</add_to_result_filenames>
-    <file>
-      <name>${KETTLE_HOME}/_test-prototype/cdc_to_batch.test/${Config.CDC.Kafka.Data.Topic}.csv</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <type>CSV</type>
-      <compression>None</compression>
-    </file>
-    <filters>
-    </filters>
     <fields>
       <field>
         <name>kafka_key</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
+        <type>Binary</type>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
       <field>
         <name>kafka_message</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
+        <type>Binary</type>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
       <field>
         <name>kafka_topic</name>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
       <field>
         <name>kafka_partition</name>
         <type>Integer</type>
-        <format>#</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
       <field>
         <name>kafka_offset</name>
         <type>Integer</type>
-        <format>#</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
       <field>
         <name>kafka_timestamp</name>
         <type>Integer</type>
-        <format>#</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>-</nullif>
-        <ifnull/>
-        <position>-1</position>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
     </fields>
-    <limit>0</limit>
-    <error_ignored>N</error_ignored>
-    <skip_bad_files>N</skip_bad_files>
-    <file_error_field/>
-    <file_error_message_field/>
-    <error_line_skipped>N</error_line_skipped>
-    <error_count_field/>
-    <error_fields_field/>
-    <error_text_field/>
-    <bad_line_files_destination_directory/>
-    <bad_line_files_extension>warning</bad_line_files_extension>
-    <error_line_files_destination_directory/>
-    <error_line_files_extension>error</error_line_files_extension>
-    <line_number_files_destination_directory/>
-    <line_number_files_extension>line</line_number_files_extension>
-    <date_format_lenient>Y</date_format_lenient>
-    <date_format_locale>zh_CN</date_format_locale>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -900,193 +678,8 @@ putRow(row);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
+      <xloc>352</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Add constants</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>json_array_start</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>[</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>json_array_end</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>]</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>json_text</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>json_array_start</field_a>
-      <field_b>json_of_row</field_b>
-      <field_c>json_array_end</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      </group>
-    <fields>
-      <field>
-        <aggregate>json_of_row</aggregate>
-        <subject>json_of_row</subject>
-        <type>CONCAT_COMMA</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ScriptValueMod: json_of_row</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>
-var kafka_key_obj = JSON.parse(kafka_key);
-var kafka_message_obj = JSON.parse(kafka_message);
-var json_obj = {
-    kafka_topic: kafka_topic,
-	kafka_partition: kafka_partition,
-	kafka_offset: kafka_offset,
-	kafka_timestamp: kafka_timestamp,
-	kafka_key: kafka_key_obj,
-	kafka_message: kafka_message_obj
-}
-
-var json_of_row = JSON.stringify(json_obj);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>json_of_row</name>
-        <rename>json_of_row</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1101,24 +694,24 @@ var json_of_row = JSON.stringify(json_obj);
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator/>
-    <enclosure/>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
+    <header>Y</header>
     <footer>N</footer>
     <format>DOS</format>
     <compression>None</compression>
-    <encoding/>
+    <encoding>GBK</encoding>
     <endedLine/>
     <fileNameInField>N</fileNameInField>
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${KETTLE_HOME}/_test-prototype/batch_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
+      <name>${KETTLE_HOME}/${ParamCsvPath}/${Config.CDC.Kafka.Data.Topic}</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>json</extention>
+      <extention>csv</extention>
       <append>N</append>
       <split>N</split>
       <haspartno>N</haspartno>
@@ -1133,8 +726,8 @@ var json_of_row = JSON.stringify(json_obj);
     </file>
     <fields>
       <field>
-        <name>json_text</name>
-        <type>Number</type>
+        <name>kafka_key</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1143,6 +736,66 @@ var json_of_row = JSON.stringify(json_obj);
         <trim_type>none</trim_type>
         <length>-1</length>
         <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_message</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_topic</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_partition</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>kafka_offset</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>kafka_timestamp</name>
+        <type>Integer</type>
+        <format>####0;-####0</format>
+        <currency/>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
       </field>
     </fields>
     <attributes/>
@@ -1154,8 +807,8 @@ var json_of_row = JSON.stringify(json_obj);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>896</yloc>
+      <xloc>352</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
