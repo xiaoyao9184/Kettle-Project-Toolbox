@@ -24,6 +24,11 @@
         <description/>
       </parameter>
       <parameter>
+        <name>ParamJsonFile</name>
+        <default_value>from_canal/canal_table.json</default_value>
+        <description/>
+      </parameter>
+      <parameter>
         <name>variable_regex</name>
         <default_value>Config.*|Param.*</default_value>
         <description/>
@@ -449,7 +454,7 @@
     <created_user>-</created_user>
     <created_date>2022/05/13 16:59:36.560</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/17 12:37:37.786</modified_date>
+    <modified_date>2022/06/29 09:40:49.572</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -490,7 +495,7 @@
     <defaultPathLeafToNull>Y</defaultPathLeafToNull>
     <rownum_field/>
     <file>
-      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/batch_to_group.test/${Config.CDC.Source.Transformation.Path}/${Config.CDC.Source.Row.Mapping}.json</name>
+      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/batch_to_group.test/${ParamJsonFile}</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>

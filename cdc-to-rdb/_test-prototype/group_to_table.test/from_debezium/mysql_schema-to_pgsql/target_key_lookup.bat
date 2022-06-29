@@ -42,6 +42,7 @@ SET KPT_KETTLE_PARAM_ParamInjectionPath=_test-prototype/group_to_table.injection
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
 SET KPT_KETTLE_PARAM_ParamTemplatePath=to_rdb
 SET KPT_KETTLE_PARAM_ParamTemplateTransformation=group_to_table.template
+SET KPT_KETTLE_PARAM_ParamJsonFile=from_debezium/mysql_schema.json
 
 @REM for protptype
 SET KPT_KETTLE_PARAM_Config_CDC_Target_Table_Prefix_Table_Schema=mysql_manual_generation__
@@ -54,7 +55,7 @@ SET KPT_KETTLE_PARAM_Config_CDC_RDB_Writer_username=kpt
 SET KPT_KETTLE_PARAM_Config_CDC_Target_PgSql_Case_Sensitive=true
 
 
-SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%%KPT_KETTLE_PARAM_Param_Batch_ID%.%KPT_KETTLE_PARAM_Param_Group_ID%-%KPT_KETTLE_PARAM_Param_Group_Name%.bat
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.group_to_table.from_debezium.mysql_schema-to_pgsql.target_key_lookup.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 
 ECHO exit code will be 0
