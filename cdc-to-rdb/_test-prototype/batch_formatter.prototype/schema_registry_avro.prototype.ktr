@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2022/05/26 09:39:23.171</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/29 16:52:37.851</modified_date>
+    <modified_date>2022/06/30 12:30:27.528</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -2193,7 +2193,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
         <class_source>import java.util.HashMap;
 import java.util.Map;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.schemaregistry.avro.AvroSchemaUtils;
+import org.apache.avro.generic.GenericData;
 
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
@@ -2208,11 +2208,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   r = createOutputRow(r, data.outputRowMeta.size());
 
   byte[] keyDataAvro = get(Fields.In, "kafka_key").getBinary(r);
-  String keyDataConnect = toConnectData(keyDataAvro,true);
+  String keyDataConnect = this.toConnectJson(keyDataAvro,true);
   get(Fields.Out, "key_payload_json").setValue(r, keyDataConnect);
 
   byte[] messageDataAvro = get(Fields.In, "kafka_message").getBinary(r);
-  String messageDataConnect = toConnectData(messageDataAvro,false);
+  String messageDataConnect = this.toConnectJson(messageDataAvro,false);
   get(Fields.Out, "message_payload_json").setValue(r, messageDataConnect);
 
 
@@ -2223,34 +2223,31 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
 
 private String schemaRegistryUrl = getVariable("Config.CDC.Kafka.Schema.Registry", "http://me:58081");
-private Map&lt;String, Object> config = null;
-private KafkaAvroDeserializer deserializerKey = null;
-private KafkaAvroDeserializer deserializerMsg = null;
+private Map&lt;String, Object> config;
+private KafkaAvroDeserializer deserializerKey;
+private KafkaAvroDeserializer deserializerMsg;
 
 public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-  config = new HashMap&lt;String, Object>();
-  config.put("schema.registry.url",schemaRegistryUrl);
+  this.config = new HashMap&lt;String, Object>();
+  this.config.put("schema.registry.url",schemaRegistryUrl);
 
-  deserializerKey = new KafkaAvroDeserializer();
-  deserializerKey.configure(config,true);
+  this.deserializerKey = new KafkaAvroDeserializer();
+  this.deserializerKey.configure(config,true);
 
-  deserializerMsg = new KafkaAvroDeserializer();
-  deserializerMsg.configure(config,false);
+  this.deserializerMsg = new KafkaAvroDeserializer();
+  this.deserializerMsg.configure(config,false);
 
   return parent.initImpl(stepMetaInterface, stepDataInterface);
 }
 
-
-public String toConnectData(byte[] payload, boolean isKey){
+public String toConnectJson(byte[] payload, boolean isKey){
   if (payload == null) {
     return null;
   }
   try {
-    KafkaAvroDeserializer deserializer = isKey ? deserializerKey : deserializerMsg;
+    KafkaAvroDeserializer deserializer = isKey ? this.deserializerKey : this.deserializerMsg;
     Object obj = deserializer.deserialize("",payload);
-    byte[] bytes = AvroSchemaUtils.toJson(obj);
-    String json = new String(bytes);
-    return json;
+    return GenericData.get().toString(obj);
   } catch (Exception e) {
     throw new RuntimeException(e);
   }
@@ -2309,11 +2306,12 @@ public String toConnectData(byte[] payload, boolean isKey){
         <class_source>import java.util.HashMap;
 import java.util.Map;
 import io.confluent.kafka.schemaregistry.avro.AvroSchema;
+import io.confluent.kafka.schemaregistry.json.jackson.Jackson;
 import io.confluent.connect.avro.AvroData;
+import io.confluent.connect.avro.AvroDataConfig;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.json.JsonConverter;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.confluent.kafka.schemaregistry.json.jackson.Jackson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -2329,11 +2327,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   r = createOutputRow(r, data.outputRowMeta.size());
 
   String keySchemaJson = get(Fields.In, "key_schema_json").getString(r);
-  String keySchemaConnect = toConnectSchema(keySchemaJson,true);
+  String keySchemaConnect = this.toConnectJson(keySchemaJson,true);
   get(Fields.In, "key_schema_json").setValue(r, keySchemaConnect);
 
   String messageSchemaJson = get(Fields.In, "message_schema_json").getString(r);
-  String messageSchemaConnect = toConnectSchema(messageSchemaJson,false);
+  String messageSchemaConnect = this.toConnectJson(messageSchemaJson,false);
   get(Fields.In, "message_schema_json").setValue(r, messageSchemaConnect);
 
 
@@ -2343,42 +2341,46 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 }
 
 
-private Map&lt;String, Object> config = null;
-private JsonConverter jsonConverterKey = null;
-private JsonConverter jsonConverterMsg = null;
-private ObjectMapper objectMapper = null;
+private AvroData avroData;
+private Map&lt;String, Object> config;
+private JsonConverter jsonConverterKey;
+private JsonConverter jsonConverterMsg;
+private ObjectMapper objectMapper;
 
 public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-  config = new HashMap&lt;String, Object>();
-  config.put("schemas.enable", Boolean.TRUE.toString());
-  config.put("schemas.cache.size", String.valueOf(10000));
+  AvroDataConfig dc = new AvroDataConfig.Builder()
+    .with("schemas.cache.config", 10000)
+    .build();
+  this.avroData = new AvroData(dc);
+  
+  this.config = new HashMap&lt;String, Object>();
+  this.config.put("schemas.enable", Boolean.TRUE.toString());
+  this.config.put("schemas.cache.size", String.valueOf(10000));
 
-  jsonConverterKey = new JsonConverter();
-  jsonConverterKey.configure(config,true);
+  this.jsonConverterKey = new JsonConverter();
+  this.jsonConverterKey.configure(config,true);
 
-  jsonConverterMsg = new JsonConverter();
-  jsonConverterMsg.configure(config,false);
+  this.jsonConverterMsg = new JsonConverter();
+  this.jsonConverterMsg.configure(config,false);
 
-  objectMapper = Jackson.newObjectMapper();
+  this.objectMapper = Jackson.newObjectMapper();
 
   return parent.initImpl(stepMetaInterface, stepDataInterface);
 }
 
-public String toConnectSchema(String schema, boolean isKey){
+public String toConnectJson(String schema, boolean isKey){
   if (schema == null) {
     return null;
   }
   AvroSchema avroSchema = new AvroSchema(schema);
-  AvroData avroData = new AvroData(10);
-  Schema actual = avroData.toConnectSchema(avroSchema.rawSchema());
+  Schema actual = this.avroData.toConnectSchema(avroSchema.rawSchema());
 
-
-  JsonConverter jsonConverter = isKey ? jsonConverterKey : jsonConverterMsg;
+  JsonConverter jsonConverter = isKey ? this.jsonConverterKey : this.jsonConverterMsg;
   ObjectNode jsonNodes = jsonConverter.asJsonSchema(actual);
 
   String canonicalString = null;
   try {
-    canonicalString = objectMapper.writeValueAsString(jsonNodes);
+    canonicalString = this.objectMapper.writeValueAsString(jsonNodes);
   } catch (JsonProcessingException e) {
     throw new RuntimeException(e);
   }

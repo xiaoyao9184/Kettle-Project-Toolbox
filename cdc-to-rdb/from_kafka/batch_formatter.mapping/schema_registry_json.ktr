@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2022/06/24 14:00:35.312</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/29 16:52:32.618</modified_date>
+    <modified_date>2022/06/30 11:23:29.712</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1645,11 +1645,12 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
         <class_source>import java.util.HashMap;
 import java.util.Map;
 import io.confluent.kafka.schemaregistry.json.JsonSchema;
+import io.confluent.kafka.schemaregistry.json.jackson.Jackson;
 import io.confluent.connect.json.JsonSchemaData;
+import io.confluent.connect.json.JsonSchemaDataConfig;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.json.JsonConverter;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.confluent.kafka.schemaregistry.json.jackson.Jackson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -1666,11 +1667,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   r = createOutputRow(r, data.outputRowMeta.size());
 
   String keySchemaJson = get(Fields.In, "key_schema_json").getString(r);
-  String keySchemaConnect = toConnectSchema(keySchemaJson,true);
+  String keySchemaConnect = this.toConnectJson(keySchemaJson,true);
   get(Fields.In, "key_schema_json").setValue(r, keySchemaConnect);
 
   String messageSchemaJson = get(Fields.In, "message_schema_json").getString(r);
-  String messageSchemaConnect = toConnectSchema(messageSchemaJson,false);
+  String messageSchemaConnect = this.toConnectJson(messageSchemaJson,false);
   get(Fields.In, "message_schema_json").setValue(r, messageSchemaConnect);
 
 
@@ -1680,45 +1681,49 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 }
 
 
-private Map&lt;String, Object> config = null;
-private JsonConverter jsonConverterKey = null;
-private JsonConverter jsonConverterMsg = null;
-private ObjectMapper objectMapper = null;
+private JsonSchemaData jsonSchemaData;
+private Map&lt;String, Object> config;
+private JsonConverter jsonConverterKey;
+private JsonConverter jsonConverterMsg;
+private ObjectMapper objectMapper;
 
 public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-  config = new HashMap&lt;String, Object>();
-  config.put("schemas.enable", Boolean.TRUE.toString());
-  config.put("schemas.cache.size", String.valueOf(10000));
+  JsonSchemaDataConfig dc = new JsonSchemaDataConfig.Builder()
+    .with("schemas.cache.size", 10000)
+    .build();
+  this.jsonSchemaData = new JsonSchemaData(dc);
 
-  jsonConverterKey = new JsonConverter();
-  jsonConverterKey.configure(config,true);
+  this.config = new HashMap&lt;String, Object>();
+  this.config.put("schemas.enable", Boolean.TRUE.toString());
+  this.config.put("schemas.cache.size", String.valueOf(10000));
 
-  jsonConverterMsg = new JsonConverter();
-  jsonConverterMsg.configure(config,false);
+  this.jsonConverterKey = new JsonConverter();
+  this.jsonConverterKey.configure(config,true);
 
-  objectMapper = Jackson.newObjectMapper();
+  this.jsonConverterMsg = new JsonConverter();
+  this.jsonConverterMsg.configure(config,false);
+
+  this.objectMapper = Jackson.newObjectMapper();
 
   return parent.initImpl(stepMetaInterface, stepDataInterface);
 }
 
 
-public String toConnectSchema(String schema, boolean isKey){
-  if (schema == null) {
+public String toConnectJson(String schema, boolean isKey) {
+  if(schema == null){
     return null;
   }
   JsonSchema jsonSchema = new JsonSchema(schema);
-  JsonSchemaData jsonSchemaData = new JsonSchemaData();
-  Schema actual = jsonSchemaData.toConnectSchema(jsonSchema);
- 
-  JsonConverter jsonConverter = isKey ? jsonConverterKey : jsonConverterMsg;
+  Schema actual = this.jsonSchemaData.toConnectSchema(jsonSchema);
+
+  JsonConverter jsonConverter = isKey ? this.jsonConverterKey : this.jsonConverterMsg;
   ObjectNode jsonNodes = jsonConverter.asJsonSchema(actual);
 
-  
   String canonicalString = null;
   try {
-    canonicalString = objectMapper.writeValueAsString(jsonNodes);
+            canonicalString = this.objectMapper.writeValueAsString(jsonNodes);
   } catch (JsonProcessingException e) {
-    throw new RuntimeException(e);
+            throw new RuntimeException(e);
   }
   return canonicalString;
 }
