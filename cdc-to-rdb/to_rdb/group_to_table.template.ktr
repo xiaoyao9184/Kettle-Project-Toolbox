@@ -653,20 +653,20 @@
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
-	var inMeta = getInputRowMeta().getValueMeta(index);
-	var outMate = getOutputRowMeta().getValueMeta(index);
-    if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
-		var value = row[index];
-		outMate.setConversionMask(null);
-		if(value != null &amp;&amp; value.length() != 0) {
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
+  var inMeta = getInputRowMeta().getValueMeta(index);
+  var outMate = getOutputRowMeta().getValueMeta(index);
+  if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+    var value = row[index];
+    outMate.setConversionMask(null);
+    if(value != null &amp;&amp; value.length() != 0) {
+      var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value);
 
-			value = bytes;
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
+      value = bytes;
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
 }
 putRow(row);
 </jsScript_script>
@@ -1048,21 +1048,21 @@ var info = "";
 var row = createRowCopy(getOutputRowMeta().size());
 var field_names = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
+  var iInfo = getInputRowMeta().getValueMeta(index);
+  var oInfo = getOutputRowMeta().getValueMeta(index);
+  info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
     
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value);
-			value = dateAdd(epoch, "d", value);
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
+  if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
+    var value = row[index];
+    if(value != null &amp;&amp; value.length() != 0) {
+      var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
+      value = str2num(value);
+      value = dateAdd(epoch, "d", value);
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
 }
 putRow(row);
 </jsScript_script>
@@ -1162,21 +1162,21 @@ var info = "";
 var row = createRowCopy(getOutputRowMeta().size());
 var field_names = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
+  var iInfo = getInputRowMeta().getValueMeta(index);
+  var oInfo = getOutputRowMeta().getValueMeta(index);
+  info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
     
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value) / 1000;
-			value = new java.util.Date(value)
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
+  if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
+    var value = row[index];
+    if(value != null &amp;&amp; value.length() != 0) {
+      var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
+      value = str2num(value) / 1000;
+      value = new java.util.Date(value)
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
 }
 putRow(row);
 </jsScript_script>
@@ -1220,21 +1220,21 @@ var info = "";
 var row = createRowCopy(getOutputRowMeta().size());
 var field_names = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
+  var iInfo = getInputRowMeta().getValueMeta(index);
+  var oInfo = getOutputRowMeta().getValueMeta(index);
+  info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
     
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value);
-			value = new java.util.Date(value)
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
+  if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
+    var value = row[index];
+    if(value != null &amp;&amp; value.length() != 0) {
+      var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
+      value = str2num(value);
+      value = new java.util.Date(value)
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
 }
 putRow(row);
 </jsScript_script>
@@ -1278,21 +1278,21 @@ var info = "";
 var row = createRowCopy(getOutputRowMeta().size());
 var field_names = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; field_names.length; index++) {
-	var iInfo = getInputRowMeta().getValueMeta(index);
-	var oInfo = getOutputRowMeta().getValueMeta(index);
-	info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
+  var iInfo = getInputRowMeta().getValueMeta(index);
+  var oInfo = getOutputRowMeta().getValueMeta(index);
+  info = info + field_names[index] + ": " + iInfo.getTypeDesc() + " - " + oInfo.getTypeDesc() + "\n";
     
-	if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
-		var value = row[index];
-		if(value != null &amp;&amp; value.length() != 0) {
-			var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
-			value = str2num(value) / 1000 / 1000;
-			value = new java.util.Date(value)
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
+  if(iInfo.getTypeDesc() == 'String' &amp;&amp; oInfo.getTypeDesc() == 'Date'){
+    var value = row[index];
+    if(value != null &amp;&amp; value.length() != 0) {
+      var epoch = str2date("1970-01-01 00:00:00","yyyy-MM-dd HH:mm:ss","EN");
+      value = str2num(value) / 1000 / 1000;
+      value = new java.util.Date(value)
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
 }
 putRow(row);
 </jsScript_script>
@@ -1363,23 +1363,23 @@ putRow(row);
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
-	var inMeta = getInputRowMeta().getValueMeta(index);
-	var outMate = getOutputRowMeta().getValueMeta(index);
-	if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'BigNumber'){
-		var value = row[index];
-		outMate.setConversionMask(null);
-		if(value != null &amp;&amp; value.length() != 0) {
-			var format = inMeta.getConversionMask().split(',');
-			var scale = str2num(format[1]);
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64( value.getBytes() );
-			var bi = new Packages.java.math.BigInteger(bytes);
-			var bd = new java.math.BigDecimal(bi,scale);
-			value = bd;
-		} else {
-			value = null;
-		}
-		row[index] = value;
-	}
+  var inMeta = getInputRowMeta().getValueMeta(index);
+  var outMate = getOutputRowMeta().getValueMeta(index);
+  if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'BigNumber'){
+    var value = row[index];
+    outMate.setConversionMask(null);
+    if(value != null &amp;&amp; value.length() != 0) {
+      var format = inMeta.getConversionMask().split(',');
+      var scale = str2num(format[1]);
+      var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64( value.getBytes() );
+      var bi = new Packages.java.math.BigInteger(bytes);
+      var bd = new java.math.BigDecimal(bi,scale);
+      value = bd;
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
 }
 putRow(row);
 </jsScript_script>
