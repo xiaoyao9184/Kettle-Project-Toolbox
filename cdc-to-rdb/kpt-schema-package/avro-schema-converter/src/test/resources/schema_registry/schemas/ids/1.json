@@ -1,0 +1,16 @@
+{
+  "type":"record",
+  "name":"Key",
+  "namespace":"test_debezium_mysql_test_kpt_cdc_avro.data_changes",
+  "fields":[
+    {
+      "name":"databaseName",
+      "type":"string"
+    },
+    {
+      "name":"__dbz__physicalTableIdentifier",
+      "type":"string"
+    }
+  ],
+  "connect.name":"test_debezium_mysql_test_kpt_cdc_avro.data_changes.Key"
+}
