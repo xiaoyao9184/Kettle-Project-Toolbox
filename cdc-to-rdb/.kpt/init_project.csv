@@ -1,0 +1,14 @@
+type;path
+copy;config.xml
+copy;db_kpt_cdc_rdb_writer.kdb
+copy;.kettle/kettle.properties
+link;.kpt
+link;from_canal
+link;from_debezium
+link;from_kafka
+link;to_none
+link;to_pgsql
+link;to_rdb
+link;_test-config
+link;_test-container
+link;_test-prototype
