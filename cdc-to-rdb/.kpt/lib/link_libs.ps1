@@ -20,6 +20,8 @@ Function Install-Libs($source_dir,$target_dir) {
         $lib_conflict = ""
         $lib_conflict = Get-ChildItem $target_dir -File -Recurse | Where-Object {
             $_.name -like "$name-[0-9].*jar"
+        } | Where-Object {
+            $_.name -ne $filename
         }
         if($lib_conflict){
             Write-Host "find conflict lib '$lib_conflict' with '$name' '$version'"
@@ -28,8 +30,12 @@ Function Install-Libs($source_dir,$target_dir) {
         }
         $lib_link = "$target_dir/" + $lib_path.Name
         $lib_link = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$lib_link")
-        $lib_path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$lib_path")
-        New-Item -ItemType SymbolicLink -Path "$lib_link" -Target "$lib_path"
+        if(!(Test-Path -Path $lib_link)) {
+            $lib_path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$lib_path")
+            New-Item -ItemType SymbolicLink -Path "$lib_link" -Target "$lib_path"
+        } else {
+            Write-Host "already install same lib '$name' '$version'"
+        }
     }
 }
 
@@ -40,8 +46,11 @@ Function Uninstall-Libs($source_dir,$target_dir) {
     foreach ($lib_path in $lib_paths) {
         $lib_link = "$target_dir/" + $lib_path.Name
         $lib_link = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$lib_link")
-        $lib_link = Get-Item $lib_link | Where-Object { 
+        $lib_link = Get-Item $lib_link -ErrorAction SilentlyContinue | Where-Object { 
             $_.Attributes -match "ReparsePoint"
+        } | Where-Object {
+            $target = $_ | Select-Object -ExpandProperty Target
+            $target -eq $lib_path.FullName
         }
         if($lib_link) {
             Remove-Item $lib_link
@@ -66,38 +75,64 @@ Function Use-Libs($action,$source_dir,$target_dir) {
     $non_interactive = Assert-IsNonInteractiveShell
 
     # default param
-    if(! $action){
+    while(! $action){
         Write-Host ""
-        Write-Host "Need input action(install or uninstall):"
+        Write-Host "Need input action[install/uninstall](empty will use 'install'):"
         $action = $non_interactive ? $null : (Read-Host)
         if(! $action) {
             $action = "install"
             Write-Host "param action is" $action
         }
     }
-    if(! $source_dir){
+    while (!(Test-Path -Path $source_dir -ErrorAction SilentlyContinue)) {
         Write-Host ""
-        Write-Host "Need input source path(empty will use 'cdc-to-rdb/.pdi/lib/kpt-schema-package-9.2.0.0-290-package'):"
+        Write-Host "Need input source path(empty will use 'cdc-to-rdb/.kpt/lib'):"
         $source_dir = $non_interactive ? $null : (Read-Host)
         if(! $source_dir) {
-            $source_dir = $script_dir + "/lib/kpt-schema-package-9.2.0.0-290-package"
+            $source_dir = $script_dir
+            $script_dir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$script_dir")
             Write-Host "param source_dir is" $source_dir
         }
     }
-    if(! $target_dir){
+    while (!(Test-Path -Path $target_dir -ErrorAction SilentlyContinue)) {
         Write-Host ""
         Write-Host "Need input source path(empty will use 'data-integration/lib'):"
         $target_dir = $non_interactive ? $null : (Read-Host)
         if(! $target_dir) {
-            $target_dir = $script_dir + "/../../data-integration/lib"
+            $target_dir = $script_dir + "/../../../data-integration/lib"
+            $target_dir = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$target_dir")
             Write-Host "param target_dir is" $target_dir
+            if (!(Test-Path -Path $target_dir -ErrorAction SilentlyContinue)) {
+                Write-Error "data-integration not exits, Please run this script in the workspace project!"
+                exit 1
+            } else {
+                break
+            }
         }
     }
 
     if($action -eq "install") {
-        Install-Libs "$source_dir" "$target_dir"
+        $sub_paths = Get-ChildItem -Path "$source_dir\*" -Include *.jar 
+        if(! $sub_paths){
+            $sub_paths = Get-ChildItem -Path "$source_dir" -Directory
+            foreach ($sub_path in $sub_paths){
+                Write-Host "process lib $sub_path"
+                Install-Libs "$sub_path" "$target_dir"
+            }
+        } else {
+            Install-Libs "$source_dir" "$target_dir"
+        }
     } elseif($action -eq "uninstall") {
-        Uninstall-Libs "$source_dir" "$target_dir"
+        $sub_paths = Get-ChildItem -Path "$source_dir\*" -Include *.jar 
+        if(! $sub_paths){
+            $sub_paths = Get-ChildItem -Path "$source_dir" -Directory
+            foreach ($sub_path in $sub_paths){
+                Write-Host "process lib $sub_path"
+                Uninstall-Libs "$sub_path" "$target_dir"
+            }
+        } else {
+            Uninstall-Libs "$source_dir" "$target_dir"
+        }
     } else {
         Write-Host "Incorrect action!"
         exit 1
