@@ -9,47 +9,47 @@
     <directory>/from_kafka</directory>
     <parameters>
       <parameter>
-        <name>Config.Batch.Group.Logger.Mapping</name>
+        <name>_Config.Batch.Group.Logger.Mapping</name>
         <default_value>log_json_to_kafka</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Batch.Group.Table.Mapping</name>
+        <name>_Config.Batch.Group.Table.Mapping</name>
         <default_value>sort_by_table_operate</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Batch.Redirect.Row.Mapping</name>
+        <name>_Config.Batch.Redirect.Row.Mapping</name>
         <default_value>sort_by_row_last</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Kafka.Data.Format</name>
+        <name>_Config.CDC.Kafka.Data.Format</name>
         <default_value>connect_json</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Source.Row.Mapping</name>
+        <name>_Config.CDC.Source.Row.Mapping</name>
         <default_value>mysql_playload</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Source.Transformation.Path</name>
+        <name>_Config.CDC.Source.Transformation.Path</name>
         <default_value>from_debezium</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamExecutorPath</name>
+        <name>_ParamExecutorPath</name>
         <default_value>/to_rdb</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamExecutorTransformation</name>
+        <name>_ParamExecutorTransformation</name>
         <default_value>group_to_table.result</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamMarkTransformation</name>
+        <name>_ParamMarkTransformation</name>
         <default_value>log_environment_to_logtable</default_value>
         <description/>
       </parameter>

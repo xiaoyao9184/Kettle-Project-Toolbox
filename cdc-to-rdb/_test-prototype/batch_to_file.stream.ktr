@@ -8,6 +8,16 @@
     <trans_status>0</trans_status>
     <directory>/_test-prototype</directory>
     <parameters>
+      <parameter>
+        <name>_ParamCsvPath</name>
+        <default_value>_test-prototype/cdc_to_batch.test</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>variable_regex</name>
+        <default_value>Config.*|Param.*</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
