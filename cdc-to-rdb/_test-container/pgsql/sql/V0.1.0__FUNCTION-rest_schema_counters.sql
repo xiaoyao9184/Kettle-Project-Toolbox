@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION rest_schema_counters(_schema character varying)
+CREATE OR REPLACE FUNCTION public.rest_schema_counters(_schema character varying)
   RETURNS void AS
 $BODY$
 declare
@@ -17,3 +17,4 @@ end loop;
 end;
 $BODY$
   LANGUAGE plpgsql
+;
