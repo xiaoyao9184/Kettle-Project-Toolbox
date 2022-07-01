@@ -48,6 +48,51 @@
         <default_value>batch_to_group.stream</default_value>
         <description/>
       </parameter>
+      <parameter>
+        <name>Config.Batch.Group.Logger.Mapping</name>
+        <default_value>log_json_to_kafka</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>Config.Batch.Group.Table.Mapping</name>
+        <default_value>sort_by_table_operate</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>Config.Batch.Redirect.Row.Mapping</name>
+        <default_value>sort_by_row_last</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Kafka.Data.Format</name>
+        <default_value>connect_json</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Source.Row.Mapping</name>
+        <default_value>mysql_playload</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Source.Transformation.Path</name>
+        <default_value>from_debezium</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>ParamExecutorPath</name>
+        <default_value>/to_rdb</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>ParamExecutorTransformation</name>
+        <default_value>group_to_table.result</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
+        <name>ParamMarkTransformation</name>
+        <default_value>log_environment_to_logtable</default_value>
+        <description>default for batch</description>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
