@@ -22,6 +22,17 @@
   </properties>
   <dependencies>
     <dependency>
+      <groupId>kpt</groupId>
+      <artifactId>kpt-avro-schema-converter</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>kpt</groupId>
+      <artifactId>kpt-json-schema-converter</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.kafka</groupId>
       <artifactId>connect-json</artifactId>
       <version>${kafka.version}</version>

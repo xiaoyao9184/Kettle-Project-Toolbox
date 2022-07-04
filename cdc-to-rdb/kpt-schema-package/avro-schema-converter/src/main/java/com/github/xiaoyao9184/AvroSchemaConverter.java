@@ -37,7 +37,7 @@ public class AvroSchemaConverter {
         this.jsonConverterKey.configure(config,true);
 
         this.jsonConverterMsg = new JsonConverter();
-        this.jsonConverterKey.configure(config,false);
+        this.jsonConverterMsg.configure(config,false);
 
         this.objectMapper = Jackson.newObjectMapper();
     }
@@ -47,6 +47,13 @@ public class AvroSchemaConverter {
             return null;
         }
         AvroSchema avroSchema = new AvroSchema(schema);
+        return this.toConnectJson(avroSchema,isKey);
+    }
+
+    public String toConnectJson(AvroSchema avroSchema, boolean isKey){
+        if (avroSchema == null) {
+            return null;
+        }
         Schema actual = this.avroData.toConnectSchema(avroSchema.rawSchema());
 
         JsonConverter jsonConverter = isKey ? this.jsonConverterKey : this.jsonConverterMsg;

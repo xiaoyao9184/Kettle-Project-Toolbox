@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2022/05/26 09:39:23.171</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/30 12:30:27.528</modified_date>
+    <modified_date>2022/07/04 15:44:22.961</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -2190,11 +2190,8 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
       <definition>
         <class_type>TRANSFORM_CLASS</class_type>
         <class_name>Processor</class_name>
-        <class_source>import java.util.HashMap;
-import java.util.Map;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import org.apache.avro.generic.GenericData;
-
+        <class_source>import com.github.xiaoyao9184.AvroPayloadConverter;
+import io.confluent.kafka.schemaregistry.avro.AvroSchema;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
 
@@ -2208,11 +2205,13 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   r = createOutputRow(r, data.outputRowMeta.size());
 
   byte[] keyDataAvro = get(Fields.In, "kafka_key").getBinary(r);
-  String keyDataConnect = this.toConnectJson(keyDataAvro,true);
+  String keySchemaAvro = get(Fields.In, "key_schema_avro").getString(r);
+  String keyDataConnect = this.toConnectJson(true,keyDataAvro,keySchemaAvro);
   get(Fields.Out, "key_payload_json").setValue(r, keyDataConnect);
 
   byte[] messageDataAvro = get(Fields.In, "kafka_message").getBinary(r);
-  String messageDataConnect = this.toConnectJson(messageDataAvro,false);
+  String messageSchemaAvro = get(Fields.In, "message_schema_avro").getString(r);
+  String messageDataConnect = this.toConnectJson(false,messageDataAvro,messageSchemaAvro);
   get(Fields.Out, "message_payload_json").setValue(r, messageDataConnect);
 
 
@@ -2222,32 +2221,21 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 }
 
 
-private String schemaRegistryUrl = getVariable("Config.CDC.Kafka.Schema.Registry", "http://me:58081");
-private Map&lt;String, Object> config;
-private KafkaAvroDeserializer deserializerKey;
-private KafkaAvroDeserializer deserializerMsg;
+private AvroPayloadConverter payloadConverter;
 
 public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-  this.config = new HashMap&lt;String, Object>();
-  this.config.put("schema.registry.url",schemaRegistryUrl);
-
-  this.deserializerKey = new KafkaAvroDeserializer();
-  this.deserializerKey.configure(config,true);
-
-  this.deserializerMsg = new KafkaAvroDeserializer();
-  this.deserializerMsg.configure(config,false);
+  this.payloadConverter = new AvroPayloadConverter("mock://me:8081");
 
   return parent.initImpl(stepMetaInterface, stepDataInterface);
 }
 
-public String toConnectJson(byte[] payload, boolean isKey){
+public String toConnectJson(boolean isKey, byte[] payload, String schema){
   if (payload == null) {
     return null;
   }
   try {
-    KafkaAvroDeserializer deserializer = isKey ? this.deserializerKey : this.deserializerMsg;
-    Object obj = deserializer.deserialize("",payload);
-    return GenericData.get().toString(obj);
+    AvroSchema avroSchema = new AvroSchema(schema);
+    return this.payloadConverter.toConnectJson(payload, isKey, avroSchema);
   } catch (Exception e) {
     throw new RuntimeException(e);
   }
@@ -2326,12 +2314,16 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
   r = createOutputRow(r, data.outputRowMeta.size());
 
-  String keySchemaJson = get(Fields.In, "key_schema_json").getString(r);
-  String keySchemaConnect = this.toConnectJson(keySchemaJson,true);
+  String keySchemaAvro = get(Fields.In, "key_schema_json").getString(r);
+  get(Fields.Out, "key_schema_avro").setValue(r, keySchemaAvro);
+  String keySchemaConnect = this.toConnectJson(keySchemaAvro,true);
+  get(Fields.Out, "key_schema_connect").setValue(r, keySchemaConnect);
   get(Fields.In, "key_schema_json").setValue(r, keySchemaConnect);
 
-  String messageSchemaJson = get(Fields.In, "message_schema_json").getString(r);
-  String messageSchemaConnect = this.toConnectJson(messageSchemaJson,false);
+  String messageSchemaAvro = get(Fields.In, "message_schema_json").getString(r);
+  get(Fields.Out, "message_schema_avro").setValue(r, messageSchemaAvro);
+  String messageSchemaConnect = this.toConnectJson(messageSchemaAvro,false);
+  get(Fields.Out, "message_schema_connect").setValue(r, messageSchemaConnect);
   get(Fields.In, "message_schema_json").setValue(r, messageSchemaConnect);
 
 
@@ -2391,6 +2383,30 @@ public String toConnectJson(String schema, boolean isKey){
       </definition>
     </definitions>
     <fields>
+      <field>
+        <field_name>key_schema_avro</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
+      <field>
+        <field_name>key_schema_connect</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
+      <field>
+        <field_name>message_schema_avro</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
+      <field>
+        <field_name>message_schema_connect</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
     </fields>
     <clear_result_fields>N</clear_result_fields>
     <info_steps/>
