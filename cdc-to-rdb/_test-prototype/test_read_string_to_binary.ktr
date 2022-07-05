@@ -1,23 +1,13 @@
 <transformation>
   <info>
-    <name>same_source</name>
+    <name>test_read_string_to_binary</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/to_rdb/target_column.mapping</directory>
+    <directory>/_test-prototype</directory>
     <parameters>
-      <parameter>
-        <name>Config.CDC.Target.Key.Mapping</name>
-        <default_value>same_source</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Target.Transformation.Path</name>
-        <default_value>to_pgsql</default_value>
-        <description/>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -437,53 +427,655 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/01/28 11:11:13.744</created_date>
+    <created_date>2022/05/13 16:59:36.560</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/07/05 14:57:51.869</modified_date>
+    <modified_date>2022/07/05 14:06:21.818</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
+    <notepad>
+      <note>NOTE
+JsonInput read space string with empty string</note>
+      <xloc>0</xloc>
+      <yloc>416</yloc>
+      <width>337</width>
+      <heigth>49</heigth>
+      <fontname>Microsoft YaHei UI</fontname>
+      <fontsize>9</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
     <hop>
-      <from>MappingInput: target_column.mapping</from>
-      <to>Calculator: target_column</to>
+      <from>DataGrid: json fo string binary</from>
+      <to>JsonInput: string fo binary</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>DataGrid: test</from>
-      <to>Calculator: target_column</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Calculator: target_column</from>
-      <to>SimpleMapping: target_key.mapping</to>
+      <from>JsonInput: string fo binary</from>
+      <to>ScriptValueMod: set mark: -1,-1,bytes</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: target_key.mapping</from>
-      <to>SimpleMapping: target_column_modifier.mapping</to>
+      <from>ScriptValueMod: set mark: -1,-1,bytes</from>
+      <to>Byte_to_Binary</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: select sort</from>
-      <to>MappingOutput: target_column.mapping</to>
+      <from>DataGrid: json fo base64 binary</from>
+      <to>JsonInput: base64 fo binary</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: target_column_modifier.mapping</from>
-      <to>SimpleMapping: avro_bytes_column_modifier.mapping</to>
+      <from>JsonInput: base64 fo binary</from>
+      <to>ScriptValueMod: set mark: ,,base64</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: avro_bytes_column_modifier.mapping</from>
-      <to>SelectValues: select sort</to>
+      <from>ScriptValueMod: set mark: ,,base64</from>
+      <to>Byte_to_Binary 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JsonInput: string fo binary</from>
+      <to>Calculator</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Calculator: target_column</name>
+    <name>Byte_to_Binary</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+//debug
+//var info = "";
+
+var row = createRowCopy(getOutputRowMeta().size());
+var fieldNames = getOutputRowMeta().getFieldNames();
+for (index = 0; index &lt; fieldNames.length; index++) {
+  var inMeta = getInputRowMeta().getValueMeta(index);
+  var outMate = getOutputRowMeta().getValueMeta(index);
+  //debug
+  //info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+  
+  if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+    //debug
+    //Alert(info);
+
+    var value = row[index];
+    outMate.setConversionMask(null);
+    //Alert(num + ":'" + value + "'" + value.length());
+    if(value != null &amp;&amp; value.length() != 0) {
+      var mask = inMeta.getConversionMask().split(',');
+      var format = mask[2];
+      
+      var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
+      if(isBase64 &amp;&amp; format == "base64") {
+      	isBase64 = true;
+      } else {
+        isBase64 = false;
+      }
+      var bytes = isBase64 ? 
+        Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
+        value.getBytes();
+      //debug
+      var content = "";
+      content = content + 'num:' + num + "\n";
+      content = content + 'source:' + value + "\n";
+      content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+      content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+      //Alert(content);
+
+      value = bytes;
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
+}
+putRow(row);
+//debug
+//Alert(info);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>value</name>
+        <rename>value</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: json fo string binary</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>num</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>json</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>1</item>
+        <item>{"value":"\u0002"}</item>
+      </line>
+      <line>
+        <item>2</item>
+        <item>{"value":"\u0016\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"}</item>
+      </line>
+      <line>
+        <item>3</item>
+        <item>{"value":"\u0017"}</item>
+      </line>
+      <line>
+        <item>4</item>
+        <item>{"value":"\u0018"}</item>
+      </line>
+      <line>
+        <item>5</item>
+        <item>{"value":" "}</item>
+      </line>
+      <line>
+        <item>5</item>
+        <item>{"value":"\u0020"}</item>
+      </line>
+      <line>
+        <item>5</item>
+        <item>{"value":" \u0020"}</item>
+      </line>
+      <line>
+        <item>5</item>
+        <item>{"value":" \u0021"}</item>
+      </line>
+      <line>
+        <item>6</item>
+        <item>{"value":"\""}</item>
+      </line>
+      <line>
+        <item>7</item>
+        <item>{"value":"$"}</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JsonInput: string fo binary</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>value</name>
+        <path>$.value</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>json</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: set mark: -1,-1,bytes</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var index_value = getOutputRowMeta().indexOfValue("value");
+var mate_value = getOutputRowMeta().getValueMeta(index_value);
+mate_value.setConversionMask("-1,-1,bytes");
+
+putRow(row);</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>DataGrid: json fo base64 binary</name>
+    <type>DataGrid</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>num</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>json</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item>1</item>
+        <item>{"value":"Ag=="}</item>
+      </line>
+      <line>
+        <item>2</item>
+        <item>{"value":"FgAAAAAAAAAAAAAAAAAAAAAAAAA="}</item>
+      </line>
+      <line>
+        <item>3</item>
+        <item>{"value":"Fw=="}</item>
+      </line>
+      <line>
+        <item>4</item>
+        <item>{"value":"GA=="}</item>
+      </line>
+      <line>
+        <item>5</item>
+        <item>{"value":"IA=="}</item>
+      </line>
+      <line>
+        <item>6</item>
+        <item>{"value":"Ig=="}</item>
+      </line>
+      <line>
+        <item>7</item>
+        <item>{"value":"JA=="}</item>
+      </line>
+    </data>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>JsonInput: base64 fo binary</name>
+    <type>JsonInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <addresultfile>N</addresultfile>
+    <readurl>N</readurl>
+    <removeSourceField>N</removeSourceField>
+    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
+    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
+    <ignoreMissingPath>Y</ignoreMissingPath>
+    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
+    <rownum_field/>
+    <file>
+      <name/>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>value</name>
+        <path>$.value</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <IsInFields>Y</IsInFields>
+    <IsAFile>N</IsAFile>
+    <valueField>json</valueField>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: set mark: ,,base64</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var index_value = getOutputRowMeta().indexOfValue("value");
+var mate_value = getOutputRowMeta().getValueMeta(index_value);
+mate_value.setConversionMask(",,base64");
+
+putRow(row);</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Byte_to_Binary 2</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+//debug
+var info = "";
+
+var row = createRowCopy(getOutputRowMeta().size());
+var fieldNames = getOutputRowMeta().getFieldNames();
+for (index = 0; index &lt; fieldNames.length; index++) {
+  var inMeta = getInputRowMeta().getValueMeta(index);
+  var outMate = getOutputRowMeta().getValueMeta(index);
+  //debug
+  info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+  
+  if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'Binary'){
+    var value = row[index];
+    outMate.setConversionMask(null);
+    if(value != null &amp;&amp; value.length() != 0) {
+      var mask = inMeta.getConversionMask().split(',');
+      var format = mask[2];
+      
+      var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
+      if(isBase64 &amp;&amp; format == "base64") {
+      	isBase64 = true;
+      } else {
+        isBase64 = false;
+      }
+      var bytes = isBase64 ? 
+        Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
+        value.getBytes();
+      //debug
+      var content = "";
+      content = content + 'source:' + value + "\n";
+      content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+      content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+      //Alert(content);
+      value = bytes;
+    } else {
+      value = null;
+    }
+    row[index] = value;
+  }
+}
+putRow(row);
+//debug
+//Alert(info);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>value</name>
+        <rename>value</rename>
+        <type>Binary</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -495,12 +1087,12 @@
     </partitioning>
     <failIfNoFile>Y</failIfNoFile>
     <calculation>
-      <field_name>target_column</field_name>
-      <calc_type>COPY_FIELD</calc_type>
-      <field_a>source_column</field_a>
+      <field_name>len</field_name>
+      <calc_type>STRING_LEN</calc_type>
+      <field_a>value</field_a>
       <field_b/>
       <field_c/>
-      <value_type>String</value_type>
+      <value_type>None</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <remove>N</remove>
@@ -518,705 +1110,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>DataGrid: test</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_column</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_key</name>
-        <type>Boolean</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>target_operate</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>target_table</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_column_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_column_precision</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_column_scale</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_column_format</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_kettle_json_path</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_kettle_field</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_kettle_converter</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>source_kettle_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item/>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-        <item>_id</item>
-        <item>Y</item>
-        <item/>
-        <item>mysql_manual_generation__test_kpt_cdc</item>
-        <item>change_pk__debezium_types</item>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-      </line>
-      <line>
-        <item/>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-        <item>VARCHAR</item>
-        <item>N</item>
-        <item/>
-        <item>mysql_manual_generation__test_kpt_cdc</item>
-        <item>change_pk__debezium_types</item>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-      </line>
-      <line>
-        <item/>
-        <item>test_kpt_cdc</item>
-        <item>debezium_types</item>
-        <item>TIMESTAMP</item>
-        <item>N</item>
-        <item/>
-        <item>mysql_manual_generation__test_kpt_cdc</item>
-        <item>change_pk__debezium_types</item>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>144</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingInput: target_column.mapping</name>
-    <type>MappingInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source_operate</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_column</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_key</name>
-        <type>Boolean</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_operate</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>target_table</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_column_type</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_column_precision</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_column_scale</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_column_format</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_kettle_json_path</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_kettle_field</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_kettle_converter</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>source_kettle_type</name>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>MappingOutput: target_column.mapping</name>
-    <type>MappingOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>1040</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SelectValues: select sort</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>source_operate</name>
-      </field>
-      <field>
-        <name>source_schema</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
-        <name>source_column</name>
-      </field>
-      <field>
-        <name>source_key</name>
-      </field>
-      <field>
-        <name>target_operate</name>
-      </field>
-      <field>
-        <name>target_schema</name>
-      </field>
-      <field>
-        <name>target_table</name>
-      </field>
-      <field>
-        <name>target_column</name>
-      </field>
-      <field>
-        <name>target_key</name>
-      </field>
-      <select_unspecified>Y</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>880</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: target_column_modifier.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>target_column_modifier.mapping</trans_name>
-    <filename/>
-    <directory_path>/${Config.CDC.Target.Transformation.Path}</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>target_column</parent>
-            <child>target_column</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>560</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: target_key.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>${Config.CDC.Target.Key.Mapping}</trans_name>
-    <filename/>
-    <directory_path>/to_rdb/target_key.mapping</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
-            <parent>source_table</parent>
-            <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
-          </connector>
-          <connector>
-            <parent>source_column</parent>
-            <child>source_column</child>
-          </connector>
-          <connector>
-            <parent>source_key</parent>
-            <child>source_key</child>
-          </connector>
-          <connector>
-            <parent>target_schema</parent>
-            <child>target_schema</child>
-          </connector>
-          <connector>
-            <parent>target_table</parent>
-            <child>target_table</child>
-          </connector>
-          <connector>
-            <parent>target_operate</parent>
-            <child>target_operate</child>
-          </connector>
-          <connector>
-            <parent>target_column</parent>
-            <child>target_column</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-          <connector>
-            <parent>target_key</parent>
-            <child>target_key</child>
-          </connector>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>SimpleMapping: avro_bytes_column_modifier.mapping</name>
-    <type>SimpleMapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>avro_bytes_column_modifier.mapping</trans_name>
-    <filename/>
-    <directory_path>/to_rdb/target_column.mapping</directory_path>
-    <mappings>
-      <input>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>Y</rename_on_output>
-          <description/>
-          <connector>
-            <parent>source_column_format</parent>
-            <child>source_column_format</child>
-          </connector>
-        </mapping>
-      </input>
-      <output>
-        <mapping>
-          <input_step/>
-          <output_step/>
-          <main_path>Y</main_path>
-          <rename_on_output>N</rename_on_output>
-          <description/>
-        </mapping>
-      </output>
-      <parameters>
-        <inherit_all_vars>Y</inherit_all_vars>
-      </parameters>
-    </mappings>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>368</xloc>
-      <yloc>720</yloc>
+      <xloc>128</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

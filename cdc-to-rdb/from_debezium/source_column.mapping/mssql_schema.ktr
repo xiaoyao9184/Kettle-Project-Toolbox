@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2021/08/30 10:17:30.211</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/25 15:58:17.683</modified_date>
+    <modified_date>2022/07/05 09:51:30.701</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -2309,6 +2309,22 @@ for (index = 0; index &lt; fields.length; index++) {
     <target_field>column_format</target_field>
     <non_match_default/>
     <fields>
+      <field>
+        <source_value>NUMERIC</source_value>
+        <target_value>base64</target_value>
+      </field>
+      <field>
+        <source_value>DECIMAL</source_value>
+        <target_value>base64</target_value>
+      </field>
+      <field>
+        <source_value>SMALLMONEY</source_value>
+        <target_value>base64</target_value>
+      </field>
+      <field>
+        <source_value>MONEY</source_value>
+        <target_value>base64</target_value>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
