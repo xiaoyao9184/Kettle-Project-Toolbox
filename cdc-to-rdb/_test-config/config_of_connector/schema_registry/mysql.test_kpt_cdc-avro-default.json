@@ -1,0 +1,33 @@
+{
+	"name": "test_debezium_mysql-test_kpt_cdc-avro-default",
+	"config": {
+		"connector.class": "io.debezium.connector.mysql.MySqlConnector",
+		"tasks.max": "1",
+        "snapshot.delay.ms": "0",
+        "include.schema.changes": "true",
+        "include.query": "true",
+        "binlog.buffer.size": "0",
+		"heartbeat.interval.ms": 0,
+		"event.processing.failure.handling.mode": "ignore",
+		"event.deserialization.failure.handling.mode": "ignore",
+		"inconsistent.schema.handling.mode": "ignore",
+		"database.hostname": "mysql",
+		"database.port": "3306",
+		"database.user": "kpt",
+		"database.password": "kpt.123",
+		"database.include.list": "test_kpt_cdc",
+		"database.server.id": "23355",
+		"database.server.name": "test_debezium_mysql-test_kpt_cdc-avro-default",
+		"database.history.kafka.bootstrap.servers": "kafka:9092",
+		"database.history.kafka.topic": "test_debezium_mysql-test_kpt_cdc-avro-default._history",
+		
+		"converters": "boolean",
+		"boolean.type": "io.debezium.connector.mysql.converters.TinyIntOneToBooleanConverter",
+		"boolean.selector": "test_kpt_cdc.debezium_types.*, .*",
+
+		"key.converter": "io.confluent.connect.avro.AvroConverter",
+		"key.converter.schema.registry.url": "http://schema-registry:8081",
+		"value.converter": "io.confluent.connect.avro.AvroConverter",
+		"value.converter.schema.registry.url": "http://schema-registry:8081"
+	}
+}
