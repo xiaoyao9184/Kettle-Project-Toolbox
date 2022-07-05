@@ -33,9 +33,14 @@ services:
       - zookeeper
     restart: on-failure
 
-  connect:
+  debezium-connect:
     image: debezium/connect:1.7
-    hostname: connect
+    hostname: debezium-connect
+    command: >
+          bash -c "
+          /confluent-schema-maven-download.sh && 
+          /docker-entrypoint.sh start
+          "
     environment:
       GROUP_ID: "5000"
       CONFIG_STORAGE_TOPIC: test_kpt_connect_configs
@@ -43,14 +48,16 @@ services:
       STATUS_STORAGE_TOPIC: test_kpt_connect_statuses
       BOOTSTRAP_SERVERS: kafka:9092
       HOST_NAME: 0.0.0.0
-      ADVERTISED_HOST_NAME: connect
+      ADVERTISED_HOST_NAME: debezium-connect
       REST_HOST_NAME: 0.0.0.0
       KAFKA_OPTS: -javaagent:/kafka/etc/jmx_prometheus_javaagent.jar=8084:/kafka/etc/jmx_prometheus_javaagent.yml
       JMXHOST: localhost
       JMXPORT: 1976
+      ENABLE_APICURIO_CONVERTERS: 'true'
     volumes:
       - ./jmx_prometheus_javaagent.yml:/kafka/etc/jmx_prometheus_javaagent.yml
       - ./jmx_prometheus_javaagent.jar:/kafka/etc/jmx_prometheus_javaagent.jar
+      - ./confluent-schema-maven-download.sh:/confluent-schema-maven-download.sh
     ports:
       - "58083:8083"
     networks:
@@ -59,16 +66,83 @@ services:
       - kafka
     restart: on-failure
 
-  ui:
+  debezium-ui:
     image: debezium/debezium-ui:1.7
     environment:
-      KAFKA_CONNECT_URIS: "http://connect:8083"
+      KAFKA_CONNECT_URIS: "http://debezium-connect:8083"
     ports:
-      - "58082:8080"
+      - "8283:8080"
     networks:
       - test-kpt
     depends_on:
-      - connect
+      - debezium-connect
+
+  connect-ui:
+    image: landoop/kafka-connect-ui:0.9.7
+    environment:
+      - CONNECT_URL=http://debezium-connect:8083
+      - PROXY=true
+    ports:
+      - "8183:8000"
+    networks:
+      - test-kpt
+    depends_on:
+      - debezium-connect
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.0.0
+    environment:
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      # SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
+      SCHEMA_REGISTRY_DEBUG: "true"
+      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_METHODS: GET,POST,PUT,OPTIONS
+      SCHEMA_REGISTRY_ACCESS_CONTROL_ALLOW_ORIGIN: "*"
+      SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL: none
+    ports:
+      - "58081:8081"
+    networks:
+      - test-kpt
+    depends_on:
+      - kafka
+
+  schema-registry-ui:
+    image: landoop/schema-registry-ui:0.9.5
+    environment:
+      - SCHEMAREGISTRY_URL=http://schema-registry:8081
+      - PROXY=true
+    ports:
+      - "8181:8000"
+    networks:
+      - test-kpt
+    depends_on:
+      - schema-registry
+
+  kafka-rest:
+    image: confluentinc/cp-kafka-rest:7.0.0
+    environment:
+      KAFKA_REST_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_REST_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+      KAFKA_REST_LISTENERS: http://0.0.0.0:8082
+    ports:
+      - "58082:8082"
+    networks:
+      - test-kpt
+    depends_on:
+      - kafka
+
+  kafka-topics-ui:
+    image: landoop/kafka-topics-ui
+    environment:
+      - KAFKA_REST_PROXY_URL=http://kafka-rest:8082
+      - PROXY=true
+    ports:
+      - "8182:8000"
+    networks:
+      - test-kpt
+    depends_on:
+      - kafka-rest
+
 
 
 networks:

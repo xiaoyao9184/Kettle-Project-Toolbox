@@ -31,9 +31,10 @@ SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_debezium
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mssql_playload
 SET KPT_KETTLE_PARAM_ParamExecutorTransformation=group_to_none.result
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
+SET KPT_KETTLE_PARAM_ParamJsonFile=from_debezium/mssql_playload.json
 
 
-SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.%KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path%.%KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping%.bat
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.mssql_playload.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 0
 

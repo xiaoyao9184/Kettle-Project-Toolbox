@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>kpt</groupId>
+  <artifactId>kpt-schema-package</artifactId>
+  <version>9.2.0.0-290</version>
+  <packaging>pom</packaging>
+  <name>KPT Schema Package Project: ${project.artifactId}</name>
+  <description>Parent project for KPT Bundles</description>
+  <url>https://github.com/xiaoyao9184/Kettle-Project-Toolbox</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+  <properties>
+    <confluent.version>7.0.0</confluent.version>
+    <kafka.version>7.0.0-ccs</kafka.version>
+    <dependency.maven-bundle-plugin.version>2.4.0</dependency.maven-bundle-plugin.version>
+    <junit.version>4.13.1</junit.version>
+  </properties>
+
+  <modules>
+    <module>json-schema-converter</module>
+    <module>avro-schema-converter</module>
+    <module>registry-schema-package</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>confluent</id>
+      <name>Confluent</name>
+      <url>https://packages.confluent.io/maven/</url>
+    </repository>
+    <repository>
+      <id>central</id>
+      <name>Central</name>
+      <url>https://repo1.maven.org/maven2/</url>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+      </releases>
+    </repository>
+  </repositories>
+</project>
+

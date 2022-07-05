@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2022/01/28 11:11:13.744</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/19 09:18:40.431</modified_date>
+    <modified_date>2022/07/05 14:57:51.869</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -467,13 +467,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: target_column_modifier.mapping</from>
-      <to>SelectValues: select sort</to>
+      <from>SelectValues: select sort</from>
+      <to>MappingOutput: target_column.mapping</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: select sort</from>
-      <to>MappingOutput: target_column.mapping</to>
+      <from>SimpleMapping: target_column_modifier.mapping</from>
+      <to>SimpleMapping: avro_bytes_column_modifier.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: avro_bytes_column_modifier.mapping</from>
+      <to>SelectValues: select sort</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -626,6 +631,102 @@
         <set_empty_string>N</set_empty_string>
         <field_null_if/>
       </field>
+      <field>
+        <name>source_column_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_column_precision</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_column_scale</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_column_format</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_kettle_json_path</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_kettle_field</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_kettle_converter</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_kettle_type</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
     </fields>
     <data>
       <line>
@@ -637,6 +738,14 @@
         <item/>
         <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>change_pk__debezium_types</item>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
       </line>
       <line>
         <item/>
@@ -647,6 +756,14 @@
         <item/>
         <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>change_pk__debezium_types</item>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
       </line>
       <line>
         <item/>
@@ -657,6 +774,14 @@
         <item/>
         <item>mysql_manual_generation__test_kpt_cdc</item>
         <item>change_pk__debezium_types</item>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
+        <item/>
       </line>
     </data>
     <attributes/>
@@ -733,6 +858,54 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>source_column_type</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_column_precision</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_column_scale</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_column_format</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_kettle_json_path</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_kettle_field</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_kettle_converter</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_kettle_type</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
       <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
@@ -760,6 +933,64 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>1040</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select sort</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>source_operate</name>
+      </field>
+      <field>
+        <name>source_schema</name>
+      </field>
+      <field>
+        <name>source_table</name>
+      </field>
+      <field>
+        <name>source_column</name>
+      </field>
+      <field>
+        <name>source_key</name>
+      </field>
+      <field>
+        <name>target_operate</name>
+      </field>
+      <field>
+        <name>target_schema</name>
+      </field>
+      <field>
+        <name>target_table</name>
+      </field>
+      <field>
+        <name>target_column</name>
+      </field>
+      <field>
+        <name>target_key</name>
+      </field>
+      <select_unspecified>Y</select_unspecified>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -933,8 +1164,8 @@
     </GUI>
   </step>
   <step>
-    <name>SelectValues: select sort</name>
-    <type>SelectValues</type>
+    <name>SimpleMapping: avro_bytes_column_modifier.mapping</name>
+    <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -943,49 +1174,38 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>source_operate</name>
-        <rename/>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <rename/>
-      </field>
-      <field>
-        <name>source_table</name>
-        <rename/>
-      </field>
-      <field>
-        <name>source_column</name>
-        <rename/>
-      </field>
-      <field>
-        <name>source_key</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_operate</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_schema</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_table</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_column</name>
-        <rename/>
-      </field>
-      <field>
-        <name>target_key</name>
-        <rename/>
-      </field>
-      <select_unspecified>Y</select_unspecified>
-    </fields>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>avro_bytes_column_modifier.mapping</trans_name>
+    <filename/>
+    <directory_path>/to_rdb/target_column.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+          <connector>
+            <parent>source_column_format</parent>
+            <child>source_column_format</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
     <attributes/>
     <cluster_schema/>
     <remotesteps>

@@ -1,0 +1,14 @@
+{
+  "type":"object",
+  "title":"test_debezium_mysql_test_kpt_cdc_json.data_changes.Key",
+  "properties":{
+    "databaseName":{
+      "type":"string",
+      "connect.index":0
+    },
+    "__dbz__physicalTableIdentifier":{
+      "type":"string",
+      "connect.index":1
+    }
+  }
+}

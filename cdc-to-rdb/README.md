@@ -11,8 +11,14 @@ RDB is any relational-data model compatible with kettle JDBC database.
 
 ## Build
 
+in root of this project
+
 ```sh
 DOCKER_BUILDKIT=1 docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
+```
+
+```bat
+SET DOCKER_BUILDKIT=1&& docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
 ```
 
 
@@ -86,7 +92,7 @@ docker run \
  xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
 ```bat
-:: windows batch for Docker Desktop
+:: windows batch for Docker Desktop Linux containers mode
 docker run ^
  --rm ^
  -it ^
@@ -197,6 +203,8 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
 			<cfg namespace="Config.CDC.Kafka.Log" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
             
+			<!-- see from_kafka/batch_formatter.mapping -->
+			<cfg namespace="Config.CDC.Kafka.Data" key="Format">connect_json</cfg>
 
 		<!-- source of cdc -->
 			<!-- can be 'from_debezium' of 'from_canal' -->

@@ -1482,7 +1482,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
+        <nullif>{precision},{scale},{format}</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -2055,7 +2055,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>{precision},{scale}</nullif>
+        <nullif>{precision},{scale},{format}</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -3973,6 +3973,18 @@
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
       </field>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{format}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>source_column_format</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -4020,6 +4032,18 @@
         <replace_by_string/>
         <set_empty_string>N</set_empty_string>
         <replace_field_by_string>source_column_scale</replace_field_by_string>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>TEMPLATE</in_stream_name>
+        <out_stream_name/>
+        <use_regex>no</use_regex>
+        <replace_string>{format}</replace_string>
+        <replace_by_string/>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string>source_column_format</replace_field_by_string>
         <whole_word>no</whole_word>
         <case_sensitive>no</case_sensitive>
         <is_unicode>no</is_unicode>
@@ -5435,6 +5459,38 @@
           <connector>
             <parent>target_operate</parent>
             <child>target_operate</child>
+          </connector>
+          <connector>
+            <parent>source_column_type</parent>
+            <child>source_column_type</child>
+          </connector>
+          <connector>
+            <parent>source_column_precision</parent>
+            <child>source_column_precision</child>
+          </connector>
+          <connector>
+            <parent>source_column_scale</parent>
+            <child>source_column_scale</child>
+          </connector>
+          <connector>
+            <parent>source_column_format</parent>
+            <child>source_column_format</child>
+          </connector>
+          <connector>
+            <parent>source_kettle_json_path</parent>
+            <child>source_kettle_json_path</child>
+          </connector>
+          <connector>
+            <parent>source_kettle_field</parent>
+            <child>source_kettle_field</child>
+          </connector>
+          <connector>
+            <parent>source_kettle_converter</parent>
+            <child>source_kettle_converter</child>
+          </connector>
+          <connector>
+            <parent>source_kettle_type</parent>
+            <child>source_kettle_type</child>
           </connector>
         </mapping>
       </input>

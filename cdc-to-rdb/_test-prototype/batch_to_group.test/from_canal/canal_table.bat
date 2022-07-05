@@ -31,9 +31,10 @@ SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_canal
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=canal_table
 SET KPT_KETTLE_PARAM_ParamExecutorTransformation=group_to_none.result
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
+SET KPT_KETTLE_PARAM_ParamJsonFile=from_canal/canal_table.json
 
 
-SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.%KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path%.%KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping%.bat
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.canal_table.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 0
 
