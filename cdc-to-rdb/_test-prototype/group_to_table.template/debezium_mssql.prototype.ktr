@@ -1978,8 +1978,11 @@ for (index = 0; index &lt; fieldNames.length; index++) {
 		if(value != null &amp;&amp; value.length() != 0) {
 			var format = inMeta.getConversionMask().split(',');
 			var scale = str2num(format[1]);
-			var bytes = Packages.org.apache.commons.codec.binary.Base64.decodeBase64( value.getBytes() );
-			var bi = new Packages.java.math.BigInteger(bytes);
+      var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
+      var bytes = isBase64 ? 
+        Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
+        value.getBytes();
+      var bi = new Packages.java.math.BigInteger(bytes);
 			var bd = new java.math.BigDecimal(bi,scale);
 			row[index] = bd;
 		} else {
