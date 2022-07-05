@@ -14,7 +14,7 @@ services:
     volumes:
        - ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml
        - ./log:/home/pentaho/kpt-cdc-to-rdb/log
-       - ./injection:/home/pentaho/kpt-cdc-to-rdb/to_rdb/message_convert_to_rdb_rud.injection
+       - ./injection:/home/pentaho/kpt-cdc-to-rdb/to_rdb/group_to_table.injection
     networks:
       - test-kpt
   # TODO waiting rdb_table and rdb_cloumn mapping support
