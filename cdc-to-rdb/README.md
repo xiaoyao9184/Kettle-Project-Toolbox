@@ -9,23 +9,12 @@ RDB is any relational-data model compatible with kettle JDBC database.
 *Support by KPT*
 
 
-## Build
-
-in root of this project
-
-```sh
-DOCKER_BUILDKIT=1 docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
-```
-
-```bat
-SET DOCKER_BUILDKIT=1&& docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
-```
-
-
 ## Prepare
 
 No matter what CDC producer is used, 
-It is recommended to use one topic to contain all data change events.
+It is first recommended to use one topic to contain all data change events.
+Second recommended to use one-table to one-topic mode.
+All topics are recommended only used by this project.
 
 [debezium](https://github.com/debezium) output structure change and data change to 2 topics, 
 this project will only use the data change topic.
@@ -76,8 +65,28 @@ Developed based on Debezium v1.7, canal v1.1.5
 |  | GEOMETRYCOLLECTION | STRUCT | no |
 |  | _other type on debezium doc_ | | yes |
 
+| Debezium with schema registry | schema format | support | tip |
+|:-----:|:-----:|:-----:|:-----:|
+| NONE | connect_json | yes | MUST enable schema see [key.converter.schemas.enable](https://debezium.io/documentation/reference/stable/configuration/avro.html) |
+| Confluent/schema-registry | avro | yes | Bytes data (binary or big number) will use unformatted string not base64, String with only spaces will be converted to null |
+| Confluent/schema-registry | json | yes | debezium needs to add kafka-connect-json-schema-converter library patches |
+| Confluent/schema-registry | protobuf | no | protobuf not support decimal |
+| Apicurio/registry | avro | no | |
+| Apicurio/registry | json | no | |
+| Apicurio/registry | protobuf | no | |
 
-## Test
+
+## Build
+
+in root of this project
+
+```sh
+DOCKER_BUILDKIT=1 docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
+```
+
+```bat
+SET DOCKER_BUILDKIT=1&& docker build -t xiaoyao9184/kpt-cdc-to-rdb:dev -f ./cdc-to-rdb/Dockerfile . 
+```
 
 go inside container 
 
@@ -101,15 +110,43 @@ docker run ^
  --entrypoint="/bin/bash" ^
  xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
+```powershell
+# powershell for linux docker
+docker run `
+ --rm `
+ -it `
+ -e TZ=Asia/Hong_Kong `
+ -v /etc/localtime:/etc/localtime:ro `
+ --entrypoint="/bin/bash" `
+ xiaoyao9184/kpt-cdc-to-rdb:dev
+```
 
 then you can run any KPT script like this
 
 ```sh
-bash kpt.flow.UseProfileConfigRun.sh Basic test,canal-mysql-pgsql
+bash kpt.flow.UseProfileConfigRun.sh
 ```
 
 
-## Run
+## Use
+
+Here is a docker image that can be used on docker hub
+
+```sh
+docker pull xiaoyao9184/kpt-cdc-to-rdb:latest
+```
+
+The docker tag is same as git commit hash short
+
+However, To run this project you need:
+
+- some environment variables, see [Run](#Run)
+- an [config.xml](./config.xml), see [Customize](#Customize)
+
+You can refer to the docker-compose.yml in this [directory](./_test-container/this/) to configure your own docker-compose.yml
+
+
+### Run
 
 just run and print log to shell
 
@@ -117,9 +154,10 @@ just run and print log to shell
 docker run \
  --rm \
  -it \
- -e PROFILE=test,canal-mysql-pgsql \
+ -e KPT_KETTLE_PARAM_ProfileName=test,canal-mysql-pgsql \
  -e TZ=Asia/Hong_Kong \
  -v /etc/localtime:/etc/localtime:ro \
+ -v ./config.xml:/home/pentaho/kpt-cdc-to-rdb/config.xml \
  xiaoyao9184/kpt-cdc-to-rdb:dev
 ```
 
@@ -135,8 +173,53 @@ run as stack in swarm
 docker stack deploy -c ./cdc-to-rdb/_test-container/this/mysql-reroute/docker-compose.yml kpt-cdc-to-pgsql
 ```
 
+some environment variable
 
-## Customize
+- ENABLE_PATTERN_TOPIC
+- ENABLE_SCHEMA_REGISTRY
+- KPT_LOG_PATH
+- KPT_KETTLE_LEVEL
+- KPT_KETTLE_LOGFILE
+- KPT_KETTLE_PARAM_ProfileName
+
+
+##### ENABLE_PATTERN_TOPIC
+
+If you want to read multiple kafka topics, set it to 'true'.
+
+debezium default use one table output one topic, 
+the advantage of this is that the data schema is the same or compatible, 
+and ksql can be used to convert the stream data model in the topic into a table data model, 
+so it is convenient to deal with strong typing.
+
+But read multiple topics by use regex pattern is not support in kettle,
+use this environment variable, replace Kettle big data kafka plugin.
+
+see [pentaho-big-data-kettle-plugins-kafka](./.kpt/lib/pentaho-big-data-kettle-plugins-kafka-9.2.0.0-290/)
+
+
+##### ENABLE_SCHEMA_REGISTRY
+
+If you use the schema registry, set it to 'true'.
+
+Use schema registry to reduce redundant schemas, 
+at the same time, 
+the schema part will not be included in the kafka topic, 
+and it needs to be obtained from the schema registry through the HTTP api when using it. 
+
+This needs to introduce [kafka-serde-tools-package](https://github.com/confluentinc/schema-registry) and solve the conflict problem of related dependencies in kettle after importing the class library.
+
+see [kpt-schema-package](./kpt-schema-package/) [link_libs](./.kpt/lib/link_libs.ps1)
+
+
+##### KPT_* environment variable
+
+Environment variables starting with 'KPT' are defined by scripts in the KPT project.
+
+see [this](./../shell/README.md)
+
+
+### Customize
 
 See [config.xml] like this, 
 you need to define all `cfg` tags that appear below,
@@ -273,7 +356,7 @@ services:
     image: xiaoyao9184/kpt-cdc-to-rdb:dev
     # Activate the profile list in the configuration file, this time use 'prod' and 'debezium-mysql-pgsql'
     environment:
-      - PROFILE: prod,debezium-mysql-pgsql
+      - KPT_KETTLE_PARAM_ProfileName: prod,debezium-mysql-pgsql
     # Overwrite internal configuration files
     configs:
       - source: config.xml
