@@ -30,6 +30,10 @@ SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/cdc_to_batch.prototype
 
+SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Batch_Duration=10000
+SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Batch_Max=100
+SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Batch_Size=100
+SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Server_Bootstrap=kafka:59094
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Consumer_Group=cdc_to_batch.test-%_datetime%
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic=test_debezium_mysql-test_kpt_cdc-avro.data-changes
 SET KPT_KETTLE_PARAM_ParamBatchPath=/_test-prototype

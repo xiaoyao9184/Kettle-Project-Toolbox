@@ -25,6 +25,7 @@ SET KPT_KETTLE_TRANS=_test-prototype/batch_formatter.test
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Format=schema_registry_avro
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic=test_debezium_mysql-test_kpt_cdc-avro.data-changes
 SET KPT_KETTLE_PARAM_ParamCsvPath=_test-prototype/cdc_to_batch.test
+SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Schema_Registry=http://me:58081
 
 SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_formatter.%KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Format%.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
