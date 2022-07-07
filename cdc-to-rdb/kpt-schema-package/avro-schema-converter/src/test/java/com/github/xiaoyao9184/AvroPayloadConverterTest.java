@@ -64,7 +64,7 @@ public class AvroPayloadConverterTest {
                 .get();
 
         AvroPayloadConverter converter = new AvroPayloadConverter("http://me:58081");
-        String json = converter.toConnectJson(payload, false, null);
+        String json = converter.toConnectJson(false, payload);
 
         assertThat(json, hasJsonPath("$.databaseName"));
         assertThat(json, hasJsonPath("$.__dbz__physicalTableIdentifier"));
@@ -98,7 +98,7 @@ public class AvroPayloadConverterTest {
         AvroSchema avroSchema = new AvroSchema(schema);
 
         AvroPayloadConverter converter = new AvroPayloadConverter("mock://me:58081");
-        String json = converter.toConnectJson(payload, false, avroSchema);
+        String json = converter.toConnectJson(false, payload, avroSchema);
 
         assertThat(json, hasJsonPath("$.databaseName"));
         assertThat(json, hasJsonPath("$.__dbz__physicalTableIdentifier"));
@@ -125,7 +125,7 @@ public class AvroPayloadConverterTest {
                 .get();
 
         AvroPayloadConverter converter = new AvroPayloadConverter("http://me:58081");
-        String json = converter.toConnectJson(payload,false,null);
+        String json = converter.toConnectJson(false,payload);
 
         assertThat(json, hasJsonPath("$.before"));
         assertThat(json, hasJsonPath("$.after"));
@@ -180,7 +180,7 @@ public class AvroPayloadConverterTest {
         AvroSchema avroSchema = new AvroSchema(schema);
 
         AvroPayloadConverter converter = new AvroPayloadConverter("mock://me:58081");
-        String json = converter.toConnectJson(payload,false,avroSchema);
+        String json = converter.toConnectJson(false,payload,avroSchema);
 
         assertThat(json, hasJsonPath("$.before"));
         assertThat(json, hasJsonPath("$.after"));
@@ -228,7 +228,7 @@ public class AvroPayloadConverterTest {
                 .get();
 
         AvroPayloadConverter converter = new AvroPayloadConverter("http://me:58081");
-        Tuple2<String,AvroSchema> connectJsonWithSchema = converter.toConnectJsonWithSchema(payload,false);
+        Tuple2<String,AvroSchema> connectJsonWithSchema = converter.toConnectJsonWithSchema(false,payload);
 
         String msg = connectJsonWithSchema._1();
 
@@ -262,7 +262,7 @@ public class AvroPayloadConverterTest {
 
         AvroSchema avroSchema = connectJsonWithSchema._2();
         AvroSchemaConverter schemaConverter = new AvroSchemaConverter(10);
-        String schema = schemaConverter.toConnectJson(avroSchema,false);
+        String schema = schemaConverter.toConnectJson(false,avroSchema);
 
         assertThat(schema, hasJsonPath("$.type"));
         assertThat(schema, hasJsonPath("$.fields"));

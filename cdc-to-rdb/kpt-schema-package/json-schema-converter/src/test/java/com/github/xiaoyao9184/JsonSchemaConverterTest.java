@@ -25,7 +25,7 @@ public class JsonSchemaConverterTest {
         String schema = readSchemaJson(1);
 
         JsonSchemaConverter converter = new JsonSchemaConverter(10);
-        String json = converter.toConnectJson(schema,true);
+        String json = converter.toConnectJson(true,schema);
 
         assertThat(json, hasJsonPath("$.type"));
         assertThat(json, hasJsonPath("$.fields"));

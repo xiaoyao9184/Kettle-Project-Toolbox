@@ -37,13 +37,13 @@ public class JsonSchemaConverter {
         this.jsonConverterKey.configure(config,true);
 
         this.jsonConverterMsg = new JsonConverter();
-        this.jsonConverterKey.configure(config,false);
+        this.jsonConverterMsg.configure(config,false);
 
         this.objectMapper = Jackson.newObjectMapper();
     }
 
-    public String toConnectJson(String schema, boolean isKey) {
-        if(schema == null){
+    public String toConnectJson(boolean isKey, String schema) {
+        if(schema == null) {
             return null;
         }
         JsonSchema jsonSchema = new JsonSchema(schema);

@@ -42,15 +42,15 @@ public class AvroSchemaConverter {
         this.objectMapper = Jackson.newObjectMapper();
     }
 
-    public String toConnectJson(String schema, boolean isKey){
+    public String toConnectJson(boolean isKey, String schema) {
         if (schema == null) {
             return null;
         }
         AvroSchema avroSchema = new AvroSchema(schema);
-        return this.toConnectJson(avroSchema,isKey);
+        return this.toConnectJson(isKey,avroSchema);
     }
 
-    public String toConnectJson(AvroSchema avroSchema, boolean isKey){
+    public String toConnectJson(boolean isKey, AvroSchema avroSchema) {
         if (avroSchema == null) {
             return null;
         }

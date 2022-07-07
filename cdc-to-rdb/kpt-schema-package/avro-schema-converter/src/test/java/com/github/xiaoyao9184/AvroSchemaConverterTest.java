@@ -26,7 +26,7 @@ public class AvroSchemaConverterTest {
         String schema = readSchemaJson(1);
 
         AvroSchemaConverter converter = new AvroSchemaConverter(10);
-        String json = converter.toConnectJson(schema,true);
+        String json = converter.toConnectJson(true,schema);
 
         assertThat(json, hasJsonPath("$.type"));
         assertThat(json, hasJsonPath("$.fields"));
