@@ -31,7 +31,7 @@ SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_debezium
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mysql_playload
 SET KPT_KETTLE_PARAM_ParamExecutorTransformation=group_to_file.result
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
-SET KPT_KETTLE_PARAM_ParamJsonFile=../batch_formatter.test/connect_json.schema.json
+SET KPT_KETTLE_PARAM_ParamJsonFile=../batch_formatter.test/connect_json/test_debezium_mysql-test_kpt_cdc-reroute.data-changes.json
 SET KPT_KETTLE_PARAM_ParamOutputFlag=connect_json
 
 
