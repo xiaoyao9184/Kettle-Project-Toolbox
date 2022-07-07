@@ -1910,8 +1910,12 @@ for (index = 0; index &lt; fieldNames.length; index++) {
     var value = row[index];
     outMate.setConversionMask(null);
     if(value != null &amp;&amp; value.length() != 0) {
-      var mask = inMeta.getConversionMask().split(',');
-      var format = mask[2];
+      var cm = inMeta.getConversionMask();
+      if(cm == null) {
+        cm = "";
+      }
+      var mask = cm.split(',');
+      var format = mask.length > 2 ? mask[2] : "ISO-8859-1";
       
       var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
       if(isBase64 &amp;&amp; format == "base64") {
@@ -1921,7 +1925,7 @@ for (index = 0; index &lt; fieldNames.length; index++) {
       }
       var bytes = isBase64 ? 
         Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
-        value.getBytes();
+        value.getBytes(format);
       //debug
       var content = "";
       content = content + 'source:' + value + "\n";
@@ -4328,10 +4332,14 @@ for (index = 0; index &lt; fieldNames.length; index++) {
     var value = row[index];
     outMate.setConversionMask(null);
     if(value != null &amp;&amp; value.length() != 0) {
-      var mask = inMeta.getConversionMask().split(',');
+      var cm = inMeta.getConversionMask();
+      if(cm == null) {
+        cm = "";
+      }
+      var mask = cm.split(',');
       var precision = str2num(mask[0]);
       var scale = str2num(mask[1]);
-      var format = mask[2];
+      var format = mask.length > 2 ? mask[2] : "ISO-8859-1";
       
       var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
       if(isBase64 &amp;&amp; format == "base64") {
@@ -4341,7 +4349,7 @@ for (index = 0; index &lt; fieldNames.length; index++) {
       }
       var bytes = isBase64 ? 
         Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
-        value.getBytes();
+        value.getBytes(format);
       var bi = new Packages.java.math.BigInteger(bytes);
       var bd = new java.math.BigDecimal(bi,scale);
       //debug
