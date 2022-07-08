@@ -24,17 +24,17 @@ function Clear-Service {
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
-
-        $_topic = $_profile -split "," | ForEach-Object {
-            Write-Host "process profile $_ for _topic"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Log' and @key='Topic']"
-            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
-            return $_node ? $_node.node.InnerXML : $null
-        } | Where-Object { $_ } | Select-Object -First 1
     
         $_group = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _group"
             $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Consumer' and @key='Group']"
+            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
+            return $_node ? $_node.node.InnerXML : $null
+        } | Where-Object { $_ } | Select-Object -First 1
+
+        $_topic = $_profile -split "," | ForEach-Object {
+            Write-Host "process profile $_ for _topic"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Log.Kafka' and @key='Topic']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
