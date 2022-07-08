@@ -47,7 +47,7 @@ function Clear-Service {
         
         Write-Host "${_pg_user}:${_pg_password}@${_pg_host}:${_pg_port}/${_pg_database}"
     
-        $_name = $Name -join "__"
+        $_name = ($Name + $Service) -join "__"
 
         (Get-Content "$Workspace/../kpt_cdc_log/clear.sql").replace('kpt_cdc_log', "$_pg_log_schema") `
             | Set-Content "$Workspace/../kpt_cdc_log/$_name.sql"
@@ -76,6 +76,7 @@ function Clear-Workspace {
     )
     process {
         Write-Host "Run $Name in $Workspace"
+        $workspace_name = Split-Path -LeafBase $workspace
 
         [string[]]$_file_lines = Get-Content "$Workspace/docker-compose.yml"
         $_file_content = ''
@@ -84,7 +85,7 @@ function Clear-Workspace {
 
         $ComposeYaml.services.Keys | ForEach-Object {
             Write-Host "process service $_"
-            Clear-Service ($Name + $_) $Workspace $ComposeYaml $_
+            Clear-Service ($Name + $workspace_name) $Workspace $ComposeYaml $_
         } 
     }
     

@@ -41,19 +41,19 @@ function Clear-Service {
     
         Write-Host "${_group}@${_bootstrap}/${_topic}"
 
-        $_name = ($Name + "offset") -join "__"
+        $_name = ($Name + $Service + "offset") -join "__"
         docker run -it --rm --name $_name `
             $_network `
             wurstmeister/kafka:2.13-2.7.0 bash -c `
             "kafka-consumer-groups.sh --bootstrap-server $_bootstrap --group $_group  --topic $_topic --reset-offsets --to-offset 0 --execute"
     
-        $_name = ($Name + "group") -join "__"
+        $_name = ($Name + $Service + "group") -join "__"
         docker run -it --rm --name $_name `
             $_network `
             wurstmeister/kafka:2.13-2.7.0 bash -c `
             "kafka-consumer-groups.sh --bootstrap-server $_bootstrap --group $_group --delete"
     
-        $_name = ($Name + "topic") -join "__"
+        $_name = ($Name + $Service + "topic") -join "__"
         docker run -it --rm --name $_name `
             $_network `
             wurstmeister/kafka:2.13-2.7.0 bash -c `
@@ -71,6 +71,7 @@ function Clear-Workspace {
     )
     process {
         Write-Host "Run $Name in $Workspace"
+        $workspace_name = Split-Path -LeafBase $workspace
 
         [string[]]$_file_lines = Get-Content "$Workspace/docker-compose.yml"
         $_file_content = ''
@@ -79,7 +80,7 @@ function Clear-Workspace {
 
         $ComposeYaml.services.Keys | ForEach-Object {
             Write-Host "process service $_"
-            Clear-Service ($Name + $_) $Workspace $ComposeYaml $_
+            Clear-Service ($Name + $workspace_name) $Workspace $ComposeYaml $_
         } 
     }
     
