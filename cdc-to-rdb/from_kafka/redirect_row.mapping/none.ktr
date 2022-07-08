@@ -1,12 +1,12 @@
 <transformation>
   <info>
-    <name>batch_to_none.stream</name>
+    <name>none</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype</directory>
+    <directory>/from_kafka/redirect_row.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -415,8 +415,8 @@
     <feedback_size>50000</feedback_size>
     <using_thread_priorities>Y</using_thread_priorities>
     <shared_objects_file/>
-    <capture_step_performance>Y</capture_step_performance>
-    <step_performance_capturing_delay>60000</step_performance_capturing_delay>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
     <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
     <dependencies>
     </dependencies>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/07/08 15:06:25.797</modified_date>
+    <modified_date>2022/07/08 14:23:43.914</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -437,14 +437,29 @@
   </notepads>
   <order>
     <hop>
-      <from>Get records from stream</from>
-      <to>Dummy: return to kafka</to>
+      <from>SelectValues: remove&amp;rename</from>
+      <to>MappingOutput: redirect_row.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>DataGrid: test</from>
+      <to>Calculator: redirect_*</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: redirect_row.mapping</from>
+      <to>Calculator: redirect_*</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: redirect_*</from>
+      <to>SelectValues: remove&amp;rename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Dummy: return to kafka</name>
-    <type>Dummy</type>
+    <name>DataGrid: test</name>
+    <type>DataGrid</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -453,6 +468,305 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <fields>
+      <field>
+        <name>kafka_partition</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_offset</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>kafka_timestamp</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>Date</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>source_row</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+    </fields>
+    <data>
+      <line>
+        <item/>
+        <item>0</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>r</item>
+        <item>s</item>
+        <item>t1</item>
+        <item>row1</item>
+      </line>
+      <line>
+        <item/>
+        <item>2</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>c</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row1</item>
+      </line>
+      <line>
+        <item/>
+        <item>3</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row2</item>
+      </line>
+      <line>
+        <item/>
+        <item>4</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>u</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row3</item>
+      </line>
+      <line>
+        <item/>
+        <item>5</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>r</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row1</item>
+      </line>
+      <line>
+        <item/>
+        <item>6</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>r</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row2</item>
+      </line>
+      <line>
+        <item/>
+        <item>7</item>
+        <item>1</item>
+        <item/>
+        <item/>
+        <item>r</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row3</item>
+      </line>
+      <line>
+        <item/>
+        <item>8</item>
+        <item>2</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row1</item>
+      </line>
+      <line>
+        <item/>
+        <item>9</item>
+        <item>2</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row2</item>
+      </line>
+      <line>
+        <item/>
+        <item>10</item>
+        <item>2</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t2</item>
+        <item>row3</item>
+      </line>
+      <line>
+        <item/>
+        <item>11</item>
+        <item>2</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row1</item>
+      </line>
+      <line>
+        <item/>
+        <item>12</item>
+        <item>2</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row2</item>
+      </line>
+      <line>
+        <item/>
+        <item>13</item>
+        <item>2</item>
+        <item/>
+        <item/>
+        <item>d</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row3</item>
+      </line>
+      <line>
+        <item/>
+        <item>14</item>
+        <item>3</item>
+        <item/>
+        <item/>
+        <item>c</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row1</item>
+      </line>
+      <line>
+        <item/>
+        <item>15</item>
+        <item>3</item>
+        <item/>
+        <item/>
+        <item>c</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row2</item>
+      </line>
+      <line>
+        <item/>
+        <item>16</item>
+        <item>3</item>
+        <item/>
+        <item/>
+        <item>c</item>
+        <item>s</item>
+        <item>t3</item>
+        <item>row3</item>
+      </line>
+      <line>
+        <item/>
+        <item>17</item>
+        <item>4</item>
+        <item/>
+        <item/>
+        <item>c</item>
+        <item>s</item>
+        <item>t1</item>
+        <item>row2</item>
+      </line>
+    </data>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -462,14 +776,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
+      <xloc>144</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Get records from stream</name>
-    <type>RecordsFromStream</type>
+    <name>MappingInput: redirect_row.mapping</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -481,13 +795,13 @@
     <fields>
       <field>
         <name>kafka_key</name>
-        <type>Binary</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
         <name>kafka_message</name>
-        <type>Binary</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -515,6 +829,43 @@
         <length>-1</length>
         <precision>-1</precision>
       </field>
+      <field>
+        <name>batch_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>batch_time</name>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_schema</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_table</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_row</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <select_unspecified>N</select_unspecified>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -527,6 +878,162 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingOutput: redirect_row.mapping</name>
+    <type>MappingOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: remove&amp;rename</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>redirect_range</name>
+        <rename>redirect_range</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator: redirect_*</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>redirect_row</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>source_row</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>redirect_offset</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>kafka_offset</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>redirect_operate</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>source_operate</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <calculation>
+      <field_name>redirect_range</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>kafka_offset</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

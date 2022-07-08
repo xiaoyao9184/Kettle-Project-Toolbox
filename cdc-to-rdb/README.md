@@ -287,7 +287,21 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Kafka.Log" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
             
 			<!-- see from_kafka/batch_formatter.mapping -->
+			<!-- 'connect_json' json without schema-registry -->
+			<!-- 'schema_registry_avro' avro with schema-registry -->
+			<!-- 'schema_registry_json' json with schema-registry -->
 			<cfg namespace="Config.CDC.Kafka.Data" key="Format">connect_json</cfg>
+
+			<!-- see from_kafka/batch_group_logger.mapping -->
+			<cfg namespace="Config.Batch.Group.Logger" key="Mapping">log_json_to_kafka</cfg>
+
+			<!-- see from_kafka/group_table.mapping -->
+			<cfg namespace="Config.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
+
+			<!-- see from_kafka/redirect_row.mapping/README.md -->
+			<!-- 'none' no redirect -->
+			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->
+			<cfg namespace="Config.Batch.Redirect.Row" key="Mapping">none</cfg>
 
 		<!-- source of cdc -->
 			<!-- can be 'from_debezium' of 'from_canal' -->
