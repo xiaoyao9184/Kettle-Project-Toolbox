@@ -35,8 +35,8 @@
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-json-default\.[^_].*</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Format">schema_registry_json</cfg>
             <cfg namespace="Config.CDC.Kafka.Schema" key="Registry">http://schema-registry:8081</cfg>
+            
             <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-json-default._logger</cfg>
-
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
@@ -98,8 +98,8 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-json-default\.[^_].*</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Format">schema_registry_json</cfg>
             <cfg namespace="Config.CDC.Kafka.Schema" key="Registry">http://schema-registry:8081</cfg>
+            
             <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-json-default._logger</cfg>
-
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>

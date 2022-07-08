@@ -33,8 +33,8 @@
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220520</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.time_connect.data-changes</cfg>
-            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-time_connect.kpt-cdc-log</cfg>
             
+            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-time_connect.kpt-cdc-log</cfg>
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
@@ -92,8 +92,8 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.chameleon.20220128</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-time_connect.data-changes</cfg>
-            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-time_connect.kpt-cdc-log</cfg>
             
+            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-time_connect.kpt-cdc-log</cfg>
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
