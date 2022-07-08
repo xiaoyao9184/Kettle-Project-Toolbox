@@ -24,7 +24,7 @@ SET KPT_KETTLE_TRANS=_test-prototype/group_to_table.test
 @REM SET KPT_KETTLE_LEVEL=Rowlevel
 
 
-SET KPT_KETTLE_PARAM_Config_Batch_Group_Logger_Mapping=log_json_to_kettle
+SET KPT_KETTLE_PARAM_Config_CDC_Log_Batch_Group_Mapping=log_json_to_kettle
 SET KPT_KETTLE_PARAM_Config_CDC_Debug_Delay_Injection_Crud_Time=0
 SET KPT_KETTLE_PARAM_Config_CDC_Debug_Delay_Injection_Field_Time=0
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Column_Mapping=mysql_schema

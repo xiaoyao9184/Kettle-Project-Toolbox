@@ -9,7 +9,7 @@
     <directory>/_test-prototype</directory>
     <parameters>
       <parameter>
-        <name>Config.Batch.Group.Logger.Mapping</name>
+        <name>Config.CDC.Log.Group.Mapping</name>
         <default_value>log_json_to_kettle</default_value>
         <description/>
       </parameter>
@@ -2550,7 +2550,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Log.Group.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/batch_group_logger.mapping</directory_path>
     <mappings>
@@ -2619,7 +2619,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Log.Group.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/batch_group_logger.mapping</directory_path>
     <mappings>
@@ -2688,7 +2688,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Log.Group.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/batch_group_logger.mapping</directory_path>
     <mappings>
@@ -2757,7 +2757,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Log.Group.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/batch_group_logger.mapping</directory_path>
     <mappings>

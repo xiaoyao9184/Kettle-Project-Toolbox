@@ -296,7 +296,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
 
 			<!-- see from_kafka/batch_group_logger.mapping -->
-			<cfg namespace="Config.Batch.Group.Logger" key="Mapping">log_json_to_kafka</cfg>
+			<cfg namespace="Config.CDC.Log.Group" key="Mapping">log_json_to_kafka</cfg>
 
 			<!-- see from_kafka/group_table.mapping -->
 			<cfg namespace="Config.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
