@@ -9,7 +9,12 @@
     <directory>/to_rdb</directory>
     <parameters>
       <parameter>
-        <name>Config.Batch.Group.Logger.Mapping</name>
+        <name>Config.CDC.Log.RDB.Schema</name>
+        <default_value>kpt_cdc_log</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Log.Group.Mapping</name>
         <default_value>log_json_to_kafka</default_value>
         <description/>
       </parameter>
@@ -92,7 +97,7 @@
     <log>
       <trans-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>group_to_table__trans</table>
         <size_limit_lines>10000</size_limit_lines>
         <interval>60</interval>
@@ -206,7 +211,7 @@
       </trans-log-table>
       <perf-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>group_to_table__seq</table>
         <interval>60</interval>
         <timeout_days>300</timeout_days>
@@ -288,7 +293,7 @@
       </perf-log-table>
       <channel-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>group_to_table__channel</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -354,7 +359,7 @@
       </channel-log-table>
       <step-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>group_to_table__step</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -430,7 +435,7 @@
       </step-log-table>
       <metrics-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>group_to_table__metrics</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -5223,7 +5228,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Group.Logger.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Log.Group.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/batch_group_logger.mapping</directory_path>
     <mappings>

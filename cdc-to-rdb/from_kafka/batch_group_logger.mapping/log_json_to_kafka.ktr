@@ -14,7 +14,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Kafka.Log.Topic</name>
+        <name>Config.CDC.Log.Kafka.Topic</name>
         <default_value/>
         <description/>
       </parameter>
@@ -662,7 +662,7 @@
     <connectionType>DIRECT</connectionType>
     <directBootstrapServers>${Config.CDC.Kafka.Server.Bootstrap}</directBootstrapServers>
     <clusterName/>
-    <topic>${Config.CDC.Kafka.Log.Topic}</topic>
+    <topic>${Config.CDC.Log.Kafka.Topic}</topic>
     <clientId>${Config.CDC.Kafka.Consumer.Group}</clientId>
     <keyField>log_key</keyField>
     <messageField>log_message</messageField>

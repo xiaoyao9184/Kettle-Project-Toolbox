@@ -33,7 +33,9 @@
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220520</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-binary_bytes.data-changes</cfg>
-            <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log</cfg>
+            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log</cfg>
+            
+            <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
@@ -69,7 +71,8 @@ Config.CDC.Kafka.Batch.Max	10000
 Config.CDC.Kafka.Server.Bootstrap	kafka:59094	
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.manual.20220128	
 Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.data-changes		
-Config.CDC.Kafka.Log.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log
+Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
 Config.CDC.Source.Row.Mapping	mysql_playload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
@@ -89,7 +92,9 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.chameleon.20220128</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-binary_bytes.data-changes</cfg>
-            <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log</cfg>
+            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log</cfg>
+            
+            <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
@@ -125,7 +130,8 @@ Config.CDC.Kafka.Batch.Max	10000
 Config.CDC.Kafka.Server.Bootstrap	kafka:59094	
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.chameleon.20220128	
 Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.data-changes		
-Config.CDC.Kafka.Log.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log
+Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
 Config.CDC.Source.Row.Mapping	mysql_playload	
 Config.CDC.Source.Column.Mapping	mysql_schema	

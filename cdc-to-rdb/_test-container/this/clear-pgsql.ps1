@@ -49,10 +49,13 @@ function Clear-Service {
     
         $_name = $Name -join "__"
 
+        (Get-Content "$Workspace/../kpt_cdc_log/clear.sql").replace('kpt_cdc_log', "$_pg_log_schema") `
+            | Set-Content "$Workspace/../kpt_cdc_log/$_name.sql"
+
         docker run -it --rm --name $_name `
             $_network `
             --mount "type=bind,source=$Workspace/clear.sql,destination=/pgconf/clear-data.sql" `
-            --mount "type=bind,source=$Workspace/../kpt_cdc_log/clear.sql,destination=/pgconf/clear-log.sql" `
+            --mount "type=bind,source=$Workspace/../kpt_cdc_log/$_name.sql,destination=/pgconf/clear-log.sql" `
             --env MODE=sqlrunner `
             --env PG_USER=$_pg_user `
             --env PG_PASSWORD=$_pg_password `

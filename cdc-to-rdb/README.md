@@ -284,7 +284,6 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
 			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
 			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
-			<cfg namespace="Config.CDC.Kafka.Log" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
             
 			<!-- see from_kafka/batch_formatter.mapping -->
 			<!-- 'connect_json' json without schema-registry -->
@@ -292,8 +291,12 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- 'schema_registry_json' json with schema-registry -->
 			<cfg namespace="Config.CDC.Kafka.Data" key="Format">connect_json</cfg>
 
+		<!-- logger of cdc -->
+			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
+
 			<!-- see from_kafka/batch_group_logger.mapping -->
-			<cfg namespace="Config.Batch.Group.Logger" key="Mapping">log_json_to_kafka</cfg>
+			<cfg namespace="Config.CDC.Log.Group" key="Mapping">log_json_to_kafka</cfg>
 
 			<!-- see from_kafka/group_table.mapping -->
 			<cfg namespace="Config.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
