@@ -292,6 +292,9 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- 'schema_registry_json' json with schema-registry -->
 			<cfg namespace="Config.CDC.Kafka.Data" key="Format">connect_json</cfg>
 
+		<!-- logger of cdc -->
+			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+
 			<!-- see from_kafka/batch_group_logger.mapping -->
 			<cfg namespace="Config.Batch.Group.Logger" key="Mapping">log_json_to_kafka</cfg>
 

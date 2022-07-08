@@ -8,11 +8,16 @@
     <trans_status>0</trans_status>
     <directory>/from_kafka/batch_group_marker.result</directory>
     <parameters>
+      <parameter>
+        <name>Config.CDC.Log.RDB.Schema</name>
+        <default_value>kpt_cdc_log</default_value>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>${Internal.Transformation.Name}__trans</table>
         <size_limit_lines>100</size_limit_lines>
         <interval>60</interval>
@@ -126,7 +131,7 @@
       </trans-log-table>
       <perf-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>${Internal.Transformation.Name}__seq</table>
         <interval>60</interval>
         <timeout_days>300</timeout_days>
@@ -208,7 +213,7 @@
       </perf-log-table>
       <channel-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>${Internal.Transformation.Name}__channel</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -274,7 +279,7 @@
       </channel-log-table>
       <step-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>${Internal.Transformation.Name}__step</table>
         <timeout_days>300</timeout_days>
         <field>
@@ -350,7 +355,7 @@
       </step-log-table>
       <metrics-log-table>
         <connection>db_kpt_cdc_rdb_writer</connection>
-        <schema>kpt_cdc_log</schema>
+        <schema>${Config.CDC.Log.RDB.Schema}</schema>
         <table>${Internal.Transformation.Name}__metrics</table>
         <timeout_days>300</timeout_days>
         <field>
