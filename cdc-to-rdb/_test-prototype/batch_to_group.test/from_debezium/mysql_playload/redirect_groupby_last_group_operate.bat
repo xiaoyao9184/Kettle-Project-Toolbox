@@ -25,7 +25,7 @@ SET KPT_KETTLE_TRANS=_test-prototype/batch_to_group.test
 
 
 SET KPT_KETTLE_PARAM_Config_Batch_Group_Logger_Mapping=log_json_to_kettle
-SET KPT_KETTLE_PARAM_Config_Batch_Redirect_Row_Mapping=sort_by_row_last
+SET KPT_KETTLE_PARAM_Config_Batch_Redirect_Row_Mapping=group_by_row_last
 SET KPT_KETTLE_PARAM_Config_Batch_Group_Table_Mapping=sort_by_table_operate
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_debezium
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mysql_playload
@@ -34,7 +34,7 @@ SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
 SET KPT_KETTLE_PARAM_ParamJsonFile=from_debezium/mysql_playload.json
 
 
-SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.mysql_playload.bat
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.mysql_playload.redirect_groupby_last_group_operate.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 0
 
