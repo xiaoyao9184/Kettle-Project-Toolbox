@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>sort_by_row_last</name>
+    <name>group_by_row_last</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -8,26 +8,6 @@
     <trans_status>0</trans_status>
     <directory>/from_kafka/redirect_row.mapping</directory>
     <parameters>
-      <parameter>
-        <name>CursorFristRowOperate</name>
-        <default_value>NONE</default_value>
-        <description>first operate of row</description>
-      </parameter>
-      <parameter>
-        <name>CursorLastRowOffset</name>
-        <default_value>-1</default_value>
-        <description>last offset of row</description>
-      </parameter>
-      <parameter>
-        <name>CursorLastRowOperate</name>
-        <default_value>NONE</default_value>
-        <description>last operate of row</description>
-      </parameter>
-      <parameter>
-        <name>CursorRangeRowOffset</name>
-        <default_value/>
-        <description>range offset of row</description>
-      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -449,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/07/08 14:10:18.564</modified_date>
+    <modified_date>2022/07/08 14:10:14.270</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -467,8 +447,28 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>DataGrid: test</from>
+      <to>SortRows: schema+table+row + kafka_offset desc</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: redirect_row.mapping</from>
+      <to>SortRows: schema+table+row + kafka_offset desc</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>SortRows: schema+table+row + kafka_offset desc</from>
       <to>FieldsChangeSequence: desc_order</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>FieldsChangeSequence: desc_order</from>
+      <to>Constant: POINT</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>GroupBy: last+first</from>
+      <to>StreamLookup: operate_mapping_redirect</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -477,48 +477,23 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: schema+table+row + kafka_offset asc</from>
-      <to>FieldsChangeSequence: asc_order</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FieldsChangeSequence: desc_order</from>
-      <to>ScriptValueMod: redirect_offset</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FieldsChangeSequence: asc_order</from>
-      <to>ScriptValueMod: row_operate_first+row_offset_list</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: row_operate_first+row_offset_list</from>
-      <to>SortRows: schema+table+row + kafka_offset desc</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>DataGrid: test</from>
-      <to>SortRows: schema+table+row + kafka_offset asc</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: redirect_row.mapping</from>
-      <to>SortRows: schema+table+row + kafka_offset asc</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: redirect_offset</from>
-      <to>StreamLookup: operate_mapping_redirect</to>
+      <from>Calculator: schema_table schema_table_row</from>
+      <to>GroupBy: last+first</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Calculator: schema_table schema_table_row</from>
-      <to>SelectValues: remove&amp;rename</to>
+      <to>StreamLookup: redirect_operate+redirect_offset</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>StreamLookup: operate_mapping_redirect</from>
-      <to>Constant: POINT</to>
+      <to>StreamLookup: redirect_operate+redirect_offset</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: redirect_operate+redirect_offset</from>
+      <to>SelectValues: remove&amp;rename</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -526,7 +501,7 @@
     <name>Calculator: schema_table schema_table_row</name>
     <type>Calculator</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -574,7 +549,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1344</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -613,7 +588,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1216</yloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -847,8 +822,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>1056</yloc>
+      <xloc>992</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1211,7 +1186,71 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>768</yloc>
+      <yloc>352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>GroupBy: last+first</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>schema_table_row</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>source_operate_last</aggregate>
+        <subject>source_operate</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>source_operate_first</aggregate>
+        <subject>source_operate</subject>
+        <type>LAST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>kafka_offset_last</aggregate>
+        <subject>kafka_offset</subject>
+        <type>FIRST_INCL_NULL</type>
+        <valuefield/>
+      </field>
+      <field>
+        <aggregate>kafka_offset_range</aggregate>
+        <subject>kafka_offset</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>704</xloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1336,84 +1375,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1664</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ScriptValueMod: redirect_offset</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var LastRowOperate = getVariable("CursorLastRowOperate",'-1');
-var LastRowOffset = parseInt(getVariable("CursorLastRowOffset",'-1'),0);
-var RangeRowOffset = getVariable("CursorRangeRowOffset",'');
-if(desc_order == 1) {
-  // new row
-  LastRowOperate = source_operate;
-  setVariable("CursorLastRowOperate",LastRowOperate,'p');
-
-  LastRowOffset = kafka_offset;
-  setVariable("CursorLastRowOffset",LastRowOffset,'p');
-
-  RangeRowOffset = row_offset_list;
-  setVariable("CursorRangeRowOffset",RangeRowOffset,'p');
-}
-row_operate_last = LastRowOperate;
-row_offset_last = LastRowOffset;
-row_offset_range = RangeRowOffset;
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>row_operate_last</name>
-        <rename>row_operate_last</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>row_offset_last</name>
-        <rename>row_offset_last</rename>
-        <type>Integer</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>row_offset_range</name>
-        <rename>row_offset_range</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>896</yloc>
+      <yloc>1120</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1431,19 +1393,7 @@ row_offset_range = RangeRowOffset;
     <fields>
       <select_unspecified>N</select_unspecified>
       <remove>
-        <name>asc_order</name>
-      </remove>
-      <remove>
         <name>desc_order</name>
-      </remove>
-      <remove>
-        <name>row_operate_first</name>
-      </remove>
-      <remove>
-        <name>row_operate_last</name>
-      </remove>
-      <remove>
-        <name>row_offset_list</name>
       </remove>
       <remove>
         <name>POINT</name>
@@ -1468,57 +1418,6 @@ row_offset_range = RangeRowOffset;
         <currency_symbol/>
         <storage_type/>
       </meta>
-      <meta>
-        <name>operate_mapping_redirect</name>
-        <rename>redirect_operate</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>row_offset_range</name>
-        <rename>redirect_range</rename>
-        <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>row_offset_last</name>
-        <rename>redirect_offset</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1530,7 +1429,7 @@ row_offset_range = RangeRowOffset;
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1504</yloc>
+      <yloc>960</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1596,7 +1495,7 @@ row_offset_range = RangeRowOffset;
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>640</yloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1618,11 +1517,11 @@ row_offset_range = RangeRowOffset;
     <integer_pair>N</integer_pair>
     <lookup>
       <key>
-        <name>row_operate_first</name>
+        <name>source_operate_first</name>
         <field>operate_mapping_first</field>
       </key>
       <key>
-        <name>row_operate_last</name>
+        <name>source_operate_last</name>
         <field>operate_mapping_last</field>
       </key>
       <value>
@@ -1641,14 +1540,14 @@ row_offset_range = RangeRowOffset;
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
-      <yloc>1056</yloc>
+      <xloc>704</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>SortRows: schema+table+row + kafka_offset asc</name>
-    <type>SortRows</type>
+    <name>StreamLookup: redirect_operate+redirect_offset</name>
+    <type>StreamLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1657,153 +1556,35 @@ row_offset_range = RangeRowOffset;
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>source_schema</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>source_table</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>source_row</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FieldsChangeSequence: asc_order</name>
-    <type>FieldsChangeSequence</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <start>1</start>
-    <increment>1</increment>
-    <resultfieldName>asc_order</resultfieldName>
-    <fields>
-      <field>
-        <name>source_schema</name>
-      </field>
-      <field>
-        <name>source_table</name>
-      </field>
-      <field>
-        <name>source_row</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ScriptValueMod: row_operate_first+row_offset_list</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var FristRowOperate = getVariable("CursorFristRowOperate",'');
-var RangeRowOffset = getVariable("CursorRangeRowOffset",'');
-if(asc_order == 1) {
-  // new row
-  FristRowOperate = source_operate;
-  setVariable("CursorFristRowOperate",FristRowOperate,'p');
-
-  RangeRowOffset = "" + kafka_offset;
-  setVariable("CursorRangeRowOffset",RangeRowOffset,'p');
-} else {
-  RangeRowOffset = RangeRowOffset + "," + kafka_offset;
-  setVariable("CursorRangeRowOffset",RangeRowOffset,'p');
-}
-row_operate_first = FristRowOperate;
-row_offset_list = RangeRowOffset;
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>row_operate_first</name>
-        <rename>row_operate_first</rename>
+    <from>StreamLookup: operate_mapping_redirect</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>schema_table_row</name>
+        <field>schema_table_row</field>
+      </key>
+      <value>
+        <name>operate_mapping_redirect</name>
+        <rename>redirect_operate</rename>
+        <default/>
         <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-      <field>
-        <name>row_offset_list</name>
-        <rename>row_offset_list</rename>
+      </value>
+      <value>
+        <name>kafka_offset_last</name>
+        <rename>redirect_offset</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>kafka_offset_range</name>
+        <rename>redirect_range</rename>
+        <default/>
         <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
+      </value>
+    </lookup>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1814,7 +1595,7 @@ row_offset_list = RangeRowOffset;
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>480</yloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
