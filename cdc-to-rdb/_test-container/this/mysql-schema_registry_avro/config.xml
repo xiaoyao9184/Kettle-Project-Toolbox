@@ -37,6 +37,8 @@
             <cfg namespace="Config.CDC.Kafka.Schema" key="Registry">http://schema-registry:8081</cfg>
             <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log</cfg>
 
+            <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+            
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
@@ -74,6 +76,7 @@ Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-avro.data-changes
 Config.CDC.Kafka.Data.Format	schema_registry_avro		
 Config.CDC.Kafka.Schema.Registry	http://schema-registry:58081		
 Config.CDC.Kafka.Log.Topic	test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
 Config.CDC.Source.Row.Mapping	mysql_playload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
@@ -96,6 +99,8 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Data" key="Format">schema_registry_avro</cfg>
             <cfg namespace="Config.CDC.Kafka.Log" key="Topic">test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log</cfg>
 
+            <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+            
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
@@ -133,6 +138,7 @@ Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-avro.data-changes
 Config.CDC.Kafka.Data.Format	schema_registry_avro		
 Config.CDC.Kafka.Schema.Registry	http://schema-registry:58081		
 Config.CDC.Kafka.Log.Topic	test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
 Config.CDC.Source.Row.Mapping	mysql_playload	
 Config.CDC.Source.Column.Mapping	mysql_schema	

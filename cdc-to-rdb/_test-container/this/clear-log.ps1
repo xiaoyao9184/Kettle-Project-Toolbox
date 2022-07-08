@@ -82,6 +82,13 @@ function Clear-Service {
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
+    
+        $_pg_log_schema = $_profile -split "," | ForEach-Object {
+            Write-Host "process profile $_ for _pg_log_schema"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Log.RDB' and @key='Schema']"
+            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
+            return $_node ? $_node.node.InnerXML : $null
+        } | Where-Object { $_ } | Select-Object -First 1
 
         $_pg_user=$pg_root_user
         $_pg_password=$pg_root_password
@@ -90,9 +97,12 @@ function Clear-Service {
     
         $_name = $Name -join "__"
 
+        (Get-Content "$Workspace/../kpt_cdc_log/clear.sql").replace('kpt_cdc_log', "$_pg_log_schema") `
+            | Set-Content "$Workspace/../kpt_cdc_log/$_name.sql"
+
         docker run -it --rm --name $_name `
             $_network `
-            --mount "type=bind,source=$Workspace/../kpt_cdc_log/clear.sql,destination=/pgconf/clear-log.sql" `
+            --mount "type=bind,source=$Workspace/../kpt_cdc_log/$_name.sql,destination=/pgconf/clear-log.sql" `
             --env MODE=sqlrunner `
             --env PG_USER=$_pg_user `
             --env PG_PASSWORD=$_pg_password `
