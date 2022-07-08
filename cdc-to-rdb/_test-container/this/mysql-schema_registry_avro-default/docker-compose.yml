@@ -6,8 +6,10 @@ services:
     #   dockerfile: ./cdc-to-rdb/Dockerfile
     image: xiaoyao9184/kpt-cdc-to-rdb:dev
     environment:
+      ENABLE_PATTERN_TOPIC: "true"
+      ENABLE_SCHEMA_REGISTRY: "true"
       KPT_LOG_PATH: /home/pentaho/kpt-cdc-to-rdb/log/mysql-manual.kpt.log
-      KPT_KETTLE_LEVEL: Detailed
+      # KPT_KETTLE_LEVEL: Detailed
       KPT_KETTLE_LOGFILE: /home/pentaho/kpt-cdc-to-rdb/log/mysql-manual.kettle.log
       KPT_KETTLE_PARAM_ProfileName: test_kpt,debezium-mysql-pgsql.manual
     volumes:

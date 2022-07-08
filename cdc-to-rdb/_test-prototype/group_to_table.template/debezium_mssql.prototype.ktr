@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/20 10:05:48.872</modified_date>
+    <modified_date>2022/07/07 16:58:09.660</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -708,20 +708,6 @@
         <item>0</item>
         <item>1</item>
         <item>0</item>
-      </line>
-      <line>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
-        <item/>
       </line>
     </data>
     <attributes/>
@@ -1869,7 +1855,7 @@ putRow(row);
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>18,1</conversion_mask>
+        <conversion_mask>18,1,base64</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1886,7 +1872,7 @@ putRow(row);
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>18,2</conversion_mask>
+        <conversion_mask>18,2,base64</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1903,7 +1889,7 @@ putRow(row);
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>10,4</conversion_mask>
+        <conversion_mask>10,4,base64</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1920,7 +1906,7 @@ putRow(row);
         <type>String</type>
         <length>-2</length>
         <precision>-2</precision>
-        <conversion_mask>19,4</conversion_mask>
+        <conversion_mask>19,4,base64</conversion_mask>
         <date_format_lenient>false</date_format_lenient>
         <date_format_locale/>
         <date_format_timezone/>
@@ -1965,21 +1951,29 @@ putRow(row);
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
 
+//debug
 var info = "";
+
 var row = createRowCopy(getOutputRowMeta().size());
 var fieldNames = getOutputRowMeta().getFieldNames();
 for (index = 0; index &lt; fieldNames.length; index++) {
   var inMeta = getInputRowMeta().getValueMeta(index);
   var outMate = getOutputRowMeta().getValueMeta(index);
-  info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " - " + outMate.getTypeDesc() + "\n";
+  //debug
+  info = info + fieldNames[index] + ": " + inMeta.getTypeDesc() + " > " + outMate.getTypeDesc() + "\n";
+
   if(inMeta.getTypeDesc() == 'String' &amp;&amp; outMate.getTypeDesc() == 'BigNumber'){
     var value = row[index];
     outMate.setConversionMask(null);
     if(value != null &amp;&amp; value.length() != 0) {
-      var mask = inMeta.getConversionMask().split(',');
+      var cm = inMeta.getConversionMask();
+      if(cm == null) {
+        cm = "";
+      }
+      var mask = cm.split(',');
       var precision = str2num(mask[0]);
       var scale = str2num(mask[1]);
-      var format = mask[2];
+      var format = mask.length > 2 ? mask[2] : "ISO-8859-1";
       
       var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
       if(isBase64 &amp;&amp; format == "base64") {
@@ -1989,10 +1983,16 @@ for (index = 0; index &lt; fieldNames.length; index++) {
       }
       var bytes = isBase64 ? 
         Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
-        value.getBytes();
+        value.getBytes(format);
       var bi = new Packages.java.math.BigInteger(bytes);
       var bd = new java.math.BigDecimal(bi,scale);
-      row[index] = bd;
+      //debug
+      var content = "";
+      content = content + 'source:' + value + "\n";
+      content = content + 'target type:' + typeof bytes + ' len:'+ bytes.length + "\n";
+      content = content + 'target content index[0]:' + bytes[0] + ';content index[1]:' + bytes[1] + "\n"; 
+      //Alert(content);
+      value = bd;
     } else {
       value = null;
     }
@@ -2000,6 +2000,8 @@ for (index = 0; index &lt; fieldNames.length; index++) {
   }
 }
 putRow(row);
+//debug
+//Alert(info);
 </jsScript_script>
       </jsScript>
     </jsScripts>

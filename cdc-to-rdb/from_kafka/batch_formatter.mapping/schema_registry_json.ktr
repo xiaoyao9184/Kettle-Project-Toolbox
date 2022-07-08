@@ -434,7 +434,7 @@
     <created_user>-</created_user>
     <created_date>2022/06/24 14:00:35.312</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/30 11:23:29.712</modified_date>
+    <modified_date>2022/07/07 10:41:10.038</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -442,38 +442,13 @@
   </notepads>
   <order>
     <hop>
-      <from>Get variables: schema_url</from>
-      <to>Replace in string: key_schema_url+message_schema_url</to>
+      <from>ScriptValueMod: get schema_id+payload_json</from>
+      <to>SelectValues: select schema_id</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input: key_schema_json</from>
-      <to>Dummy: key_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>JSON input: message_schema_json</from>
-      <to>Dummy: message_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>UserDefinedJavaClass: to connect schema</from>
-      <to>ScriptValueMod: key_schema_payload+message_schema_payload</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>REST client: key_schema</from>
-      <to>FilterRows: key_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>REST client: message_schema</from>
-      <to>FilterRows: message_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Replace in string: key_schema_url+message_schema_url</from>
-      <to>FilterRows: key_schema_id</to>
+      <from>ScriptValueMod: get schema_id+payload_json</from>
+      <to>StreamLookup: key_schema_json</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -482,8 +457,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: get schema_id+payload_json</from>
-      <to>Get variables: schema_url</to>
+      <from>SelectValues: select schema_id</from>
+      <to>SimpleMapping: schema_registry_api.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: schema_registry_api.mapping</from>
+      <to>StreamLookup: key_schema_json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: schema_registry_api.mapping</from>
+      <to>StreamLookup: message_schema_json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: key_schema_json</from>
+      <to>StreamLookup: message_schema_json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: message_schema_json</from>
+      <to>UserDefinedJavaClass: to connect schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>UserDefinedJavaClass: to connect schema</from>
+      <to>ScriptValueMod: key_schema_payload+message_schema_payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -492,672 +492,11 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>FilterRows: key_schema_id</from>
-      <to>REST client: key_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: key_schema_id</from>
-      <to>Constant: key_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: key_schema</from>
-      <to>JSON input: key_schema_json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: key_schema</from>
-      <to>Constant: key_schema_json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: key_schema_json</from>
-      <to>Dummy: key_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: key_schema</from>
-      <to>Dummy: key_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: key_schema</from>
-      <to>FilterRows: message_schema_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: message_schema_id</from>
-      <to>REST client: message_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: message_schema_id</from>
-      <to>Constant: message_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: message_schema</from>
-      <to>JSON input: message_schema_json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>FilterRows: message_schema</from>
-      <to>Constant: message_schema_json</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: message_schema_json</from>
-      <to>Dummy: message_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constant: message_schema</from>
-      <to>Dummy: message_schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: message_schema</from>
-      <to>UserDefinedJavaClass: to connect schema</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SelectValues: select</from>
       <to>MappingOutput: batch_formatter.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Constant: key_schema</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>key_schema_result</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>key_schema_status</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>key_schema_json</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: key_schema_json</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>key_schema_json</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>896</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: message_schema</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>message_schema_result</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>message_schema_status</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>message_schema_json</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1296</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Constant: message_schema_json</name>
-    <type>Constant</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>message_schema_json</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>Y</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>1424</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: key_schema</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1040</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy: message_schema</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1568</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: key_schema</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>JSON input: key_schema_json</send_true_to>
-    <send_false_to>Constant: key_schema_json</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>key_schema_status</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>200</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>####0;-####0</mask>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: key_schema_id</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>REST client: key_schema</send_true_to>
-    <send_false_to>Constant: key_schema</send_false_to>
-    <compare>
-      <condition>
-        <negated>Y</negated>
-        <leftvalue>key_schema_id</leftvalue>
-        <function>IS NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: message_schema</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>JSON input: message_schema_json</send_true_to>
-    <send_false_to>Constant: message_schema_json</send_false_to>
-    <compare>
-      <condition>
-        <negated>N</negated>
-        <leftvalue>message_schema_status</leftvalue>
-        <function>=</function>
-        <rightvalue/>
-        <value>
-          <name>constant</name>
-          <type>Integer</type>
-          <text>200</text>
-          <length>-1</length>
-          <precision>0</precision>
-          <isnull>N</isnull>
-          <mask>####0;-####0</mask>
-        </value>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>1296</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FilterRows: message_schema_id</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <send_true_to>REST client: message_schema</send_true_to>
-    <send_false_to>Constant: message_schema</send_false_to>
-    <compare>
-      <condition>
-        <negated>Y</negated>
-        <leftvalue>message_schema_id</leftvalue>
-        <function>IS NULL</function>
-        <rightvalue/>
-      </condition>
-    </compare>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>1168</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get variables: schema_url</name>
-    <type>GetVariable</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>schema_url</name>
-        <variable>${Config.CDC.Kafka.Schema.Registry}/schemas/ids/{id}</variable>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input: key_schema_json</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>key_schema_json</name>
-        <path>$.schema</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>key_schema_result</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>1040</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>JSON input: message_schema_json</name>
-    <type>JsonInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
-    <fields>
-      <field>
-        <name>message_schema_json</name>
-        <path>$.schema</path>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-    </fields>
-    <limit>0</limit>
-    <IsInFields>Y</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField>message_schema_result</valueField>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>1568</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>MappingInput: batch_formatter.mapping</name>
     <type>MappingInput</type>
@@ -1243,162 +582,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>REST client: key_schema</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <applicationType>TEXT PLAIN</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>key_schema_url</urlField>
-    <bodyField/>
-    <httpLogin/>
-    <httpPassword>Encrypted </httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <matrixParameters>
-      </matrixParameters>
-    <result>
-      <name>key_schema_result</name>
-      <code>key_schema_status</code>
-      <response_time/>
-      <response_header/>
-    </result>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>REST client: message_schema</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <applicationType>TEXT PLAIN</applicationType>
-    <method>GET</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName/>
-    <urlField>message_schema_url</urlField>
-    <bodyField/>
-    <httpLogin/>
-    <httpPassword>Encrypted </httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      </headers>
-    <parameters>
-      </parameters>
-    <matrixParameters>
-      </matrixParameters>
-    <result>
-      <name>message_schema_result</name>
-      <code>message_schema_status</code>
-      <response_time/>
-      <response_header/>
-    </result>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>656</xloc>
-      <yloc>1168</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Replace in string: key_schema_url+message_schema_url</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>schema_url</in_stream_name>
-        <out_stream_name>key_schema_url</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>{id}</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>key_schema_id</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-      <field>
-        <in_stream_name>schema_url</in_stream_name>
-        <out_stream_name>message_schema_url</out_stream_name>
-        <use_regex>no</use_regex>
-        <replace_string>{id}</replace_string>
-        <replace_by_string/>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string>message_schema_id</replace_field_by_string>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>512</yloc>
+      <yloc>1152</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1406,7 +590,7 @@
     <name>ScriptValueMod: get schema_id+payload_json</name>
     <type>ScriptValueMod</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1575,7 +759,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1824</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1623,7 +807,194 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1984</yloc>
+      <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select schema_id</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>key_schema_id</name>
+      </field>
+      <field>
+        <name>message_schema_id</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: schema_registry_api.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>schema_registry_api.mapping</trans_name>
+    <filename/>
+    <directory_path>/from_kafka/batch_formatter.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>key_schema_id</parent>
+            <child>key_schema_id</child>
+          </connector>
+          <connector>
+            <parent>message_schema_id</parent>
+            <child>message_schema_id</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>schema_id</parent>
+            <child>schema_id</child>
+          </connector>
+          <connector>
+            <parent>schema_json</parent>
+            <child>schema_json</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StreamLookup: key_schema_json</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>SimpleMapping: schema_registry_api.mapping</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>key_schema_id</name>
+        <field>schema_id</field>
+      </key>
+      <value>
+        <name>schema_json</name>
+        <rename>key_schema_json</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StreamLookup: message_schema_json</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>SimpleMapping: schema_registry_api.mapping</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>message_schema_id</name>
+        <field>schema_id</field>
+      </key>
+      <value>
+        <name>schema_json</name>
+        <rename>message_schema_json</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1642,18 +1013,17 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
       <definition>
         <class_type>TRANSFORM_CLASS</class_type>
         <class_name>Processor</class_name>
-        <class_source>import java.util.HashMap;
-import java.util.Map;
-import io.confluent.kafka.schemaregistry.json.JsonSchema;
-import io.confluent.kafka.schemaregistry.json.jackson.Jackson;
-import io.confluent.connect.json.JsonSchemaData;
-import io.confluent.connect.json.JsonSchemaDataConfig;
-import org.apache.kafka.connect.data.Schema;
-import org.apache.kafka.connect.json.JsonConverter;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
+        <class_source>import com.github.xiaoyao9184.JsonSchemaConverter;
 
+
+private JsonSchemaConverter converter;
+
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
+  this.converter = new JsonSchemaConverter(10000);
+
+  return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
 
@@ -1667,11 +1037,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   r = createOutputRow(r, data.outputRowMeta.size());
 
   String keySchemaJson = get(Fields.In, "key_schema_json").getString(r);
-  String keySchemaConnect = this.toConnectJson(keySchemaJson,true);
+  String keySchemaConnect = this.converter.toConnectJson(true, keySchemaJson);
   get(Fields.In, "key_schema_json").setValue(r, keySchemaConnect);
 
   String messageSchemaJson = get(Fields.In, "message_schema_json").getString(r);
-  String messageSchemaConnect = this.toConnectJson(messageSchemaJson,false);
+  String messageSchemaConnect = this.converter.toConnectJson(false, messageSchemaJson);
   get(Fields.In, "message_schema_json").setValue(r, messageSchemaConnect);
 
 
@@ -1679,55 +1049,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
   return true;
 }
-
-
-private JsonSchemaData jsonSchemaData;
-private Map&lt;String, Object> config;
-private JsonConverter jsonConverterKey;
-private JsonConverter jsonConverterMsg;
-private ObjectMapper objectMapper;
-
-public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-  JsonSchemaDataConfig dc = new JsonSchemaDataConfig.Builder()
-    .with("schemas.cache.size", 10000)
-    .build();
-  this.jsonSchemaData = new JsonSchemaData(dc);
-
-  this.config = new HashMap&lt;String, Object>();
-  this.config.put("schemas.enable", Boolean.TRUE.toString());
-  this.config.put("schemas.cache.size", String.valueOf(10000));
-
-  this.jsonConverterKey = new JsonConverter();
-  this.jsonConverterKey.configure(config,true);
-
-  this.jsonConverterMsg = new JsonConverter();
-  this.jsonConverterMsg.configure(config,false);
-
-  this.objectMapper = Jackson.newObjectMapper();
-
-  return parent.initImpl(stepMetaInterface, stepDataInterface);
-}
-
-
-public String toConnectJson(String schema, boolean isKey) {
-  if(schema == null){
-    return null;
-  }
-  JsonSchema jsonSchema = new JsonSchema(schema);
-  Schema actual = this.jsonSchemaData.toConnectSchema(jsonSchema);
-
-  JsonConverter jsonConverter = isKey ? this.jsonConverterKey : this.jsonConverterMsg;
-  ObjectNode jsonNodes = jsonConverter.asJsonSchema(actual);
-
-  String canonicalString = null;
-  try {
-            canonicalString = this.objectMapper.writeValueAsString(jsonNodes);
-  } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-  }
-  return canonicalString;
-}
-
 </class_source>
       </definition>
     </definitions>
@@ -1747,7 +1068,7 @@ public String toConnectJson(String schema, boolean isKey) {
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1696</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

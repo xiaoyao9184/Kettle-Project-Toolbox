@@ -10,7 +10,10 @@ import org.junit.Test;
 import scala.Tuple2;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +25,7 @@ import static org.hamcrest.Matchers.*;
 
 public class AvroPayloadConverterTest {
 
-    public List<Map<String,String>> readTopicCVS(String topic) throws IOException {
+    public List<Map<String, String>> readTopicCVS(String topic) throws IOException {
         InputStream is = this.getClass().getClassLoader()
                 .getResourceAsStream("kafka/topics/" + topic + ".csv");
         Reader in = new InputStreamReader(is);
@@ -30,7 +33,7 @@ public class AvroPayloadConverterTest {
                 .setHeader()
                 .setDelimiter(';').build().parse(in);
 
-        List<Map<String,String>> listOfMaps = new ArrayList<>();
+        List<Map<String, String>> listOfMaps = new ArrayList<>();
         for (CSVRecord record : records) {
             listOfMaps.add(record.toMap());
         }
@@ -64,7 +67,7 @@ public class AvroPayloadConverterTest {
                 .get();
 
         AvroPayloadConverter converter = new AvroPayloadConverter("http://me:58081");
-        String json = converter.toConnectJson(payload, false, null);
+        String json = converter.toConnectJson(false, payload);
 
         assertThat(json, hasJsonPath("$.databaseName"));
         assertThat(json, hasJsonPath("$.__dbz__physicalTableIdentifier"));
@@ -98,7 +101,7 @@ public class AvroPayloadConverterTest {
         AvroSchema avroSchema = new AvroSchema(schema);
 
         AvroPayloadConverter converter = new AvroPayloadConverter("mock://me:58081");
-        String json = converter.toConnectJson(payload, false, avroSchema);
+        String json = converter.toConnectJson(false, payload, avroSchema);
 
         assertThat(json, hasJsonPath("$.databaseName"));
         assertThat(json, hasJsonPath("$.__dbz__physicalTableIdentifier"));
@@ -125,7 +128,7 @@ public class AvroPayloadConverterTest {
                 .get();
 
         AvroPayloadConverter converter = new AvroPayloadConverter("http://me:58081");
-        String json = converter.toConnectJson(payload,false,null);
+        String json = converter.toConnectJson(false, payload);
 
         assertThat(json, hasJsonPath("$.before"));
         assertThat(json, hasJsonPath("$.after"));
@@ -180,7 +183,7 @@ public class AvroPayloadConverterTest {
         AvroSchema avroSchema = new AvroSchema(schema);
 
         AvroPayloadConverter converter = new AvroPayloadConverter("mock://me:58081");
-        String json = converter.toConnectJson(payload,false,avroSchema);
+        String json = converter.toConnectJson(false, payload, avroSchema);
 
         assertThat(json, hasJsonPath("$.before"));
         assertThat(json, hasJsonPath("$.after"));
@@ -228,7 +231,7 @@ public class AvroPayloadConverterTest {
                 .get();
 
         AvroPayloadConverter converter = new AvroPayloadConverter("http://me:58081");
-        Tuple2<String,AvroSchema> connectJsonWithSchema = converter.toConnectJsonWithSchema(payload,false);
+        Tuple2<String, AvroSchema> connectJsonWithSchema = converter.toConnectJsonWithSchema(false, payload);
 
         String msg = connectJsonWithSchema._1();
 
@@ -262,7 +265,7 @@ public class AvroPayloadConverterTest {
 
         AvroSchema avroSchema = connectJsonWithSchema._2();
         AvroSchemaConverter schemaConverter = new AvroSchemaConverter(10);
-        String schema = schemaConverter.toConnectJson(avroSchema,false);
+        String schema = schemaConverter.toConnectJson(false, avroSchema);
 
         assertThat(schema, hasJsonPath("$.type"));
         assertThat(schema, hasJsonPath("$.fields"));
@@ -273,6 +276,25 @@ public class AvroPayloadConverterTest {
         assertThat(schema, hasJsonPath("$.optional", equalTo(false)));
         assertThat(schema, hasJsonPath("$.name", equalTo("test_debezium_mysql_test_kpt_cdc_avro.data_changes.Envelope")));
 
+    }
+
+    @Test
+    public void testStringToBytes() throws IOException {
+        int scale = 4;
+        BigDecimal decimal = new BigDecimal("149223.6700");
+
+        String str = "Xñ¹";
+
+        byte[] bytes = str.getBytes(StandardCharsets.ISO_8859_1);
+        BigInteger bi = new BigInteger(bytes);
+        BigDecimal bd = new BigDecimal(bi, scale);
+        assertThat("", bd.equals(decimal));
+
+
+        bytes = str.getBytes(StandardCharsets.UTF_8);
+        bi = new BigInteger(bytes);
+        bd = new BigDecimal(bi, scale);
+        assertThat("", ! bd.equals(decimal));
     }
 
 }

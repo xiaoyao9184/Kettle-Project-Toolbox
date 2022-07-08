@@ -1,11 +1,12 @@
 version: "3.7"
 services:
   mysql-manual:
-    build:  
-      context: ./../../../../
-      dockerfile: ./cdc-to-rdb/Dockerfile
-    # image: xiaoyao9184/kpt-cdc-to-rdb:dev
+    # build:  
+    #   context: ./../../../../
+    #   dockerfile: ./cdc-to-rdb/Dockerfile
+    image: xiaoyao9184/kpt-cdc-to-rdb:dev
     environment:
+      ENABLE_PATTERN_TOPIC: "true"
       KPT_LOG_PATH: /home/pentaho/kpt-cdc-to-rdb/log/mysql-manual.kpt.log
       KPT_KETTLE_LEVEL: Detailed
       KPT_KETTLE_LOGFILE: /home/pentaho/kpt-cdc-to-rdb/log/mysql-manual.kettle.log

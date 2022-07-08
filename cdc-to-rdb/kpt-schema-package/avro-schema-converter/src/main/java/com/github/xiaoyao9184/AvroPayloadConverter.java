@@ -57,16 +57,20 @@ public class AvroPayloadConverter {
         this.schemaRegistry.register(":.:",schema,0,schemaId);
     }
 
-    public Object toObject(byte[] payload, boolean isKey){
+    public Object toObject(boolean isKey, byte[] payload) {
+        if (payload == null) {
+            return null;
+        }
         KafkaAvroDeserializer deserializer = isKey ? this.deserializerKey : this.deserializerMsg;
         return deserializer.deserialize("",payload);
     }
 
-    public String toConnectJson(byte[] payload, boolean isKey, AvroSchema schema){
+    public String toConnectJson(boolean isKey, byte[] payload) {
+        if (payload == null) {
+            return null;
+        }
         try {
-            registerIfNeed(payload,schema);
-
-            Object obj = this.toObject(payload, isKey);
+            Object obj = this.toObject(isKey, payload);
 
             return GenericData.get().toString(obj);
         } catch (Exception e) {
@@ -74,8 +78,38 @@ public class AvroPayloadConverter {
         }
     }
 
-    public Tuple2<String,AvroSchema> toConnectJsonWithSchema(byte[] payload, boolean isKey){
-        Object obj = this.toObject(payload, isKey);
+    public String toConnectJson(boolean isKey, byte[] payload, AvroSchema schema) {
+        if (payload == null) {
+            return null;
+        }
+        if (schema == null) {
+            return this.toConnectJson(isKey, payload);
+        }
+        try {
+            registerIfNeed(payload,schema);
+
+            return this.toConnectJson(isKey, payload);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public String toConnectJson(boolean isKey, byte[] payload, String schema) {
+        if (payload == null) {
+            return null;
+        }
+        if (schema == null) {
+            return this.toConnectJson(isKey, payload);
+        }
+        AvroSchema avroSchema = new AvroSchema(schema);
+        return this.toConnectJson(isKey, payload, avroSchema);
+    }
+
+    public Tuple2<String,AvroSchema> toConnectJsonWithSchema(boolean isKey, byte[] payload) {
+        if (payload == null) {
+            return null;
+        }
+        Object obj = this.toObject(isKey, payload);
 
         Schema schemaAvro = AvroSchemaUtils.getSchema(obj);
         AvroSchema avroSchema = new AvroSchema(schemaAvro);
@@ -85,12 +119,12 @@ public class AvroPayloadConverter {
         return Tuple2.apply(payloadJson,avroSchema);
     }
 
-    public static AvroSchema getAvroSchema(Object obj){
+    public static AvroSchema getAvroSchema(Object obj) {
         Schema schemaAvro = AvroSchemaUtils.getSchema(obj);
         return new AvroSchema(schemaAvro);
     }
 
-    public static String getPayloadJson(Object obj){
+    public static String getPayloadJson(Object obj) {
         return GenericData.get().toString(obj);
     }
 

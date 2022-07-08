@@ -6,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype</directory>
+    <directory>/_test-prototype/group_to_table.template</directory>
     <parameters>
     </parameters>
     <log>
@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/01/28 21:16:46.423</modified_date>
+    <modified_date>2022/07/07 17:12:25.342</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -1757,10 +1757,14 @@ for (index = 0; index &lt; fieldNames.length; index++) {
     var value = row[index];
     outMate.setConversionMask(null);
     if(value != null &amp;&amp; value.length() != 0) {
-      var mask = inMeta.getConversionMask().split(',');
+      var cm = inMeta.getConversionMask();
+      if(cm == null) {
+        cm = "";
+      }
+      var mask = cm.split(',');
       var precision = str2num(mask[0]);
       var scale = str2num(mask[1]);
-      var format = mask[2];
+      var format = mask.length > 2 ? mask[2] : "ISO-8859-1";
       
       var isBase64 = Packages.org.apache.commons.codec.binary.Base64.isArrayByteBase64(value.getBytes());
       if(isBase64 &amp;&amp; format == "base64") {
@@ -1770,7 +1774,7 @@ for (index = 0; index &lt; fieldNames.length; index++) {
       }
       var bytes = isBase64 ? 
         Packages.org.apache.commons.codec.binary.Base64.decodeBase64(value) :
-        value.getBytes();
+        value.getBytes(format);
       var bi = new Packages.java.math.BigInteger(bytes);
       var bd = new java.math.BigDecimal(bi,scale);
       row[index] = bd;
