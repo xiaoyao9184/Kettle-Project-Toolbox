@@ -29,7 +29,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>_Config.CDC.Kafka.Data.Format</name>
+        <name>_Config.CDC.Batch.Schema.Format.Mapping</name>
         <default_value>connect_json</default_value>
         <description/>
       </parameter>
@@ -733,13 +733,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SimpleMapping: batch_formatter.mapping</from>
+      <from>SimpleMapping: schema_formatter.mapping</from>
       <to>SystemInfo: batch_id, batch_time</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Get records from stream</from>
-      <to>SimpleMapping: batch_formatter.mapping</to>
+      <to>SimpleMapping: schema_formatter.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -2367,7 +2367,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: batch_formatter.mapping</name>
+    <name>SimpleMapping: schema_formatter.mapping</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2379,9 +2379,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.CDC.Kafka.Data.Format}</trans_name>
+    <trans_name>${Config.CDC.Batch.Schema.Format.Mapping}</trans_name>
     <filename/>
-    <directory_path>/from_kafka/batch_formatter.mapping</directory_path>
+    <directory_path>/from_kafka/schema_formatter.mapping</directory_path>
     <mappings>
       <input>
         <mapping>

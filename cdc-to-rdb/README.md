@@ -285,14 +285,6 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt_cdc_ro_rdb</cfg>
 			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
             
-			<!-- see from_kafka/batch_formatter.mapping -->
-			<!-- 'connect_json' json without schema-registry -->
-			<!-- 'schema_registry_avro' avro with schema-registry -->
-			<!-- 'schema_registry_json' json with schema-registry -->
-			<cfg namespace="Config.CDC.Kafka.Data" key="Format">connect_json</cfg>
-			<!-- set if use schema-registry -->
-			<cfg namespace="Config.CDC.Kafka.Schema" key="Registry">http://schema-registry:58081</cfg>
-
 		<!-- logger of cdc -->
 			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
 			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
@@ -300,6 +292,14 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Log.Group" key="Mapping">log_json_to_kafka</cfg>
 
 		<!-- batch of cdc -->
+			<!-- see from_kafka/schema_formatter.mapping -->
+			<!-- 'connect_json' json without schema-registry -->
+			<!-- 'schema_registry_avro' avro with schema-registry -->
+			<!-- 'schema_registry_json' json with schema-registry -->
+			<cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+			<!-- set if use schema-registry -->
+			<cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:58081</cfg>
+
 			<!-- see from_kafka/group_table.mapping -->
 			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
 			<!-- see from_kafka/redirect_row.mapping/README.md -->

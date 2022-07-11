@@ -9,7 +9,7 @@
     <directory>/to_rdb/target_column.mapping</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Kafka.Data.Format</name>
+        <name>Config.CDC.Batch.Schema.Format.Mapping</name>
         <default_value>connect_json</default_value>
         <description/>
       </parameter>
@@ -560,7 +560,7 @@
     <fields>
       <field>
         <name>data_format</name>
-        <variable>${Config.CDC.Kafka.Data.Format}</variable>
+        <variable>${Config.CDC.Batch.Schema.Format.Mapping}</variable>
         <type>String</type>
         <format/>
         <currency/>

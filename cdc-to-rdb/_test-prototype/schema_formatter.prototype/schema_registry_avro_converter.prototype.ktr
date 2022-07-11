@@ -1,16 +1,21 @@
 <transformation>
   <info>
-    <name>connect_json.prototype</name>
+    <name>schema_registry_avro_converter.prototype</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype/batch_formatter.prototype</directory>
+    <directory>/_test-prototype/schema_formatter.prototype</directory>
     <parameters>
       <parameter>
         <name>Config.CDC.Kafka.Data.Topic</name>
-        <default_value>test_debezium_mysql-test_kpt_cdc-reroute.data-changes</default_value>
+        <default_value>test_debezium_mysql-test_kpt_cdc-avro.data-changes</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Config.CDC.Batch.Schema.Registry.Url</name>
+        <default_value>http://me:58081</default_value>
         <description/>
       </parameter>
     </parameters>
@@ -432,9 +437,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/06/24 14:00:35.312</created_date>
+    <created_date>2022/05/26 09:39:23.171</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/06/24 15:41:57.046</modified_date>
+    <modified_date>2022/07/04 14:45:05.698</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -442,24 +447,24 @@
   </notepads>
   <order>
     <hop>
+      <from>UserDefinedJavaClass: deserializer avro</from>
+      <to>ScriptValueMod: key_schema_payload+message_schema_payload</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: key_schema_payload+message_schema_payload</from>
+      <to>SelectValues: select</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: select</from>
+      <to>MappingOutput: schema_formatter.mapping</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
       <from>TextFileInput: topic file</from>
       <to>ScriptValueMod: Hex_to_Binary</to>
       <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>ScriptValueMod: Hex_to_Binary</from>
-      <to>SelectValues: to string</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>MappingInput: batch_formatter.mapping</from>
-      <to>SelectValues: to string</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>SelectValues: to string</from>
-      <to>MappingOutput: batch_formatter.mapping</to>
-      <enabled>N</enabled>
     </hop>
     <hop>
       <from>Add constants</from>
@@ -482,13 +487,115 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SelectValues: to string</from>
+      <from>SelectValues: select</from>
       <to>ScriptValueMod: json_of_row</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: schema_formatter.mapping</from>
+      <to>UserDefinedJavaClass: deserializer avro</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: Hex_to_Binary</from>
+      <to>UserDefinedJavaClass: deserializer avro</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>MappingInput: batch_formatter.mapping</name>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>json_array_start</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>[</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>json_array_end</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>]</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>928</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Calculator</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>json_text</field_name>
+      <calc_type>ADD3</calc_type>
+      <field_a>json_array_start</field_a>
+      <field_b>json_of_row</field_b>
+      <field_c>json_array_end</field_c>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>1056</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>MappingInput: schema_formatter.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -552,7 +659,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: batch_formatter.mapping</name>
+    <name>MappingOutput: schema_formatter.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -572,7 +679,43 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>384</yloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Memory group by</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      </group>
+    <fields>
+      <field>
+        <aggregate>json_of_row</aggregate>
+        <subject>json_of_row</subject>
+        <type>CONCAT_COMMA</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>800</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -664,8 +807,8 @@ putRow(row);
     </GUI>
   </step>
   <step>
-    <name>SelectValues: to string</name>
-    <type>SelectValues</type>
+    <name>ScriptValueMod: json_of_row</name>
+    <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -674,42 +817,114 @@ putRow(row);
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+var kafka_key_obj = JSON.parse(kafka_key);
+var kafka_message_obj = JSON.parse(kafka_message);
+var json_obj = {
+    kafka_topic: kafka_topic,
+	kafka_partition: kafka_partition,
+	kafka_offset: kafka_offset,
+	kafka_timestamp: kafka_timestamp,
+	kafka_key: kafka_key_obj,
+	kafka_message: kafka_message_obj
+}
+
+var json_of_row = JSON.stringify(json_obj);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>kafka_key</name>
-        <rename>kafka_key</rename>
+      <field>
+        <name>json_of_row</name>
+        <rename>json_of_row</rename>
         <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-      <meta>
-        <name>kafka_message</name>
-        <rename>kafka_message</rename>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: key_schema_payload+message_schema_payload</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+var key_schema_obj = JSON.parse(key_schema_json);
+var key_payload_obj = JSON.parse(key_payload_json);
+var key_with_schema = {
+    schema: key_schema_obj,
+	payload: key_payload_obj
+}
+
+if(key_with_schema.schema == null &amp;&amp; key_with_schema.payload == null) {
+	var key_schema_payload = null;
+} else {
+	var key_schema_payload = JSON.stringify(key_with_schema);
+}
+
+var message_schema_obj = JSON.parse(message_schema_json);
+var message_payload_obj = JSON.parse(message_payload_json);
+var message_with_schema = {
+    schema: message_schema_obj,
+	payload: message_payload_obj
+}
+
+if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == null) {
+	var message_schema_payload = null;
+} else {
+	var message_schema_payload = JSON.stringify(message_with_schema);
+}</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>key_schema_payload</name>
+        <rename>key_schema_payload</rename>
         <type>String</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>message_schema_payload</name>
+        <rename>message_schema_payload</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -721,7 +936,124 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>key_schema_payload</name>
+        <rename>kafka_key</rename>
+      </field>
+      <field>
+        <name>message_schema_payload</name>
+        <rename>kafka_message</rename>
+      </field>
+      <field>
+        <name>kafka_topic</name>
+      </field>
+      <field>
+        <name>kafka_partition</name>
+      </field>
+      <field>
+        <name>kafka_offset</name>
+      </field>
+      <field>
+        <name>kafka_timestamp</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>544</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Text file output</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator/>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>UNIX</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>${KETTLE_HOME}/_test-prototype/schema_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>json</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery/>
+    </file>
+    <fields>
+      <field>
+        <name>json_text</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>1184</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -906,8 +1238,8 @@ putRow(row);
     </GUI>
   </step>
   <step>
-    <name>Add constants</name>
-    <type>Constant</type>
+    <name>UserDefinedJavaClass: deserializer avro</name>
+    <type>UserDefinedJavaClass</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -916,166 +1248,117 @@ putRow(row);
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>json_array_start</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>[</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>json_array_end</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>]</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>640</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Calculator</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <failIfNoFile>Y</failIfNoFile>
-    <calculation>
-      <field_name>json_text</field_name>
-      <calc_type>ADD3</calc_type>
-      <field_a>json_array_start</field_a>
-      <field_b>json_of_row</field_b>
-      <field_c>json_array_end</field_c>
-      <value_type>String</value_type>
-      <value_length>-1</value_length>
-      <value_precision>-1</value_precision>
-      <remove>N</remove>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <currency_symbol/>
-    </calculation>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>768</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      </group>
-    <fields>
-      <field>
-        <aggregate>json_of_row</aggregate>
-        <subject>json_of_row</subject>
-        <type>CONCAT_COMMA</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>512</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ScriptValueMod: json_of_row</name>
-    <type>ScriptValueMod</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>
-var kafka_key_obj = JSON.parse(kafka_key);
-var kafka_message_obj = JSON.parse(kafka_message);
-var json_obj = {
-    kafka_topic: kafka_topic,
-	kafka_partition: kafka_partition,
-	kafka_offset: kafka_offset,
-	kafka_timestamp: kafka_timestamp,
-	kafka_key: kafka_key_obj,
-	kafka_message: kafka_message_obj
+    <definitions>
+      <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+        <class_name>Processor</class_name>
+        <class_source>import scala.Tuple2;
+import io.confluent.kafka.schemaregistry.avro.AvroSchema;
+import io.confluent.kafka.schemaregistry.avro.AvroSchemaUtils;
+import com.github.xiaoyao9184.AvroPayloadConverter;
+import com.github.xiaoyao9184.AvroSchemaConverter;
+import org.apache.avro.Schema;
+import org.apache.avro.generic.GenericData;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
+
+  Object[] r = getRow();
+
+  if (r == null) {
+    setOutputDone();
+    return false;
+  }
+
+  r = createOutputRow(r, data.outputRowMeta.size());
+
+  byte[] keyDataAvro = get(Fields.In, "kafka_key").getBinary(r);
+  Object keyDataObj = this.toObject(true,keyDataAvro);
+  String keyDataSchema = this.toSchemaJson(keyDataObj);
+  String keyDataPayload = this.toPayloadJson(keyDataObj);
+  get(Fields.Out, "key_schema_json").setValue(r, keyDataSchema);
+  get(Fields.Out, "key_payload_json").setValue(r, keyDataPayload);
+
+  byte[] messageDataAvro = get(Fields.In, "kafka_message").getBinary(r);
+  Object messageDataObj = this.toObject(false,messageDataAvro);
+  String messageDataSchema = this.toSchemaJson(messageDataObj);
+  String messageDataPayload = this.toPayloadJson(messageDataObj);
+  get(Fields.Out, "message_schema_json").setValue(r, messageDataSchema);
+  get(Fields.Out, "message_payload_json").setValue(r, messageDataPayload);
+
+  putRow(data.outputRowMeta, r);
+
+  return true;
 }
 
-var json_of_row = JSON.stringify(json_obj);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
+
+private String schemaRegistryUrl = getVariable("Config.CDC.Batch.Schema.Registry.Url", "http://me:58081");
+
+private AvroPayloadConverter payloadConverter;
+private AvroSchemaConverter schemaConverter;
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
+  this.payloadConverter = new AvroPayloadConverter(schemaRegistryUrl);
+  this.schemaConverter = new AvroSchemaConverter(10000);
+
+  return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
+
+public Object toObject(boolean isKey, byte[] bytes){
+  if (bytes == null) {
+    return null;
+  }
+  return this.payloadConverter.toObject(bytes, isKey);
+}
+
+public String toSchemaJson(Object obj){
+  if (obj == null) {
+    return null;
+  }
+  Schema schemaAvro = AvroSchemaUtils.getSchema(obj);
+  AvroSchema avroSchema = new AvroSchema(schemaAvro);
+  return this.schemaConverter.toConnectJson(avroSchema,false);
+}
+
+public String toPayloadJson(Object obj){
+  if (obj == null) {
+    return null;
+  }
+  return GenericData.get().toString(obj);
+}
+
+</class_source>
+      </definition>
+    </definitions>
     <fields>
       <field>
-        <name>json_of_row</name>
-        <rename>json_of_row</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
+        <field_name>key_schema_json</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
+      <field>
+        <field_name>key_payload_json</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
+      <field>
+        <field_name>message_schema_json</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
+      </field>
+      <field>
+        <field_name>message_payload_json</field_name>
+        <field_type>String</field_type>
+        <field_length>-1</field_length>
+        <field_precision>-1</field_precision>
       </field>
     </fields>
+    <clear_result_fields>N</clear_result_fields>
+    <info_steps/>
+    <target_steps/>
+    <usage_parameters/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1085,77 +1368,8 @@ var json_of_row = JSON.stringify(json_obj);
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Text file output</name>
-    <type>TextFileOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator/>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>UNIX</format>
-    <compression>None</compression>
-    <encoding>UTF-8</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>${KETTLE_HOME}/_test-prototype/batch_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>json</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery/>
-    </file>
-    <fields>
-      <field>
-        <name>json_text</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>896</yloc>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

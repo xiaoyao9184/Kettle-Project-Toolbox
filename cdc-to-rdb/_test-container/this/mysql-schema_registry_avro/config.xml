@@ -33,8 +33,9 @@
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.manual.20220628</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-avro.data-changes</cfg>
-            <cfg namespace="Config.CDC.Kafka.Data" key="Format">schema_registry_avro</cfg>
-            <cfg namespace="Config.CDC.Kafka.Schema" key="Registry">http://schema-registry:8081</cfg>
+            
+            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">schema_registry_avro</cfg>
+            <cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:8081</cfg>
             
             <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log</cfg>
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
@@ -73,8 +74,8 @@ Config.CDC.Kafka.Batch.Max	10000
 Config.CDC.Kafka.Server.Bootstrap	kafka:59094	
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.manual.20220628	
 Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-avro.data-changes		
-Config.CDC.Kafka.Data.Format	schema_registry_avro		
-Config.CDC.Kafka.Schema.Registry	http://schema-registry:58081		
+Config.CDC.Batch.Schema.Format.Mapping	schema_registry_avro		
+Config.CDC.Batch.Schema.Registry.Url	http://schema-registry:58081		
 Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log
 Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
@@ -96,8 +97,9 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.chameleon.20220628</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc-avro.data-changes</cfg>
-            <cfg namespace="Config.CDC.Kafka.Data" key="Format">schema_registry_avro</cfg>
-            <cfg namespace="Config.CDC.Kafka.Schema" key="Registry">http://schema-registry:8081</cfg>
+            
+            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">schema_registry_avro</cfg>
+            <cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:8081</cfg>
             
             <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log</cfg>
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
@@ -136,8 +138,8 @@ Config.CDC.Kafka.Batch.Max	10000
 Config.CDC.Kafka.Server.Bootstrap	kafka:59094	
 Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.chameleon.20220628	
 Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-avro.data-changes		
-Config.CDC.Kafka.Data.Format	schema_registry_avro		
-Config.CDC.Kafka.Schema.Registry	http://schema-registry:58081		
+Config.CDC.Batch.Schema.Format.Mapping	schema_registry_avro		
+Config.CDC.Batch.Schema.Registry.Url	http://schema-registry:58081		
 Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log
 Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
