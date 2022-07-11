@@ -301,7 +301,7 @@ then you can combine all cfgs by referring the `profile` name later.
 
 		<!-- batch of cdc -->
 			<!-- see from_kafka/group_table.mapping -->
-			<cfg namespace="Config.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
+			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->

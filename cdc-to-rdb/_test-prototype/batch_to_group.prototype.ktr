@@ -14,7 +14,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.Batch.Group.Table.Mapping</name>
+        <name>Config.CDC.Batch.Group.Table.Mapping</name>
         <default_value>sort_by_table_operate</default_value>
         <description/>
       </parameter>
@@ -2458,7 +2458,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Group.Table.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Batch.Group.Table.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/group_table.mapping</directory_path>
     <mappings>
