@@ -21,13 +21,15 @@ IF NOT EXIST "%project_folder_path%\db_kpt_cdc_rdb_writer.kdb" (
 SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/schema_formatter.test
-
-SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic=test_debezium_mysql-test_kpt_cdc-json.data-changes
+@REM schema_formatter.test param
 SET KPT_KETTLE_PARAM_ParamCsvPath=_test-prototype/cdc_to_batch.test
+SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic=test_debezium_mysql-test_kpt_cdc-json.data-changes
 SET KPT_KETTLE_PARAM_Config_CDC_Batch_Schema_Format_Mapping=schema_registry_json
+@REM schema_registry_json param
 SET KPT_KETTLE_PARAM_Config_CDC_Batch_Schema_Registry_Url=http://me:58081
 
-SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_formatter.%KPT_KETTLE_PARAM_Config_CDC_Batch_Schema_Format_Mapping%.bat
+
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.schema_formatter.%KPT_KETTLE_PARAM_Config_CDC_Batch_Schema_Format_Mapping%.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 0
 

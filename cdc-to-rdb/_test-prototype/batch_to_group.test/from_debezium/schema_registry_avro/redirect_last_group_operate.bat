@@ -22,18 +22,20 @@ SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/batch_to_group.test
 @REM SET KPT_KETTLE_LEVEL=Rowlevel
-
-
+@REM batch_to_group.test param
+SET KPT_KETTLE_PARAM_ParamJsonFile=../schema_formatter.test/schema_registry_avro/test_debezium_mysql-test_kpt_cdc-avro.data-changes.json
+SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_debezium
+SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mysql_playload
+@REM batch_to_group.prototype param
 SET KPT_KETTLE_PARAM_Config_CDC_Log_Batch_Group_Mapping=log_json_to_kettle_with_vars
 SET KPT_KETTLE_PARAM_Config_CDC_Batch_Redirect_Row_Mapping=sort_by_row_last
 SET KPT_KETTLE_PARAM_Config_CDC_Batch_Group_Table_Mapping=sort_by_table_operate
-SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_debezium
-SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mysql_playload
+SET KPT_KETTLE_PARAM_ParamMarkPath=_test-prototype
+SET KPT_KETTLE_PARAM_ParamMarkTransformation=debug_vars_marker.result
+SET KPT_KETTLE_PARAM_ParamGroupPath=_test-prototype
 SET KPT_KETTLE_PARAM_ParamGroupTransformation=group_to_file.result
-SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
-SET KPT_KETTLE_PARAM_ParamJsonFile=../schema_formatter.test/schema_registry_avro/test_debezium_mysql-test_kpt_cdc-avro.data-changes.json
+@REM group_to_file.result param
 SET KPT_KETTLE_PARAM_ParamOutputFlag=schema_registry_avro
-
 
 SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.schema_registry_avro.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat

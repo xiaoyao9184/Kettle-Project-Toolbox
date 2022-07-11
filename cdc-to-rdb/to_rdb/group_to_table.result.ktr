@@ -3025,7 +3025,7 @@
     <trans_object_id/>
     <trans_name>${ParamTemplateTransformation}</trans_name>
     <filename/>
-    <directory_path>/${ParamTemplatePath}</directory_path>
+    <directory_path>${ParamTemplatePath}</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
     <target_file>${ParamInjectionPath}/${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>

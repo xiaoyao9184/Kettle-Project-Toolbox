@@ -323,20 +323,20 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
 			<!-- see to_rdb/target_table.mapping -->
-			<!-- same_source_exist use source table name of target table -->
-			<!-- config_prefix_exist use xml config mapping target table -->
-			<!-- database_mapping_exist use table 'kpt_cdc_data.mapping_table' mapping target table -->
+			<!-- 'same_source_exist' use source table name of target table -->
+			<!-- 'config_prefix_exist' use xml config mapping target table -->
+			<!-- 'database_mapping_exist' use table 'kpt_cdc_data.mapping_table' mapping target table -->
 			<cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
 			<!-- see to_rdb/target_operate.mapping -->
-			<!-- same_source use source operate name of target operate -->
-			<!-- update_only_flash_point replace source operate with 'update' operate -->
+			<!-- 'same_source' use source operate name of target operate -->
+			<!-- 'update_only_flash_point' replace source operate with 'update' operate -->
 			<cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
-			<!-- see to_pgsql/target_column.mapping -->
+			<!-- see to_rdb/target_column.mapping -->
 			<!-- no change for now -->
 			<cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-			<!-- see to_pgsql/target_key.mapping -->
-			<!-- same_source use source key for target key -->
-			<!-- target_key_lookup use target table key -->
+			<!-- see to_rdb/target_key.mapping -->
+			<!-- 'same_source' use source key for target key -->
+			<!-- 'target_key_lookup' use target table key -->
 			<!-- use 'target_key_lookup' if source table no primary key but target have -->
 			<cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
 

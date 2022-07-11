@@ -22,8 +22,9 @@ SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/group_to_table.test
 @REM SET KPT_KETTLE_LEVEL=Rowlevel
-
-
+@REM group_to_table.test param
+SET KPT_KETTLE_PARAM_ParamJsonFile=../group_to_file.result/connect_json.0.1.group.json
+@REM group_to_table.prototype param
 SET KPT_KETTLE_PARAM_Config_CDC_Log_Batch_Group_Mapping=log_json_to_kettle
 SET KPT_KETTLE_PARAM_Config_CDC_Debug_Delay_Injection_Crud_Time=0
 SET KPT_KETTLE_PARAM_Config_CDC_Debug_Delay_Injection_Field_Time=0
@@ -39,15 +40,14 @@ SET KPT_KETTLE_PARAM_Param_Batch_ID=test
 SET KPT_KETTLE_PARAM_Param_Group_ID=injection
 SET KPT_KETTLE_PARAM_Param_Group_Name=from_debezium.connect_json.0.1.to_none.same_source_exist
 SET KPT_KETTLE_PARAM_ParamInjectionPath=_test-prototype/group_to_table.injection
+SET KPT_KETTLE_PARAM_ParamMarkPath=from_kafka/batch_group_marker.result
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
 SET KPT_KETTLE_PARAM_ParamTemplatePath=to_rdb
 SET KPT_KETTLE_PARAM_ParamTemplateTransformation=group_to_table.template
-SET KPT_KETTLE_PARAM_ParamJsonFile=../group_to_file.result/connect_json.0.1.group.json
 
 
 SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.group_to_table.from_debezium.connect_json.0.1-to_none.same_source_exist.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
-
 ECHO exit code will be 0
 
 

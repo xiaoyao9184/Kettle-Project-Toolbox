@@ -22,8 +22,9 @@ SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/group_to_table.test
 @REM SET KPT_KETTLE_LEVEL=Rowlevel
-
-
+@REM group_to_table.test param
+SET KPT_KETTLE_PARAM_ParamJsonFile=from_debezium/mssql_schema.json
+@REM group_to_table.prototype param
 SET KPT_KETTLE_PARAM_Config_CDC_Log_Batch_Group_Mapping=log_json_to_kettle
 SET KPT_KETTLE_PARAM_Config_CDC_Debug_Delay_Injection_Crud_Time=0
 SET KPT_KETTLE_PARAM_Config_CDC_Debug_Delay_Injection_Field_Time=0
@@ -39,12 +40,11 @@ SET KPT_KETTLE_PARAM_Param_Batch_ID=test
 SET KPT_KETTLE_PARAM_Param_Group_ID=injection
 SET KPT_KETTLE_PARAM_Param_Group_Name=from_debezium.mssql_schema.to_none.update_only_flash_point
 SET KPT_KETTLE_PARAM_ParamInjectionPath=_test-prototype/group_to_table.injection
+SET KPT_KETTLE_PARAM_ParamMarkPath=from_kafka/batch_group_marker.result
 SET KPT_KETTLE_PARAM_ParamMarkTransformation=no_marker
 SET KPT_KETTLE_PARAM_ParamTemplatePath=to_rdb
 SET KPT_KETTLE_PARAM_ParamTemplateTransformation=group_to_table.template
-SET KPT_KETTLE_PARAM_ParamJsonFile=from_debezium/mssql_schema.json
-
-@REM for protptype
+@REM update_only_flash_point param
 SET KPT_KETTLE_PARAM_Config_CDC_Target_Operate_UpdateOnly_FlashPoint_Include=INSERT,INSERT_BLUK
 SET KPT_KETTLE_PARAM_Config_CDC_Target_Operate_UpdateOnly_FlashPoint_Delay=86400
 SET KPT_KETTLE_PARAM_Config_Time=2022-01-01T00:00:00.000Z
@@ -52,7 +52,6 @@ SET KPT_KETTLE_PARAM_Config_Time=2022-01-01T00:00:00.000Z
 
 SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.group_to_table.from_debezium.mssql_schema-to_none.update_only_flash_point.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
-
 ECHO exit code will be 0
 
 
