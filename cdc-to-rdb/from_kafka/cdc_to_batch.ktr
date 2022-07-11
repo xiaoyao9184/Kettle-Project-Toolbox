@@ -9,9 +9,9 @@
     <directory>/from_kafka</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Log.RDB.Schema</name>
+        <name>_Config.CDC.Log.RDB.Schema</name>
         <default_value>kpt_cdc_log</default_value>
-        <description/>
+        <description>log cant use param</description>
       </parameter>
       <parameter>
         <name>Config.CDC.Kafka.Batch.Duration</name>
