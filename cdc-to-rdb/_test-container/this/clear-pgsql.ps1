@@ -41,6 +41,13 @@ function Clear-Service {
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
+    
+        $_pg_log_schema = $_profile -split "," | ForEach-Object {
+            Write-Host "process profile $_ for _pg_log_schema"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Log.RDB' and @key='Schema']"
+            $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
+            return $_node ? $_node.node.InnerXML : $null
+        } | Where-Object { $_ } | Select-Object -First 1
 
         $_pg_user=$pg_root_user
         $_pg_password=$pg_root_password
