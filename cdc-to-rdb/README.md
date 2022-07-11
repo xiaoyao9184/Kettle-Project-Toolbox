@@ -305,7 +305,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->
-			<cfg namespace="Config.Batch.Redirect.Row" key="Mapping">none</cfg>
+			<cfg namespace="Config.CDC.Batch.Redirect.Row" key="Mapping">none</cfg>
 
 		<!-- source of cdc -->
 			<!-- can be 'from_debezium' of 'from_canal' -->
