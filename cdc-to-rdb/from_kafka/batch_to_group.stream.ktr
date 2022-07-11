@@ -24,7 +24,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>_Config.Batch.Redirect.Row.Mapping</name>
+        <name>_Config.CDC.Batch.Redirect.Row.Mapping</name>
         <default_value>none</default_value>
         <description/>
       </parameter>
@@ -2853,7 +2853,7 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${Config.Batch.Redirect.Row.Mapping}</trans_name>
+    <trans_name>${Config.CDC.Batch.Redirect.Row.Mapping}</trans_name>
     <filename/>
     <directory_path>/from_kafka/redirect_row.mapping</directory_path>
     <mappings>
