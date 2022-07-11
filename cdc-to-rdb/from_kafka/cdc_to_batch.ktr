@@ -94,6 +94,11 @@
         <description>default for batch</description>
       </parameter>
       <parameter>
+        <name>ParamMarkPath</name>
+        <default_value>from_kafka/batch_group_marker.result</default_value>
+        <description>default for batch</description>
+      </parameter>
+      <parameter>
         <name>ParamMarkTransformation</name>
         <default_value>log_environment_to_logtable</default_value>
         <description>default for batch</description>
