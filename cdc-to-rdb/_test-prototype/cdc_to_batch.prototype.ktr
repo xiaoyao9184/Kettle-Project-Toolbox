@@ -39,17 +39,17 @@
         <description/>
       </parameter>
       <parameter>
-        <name>ParamBatchPath</name>
+        <name>Param.Batch.Path</name>
         <default_value>_test-prototype</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamBatchTransformation</name>
+        <name>Param.Batch.Transformation</name>
         <default_value>batch_to_file.stream</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamCsvPath</name>
+        <name>Param.Output.Csv.Path</name>
         <default_value>_test-prototype/cdc_to_batch.test</default_value>
         <description/>
       </parameter>
@@ -536,7 +536,7 @@
     <clusterName/>
     <topic>${Config.CDC.Kafka.Data.Topic}</topic>
     <consumerGroup>${Config.CDC.Kafka.Consumer.Group}</consumerGroup>
-    <transformationPath>${ParamBatchPath}/${ParamBatchTransformation}</transformationPath>
+    <transformationPath>${Param.Batch.Path}/${Param.Batch.Transformation}</transformationPath>
     <SUB_STEP>Dummy: return to kafka</SUB_STEP>
     <batchSize>${Config.CDC.Kafka.Batch.Size}</batchSize>
     <batchDuration>${Config.CDC.Kafka.Batch.Duration}</batchDuration>

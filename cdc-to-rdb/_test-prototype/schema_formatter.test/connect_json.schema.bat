@@ -22,7 +22,7 @@ SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/schema_formatter.test
 @REM schema_formatter.test param
-SET KPT_KETTLE_PARAM_ParamCsvPath=_test-prototype/cdc_to_batch.test
+SET KPT_KETTLE_PARAM_Param_Input_Csv_Path=_test-prototype/cdc_to_batch.test
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic=test_debezium_mysql-test_kpt_cdc-reroute.data-changes
 SET KPT_KETTLE_PARAM_Config_CDC_Batch_Schema_Format_Mapping=connect_json
 @REM connect_json param

@@ -1,31 +1,16 @@
 <transformation>
   <info>
-    <name>group_to_table.test</name>
+    <name>debug_vars_marker</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype</directory>
+    <directory>/from_kafka/batch_group_marker.result</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Source.Column.Mapping</name>
-        <default_value>canal_sqltype</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Config.CDC.Source.Transformation.Path</name>
-        <default_value>from_canal</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Internal.Repository.Directory</name>
-        <default_value>../cdc-to-rdb</default_value>
-        <description/>
-      </parameter>
-      <parameter>
-        <name>Param.Input.Json.File</name>
-        <default_value>from_canal/canal_sqltype.json</default_value>
+        <name>Param.Debug</name>
+        <default_value>-</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -452,9 +437,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2022/05/13 16:59:36.560</created_date>
+    <created_date>2022/03/01 09:05:54.502</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/07/01 16:19:04.460</modified_date>
+    <modified_date>2022/07/11 16:34:45.251</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -462,24 +447,19 @@
   </notepads>
   <order>
     <hop>
+      <from>RowsFromResult: process_id+transname+batch_id+batch_time</from>
+      <to>Dummy: no marker</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>User defined Java class</from>
       <to>Write to log</to>
       <enabled>Y</enabled>
     </hop>
-    <hop>
-      <from>JSON input</from>
-      <to>NullIf</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>NullIf</from>
-      <to>Transformation executor</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
   <step>
-    <name>JSON input</name>
-    <type>JsonInput</type>
+    <name>Dummy: no marker</name>
+    <type>Dummy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -488,207 +468,57 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <include>N</include>
-    <include_field/>
-    <rownum>N</rownum>
-    <addresultfile>N</addresultfile>
-    <readurl>N</readurl>
-    <removeSourceField>N</removeSourceField>
-    <IsIgnoreEmptyFile>N</IsIgnoreEmptyFile>
-    <doNotFailIfNoFile>Y</doNotFailIfNoFile>
-    <ignoreMissingPath>Y</ignoreMissingPath>
-    <defaultPathLeafToNull>Y</defaultPathLeafToNull>
-    <rownum_field/>
-    <file>
-      <name>${KETTLE_HOME}${Internal.Entry.Current.Directory}/group_to_table.test/${Param.Input.Json.File}</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-    </file>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>RowsFromResult: process_id+transname+batch_id+batch_time</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
     <fields>
       <field>
-        <name>batch_id</name>
-        <path>$..batch_id</path>
+        <name>process_id</name>
         <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>transname</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>batch_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
       </field>
       <field>
         <name>batch_time</name>
-        <path>$..batch_time</path>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>group_table_id</name>
-        <path>$..group_table_id</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>group_table_name</name>
-        <path>$..group_table_name</path>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
         <length>-1</length>
         <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_operate</name>
-        <path>$..source_operate</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_schema</name>
-        <path>$..source_schema</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>source_table</name>
-        <path>$..source_table</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>kafka_key</name>
-        <path>$..kafka_key</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <path>$..kafka_message</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>kafka_topic</name>
-        <path>$..kafka_topic</path>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>kafka_partition</name>
-        <path>$..kafka_partition</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>kafka_offset</name>
-        <path>$..kafka_offset</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>kafka_timestamp</name>
-        <path>$..kafka_timestamp</path>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
       </field>
     </fields>
-    <limit>0</limit>
-    <IsInFields>N</IsInFields>
-    <IsAFile>N</IsAFile>
-    <valueField/>
-    <shortFileFieldName/>
-    <pathFieldName/>
-    <hiddenFieldName/>
-    <lastModificationTimeFieldName/>
-    <uriNameFieldName/>
-    <rootUriNameFieldName/>
-    <extensionFieldName/>
-    <sizeFieldName/>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -700,96 +530,6 @@
     <GUI>
       <xloc>352</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>NullIf</name>
-    <type>NullIf</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>kafka_key</name>
-        <value/>
-      </field>
-      <field>
-        <name>kafka_message</name>
-        <value/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Transformation executor</name>
-    <type>TransExecutor</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <specification_method>rep_name</specification_method>
-    <trans_object_id/>
-    <trans_name>group_to_table.prototype</trans_name>
-    <filename/>
-    <directory_path>${Internal.Entry.Current.Directory}</directory_path>
-    <group_size/>
-    <group_field>group_table_name</group_field>
-    <group_time/>
-    <parameters>
-      <inherit_all_vars>Y</inherit_all_vars>
-    </parameters>
-    <execution_result_target_step/>
-    <execution_time_field>ExecutionTime</execution_time_field>
-    <execution_result_field>ExecutionResult</execution_result_field>
-    <execution_errors_field>ExecutionNrErrors</execution_errors_field>
-    <execution_lines_read_field>ExecutionLinesRead</execution_lines_read_field>
-    <execution_lines_written_field>ExecutionLinesWritten</execution_lines_written_field>
-    <execution_lines_input_field>ExecutionLinesInput</execution_lines_input_field>
-    <execution_lines_output_field>ExecutionLinesOutput</execution_lines_output_field>
-    <execution_lines_rejected_field>ExecutionLinesRejected</execution_lines_rejected_field>
-    <execution_lines_updated_field>ExecutionLinesUpdated</execution_lines_updated_field>
-    <execution_lines_deleted_field>ExecutionLinesDeleted</execution_lines_deleted_field>
-    <execution_files_retrieved_field>ExecutionFilesRetrieved</execution_files_retrieved_field>
-    <execution_exit_status_field>ExecutionExitStatus</execution_exit_status_field>
-    <execution_log_text_field>ExecutionLogText</execution_log_text_field>
-    <execution_log_channelid_field>ExecutionLogChannelId</execution_log_channelid_field>
-    <result_rows_target_step/>
-    <result_files_target_step/>
-    <result_files_file_name_field>FileName</result_files_file_name_field>
-    <executors_output_step/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -912,7 +652,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <displayHeader>Y</displayHeader>
     <limitRows>N</limitRows>
     <limitRowsNumber>0</limitRowsNumber>
-    <logmessage>in ${Internal.Transformation.Name}:group_to_table.test</logmessage>
+    <logmessage>in ${Internal.Transformation.Name}:debug_vars_marker</logmessage>
     <fields>
       <field>
         <name>key</name>

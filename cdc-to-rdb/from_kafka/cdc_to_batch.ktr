@@ -44,12 +44,12 @@
         <description/>
       </parameter>
       <parameter>
-        <name>ParamBatchPath</name>
+        <name>Param.Batch.Path</name>
         <default_value>from_kafka</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamBatchTransformation</name>
+        <name>Param.Batch.Transformation</name>
         <default_value>batch_to_group.stream</default_value>
         <description/>
       </parameter>
@@ -84,22 +84,22 @@
         <description>default for batch</description>
       </parameter>
       <parameter>
-        <name>ParamGroupPath</name>
+        <name>Param.Group.Path</name>
         <default_value>to_rdb</default_value>
         <description>default for batch</description>
       </parameter>
       <parameter>
-        <name>ParamGroupTransformation</name>
+        <name>Param.Group.Transformation</name>
         <default_value>group_to_table.result</default_value>
         <description>default for batch</description>
       </parameter>
       <parameter>
-        <name>ParamMarkPath</name>
+        <name>Param.Mark.Path</name>
         <default_value>from_kafka/batch_group_marker.result</default_value>
         <description>default for batch</description>
       </parameter>
       <parameter>
-        <name>ParamMarkTransformation</name>
+        <name>Param.Mark.Transformation</name>
         <default_value>log_environment_to_logtable</default_value>
         <description>default for batch</description>
       </parameter>
@@ -629,7 +629,7 @@
     <patternTopic>${Config.CDC.Kafka.Data.Topic}</patternTopic>
     <topic>${Config.CDC.Kafka.Data.Topic}</topic>
     <consumerGroup>${Config.CDC.Kafka.Consumer.Group}</consumerGroup>
-    <transformationPath>${ParamBatchPath}/${ParamBatchTransformation}</transformationPath>
+    <transformationPath>${Param.Batch.Path}/${Param.Batch.Transformation}</transformationPath>
     <SUB_STEP>Dummy: return to kafka</SUB_STEP>
     <batchSize>${Config.CDC.Kafka.Batch.Size}</batchSize>
     <batchDuration>${Config.CDC.Kafka.Batch.Duration}</batchDuration>

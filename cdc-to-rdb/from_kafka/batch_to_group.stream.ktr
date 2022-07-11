@@ -44,22 +44,22 @@
         <description/>
       </parameter>
       <parameter>
-        <name>_ParamGroupPath</name>
+        <name>_Param.Group.Path</name>
         <default_value>to_rdb</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>_ParamGroupTransformation</name>
+        <name>_Param.Group.Transformation</name>
         <default_value>group_to_table.result</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>_ParamMarkPath</name>
+        <name>_Param.Mark.Path</name>
         <default_value>from_kafka/batch_group_marker.result</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>_ParamMarkTransformation</name>
+        <name>_Param.Mark.Transformation</name>
         <default_value>log_environment_to_logtable</default_value>
         <description/>
       </parameter>
@@ -3424,9 +3424,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${ParamGroupTransformation}</trans_name>
+    <trans_name>${Param.Group.Transformation}</trans_name>
     <filename/>
-    <directory_path>${ParamGroupPath}</directory_path>
+    <directory_path>${Param.Group.Path}</directory_path>
     <group_size/>
     <group_field>group_table_name</group_field>
     <group_time/>
@@ -3578,9 +3578,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${ParamMarkTransformation}</trans_name>
+    <trans_name>${Param.Mark.Transformation}</trans_name>
     <filename/>
-    <directory_path>${ParamMarkPath}</directory_path>
+    <directory_path>${Param.Mark.Path}</directory_path>
     <group_size>1</group_size>
     <group_field/>
     <group_time/>

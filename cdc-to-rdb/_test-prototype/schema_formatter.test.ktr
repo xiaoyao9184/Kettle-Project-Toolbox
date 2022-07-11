@@ -19,7 +19,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>ParamCsvPath</name>
+        <name>Param.Input.Csv.Path</name>
         <default_value>_test-prototype/cdc_to_batch.test</default_value>
         <description/>
       </parameter>
@@ -1033,7 +1033,7 @@ var json_of_row = JSON.stringify(json_obj);
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${KETTLE_HOME}/${ParamCsvPath}/${Config.CDC.Kafka.Data.Topic}.csv</name>
+      <name>${KETTLE_HOME}/${Param.Input.Csv.Path}/${Config.CDC.Kafka.Data.Topic}.csv</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>

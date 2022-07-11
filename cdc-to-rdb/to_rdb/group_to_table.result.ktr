@@ -74,27 +74,27 @@
         <description/>
       </parameter>
       <parameter>
-        <name>ParamInjectionPath</name>
+        <name>Param.Injection.Path</name>
         <default_value>to_rdb/group_to_table.injection</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamMarkPath</name>
+        <name>Param.Mark.Path</name>
         <default_value>from_kafka/batch_group_marker.result</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamMarkTransformation</name>
+        <name>Param.Mark.Transformation</name>
         <default_value>log_environment_to_logtable</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamTemplatePath</name>
+        <name>Param.Template.Path</name>
         <default_value>to_rdb</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamTemplateTransformation</name>
+        <name>Param.Template.Transformation</name>
         <default_value>group_to_table.template</default_value>
         <description/>
       </parameter>
@@ -3023,12 +3023,12 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${ParamTemplateTransformation}</trans_name>
+    <trans_name>${Param.Template.Transformation}</trans_name>
     <filename/>
-    <directory_path>${ParamTemplatePath}</directory_path>
+    <directory_path>${Param.Template.Path}</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>${ParamInjectionPath}/${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
+    <target_file>${Param.Injection.Path}/${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
     <no_execution>N</no_execution>
     <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
@@ -5896,9 +5896,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${ParamMarkTransformation}</trans_name>
+    <trans_name>${Param.Mark.Transformation}</trans_name>
     <filename/>
-    <directory_path>${ParamMarkPath}</directory_path>
+    <directory_path>${Param.Mark.Path}</directory_path>
     <group_size>1</group_size>
     <group_field/>
     <group_time/>
