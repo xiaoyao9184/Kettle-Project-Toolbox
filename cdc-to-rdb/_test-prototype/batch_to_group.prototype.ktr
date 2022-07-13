@@ -579,7 +579,7 @@
     </hop>
     <hop>
       <from>FilterRows: is table-log</from>
-      <to>Group by: batch_id</to>
+      <to>Group by: kafka_topic</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -678,8 +678,8 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constant: DDL</from>
-      <to>JSON output: DDL</to>
+      <from>Constant: IGNORE</from>
+      <to>JSON output: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -689,12 +689,12 @@
     </hop>
     <hop>
       <from>JSON output: MERGE</from>
-      <to>SetValueConstant: code</to>
+      <to>SetValueConstant: MERGE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Group by: batch_id</from>
-      <to>Constant: DDL</to>
+      <from>Group by: kafka_topic</from>
+      <to>Constant: IGNORE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -703,17 +703,12 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON output: DDL</from>
-      <to>SimpleMapping: logger DDL</to>
+      <from>SetValueConstant: MERGE</from>
+      <to>SystemInfo: MERGE</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SetValueConstant: code</from>
-      <to>SystemInfo: batch</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>SystemInfo: batch</from>
+      <from>SystemInfo: MERGE</from>
       <to>SimpleMapping: logger MERGE</to>
       <enabled>Y</enabled>
     </hop>
@@ -740,6 +735,21 @@
     <hop>
       <from>User defined Java class</from>
       <to>Write to log</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SetValueConstant: IGNORE</from>
+      <to>SystemInfo: IGNORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>JSON output: IGNORE</from>
+      <to>SetValueConstant: IGNORE</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SystemInfo: IGNORE</from>
+      <to>SimpleMapping: logger IGNORE</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -841,7 +851,7 @@
     </GUI>
   </step>
   <step>
-    <name>Constant: DDL</name>
+    <name>Constant: IGNORE</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -859,7 +869,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>DDL</nullif>
+        <nullif>IGNORE</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -1232,7 +1242,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>SimpleMapping: redirect_row.mapping</send_true_to>
-    <send_false_to>Group by: batch_id</send_false_to>
+    <send_false_to>Group by: kafka_topic</send_false_to>
     <compare>
       <condition>
         <negated>Y</negated>
@@ -1349,7 +1359,7 @@
     </GUI>
   </step>
   <step>
-    <name>Group by: batch_id</name>
+    <name>Group by: kafka_topic</name>
     <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
@@ -1369,19 +1379,19 @@
     <give_back_row>N</give_back_row>
     <group>
       <field>
-        <name>batch_id</name>
+        <name>kafka_topic</name>
       </field>
     </group>
     <fields>
       <field>
-        <aggregate>batch_time</aggregate>
-        <subject>batch_time</subject>
+        <aggregate>batch_id</aggregate>
+        <subject>batch_id</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
       <field>
-        <aggregate>kafka_topic</aggregate>
-        <subject>kafka_topic</subject>
+        <aggregate>batch_time</aggregate>
+        <subject>batch_time</subject>
         <type>FIRST_INCL_NULL</type>
         <valuefield/>
       </field>
@@ -1625,7 +1635,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON output: DDL</name>
+    <name>JSON output: IGNORE</name>
     <type>JsonOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1636,8 +1646,8 @@
       <schema_name/>
     </partitioning>
     <outputValue>json</outputValue>
-    <jsonBloc>ddl</jsonBloc>
-    <nrRowsInBloc>1</nrRowsInBloc>
+    <jsonBloc>ignore</jsonBloc>
+    <nrRowsInBloc>0</nrRowsInBloc>
     <operation_type>outputvalue</operation_type>
     <compatibility_mode>N</compatibility_mode>
     <encoding>UTF-8</encoding>
@@ -2412,7 +2422,7 @@
     </GUI>
   </step>
   <step>
-    <name>SetValueConstant: code</name>
+    <name>SetValueConstant: MERGE</name>
     <type>SetValueConstant</type>
     <description/>
     <distribute>Y</distribute>
@@ -2543,7 +2553,7 @@
     </GUI>
   </step>
   <step>
-    <name>SimpleMapping: logger DDL</name>
+    <name>SimpleMapping: logger IGNORE</name>
     <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -2567,7 +2577,7 @@
           <rename_on_output>N</rename_on_output>
           <description/>
           <connector>
-            <parent>batch_id</parent>
+            <parent>batch</parent>
             <child>batch</child>
           </connector>
           <connector>
@@ -3281,7 +3291,7 @@
     </GUI>
   </step>
   <step>
-    <name>SystemInfo: batch</name>
+    <name>SystemInfo: MERGE</name>
     <type>SystemInfo</type>
     <description/>
     <distribute>Y</distribute>
@@ -3737,6 +3747,71 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <GUI>
       <xloc>80</xloc>
       <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SetValueConstant: IGNORE</name>
+    <type>SetValueConstant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <usevar>N</usevar>
+    <fields>
+      <field>
+        <name>code</name>
+        <value>IGNORE</value>
+        <mask/>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>768</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SystemInfo: IGNORE</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>batch</name>
+        <type>batch ID</type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
