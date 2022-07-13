@@ -34,8 +34,10 @@
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes</cfg>
 			
-			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+			
             <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
+			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
@@ -64,14 +66,15 @@ Config.CDC.Debug.Delay.Injection.Field.Time	10000
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,INSERT_BLUK
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
-Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
-Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
-Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes
-Config.CDC.Log.RDB.Schema	kpt_cdc_log
-Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc.kpt-cdc-log
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000
+Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
+Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
+Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc.data-changes
+Config.CDC.Batch.Schema.Format.Mapping	connect_json
+Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log
 Config.CDC.Source.Transformation.Path	from_debezium
 Config.CDC.Source.Row.Mapping	mysql_playload
 Config.CDC.Source.Column.Mapping	mysql_schema
@@ -90,8 +93,10 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mssql-test_kpt_cdc.data-changes</cfg>
 			
-			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+			
             <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
+			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">mssql_playload</cfg>
@@ -120,14 +125,15 @@ Config.CDC.Debug.Delay.Injection.Field.Time	10000
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,INSERT_BLUK
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
-Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
-Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
-Config.CDC.Kafka.Data.Topic	test_debezium_mssql-test_kpt_cdc.data-changes
-Config.CDC.Log.RDB.Schema	kpt_cdc_log
-Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc.kpt-cdc-log
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000
+Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
+Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
+Config.CDC.Kafka.Data.Topic	test_debezium_mssql-test_kpt_cdc.data-changes
+Config.CDC.Batch.Schema.Format.Mapping	connect_json
+Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log
 Config.CDC.Source.Transformation.Path	from_debezium
 Config.CDC.Source.Row.Mapping	mssql_playload
 Config.CDC.Source.Column.Mapping	mssql_schema
@@ -146,9 +152,11 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
             <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_canal-test_kpt_cdc</cfg>
 			
-			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
-            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_canal-test_kpt_cdc.kpt-cdc-log</cfg>
-            
+            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+			
+			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_canal-test_kpt_cdc.kpt-cdc-log</cfg>
+            <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_canal</cfg>
             <cfg namespace="Config.CDC.Source.Row" key="Mapping">canal_table</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">canal_sqltype</cfg>
@@ -176,14 +184,15 @@ Config.CDC.Debug.Delay.Injection.Field.Time	10000
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Include	INSERT,INSERT_BLUK
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Delay	86400
 Config.CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp	2000-01-01T00:00:00.000Z
-Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
-Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
-Config.CDC.Kafka.Data.Topic	test_canal-test_kpt_cdc
-Config.CDC.Log.RDB.Schema	kpt_cdc_log
-Config.CDC.Log.Kafka.Topic	test_canal-test_kpt_cdc.kpt-cdc-log
 Config.CDC.Kafka.Batch.Size	10000
 Config.CDC.Kafka.Batch.Duration	60000
 Config.CDC.Kafka.Batch.Max	10000
+Config.CDC.Kafka.Server.Bootstrap	TODO_CHANGE_KAFKA
+Config.CDC.Kafka.Consumer.Group	test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME
+Config.CDC.Kafka.Data.Topic	test_canal-test_kpt_cdc
+Config.CDC.Batch.Schema.Format.Mapping	connect_json
+Config.CDC.Log.Kafka.Topic	test_canal-test_kpt_cdc.kpt-cdc-log
+Config.CDC.Log.RDB.Schema	kpt_cdc_log
 Config.CDC.Source.Transformation.Path	from_canal
 Config.CDC.Source.Row.Mapping	canal_table
 Config.CDC.Source.Column.Mapping	canal_sqltype

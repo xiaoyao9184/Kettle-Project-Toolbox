@@ -6,7 +6,7 @@
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype/batch_formatter.prototype</directory>
+    <directory>/_test-prototype/schema_formatter.prototype</directory>
     <parameters>
       <parameter>
         <name>Config.CDC.Kafka.Data.Topic</name>
@@ -14,7 +14,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Kafka.Schema.Registry</name>
+        <name>Config.CDC.Batch.Schema.Registry.Url</name>
         <default_value>http://me:58081</default_value>
         <description/>
       </parameter>
@@ -447,7 +447,7 @@
   </notepads>
   <order>
     <hop>
-      <from>MappingInput: batch_formatter.mapping</from>
+      <from>MappingInput: schema_formatter.mapping</from>
       <to>ScriptValueMod: get schema_id</to>
       <enabled>N</enabled>
     </hop>
@@ -468,7 +468,7 @@
     </hop>
     <hop>
       <from>SelectValues: select</from>
-      <to>MappingOutput: batch_formatter.mapping</to>
+      <to>MappingOutput: schema_formatter.mapping</to>
       <enabled>N</enabled>
     </hop>
     <hop>
@@ -635,7 +635,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingInput: batch_formatter.mapping</name>
+    <name>MappingInput: schema_formatter.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -699,7 +699,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: batch_formatter.mapping</name>
+    <name>MappingOutput: schema_formatter.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1159,7 +1159,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     <trans_object_id/>
     <trans_name>schema_registry_api.mapping</trans_name>
     <filename/>
-    <directory_path>/from_kafka/batch_formatter.mapping</directory_path>
+    <directory_path>/from_kafka/schema_formatter.mapping</directory_path>
     <mappings>
       <input>
         <mapping>
@@ -1322,7 +1322,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${KETTLE_HOME}/_test-prototype/batch_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
+      <name>${KETTLE_HOME}/_test-prototype/schema_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>json</extention>

@@ -9,9 +9,9 @@
     <directory>/to_rdb</directory>
     <parameters>
       <parameter>
-        <name>Config.CDC.Log.RDB.Schema</name>
+        <name>_Config.CDC.Log.RDB.Schema</name>
         <default_value>kpt_cdc_log</default_value>
-        <description/>
+        <description>log cant use param</description>
       </parameter>
       <parameter>
         <name>Config.CDC.Log.Group.Mapping</name>
@@ -74,22 +74,27 @@
         <description/>
       </parameter>
       <parameter>
-        <name>ParamInjectionPath</name>
+        <name>Param.Injection.Path</name>
         <default_value>to_rdb/group_to_table.injection</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamMarkTransformation</name>
+        <name>Param.Mark.Path</name>
+        <default_value>from_kafka/batch_group_marker.result</default_value>
+        <description/>
+      </parameter>
+      <parameter>
+        <name>Param.Mark.Transformation</name>
         <default_value>log_environment_to_logtable</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamTemplatePath</name>
+        <name>Param.Template.Path</name>
         <default_value>to_rdb</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>ParamTemplateTransformation</name>
+        <name>Param.Template.Transformation</name>
         <default_value>group_to_table.template</default_value>
         <description/>
       </parameter>
@@ -514,7 +519,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/19 10:28:25.913</modified_date>
+    <modified_date>2022/07/11 11:07:28.247</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -3018,12 +3023,12 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${ParamTemplateTransformation}</trans_name>
+    <trans_name>${Param.Template.Transformation}</trans_name>
     <filename/>
-    <directory_path>/${ParamTemplatePath}</directory_path>
+    <directory_path>${Param.Template.Path}</directory_path>
     <source_step/>
     <source_output_fields>    </source_output_fields>
-    <target_file>${ParamInjectionPath}/${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
+    <target_file>${Param.Injection.Path}/${Param.Batch.ID}.${Param.Group.ID}-${Param.Group.Name}.ktr</target_file>
     <no_execution>N</no_execution>
     <stream_source_step>Delay: debug for crud injection</stream_source_step>
     <stream_target_step>Dummy: start</stream_target_step>
@@ -5891,9 +5896,9 @@
     </partitioning>
     <specification_method>rep_name</specification_method>
     <trans_object_id/>
-    <trans_name>${ParamMarkTransformation}</trans_name>
+    <trans_name>${Param.Mark.Transformation}</trans_name>
     <filename/>
-    <directory_path>/from_kafka/batch_group_marker.result</directory_path>
+    <directory_path>${Param.Mark.Path}</directory_path>
     <group_size>1</group_size>
     <group_field/>
     <group_time/>

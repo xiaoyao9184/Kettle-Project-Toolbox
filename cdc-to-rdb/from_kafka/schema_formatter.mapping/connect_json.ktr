@@ -5,7 +5,7 @@
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <directory>/from_kafka/batch_formatter.mapping</directory>
+    <directory>/from_kafka/schema_formatter.mapping</directory>
     <parameters>
     </parameters>
     <log>
@@ -436,18 +436,18 @@
   </notepads>
   <order>
     <hop>
-      <from>MappingInput: batch_formatter.mapping</from>
+      <from>MappingInput: schema_formatter.mapping</from>
       <to>SelectValues: to string</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>SelectValues: to string</from>
-      <to>MappingOutput: batch_formatter.mapping</to>
+      <to>MappingOutput: schema_formatter.mapping</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>MappingInput: batch_formatter.mapping</name>
+    <name>MappingInput: schema_formatter.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -511,7 +511,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: batch_formatter.mapping</name>
+    <name>MappingOutput: schema_formatter.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>

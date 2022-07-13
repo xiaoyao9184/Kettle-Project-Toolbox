@@ -1,20 +1,20 @@
 <transformation>
   <info>
-    <name>schema_registry_avro_converter.prototype</name>
+    <name>schema_registry_json.prototype</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>/_test-prototype/batch_formatter.prototype</directory>
+    <directory>/_test-prototype/schema_formatter.prototype</directory>
     <parameters>
       <parameter>
         <name>Config.CDC.Kafka.Data.Topic</name>
-        <default_value>test_debezium_mysql-test_kpt_cdc-avro.data-changes</default_value>
+        <default_value>test_debezium_mysql-test_kpt_cdc-json.data-changes</default_value>
         <description/>
       </parameter>
       <parameter>
-        <name>Config.CDC.Kafka.Schema.Registry</name>
+        <name>Config.CDC.Batch.Schema.Registry.Url</name>
         <default_value>http://me:58081</default_value>
         <description/>
       </parameter>
@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2022/05/26 09:39:23.171</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/07/04 14:45:05.698</modified_date>
+    <modified_date>2022/07/07 10:08:14.398</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -447,8 +447,23 @@
   </notepads>
   <order>
     <hop>
-      <from>UserDefinedJavaClass: deserializer avro</from>
+      <from>UserDefinedJavaClass: to connect schema</from>
       <to>ScriptValueMod: key_schema_payload+message_schema_payload</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>TextFileInput: topic file</from>
+      <to>ScriptValueMod: Hex_to_Binary</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>MappingInput: schema_formatter.mapping</from>
+      <to>ScriptValueMod: get schema_id+payload_json</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>ScriptValueMod: Hex_to_Binary</from>
+      <to>ScriptValueMod: get schema_id+payload_json</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -458,13 +473,8 @@
     </hop>
     <hop>
       <from>SelectValues: select</from>
-      <to>MappingOutput: batch_formatter.mapping</to>
+      <to>MappingOutput: schema_formatter.mapping</to>
       <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>TextFileInput: topic file</from>
-      <to>ScriptValueMod: Hex_to_Binary</to>
-      <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Add constants</from>
@@ -492,13 +502,38 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>MappingInput: batch_formatter.mapping</from>
-      <to>UserDefinedJavaClass: deserializer avro</to>
-      <enabled>N</enabled>
+      <from>ScriptValueMod: get schema_id+payload_json</from>
+      <to>SelectValues: select schema_id</to>
+      <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ScriptValueMod: Hex_to_Binary</from>
-      <to>UserDefinedJavaClass: deserializer avro</to>
+      <from>ScriptValueMod: get schema_id+payload_json</from>
+      <to>StreamLookup: key_schema_json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: key_schema_json</from>
+      <to>StreamLookup: message_schema_json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>StreamLookup: message_schema_json</from>
+      <to>UserDefinedJavaClass: to connect schema</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SelectValues: select schema_id</from>
+      <to>SimpleMapping: schema_registry_api.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: schema_registry_api.mapping</from>
+      <to>StreamLookup: key_schema_json</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: schema_registry_api.mapping</from>
+      <to>StreamLookup: message_schema_json</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -549,7 +584,7 @@
     </remotesteps>
     <GUI>
       <xloc>624</xloc>
-      <yloc>928</yloc>
+      <yloc>1408</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -590,12 +625,12 @@
     </remotesteps>
     <GUI>
       <xloc>624</xloc>
-      <yloc>1056</yloc>
+      <yloc>1536</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>MappingInput: batch_formatter.mapping</name>
+    <name>MappingInput: schema_formatter.mapping</name>
     <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -659,7 +694,7 @@
     </GUI>
   </step>
   <step>
-    <name>MappingOutput: batch_formatter.mapping</name>
+    <name>MappingOutput: schema_formatter.mapping</name>
     <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -679,7 +714,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>672</yloc>
+      <yloc>1152</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -715,7 +750,7 @@
     </remotesteps>
     <GUI>
       <xloc>624</xloc>
-      <yloc>800</yloc>
+      <yloc>1280</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -807,6 +842,106 @@ putRow(row);
     </GUI>
   </step>
   <step>
+    <name>ScriptValueMod: get schema_id+payload_json</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+//var hex = new Packages.org.apache.commons.codec.binary.Hex();
+if (kafka_key != null) {
+	var buffer_key = Packages.java.nio.ByteBuffer.wrap(kafka_key);
+	if( buffer_key.get() == 0 ){
+		var key_schema_id = buffer_key.getInt();
+
+        var bytes = Packages.java.util.Arrays.copyOfRange(kafka_key,buffer_key.position(),buffer_key.limit());
+
+		//var key_payload_hex = new Packages.java.lang.String(hex.encode(bytes));
+        var key_payload_json = new Packages.java.lang.String(bytes);
+    }
+} else {
+   var key_schema_id = null;
+   var key_payload_json = null;
+}
+
+if (kafka_message != null) {
+	var buffer_message = Packages.java.nio.ByteBuffer.wrap(kafka_message);
+	if( buffer_message.get() == 0 ){
+		var message_schema_id = buffer_message.getInt();
+
+        var bytes = Packages.java.util.Arrays.copyOfRange(kafka_message,buffer_message.position(),buffer_message.limit());
+
+		//var message_payload_hex = new Packages.java.lang.String(hex.encode(bytes));
+        var message_payload_json = new Packages.java.lang.String(bytes);
+    }
+} else {
+   var message_schema_id = null;
+   var message_payload_json = null;
+}
+
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>key_schema_id</name>
+        <rename>key_schema_id</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>key_payload_json</name>
+        <rename>key_payload_json</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>message_schema_id</name>
+        <rename>message_schema_id</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+      <field>
+        <name>message_payload_json</name>
+        <rename>message_payload_json</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>ScriptValueMod: json_of_row</name>
     <type>ScriptValueMod</type>
     <description/>
@@ -859,7 +994,7 @@ var json_of_row = JSON.stringify(json_obj);
     </remotesteps>
     <GUI>
       <xloc>624</xloc>
-      <yloc>672</yloc>
+      <yloc>1152</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -936,7 +1071,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>384</yloc>
+      <yloc>832</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -984,7 +1119,194 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>544</yloc>
+      <yloc>992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SelectValues: select schema_id</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>key_schema_id</name>
+      </field>
+      <field>
+        <name>message_schema_id</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>SimpleMapping: schema_registry_api.mapping</name>
+    <type>SimpleMapping</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>schema_registry_api.mapping</trans_name>
+    <filename/>
+    <directory_path>/from_kafka/schema_formatter.mapping</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>key_schema_id</parent>
+            <child>key_schema_id</child>
+          </connector>
+          <connector>
+            <parent>message_schema_id</parent>
+            <child>message_schema_id</child>
+          </connector>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+          <connector>
+            <parent>schema_id</parent>
+            <child>schema_id</child>
+          </connector>
+          <connector>
+            <parent>schema_json</parent>
+            <child>schema_json</child>
+          </connector>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>672</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StreamLookup: key_schema_json</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>SimpleMapping: schema_registry_api.mapping</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>key_schema_id</name>
+        <field>schema_id</field>
+      </key>
+      <value>
+        <name>schema_json</name>
+        <rename>key_schema_json</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>StreamLookup: message_schema_json</name>
+    <type>StreamLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <from>SimpleMapping: schema_registry_api.mapping</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
+    <lookup>
+      <key>
+        <name>message_schema_id</name>
+        <field>schema_id</field>
+      </key>
+      <value>
+        <name>schema_json</name>
+        <rename>message_schema_json</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1013,7 +1335,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${KETTLE_HOME}/_test-prototype/batch_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
+      <name>${KETTLE_HOME}/_test-prototype/schema_formatter.test/${Config.CDC.Kafka.Data.Topic}</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>json</extention>
@@ -1053,7 +1375,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     </remotesteps>
     <GUI>
       <xloc>624</xloc>
-      <yloc>1184</yloc>
+      <yloc>1664</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1238,7 +1560,7 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
     </GUI>
   </step>
   <step>
-    <name>UserDefinedJavaClass: deserializer avro</name>
+    <name>UserDefinedJavaClass: to connect schema</name>
     <type>UserDefinedJavaClass</type>
     <description/>
     <distribute>Y</distribute>
@@ -1252,13 +1574,17 @@ if(message_with_schema.schema == null &amp;&amp; message_with_schema.payload == 
       <definition>
         <class_type>TRANSFORM_CLASS</class_type>
         <class_name>Processor</class_name>
-        <class_source>import scala.Tuple2;
-import io.confluent.kafka.schemaregistry.avro.AvroSchema;
-import io.confluent.kafka.schemaregistry.avro.AvroSchemaUtils;
-import com.github.xiaoyao9184.AvroPayloadConverter;
-import com.github.xiaoyao9184.AvroSchemaConverter;
-import org.apache.avro.Schema;
-import org.apache.avro.generic.GenericData;
+        <class_source>import com.github.xiaoyao9184.JsonSchemaConverter;
+
+
+private JsonSchemaConverter converter;
+
+
+public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
+  this.converter = new JsonSchemaConverter(10000);
+
+  return parent.initImpl(stepMetaInterface, stepDataInterface);
+}
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
 
@@ -1271,89 +1597,23 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
   r = createOutputRow(r, data.outputRowMeta.size());
 
-  byte[] keyDataAvro = get(Fields.In, "kafka_key").getBinary(r);
-  Object keyDataObj = this.toObject(true,keyDataAvro);
-  String keyDataSchema = this.toSchemaJson(keyDataObj);
-  String keyDataPayload = this.toPayloadJson(keyDataObj);
-  get(Fields.Out, "key_schema_json").setValue(r, keyDataSchema);
-  get(Fields.Out, "key_payload_json").setValue(r, keyDataPayload);
+  String keySchemaJson = get(Fields.In, "key_schema_json").getString(r);
+  String keySchemaConnect = this.converter.toConnectJson(true, keySchemaJson);
+  get(Fields.In, "key_schema_json").setValue(r, keySchemaConnect);
 
-  byte[] messageDataAvro = get(Fields.In, "kafka_message").getBinary(r);
-  Object messageDataObj = this.toObject(false,messageDataAvro);
-  String messageDataSchema = this.toSchemaJson(messageDataObj);
-  String messageDataPayload = this.toPayloadJson(messageDataObj);
-  get(Fields.Out, "message_schema_json").setValue(r, messageDataSchema);
-  get(Fields.Out, "message_payload_json").setValue(r, messageDataPayload);
+  String messageSchemaJson = get(Fields.In, "message_schema_json").getString(r);
+  String messageSchemaConnect = this.converter.toConnectJson(false, messageSchemaJson);
+  get(Fields.In, "message_schema_json").setValue(r, messageSchemaConnect);
+
 
   putRow(data.outputRowMeta, r);
 
   return true;
 }
-
-
-private String schemaRegistryUrl = getVariable("Config.CDC.Kafka.Schema.Registry", "http://me:58081");
-
-private AvroPayloadConverter payloadConverter;
-private AvroSchemaConverter schemaConverter;
-
-public boolean init(StepMetaInterface stepMetaInterface, StepDataInterface stepDataInterface) {
-  this.payloadConverter = new AvroPayloadConverter(schemaRegistryUrl);
-  this.schemaConverter = new AvroSchemaConverter(10000);
-
-  return parent.initImpl(stepMetaInterface, stepDataInterface);
-}
-
-public Object toObject(boolean isKey, byte[] bytes){
-  if (bytes == null) {
-    return null;
-  }
-  return this.payloadConverter.toObject(bytes, isKey);
-}
-
-public String toSchemaJson(Object obj){
-  if (obj == null) {
-    return null;
-  }
-  Schema schemaAvro = AvroSchemaUtils.getSchema(obj);
-  AvroSchema avroSchema = new AvroSchema(schemaAvro);
-  return this.schemaConverter.toConnectJson(avroSchema,false);
-}
-
-public String toPayloadJson(Object obj){
-  if (obj == null) {
-    return null;
-  }
-  return GenericData.get().toString(obj);
-}
-
 </class_source>
       </definition>
     </definitions>
     <fields>
-      <field>
-        <field_name>key_schema_json</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-      <field>
-        <field_name>key_payload_json</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-      <field>
-        <field_name>message_schema_json</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-      <field>
-        <field_name>message_payload_json</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
     </fields>
     <clear_result_fields>N</clear_result_fields>
     <info_steps/>
@@ -1369,7 +1629,7 @@ public String toPayloadJson(Object obj){
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>224</yloc>
+      <yloc>672</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

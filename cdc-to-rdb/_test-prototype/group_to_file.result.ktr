@@ -24,7 +24,7 @@
         <description/>
       </parameter>
       <parameter>
-        <name>ParamOutputFlag</name>
+        <name>Param.Output.Name</name>
         <default_value>-</default_value>
         <description/>
       </parameter>
@@ -1159,7 +1159,7 @@ var json_of_row = JSON.stringify(json_obj);
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>${KETTLE_HOME}/_test-prototype/group_to_file.result/${ParamOutputFlag}.${Param.Batch.ID}.${Param.Group.ID}</name>
+      <name>${KETTLE_HOME}/_test-prototype/group_to_file.result/${Param.Output.Name}.${Param.Batch.ID}.${Param.Group.ID}</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>group.json</extention>

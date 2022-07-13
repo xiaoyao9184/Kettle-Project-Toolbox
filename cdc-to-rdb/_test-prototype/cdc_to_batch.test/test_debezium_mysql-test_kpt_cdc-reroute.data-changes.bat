@@ -29,21 +29,26 @@ SET _datetime=!_date!-!_time!
 SET KPT_COMMAND=pan
 SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/cdc_to_batch.prototype
-
+@REM cdc_to_batch.prototype param
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Batch_Duration=10000
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Batch_Max=100
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Batch_Size=100
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Server_Bootstrap=kafka:59094
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Consumer_Group=cdc_to_batch.test-%_datetime%
 SET KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic=test_debezium_mysql-test_kpt_cdc-reroute.data-changes
-SET KPT_KETTLE_PARAM_ParamBatchPath=/_test-prototype
-SET KPT_KETTLE_PARAM_ParamBatchTransformation=batch_to_file.stream
-SET KPT_KETTLE_PARAM_ParamCsvPath=_test-prototype/cdc_to_batch.test
+SET KPT_KETTLE_PARAM_Param_Batch_Path=/_test-prototype
+SET KPT_KETTLE_PARAM_Param_Batch_Transformation=batch_to_file.stream
+@REM batch_to_file.stream param
+SET KPT_KETTLE_PARAM_Param_Output_Csv_Path=_test-prototype/cdc_to_batch.test
+SET KPT_KETTLE_PARAM_Param_Mark_Path=_test-prototype
+SET KPT_KETTLE_PARAM_Param_Mark_Transformation=debug_vars_marker.result
+@REM debug_vars_marker.result param
+SET KPT_KETTLE_PARAM_Param_Debug=true
+
 
 SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.cdc_to_batch.%KPT_KETTLE_PARAM_Config_CDC_Kafka_Data_Topic%.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 1
-
 
 
 ECHO:

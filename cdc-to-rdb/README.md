@@ -282,29 +282,30 @@ then you can combine all cfgs by referring the `profile` name later.
 		<profile name="debezium-mysql-pgsql">
 		<!-- kafka consumer -->
 			<cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt.mysql.</cfg>
+			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt_cdc_ro_rdb</cfg>
 			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
             
-			<!-- see from_kafka/batch_formatter.mapping -->
-			<!-- 'connect_json' json without schema-registry -->
-			<!-- 'schema_registry_avro' avro with schema-registry -->
-			<!-- 'schema_registry_json' json with schema-registry -->
-			<cfg namespace="Config.CDC.Kafka.Data" key="Format">connect_json</cfg>
-
 		<!-- logger of cdc -->
 			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
 			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
-
 			<!-- see from_kafka/batch_group_logger.mapping -->
 			<cfg namespace="Config.CDC.Log.Group" key="Mapping">log_json_to_kafka</cfg>
 
-			<!-- see from_kafka/group_table.mapping -->
-			<cfg namespace="Config.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
+		<!-- batch of cdc -->
+			<!-- see from_kafka/schema_formatter.mapping -->
+			<!-- 'connect_json' json without schema-registry -->
+			<!-- 'schema_registry_avro' avro with schema-registry -->
+			<!-- 'schema_registry_json' json with schema-registry -->
+			<cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+			<!-- set if use schema-registry -->
+			<cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:58081</cfg>
 
+			<!-- see from_kafka/group_table.mapping -->
+			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->
-			<cfg namespace="Config.Batch.Redirect.Row" key="Mapping">none</cfg>
+			<cfg namespace="Config.CDC.Batch.Redirect.Row" key="Mapping">none</cfg>
 
 		<!-- source of cdc -->
 			<!-- can be 'from_debezium' of 'from_canal' -->
@@ -322,20 +323,20 @@ then you can combine all cfgs by referring the `profile` name later.
 			<!-- target of event write on only support 'to_pgsql' -->
 			<cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
 			<!-- see to_rdb/target_table.mapping -->
-			<!-- same_source_exist use source table name of target table -->
-			<!-- config_prefix_exist use xml config mapping target table -->
-			<!-- database_mapping_exist use table 'kpt_cdc_data.mapping_table' mapping target table -->
+			<!-- 'same_source_exist' use source table name of target table -->
+			<!-- 'config_prefix_exist' use xml config mapping target table -->
+			<!-- 'database_mapping_exist' use table 'kpt_cdc_data.mapping_table' mapping target table -->
 			<cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
 			<!-- see to_rdb/target_operate.mapping -->
-			<!-- same_source use source operate name of target operate -->
-			<!-- update_only_flash_point replace source operate with 'update' operate -->
+			<!-- 'same_source' use source operate name of target operate -->
+			<!-- 'update_only_flash_point' replace source operate with 'update' operate -->
 			<cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
-			<!-- see to_pgsql/target_column.mapping -->
+			<!-- see to_rdb/target_column.mapping -->
 			<!-- no change for now -->
 			<cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-			<!-- see to_pgsql/target_key.mapping -->
-			<!-- same_source use source key for target key -->
-			<!-- target_key_lookup use target table key -->
+			<!-- see to_rdb/target_key.mapping -->
+			<!-- 'same_source' use source key for target key -->
+			<!-- 'target_key_lookup' use target table key -->
 			<!-- use 'target_key_lookup' if source table no primary key but target have -->
 			<cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
 
