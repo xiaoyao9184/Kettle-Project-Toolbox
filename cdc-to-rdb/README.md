@@ -76,6 +76,28 @@ Developed based on Debezium v1.7, canal v1.1.5
 | Apicurio/registry | protobuf | no | |
 
 
+| CDC producer | CDC log distributed | support | why |
+|:-----:|:-----:|:-----:|:-----:|
+| canal | all table in one-topic | yes | |
+| debezium | all table in one-topic | yes | |
+| debezium | one table in one-topic | yes | |
+|  | one table in multi-topic | yes | _1._ |
+| debezium  | one row in one-topic | yes | |
+|  | one row in multi-topic | yes | _2._ |
+
+
+1. in group-table, the data will be sorted by table, 
+if use 'sort_by_table_timestamp' all operations will be sorted by event time, 
+so events of the same row will also be ordered.
+if in an batch, the same row has operated multiple times,
+it might be a performance issue.
+enable redirect-row and use 'sort_by_table_operate' for group-table will reduce operations on the same row in the same batch.
+
+2. after redirect-row, events for same row will only keep the final merged event, 
+the order between different rows is not important.
+
+
+
 ## Build
 
 in root of this project
@@ -301,7 +323,10 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:58081</cfg>
 
 			<!-- see from_kafka/group_table.mapping -->
-			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
+			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_timestamp</cfg>
+			<!-- 'none' no redirect -->
+			<!-- 'sort_by_table_timestamp' group by table sort by time -->
+			<!-- 'sort_by_table_operate' only use when no duplicate row in batch mean use 'Redirect.Row' -->
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->

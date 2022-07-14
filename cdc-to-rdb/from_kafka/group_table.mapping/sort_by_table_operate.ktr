@@ -462,7 +462,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: param_* + kafka_offset asc</from>
+      <from>SortRows: schema+table + redirect_operate asc</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
@@ -473,12 +473,12 @@
     </hop>
     <hop>
       <from>MappingInput: group_table.mapping</from>
-      <to>SortRows: param_* + kafka_offset asc</to>
+      <to>SortRows: schema+table + redirect_operate asc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: param_* + kafka_offset asc</to>
+      <to>SortRows: schema+table + redirect_operate asc</to>
       <enabled>N</enabled>
     </hop>
   </order>
@@ -512,7 +512,7 @@
     <calculation>
       <field_name>operate_schema_table</field_name>
       <calc_type>ADD3</calc_type>
-      <field_a>source_operate</field_a>
+      <field_a>redirect_operate</field_a>
       <field_b>POINT</field_b>
       <field_c>schema_table</field_c>
       <value_type>String</value_type>
@@ -674,7 +674,7 @@
         <field_null_if/>
       </field>
       <field>
-        <name>source_operate</name>
+        <name>redirect_operate</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -885,6 +885,24 @@
     </partitioning>
     <fields>
       <field>
+        <name>kafka_key</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_message</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>kafka_topic</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>kafka_partition</name>
         <type>Integer</type>
         <length>-1</length>
@@ -915,6 +933,18 @@
         <precision>-1</precision>
       </field>
       <field>
+        <name>source_operate</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>source_timestamp</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>source_schema</name>
         <type>String</type>
         <length>-1</length>
@@ -927,7 +957,31 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>source_operate</name>
+        <name>source_row</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>redirect_offset</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>redirect_row</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>redirect_operate</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>redirect_range</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -1095,7 +1149,7 @@ group_index = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SortRows: param_* + kafka_offset asc</name>
+    <name>SortRows: schema+table + redirect_operate asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1130,15 +1184,7 @@ group_index = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>source_operate</name>
-        <ascending>Y</ascending>
-        <case_sensitive>Y</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-      <field>
-        <name>kafka_offset</name>
+        <name>redirect_operate</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
