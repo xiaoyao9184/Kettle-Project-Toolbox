@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>sort_by_table_operate</name>
+    <name>sort_by_table_timestamp</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -439,7 +439,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/03/07 16:47:24.176</modified_date>
+    <modified_date>2022/07/14 08:55:03.299</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -462,7 +462,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: source_table + redirect_operate asc</from>
+      <from>SortRows: source_table + kafka_timestamp asc</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
@@ -473,12 +473,12 @@
     </hop>
     <hop>
       <from>MappingInput: group_table.mapping</from>
-      <to>SortRows: source_table + redirect_operate asc</to>
+      <to>SortRows: source_table + kafka_timestamp asc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: source_table + redirect_operate asc</to>
+      <to>SortRows: source_table + kafka_timestamp asc</to>
       <enabled>N</enabled>
     </hop>
   </order>
@@ -1143,7 +1143,7 @@ group_index = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SortRows: source_table + redirect_operate asc</name>
+    <name>SortRows: source_table + kafka_timestamp asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1178,7 +1178,7 @@ group_index = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>redirect_operate</name>
+        <name>kafka_timestamp</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>

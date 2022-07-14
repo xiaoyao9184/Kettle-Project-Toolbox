@@ -76,6 +76,20 @@ Developed based on Debezium v1.7, canal v1.1.5
 | Apicurio/registry | protobuf | no | |
 
 
+| CDC producer | CDC log distribution | support | why |
+|:-----:|:-----:|:-----:|:-----:|
+| canal | all table in one-topic | yes | |
+| debezium | all table in one-topic | yes | |
+| debezium | one table in one-topic | yes | |
+|  | one table in multi-topic | no | _1._ |
+| debezium  | one row in one-topic | yes | |
+|  | one row in multi-topic | no | _1._ |
+
+
+1. redirect-row sorting problem, cant find last row
+2. group-table sorting problem, events for same row cannot be sorted 
+
+
 ## Build
 
 in root of this project
@@ -301,7 +315,10 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:58081</cfg>
 
 			<!-- see from_kafka/group_table.mapping -->
-			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_operate</cfg>
+			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_timestamp</cfg>
+			<!-- 'none' no redirect -->
+			<!-- 'sort_by_table_timestamp' group by table sort by time -->
+			<!-- 'sort_by_table_operate' only use when no duplicate row in batch mean use 'Redirect.Row' -->
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->

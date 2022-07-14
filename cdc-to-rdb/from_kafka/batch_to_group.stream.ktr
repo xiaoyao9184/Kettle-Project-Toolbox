@@ -20,7 +20,7 @@
       </parameter>
       <parameter>
         <name>_Config.CDC.Batch.Group.Table.Mapping</name>
-        <default_value>sort_by_table_operate</default_value>
+        <default_value>sort_by_table_timestamp</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -2502,6 +2502,18 @@
           <rename_on_output>Y</rename_on_output>
           <description/>
           <connector>
+            <parent>kafka_key</parent>
+            <child>kafka_key</child>
+          </connector>
+          <connector>
+            <parent>kafka_message</parent>
+            <child>kafka_message</child>
+          </connector>
+          <connector>
+            <parent>kafka_topic</parent>
+            <child>kafka_topic</child>
+          </connector>
+          <connector>
             <parent>kafka_partition</parent>
             <child>kafka_partition</child>
           </connector>
@@ -2530,8 +2542,28 @@
             <child>source_table</child>
           </connector>
           <connector>
-            <parent>redirect_operate</parent>
+            <parent>source_operate</parent>
             <child>source_operate</child>
+          </connector>
+          <connector>
+            <parent>source_row</parent>
+            <child>source_row</child>
+          </connector>
+          <connector>
+            <parent>redirect_offset</parent>
+            <child>redirect_offset</child>
+          </connector>
+          <connector>
+            <parent>redirect_row</parent>
+            <child>redirect_row</child>
+          </connector>
+          <connector>
+            <parent>redirect_operate</parent>
+            <child>redirect_operate</child>
+          </connector>
+          <connector>
+            <parent>redirect_range</parent>
+            <child>redirect_range</child>
           </connector>
         </mapping>
       </input>
