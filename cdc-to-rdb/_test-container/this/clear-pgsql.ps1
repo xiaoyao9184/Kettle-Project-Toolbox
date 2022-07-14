@@ -23,28 +23,28 @@ function Clear-Service {
         
         $_pg_host = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _pg_host"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.RDB.Writer' and @key='Server']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.RDB.Writer.Server']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
 
         $_pg_port = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _pg_port"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.RDB.Writer' and @key='Port']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.RDB.Writer.Port']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
     
         $_pg_database = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _pg_database"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.RDB.Writer' and @key='Database']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.RDB.Writer.Database']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
     
         $_pg_log_schema = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _pg_log_schema"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Log.RDB' and @key='Schema']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.Log.RDB.Schema']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1

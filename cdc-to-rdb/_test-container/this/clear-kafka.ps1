@@ -20,21 +20,21 @@ function Clear-Service {
         
         $_bootstrap = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _bootstrap"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Server' and @key='Bootstrap']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.Kafka.Server.Bootstrap']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
     
         $_group = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _group"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Kafka.Consumer' and @key='Group']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.Kafka.Consumer.Group']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
 
         $_topic = $_profile -split "," | ForEach-Object {
             Write-Host "process profile $_ for _topic"
-            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config.CDC.Log.Kafka' and @key='Topic']"
+            $_xpath = "//config/project/profile[@name='$_']/cfg[@namespace='Config' and @key='CDC.Log.Kafka.Topic']"
             $_node = Select-Xml -XPath "$_xpath" -Path "$Workspace/config.xml"
             return $_node ? $_node.node.InnerXML : $null
         } | Where-Object { $_ } | Select-Object -First 1
