@@ -337,7 +337,7 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
 			<!-- see from_debezium/source_row.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
-			<cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
+			<cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_payload</cfg>
 			<!-- see from_debezium/source_column.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
 			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
