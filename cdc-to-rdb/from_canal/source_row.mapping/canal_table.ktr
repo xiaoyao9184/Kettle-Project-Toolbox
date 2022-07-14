@@ -575,6 +575,19 @@
         <repeat>N</repeat>
       </field>
       <field>
+        <name>message_es</name>
+        <path>$.es</path>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
         <name>message_database</name>
         <path>$.database</path>
         <type>String</type>
@@ -591,19 +604,6 @@
         <name>message_table</name>
         <path>$.table</path>
         <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>message_es</name>
-        <path>$.es</path>
-        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>

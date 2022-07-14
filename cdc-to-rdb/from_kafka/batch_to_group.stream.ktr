@@ -2534,16 +2534,20 @@
             <child>batch_time</child>
           </connector>
           <connector>
+            <parent>source_operate</parent>
+            <child>source_operate</child>
+          </connector>
+          <connector>
+            <parent>source_timestamp</parent>
+            <child>source_timestamp</child>
+          </connector>
+          <connector>
             <parent>source_schema</parent>
             <child>source_schema</child>
           </connector>
           <connector>
             <parent>source_table</parent>
             <child>source_table</child>
-          </connector>
-          <connector>
-            <parent>source_operate</parent>
-            <child>source_operate</child>
           </connector>
           <connector>
             <parent>source_row</parent>
@@ -2939,12 +2943,16 @@
             <child>batch_time</child>
           </connector>
           <connector>
-            <parent>source_schema</parent>
-            <child>source_schema</child>
-          </connector>
-          <connector>
             <parent>source_operate</parent>
             <child>source_operate</child>
+          </connector>
+          <connector>
+            <parent>source_timestamp</parent>
+            <child>source_timestamp</child>
+          </connector>
+          <connector>
+            <parent>source_schema</parent>
+            <child>source_schema</child>
           </connector>
           <connector>
             <parent>source_table</parent>
@@ -2992,7 +3000,7 @@
         </variablemapping>
         <variablemapping>
           <variable>CursorRangeRowOffset</variable>
-          <input/>
+          <input> </input>
         </variablemapping>
         <variablemapping>
           <variable>CursorFristRowOperate</variable>
@@ -3056,6 +3064,10 @@
           <main_path>Y</main_path>
           <rename_on_output>N</rename_on_output>
           <description/>
+          <connector>
+            <parent>source_timestamp</parent>
+            <child>source_timestamp</child>
+          </connector>
           <connector>
             <parent>source_operate</parent>
             <child>source_operate</child>
