@@ -258,130 +258,130 @@ then you can combine all cfgs by referring the `profile` name later.
 		<cfg key="ExitFlag">false</cfg>
 		<cfg key="DebugMode">false</cfg>
 		<cfg key="UseStatus">false</cfg>
-		<cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
-		<cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
-		<cfg namespace="Config.Main.Job" key="Path">/from_kafka</cfg>
-		<cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
-		<cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
+		<cfg namespace="Config" key="Time.StartTime">2000-01-01</cfg>
+		<cfg namespace="Config" key="Time.EndTime">3000-01-01</cfg>
+		<cfg namespace="Config" key="Main.Job.Path">/from_kafka</cfg>
+		<cfg namespace="Config" key="Main.Job.Name">NONE</cfg>
+		<cfg namespace="Config" key="Main.Transformation.Name">cdc_to_batch</cfg>
 		
 		<!-- delay for debug reduce rate -->
-        <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
-        <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
+        <cfg namespace="Config" key="CDC.Debug.Delay.Injection.Crud.Time">0</cfg>
+        <cfg namespace="Config" key="CDC.Debug.Delay.Injection.Field.Time">0</cfg>
 
 		<!-- kafka streaming to batch window settings -->
 		<!-- bigger mean more memory, more faster and more loss ratio if it fails -->
-        <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
-        <cfg namespace="Config.CDC.Kafka.Batch" key="Duration">60000</cfg>
-        <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
+        <cfg namespace="Config" key="CDC.Kafka.Batch.Size">10000</cfg>
+        <cfg namespace="Config" key="CDC.Kafka.Batch.Duration">60000</cfg>
+        <cfg namespace="Config" key="CDC.Kafka.Batch.Max">10000</cfg>
 
     <!-- defines database related information -->
 	<!-- this database is used to restore cdc stream log to table, also output the kettle log, and query some parameters -->
     <!-- You can define multiple databases, like 'dev' 'test' 'prod' -->
 		<profile name="dev">
-			<cfg namespace="Config.CDC.RDB.Writer" key="Database">KPT_SYNC</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Server">kpt_sync</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt@123</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Database">KPT_SYNC</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Server">kpt_sync</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Port">5432</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Username">kpt</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Password">kpt@123</cfg>
 		</profile>
 		<profile name="test">
-			<cfg namespace="Config.CDC.RDB.Writer" key="Database">KPT_SYNC</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Server">kpt_sync</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt@123</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Database">KPT_SYNC</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Server">kpt_sync</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Port">5432</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Username">kpt</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Password">kpt@123</cfg>
 		</profile>
 		<profile name="prod">
-			<cfg namespace="Config.CDC.RDB.Writer" key="Database">KPT_SYNC</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Server">kpt_sync</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Username">kpt</cfg>
-			<cfg namespace="Config.CDC.RDB.Writer" key="Password">kpt@123</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Database">KPT_SYNC</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Server">kpt_sync</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Port">5432</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Username">kpt</cfg>
+			<cfg namespace="Config" key="CDC.RDB.Writer.Password">kpt@123</cfg>
 		</profile>
 
     <!-- defines the run way -->
 	
 		<profile name="debezium-mysql-pgsql">
 		<!-- kafka consumer -->
-			<cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">kafka:9092</cfg>
-			<cfg namespace="Config.CDC.Kafka.Consumer" key="Group">kpt_cdc_ro_rdb</cfg>
-			<cfg namespace="Config.CDC.Kafka.Data" key="Topic">kpt_debezium-mysql</cfg>
+			<cfg namespace="Config" key="CDC.Kafka.Server.Bootstrap">kafka:9092</cfg>
+			<cfg namespace="Config" key="CDC.Kafka.Consumer.Group">kpt_cdc_ro_rdb</cfg>
+			<cfg namespace="Config" key="CDC.Kafka.Data.Topic">kpt_debezium-mysql</cfg>
             
 		<!-- logger of cdc -->
-			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
-			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
+			<cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_cdc_log</cfg>
+			<cfg namespace="Config" key="CDC.Log.Kafka.Topic">kpt_debezium_mysql.kpt-cdc-log</cfg>
 			<!-- see from_kafka/batch_group_logger.mapping -->
-			<cfg namespace="Config.CDC.Log.Group" key="Mapping">log_json_to_kafka</cfg>
+			<cfg namespace="Config" key="CDC.Log.Group.Mapping">log_json_to_kafka</cfg>
 
 		<!-- batch of cdc -->
 			<!-- see from_kafka/schema_formatter.mapping -->
 			<!-- 'connect_json' json without schema-registry -->
 			<!-- 'schema_registry_avro' avro with schema-registry -->
 			<!-- 'schema_registry_json' json with schema-registry -->
-			<cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+			<cfg namespace="Config" key="CDC.Batch.Schema.Format.Mapping">connect_json</cfg>
 			<!-- set if use schema-registry -->
-			<cfg namespace="Config.CDC.Batch.Schema.Registry" key="Url">http://schema-registry:58081</cfg>
+			<cfg namespace="Config" key="CDC.Batch.Schema.Registry.Url">http://schema-registry:58081</cfg>
 
 			<!-- see from_kafka/group_table.mapping -->
-			<cfg namespace="Config.CDC.Batch.Group.Table" key="Mapping">sort_by_table_timestamp</cfg>
+			<cfg namespace="Config" key="CDC.Batch.Group.Table.Mapping">sort_by_table_timestamp</cfg>
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_table_timestamp' group by table sort by time -->
 			<!-- 'sort_by_table_operate' only use when no duplicate row in batch mean use 'Redirect.Row' -->
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->
 			<!-- 'sort_by_row_last' and 'group_by_row_last' just different performance -->
-			<cfg namespace="Config.CDC.Batch.Redirect.Row" key="Mapping">none</cfg>
+			<cfg namespace="Config" key="CDC.Batch.Redirect.Row.Mapping">none</cfg>
 
 		<!-- source of cdc -->
 			<!-- can be 'from_debezium' of 'from_canal' -->
-			<cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
+			<cfg namespace="Config" key="CDC.Source.Transformation.Path">from_debezium</cfg>
 			<!-- see from_debezium/source_row.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
-			<cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
+			<cfg namespace="Config" key="CDC.Source.Row.Mapping">mysql_playload</cfg>
 			<!-- see from_debezium/source_column.mapping -->
 			<!-- switching prefixes of 'mysql_' for mysql 'mssql_' for mssql -->
-			<cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
+			<cfg namespace="Config" key="CDC.Source.Column.Mapping">mysql_schema</cfg>
 			<!-- see from_debezium/source_key.mapping -->
-			<cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
+			<cfg namespace="Config" key="CDC.Source.Key.Mapping">key_schema</cfg>
 			
 		<!-- target of rdb -->
 			<!-- target of event write on only support 'to_pgsql' -->
-			<cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
+			<cfg namespace="Config" key="CDC.Target.Transformation.Path">to_pgsql</cfg>
 			<!-- see to_rdb/target_table.mapping -->
 			<!-- 'same_source_exist' use source table name of target table -->
 			<!-- 'config_prefix_exist' use xml config mapping target table -->
 			<!-- 'database_mapping_exist' use table 'kpt_cdc_data.mapping_table' mapping target table -->
-			<cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
+			<cfg namespace="Config" key="CDC.Target.Table.Mapping">config_prefix_exist</cfg>
 			<!-- see to_rdb/target_operate.mapping -->
 			<!-- 'same_source' use source operate name of target operate -->
 			<!-- 'update_only_flash_point' replace source operate with 'update' operate -->
-			<cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
+			<cfg namespace="Config" key="CDC.Target.Operate.Mapping">update_only_flash_point</cfg>
 			<!-- see to_rdb/target_column.mapping -->
 			<!-- no change for now -->
-			<cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
+			<cfg namespace="Config" key="CDC.Target.Column.Mapping">same_source</cfg>
 			<!-- see to_rdb/target_key.mapping -->
 			<!-- 'same_source' use source key for target key -->
 			<!-- 'target_key_lookup' use target table key -->
 			<!-- use 'target_key_lookup' if source table no primary key but target have -->
-			<cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+			<cfg namespace="Config" key="CDC.Target.Key.Mapping">same_source</cfg>
 
 		<!-- config_prefix_exist -->
 			<!-- define output destination schema and table prefix by 'config_prefix_exist' -->
-			<cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">kpt_sync__</cfg>
-			<cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
+			<cfg namespace="Config" key="CDC.Target.Table.Prefix.Schema">kpt_sync__</cfg>
+			<cfg namespace="Config" key="CDC.Target.Table.Prefix.Table"></cfg>
 
 		<!-- update_only_flash_point -->
 			<!-- flashpoint, before make the INSERT (SNAPSHOT) event change into UPDATE operation for compatibility -->
 			<!-- even if the data INSERT event is lost, it will not affect subsequent events -->
 			<!-- can define a future timestamp, or a delay seconds for root job run time with past timestamp -->
-			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,INSERT_BLUK</cfg>
-			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
-			<cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
+			<cfg namespace="Config" key="CDC.Target.Operate.UpdateOnly.FlashPoint.Include">INSERT,INSERT_BLUK</cfg>
+			<cfg namespace="Config" key="CDC.Target.Operate.UpdateOnly.FlashPoint.Delay">86400</cfg>
+			<cfg namespace="Config" key="CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp">2000-01-01T00:00:00.000Z</cfg>
 
 		<!-- target of pgsql -->
 			<!-- use 'true' will add quotation marks to field names -->
 			<!-- use 'false' will automatically convert to lowercase -->
-			<cfg namespace="Config.CDC.Target.PgSql.Case" key="Sensitive">true</cfg>
+			<cfg namespace="Config" key="CDC.Target.PgSql.Case.Sensitive">true</cfg>
 		
 		</profile>
 

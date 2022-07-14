@@ -7,51 +7,51 @@
         <cfg key="ExitFlag">false</cfg>
         <cfg key="DebugMode">false</cfg>
         <cfg key="UseStatus">false</cfg>
-        <cfg namespace="Config.Time" key="StartTime">2000-01-01</cfg>
-        <cfg namespace="Config.Time" key="EndTime">3000-01-01</cfg>
-        <cfg namespace="Config.Main.Job" key="Path">/from_kafka</cfg>
-        <cfg namespace="Config.Main.Job" key="Name">NONE</cfg>
-        <cfg namespace="Config.Main.Transformation" key="Name">cdc_to_batch</cfg>
-        <cfg namespace="Config.CDC.Debug.Delay.Injection.Crud" key="Time">0</cfg>
-        <cfg namespace="Config.CDC.Debug.Delay.Injection.Field" key="Time">0</cfg>
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Include">INSERT,INSERT_BLUK</cfg>
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Delay">86400</cfg>
-        <cfg namespace="Config.CDC.Target.Operate.UpdateOnly.FlashPoint" key="Timestamp">2000-01-01T00:00:00.000Z</cfg>
-        <cfg namespace="Config.CDC.Kafka.Batch" key="Size">10000</cfg>
-        <cfg namespace="Config.CDC.Kafka.Batch" key="Duration">60000</cfg>
-        <cfg namespace="Config.CDC.Kafka.Batch" key="Max">10000</cfg>
+        <cfg namespace="Config" key="Time.StartTime">2000-01-01</cfg>
+        <cfg namespace="Config" key="Time.EndTime">3000-01-01</cfg>
+        <cfg namespace="Config" key="Main.Job.Path">/from_kafka</cfg>
+        <cfg namespace="Config" key="Main.Job.Name">NONE</cfg>
+        <cfg namespace="Config" key="Main.Transformation.Name">cdc_to_batch</cfg>
+        <cfg namespace="Config" key="CDC.Debug.Delay.Injection.Crud.Time">0</cfg>
+        <cfg namespace="Config" key="CDC.Debug.Delay.Injection.Field.Time">0</cfg>
+        <cfg namespace="Config" key="CDC.Target.Operate.UpdateOnly.FlashPoint.Include">INSERT,INSERT_BLUK</cfg>
+        <cfg namespace="Config" key="CDC.Target.Operate.UpdateOnly.FlashPoint.Delay">86400</cfg>
+        <cfg namespace="Config" key="CDC.Target.Operate.UpdateOnly.FlashPoint.Timestamp">2000-01-01T00:00:00.000Z</cfg>
+        <cfg namespace="Config" key="CDC.Kafka.Batch.Size">10000</cfg>
+        <cfg namespace="Config" key="CDC.Kafka.Batch.Duration">60000</cfg>
+        <cfg namespace="Config" key="CDC.Kafka.Batch.Max">10000</cfg>
         
         <profile name="test_kpt">
-            <cfg namespace="Config.CDC.RDB.Writer" key="Database">test_kpt</cfg>
-            <cfg namespace="Config.CDC.RDB.Writer" key="Server">TODO_CHANGE_IP</cfg>
-            <cfg namespace="Config.CDC.RDB.Writer" key="Port">5432</cfg>
-            <cfg namespace="Config.CDC.RDB.Writer" key="Username">TODO_CHANGE_USERNAME</cfg>
-            <cfg namespace="Config.CDC.RDB.Writer" key="Password">TODO_CHANGE_PASSWROD</cfg>
+            <cfg namespace="Config" key="CDC.RDB.Writer.Database">test_kpt</cfg>
+            <cfg namespace="Config" key="CDC.RDB.Writer.Server">TODO_CHANGE_IP</cfg>
+            <cfg namespace="Config" key="CDC.RDB.Writer.Port">5432</cfg>
+            <cfg namespace="Config" key="CDC.RDB.Writer.Username">TODO_CHANGE_USERNAME</cfg>
+            <cfg namespace="Config" key="CDC.RDB.Writer.Password">TODO_CHANGE_PASSWROD</cfg>
         </profile>
 
         <profile name="debezium-mysql-pgsql">
-            <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">TODO_CHANGE_KAFKA</cfg>
-            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
-            <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mysql-test_kpt_cdc.data-changes</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Server.Bootstrap">TODO_CHANGE_KAFKA</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Consumer.Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Data.Topic">test_debezium_mysql-test_kpt_cdc.data-changes</cfg>
 			
-            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+            <cfg namespace="Config" key="CDC.Batch.Schema.Format.Mapping">connect_json</cfg>
 			
-            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
-			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+            <cfg namespace="Config" key="CDC.Log.Kafka.Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
+			<cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_cdc_log</cfg>
             
-            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
-            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
-            <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
-            <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
+            <cfg namespace="Config" key="CDC.Source.Transformation.Path">from_debezium</cfg>
+            <cfg namespace="Config" key="CDC.Source.Row.Mapping">mysql_playload</cfg>
+            <cfg namespace="Config" key="CDC.Source.Column.Mapping">mysql_schema</cfg>
+            <cfg namespace="Config" key="CDC.Source.Key.Mapping">key_schema</cfg>
             
-            <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
-            <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Transformation.Path">to_pgsql</cfg>
+            <cfg namespace="Config" key="CDC.Target.Operate.Mapping">update_only_flash_point</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Mapping">config_prefix_exist</cfg>
+            <cfg namespace="Config" key="CDC.Target.Column.Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Key.Mapping">same_source</cfg>
 
-            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mysql_manual_generation__</cfg>
-            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Prefix"></cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Schema">mysql_manual_generation__</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Prefix"></cfg>
             
             <!-- Copy it and quickly set system variables -->
             <!--
@@ -89,28 +89,28 @@ Config.CDC.Target.Table.Prefix.Table
             -->
         </profile>
         <profile name="debezium-mssql-pgsql">
-            <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">TODO_CHANGE_KAFKA</cfg>
-            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
-            <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_debezium_mssql-test_kpt_cdc.data-changes</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Server.Bootstrap">TODO_CHANGE_KAFKA</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Consumer.Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Data.Topic">test_debezium_mssql-test_kpt_cdc.data-changes</cfg>
 			
-            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+            <cfg namespace="Config" key="CDC.Batch.Schema.Format.Mapping">connect_json</cfg>
 			
-            <cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
-			<cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+            <cfg namespace="Config" key="CDC.Log.Kafka.Topic">test_debezium_mysql-test_kpt_cdc.kpt-cdc-log</cfg>
+			<cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_cdc_log</cfg>
             
-            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
-            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mssql_playload</cfg>
-            <cfg namespace="Config.CDC.Source.Column" key="Mapping">mssql_schema</cfg>
-            <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
+            <cfg namespace="Config" key="CDC.Source.Transformation.Path">from_debezium</cfg>
+            <cfg namespace="Config" key="CDC.Source.Row.Mapping">mssql_playload</cfg>
+            <cfg namespace="Config" key="CDC.Source.Column.Mapping">mssql_schema</cfg>
+            <cfg namespace="Config" key="CDC.Source.Key.Mapping">key_schema</cfg>
             
-            <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">update_only_flash_point</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
-            <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Transformation.Path">to_pgsql</cfg>
+            <cfg namespace="Config" key="CDC.Target.Operate.Mapping">update_only_flash_point</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Mapping">config_prefix_exist</cfg>
+            <cfg namespace="Config" key="CDC.Target.Column.Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Key.Mapping">same_source</cfg>
 
-            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mssql_manual_generation__</cfg>
-            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Schema">mssql_manual_generation__</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Table"></cfg>
             
             <!-- Copy it and quickly set system variables -->
             <!--
@@ -148,28 +148,28 @@ Config.CDC.Target.Table.Prefix.Table
             -->
         </profile>
         <profile name="canal-mysql-pgsql">
-            <cfg namespace="Config.CDC.Kafka.Server" key="Bootstrap">TODO_CHANGE_KAFKA</cfg>
-            <cfg namespace="Config.CDC.Kafka.Consumer" key="Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
-            <cfg namespace="Config.CDC.Kafka.Data" key="Topic">test_canal-test_kpt_cdc</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Server.Bootstrap">TODO_CHANGE_KAFKA</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Consumer.Group">test_kpt.test_kpt_cdc.TODO_CHANGE_DATETIME</cfg>
+            <cfg namespace="Config" key="CDC.Kafka.Data.Topic">test_canal-test_kpt_cdc</cfg>
 			
-            <cfg namespace="Config.CDC.Batch.Schema.Format" key="Mapping">connect_json</cfg>
+            <cfg namespace="Config" key="CDC.Batch.Schema.Format.Mapping">connect_json</cfg>
 			
-			<cfg namespace="Config.CDC.Log.Kafka" key="Topic">test_canal-test_kpt_cdc.kpt-cdc-log</cfg>
-            <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
+			<cfg namespace="Config" key="CDC.Log.Kafka.Topic">test_canal-test_kpt_cdc.kpt-cdc-log</cfg>
+            <cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_cdc_log</cfg>
 
-            <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_canal</cfg>
-            <cfg namespace="Config.CDC.Source.Row" key="Mapping">canal_table</cfg>
-            <cfg namespace="Config.CDC.Source.Column" key="Mapping">canal_sqltype</cfg>
-            <cfg namespace="Config.CDC.Source.Key" key="Mapping">canal_pknames</cfg>
+            <cfg namespace="Config" key="CDC.Source.Transformation.Path">from_canal</cfg>
+            <cfg namespace="Config" key="CDC.Source.Row.Mapping">canal_table</cfg>
+            <cfg namespace="Config" key="CDC.Source.Column.Mapping">canal_sqltype</cfg>
+            <cfg namespace="Config" key="CDC.Source.Key.Mapping">canal_pknames</cfg>
             
-            <cfg namespace="Config.CDC.Target.Transformation" key="Path">to_pgsql</cfg>
-            <cfg namespace="Config.CDC.Target.Operate" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Table" key="Mapping">config_prefix_exist</cfg>
-            <cfg namespace="Config.CDC.Target.Column" key="Mapping">same_source</cfg>
-            <cfg namespace="Config.CDC.Target.Key" key="Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Transformation.Path">to_pgsql</cfg>
+            <cfg namespace="Config" key="CDC.Target.Operate.Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Mapping">config_prefix_exist</cfg>
+            <cfg namespace="Config" key="CDC.Target.Column.Mapping">same_source</cfg>
+            <cfg namespace="Config" key="CDC.Target.Key.Mapping">same_source</cfg>
 
-            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Schema">mysql_manual_generation__</cfg>
-            <cfg namespace="Config.CDC.Target.Table.Prefix" key="Table"></cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Schema">mysql_manual_generation__</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Table"></cfg>
 
             <!-- Copy it and quickly set system variables -->
             <!--
