@@ -448,16 +448,16 @@
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: schema+table+row + kafka_offset desc</to>
+      <to>SortRows: schema+table+row+timestamp desc</to>
       <enabled>N</enabled>
     </hop>
     <hop>
       <from>MappingInput: redirect_row.mapping</from>
-      <to>SortRows: schema+table+row + kafka_offset desc</to>
+      <to>SortRows: schema+table+row+timestamp desc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: schema+table+row + kafka_offset desc</from>
+      <from>SortRows: schema+table+row+timestamp desc</from>
       <to>FieldsChangeSequence: desc_order</to>
       <enabled>Y</enabled>
     </hop>
@@ -1440,7 +1440,7 @@
     </GUI>
   </step>
   <step>
-    <name>SortRows: schema+table+row + kafka_offset desc</name>
+    <name>SortRows: schema+table+row+timestamp desc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1483,7 +1483,7 @@
         <presorted>N</presorted>
       </field>
       <field>
-        <name>kafka_offset</name>
+        <name>source_timestamp</name>
         <ascending>N</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>

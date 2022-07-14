@@ -462,7 +462,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: source_table + kafka_timestamp asc</from>
+      <from>SortRows: schema+table+timestamp asc</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
@@ -473,12 +473,12 @@
     </hop>
     <hop>
       <from>MappingInput: group_table.mapping</from>
-      <to>SortRows: source_table + kafka_timestamp asc</to>
+      <to>SortRows: schema+table+timestamp asc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: source_table + kafka_timestamp asc</to>
+      <to>SortRows: schema+table+timestamp asc</to>
       <enabled>N</enabled>
     </hop>
   </order>
@@ -1149,7 +1149,7 @@ group_index = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SortRows: source_table + kafka_timestamp asc</name>
+    <name>SortRows: schema+table+timestamp asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1184,7 +1184,7 @@ group_index = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>kafka_timestamp</name>
+        <name>source_timestamp</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>

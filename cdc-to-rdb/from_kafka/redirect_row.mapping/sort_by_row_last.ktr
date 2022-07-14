@@ -467,7 +467,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: schema+table+row + kafka_offset desc</from>
+      <from>SortRows: schema+table+row+timestamp desc</from>
       <to>FieldsChangeSequence: desc_order</to>
       <enabled>Y</enabled>
     </hop>
@@ -477,7 +477,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: schema+table+row + kafka_offset asc</from>
+      <from>SortRows: schema+table+row+timestamp asc</from>
       <to>FieldsChangeSequence: asc_order</to>
       <enabled>Y</enabled>
     </hop>
@@ -493,17 +493,17 @@
     </hop>
     <hop>
       <from>ScriptValueMod: row_operate_first+row_offset_list</from>
-      <to>SortRows: schema+table+row + kafka_offset desc</to>
+      <to>SortRows: schema+table+row+timestamp desc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: schema+table+row + kafka_offset asc</to>
+      <to>SortRows: schema+table+row+timestamp asc</to>
       <enabled>N</enabled>
     </hop>
     <hop>
       <from>MappingInput: redirect_row.mapping</from>
-      <to>SortRows: schema+table+row + kafka_offset asc</to>
+      <to>SortRows: schema+table+row+timestamp asc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -1541,7 +1541,7 @@ row_offset_range = RangeRowOffset;
     </GUI>
   </step>
   <step>
-    <name>SortRows: schema+table+row + kafka_offset desc</name>
+    <name>SortRows: schema+table+row+timestamp desc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1584,7 +1584,7 @@ row_offset_range = RangeRowOffset;
         <presorted>N</presorted>
       </field>
       <field>
-        <name>kafka_offset</name>
+        <name>source_timestamp</name>
         <ascending>N</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1653,7 +1653,7 @@ row_offset_range = RangeRowOffset;
     </GUI>
   </step>
   <step>
-    <name>SortRows: schema+table+row + kafka_offset asc</name>
+    <name>SortRows: schema+table+row+timestamp asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1696,7 +1696,7 @@ row_offset_range = RangeRowOffset;
         <presorted>N</presorted>
       </field>
       <field>
-        <name>kafka_offset</name>
+        <name>source_timestamp</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>

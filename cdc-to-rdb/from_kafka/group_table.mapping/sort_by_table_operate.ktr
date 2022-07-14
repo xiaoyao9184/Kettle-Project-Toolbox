@@ -462,7 +462,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: source_table + redirect_operate asc</from>
+      <from>SortRows: schema+table + redirect_operate asc</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
@@ -473,12 +473,12 @@
     </hop>
     <hop>
       <from>MappingInput: group_table.mapping</from>
-      <to>SortRows: source_table + redirect_operate asc</to>
+      <to>SortRows: schema+table + redirect_operate asc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: source_table + redirect_operate asc</to>
+      <to>SortRows: schema+table + redirect_operate asc</to>
       <enabled>N</enabled>
     </hop>
   </order>
@@ -1149,7 +1149,7 @@ group_index = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SortRows: source_table + redirect_operate asc</name>
+    <name>SortRows: schema+table + redirect_operate asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
