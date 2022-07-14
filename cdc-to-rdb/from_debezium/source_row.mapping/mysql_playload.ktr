@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/27 17:36:14.106</modified_date>
+    <modified_date>2022/07/14 10:43:46.963</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -448,7 +448,7 @@
     </hop>
     <hop>
       <from>Constant: EMPTY</from>
-      <to>JSON input: SchemaChangeValue info</to>
+      <to>JSON input: SchemaChangeValue payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -457,13 +457,13 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input: SchemaChangeValue info</from>
+      <from>JSON input: SchemaChangeValue payload</from>
       <to>SetValueField: source_db,source_table</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>FilterRows: is io.debezium.connector.mysql.SchemaChangeValue</from>
-      <to>JSON input: payload info</to>
+      <to>JSON input: Envelope payload</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -527,7 +527,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>JSON input: payload info</from>
+      <from>JSON input: Envelope payload</from>
       <to>FilterRows: is incremental snapshot</to>
       <enabled>Y</enabled>
     </hop>
@@ -722,7 +722,7 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Constant: EMPTY</send_true_to>
-    <send_false_to>JSON input: payload info</send_false_to>
+    <send_false_to>JSON input: Envelope payload</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -790,7 +790,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input: SchemaChangeValue info</name>
+    <name>JSON input: SchemaChangeValue payload</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -849,6 +849,19 @@
         <name>message_payload_ddl</name>
         <path>$.payload.ddl</path>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>message_payload_source_ts_ms</name>
+        <path>$.payload.source.ts_ms</path>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1052,7 +1065,7 @@
     </GUI>
   </step>
   <step>
-    <name>JSON input: payload info</name>
+    <name>JSON input: Envelope payload</name>
     <type>JsonInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1111,6 +1124,19 @@
         <name>message_payload_transaction</name>
         <path>$.payload.transaction</path>
         <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>message_payload_source_ts_ms</name>
+        <path>$.payload.source.ts_ms</path>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1475,6 +1501,23 @@
         <name>message_payload_op</name>
         <rename>source_operate</rename>
         <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>message_payload_source_ts_ms</name>
+        <rename>source_timestamp</rename>
+        <type>Integer</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
