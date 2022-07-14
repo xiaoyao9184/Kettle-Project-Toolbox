@@ -38,7 +38,7 @@
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
-            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
+            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_payload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
             <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
             
@@ -74,7 +74,7 @@ Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.data-c
 Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log
 Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
-Config.CDC.Source.Row.Mapping	mysql_playload	
+Config.CDC.Source.Row.Mapping	mysql_payload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
 Config.CDC.Source.Key.Mapping	key_schema	
 Config.CDC.Target.Transformation.Path	to_pgsql	
@@ -97,7 +97,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config.CDC.Log.RDB" key="Schema">kpt_cdc_log</cfg>
             
             <cfg namespace="Config.CDC.Source.Transformation" key="Path">from_debezium</cfg>
-            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_playload</cfg>
+            <cfg namespace="Config.CDC.Source.Row" key="Mapping">mysql_payload</cfg>
             <cfg namespace="Config.CDC.Source.Column" key="Mapping">mysql_schema</cfg>
             <cfg namespace="Config.CDC.Source.Key" key="Mapping">key_schema</cfg>
             
@@ -133,7 +133,7 @@ Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.data-c
 Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-binary_bytes.kpt-cdc-log
 Config.CDC.Log.RDB.Schema	kpt_cdc_log	
 Config.CDC.Source.Transformation.Path	from_debezium	
-Config.CDC.Source.Row.Mapping	mysql_playload	
+Config.CDC.Source.Row.Mapping	mysql_payload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
 Config.CDC.Source.Key.Mapping	key_schema	
 Config.CDC.Target.Transformation.Path	to_pgsql	

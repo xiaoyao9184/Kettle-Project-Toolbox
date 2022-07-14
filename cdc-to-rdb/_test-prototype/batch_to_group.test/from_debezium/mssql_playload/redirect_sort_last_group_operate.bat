@@ -23,9 +23,9 @@ SET KPT_PARAM_AS_ENV=true
 SET KPT_KETTLE_TRANS=_test-prototype/batch_to_group.test
 @REM SET KPT_KETTLE_LEVEL=Rowlevel
 @REM batch_to_group.test param
-SET KPT_KETTLE_PARAM_Param_Input_Json_File=from_debezium/mssql_playload.json
+SET KPT_KETTLE_PARAM_Param_Input_Json_File=from_debezium/mssql_payload.json
 SET KPT_KETTLE_PARAM_Config_CDC_Source_Transformation_Path=from_debezium
-SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mssql_playload
+SET KPT_KETTLE_PARAM_Config_CDC_Source_Row_Mapping=mssql_payload
 @REM batch_to_group.prototype param
 SET KPT_KETTLE_PARAM_Config_CDC_Log_Batch_Group_Mapping=log_json_to_kettle
 SET KPT_KETTLE_PARAM_Config_CDC_Batch_Redirect_Row_Mapping=sort_by_row_last
@@ -36,7 +36,7 @@ SET KPT_KETTLE_PARAM_Param_Group_Path=_test-prototype
 SET KPT_KETTLE_PARAM_Param_Group_Transformation=group_to_none.result
 
 
-SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.mssql_playload.redirect_sort_last_group_operate.bat
+SET KPT_CALLER_SCRIPT_PATH=%project_folder_path%test.batch_to_group.mssql_payload.redirect_sort_last_group_operate.bat
 CALL %project_folder_path%KPT_RUN_COMMAND.bat
 ECHO exit code will be 0
 
