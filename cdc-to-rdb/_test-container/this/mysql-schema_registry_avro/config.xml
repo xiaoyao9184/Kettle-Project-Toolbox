@@ -38,7 +38,7 @@
             <cfg namespace="Config" key="CDC.Batch.Schema.Registry.Url">http://schema-registry:8081</cfg>
             
             <cfg namespace="Config" key="CDC.Log.Kafka.Topic">test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log</cfg>
-            <cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_cdc_log</cfg>
+            <cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_log_avro__test_kpt_cdc</cfg>
             
             <cfg namespace="Config" key="CDC.Source.Transformation.Path">from_debezium</cfg>
             <cfg namespace="Config" key="CDC.Source.Row.Mapping">mysql_payload</cfg>
@@ -77,7 +77,7 @@ Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-avro.data-changes
 Config.CDC.Batch.Schema.Format.Mapping	schema_registry_avro		
 Config.CDC.Batch.Schema.Registry.Url	http://schema-registry:58081		
 Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log
-Config.CDC.Log.RDB.Schema	kpt_cdc_log	
+Config.CDC.Log.RDB.Schema	kpt_log_avro__test_kpt_cdc	
 Config.CDC.Source.Transformation.Path	from_debezium	
 Config.CDC.Source.Row.Mapping	mysql_payload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
@@ -102,7 +102,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config" key="CDC.Batch.Schema.Registry.Url">http://schema-registry:8081</cfg>
             
             <cfg namespace="Config" key="CDC.Log.Kafka.Topic">test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log</cfg>
-            <cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_cdc_log</cfg>
+            <cfg namespace="Config" key="CDC.Log.RDB.Schema">kpt_log_avro__test_kpt_cdc</cfg>
             
             <cfg namespace="Config" key="CDC.Source.Transformation.Path">from_debezium</cfg>
             <cfg namespace="Config" key="CDC.Source.Row.Mapping">mysql_payload</cfg>
@@ -114,7 +114,7 @@ Config.CDC.Target.Table.Prefix.Table
             <cfg namespace="Config" key="CDC.Target.Table.Mapping">config_prefix_exist</cfg>
             <cfg namespace="Config" key="CDC.Target.Column.Mapping">same_source</cfg>
             <cfg namespace="Config" key="CDC.Target.Key.Mapping">same_source</cfg>
-            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Schema">mysql_chameleon_generation__</cfg>
+            <cfg namespace="Config" key="CDC.Target.Table.Prefix.Schema">mysql_chameleon__schema_registry_avro__</cfg>
             <cfg namespace="Config" key="CDC.Target.Table.Prefix.Table">for_chameleon__</cfg>
 
             <!-- Copy it and quickly set system variables -->
@@ -141,7 +141,7 @@ Config.CDC.Kafka.Data.Topic	test_debezium_mysql-test_kpt_cdc-avro.data-changes
 Config.CDC.Batch.Schema.Format.Mapping	schema_registry_avro		
 Config.CDC.Batch.Schema.Registry.Url	http://schema-registry:58081		
 Config.CDC.Log.Kafka.Topic	test_debezium_mysql-test_kpt_cdc-avro.kpt-cdc-log
-Config.CDC.Log.RDB.Schema	kpt_cdc_log	
+Config.CDC.Log.RDB.Schema	kpt_log_avro__test_kpt_cdc	
 Config.CDC.Source.Transformation.Path	from_debezium	
 Config.CDC.Source.Row.Mapping	mysql_payload	
 Config.CDC.Source.Column.Mapping	mysql_schema	
@@ -151,7 +151,7 @@ Config.CDC.Target.Operate.Mapping	update_only_flash_point
 Config.CDC.Target.Table.Mapping	config_prefix_exist
 Config.CDC.Target.Column.Mapping	same_source	
 Config.CDC.Target.Key.Mapping	same_source
-Config.CDC.Target.Table.Prefix.Schema	mysql_chameleon_generation__	
+Config.CDC.Target.Table.Prefix.Schema	mysql_chameleon__schema_registry_avro__	
 Config.CDC.Target.Table.Prefix.Table	for_chameleon__	
 
             -->
