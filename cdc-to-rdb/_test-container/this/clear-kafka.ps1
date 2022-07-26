@@ -45,7 +45,7 @@ function Clear-Service {
         docker run -it --rm --name $_name `
             $_network `
             wurstmeister/kafka:2.13-2.7.0 bash -c `
-            "kafka-consumer-groups.sh --bootstrap-server $_bootstrap --group $_group  --topic $_topic --reset-offsets --to-offset 0 --execute"
+            "kafka-consumer-groups.sh --bootstrap-server $_bootstrap --group $_group --topic $_topic --reset-offsets --to-offset 0 --execute"
     
         $_name = ($Name + $Service + "group") -join "__"
         docker run -it --rm --name $_name `
