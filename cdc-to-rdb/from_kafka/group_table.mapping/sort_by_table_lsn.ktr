@@ -1,6 +1,6 @@
 <transformation>
   <info>
-    <name>sort_by_table_timestamp</name>
+    <name>sort_by_table_lsn</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -462,7 +462,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>SortRows: schema+table+timestamp asc</from>
+      <from>SortRows: schema+table+lsn asc</from>
       <to>Constant: POINT</to>
       <enabled>Y</enabled>
     </hop>
@@ -473,12 +473,12 @@
     </hop>
     <hop>
       <from>MappingInput: group_table.mapping</from>
-      <to>SortRows: schema+table+timestamp asc</to>
+      <to>SortRows: schema+table+lsn asc</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>DataGrid: test</from>
-      <to>SortRows: schema+table+timestamp asc</to>
+      <to>SortRows: schema+table+lsn asc</to>
       <enabled>N</enabled>
     </hop>
   </order>
@@ -933,6 +933,12 @@
         <precision>-1</precision>
       </field>
       <field>
+        <name>source_lsn</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>source_operate</name>
         <type>String</type>
         <length>-1</length>
@@ -1149,7 +1155,7 @@ group_index = i;</jsScript_script>
     </GUI>
   </step>
   <step>
-    <name>SortRows: schema+table+timestamp asc</name>
+    <name>SortRows: schema+table+lsn asc</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1184,7 +1190,7 @@ group_index = i;</jsScript_script>
         <presorted>N</presorted>
       </field>
       <field>
-        <name>source_timestamp</name>
+        <name>source_lsn</name>
         <ascending>Y</ascending>
         <case_sensitive>Y</case_sensitive>
         <collator_enabled>N</collator_enabled>

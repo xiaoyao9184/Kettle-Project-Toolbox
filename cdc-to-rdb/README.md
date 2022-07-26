@@ -87,7 +87,7 @@ Developed based on Debezium v1.7, canal v1.1.5
 
 
 1. in group-table, the data will be sorted by table, 
-if use 'sort_by_table_timestamp' all operations will be sorted by event time, 
+if use 'sort_by_table_lsn' all operations will be sorted by event time, 
 so events of the same row will also be ordered.
 if in an batch, the same row has operated multiple times,
 it might be a performance issue.
@@ -323,9 +323,9 @@ then you can combine all cfgs by referring the `profile` name later.
 			<cfg namespace="Config" key="CDC.Batch.Schema.Registry.Url">http://schema-registry:58081</cfg>
 
 			<!-- see from_kafka/group_table.mapping -->
-			<cfg namespace="Config" key="CDC.Batch.Group.Table.Mapping">sort_by_table_timestamp</cfg>
+			<cfg namespace="Config" key="CDC.Batch.Group.Table.Mapping">sort_by_table_lsn</cfg>
 			<!-- 'none' no redirect -->
-			<!-- 'sort_by_table_timestamp' group by table sort by time -->
+			<!-- 'sort_by_table_lsn' group by table sort by time -->
 			<!-- 'sort_by_table_operate' only use when no duplicate row in batch mean use 'Redirect.Row' -->
 			<!-- see from_kafka/redirect_row.mapping/README.md -->
 			<!-- 'none' no redirect -->

@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2018/04/20 21:37:30.651</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/07/14 11:06:19.785</modified_date>
+    <modified_date>2022/07/26 16:05:55.610</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -458,6 +458,11 @@
     </hop>
     <hop>
       <from>ScriptValueMod: message_pk_list</from>
+      <to>Calculator: lsn_by_es</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Calculator: lsn_by_es</from>
       <to>SelectValues: rename source_*</to>
       <enabled>Y</enabled>
     </hop>
@@ -701,7 +706,77 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>672</yloc>
+      <yloc>800</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>ScriptValueMod: message_pk_list</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
+
+var index_message_pk_list = getOutputRowMeta().indexOfValue("message_pk_list");
+var key_values = [];
+
+var message_index = getInputRowMeta().indexOfValue("kafka_message");
+var message_col = row[message_index];
+var message_obj = message_col == null ? null : JSON.parse(message_col);
+if (message_obj != null) {
+  var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
+  var datas = message_obj.data == null ? [] : message_obj.data;
+  for (i = 0; i &lt; datas.length; i++) {
+    var data = datas[i];
+    var data_key_values = [];
+    for (j = 0; j &lt; keys.length; j++) {
+      var key_name = keys[j];
+      var key_value = data[key_name];
+      data_key_values.push(key_value);
+    }
+    key_values.push(data_key_values.join('&amp;'));
+  }
+}
+
+var row = createRowCopy(getOutputRowMeta().size());  
+row[index_message_pk_list] = key_values.join(','); 
+putRow(row);
+</jsScript_script>
+      </jsScript>
+    </jsScripts>
+    <fields>
+      <field>
+        <name>message_pk_list</name>
+        <rename>message_pk_list</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -803,6 +878,23 @@
         <currency_symbol/>
         <storage_type/>
       </meta>
+      <meta>
+        <name>lsn_by_es</name>
+        <rename>source_lsn</rename>
+        <type>String</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -814,13 +906,13 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>512</yloc>
+      <yloc>640</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>ScriptValueMod: message_pk_list</name>
-    <type>ScriptValueMod</type>
+    <name>Calculator: lsn_by_es</name>
+    <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -829,51 +921,22 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <compatible>N</compatible>
-    <optimizationLevel>9</optimizationLevel>
-    <jsScripts>
-      <jsScript>
-        <jsScript_type>0</jsScript_type>
-        <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>trans_Status = SKIP_TRANSFORMATION;
-
-var index_message_pk_list = getOutputRowMeta().indexOfValue("message_pk_list");
-var key_values = [];
-
-var message_index = getInputRowMeta().indexOfValue("kafka_message");
-var message_col = row[message_index];
-var message_obj = message_col == null ? null : JSON.parse(message_col);
-if (message_obj != null) {
-  var keys = message_obj.pkNames == null ? [] : message_obj.pkNames;
-  var datas = message_obj.data == null ? [] : message_obj.data;
-  for (i = 0; i &lt; datas.length; i++) {
-    var data = datas[i];
-    var data_key_values = [];
-    for (j = 0; j &lt; keys.length; j++) {
-      var key_name = keys[j];
-      var key_value = data[key_name];
-      data_key_values.push(key_value);
-    }
-    key_values.push(data_key_values.join('&amp;'));
-  }
-}
-
-var row = createRowCopy(getOutputRowMeta().size());  
-row[index_message_pk_list] = key_values.join(','); 
-putRow(row);
-</jsScript_script>
-      </jsScript>
-    </jsScripts>
-    <fields>
-      <field>
-        <name>message_pk_list</name>
-        <rename>message_pk_list</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>
-    </fields>
+    <failIfNoFile>Y</failIfNoFile>
+    <calculation>
+      <field_name>lsn_by_es</field_name>
+      <calc_type>COPY_FIELD</calc_type>
+      <field_a>message_es</field_a>
+      <field_b/>
+      <field_c/>
+      <value_type>String</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <remove>N</remove>
+      <conversion_mask/>
+      <decimal_symbol/>
+      <grouping_symbol/>
+      <currency_symbol/>
+    </calculation>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -884,7 +947,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>352</yloc>
+      <yloc>480</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
