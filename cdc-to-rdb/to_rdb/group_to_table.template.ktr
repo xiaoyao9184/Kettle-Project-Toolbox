@@ -429,7 +429,7 @@
     <created_user>-</created_user>
     <created_date>2021/07/21 14:24:17.424</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2022/05/20 10:03:39.331</modified_date>
+    <modified_date>2022/07/22 17:50:47.692</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -563,16 +563,6 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>ReplaceString</from>
-      <to>JSON_to_field</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dummy: start</from>
-      <to>ReplaceString</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Byte_to_Binary.step1</from>
       <to>Byte_to_Binary.step2</to>
       <enabled>Y</enabled>
@@ -580,11 +570,6 @@
     <hop>
       <from>scale_to_BigNumber.step2</from>
       <to>Byte_to_Binary.step1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Byte_to_Binary.step2</from>
-      <to>Switch / case: target_operate</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -600,6 +585,21 @@
     <hop>
       <from>Switch / case: target_operate</from>
       <to>Dummy: ignore target_operate</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Byte_to_Binary.step2</from>
+      <to>SimpleMapping: target_row_modifier.mapping</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Dummy: start</from>
+      <to>JSON_to_field</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>SimpleMapping: target_row_modifier.mapping</from>
+      <to>Switch / case: target_operate</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -627,7 +627,7 @@
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2240</yloc>
+      <yloc>2080</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -697,7 +697,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2368</yloc>
+      <yloc>2208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -728,7 +728,32 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>592</xloc>
-      <yloc>2704</yloc>
+      <yloc>2688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy: ignore target_operate</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>2816</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -781,7 +806,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1072</yloc>
+      <yloc>912</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -813,7 +838,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>272</xloc>
-      <yloc>2704</yloc>
+      <yloc>2688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -845,7 +870,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>432</xloc>
-      <yloc>2704</yloc>
+      <yloc>2688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -892,45 +917,6 @@ putRow(row);
     <rootUriNameFieldName/>
     <extensionFieldName/>
     <sizeFieldName/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>352</xloc>
-      <yloc>400</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>ReplaceString</name>
-    <type>ReplaceString</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <in_stream_name>kafka_message</in_stream_name>
-        <out_stream_name/>
-        <use_regex>yes</use_regex>
-        <replace_string>\\u0000</replace_string>
-        <replace_by_string>\\u0020</replace_by_string>
-        <set_empty_string>N</set_empty_string>
-        <replace_field_by_string/>
-        <whole_word>no</whole_word>
-        <case_sensitive>no</case_sensitive>
-        <is_unicode>no</is_unicode>
-      </field>
-    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -991,7 +977,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2544</yloc>
+      <yloc>2528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1035,7 +1021,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>112</xloc>
-      <yloc>2704</yloc>
+      <yloc>2688</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1093,7 +1079,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1456</yloc>
+      <yloc>1296</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1121,7 +1107,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1200</yloc>
+      <yloc>1040</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1149,7 +1135,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1328</yloc>
+      <yloc>1168</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1207,7 +1193,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1712</yloc>
+      <yloc>1552</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1265,7 +1251,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1584</yloc>
+      <yloc>1424</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1323,7 +1309,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1840</yloc>
+      <yloc>1680</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1351,7 +1337,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>1968</yloc>
+      <yloc>1808</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1425,7 +1411,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2096</yloc>
+      <yloc>1936</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1453,7 +1439,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>944</yloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1481,7 +1467,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>560</yloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1509,7 +1495,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>688</yloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1537,13 +1523,13 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>816</yloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dummy: ignore target_operate</name>
-    <type>Dummy</type>
+    <name>SimpleMapping: target_row_modifier.mapping</name>
+    <type>SimpleMapping</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1552,6 +1538,34 @@ putRow(row);
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <specification_method>rep_name</specification_method>
+    <trans_object_id/>
+    <trans_name>target_row_modifier.mapping</trans_name>
+    <filename/>
+    <directory_path>${Config.CDC.Target.Transformation.Path}</directory_path>
+    <mappings>
+      <input>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>Y</rename_on_output>
+          <description/>
+        </mapping>
+      </input>
+      <output>
+        <mapping>
+          <input_step/>
+          <output_step/>
+          <main_path>Y</main_path>
+          <rename_on_output>N</rename_on_output>
+          <description/>
+        </mapping>
+      </output>
+      <parameters>
+        <inherit_all_vars>Y</inherit_all_vars>
+      </parameters>
+    </mappings>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1562,7 +1576,7 @@ putRow(row);
     </remotesteps>
     <GUI>
       <xloc>352</xloc>
-      <yloc>2832</yloc>
+      <yloc>2368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
