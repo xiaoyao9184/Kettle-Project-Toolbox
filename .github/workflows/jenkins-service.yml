@@ -1,0 +1,69 @@
+name: jenkins-service
+
+on:
+  workflow_dispatch:
+  create:
+    tags:
+      - "*"
+  push:
+    tags:
+      - "*"
+    branches:
+      - "*"
+    paths:
+      - 'jenkins/**'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - 
+        name: Set git sha short and tag
+        id: short
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - 
+        name: Set git tag
+        id: tag
+        run: echo "::set-output name=tag::$(git tag -l --points-at HEAD)"
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build for commit and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./jenkins
+          file: ./jenkins/Dockerfile
+          platforms: linux/amd64
+          build-args: |
+            JENKINS_VERSION=2.346.3
+            KPT_VERSION=${{ steps.short.outputs.sha_short }}
+          tags: xiaoyao9184/kpt-jenkins-service:2.346.3-${{ steps.short.outputs.sha_short }},xiaoyao9184/kpt-jenkins-service:latest
+          push: true
+      -
+        name: Build for tag and push
+        uses: docker/build-push-action@v3
+        if: ${{ steps.tag.outputs.tag }}
+        with:
+          context: ./jenkins
+          file: ./jenkins/Dockerfile
+          platforms: linux/amd64
+          build-args: |
+            JENKINS_VERSION=2.346.3
+            KPT_VERSION=${{ steps.tag.outputs.tag }}
+          tags: xiaoyao9184/kpt-jenkins-service:2.346.3-${{ steps.tag.outputs.tag }}
+          push: true
