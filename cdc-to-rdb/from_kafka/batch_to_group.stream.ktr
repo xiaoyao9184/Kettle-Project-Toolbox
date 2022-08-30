@@ -20,7 +20,7 @@
       </parameter>
       <parameter>
         <name>_Config.CDC.Batch.Group.Table.Mapping</name>
-        <default_value>sort_by_table_timestamp</default_value>
+        <default_value>sort_by_table_lsn</default_value>
         <description/>
       </parameter>
       <parameter>
@@ -2534,6 +2534,10 @@
             <child>batch_time</child>
           </connector>
           <connector>
+            <parent>source_lsn</parent>
+            <child>source_lsn</child>
+          </connector>
+          <connector>
             <parent>source_operate</parent>
             <child>source_operate</child>
           </connector>
@@ -2943,6 +2947,10 @@
             <child>batch_time</child>
           </connector>
           <connector>
+            <parent>source_lsn</parent>
+            <child>source_lsn</child>
+          </connector>
+          <connector>
             <parent>source_operate</parent>
             <child>source_operate</child>
           </connector>
@@ -3064,6 +3072,10 @@
           <main_path>Y</main_path>
           <rename_on_output>N</rename_on_output>
           <description/>
+          <connector>
+            <parent>source_lsn</parent>
+            <child>source_lsn</child>
+          </connector>
           <connector>
             <parent>source_timestamp</parent>
             <child>source_timestamp</child>
