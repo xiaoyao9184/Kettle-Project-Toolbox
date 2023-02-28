@@ -2,6 +2,9 @@ name: jenkins-service
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - 'feature/jenkins_action_docker'
 
 jobs:
   docker:
