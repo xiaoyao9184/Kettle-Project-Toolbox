@@ -1,4 +1,4 @@
-ARG JENKINS_VERSION=2.346.3
+ARG JENKINS_VERSION=2.346.3-jdk8
 ARG JENKINS_UC=https://updates.jenkins.io/update-center.actual.json
 ARG JENKINS_UC_DOWNLOAD_URL=
 

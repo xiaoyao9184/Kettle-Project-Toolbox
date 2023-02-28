@@ -2,34 +2,40 @@ name: jenkins-service
 
 on:
   workflow_dispatch:
-  create:
-    tags:
-      - "*"
-  push:
-    tags:
-      - "*"
-    branches:
-      - "*"
-    paths:
-      - 'jenkins/**'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jenkins_version:
+          # https://www.jenkins.io/doc/administration/requirements/java/
+          # LTS last support jdk8
+          - 2.346.1-jdk8
+          - 2.346.1-jdk11
+          - 2.346.2-jdk8
+          - 2.346.2-jdk11
+          - 2.346.3-jdk8
+          - 2.346.3-jdk11
+          - 2.346.3-2-jdk8
+          - 2.346.3-2-jdk11
+          # last support jdk8
+          - 2.356-jdk8
+          - 2.356-jdk11
+          # LTS start support jdk17
+          - 2.357-jdk11
+          - 2.357-jdk17
+          # LTS start support jdk17
+          - 2.361.4-jdk11
+          - 2.361.4-jdk17
+          - 2.375.3-jdk11
+          - 2.375.3-jdk17
     steps:
       - 
         name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
-      - 
-        name: Set git sha short and tag
-        id: short
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - 
-        name: Set git tag
-        id: tag
-        run: echo "::set-output name=tag::$(git tag -l --points-at HEAD)"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -50,20 +56,6 @@ jobs:
           file: ./jenkins/Dockerfile
           platforms: linux/amd64
           build-args: |
-            JENKINS_VERSION=2.346.3
-            KPT_VERSION=${{ steps.short.outputs.sha_short }}
-          tags: xiaoyao9184/kpt-jenkins-service:2.346.3-${{ steps.short.outputs.sha_short }},xiaoyao9184/kpt-jenkins-service:latest
-          push: true
-      -
-        name: Build for tag and push
-        uses: docker/build-push-action@v3
-        if: ${{ steps.tag.outputs.tag }}
-        with:
-          context: ./jenkins
-          file: ./jenkins/Dockerfile
-          platforms: linux/amd64
-          build-args: |
-            JENKINS_VERSION=2.346.3
-            KPT_VERSION=${{ steps.tag.outputs.tag }}
-          tags: xiaoyao9184/kpt-jenkins-service:2.346.3-${{ steps.tag.outputs.tag }}
+            JENKINS_VERSION=${{ matrix.jenkins_version }}
+          tags: xiaoyao9184/kpt-jenkins-service:${{ matrix.jenkins_version }}
           push: true
