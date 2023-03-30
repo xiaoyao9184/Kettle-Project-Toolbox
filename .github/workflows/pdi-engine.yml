@@ -4,23 +4,36 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "*"
-    paths:
-      - 'data-integration/**'
+      - 'feature/pdi_action_docker'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        engine: 
+          - pdi_release: 7.1
+            pdi_version: 7.1.0.0-12
+            pdi_url: https://downloads.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip
+          - pdi_release: 8.2
+            pdi_version: 8.2.0.7-719-REMIX
+            pdi_url: https://s3.amazonaws.com/kettle-neo4j/kettle-neo4j-remix-8.2.0.7-719-REMIX.zip
+          - pdi_release: 9.1
+            pdi_version: 9.1.0.0-324
+            pdi_url: https://downloads.sourceforge.net/project/pentaho/Pentaho%209.1/client-tools/pdi-ce-9.1.0.0-324.zip
+          - pdi_release: 9.2
+            pdi_version: 9.2.0.0-290
+            pdi_url: https://downloads.sourceforge.net/project/pentaho/Pentaho-9.2/client-tools/pdi-ce-9.2.0.0-290.zip
+          - pdi_release: 9.3
+            pdi_version: 9.3.0.0-428
+            pdi_url: https://downloads.sourceforge.net/project/pentaho/Pentaho-9.3/client-tools/pdi-ce-9.3.0.0-428.zip
+
     steps:
       - 
         name: Checkout
         uses: actions/checkout@v2
         with:
           ref: dev
-      - 
-        name: Set git sha short
-        id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -34,54 +47,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push 7.1
-        id: docker_build_7_1
+        name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: .
           file: ./data-integration/Dockerfile
           push: true
           build-args: |
-            PDI_RELEASE=7.1
-            PDI_VERSION=7.1.0.0-12
-            PDI_URL=https://downloads.sourceforge.net/project/pentaho/Data%20Integration/7.1/pdi-ce-7.1.0.0-12.zip
-          tags: xiaoyao9184/kpt-pdi-engine:7.1.0.0-12
-      -
-        name: Build and push 9.1
-        id: docker_build_9_1
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./data-integration/Dockerfile
-          push: true
-          build-args: |
-            PDI_RELEASE=9.1
-            PDI_VERSION=9.1.0.0-324
-            PDI_URL=https://downloads.sourceforge.net/project/pentaho/Pentaho%209.1/client-tools/pdi-ce-9.1.0.0-324.zip
-          tags: xiaoyao9184/kpt-pdi-engine:9.1.0.0-324
-      -
-        name: Build and push 9.2
-        id: docker_build_9_2
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./data-integration/Dockerfile
-          push: true
-          build-args: |
-            PDI_RELEASE=9.2
-            PDI_VERSION=9.2.0.0-290
-            PDI_URL=https://downloads.sourceforge.net/project/pentaho/Pentaho-9.2/client-tools/pdi-ce-9.2.0.0-290.zip
-          tags: xiaoyao9184/kpt-pdi-engine:9.2.0.0-290
-      -
-        name: Build and push 8.2 REMIX
-        id: docker_build_8_2_REMIX
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./data-integration/Dockerfile
-          push: true
-          build-args: |
-            PDI_RELEASE=8.2
-            PDI_VERSION=8.2.0.7-719-REMIX
-            PDI_URL=https://s3.amazonaws.com/kettle-neo4j/kettle-neo4j-remix-8.2.0.7-719-REMIX.zip
-          tags: xiaoyao9184/kpt-pdi-engine:8.2.0.7-719-REMIX
+            PDI_RELEASE=${{ matrix.engine.pdi_release }}
+            PDI_VERSION=${{ matrix.engine.pdi_version }}
+            PDI_URL=${{ matrix.engine.pdi_url }}
+          tags: xiaoyao9184/kpt-pdi-engine:${{ matrix.engine.pdi_version }}
