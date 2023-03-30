@@ -354,38 +354,44 @@ pipeline {
             steps {
                 echo "Archive project..."
                 script {
-                    if (isUnix()) {
-                        archive."name" = sh(
-                            script: "find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print", 
-                            returnStdout: true).trim()
-                        archive."version" = sh(
-                            script: "basename \$(find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print) .zip", 
-                            returnStdout: true).trim()
-                    } else {
-                        archive."name" = bat(
-                            script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nxF", 
-                            returnStdout: true).trim()
-                        archive."version" = bat(
-                            script: "@echo off & FOR %%F IN ([Deploy]${params.ProjectName}*.zip) DO echo %%~nF", 
-                            returnStdout: true).trim()
-                    }
-
-                    if (!archive.name) {
-                        echo "No archive file!"
+                    def archivePathList = findFiles(glob: "[Deploy]${params.ProjectName}*.zip")
+                    if (!archivePathList) {
+                        println "No any archive file!"
                         archive = null
-                        currentBuild.result = 'FAILURE'
+                        return
                     }
+                    sortByField(archivePathList, 'lastModified')
+                    // archivePathList.eachWithIndex { entry, i ->
+                    //     echo """
+                    //     ${i}:
+                    //         ${entry.name} 
+                    //         ${entry.path} 
+                    //         ${entry.directory} 
+                    //         ${entry.length} 
+                    //         ${entry.lastModified}
+                    //     """
+                    // }
+                    archiveLastFile = archivePathList
+                        // https://issues.jenkins-ci.org/browse/JENKINS-44924
+                        // .sort{ it.name }
+                        .last()
+
+                    println "Last archive is: ${archiveLastFile.name}"
+
+                    archive."file" = archiveLastFile.name
+                    archive."version" = archiveLastFile.name.take(archiveLastFile.name.lastIndexOf('.'))
                     archive."version" = archive.version.minus('[Deploy]')
                 }
-                echo "Archive name is: ${archive.name}"
+
+                echo "Archive file is: ${archive.file}"
                 echo "Archive version is: ${archive.version}"
                 
-                archiveArtifacts artifacts: "*.zip", fingerprint: true
-                stash name: "kpt_build", includes: '*.zip'
+                archiveArtifacts artifacts: "${archive.file}", fingerprint: true
+                stash name: "kpt_build", includes: "${archive.file}"
 
                 fileOperations([
                     fileDeleteOperation(
-                        includes: "*.zip")
+                        includes: "${archive.file}")
                 ])
             }
         }
@@ -414,9 +420,9 @@ pipeline {
                     fileOperations([
                         fileCopyOperation(
                             targetLocation: "${archive.path}",
-                            includes: "${archive.name}"),
+                            includes: "${archive.file}"),
                         fileDeleteOperation(
-                            includes: "${archive.name}")
+                            includes: "${archive.file}")
                     ])
                 }
             }
@@ -427,4 +433,8 @@ pipeline {
             deleteDir()
         }
     }
+}
+@NonCPS
+static sortByField(list, fieldName) {
+    list.sort{ it[fieldName] }
 }
