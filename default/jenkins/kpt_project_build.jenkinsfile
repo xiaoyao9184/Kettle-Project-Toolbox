@@ -356,10 +356,10 @@ pipeline {
                 script {
                     if (isUnix()) {
                         archive."name" = sh(
-                            script: "find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print", 
+                            script: "find . -maxdepth 1 -name '\\[Deploy\\]${params.ProjectName}*.zip' -printf '%f'", 
                             returnStdout: true).trim()
                         archive."version" = sh(
-                            script: "basename \$(find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print) .zip", 
+                            script: "basename \$(find . -maxdepth 1 -name '\\[Deploy\\]${params.ProjectName}*.zip' -printf '%f') .zip", 
                             returnStdout: true).trim()
                     } else {
                         archive."name" = bat(

@@ -354,12 +354,13 @@ pipeline {
             steps {
                 echo "Archive project..."
                 script {
+                    // TODO find last archive file like kpt_project_find stage 'Get archive info'
                     if (isUnix()) {
                         archive."name" = sh(
-                            script: "find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print", 
+                            script: "find . -maxdepth 1 -name '\\[Deploy\\]${params.ProjectName}*.zip' -printf '%f'", 
                             returnStdout: true).trim()
                         archive."version" = sh(
-                            script: "basename \$(find . -name '\\[Deploy\\]${params.ProjectName}*.zip' -print) .zip", 
+                            script: "basename \$(find . -maxdepth 1 -name '\\[Deploy\\]${params.ProjectName}*.zip' -printf '%f') .zip", 
                             returnStdout: true).trim()
                     } else {
                         archive."name" = bat(
